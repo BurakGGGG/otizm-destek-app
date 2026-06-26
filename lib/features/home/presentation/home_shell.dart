@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../i18n/strings.g.dart';
@@ -51,11 +52,16 @@ class _HomeShellState extends ConsumerState<HomeShell> {
         ),
         actions: [
           IconButton(
+            tooltip: t.home.assistant,
+            onPressed: () => context.push('/chat'),
+            icon: const Icon(Icons.smart_toy_outlined),
+          ),
+          IconButton(
             tooltip: t.home.notifications,
             onPressed: () {},
             icon: const Icon(Icons.notifications_none),
           ),
-          const SizedBox(width: 8),
+          const SizedBox(width: 4),
         ],
       ),
       body: IndexedStack(index: _index, children: _tabs),

@@ -84,8 +84,15 @@ nav:
   progress: Progress
   profile: Profile
 
+chat:
+  title: AI Assistant
+  greeting: Hi! I'll try to answer your questions about autism and child development.
+  inputHint: Ask a question...
+  errorGeneric: Couldn't get a response, please try again.
+
 home:
   notifications: Notifications
+  assistant: AI Assistant
   greeting: Hello, $name
   greetingFallback: Parent
   subtitle: What can we do for development today?

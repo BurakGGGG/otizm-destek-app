@@ -84,8 +84,15 @@ nav:
   progress: Gelişim
   profile: Profil
 
+chat:
+  title: AI Asistan
+  greeting: Merhaba! Otizm ve çocuk gelişimi hakkındaki sorularınızı yanıtlamaya çalışayım.
+  inputHint: Bir soru sorun...
+  errorGeneric: Yanıt alınamadı, lütfen tekrar deneyin.
+
 home:
   notifications: Bildirimler
+  assistant: AI Asistan
   greeting: Merhaba, $name
   greetingFallback: Veli
   subtitle: Bugün gelişim için neler yapabiliriz?

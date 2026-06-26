@@ -46,6 +46,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$auth$en auth = _Translations$auth$en._(_root);
 	@override late final _Translations$register$en register = _Translations$register$en._(_root);
 	@override late final _Translations$nav$en nav = _Translations$nav$en._(_root);
+	@override late final _Translations$chat$en chat = _Translations$chat$en._(_root);
 	@override late final _Translations$home$en home = _Translations$home$en._(_root);
 	@override late final _Translations$specialists$en specialists = _Translations$specialists$en._(_root);
 	@override late final _Translations$progress$en progress = _Translations$progress$en._(_root);
@@ -188,6 +189,19 @@ class _Translations$nav$en extends Translations$nav$tr {
 	@override String get profile => 'Profile';
 }
 
+// Path: chat
+class _Translations$chat$en extends Translations$chat$tr {
+	_Translations$chat$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'AI Assistant';
+	@override String get greeting => 'Hi! I\'ll try to answer your questions about autism and child development.';
+	@override String get inputHint => 'Ask a question...';
+	@override String get errorGeneric => 'Couldn\'t get a response, please try again.';
+}
+
 // Path: home
 class _Translations$home$en extends Translations$home$tr {
 	_Translations$home$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -196,6 +210,7 @@ class _Translations$home$en extends Translations$home$tr {
 
 	// Translations
 	@override String get notifications => 'Notifications';
+	@override String get assistant => 'AI Assistant';
 	@override String greeting({required Object name}) => 'Hello, ${name}';
 	@override String get greetingFallback => 'Parent';
 	@override String get subtitle => 'What can we do for development today?';
@@ -361,7 +376,12 @@ extension on TranslationsEn {
 			'nav.specialists' => 'Specialists',
 			'nav.progress' => 'Progress',
 			'nav.profile' => 'Profile',
+			'chat.title' => 'AI Assistant',
+			'chat.greeting' => 'Hi! I\'ll try to answer your questions about autism and child development.',
+			'chat.inputHint' => 'Ask a question...',
+			'chat.errorGeneric' => 'Couldn\'t get a response, please try again.',
 			'home.notifications' => 'Notifications',
+			'home.assistant' => 'AI Assistant',
 			'home.greeting' => ({required Object name}) => 'Hello, ${name}',
 			'home.greetingFallback' => 'Parent',
 			'home.subtitle' => 'What can we do for development today?',

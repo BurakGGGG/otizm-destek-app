@@ -47,6 +47,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$auth$tr auth = Translations$auth$tr.internal(_root);
 	late final Translations$register$tr register = Translations$register$tr.internal(_root);
 	late final Translations$nav$tr nav = Translations$nav$tr.internal(_root);
+	late final Translations$chat$tr chat = Translations$chat$tr.internal(_root);
 	late final Translations$home$tr home = Translations$home$tr.internal(_root);
 	late final Translations$specialists$tr specialists = Translations$specialists$tr.internal(_root);
 	late final Translations$progress$tr progress = Translations$progress$tr.internal(_root);
@@ -306,6 +307,27 @@ class Translations$nav$tr {
 	String get profile => 'Profil';
 }
 
+// Path: chat
+class Translations$chat$tr {
+	Translations$chat$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'AI Asistan'
+	String get title => 'AI Asistan';
+
+	/// tr: 'Merhaba! Otizm ve çocuk gelişimi hakkındaki sorularınızı yanıtlamaya çalışayım.'
+	String get greeting => 'Merhaba! Otizm ve çocuk gelişimi hakkındaki sorularınızı yanıtlamaya çalışayım.';
+
+	/// tr: 'Bir soru sorun...'
+	String get inputHint => 'Bir soru sorun...';
+
+	/// tr: 'Yanıt alınamadı, lütfen tekrar deneyin.'
+	String get errorGeneric => 'Yanıt alınamadı, lütfen tekrar deneyin.';
+}
+
 // Path: home
 class Translations$home$tr {
 	Translations$home$tr.internal(this._root);
@@ -316,6 +338,9 @@ class Translations$home$tr {
 
 	/// tr: 'Bildirimler'
 	String get notifications => 'Bildirimler';
+
+	/// tr: 'AI Asistan'
+	String get assistant => 'AI Asistan';
 
 	/// tr: 'Merhaba, $name'
 	String greeting({required Object name}) => 'Merhaba, ${name}';
@@ -579,7 +604,12 @@ extension on Translations {
 			'nav.specialists' => 'Uzmanlar',
 			'nav.progress' => 'Gelişim',
 			'nav.profile' => 'Profil',
+			'chat.title' => 'AI Asistan',
+			'chat.greeting' => 'Merhaba! Otizm ve çocuk gelişimi hakkındaki sorularınızı yanıtlamaya çalışayım.',
+			'chat.inputHint' => 'Bir soru sorun...',
+			'chat.errorGeneric' => 'Yanıt alınamadı, lütfen tekrar deneyin.',
 			'home.notifications' => 'Bildirimler',
+			'home.assistant' => 'AI Asistan',
 			'home.greeting' => ({required Object name}) => 'Merhaba, ${name}',
 			'home.greetingFallback' => 'Veli',
 			'home.subtitle' => 'Bugün gelişim için neler yapabiliriz?',
