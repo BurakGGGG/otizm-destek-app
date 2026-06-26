@@ -394,6 +394,15 @@ class Translations$specialists$tr {
 
 	/// tr: 'Dil ve Konuşma'
 	String get filterSpeech => 'Dil ve Konuşma';
+
+	/// tr: 'Aramanıza uygun uzman bulunamadı.'
+	String get noResults => 'Aramanıza uygun uzman bulunamadı.';
+
+	/// tr: 'Yeni'
+	String get ratingNew => 'Yeni';
+
+	/// tr: '$count değerlendirme'
+	String reviews({required Object count}) => '${count} değerlendirme';
 }
 
 // Path: progress
@@ -607,6 +616,9 @@ extension on Translations {
 			'specialists.filterPsychologist' => 'Psikolog',
 			'specialists.filterSpecialEducation' => 'Özel Eğitim',
 			'specialists.filterSpeech' => 'Dil ve Konuşma',
+			'specialists.noResults' => 'Aramanıza uygun uzman bulunamadı.',
+			'specialists.ratingNew' => 'Yeni',
+			'specialists.reviews' => ({required Object count}) => '${count} değerlendirme',
 			'progress.title' => 'Gelişim Takibi',
 			'progress.subtitle' => 'Haftalık aktivite ve başarı günlüğü.',
 			'progress.addRecord' => 'Yeni Kayıt Ekle',

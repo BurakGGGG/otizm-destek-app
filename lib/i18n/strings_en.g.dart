@@ -228,6 +228,9 @@ class _Translations$specialists$en extends Translations$specialists$tr {
 	@override String get filterPsychologist => 'Psychologist';
 	@override String get filterSpecialEducation => 'Special Education';
 	@override String get filterSpeech => 'Speech & Language';
+	@override String get noResults => 'No specialists match your search.';
+	@override String get ratingNew => 'New';
+	@override String reviews({required Object count}) => '${count} reviews';
 }
 
 // Path: progress
@@ -392,6 +395,9 @@ extension on TranslationsEn {
 			'specialists.filterPsychologist' => 'Psychologist',
 			'specialists.filterSpecialEducation' => 'Special Education',
 			'specialists.filterSpeech' => 'Speech & Language',
+			'specialists.noResults' => 'No specialists match your search.',
+			'specialists.ratingNew' => 'New',
+			'specialists.reviews' => ({required Object count}) => '${count} reviews',
 			'progress.title' => 'Progress Tracking',
 			'progress.subtitle' => 'Weekly activity and achievement log.',
 			'progress.addRecord' => 'Add New Record',

@@ -111,6 +111,9 @@ specialists:
   filterPsychologist: Psychologist
   filterSpecialEducation: Special Education
   filterSpeech: Speech & Language
+  noResults: No specialists match your search.
+  ratingNew: New
+  reviews: $count reviews
 
 progress:
   title: Progress Tracking

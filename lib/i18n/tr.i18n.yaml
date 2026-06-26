@@ -111,6 +111,9 @@ specialists:
   filterPsychologist: Psikolog
   filterSpecialEducation: Özel Eğitim
   filterSpeech: Dil ve Konuşma
+  noResults: Aramanıza uygun uzman bulunamadı.
+  ratingNew: Yeni
+  reviews: $count değerlendirme
 
 progress:
   title: Gelişim Takibi
