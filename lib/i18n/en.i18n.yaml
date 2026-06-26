@@ -1,0 +1,151 @@
+# English (en) translations. Keys mirror the Turkish base file.
+app:
+  name: Autism Support
+
+common:
+  loading: Loading
+  comingSoon: This section is coming soon.
+  seeAll: See All
+  more: More
+  retry: Retry
+  loadError: Could not load data.
+  monthsShort:
+    - Jan
+    - Feb
+    - Mar
+    - Apr
+    - May
+    - Jun
+    - Jul
+    - Aug
+    - Sep
+    - Oct
+    - Nov
+    - Dec
+
+language:
+  title: Language
+  turkish: Türkçe
+  english: English
+
+roles:
+  parent: Parent
+  expert: Specialist
+  admin: Admin
+
+auth:
+  subtitle: Sign in to your account or create a new one.
+  emailLabel: Email Address
+  emailHint: example@email.com
+  passwordLabel: Password
+  passwordHint: ••••••••
+  rememberMe: Remember me
+  forgotPassword: Forgot password
+  loginButton: Sign In
+  noAccount: Don't have an account?
+  registerParent: Sign up as a parent
+  registerExpert: Sign up as a specialist
+  errorEmptyFields: Please enter your email and password.
+  registerComingSoon: $role sign-up screen is coming soon.
+
+register:
+  titleParent: Create Parent Account
+  titleExpert: Create Specialist Account
+  roleQuestion: How would you like to sign up?
+  fullNameLabel: Full Name
+  fullNameHint: Your first and last name
+  phoneLabel: Phone (optional)
+  phoneHint: '05XX XXX XX XX'
+  cityLabel: City (optional)
+  cityHint: Your city
+  expertTitleLabel: Professional Title
+  expertTitleHint: e.g. Child Psychologist
+  institutionLabel: Institution (optional)
+  institutionHint: Where you work
+  licenseNumberLabel: License / Diploma No
+  licenseNumberHint: Your professional license number
+  bioLabel: About (optional)
+  bioHint: Briefly describe your experience
+  specializationsLabel: Areas of Expertise (optional)
+  specializationsHint: Separate with commas (Autism, ADHD)
+  kvkkConsent: I have read and accept the data protection (KVKK) notice.
+  submit: Sign Up
+  haveAccount: Already have an account? Sign in
+  errorFullNameRequired: Please enter your full name.
+  errorEmailRequired: Please enter your email.
+  errorEmailInvalid: Please enter a valid email.
+  errorPasswordShort: Password must be at least 8 characters.
+  errorExpertTitleRequired: Please enter your professional title.
+  errorKvkkRequired: KVKK consent is required to continue.
+
+nav:
+  home: Home
+  specialists: Specialists
+  progress: Progress
+  profile: Profile
+
+home:
+  notifications: Notifications
+  greeting: Hello, $name
+  greetingFallback: Parent
+  subtitle: What can we do for development today?
+  childProgressTitle: Child Development
+  weeklySummary: Weekly Progress Summary
+  increaseBadge: '$value% Increase'
+  remainingToGoal: 'Remaining to goal: $value%'
+  statusCognitiveGood: 'Cognitive: Good'
+  statusCommunicationImproving: 'Communication: Improving'
+  upcomingAppointments: Upcoming Appointments
+  recommendedArticles: Recommended Articles
+  childrenTitle: My Children
+  noChildren: You haven't added a child yet.
+  addChild: Add Child
+  ageYears: $years yrs
+  noAppointments: You have no upcoming appointments.
+  noArticles: No articles to show.
+
+specialists:
+  title: Find a Specialist
+  searchHint: Search by name or expertise...
+  filterAll: All
+  filterPsychologist: Psychologist
+  filterSpecialEducation: Special Education
+  filterSpeech: Speech & Language
+
+progress:
+  title: Progress Tracking
+  subtitle: Weekly activity and achievement log.
+  addRecord: Add New Record
+  weeklyActivity: Weekly Activity
+  thisWeek: This Week
+  completedTasks: Completed Tasks
+  statusCompleted: Completed
+  statusPartial: Partial
+  categoryCognitive: Cognitive
+  categoryCommunication: Communication
+  weekdays:
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    - Fri
+    - Sat
+    - Sun
+
+profile:
+  defaultUser: User
+  accountInfo: Account Information
+  myChildren: My Children
+  notificationSettings: Notification Settings
+  help: Help
+  signOut: Sign Out
+
+errors:
+  timeout: Could not reach the server, please try again.
+  noConnection: You appear to be offline.
+  generic: An error occurred ($code).
+  cancelled: Request cancelled.
+  unexpected: An unexpected error occurred.
+  unexpectedResponse: Unexpected server response.
+  operationFailed: Operation failed.
+  noUserInResponse: No user information in the server response.

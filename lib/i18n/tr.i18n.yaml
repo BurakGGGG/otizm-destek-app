@@ -1,0 +1,151 @@
+# Temel dil: Türkçe (tr). Tüm UI metinleri burada tanımlıdır — kodda sabit metin yok.
+app:
+  name: Otizm Destek
+
+common:
+  loading: Yükleniyor
+  comingSoon: Bu bölüm yakında eklenecek.
+  seeAll: Tümünü Gör
+  more: Daha Fazla
+  retry: Tekrar Dene
+  loadError: Veriler yüklenemedi.
+  monthsShort:
+    - Oca
+    - Şub
+    - Mar
+    - Nis
+    - May
+    - Haz
+    - Tem
+    - Ağu
+    - Eyl
+    - Eki
+    - Kas
+    - Ara
+
+language:
+  title: Dil
+  turkish: Türkçe
+  english: English
+
+roles:
+  parent: Veli
+  expert: Uzman
+  admin: Yönetici
+
+auth:
+  subtitle: Hesabınıza giriş yapın veya yeni bir hesap oluşturun.
+  emailLabel: E-posta Adresi
+  emailHint: ornek@eposta.com
+  passwordLabel: Şifre
+  passwordHint: ••••••••
+  rememberMe: Beni hatırla
+  forgotPassword: Şifremi unuttum
+  loginButton: Giriş Yap
+  noAccount: Hesabınız yok mu?
+  registerParent: Veli hesabı ile kaydol
+  registerExpert: Uzman hesabı ile kaydol
+  errorEmptyFields: Lütfen e-posta ve şifrenizi girin.
+  registerComingSoon: $role kayıt ekranı yakında eklenecek.
+
+register:
+  titleParent: Veli Hesabı Oluştur
+  titleExpert: Uzman Hesabı Oluştur
+  roleQuestion: Nasıl kaydolmak istersiniz?
+  fullNameLabel: Ad Soyad
+  fullNameHint: Adınız ve soyadınız
+  phoneLabel: Telefon (isteğe bağlı)
+  phoneHint: '05XX XXX XX XX'
+  cityLabel: Şehir (isteğe bağlı)
+  cityHint: Yaşadığınız şehir
+  expertTitleLabel: Uzmanlık Ünvanı
+  expertTitleHint: Örn. Çocuk Psikoloğu
+  institutionLabel: Kurum (isteğe bağlı)
+  institutionHint: Çalıştığınız kurum
+  licenseNumberLabel: Lisans / Diploma No
+  licenseNumberHint: Mesleki lisans numaranız
+  bioLabel: Hakkında (isteğe bağlı)
+  bioHint: Deneyiminizi kısaca anlatın
+  specializationsLabel: Uzmanlık Alanları (isteğe bağlı)
+  specializationsHint: Virgülle ayırın (Otizm, DEHB)
+  kvkkConsent: KVKK aydınlatma metnini okudum ve onaylıyorum.
+  submit: Kaydol
+  haveAccount: Zaten hesabınız var mı? Giriş yapın
+  errorFullNameRequired: Lütfen ad soyad girin.
+  errorEmailRequired: Lütfen e-posta girin.
+  errorEmailInvalid: Geçerli bir e-posta girin.
+  errorPasswordShort: Şifre en az 8 karakter olmalıdır.
+  errorExpertTitleRequired: Lütfen uzmanlık ünvanını girin.
+  errorKvkkRequired: Devam etmek için KVKK onayı gereklidir.
+
+nav:
+  home: Ana Sayfa
+  specialists: Uzmanlar
+  progress: Gelişim
+  profile: Profil
+
+home:
+  notifications: Bildirimler
+  greeting: Merhaba, $name
+  greetingFallback: Veli
+  subtitle: Bugün gelişim için neler yapabiliriz?
+  childProgressTitle: Çocuk Gelişimi
+  weeklySummary: Haftalık İlerleme Özeti
+  increaseBadge: '%$value Artış'
+  remainingToGoal: 'Hedefe Kalan: %$value'
+  statusCognitiveGood: 'Bilişsel: İyi'
+  statusCommunicationImproving: 'İletişim: Gelişiyor'
+  upcomingAppointments: Yaklaşan Randevular
+  recommendedArticles: Önerilen Makaleler
+  childrenTitle: Çocuklarım
+  noChildren: Henüz çocuk eklemediniz.
+  addChild: Çocuk Ekle
+  ageYears: $years yaş
+  noAppointments: Yaklaşan randevunuz yok.
+  noArticles: Gösterilecek makale yok.
+
+specialists:
+  title: Uzman Bulun
+  searchHint: İsim veya uzmanlık arayın...
+  filterAll: Tümü
+  filterPsychologist: Psikolog
+  filterSpecialEducation: Özel Eğitim
+  filterSpeech: Dil ve Konuşma
+
+progress:
+  title: Gelişim Takibi
+  subtitle: Haftalık aktivite ve başarı günlüğü.
+  addRecord: Yeni Kayıt Ekle
+  weeklyActivity: Haftalık Aktivite
+  thisWeek: Bu Hafta
+  completedTasks: Tamamlanan Görevler
+  statusCompleted: Tamamlandı
+  statusPartial: Kısmen
+  categoryCognitive: Bilişsel
+  categoryCommunication: İletişim
+  weekdays:
+    - Pzt
+    - Sal
+    - Çar
+    - Per
+    - Cum
+    - Cmt
+    - Paz
+
+profile:
+  defaultUser: Kullanıcı
+  accountInfo: Hesap Bilgileri
+  myChildren: Çocuklarım
+  notificationSettings: Bildirim Ayarları
+  help: Yardım
+  signOut: Çıkış Yap
+
+errors:
+  timeout: Sunucuya ulaşılamadı, lütfen tekrar deneyin.
+  noConnection: İnternet bağlantısı yok gibi görünüyor.
+  generic: Bir hata oluştu ($code).
+  cancelled: İstek iptal edildi.
+  unexpected: Beklenmeyen bir hata oluştu.
+  unexpectedResponse: Beklenmeyen sunucu yanıtı.
+  operationFailed: İşlem başarısız.
+  noUserInResponse: Sunucu yanıtında kullanıcı bilgisi yok.

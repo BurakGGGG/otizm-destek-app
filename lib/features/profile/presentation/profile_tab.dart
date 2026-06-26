@@ -1,0 +1,124 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_theme.dart';
+import '../../../i18n/strings.g.dart';
+import '../../auth/presentation/auth_controller.dart';
+
+/// Profil sekmesi — temel kullanıcı bilgisi, dil seçimi ve çıkış.
+class ProfileTab extends ConsumerWidget {
+  const ProfileTab({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.watch(authControllerProvider).user;
+    final t = context.t;
+    final text = Theme.of(context).textTheme;
+
+    return SafeArea(
+      child: ListView(
+        padding: const EdgeInsets.all(AppSpacing.margin),
+        children: [
+          const SizedBox(height: 8),
+          Center(
+            child: CircleAvatar(
+              radius: 40,
+              backgroundColor: AppColors.primary.withValues(alpha: 0.12),
+              child: const Icon(Icons.person,
+                  size: 40, color: AppColors.primary),
+            ),
+          ),
+          const SizedBox(height: 12),
+          Text(user?.displayName ?? t.profile.defaultUser,
+              textAlign: TextAlign.center, style: text.headlineSmall),
+          Text(user?.email ?? '',
+              textAlign: TextAlign.center, style: text.bodySmall),
+          const SizedBox(height: 24),
+          _ProfileItem(
+              icon: Icons.person_outline, label: t.profile.accountInfo),
+          _ProfileItem(
+              icon: Icons.child_care_outlined, label: t.profile.myChildren),
+          _ProfileItem(
+              icon: Icons.notifications_none,
+              label: t.profile.notificationSettings),
+          _ProfileItem(icon: Icons.help_outline, label: t.profile.help),
+          const SizedBox(height: 16),
+          const _LanguageSelector(),
+          const SizedBox(height: 24),
+          OutlinedButton.icon(
+            onPressed: () =>
+                ref.read(authControllerProvider.notifier).signOut(),
+            icon: const Icon(Icons.logout, color: AppColors.error),
+            style: OutlinedButton.styleFrom(foregroundColor: AppColors.error),
+            label: Text(t.profile.signOut),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Dil seçici — TR/EN arası anlık geçiş (tüm uygulamayı yeniden çizer).
+class _LanguageSelector extends StatelessWidget {
+  const _LanguageSelector();
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    final current = TranslationProvider.of(context).locale;
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(AppSpacing.md),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                const Icon(Icons.language, color: AppColors.primary),
+                const SizedBox(width: 12),
+                Text(t.language.title,
+                    style: Theme.of(context).textTheme.titleMedium),
+              ],
+            ),
+            const SizedBox(height: 12),
+            SegmentedButton<AppLocale>(
+              segments: [
+                ButtonSegment(
+                    value: AppLocale.tr, label: Text(t.language.turkish)),
+                ButtonSegment(
+                    value: AppLocale.en, label: Text(t.language.english)),
+              ],
+              selected: {current},
+              showSelectedIcon: false,
+              onSelectionChanged: (selection) =>
+                  LocaleSettings.setLocale(selection.first),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _ProfileItem extends StatelessWidget {
+  const _ProfileItem({required this.icon, required this.label});
+  final IconData icon;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.only(bottom: 12),
+      child: ListTile(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppRadius.lg)),
+        leading: Icon(icon, color: AppColors.primary),
+        title: Text(label),
+        trailing:
+            const Icon(Icons.chevron_right, color: AppColors.textTertiary),
+        onTap: () {},
+      ),
+    );
+  }
+}

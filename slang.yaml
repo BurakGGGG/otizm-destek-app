@@ -1,0 +1,9 @@
+# slang i18n yapılandırması — YAML temelli, tip-güvenli çeviriler.
+base_locale: tr
+input_directory: lib/i18n
+input_file_pattern: .i18n.yaml
+output_directory: lib/i18n
+output_file_name: strings.g.dart
+flutter_integration: true
+locale_handling: true
+fallback_strategy: base_locale # eksik EN anahtarları TR'ye düşer
