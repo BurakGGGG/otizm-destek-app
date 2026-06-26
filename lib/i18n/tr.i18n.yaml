@@ -117,23 +117,14 @@ specialists:
 
 progress:
   title: Gelişim Takibi
-  subtitle: Haftalık aktivite ve başarı günlüğü.
+  subtitle: Hedefler ve gelişim notları.
   addRecord: Yeni Kayıt Ekle
-  weeklyActivity: Haftalık Aktivite
-  thisWeek: Bu Hafta
-  completedTasks: Tamamlanan Görevler
-  statusCompleted: Tamamlandı
-  statusPartial: Kısmen
-  categoryCognitive: Bilişsel
-  categoryCommunication: İletişim
-  weekdays:
-    - Pzt
-    - Sal
-    - Çar
-    - Per
-    - Cum
-    - Cmt
-    - Paz
+  goalsTitle: Hedefler
+  recentNotes: Son Gelişim Notları
+  noGoals: Henüz hedef eklenmemiş.
+  noNotes: Henüz gelişim notu eklenmemiş.
+  noChild: Gelişim takibi için önce bir çocuk ekleyin.
+  goalProgress: $done / $total
 
 profile:
   defaultUser: Kullanıcı

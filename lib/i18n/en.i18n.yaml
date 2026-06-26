@@ -117,23 +117,14 @@ specialists:
 
 progress:
   title: Progress Tracking
-  subtitle: Weekly activity and achievement log.
+  subtitle: Goals and development notes.
   addRecord: Add New Record
-  weeklyActivity: Weekly Activity
-  thisWeek: This Week
-  completedTasks: Completed Tasks
-  statusCompleted: Completed
-  statusPartial: Partial
-  categoryCognitive: Cognitive
-  categoryCommunication: Communication
-  weekdays:
-    - Mon
-    - Tue
-    - Wed
-    - Thu
-    - Fri
-    - Sat
-    - Sun
+  goalsTitle: Goals
+  recentNotes: Recent Development Notes
+  noGoals: No goals added yet.
+  noNotes: No development notes yet.
+  noChild: Add a child first to track development.
+  goalProgress: $done / $total
 
 profile:
   defaultUser: User

@@ -241,24 +241,14 @@ class _Translations$progress$en extends Translations$progress$tr {
 
 	// Translations
 	@override String get title => 'Progress Tracking';
-	@override String get subtitle => 'Weekly activity and achievement log.';
+	@override String get subtitle => 'Goals and development notes.';
 	@override String get addRecord => 'Add New Record';
-	@override String get weeklyActivity => 'Weekly Activity';
-	@override String get thisWeek => 'This Week';
-	@override String get completedTasks => 'Completed Tasks';
-	@override String get statusCompleted => 'Completed';
-	@override String get statusPartial => 'Partial';
-	@override String get categoryCognitive => 'Cognitive';
-	@override String get categoryCommunication => 'Communication';
-	@override List<String> get weekdays => [
-		'Mon',
-		'Tue',
-		'Wed',
-		'Thu',
-		'Fri',
-		'Sat',
-		'Sun',
-	];
+	@override String get goalsTitle => 'Goals';
+	@override String get recentNotes => 'Recent Development Notes';
+	@override String get noGoals => 'No goals added yet.';
+	@override String get noNotes => 'No development notes yet.';
+	@override String get noChild => 'Add a child first to track development.';
+	@override String goalProgress({required Object done, required Object total}) => '${done} / ${total}';
 }
 
 // Path: profile
@@ -399,22 +389,14 @@ extension on TranslationsEn {
 			'specialists.ratingNew' => 'New',
 			'specialists.reviews' => ({required Object count}) => '${count} reviews',
 			'progress.title' => 'Progress Tracking',
-			'progress.subtitle' => 'Weekly activity and achievement log.',
+			'progress.subtitle' => 'Goals and development notes.',
 			'progress.addRecord' => 'Add New Record',
-			'progress.weeklyActivity' => 'Weekly Activity',
-			'progress.thisWeek' => 'This Week',
-			'progress.completedTasks' => 'Completed Tasks',
-			'progress.statusCompleted' => 'Completed',
-			'progress.statusPartial' => 'Partial',
-			'progress.categoryCognitive' => 'Cognitive',
-			'progress.categoryCommunication' => 'Communication',
-			'progress.weekdays.0' => 'Mon',
-			'progress.weekdays.1' => 'Tue',
-			'progress.weekdays.2' => 'Wed',
-			'progress.weekdays.3' => 'Thu',
-			'progress.weekdays.4' => 'Fri',
-			'progress.weekdays.5' => 'Sat',
-			'progress.weekdays.6' => 'Sun',
+			'progress.goalsTitle' => 'Goals',
+			'progress.recentNotes' => 'Recent Development Notes',
+			'progress.noGoals' => 'No goals added yet.',
+			'progress.noNotes' => 'No development notes yet.',
+			'progress.noChild' => 'Add a child first to track development.',
+			'progress.goalProgress' => ({required Object done, required Object total}) => '${done} / ${total}',
 			'profile.defaultUser' => 'User',
 			'profile.accountInfo' => 'Account Information',
 			'profile.myChildren' => 'My Children',

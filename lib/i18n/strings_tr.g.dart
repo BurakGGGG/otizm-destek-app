@@ -416,42 +416,29 @@ class Translations$progress$tr {
 	/// tr: 'Gelişim Takibi'
 	String get title => 'Gelişim Takibi';
 
-	/// tr: 'Haftalık aktivite ve başarı günlüğü.'
-	String get subtitle => 'Haftalık aktivite ve başarı günlüğü.';
+	/// tr: 'Hedefler ve gelişim notları.'
+	String get subtitle => 'Hedefler ve gelişim notları.';
 
 	/// tr: 'Yeni Kayıt Ekle'
 	String get addRecord => 'Yeni Kayıt Ekle';
 
-	/// tr: 'Haftalık Aktivite'
-	String get weeklyActivity => 'Haftalık Aktivite';
+	/// tr: 'Hedefler'
+	String get goalsTitle => 'Hedefler';
 
-	/// tr: 'Bu Hafta'
-	String get thisWeek => 'Bu Hafta';
+	/// tr: 'Son Gelişim Notları'
+	String get recentNotes => 'Son Gelişim Notları';
 
-	/// tr: 'Tamamlanan Görevler'
-	String get completedTasks => 'Tamamlanan Görevler';
+	/// tr: 'Henüz hedef eklenmemiş.'
+	String get noGoals => 'Henüz hedef eklenmemiş.';
 
-	/// tr: 'Tamamlandı'
-	String get statusCompleted => 'Tamamlandı';
+	/// tr: 'Henüz gelişim notu eklenmemiş.'
+	String get noNotes => 'Henüz gelişim notu eklenmemiş.';
 
-	/// tr: 'Kısmen'
-	String get statusPartial => 'Kısmen';
+	/// tr: 'Gelişim takibi için önce bir çocuk ekleyin.'
+	String get noChild => 'Gelişim takibi için önce bir çocuk ekleyin.';
 
-	/// tr: 'Bilişsel'
-	String get categoryCognitive => 'Bilişsel';
-
-	/// tr: 'İletişim'
-	String get categoryCommunication => 'İletişim';
-
-	List<String> get weekdays => [
-		'Pzt',
-		'Sal',
-		'Çar',
-		'Per',
-		'Cum',
-		'Cmt',
-		'Paz',
-	];
+	/// tr: '$done / $total'
+	String goalProgress({required Object done, required Object total}) => '${done} / ${total}';
 }
 
 // Path: profile
@@ -620,22 +607,14 @@ extension on Translations {
 			'specialists.ratingNew' => 'Yeni',
 			'specialists.reviews' => ({required Object count}) => '${count} değerlendirme',
 			'progress.title' => 'Gelişim Takibi',
-			'progress.subtitle' => 'Haftalık aktivite ve başarı günlüğü.',
+			'progress.subtitle' => 'Hedefler ve gelişim notları.',
 			'progress.addRecord' => 'Yeni Kayıt Ekle',
-			'progress.weeklyActivity' => 'Haftalık Aktivite',
-			'progress.thisWeek' => 'Bu Hafta',
-			'progress.completedTasks' => 'Tamamlanan Görevler',
-			'progress.statusCompleted' => 'Tamamlandı',
-			'progress.statusPartial' => 'Kısmen',
-			'progress.categoryCognitive' => 'Bilişsel',
-			'progress.categoryCommunication' => 'İletişim',
-			'progress.weekdays.0' => 'Pzt',
-			'progress.weekdays.1' => 'Sal',
-			'progress.weekdays.2' => 'Çar',
-			'progress.weekdays.3' => 'Per',
-			'progress.weekdays.4' => 'Cum',
-			'progress.weekdays.5' => 'Cmt',
-			'progress.weekdays.6' => 'Paz',
+			'progress.goalsTitle' => 'Hedefler',
+			'progress.recentNotes' => 'Son Gelişim Notları',
+			'progress.noGoals' => 'Henüz hedef eklenmemiş.',
+			'progress.noNotes' => 'Henüz gelişim notu eklenmemiş.',
+			'progress.noChild' => 'Gelişim takibi için önce bir çocuk ekleyin.',
+			'progress.goalProgress' => ({required Object done, required Object total}) => '${done} / ${total}',
 			'profile.defaultUser' => 'Kullanıcı',
 			'profile.accountInfo' => 'Hesap Bilgileri',
 			'profile.myChildren' => 'Çocuklarım',
