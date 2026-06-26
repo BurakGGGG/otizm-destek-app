@@ -8,6 +8,8 @@ import '../../features/auth/presentation/login_screen.dart';
 import '../../features/auth/presentation/register_screen.dart';
 import '../../features/chatbot/presentation/chat_screen.dart';
 import '../../features/home/presentation/home_shell.dart';
+import '../../features/messaging/presentation/conversation_thread_screen.dart';
+import '../../features/messaging/presentation/conversations_screen.dart';
 import '../../features/splash/splash_screen.dart';
 
 /// Uygulama rotaları. Oturum durumuna göre yönlendirir (role duyarlı kabuk
@@ -63,6 +65,20 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/chat',
         builder: (_, _) => const ChatScreen(),
+      ),
+      GoRoute(
+        path: '/messages',
+        builder: (_, _) => const ConversationsScreen(),
+      ),
+      GoRoute(
+        path: '/messages/thread',
+        builder: (_, state) {
+          final extra = state.extra as Map<String, dynamic>?;
+          return ConversationThreadScreen(
+            conversationId: extra?['id'] as String? ?? '',
+            title: extra?['title'] as String? ?? '',
+          );
+        },
       ),
     ],
   );

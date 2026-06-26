@@ -48,6 +48,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$register$tr register = Translations$register$tr.internal(_root);
 	late final Translations$nav$tr nav = Translations$nav$tr.internal(_root);
 	late final Translations$chat$tr chat = Translations$chat$tr.internal(_root);
+	late final Translations$messages$tr messages = Translations$messages$tr.internal(_root);
 	late final Translations$home$tr home = Translations$home$tr.internal(_root);
 	late final Translations$specialists$tr specialists = Translations$specialists$tr.internal(_root);
 	late final Translations$progress$tr progress = Translations$progress$tr.internal(_root);
@@ -328,6 +329,30 @@ class Translations$chat$tr {
 	String get errorGeneric => 'Yanıt alınamadı, lütfen tekrar deneyin.';
 }
 
+// Path: messages
+class Translations$messages$tr {
+	Translations$messages$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Mesajlar'
+	String get title => 'Mesajlar';
+
+	/// tr: 'Henüz bir konuşmanız yok.'
+	String get noConversations => 'Henüz bir konuşmanız yok.';
+
+	/// tr: 'Henüz mesaj yok. İlk mesajı gönderin.'
+	String get noMessages => 'Henüz mesaj yok. İlk mesajı gönderin.';
+
+	/// tr: 'Mesaj yazın...'
+	String get inputHint => 'Mesaj yazın...';
+
+	/// tr: 'Bağlanıyor...'
+	String get connecting => 'Bağlanıyor...';
+}
+
 // Path: home
 class Translations$home$tr {
 	Translations$home$tr.internal(this._root);
@@ -341,6 +366,9 @@ class Translations$home$tr {
 
 	/// tr: 'AI Asistan'
 	String get assistant => 'AI Asistan';
+
+	/// tr: 'Mesajlar'
+	String get messages => 'Mesajlar';
 
 	/// tr: 'Merhaba, $name'
 	String greeting({required Object name}) => 'Merhaba, ${name}';
@@ -608,8 +636,14 @@ extension on Translations {
 			'chat.greeting' => 'Merhaba! Otizm ve çocuk gelişimi hakkındaki sorularınızı yanıtlamaya çalışayım.',
 			'chat.inputHint' => 'Bir soru sorun...',
 			'chat.errorGeneric' => 'Yanıt alınamadı, lütfen tekrar deneyin.',
+			'messages.title' => 'Mesajlar',
+			'messages.noConversations' => 'Henüz bir konuşmanız yok.',
+			'messages.noMessages' => 'Henüz mesaj yok. İlk mesajı gönderin.',
+			'messages.inputHint' => 'Mesaj yazın...',
+			'messages.connecting' => 'Bağlanıyor...',
 			'home.notifications' => 'Bildirimler',
 			'home.assistant' => 'AI Asistan',
+			'home.messages' => 'Mesajlar',
 			'home.greeting' => ({required Object name}) => 'Merhaba, ${name}',
 			'home.greetingFallback' => 'Veli',
 			'home.subtitle' => 'Bugün gelişim için neler yapabiliriz?',

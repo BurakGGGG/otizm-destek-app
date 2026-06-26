@@ -90,9 +90,17 @@ chat:
   inputHint: Ask a question...
   errorGeneric: Couldn't get a response, please try again.
 
+messages:
+  title: Messages
+  noConversations: You have no conversations yet.
+  noMessages: No messages yet. Send the first one.
+  inputHint: Type a message...
+  connecting: Connecting...
+
 home:
   notifications: Notifications
   assistant: AI Assistant
+  messages: Messages
   greeting: Hello, $name
   greetingFallback: Parent
   subtitle: What can we do for development today?

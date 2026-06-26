@@ -47,6 +47,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$register$en register = _Translations$register$en._(_root);
 	@override late final _Translations$nav$en nav = _Translations$nav$en._(_root);
 	@override late final _Translations$chat$en chat = _Translations$chat$en._(_root);
+	@override late final _Translations$messages$en messages = _Translations$messages$en._(_root);
 	@override late final _Translations$home$en home = _Translations$home$en._(_root);
 	@override late final _Translations$specialists$en specialists = _Translations$specialists$en._(_root);
 	@override late final _Translations$progress$en progress = _Translations$progress$en._(_root);
@@ -202,6 +203,20 @@ class _Translations$chat$en extends Translations$chat$tr {
 	@override String get errorGeneric => 'Couldn\'t get a response, please try again.';
 }
 
+// Path: messages
+class _Translations$messages$en extends Translations$messages$tr {
+	_Translations$messages$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Messages';
+	@override String get noConversations => 'You have no conversations yet.';
+	@override String get noMessages => 'No messages yet. Send the first one.';
+	@override String get inputHint => 'Type a message...';
+	@override String get connecting => 'Connecting...';
+}
+
 // Path: home
 class _Translations$home$en extends Translations$home$tr {
 	_Translations$home$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -211,6 +226,7 @@ class _Translations$home$en extends Translations$home$tr {
 	// Translations
 	@override String get notifications => 'Notifications';
 	@override String get assistant => 'AI Assistant';
+	@override String get messages => 'Messages';
 	@override String greeting({required Object name}) => 'Hello, ${name}';
 	@override String get greetingFallback => 'Parent';
 	@override String get subtitle => 'What can we do for development today?';
@@ -380,8 +396,14 @@ extension on TranslationsEn {
 			'chat.greeting' => 'Hi! I\'ll try to answer your questions about autism and child development.',
 			'chat.inputHint' => 'Ask a question...',
 			'chat.errorGeneric' => 'Couldn\'t get a response, please try again.',
+			'messages.title' => 'Messages',
+			'messages.noConversations' => 'You have no conversations yet.',
+			'messages.noMessages' => 'No messages yet. Send the first one.',
+			'messages.inputHint' => 'Type a message...',
+			'messages.connecting' => 'Connecting...',
 			'home.notifications' => 'Notifications',
 			'home.assistant' => 'AI Assistant',
+			'home.messages' => 'Messages',
 			'home.greeting' => ({required Object name}) => 'Hello, ${name}',
 			'home.greetingFallback' => 'Parent',
 			'home.subtitle' => 'What can we do for development today?',

@@ -90,9 +90,17 @@ chat:
   inputHint: Bir soru sorun...
   errorGeneric: Yanıt alınamadı, lütfen tekrar deneyin.
 
+messages:
+  title: Mesajlar
+  noConversations: Henüz bir konuşmanız yok.
+  noMessages: Henüz mesaj yok. İlk mesajı gönderin.
+  inputHint: Mesaj yazın...
+  connecting: Bağlanıyor...
+
 home:
   notifications: Bildirimler
   assistant: AI Asistan
+  messages: Mesajlar
   greeting: Merhaba, $name
   greetingFallback: Veli
   subtitle: Bugün gelişim için neler yapabiliriz?
