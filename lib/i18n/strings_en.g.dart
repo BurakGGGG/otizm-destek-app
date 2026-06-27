@@ -51,6 +51,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$home$en home = _Translations$home$en._(_root);
 	@override late final _Translations$specialists$en specialists = _Translations$specialists$en._(_root);
 	@override late final _Translations$progress$en progress = _Translations$progress$en._(_root);
+	@override late final _Translations$knowledge$en knowledge = _Translations$knowledge$en._(_root);
 	@override late final _Translations$appointments$en appointments = _Translations$appointments$en._(_root);
 	@override late final _Translations$children$en children = _Translations$children$en._(_root);
 	@override late final _Translations$profile$en profile = _Translations$profile$en._(_root);
@@ -284,6 +285,24 @@ class _Translations$progress$en extends Translations$progress$tr {
 	@override String goalProgress({required Object done, required Object total}) => '${done} / ${total}';
 }
 
+// Path: knowledge
+class _Translations$knowledge$en extends Translations$knowledge$tr {
+	_Translations$knowledge$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Knowledge Base';
+	@override String get empty => 'No articles yet.';
+	@override String get formatArticle => 'Article';
+	@override String get formatVideo => 'Video';
+	@override String get formatPodcast => 'Podcast';
+	@override String views({required Object count}) => '${count} views';
+	@override String dateLine({required Object day, required Object month, required Object year}) => '${day} ${month} ${year}';
+	@override String get videoLink => 'Video link';
+	@override String get podcastLink => 'Podcast link';
+}
+
 // Path: appointments
 class _Translations$appointments$en extends Translations$appointments$tr {
 	_Translations$appointments$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -511,6 +530,15 @@ extension on TranslationsEn {
 			'progress.noNotes' => 'No development notes yet.',
 			'progress.noChild' => 'Add a child first to track development.',
 			'progress.goalProgress' => ({required Object done, required Object total}) => '${done} / ${total}',
+			'knowledge.title' => 'Knowledge Base',
+			'knowledge.empty' => 'No articles yet.',
+			'knowledge.formatArticle' => 'Article',
+			'knowledge.formatVideo' => 'Video',
+			'knowledge.formatPodcast' => 'Podcast',
+			'knowledge.views' => ({required Object count}) => '${count} views',
+			'knowledge.dateLine' => ({required Object day, required Object month, required Object year}) => '${day} ${month} ${year}',
+			'knowledge.videoLink' => 'Video link',
+			'knowledge.podcastLink' => 'Podcast link',
 			'appointments.title' => 'Appointments',
 			'appointments.empty' => 'You don\'t have any appointments yet.',
 			'appointments.upcoming' => 'Upcoming',

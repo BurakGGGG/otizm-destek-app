@@ -12,6 +12,7 @@ import '../../children/data/child_repository.dart';
 import '../../children/domain/child.dart';
 import '../../knowledge/data/knowledge_repository.dart';
 import '../../knowledge/domain/article.dart';
+import '../../knowledge/presentation/article_detail_screen.dart';
 import 'widgets/section_header.dart';
 
 /// Ana Sayfa sekmesi — backend'den gerçek veri (çocuklar, randevular, makaleler).
@@ -34,7 +35,11 @@ class HomeTab extends ConsumerWidget {
         },
         child: ListView(
           padding: const EdgeInsets.fromLTRB(
-              AppSpacing.margin, 8, AppSpacing.margin, 24),
+            AppSpacing.margin,
+            8,
+            AppSpacing.margin,
+            24,
+          ),
           children: [
             Text(t.home.greeting(name: name), style: text.headlineLarge),
             const SizedBox(height: 4),
@@ -60,7 +65,7 @@ class HomeTab extends ConsumerWidget {
             SectionHeader(
               title: t.home.recommendedArticles,
               actionLabel: t.common.more,
-              onAction: () {},
+              onAction: () => context.push('/knowledge'),
             ),
             const SizedBox(height: 12),
             const _ArticlesSection(),
@@ -80,7 +85,9 @@ class _ChildrenSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t;
-    return ref.watch(childrenProvider).when(
+    return ref
+        .watch(childrenProvider)
+        .when(
           loading: () => const _SectionLoading(),
           error: (e, _) =>
               _SectionError(onRetry: () => ref.invalidate(childrenProvider)),
@@ -137,13 +144,17 @@ class _ChildCard extends StatelessWidget {
                 children: [
                   Text(child.name, style: text.titleMedium),
                   if (age != null)
-                    Text(t.home.ageYears(years: age.toString()),
-                        style: text.bodySmall)
+                    Text(
+                      t.home.ageYears(years: age.toString()),
+                      style: text.bodySmall,
+                    )
                   else if (child.diagnosisInfo?.isNotEmpty ?? false)
-                    Text(child.diagnosisInfo!,
-                        style: text.bodySmall,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis),
+                    Text(
+                      child.diagnosisInfo!,
+                      style: text.bodySmall,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                 ],
               ),
             ),
@@ -164,15 +175,19 @@ class _AppointmentsSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t;
-    return ref.watch(upcomingAppointmentsProvider).when(
+    return ref
+        .watch(upcomingAppointmentsProvider)
+        .when(
           loading: () => const _SectionLoading(),
           error: (e, _) => _SectionError(
-              onRetry: () => ref.invalidate(appointmentsProvider)),
+            onRetry: () => ref.invalidate(appointmentsProvider),
+          ),
           data: (items) {
             if (items.isEmpty) {
               return _EmptyCard(
-                  message: t.home.noAppointments,
-                  icon: Icons.event_available_outlined);
+                message: t.home.noAppointments,
+                icon: Icons.event_available_outlined,
+              );
             }
             return Column(
               children: [
@@ -201,53 +216,67 @@ class _AppointmentTile extends StatelessWidget {
     final subtitle = a.expertTitle ?? a.childName ?? '';
 
     return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Row(
-          children: [
-            Container(
-              width: 52,
-              height: 52,
-              decoration: BoxDecoration(
-                color: AppColors.primary.withValues(alpha: 0.10),
-                borderRadius: BorderRadius.circular(AppRadius.md),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('${a.date.day}',
+      child: InkWell(
+        borderRadius: BorderRadius.circular(AppRadius.lg),
+        onTap: () => context.push('/appointments'),
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Row(
+            children: [
+              Container(
+                width: 52,
+                height: 52,
+                decoration: BoxDecoration(
+                  color: AppColors.primary.withValues(alpha: 0.10),
+                  borderRadius: BorderRadius.circular(AppRadius.md),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      '${a.date.day}',
                       style: const TextStyle(
-                          color: AppColors.primary,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 18)),
-                  Text(month,
+                        color: AppColors.primary,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 18,
+                      ),
+                    ),
+                    Text(
+                      month,
                       style: const TextStyle(
-                          color: AppColors.primary, fontSize: 11)),
-                ],
+                        color: AppColors.primary,
+                        fontSize: 11,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(title, style: text.titleMedium),
-                  if (subtitle.isNotEmpty)
-                    Text(subtitle, style: text.bodySmall),
-                  const SizedBox(height: 2),
-                  Row(
-                    children: [
-                      const Icon(Icons.schedule,
-                          size: 14, color: AppColors.textTertiary),
-                      const SizedBox(width: 4),
-                      Text(a.time, style: text.bodySmall),
-                    ],
-                  ),
-                ],
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(title, style: text.titleMedium),
+                    if (subtitle.isNotEmpty)
+                      Text(subtitle, style: text.bodySmall),
+                    const SizedBox(height: 2),
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.schedule,
+                          size: 14,
+                          color: AppColors.textTertiary,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(a.time, style: text.bodySmall),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const Icon(Icons.chevron_right, color: AppColors.textTertiary),
-          ],
+              const Icon(Icons.chevron_right, color: AppColors.textTertiary),
+            ],
+          ),
         ),
       ),
     );
@@ -263,15 +292,19 @@ class _ArticlesSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t;
-    return ref.watch(recommendedArticlesProvider).when(
+    return ref
+        .watch(recommendedArticlesProvider)
+        .when(
           loading: () => const _SectionLoading(),
           error: (e, _) => _SectionError(
-              onRetry: () => ref.invalidate(recommendedArticlesProvider)),
+            onRetry: () => ref.invalidate(recommendedArticlesProvider),
+          ),
           data: (items) {
             if (items.isEmpty) {
               return _EmptyCard(
-                  message: t.home.noArticles,
-                  icon: Icons.menu_book_outlined);
+                message: t.home.noArticles,
+                icon: Icons.menu_book_outlined,
+              );
             }
             return Column(
               children: [
@@ -295,56 +328,78 @@ class _ArticleCard extends StatelessWidget {
     final text = Theme.of(context).textTheme;
     final tag = article.category ?? article.format ?? '';
     return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(AppSpacing.md),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              width: 64,
-              height: 64,
-              decoration: BoxDecoration(
-                color: AppColors.surfaceVariant,
-                borderRadius: BorderRadius.circular(AppRadius.md),
-              ),
-              child: const Icon(Icons.image_outlined,
-                  color: AppColors.textTertiary),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(AppRadius.lg),
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => ArticleDetailScreen(
+              id: article.id,
+              initialTitle: article.title,
             ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (tag.isNotEmpty)
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 3),
-                      decoration: BoxDecoration(
-                        color: AppColors.primary.withValues(alpha: 0.10),
-                        borderRadius: BorderRadius.circular(AppRadius.sm),
-                      ),
-                      child: Text(tag,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(AppSpacing.md),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 64,
+                height: 64,
+                decoration: BoxDecoration(
+                  color: AppColors.surfaceVariant,
+                  borderRadius: BorderRadius.circular(AppRadius.md),
+                ),
+                child: const Icon(
+                  Icons.image_outlined,
+                  color: AppColors.textTertiary,
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (tag.isNotEmpty)
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 3,
+                        ),
+                        decoration: BoxDecoration(
+                          color: AppColors.primary.withValues(alpha: 0.10),
+                          borderRadius: BorderRadius.circular(AppRadius.sm),
+                        ),
+                        child: Text(
+                          tag,
                           style: const TextStyle(
-                              color: AppColors.primary,
-                              fontSize: 11,
-                              fontWeight: FontWeight.w600)),
-                    ),
-                  const SizedBox(height: 6),
-                  Text(article.title,
+                            color: AppColors.primary,
+                            fontSize: 11,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    const SizedBox(height: 6),
+                    Text(
+                      article.title,
                       style: text.titleMedium,
                       maxLines: 2,
-                      overflow: TextOverflow.ellipsis),
-                  if (article.summary?.isNotEmpty ?? false) ...[
-                    const SizedBox(height: 2),
-                    Text(article.summary!,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    if (article.summary?.isNotEmpty ?? false) ...[
+                      const SizedBox(height: 2),
+                      Text(
+                        article.summary!,
                         style: text.bodySmall,
                         maxLines: 2,
-                        overflow: TextOverflow.ellipsis),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
                   ],
-                ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

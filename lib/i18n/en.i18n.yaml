@@ -141,6 +141,17 @@ progress:
   noChild: Add a child first to track development.
   goalProgress: $done / $total
 
+knowledge:
+  title: Knowledge Base
+  empty: No articles yet.
+  formatArticle: Article
+  formatVideo: Video
+  formatPodcast: Podcast
+  views: $count views
+  dateLine: $day $month $year
+  videoLink: Video link
+  podcastLink: Podcast link
+
 appointments:
   title: Appointments
   empty: You don't have any appointments yet.

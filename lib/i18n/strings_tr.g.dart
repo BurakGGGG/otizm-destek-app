@@ -52,6 +52,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$home$tr home = Translations$home$tr.internal(_root);
 	late final Translations$specialists$tr specialists = Translations$specialists$tr.internal(_root);
 	late final Translations$progress$tr progress = Translations$progress$tr.internal(_root);
+	late final Translations$knowledge$tr knowledge = Translations$knowledge$tr.internal(_root);
 	late final Translations$appointments$tr appointments = Translations$appointments$tr.internal(_root);
 	late final Translations$children$tr children = Translations$children$tr.internal(_root);
 	late final Translations$profile$tr profile = Translations$profile$tr.internal(_root);
@@ -496,6 +497,42 @@ class Translations$progress$tr {
 	String goalProgress({required Object done, required Object total}) => '${done} / ${total}';
 }
 
+// Path: knowledge
+class Translations$knowledge$tr {
+	Translations$knowledge$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Bilgi Bankası'
+	String get title => 'Bilgi Bankası';
+
+	/// tr: 'Henüz makale eklenmemiş.'
+	String get empty => 'Henüz makale eklenmemiş.';
+
+	/// tr: 'Makale'
+	String get formatArticle => 'Makale';
+
+	/// tr: 'Video'
+	String get formatVideo => 'Video';
+
+	/// tr: 'Podcast'
+	String get formatPodcast => 'Podcast';
+
+	/// tr: '$count görüntülenme'
+	String views({required Object count}) => '${count} görüntülenme';
+
+	/// tr: '$day $month $year'
+	String dateLine({required Object day, required Object month, required Object year}) => '${day} ${month} ${year}';
+
+	/// tr: 'Video bağlantısı'
+	String get videoLink => 'Video bağlantısı';
+
+	/// tr: 'Podcast bağlantısı'
+	String get podcastLink => 'Podcast bağlantısı';
+}
+
 // Path: appointments
 class Translations$appointments$tr {
 	Translations$appointments$tr.internal(this._root);
@@ -855,6 +892,15 @@ extension on Translations {
 			'progress.noNotes' => 'Henüz gelişim notu eklenmemiş.',
 			'progress.noChild' => 'Gelişim takibi için önce bir çocuk ekleyin.',
 			'progress.goalProgress' => ({required Object done, required Object total}) => '${done} / ${total}',
+			'knowledge.title' => 'Bilgi Bankası',
+			'knowledge.empty' => 'Henüz makale eklenmemiş.',
+			'knowledge.formatArticle' => 'Makale',
+			'knowledge.formatVideo' => 'Video',
+			'knowledge.formatPodcast' => 'Podcast',
+			'knowledge.views' => ({required Object count}) => '${count} görüntülenme',
+			'knowledge.dateLine' => ({required Object day, required Object month, required Object year}) => '${day} ${month} ${year}',
+			'knowledge.videoLink' => 'Video bağlantısı',
+			'knowledge.podcastLink' => 'Podcast bağlantısı',
 			'appointments.title' => 'Randevular',
 			'appointments.empty' => 'Henüz randevunuz yok.',
 			'appointments.upcoming' => 'Yaklaşan',

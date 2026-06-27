@@ -141,6 +141,17 @@ progress:
   noChild: Gelişim takibi için önce bir çocuk ekleyin.
   goalProgress: $done / $total
 
+knowledge:
+  title: Bilgi Bankası
+  empty: Henüz makale eklenmemiş.
+  formatArticle: Makale
+  formatVideo: Video
+  formatPodcast: Podcast
+  views: $count görüntülenme
+  dateLine: $day $month $year
+  videoLink: Video bağlantısı
+  podcastLink: Podcast bağlantısı
+
 appointments:
   title: Randevular
   empty: Henüz randevunuz yok.

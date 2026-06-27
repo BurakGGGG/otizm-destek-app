@@ -29,6 +29,16 @@ class KnowledgeRepository {
       throw ApiException.fromDio(e);
     }
   }
+
+  /// Tek makale (tam içerik + yazar + görüntülenme).
+  Future<Article> getArticle(String id) async {
+    try {
+      final res = await _dio.get('/knowledge/$id');
+      return Article.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
 }
 
 final knowledgeRepositoryProvider = Provider<KnowledgeRepository>((ref) {
@@ -38,4 +48,14 @@ final knowledgeRepositoryProvider = Provider<KnowledgeRepository>((ref) {
 /// Ana sayfada önerilen makaleler (ilk sayfa).
 final recommendedArticlesProvider = FutureProvider<List<Article>>((ref) {
   return ref.watch(knowledgeRepositoryProvider).getArticles(size: 6);
+});
+
+/// Bilgi bankası liste ekranı (ilk sayfa, daha geniş).
+final articlesProvider = FutureProvider<List<Article>>((ref) {
+  return ref.watch(knowledgeRepositoryProvider).getArticles(size: 20);
+});
+
+/// Tek makale (id'ye göre).
+final articleProvider = FutureProvider.family<Article, String>((ref, id) {
+  return ref.watch(knowledgeRepositoryProvider).getArticle(id);
 });
