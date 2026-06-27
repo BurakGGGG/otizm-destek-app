@@ -52,6 +52,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$home$tr home = Translations$home$tr.internal(_root);
 	late final Translations$specialists$tr specialists = Translations$specialists$tr.internal(_root);
 	late final Translations$progress$tr progress = Translations$progress$tr.internal(_root);
+	late final Translations$appointments$tr appointments = Translations$appointments$tr.internal(_root);
 	late final Translations$children$tr children = Translations$children$tr.internal(_root);
 	late final Translations$profile$tr profile = Translations$profile$tr.internal(_root);
 	late final Translations$errors$tr errors = Translations$errors$tr.internal(_root);
@@ -495,6 +496,87 @@ class Translations$progress$tr {
 	String goalProgress({required Object done, required Object total}) => '${done} / ${total}';
 }
 
+// Path: appointments
+class Translations$appointments$tr {
+	Translations$appointments$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Randevular'
+	String get title => 'Randevular';
+
+	/// tr: 'Henüz randevunuz yok.'
+	String get empty => 'Henüz randevunuz yok.';
+
+	/// tr: 'Yaklaşan'
+	String get upcoming => 'Yaklaşan';
+
+	/// tr: 'Geçmiş'
+	String get past => 'Geçmiş';
+
+	/// tr: 'Onay Bekliyor'
+	String get statusPending => 'Onay Bekliyor';
+
+	/// tr: 'Onaylandı'
+	String get statusConfirmed => 'Onaylandı';
+
+	/// tr: 'Tamamlandı'
+	String get statusCompleted => 'Tamamlandı';
+
+	/// tr: 'İptal Edildi'
+	String get statusCancelled => 'İptal Edildi';
+
+	/// tr: 'Online Görüşme'
+	String get typeOnline => 'Online Görüşme';
+
+	/// tr: 'Yüz Yüze'
+	String get typeFaceToFace => 'Yüz Yüze';
+
+	/// tr: 'Çocuk: $name'
+	String withChild({required Object name}) => 'Çocuk: ${name}';
+
+	/// tr: '$day $month $year · $time'
+	String dateLine({required Object day, required Object month, required Object year, required Object time}) => '${day} ${month} ${year} · ${time}';
+
+	/// tr: 'İptal Et'
+	String get cancel => 'İptal Et';
+
+	/// tr: 'Onayla'
+	String get confirm => 'Onayla';
+
+	/// tr: 'Tamamla'
+	String get complete => 'Tamamla';
+
+	/// tr: 'Görüşmeye Katıl'
+	String get joinMeeting => 'Görüşmeye Katıl';
+
+	/// tr: 'Randevuyu İptal Et'
+	String get cancelTitle => 'Randevuyu İptal Et';
+
+	/// tr: 'Bu randevuyu iptal etmek istediğinize emin misiniz?'
+	String get cancelConfirm => 'Bu randevuyu iptal etmek istediğinize emin misiniz?';
+
+	/// tr: 'İptal nedeni (isteğe bağlı)'
+	String get cancelReasonLabel => 'İptal nedeni (isteğe bağlı)';
+
+	/// tr: 'İptal nedeni: $reason'
+	String cancelReasonShown({required Object reason}) => 'İptal nedeni: ${reason}';
+
+	/// tr: 'Vazgeç'
+	String get keepIt => 'Vazgeç';
+
+	/// tr: 'Randevu iptal edildi.'
+	String get cancelled => 'Randevu iptal edildi.';
+
+	/// tr: 'Randevu onaylandı.'
+	String get confirmed => 'Randevu onaylandı.';
+
+	/// tr: 'Randevu tamamlandı olarak işaretlendi.'
+	String get completed => 'Randevu tamamlandı olarak işaretlendi.';
+}
+
 // Path: children
 class Translations$children$tr {
 	Translations$children$tr.internal(this._root);
@@ -773,6 +855,30 @@ extension on Translations {
 			'progress.noNotes' => 'Henüz gelişim notu eklenmemiş.',
 			'progress.noChild' => 'Gelişim takibi için önce bir çocuk ekleyin.',
 			'progress.goalProgress' => ({required Object done, required Object total}) => '${done} / ${total}',
+			'appointments.title' => 'Randevular',
+			'appointments.empty' => 'Henüz randevunuz yok.',
+			'appointments.upcoming' => 'Yaklaşan',
+			'appointments.past' => 'Geçmiş',
+			'appointments.statusPending' => 'Onay Bekliyor',
+			'appointments.statusConfirmed' => 'Onaylandı',
+			'appointments.statusCompleted' => 'Tamamlandı',
+			'appointments.statusCancelled' => 'İptal Edildi',
+			'appointments.typeOnline' => 'Online Görüşme',
+			'appointments.typeFaceToFace' => 'Yüz Yüze',
+			'appointments.withChild' => ({required Object name}) => 'Çocuk: ${name}',
+			'appointments.dateLine' => ({required Object day, required Object month, required Object year, required Object time}) => '${day} ${month} ${year} · ${time}',
+			'appointments.cancel' => 'İptal Et',
+			'appointments.confirm' => 'Onayla',
+			'appointments.complete' => 'Tamamla',
+			'appointments.joinMeeting' => 'Görüşmeye Katıl',
+			'appointments.cancelTitle' => 'Randevuyu İptal Et',
+			'appointments.cancelConfirm' => 'Bu randevuyu iptal etmek istediğinize emin misiniz?',
+			'appointments.cancelReasonLabel' => 'İptal nedeni (isteğe bağlı)',
+			'appointments.cancelReasonShown' => ({required Object reason}) => 'İptal nedeni: ${reason}',
+			'appointments.keepIt' => 'Vazgeç',
+			'appointments.cancelled' => 'Randevu iptal edildi.',
+			'appointments.confirmed' => 'Randevu onaylandı.',
+			'appointments.completed' => 'Randevu tamamlandı olarak işaretlendi.',
 			'children.title' => 'Çocuklarım',
 			'children.addTitle' => 'Çocuk Ekle',
 			'children.editTitle' => 'Çocuğu Düzenle',

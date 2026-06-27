@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../features/auth/domain/app_user.dart';
 import '../../features/auth/presentation/auth_controller.dart';
 import '../../features/auth/presentation/login_screen.dart';
+import '../../features/appointments/presentation/appointments_screen.dart';
 import '../../features/auth/presentation/register_screen.dart';
 import '../../features/chatbot/presentation/chat_screen.dart';
 import '../../features/children/presentation/children_screen.dart';
@@ -79,6 +80,10 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/children',
         builder: (_, _) => const ChildrenScreen(),
+      ),
+      GoRoute(
+        path: '/appointments',
+        builder: (_, _) => const AppointmentsScreen(),
       ),
       GoRoute(
         path: '/messages',

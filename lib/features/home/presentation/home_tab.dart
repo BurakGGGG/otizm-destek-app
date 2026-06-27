@@ -49,7 +49,10 @@ class HomeTab extends ConsumerWidget {
             const _ChildrenSection(),
             const SizedBox(height: AppSpacing.lg),
 
-            SectionHeader(title: t.home.upcomingAppointments, onAction: () {}),
+            SectionHeader(
+              title: t.home.upcomingAppointments,
+              onAction: () => context.push('/appointments'),
+            ),
             const SizedBox(height: 12),
             const _AppointmentsSection(),
             const SizedBox(height: AppSpacing.lg),

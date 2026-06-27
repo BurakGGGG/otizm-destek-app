@@ -141,6 +141,32 @@ progress:
   noChild: Add a child first to track development.
   goalProgress: $done / $total
 
+appointments:
+  title: Appointments
+  empty: You don't have any appointments yet.
+  upcoming: Upcoming
+  past: Past
+  statusPending: Pending
+  statusConfirmed: Confirmed
+  statusCompleted: Completed
+  statusCancelled: Cancelled
+  typeOnline: Online session
+  typeFaceToFace: In person
+  withChild: 'Child: $name'
+  dateLine: $day $month $year · $time
+  cancel: Cancel
+  confirm: Confirm
+  complete: Complete
+  joinMeeting: Join meeting
+  cancelTitle: Cancel appointment
+  cancelConfirm: Are you sure you want to cancel this appointment?
+  cancelReasonLabel: Cancellation reason (optional)
+  cancelReasonShown: 'Cancellation reason: $reason'
+  keepIt: Keep
+  cancelled: Appointment cancelled.
+  confirmed: Appointment confirmed.
+  completed: Appointment marked as completed.
+
 children:
   title: My Children
   addTitle: Add Child

@@ -141,6 +141,32 @@ progress:
   noChild: Gelişim takibi için önce bir çocuk ekleyin.
   goalProgress: $done / $total
 
+appointments:
+  title: Randevular
+  empty: Henüz randevunuz yok.
+  upcoming: Yaklaşan
+  past: Geçmiş
+  statusPending: Onay Bekliyor
+  statusConfirmed: Onaylandı
+  statusCompleted: Tamamlandı
+  statusCancelled: İptal Edildi
+  typeOnline: Online Görüşme
+  typeFaceToFace: Yüz Yüze
+  withChild: 'Çocuk: $name'
+  dateLine: $day $month $year · $time
+  cancel: İptal Et
+  confirm: Onayla
+  complete: Tamamla
+  joinMeeting: Görüşmeye Katıl
+  cancelTitle: Randevuyu İptal Et
+  cancelConfirm: Bu randevuyu iptal etmek istediğinize emin misiniz?
+  cancelReasonLabel: İptal nedeni (isteğe bağlı)
+  cancelReasonShown: 'İptal nedeni: $reason'
+  keepIt: Vazgeç
+  cancelled: Randevu iptal edildi.
+  confirmed: Randevu onaylandı.
+  completed: Randevu tamamlandı olarak işaretlendi.
+
 children:
   title: Çocuklarım
   addTitle: Çocuk Ekle

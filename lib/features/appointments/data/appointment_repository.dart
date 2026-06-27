@@ -23,6 +23,30 @@ class AppointmentRepository {
       throw ApiException.fromDio(e);
     }
   }
+
+  /// Randevuyu iptal et (PARENT). Opsiyonel [reason] gönderilir.
+  Future<Appointment> cancel(String id, {String? reason}) {
+    return _patch('/appointments/$id/cancel',
+        data: reason != null && reason.trim().isNotEmpty
+            ? {'reason': reason.trim()}
+            : null);
+  }
+
+  /// Randevuyu onayla (EXPERT).
+  Future<Appointment> confirm(String id) => _patch('/appointments/$id/confirm');
+
+  /// Randevuyu tamamlandı işaretle (EXPERT).
+  Future<Appointment> complete(String id) =>
+      _patch('/appointments/$id/complete');
+
+  Future<Appointment> _patch(String path, {Object? data}) async {
+    try {
+      final res = await _dio.patch(path, data: data);
+      return Appointment.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
 }
 
 final appointmentRepositoryProvider = Provider<AppointmentRepository>((ref) {

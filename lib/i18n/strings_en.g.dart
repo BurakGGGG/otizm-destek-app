@@ -51,6 +51,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$home$en home = _Translations$home$en._(_root);
 	@override late final _Translations$specialists$en specialists = _Translations$specialists$en._(_root);
 	@override late final _Translations$progress$en progress = _Translations$progress$en._(_root);
+	@override late final _Translations$appointments$en appointments = _Translations$appointments$en._(_root);
 	@override late final _Translations$children$en children = _Translations$children$en._(_root);
 	@override late final _Translations$profile$en profile = _Translations$profile$en._(_root);
 	@override late final _Translations$errors$en errors = _Translations$errors$en._(_root);
@@ -283,6 +284,39 @@ class _Translations$progress$en extends Translations$progress$tr {
 	@override String goalProgress({required Object done, required Object total}) => '${done} / ${total}';
 }
 
+// Path: appointments
+class _Translations$appointments$en extends Translations$appointments$tr {
+	_Translations$appointments$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Appointments';
+	@override String get empty => 'You don\'t have any appointments yet.';
+	@override String get upcoming => 'Upcoming';
+	@override String get past => 'Past';
+	@override String get statusPending => 'Pending';
+	@override String get statusConfirmed => 'Confirmed';
+	@override String get statusCompleted => 'Completed';
+	@override String get statusCancelled => 'Cancelled';
+	@override String get typeOnline => 'Online session';
+	@override String get typeFaceToFace => 'In person';
+	@override String withChild({required Object name}) => 'Child: ${name}';
+	@override String dateLine({required Object day, required Object month, required Object year, required Object time}) => '${day} ${month} ${year} · ${time}';
+	@override String get cancel => 'Cancel';
+	@override String get confirm => 'Confirm';
+	@override String get complete => 'Complete';
+	@override String get joinMeeting => 'Join meeting';
+	@override String get cancelTitle => 'Cancel appointment';
+	@override String get cancelConfirm => 'Are you sure you want to cancel this appointment?';
+	@override String get cancelReasonLabel => 'Cancellation reason (optional)';
+	@override String cancelReasonShown({required Object reason}) => 'Cancellation reason: ${reason}';
+	@override String get keepIt => 'Keep';
+	@override String get cancelled => 'Appointment cancelled.';
+	@override String get confirmed => 'Appointment confirmed.';
+	@override String get completed => 'Appointment marked as completed.';
+}
+
 // Path: children
 class _Translations$children$en extends Translations$children$tr {
 	_Translations$children$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -477,6 +511,30 @@ extension on TranslationsEn {
 			'progress.noNotes' => 'No development notes yet.',
 			'progress.noChild' => 'Add a child first to track development.',
 			'progress.goalProgress' => ({required Object done, required Object total}) => '${done} / ${total}',
+			'appointments.title' => 'Appointments',
+			'appointments.empty' => 'You don\'t have any appointments yet.',
+			'appointments.upcoming' => 'Upcoming',
+			'appointments.past' => 'Past',
+			'appointments.statusPending' => 'Pending',
+			'appointments.statusConfirmed' => 'Confirmed',
+			'appointments.statusCompleted' => 'Completed',
+			'appointments.statusCancelled' => 'Cancelled',
+			'appointments.typeOnline' => 'Online session',
+			'appointments.typeFaceToFace' => 'In person',
+			'appointments.withChild' => ({required Object name}) => 'Child: ${name}',
+			'appointments.dateLine' => ({required Object day, required Object month, required Object year, required Object time}) => '${day} ${month} ${year} · ${time}',
+			'appointments.cancel' => 'Cancel',
+			'appointments.confirm' => 'Confirm',
+			'appointments.complete' => 'Complete',
+			'appointments.joinMeeting' => 'Join meeting',
+			'appointments.cancelTitle' => 'Cancel appointment',
+			'appointments.cancelConfirm' => 'Are you sure you want to cancel this appointment?',
+			'appointments.cancelReasonLabel' => 'Cancellation reason (optional)',
+			'appointments.cancelReasonShown' => ({required Object reason}) => 'Cancellation reason: ${reason}',
+			'appointments.keepIt' => 'Keep',
+			'appointments.cancelled' => 'Appointment cancelled.',
+			'appointments.confirmed' => 'Appointment confirmed.',
+			'appointments.completed' => 'Appointment marked as completed.',
 			'children.title' => 'My Children',
 			'children.addTitle' => 'Add Child',
 			'children.editTitle' => 'Edit Child',
