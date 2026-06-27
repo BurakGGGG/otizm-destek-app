@@ -116,6 +116,33 @@ class AuthController extends Notifier<AuthState> {
     }
   }
 
+  /// Profili günceller. Başarılıysa `null`, hatadaysa mesaj döner.
+  Future<String?> updateProfile({
+    String? fullName,
+    String? phone,
+    String? city,
+    String? expertTitle,
+    String? institution,
+    String? licenseNumber,
+    String? bio,
+  }) async {
+    try {
+      final updated = await _repo.updateProfile(
+        fullName: fullName,
+        phone: phone,
+        city: city,
+        expertTitle: expertTitle,
+        institution: institution,
+        licenseNumber: licenseNumber,
+        bio: bio,
+      );
+      state = state.copyWith(user: updated);
+      return null;
+    } on ApiException catch (e) {
+      return e.message;
+    }
+  }
+
   Future<void> signOut() async {
     final rt = await _storage.readRefreshToken();
     if (rt != null && rt.isNotEmpty) {

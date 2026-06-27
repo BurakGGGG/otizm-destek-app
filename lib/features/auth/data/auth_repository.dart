@@ -102,6 +102,33 @@ class AuthRepository {
     }
   }
 
+  /// Profili günceller — `PUT /api/users/me`. Yalnız verilen (null olmayan)
+  /// alanlar değiştirilir; güncel kullanıcı döner.
+  Future<AppUser> updateProfile({
+    String? fullName,
+    String? phone,
+    String? city,
+    String? expertTitle,
+    String? institution,
+    String? licenseNumber,
+    String? bio,
+  }) async {
+    try {
+      final res = await _dio.put('/users/me', data: {
+        'fullName': ?fullName,
+        'phone': ?phone,
+        'city': ?city,
+        'expertTitle': ?expertTitle,
+        'institution': ?institution,
+        'licenseNumber': ?licenseNumber,
+        'bio': ?bio,
+      });
+      return AppUser.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
   Future<void> logout(String refreshToken) async {
     try {
       await _dio.post('/auth/logout', data: {'refreshToken': refreshToken});

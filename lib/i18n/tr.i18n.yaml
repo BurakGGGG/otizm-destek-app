@@ -266,6 +266,22 @@ children:
   updated: Çocuk profili güncellendi.
   deleted: Çocuk profili silindi.
 
+account:
+  title: Hesap Bilgileri
+  emailLabel: E-posta
+  fullNameLabel: Ad Soyad
+  phoneLabel: Telefon
+  phoneHint: '05XX XXX XX XX'
+  cityLabel: Şehir
+  expertTitleLabel: Uzmanlık Ünvanı
+  institutionLabel: Kurum
+  licenseNumberLabel: Lisans / Diploma No
+  bioLabel: Hakkında
+  bioHint: Deneyiminizi kısaca anlatın
+  save: Kaydet
+  saved: Profil güncellendi.
+  errorFullName: Ad soyad en az 2 karakter olmalıdır.
+
 profile:
   defaultUser: Kullanıcı
   accountInfo: Hesap Bilgileri

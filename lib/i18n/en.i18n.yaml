@@ -266,6 +266,22 @@ children:
   updated: Child profile updated.
   deleted: Child profile deleted.
 
+account:
+  title: Account Information
+  emailLabel: Email
+  fullNameLabel: Full Name
+  phoneLabel: Phone
+  phoneHint: '05XX XXX XX XX'
+  cityLabel: City
+  expertTitleLabel: Expert Title
+  institutionLabel: Institution
+  licenseNumberLabel: License Number
+  bioLabel: About
+  bioHint: Briefly describe your experience
+  save: Save
+  saved: Profile updated.
+  errorFullName: Full name must be at least 2 characters.
+
 profile:
   defaultUser: User
   accountInfo: Account Information

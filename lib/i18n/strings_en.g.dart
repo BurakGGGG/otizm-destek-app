@@ -59,6 +59,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$expertDetail$en expertDetail = _Translations$expertDetail$en._(_root);
 	@override late final _Translations$booking$en booking = _Translations$booking$en._(_root);
 	@override late final _Translations$children$en children = _Translations$children$en._(_root);
+	@override late final _Translations$account$en account = _Translations$account$en._(_root);
 	@override late final _Translations$profile$en profile = _Translations$profile$en._(_root);
 	@override late final _Translations$errors$en errors = _Translations$errors$en._(_root);
 }
@@ -471,6 +472,29 @@ class _Translations$children$en extends Translations$children$tr {
 	@override String get deleted => 'Child profile deleted.';
 }
 
+// Path: account
+class _Translations$account$en extends Translations$account$tr {
+	_Translations$account$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Account Information';
+	@override String get emailLabel => 'Email';
+	@override String get fullNameLabel => 'Full Name';
+	@override String get phoneLabel => 'Phone';
+	@override String get phoneHint => '05XX XXX XX XX';
+	@override String get cityLabel => 'City';
+	@override String get expertTitleLabel => 'Expert Title';
+	@override String get institutionLabel => 'Institution';
+	@override String get licenseNumberLabel => 'License Number';
+	@override String get bioLabel => 'About';
+	@override String get bioHint => 'Briefly describe your experience';
+	@override String get save => 'Save';
+	@override String get saved => 'Profile updated.';
+	@override String get errorFullName => 'Full name must be at least 2 characters.';
+}
+
 // Path: profile
 class _Translations$profile$en extends Translations$profile$tr {
 	_Translations$profile$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -737,6 +761,20 @@ extension on TranslationsEn {
 			'children.created' => 'Child profile created.',
 			'children.updated' => 'Child profile updated.',
 			'children.deleted' => 'Child profile deleted.',
+			'account.title' => 'Account Information',
+			'account.emailLabel' => 'Email',
+			'account.fullNameLabel' => 'Full Name',
+			'account.phoneLabel' => 'Phone',
+			'account.phoneHint' => '05XX XXX XX XX',
+			'account.cityLabel' => 'City',
+			'account.expertTitleLabel' => 'Expert Title',
+			'account.institutionLabel' => 'Institution',
+			'account.licenseNumberLabel' => 'License Number',
+			'account.bioLabel' => 'About',
+			'account.bioHint' => 'Briefly describe your experience',
+			'account.save' => 'Save',
+			'account.saved' => 'Profile updated.',
+			'account.errorFullName' => 'Full name must be at least 2 characters.',
 			'profile.defaultUser' => 'User',
 			'profile.accountInfo' => 'Account Information',
 			'profile.myChildren' => 'My Children',

@@ -37,7 +37,10 @@ class ProfileTab extends ConsumerWidget {
               textAlign: TextAlign.center, style: text.bodySmall),
           const SizedBox(height: 24),
           _ProfileItem(
-              icon: Icons.person_outline, label: t.profile.accountInfo),
+            icon: Icons.person_outline,
+            label: t.profile.accountInfo,
+            onTap: () => context.push('/account'),
+          ),
           _ProfileItem(
             icon: Icons.child_care_outlined,
             label: t.profile.myChildren,

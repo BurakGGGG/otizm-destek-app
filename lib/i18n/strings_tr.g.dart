@@ -60,6 +60,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$expertDetail$tr expertDetail = Translations$expertDetail$tr.internal(_root);
 	late final Translations$booking$tr booking = Translations$booking$tr.internal(_root);
 	late final Translations$children$tr children = Translations$children$tr.internal(_root);
+	late final Translations$account$tr account = Translations$account$tr.internal(_root);
 	late final Translations$profile$tr profile = Translations$profile$tr.internal(_root);
 	late final Translations$errors$tr errors = Translations$errors$tr.internal(_root);
 }
@@ -901,6 +902,57 @@ class Translations$children$tr {
 	String get deleted => 'Çocuk profili silindi.';
 }
 
+// Path: account
+class Translations$account$tr {
+	Translations$account$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Hesap Bilgileri'
+	String get title => 'Hesap Bilgileri';
+
+	/// tr: 'E-posta'
+	String get emailLabel => 'E-posta';
+
+	/// tr: 'Ad Soyad'
+	String get fullNameLabel => 'Ad Soyad';
+
+	/// tr: 'Telefon'
+	String get phoneLabel => 'Telefon';
+
+	/// tr: '05XX XXX XX XX'
+	String get phoneHint => '05XX XXX XX XX';
+
+	/// tr: 'Şehir'
+	String get cityLabel => 'Şehir';
+
+	/// tr: 'Uzmanlık Ünvanı'
+	String get expertTitleLabel => 'Uzmanlık Ünvanı';
+
+	/// tr: 'Kurum'
+	String get institutionLabel => 'Kurum';
+
+	/// tr: 'Lisans / Diploma No'
+	String get licenseNumberLabel => 'Lisans / Diploma No';
+
+	/// tr: 'Hakkında'
+	String get bioLabel => 'Hakkında';
+
+	/// tr: 'Deneyiminizi kısaca anlatın'
+	String get bioHint => 'Deneyiminizi kısaca anlatın';
+
+	/// tr: 'Kaydet'
+	String get save => 'Kaydet';
+
+	/// tr: 'Profil güncellendi.'
+	String get saved => 'Profil güncellendi.';
+
+	/// tr: 'Ad soyad en az 2 karakter olmalıdır.'
+	String get errorFullName => 'Ad soyad en az 2 karakter olmalıdır.';
+}
+
 // Path: profile
 class Translations$profile$tr {
 	Translations$profile$tr.internal(this._root);
@@ -1195,6 +1247,20 @@ extension on Translations {
 			'children.created' => 'Çocuk profili oluşturuldu.',
 			'children.updated' => 'Çocuk profili güncellendi.',
 			'children.deleted' => 'Çocuk profili silindi.',
+			'account.title' => 'Hesap Bilgileri',
+			'account.emailLabel' => 'E-posta',
+			'account.fullNameLabel' => 'Ad Soyad',
+			'account.phoneLabel' => 'Telefon',
+			'account.phoneHint' => '05XX XXX XX XX',
+			'account.cityLabel' => 'Şehir',
+			'account.expertTitleLabel' => 'Uzmanlık Ünvanı',
+			'account.institutionLabel' => 'Kurum',
+			'account.licenseNumberLabel' => 'Lisans / Diploma No',
+			'account.bioLabel' => 'Hakkında',
+			'account.bioHint' => 'Deneyiminizi kısaca anlatın',
+			'account.save' => 'Kaydet',
+			'account.saved' => 'Profil güncellendi.',
+			'account.errorFullName' => 'Ad soyad en az 2 karakter olmalıdır.',
 			'profile.defaultUser' => 'Kullanıcı',
 			'profile.accountInfo' => 'Hesap Bilgileri',
 			'profile.myChildren' => 'Çocuklarım',

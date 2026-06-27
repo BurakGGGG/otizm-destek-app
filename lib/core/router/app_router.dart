@@ -14,6 +14,7 @@ import '../../features/home/presentation/home_shell.dart';
 import '../../features/knowledge/presentation/knowledge_screen.dart';
 import '../../features/messaging/presentation/conversation_thread_screen.dart';
 import '../../features/messaging/presentation/conversations_screen.dart';
+import '../../features/profile/presentation/account_screen.dart';
 import '../../features/splash/splash_screen.dart';
 import '../providers.dart';
 
@@ -81,6 +82,10 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/children',
         builder: (_, _) => const ChildrenScreen(),
+      ),
+      GoRoute(
+        path: '/account',
+        builder: (_, _) => const AccountScreen(),
       ),
       GoRoute(
         path: '/appointments',

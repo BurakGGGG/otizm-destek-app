@@ -36,6 +36,9 @@ class AppUser {
     this.phone,
     this.city,
     this.expertTitle,
+    this.institution,
+    this.licenseNumber,
+    this.bio,
     this.profileImageUrl,
     this.verified = false,
     this.specializations = const [],
@@ -48,6 +51,9 @@ class AppUser {
   final String? phone;
   final String? city;
   final String? expertTitle;
+  final String? institution;
+  final String? licenseNumber;
+  final String? bio;
   final String? profileImageUrl;
   final bool verified;
   final List<String> specializations;
@@ -64,6 +70,9 @@ class AppUser {
       phone: json['phone'] as String?,
       city: json['city'] as String?,
       expertTitle: json['expertTitle'] as String?,
+      institution: json['institution'] as String?,
+      licenseNumber: json['licenseNumber'] as String?,
+      bio: json['bio'] as String?,
       profileImageUrl: json['profileImageUrl'] as String?,
       verified: json['verified'] as bool? ?? false,
       specializations: (json['specializations'] as List<dynamic>?)
