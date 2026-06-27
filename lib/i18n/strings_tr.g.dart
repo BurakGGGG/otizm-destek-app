@@ -52,6 +52,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$home$tr home = Translations$home$tr.internal(_root);
 	late final Translations$specialists$tr specialists = Translations$specialists$tr.internal(_root);
 	late final Translations$progress$tr progress = Translations$progress$tr.internal(_root);
+	late final Translations$children$tr children = Translations$children$tr.internal(_root);
 	late final Translations$profile$tr profile = Translations$profile$tr.internal(_root);
 	late final Translations$errors$tr errors = Translations$errors$tr.internal(_root);
 }
@@ -494,6 +495,99 @@ class Translations$progress$tr {
 	String goalProgress({required Object done, required Object total}) => '${done} / ${total}';
 }
 
+// Path: children
+class Translations$children$tr {
+	Translations$children$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Çocuklarım'
+	String get title => 'Çocuklarım';
+
+	/// tr: 'Çocuk Ekle'
+	String get addTitle => 'Çocuk Ekle';
+
+	/// tr: 'Çocuğu Düzenle'
+	String get editTitle => 'Çocuğu Düzenle';
+
+	/// tr: 'Henüz çocuk eklemediniz.'
+	String get empty => 'Henüz çocuk eklemediniz.';
+
+	/// tr: 'Çocuk Ekle'
+	String get add => 'Çocuk Ekle';
+
+	/// tr: 'Ad Soyad'
+	String get nameLabel => 'Ad Soyad';
+
+	/// tr: 'Çocuğun adı'
+	String get nameHint => 'Çocuğun adı';
+
+	/// tr: 'Doğum Tarihi (isteğe bağlı)'
+	String get birthDateLabel => 'Doğum Tarihi (isteğe bağlı)';
+
+	/// tr: 'Tarih seçin'
+	String get birthDateSelect => 'Tarih seçin';
+
+	/// tr: 'Cinsiyet (isteğe bağlı)'
+	String get genderLabel => 'Cinsiyet (isteğe bağlı)';
+
+	/// tr: 'Erkek'
+	String get genderMale => 'Erkek';
+
+	/// tr: 'Kız'
+	String get genderFemale => 'Kız';
+
+	/// tr: 'Tanı Bilgisi (isteğe bağlı)'
+	String get diagnosisLabel => 'Tanı Bilgisi (isteğe bağlı)';
+
+	/// tr: 'Varsa tanı bilgisi'
+	String get diagnosisHint => 'Varsa tanı bilgisi';
+
+	/// tr: 'Eğitim Programı (isteğe bağlı)'
+	String get educationLabel => 'Eğitim Programı (isteğe bağlı)';
+
+	/// tr: 'Devam ettiği eğitim programı'
+	String get educationHint => 'Devam ettiği eğitim programı';
+
+	/// tr: 'Terapiler (isteğe bağlı)'
+	String get therapiesLabel => 'Terapiler (isteğe bağlı)';
+
+	/// tr: 'Aldığı terapiler'
+	String get therapiesHint => 'Aldığı terapiler';
+
+	/// tr: '$years yaş'
+	String ageYears({required Object years}) => '${years} yaş';
+
+	/// tr: 'Kaydet'
+	String get save => 'Kaydet';
+
+	/// tr: 'İptal'
+	String get cancel => 'İptal';
+
+	/// tr: 'Sil'
+	String get delete => 'Sil';
+
+	/// tr: 'Çocuğu Sil'
+	String get deleteTitle => 'Çocuğu Sil';
+
+	/// tr: '$name profilini silmek istediğinize emin misiniz?'
+	String deleteConfirm({required Object name}) => '${name} profilini silmek istediğinize emin misiniz?';
+
+	/// tr: 'Lütfen çocuğun adını girin.'
+	String get errorNameRequired => 'Lütfen çocuğun adını girin.';
+
+	/// tr: 'Çocuk profili oluşturuldu.'
+	String get created => 'Çocuk profili oluşturuldu.';
+
+	/// tr: 'Çocuk profili güncellendi.'
+	String get updated => 'Çocuk profili güncellendi.';
+
+	/// tr: 'Çocuk profili silindi.'
+	String get deleted => 'Çocuk profili silindi.';
+}
+
 // Path: profile
 class Translations$profile$tr {
 	Translations$profile$tr.internal(this._root);
@@ -679,6 +773,34 @@ extension on Translations {
 			'progress.noNotes' => 'Henüz gelişim notu eklenmemiş.',
 			'progress.noChild' => 'Gelişim takibi için önce bir çocuk ekleyin.',
 			'progress.goalProgress' => ({required Object done, required Object total}) => '${done} / ${total}',
+			'children.title' => 'Çocuklarım',
+			'children.addTitle' => 'Çocuk Ekle',
+			'children.editTitle' => 'Çocuğu Düzenle',
+			'children.empty' => 'Henüz çocuk eklemediniz.',
+			'children.add' => 'Çocuk Ekle',
+			'children.nameLabel' => 'Ad Soyad',
+			'children.nameHint' => 'Çocuğun adı',
+			'children.birthDateLabel' => 'Doğum Tarihi (isteğe bağlı)',
+			'children.birthDateSelect' => 'Tarih seçin',
+			'children.genderLabel' => 'Cinsiyet (isteğe bağlı)',
+			'children.genderMale' => 'Erkek',
+			'children.genderFemale' => 'Kız',
+			'children.diagnosisLabel' => 'Tanı Bilgisi (isteğe bağlı)',
+			'children.diagnosisHint' => 'Varsa tanı bilgisi',
+			'children.educationLabel' => 'Eğitim Programı (isteğe bağlı)',
+			'children.educationHint' => 'Devam ettiği eğitim programı',
+			'children.therapiesLabel' => 'Terapiler (isteğe bağlı)',
+			'children.therapiesHint' => 'Aldığı terapiler',
+			'children.ageYears' => ({required Object years}) => '${years} yaş',
+			'children.save' => 'Kaydet',
+			'children.cancel' => 'İptal',
+			'children.delete' => 'Sil',
+			'children.deleteTitle' => 'Çocuğu Sil',
+			'children.deleteConfirm' => ({required Object name}) => '${name} profilini silmek istediğinize emin misiniz?',
+			'children.errorNameRequired' => 'Lütfen çocuğun adını girin.',
+			'children.created' => 'Çocuk profili oluşturuldu.',
+			'children.updated' => 'Çocuk profili güncellendi.',
+			'children.deleted' => 'Çocuk profili silindi.',
 			'profile.defaultUser' => 'Kullanıcı',
 			'profile.accountInfo' => 'Hesap Bilgileri',
 			'profile.myChildren' => 'Çocuklarım',

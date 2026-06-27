@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
@@ -40,7 +41,10 @@ class HomeTab extends ConsumerWidget {
             Text(t.home.subtitle, style: text.bodySmall),
             const SizedBox(height: AppSpacing.lg),
 
-            SectionHeader(title: t.home.childrenTitle, onAction: () {}),
+            SectionHeader(
+              title: t.home.childrenTitle,
+              onAction: () => context.push('/children'),
+            ),
             const SizedBox(height: 12),
             const _ChildrenSection(),
             const SizedBox(height: AppSpacing.lg),
@@ -83,7 +87,7 @@ class _ChildrenSection extends ConsumerWidget {
                 message: t.home.noChildren,
                 actionLabel: t.home.addChild,
                 icon: Icons.child_care_outlined,
-                onAction: () {},
+                onAction: () => context.push('/children'),
               );
             }
             return Column(

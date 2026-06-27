@@ -141,6 +141,36 @@ progress:
   noChild: Gelişim takibi için önce bir çocuk ekleyin.
   goalProgress: $done / $total
 
+children:
+  title: Çocuklarım
+  addTitle: Çocuk Ekle
+  editTitle: Çocuğu Düzenle
+  empty: Henüz çocuk eklemediniz.
+  add: Çocuk Ekle
+  nameLabel: Ad Soyad
+  nameHint: Çocuğun adı
+  birthDateLabel: Doğum Tarihi (isteğe bağlı)
+  birthDateSelect: Tarih seçin
+  genderLabel: Cinsiyet (isteğe bağlı)
+  genderMale: Erkek
+  genderFemale: Kız
+  diagnosisLabel: Tanı Bilgisi (isteğe bağlı)
+  diagnosisHint: Varsa tanı bilgisi
+  educationLabel: Eğitim Programı (isteğe bağlı)
+  educationHint: Devam ettiği eğitim programı
+  therapiesLabel: Terapiler (isteğe bağlı)
+  therapiesHint: Aldığı terapiler
+  ageYears: $years yaş
+  save: Kaydet
+  cancel: İptal
+  delete: Sil
+  deleteTitle: Çocuğu Sil
+  deleteConfirm: $name profilini silmek istediğinize emin misiniz?
+  errorNameRequired: Lütfen çocuğun adını girin.
+  created: Çocuk profili oluşturuldu.
+  updated: Çocuk profili güncellendi.
+  deleted: Çocuk profili silindi.
+
 profile:
   defaultUser: Kullanıcı
   accountInfo: Hesap Bilgileri

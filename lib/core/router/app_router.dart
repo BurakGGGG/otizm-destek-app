@@ -8,6 +8,7 @@ import '../../features/auth/presentation/auth_controller.dart';
 import '../../features/auth/presentation/login_screen.dart';
 import '../../features/auth/presentation/register_screen.dart';
 import '../../features/chatbot/presentation/chat_screen.dart';
+import '../../features/children/presentation/children_screen.dart';
 import '../../features/home/presentation/home_shell.dart';
 import '../../features/messaging/presentation/conversation_thread_screen.dart';
 import '../../features/messaging/presentation/conversations_screen.dart';
@@ -74,6 +75,10 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/chat',
         builder: (_, _) => const ChatScreen(),
+      ),
+      GoRoute(
+        path: '/children',
+        builder: (_, _) => const ChildrenScreen(),
       ),
       GoRoute(
         path: '/messages',

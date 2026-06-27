@@ -141,6 +141,36 @@ progress:
   noChild: Add a child first to track development.
   goalProgress: $done / $total
 
+children:
+  title: My Children
+  addTitle: Add Child
+  editTitle: Edit Child
+  empty: You haven't added any children yet.
+  add: Add Child
+  nameLabel: Full Name
+  nameHint: Child's name
+  birthDateLabel: Birth Date (optional)
+  birthDateSelect: Select date
+  genderLabel: Gender (optional)
+  genderMale: Boy
+  genderFemale: Girl
+  diagnosisLabel: Diagnosis Info (optional)
+  diagnosisHint: Diagnosis info, if any
+  educationLabel: Education Program (optional)
+  educationHint: Current education program
+  therapiesLabel: Therapies (optional)
+  therapiesHint: Therapies received
+  ageYears: $years yrs
+  save: Save
+  cancel: Cancel
+  delete: Delete
+  deleteTitle: Delete Child
+  deleteConfirm: Are you sure you want to delete $name's profile?
+  errorNameRequired: Please enter the child's name.
+  created: Child profile created.
+  updated: Child profile updated.
+  deleted: Child profile deleted.
+
 profile:
   defaultUser: User
   accountInfo: Account Information

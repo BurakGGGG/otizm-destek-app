@@ -51,6 +51,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$home$en home = _Translations$home$en._(_root);
 	@override late final _Translations$specialists$en specialists = _Translations$specialists$en._(_root);
 	@override late final _Translations$progress$en progress = _Translations$progress$en._(_root);
+	@override late final _Translations$children$en children = _Translations$children$en._(_root);
 	@override late final _Translations$profile$en profile = _Translations$profile$en._(_root);
 	@override late final _Translations$errors$en errors = _Translations$errors$en._(_root);
 }
@@ -282,6 +283,43 @@ class _Translations$progress$en extends Translations$progress$tr {
 	@override String goalProgress({required Object done, required Object total}) => '${done} / ${total}';
 }
 
+// Path: children
+class _Translations$children$en extends Translations$children$tr {
+	_Translations$children$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'My Children';
+	@override String get addTitle => 'Add Child';
+	@override String get editTitle => 'Edit Child';
+	@override String get empty => 'You haven\'t added any children yet.';
+	@override String get add => 'Add Child';
+	@override String get nameLabel => 'Full Name';
+	@override String get nameHint => 'Child\'s name';
+	@override String get birthDateLabel => 'Birth Date (optional)';
+	@override String get birthDateSelect => 'Select date';
+	@override String get genderLabel => 'Gender (optional)';
+	@override String get genderMale => 'Boy';
+	@override String get genderFemale => 'Girl';
+	@override String get diagnosisLabel => 'Diagnosis Info (optional)';
+	@override String get diagnosisHint => 'Diagnosis info, if any';
+	@override String get educationLabel => 'Education Program (optional)';
+	@override String get educationHint => 'Current education program';
+	@override String get therapiesLabel => 'Therapies (optional)';
+	@override String get therapiesHint => 'Therapies received';
+	@override String ageYears({required Object years}) => '${years} yrs';
+	@override String get save => 'Save';
+	@override String get cancel => 'Cancel';
+	@override String get delete => 'Delete';
+	@override String get deleteTitle => 'Delete Child';
+	@override String deleteConfirm({required Object name}) => 'Are you sure you want to delete ${name}\'s profile?';
+	@override String get errorNameRequired => 'Please enter the child\'s name.';
+	@override String get created => 'Child profile created.';
+	@override String get updated => 'Child profile updated.';
+	@override String get deleted => 'Child profile deleted.';
+}
+
 // Path: profile
 class _Translations$profile$en extends Translations$profile$tr {
 	_Translations$profile$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -439,6 +477,34 @@ extension on TranslationsEn {
 			'progress.noNotes' => 'No development notes yet.',
 			'progress.noChild' => 'Add a child first to track development.',
 			'progress.goalProgress' => ({required Object done, required Object total}) => '${done} / ${total}',
+			'children.title' => 'My Children',
+			'children.addTitle' => 'Add Child',
+			'children.editTitle' => 'Edit Child',
+			'children.empty' => 'You haven\'t added any children yet.',
+			'children.add' => 'Add Child',
+			'children.nameLabel' => 'Full Name',
+			'children.nameHint' => 'Child\'s name',
+			'children.birthDateLabel' => 'Birth Date (optional)',
+			'children.birthDateSelect' => 'Select date',
+			'children.genderLabel' => 'Gender (optional)',
+			'children.genderMale' => 'Boy',
+			'children.genderFemale' => 'Girl',
+			'children.diagnosisLabel' => 'Diagnosis Info (optional)',
+			'children.diagnosisHint' => 'Diagnosis info, if any',
+			'children.educationLabel' => 'Education Program (optional)',
+			'children.educationHint' => 'Current education program',
+			'children.therapiesLabel' => 'Therapies (optional)',
+			'children.therapiesHint' => 'Therapies received',
+			'children.ageYears' => ({required Object years}) => '${years} yrs',
+			'children.save' => 'Save',
+			'children.cancel' => 'Cancel',
+			'children.delete' => 'Delete',
+			'children.deleteTitle' => 'Delete Child',
+			'children.deleteConfirm' => ({required Object name}) => 'Are you sure you want to delete ${name}\'s profile?',
+			'children.errorNameRequired' => 'Please enter the child\'s name.',
+			'children.created' => 'Child profile created.',
+			'children.updated' => 'Child profile updated.',
+			'children.deleted' => 'Child profile deleted.',
 			'profile.defaultUser' => 'User',
 			'profile.accountInfo' => 'Account Information',
 			'profile.myChildren' => 'My Children',

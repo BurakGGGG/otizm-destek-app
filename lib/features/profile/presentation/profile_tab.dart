@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
@@ -38,7 +39,10 @@ class ProfileTab extends ConsumerWidget {
           _ProfileItem(
               icon: Icons.person_outline, label: t.profile.accountInfo),
           _ProfileItem(
-              icon: Icons.child_care_outlined, label: t.profile.myChildren),
+            icon: Icons.child_care_outlined,
+            label: t.profile.myChildren,
+            onTap: () => context.push('/children'),
+          ),
           _ProfileItem(
               icon: Icons.notifications_none,
               label: t.profile.notificationSettings),
@@ -102,9 +106,10 @@ class _LanguageSelector extends StatelessWidget {
 }
 
 class _ProfileItem extends StatelessWidget {
-  const _ProfileItem({required this.icon, required this.label});
+  const _ProfileItem({required this.icon, required this.label, this.onTap});
   final IconData icon;
   final String label;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +122,7 @@ class _ProfileItem extends StatelessWidget {
         title: Text(label),
         trailing:
             const Icon(Icons.chevron_right, color: AppColors.textTertiary),
-        onTap: () {},
+        onTap: onTap ?? () {},
       ),
     );
   }

@@ -23,6 +23,32 @@ class ChildRepository {
       throw ApiException.fromDio(e);
     }
   }
+
+  Future<Child> createChild(Child child) async {
+    try {
+      final res = await _dio.post('/children', data: child.toWriteJson());
+      return Child.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  Future<Child> updateChild(String id, Child child) async {
+    try {
+      final res = await _dio.put('/children/$id', data: child.toWriteJson());
+      return Child.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  Future<void> deleteChild(String id) async {
+    try {
+      await _dio.delete('/children/$id');
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
 }
 
 final childRepositoryProvider = Provider<ChildRepository>((ref) {
