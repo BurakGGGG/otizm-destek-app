@@ -23,6 +23,31 @@ class GoalRepository {
       throw ApiException.fromDio(e);
     }
   }
+
+  /// Yeni hedef oluştur — `POST /goals/child/{childId}`.
+  Future<Goal> createGoal({
+    required String childId,
+    required String title,
+    required String category,
+    String? description,
+    int? targetCount,
+  }) async {
+    try {
+      final res = await _dio.post(
+        '/goals/child/$childId',
+        data: {
+          'title': title.trim(),
+          'category': category,
+          if (description != null && description.trim().isNotEmpty)
+            'description': description.trim(),
+          'targetCount': ?targetCount,
+        },
+      );
+      return Goal.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
 }
 
 final goalRepositoryProvider = Provider<GoalRepository>((ref) {
@@ -30,7 +55,6 @@ final goalRepositoryProvider = Provider<GoalRepository>((ref) {
 });
 
 /// Belirli bir çocuğun hedefleri.
-final goalsProvider =
-    FutureProvider.family<List<Goal>, String>((ref, childId) {
+final goalsProvider = FutureProvider.family<List<Goal>, String>((ref, childId) {
   return ref.watch(goalRepositoryProvider).getGoals(childId);
 });

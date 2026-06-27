@@ -140,6 +140,36 @@ progress:
   noNotes: No development notes yet.
   noChild: Add a child first to track development.
   goalProgress: $done / $total
+  addGoal: Add Goal
+  addNote: Add Note
+
+goalForm:
+  title: Add Goal
+  nameLabel: Title
+  nameHint: e.g. Making eye contact
+  categoryLabel: Category
+  targetLabel: Target Count
+  descriptionLabel: Description (optional)
+  descriptionHint: Details about the goal
+  save: Save
+  errorTitle: Please enter a title.
+  created: Goal added.
+
+noteForm:
+  title: Add Note
+  nameLabel: Title
+  nameHint: e.g. Today's progress
+  contentLabel: Content (optional)
+  contentHint: Write your observations
+  categoryLabel: Category (optional)
+  moodLabel: Mood (optional)
+  moodHappy: Happy
+  moodCalm: Calm
+  moodSad: Sad
+  dateLabel: Date
+  save: Save
+  errorTitle: Please enter a title.
+  created: Note added.
 
 notifications:
   show: Show

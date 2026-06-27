@@ -52,6 +52,8 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$home$tr home = Translations$home$tr.internal(_root);
 	late final Translations$specialists$tr specialists = Translations$specialists$tr.internal(_root);
 	late final Translations$progress$tr progress = Translations$progress$tr.internal(_root);
+	late final Translations$goalForm$tr goalForm = Translations$goalForm$tr.internal(_root);
+	late final Translations$noteForm$tr noteForm = Translations$noteForm$tr.internal(_root);
 	late final Translations$notifications$tr notifications = Translations$notifications$tr.internal(_root);
 	late final Translations$knowledge$tr knowledge = Translations$knowledge$tr.internal(_root);
 	late final Translations$appointments$tr appointments = Translations$appointments$tr.internal(_root);
@@ -498,6 +500,102 @@ class Translations$progress$tr {
 
 	/// tr: '$done / $total'
 	String goalProgress({required Object done, required Object total}) => '${done} / ${total}';
+
+	/// tr: 'Hedef Ekle'
+	String get addGoal => 'Hedef Ekle';
+
+	/// tr: 'Not Ekle'
+	String get addNote => 'Not Ekle';
+}
+
+// Path: goalForm
+class Translations$goalForm$tr {
+	Translations$goalForm$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Hedef Ekle'
+	String get title => 'Hedef Ekle';
+
+	/// tr: 'Başlık'
+	String get nameLabel => 'Başlık';
+
+	/// tr: 'Örn. Göz teması kurma'
+	String get nameHint => 'Örn. Göz teması kurma';
+
+	/// tr: 'Kategori'
+	String get categoryLabel => 'Kategori';
+
+	/// tr: 'Hedef Sayısı'
+	String get targetLabel => 'Hedef Sayısı';
+
+	/// tr: 'Açıklama (isteğe bağlı)'
+	String get descriptionLabel => 'Açıklama (isteğe bağlı)';
+
+	/// tr: 'Hedefle ilgili detay'
+	String get descriptionHint => 'Hedefle ilgili detay';
+
+	/// tr: 'Kaydet'
+	String get save => 'Kaydet';
+
+	/// tr: 'Lütfen bir başlık girin.'
+	String get errorTitle => 'Lütfen bir başlık girin.';
+
+	/// tr: 'Hedef eklendi.'
+	String get created => 'Hedef eklendi.';
+}
+
+// Path: noteForm
+class Translations$noteForm$tr {
+	Translations$noteForm$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Not Ekle'
+	String get title => 'Not Ekle';
+
+	/// tr: 'Başlık'
+	String get nameLabel => 'Başlık';
+
+	/// tr: 'Örn. Bugünkü gelişme'
+	String get nameHint => 'Örn. Bugünkü gelişme';
+
+	/// tr: 'İçerik (isteğe bağlı)'
+	String get contentLabel => 'İçerik (isteğe bağlı)';
+
+	/// tr: 'Gözlemlerinizi yazın'
+	String get contentHint => 'Gözlemlerinizi yazın';
+
+	/// tr: 'Kategori (isteğe bağlı)'
+	String get categoryLabel => 'Kategori (isteğe bağlı)';
+
+	/// tr: 'Ruh Hali (isteğe bağlı)'
+	String get moodLabel => 'Ruh Hali (isteğe bağlı)';
+
+	/// tr: 'Mutlu'
+	String get moodHappy => 'Mutlu';
+
+	/// tr: 'Sakin'
+	String get moodCalm => 'Sakin';
+
+	/// tr: 'Üzgün'
+	String get moodSad => 'Üzgün';
+
+	/// tr: 'Tarih'
+	String get dateLabel => 'Tarih';
+
+	/// tr: 'Kaydet'
+	String get save => 'Kaydet';
+
+	/// tr: 'Lütfen bir başlık girin.'
+	String get errorTitle => 'Lütfen bir başlık girin.';
+
+	/// tr: 'Not eklendi.'
+	String get created => 'Not eklendi.';
 }
 
 // Path: notifications
@@ -985,6 +1083,32 @@ extension on Translations {
 			'progress.noNotes' => 'Henüz gelişim notu eklenmemiş.',
 			'progress.noChild' => 'Gelişim takibi için önce bir çocuk ekleyin.',
 			'progress.goalProgress' => ({required Object done, required Object total}) => '${done} / ${total}',
+			'progress.addGoal' => 'Hedef Ekle',
+			'progress.addNote' => 'Not Ekle',
+			'goalForm.title' => 'Hedef Ekle',
+			'goalForm.nameLabel' => 'Başlık',
+			'goalForm.nameHint' => 'Örn. Göz teması kurma',
+			'goalForm.categoryLabel' => 'Kategori',
+			'goalForm.targetLabel' => 'Hedef Sayısı',
+			'goalForm.descriptionLabel' => 'Açıklama (isteğe bağlı)',
+			'goalForm.descriptionHint' => 'Hedefle ilgili detay',
+			'goalForm.save' => 'Kaydet',
+			'goalForm.errorTitle' => 'Lütfen bir başlık girin.',
+			'goalForm.created' => 'Hedef eklendi.',
+			'noteForm.title' => 'Not Ekle',
+			'noteForm.nameLabel' => 'Başlık',
+			'noteForm.nameHint' => 'Örn. Bugünkü gelişme',
+			'noteForm.contentLabel' => 'İçerik (isteğe bağlı)',
+			'noteForm.contentHint' => 'Gözlemlerinizi yazın',
+			'noteForm.categoryLabel' => 'Kategori (isteğe bağlı)',
+			'noteForm.moodLabel' => 'Ruh Hali (isteğe bağlı)',
+			'noteForm.moodHappy' => 'Mutlu',
+			'noteForm.moodCalm' => 'Sakin',
+			'noteForm.moodSad' => 'Üzgün',
+			'noteForm.dateLabel' => 'Tarih',
+			'noteForm.save' => 'Kaydet',
+			'noteForm.errorTitle' => 'Lütfen bir başlık girin.',
+			'noteForm.created' => 'Not eklendi.',
 			'notifications.show' => 'Göster',
 			'knowledge.title' => 'Bilgi Bankası',
 			'knowledge.empty' => 'Henüz makale eklenmemiş.',

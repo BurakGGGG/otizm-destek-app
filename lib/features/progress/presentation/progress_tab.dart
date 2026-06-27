@@ -8,8 +8,10 @@ import '../../children/data/child_repository.dart';
 import '../../children/domain/child.dart';
 import '../../goals/data/goal_repository.dart';
 import '../../goals/domain/goal.dart';
+import '../../goals/presentation/goal_form_screen.dart';
 import '../../notes/data/note_repository.dart';
 import '../../notes/domain/development_note.dart';
+import '../../notes/presentation/note_form_screen.dart';
 
 /// Gelişim sekmesi — seçili çocuğun hedefleri (`/api/goals`) ve son gelişim
 /// notları (`/api/notes`).
@@ -47,7 +49,11 @@ class _ProgressTabState extends ConsumerState<ProgressTab> {
             },
             child: ListView(
               padding: const EdgeInsets.fromLTRB(
-                  AppSpacing.margin, 8, AppSpacing.margin, 24),
+                AppSpacing.margin,
+                8,
+                AppSpacing.margin,
+                24,
+              ),
               children: [
                 Text(t.progress.title, style: text.headlineLarge),
                 const SizedBox(height: 4),
@@ -115,6 +121,17 @@ class _ChildSelector extends StatelessWidget {
   }
 }
 
+/// Form ekranını açar; başarıyla dönerse (mesaj) SnackBar gösterir.
+/// İlgili provider form içinde invalidate edilir.
+Future<void> _openForm(BuildContext context, Widget form) async {
+  final result = await Navigator.of(
+    context,
+  ).push<String>(MaterialPageRoute(builder: (_) => form));
+  if (result != null && context.mounted) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(result)));
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Hedefler
 // ---------------------------------------------------------------------------
@@ -129,17 +146,33 @@ class _GoalsSection extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(t.progress.goalsTitle, style: text.titleMedium),
+        Row(
+          children: [
+            Expanded(
+              child: Text(t.progress.goalsTitle, style: text.titleMedium),
+            ),
+            TextButton.icon(
+              onPressed: () =>
+                  _openForm(context, GoalFormScreen(childId: childId)),
+              icon: const Icon(Icons.add, size: 18),
+              label: Text(t.progress.addGoal),
+            ),
+          ],
+        ),
         const SizedBox(height: 12),
-        ref.watch(goalsProvider(childId)).when(
+        ref
+            .watch(goalsProvider(childId))
+            .when(
               loading: () => const _SectionLoading(),
               error: (e, _) => _SectionError(
-                  onRetry: () => ref.invalidate(goalsProvider(childId))),
+                onRetry: () => ref.invalidate(goalsProvider(childId)),
+              ),
               data: (goals) {
                 if (goals.isEmpty) {
                   return _EmptyCard(
-                      message: t.progress.noGoals,
-                      icon: Icons.flag_outlined);
+                    message: t.progress.noGoals,
+                    icon: Icons.flag_outlined,
+                  );
                 }
                 return Column(
                   children: [
@@ -172,8 +205,10 @@ class _GoalCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                Text(goal.tokenEmoji ?? '⭐',
-                    style: const TextStyle(fontSize: 20)),
+                Text(
+                  goal.tokenEmoji ?? '⭐',
+                  style: const TextStyle(fontSize: 20),
+                ),
                 const SizedBox(width: 8),
                 Expanded(child: Text(goal.title, style: text.titleMedium)),
                 Text(
@@ -198,17 +233,22 @@ class _GoalCard extends StatelessWidget {
             if (goal.category?.isNotEmpty ?? false) ...[
               const SizedBox(height: 10),
               Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 4,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.primary.withValues(alpha: 0.10),
                   borderRadius: BorderRadius.circular(AppRadius.sm),
                 ),
-                child: Text(goal.category!,
-                    style: const TextStyle(
-                        color: AppColors.primary,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600)),
+                child: Text(
+                  goal.category!,
+                  style: const TextStyle(
+                    color: AppColors.primary,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
               ),
             ],
           ],
@@ -232,17 +272,33 @@ class _NotesSection extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(t.progress.recentNotes, style: text.titleMedium),
+        Row(
+          children: [
+            Expanded(
+              child: Text(t.progress.recentNotes, style: text.titleMedium),
+            ),
+            TextButton.icon(
+              onPressed: () =>
+                  _openForm(context, NoteFormScreen(childId: childId)),
+              icon: const Icon(Icons.add, size: 18),
+              label: Text(t.progress.addNote),
+            ),
+          ],
+        ),
         const SizedBox(height: 12),
-        ref.watch(recentNotesProvider(childId)).when(
+        ref
+            .watch(recentNotesProvider(childId))
+            .when(
               loading: () => const _SectionLoading(),
               error: (e, _) => _SectionError(
-                  onRetry: () => ref.invalidate(recentNotesProvider(childId))),
+                onRetry: () => ref.invalidate(recentNotesProvider(childId)),
+              ),
               data: (notes) {
                 if (notes.isEmpty) {
                   return _EmptyCard(
-                      message: t.progress.noNotes,
-                      icon: Icons.note_outlined);
+                    message: t.progress.noNotes,
+                    icon: Icons.note_outlined,
+                  );
                 }
                 return Column(
                   children: [
@@ -268,8 +324,9 @@ class _NoteCard extends StatelessWidget {
     final t = context.t;
     final text = Theme.of(context).textTheme;
     final date = note.noteDate;
-    final dateLabel =
-        date == null ? '' : '${date.day} ${t.common.monthsShort[date.month - 1]}';
+    final dateLabel = date == null
+        ? ''
+        : '${date.day} ${t.common.monthsShort[date.month - 1]}';
 
     return Card(
       child: Padding(
@@ -286,10 +343,12 @@ class _NoteCard extends StatelessWidget {
             ),
             if (note.content?.isNotEmpty ?? false) ...[
               const SizedBox(height: 4),
-              Text(note.content!,
-                  style: text.bodySmall,
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis),
+              Text(
+                note.content!,
+                style: text.bodySmall,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+              ),
             ],
             if ((note.category?.isNotEmpty ?? false) ||
                 (note.mood?.isNotEmpty ?? false)) ...[
@@ -297,11 +356,14 @@ class _NoteCard extends StatelessWidget {
               Row(
                 children: [
                   if (note.category?.isNotEmpty ?? false)
-                    Text(note.category!,
-                        style: const TextStyle(
-                            color: AppColors.primary,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600)),
+                    Text(
+                      note.category!,
+                      style: const TextStyle(
+                        color: AppColors.primary,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                   const Spacer(),
                   if (note.mood?.isNotEmpty ?? false)
                     Text(note.mood!, style: text.bodySmall),
@@ -415,8 +477,11 @@ class _EmptyView extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.child_care_outlined,
-                size: 48, color: AppColors.textTertiary),
+            const Icon(
+              Icons.child_care_outlined,
+              size: 48,
+              color: AppColors.textTertiary,
+            ),
             const SizedBox(height: 12),
             Text(message, textAlign: TextAlign.center),
           ],

@@ -51,6 +51,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$home$en home = _Translations$home$en._(_root);
 	@override late final _Translations$specialists$en specialists = _Translations$specialists$en._(_root);
 	@override late final _Translations$progress$en progress = _Translations$progress$en._(_root);
+	@override late final _Translations$goalForm$en goalForm = _Translations$goalForm$en._(_root);
+	@override late final _Translations$noteForm$en noteForm = _Translations$noteForm$en._(_root);
 	@override late final _Translations$notifications$en notifications = _Translations$notifications$en._(_root);
 	@override late final _Translations$knowledge$en knowledge = _Translations$knowledge$en._(_root);
 	@override late final _Translations$appointments$en appointments = _Translations$appointments$en._(_root);
@@ -286,6 +288,50 @@ class _Translations$progress$en extends Translations$progress$tr {
 	@override String get noNotes => 'No development notes yet.';
 	@override String get noChild => 'Add a child first to track development.';
 	@override String goalProgress({required Object done, required Object total}) => '${done} / ${total}';
+	@override String get addGoal => 'Add Goal';
+	@override String get addNote => 'Add Note';
+}
+
+// Path: goalForm
+class _Translations$goalForm$en extends Translations$goalForm$tr {
+	_Translations$goalForm$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Add Goal';
+	@override String get nameLabel => 'Title';
+	@override String get nameHint => 'e.g. Making eye contact';
+	@override String get categoryLabel => 'Category';
+	@override String get targetLabel => 'Target Count';
+	@override String get descriptionLabel => 'Description (optional)';
+	@override String get descriptionHint => 'Details about the goal';
+	@override String get save => 'Save';
+	@override String get errorTitle => 'Please enter a title.';
+	@override String get created => 'Goal added.';
+}
+
+// Path: noteForm
+class _Translations$noteForm$en extends Translations$noteForm$tr {
+	_Translations$noteForm$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Add Note';
+	@override String get nameLabel => 'Title';
+	@override String get nameHint => 'e.g. Today\'s progress';
+	@override String get contentLabel => 'Content (optional)';
+	@override String get contentHint => 'Write your observations';
+	@override String get categoryLabel => 'Category (optional)';
+	@override String get moodLabel => 'Mood (optional)';
+	@override String get moodHappy => 'Happy';
+	@override String get moodCalm => 'Calm';
+	@override String get moodSad => 'Sad';
+	@override String get dateLabel => 'Date';
+	@override String get save => 'Save';
+	@override String get errorTitle => 'Please enter a title.';
+	@override String get created => 'Note added.';
 }
 
 // Path: notifications
@@ -581,6 +627,32 @@ extension on TranslationsEn {
 			'progress.noNotes' => 'No development notes yet.',
 			'progress.noChild' => 'Add a child first to track development.',
 			'progress.goalProgress' => ({required Object done, required Object total}) => '${done} / ${total}',
+			'progress.addGoal' => 'Add Goal',
+			'progress.addNote' => 'Add Note',
+			'goalForm.title' => 'Add Goal',
+			'goalForm.nameLabel' => 'Title',
+			'goalForm.nameHint' => 'e.g. Making eye contact',
+			'goalForm.categoryLabel' => 'Category',
+			'goalForm.targetLabel' => 'Target Count',
+			'goalForm.descriptionLabel' => 'Description (optional)',
+			'goalForm.descriptionHint' => 'Details about the goal',
+			'goalForm.save' => 'Save',
+			'goalForm.errorTitle' => 'Please enter a title.',
+			'goalForm.created' => 'Goal added.',
+			'noteForm.title' => 'Add Note',
+			'noteForm.nameLabel' => 'Title',
+			'noteForm.nameHint' => 'e.g. Today\'s progress',
+			'noteForm.contentLabel' => 'Content (optional)',
+			'noteForm.contentHint' => 'Write your observations',
+			'noteForm.categoryLabel' => 'Category (optional)',
+			'noteForm.moodLabel' => 'Mood (optional)',
+			'noteForm.moodHappy' => 'Happy',
+			'noteForm.moodCalm' => 'Calm',
+			'noteForm.moodSad' => 'Sad',
+			'noteForm.dateLabel' => 'Date',
+			'noteForm.save' => 'Save',
+			'noteForm.errorTitle' => 'Please enter a title.',
+			'noteForm.created' => 'Note added.',
 			'notifications.show' => 'Show',
 			'knowledge.title' => 'Knowledge Base',
 			'knowledge.empty' => 'No articles yet.',

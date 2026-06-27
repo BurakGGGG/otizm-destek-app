@@ -140,6 +140,36 @@ progress:
   noNotes: Henüz gelişim notu eklenmemiş.
   noChild: Gelişim takibi için önce bir çocuk ekleyin.
   goalProgress: $done / $total
+  addGoal: Hedef Ekle
+  addNote: Not Ekle
+
+goalForm:
+  title: Hedef Ekle
+  nameLabel: Başlık
+  nameHint: Örn. Göz teması kurma
+  categoryLabel: Kategori
+  targetLabel: Hedef Sayısı
+  descriptionLabel: Açıklama (isteğe bağlı)
+  descriptionHint: Hedefle ilgili detay
+  save: Kaydet
+  errorTitle: Lütfen bir başlık girin.
+  created: Hedef eklendi.
+
+noteForm:
+  title: Not Ekle
+  nameLabel: Başlık
+  nameHint: Örn. Bugünkü gelişme
+  contentLabel: İçerik (isteğe bağlı)
+  contentHint: Gözlemlerinizi yazın
+  categoryLabel: Kategori (isteğe bağlı)
+  moodLabel: Ruh Hali (isteğe bağlı)
+  moodHappy: Mutlu
+  moodCalm: Sakin
+  moodSad: Üzgün
+  dateLabel: Tarih
+  save: Kaydet
+  errorTitle: Lütfen bir başlık girin.
+  created: Not eklendi.
 
 notifications:
   show: Göster

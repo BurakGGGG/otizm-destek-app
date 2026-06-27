@@ -23,6 +23,36 @@ class NoteRepository {
       throw ApiException.fromDio(e);
     }
   }
+
+  /// Yeni gelişim notu oluştur — `POST /notes` (childId gövdede).
+  Future<DevelopmentNote> createNote({
+    required String childId,
+    required String title,
+    String? content,
+    String? category,
+    String? mood,
+    String? noteDateIso,
+  }) async {
+    try {
+      final res = await _dio.post(
+        '/notes',
+        data: {
+          'childId': childId,
+          'title': title.trim(),
+          if (content != null && content.trim().isNotEmpty)
+            'content': content.trim(),
+          'category': ?category,
+          'mood': ?mood,
+          'noteDate': ?noteDateIso,
+        },
+      );
+      return DevelopmentNote.fromJson(
+        ApiEnvelope.fromJson(res.data).requireMap(),
+      );
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
 }
 
 final noteRepositoryProvider = Provider<NoteRepository>((ref) {
@@ -32,5 +62,5 @@ final noteRepositoryProvider = Provider<NoteRepository>((ref) {
 /// Belirli bir çocuğun son gelişim notları.
 final recentNotesProvider =
     FutureProvider.family<List<DevelopmentNote>, String>((ref, childId) {
-  return ref.watch(noteRepositoryProvider).getRecentNotes(childId);
-});
+      return ref.watch(noteRepositoryProvider).getRecentNotes(childId);
+    });
