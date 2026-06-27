@@ -1,4 +1,5 @@
-import 'package:flutter/foundation.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -11,6 +12,7 @@ import '../../features/home/presentation/home_shell.dart';
 import '../../features/messaging/presentation/conversation_thread_screen.dart';
 import '../../features/messaging/presentation/conversations_screen.dart';
 import '../../features/splash/splash_screen.dart';
+import '../providers.dart';
 
 /// Uygulama rotaları. Oturum durumuna göre yönlendirir (role duyarlı kabuk
 /// Faz 3'te genişletilecek).
@@ -22,9 +24,16 @@ final goRouterProvider = Provider<GoRouter>((ref) {
   });
   ref.onDispose(refresh.dispose);
 
+  // Firebase hazırsa ekran geçişlerini Analytics'e bildiren observer ekle.
+  final observers = <NavigatorObserver>[
+    if (ref.watch(firebaseReadyProvider))
+      FirebaseAnalyticsObserver(analytics: ref.watch(analyticsProvider)),
+  ];
+
   return GoRouter(
     initialLocation: '/splash',
     refreshListenable: refresh,
+    observers: observers,
     redirect: (context, state) {
       final status = ref.read(authControllerProvider).status;
       final loc = state.matchedLocation;
