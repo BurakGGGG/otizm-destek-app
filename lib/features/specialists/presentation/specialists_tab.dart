@@ -6,6 +6,7 @@ import '../../../core/theme/app_theme.dart';
 import '../../../i18n/strings.g.dart';
 import '../data/expert_repository.dart';
 import '../domain/expert.dart';
+import 'expert_detail_screen.dart';
 
 /// Uzmanlar sekmesi — `GET /api/experts` gerçek verisi + arama/filtre.
 class SpecialistsTab extends ConsumerStatefulWidget {
@@ -59,7 +60,11 @@ class _SpecialistsTabState extends ConsumerState<SpecialistsTab> {
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(
-                AppSpacing.margin, 8, AppSpacing.margin, 0),
+              AppSpacing.margin,
+              8,
+              AppSpacing.margin,
+              0,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -69,8 +74,10 @@ class _SpecialistsTabState extends ConsumerState<SpecialistsTab> {
                   onChanged: (v) => setState(() => _query = v.trim()),
                   decoration: InputDecoration(
                     hintText: t.specialists.searchHint,
-                    prefixIcon: const Icon(Icons.search,
-                        color: AppColors.textTertiary),
+                    prefixIcon: const Icon(
+                      Icons.search,
+                      color: AppColors.textTertiary,
+                    ),
                     fillColor: AppColors.surface,
                   ),
                 ),
@@ -106,8 +113,8 @@ class _SpecialistsTabState extends ConsumerState<SpecialistsTab> {
           Expanded(
             child: expertsAsync.when(
               loading: () => const Center(child: CircularProgressIndicator()),
-              error: (e, _) => _ErrorView(
-                  onRetry: () => ref.invalidate(expertsProvider)),
+              error: (e, _) =>
+                  _ErrorView(onRetry: () => ref.invalidate(expertsProvider)),
               data: (experts) {
                 final filtered = experts.where(_matches).toList();
                 if (filtered.isEmpty) {
@@ -117,7 +124,11 @@ class _SpecialistsTabState extends ConsumerState<SpecialistsTab> {
                   onRefresh: () async => ref.invalidate(expertsProvider),
                   child: ListView.separated(
                     padding: const EdgeInsets.fromLTRB(
-                        AppSpacing.margin, 8, AppSpacing.margin, 24),
+                      AppSpacing.margin,
+                      8,
+                      AppSpacing.margin,
+                      24,
+                    ),
                     itemCount: filtered.length,
                     separatorBuilder: (_, _) => const SizedBox(height: 12),
                     itemBuilder: (_, i) => _ExpertCard(expert: filtered[i]),
@@ -142,86 +153,114 @@ class _ExpertCard extends StatelessWidget {
     final text = Theme.of(context).textTheme;
     final e = expert;
     return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CircleAvatar(
-              radius: 28,
-              backgroundColor: AppColors.primary.withValues(alpha: 0.12),
-              backgroundImage: (e.profileImageUrl?.isNotEmpty ?? false)
-                  ? NetworkImage(e.profileImageUrl!)
-                  : null,
-              child: (e.profileImageUrl?.isEmpty ?? true)
-                  ? const Icon(Icons.person, color: AppColors.primary)
-                  : null,
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Row(
-                          children: [
-                            Flexible(
-                                child: Text(e.fullName,
-                                    style: text.titleMedium,
-                                    overflow: TextOverflow.ellipsis)),
-                            if (e.verified) ...[
-                              const SizedBox(width: 4),
-                              const Icon(Icons.verified,
-                                  size: 16, color: AppColors.primary),
-                            ],
-                          ],
-                        ),
-                      ),
-                      const Icon(Icons.star, size: 16, color: AppColors.warning),
-                      const SizedBox(width: 2),
-                      Text(
-                        e.hasRating
-                            ? e.avgRating.toStringAsFixed(1)
-                            : t.specialists.ratingNew,
-                        style: text.bodySmall,
-                      ),
-                    ],
-                  ),
-                  if (e.expertTitle?.isNotEmpty ?? false)
-                    Text(e.expertTitle!, style: text.bodySmall),
-                  if (e.city?.isNotEmpty ?? false)
-                    Text(e.city!,
-                        style: text.bodySmall
-                            ?.copyWith(color: AppColors.textTertiary)),
-                  if (e.specializations.isNotEmpty) ...[
-                    const SizedBox(height: 8),
-                    Wrap(
-                      spacing: 6,
-                      runSpacing: 6,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(AppRadius.lg),
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute(builder: (_) => ExpertDetailScreen(expert: e)),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CircleAvatar(
+                radius: 28,
+                backgroundColor: AppColors.primary.withValues(alpha: 0.12),
+                backgroundImage: (e.profileImageUrl?.isNotEmpty ?? false)
+                    ? NetworkImage(e.profileImageUrl!)
+                    : null,
+                child: (e.profileImageUrl?.isEmpty ?? true)
+                    ? const Icon(Icons.person, color: AppColors.primary)
+                    : null,
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
                       children: [
-                        for (final tag in e.specializations.take(4))
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 4),
-                            decoration: BoxDecoration(
-                              color: AppColors.primary.withValues(alpha: 0.10),
-                              borderRadius: BorderRadius.circular(AppRadius.sm),
-                            ),
-                            child: Text(tag,
-                                style: const TextStyle(
-                                    color: AppColors.primary,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600)),
+                        Expanded(
+                          child: Row(
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  e.fullName,
+                                  style: text.titleMedium,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              if (e.verified) ...[
+                                const SizedBox(width: 4),
+                                const Icon(
+                                  Icons.verified,
+                                  size: 16,
+                                  color: AppColors.primary,
+                                ),
+                              ],
+                            ],
                           ),
+                        ),
+                        const Icon(
+                          Icons.star,
+                          size: 16,
+                          color: AppColors.warning,
+                        ),
+                        const SizedBox(width: 2),
+                        Text(
+                          e.hasRating
+                              ? e.avgRating.toStringAsFixed(1)
+                              : t.specialists.ratingNew,
+                          style: text.bodySmall,
+                        ),
                       ],
                     ),
+                    if (e.expertTitle?.isNotEmpty ?? false)
+                      Text(e.expertTitle!, style: text.bodySmall),
+                    if (e.city?.isNotEmpty ?? false)
+                      Text(
+                        e.city!,
+                        style: text.bodySmall?.copyWith(
+                          color: AppColors.textTertiary,
+                        ),
+                      ),
+                    if (e.specializations.isNotEmpty) ...[
+                      const SizedBox(height: 8),
+                      Wrap(
+                        spacing: 6,
+                        runSpacing: 6,
+                        children: [
+                          for (final tag in e.specializations.take(4))
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 4,
+                              ),
+                              decoration: BoxDecoration(
+                                color: AppColors.primary.withValues(
+                                  alpha: 0.10,
+                                ),
+                                borderRadius: BorderRadius.circular(
+                                  AppRadius.sm,
+                                ),
+                              ),
+                              child: Text(
+                                tag,
+                                style: const TextStyle(
+                                  color: AppColors.primary,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                        ],
+                      ),
+                    ],
                   ],
-                ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -262,8 +301,11 @@ class _EmptyView extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.search_off,
-                size: 48, color: AppColors.textTertiary),
+            const Icon(
+              Icons.search_off,
+              size: 48,
+              color: AppColors.textTertiary,
+            ),
             const SizedBox(height: 12),
             Text(message, textAlign: TextAlign.center),
           ],

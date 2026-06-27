@@ -55,6 +55,8 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$notifications$tr notifications = Translations$notifications$tr.internal(_root);
 	late final Translations$knowledge$tr knowledge = Translations$knowledge$tr.internal(_root);
 	late final Translations$appointments$tr appointments = Translations$appointments$tr.internal(_root);
+	late final Translations$expertDetail$tr expertDetail = Translations$expertDetail$tr.internal(_root);
+	late final Translations$booking$tr booking = Translations$booking$tr.internal(_root);
 	late final Translations$children$tr children = Translations$children$tr.internal(_root);
 	late final Translations$profile$tr profile = Translations$profile$tr.internal(_root);
 	late final Translations$errors$tr errors = Translations$errors$tr.internal(_root);
@@ -627,6 +629,84 @@ class Translations$appointments$tr {
 	String get completed => 'Randevu tamamlandı olarak işaretlendi.';
 }
 
+// Path: expertDetail
+class Translations$expertDetail$tr {
+	Translations$expertDetail$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Randevu Al'
+	String get bookAppointment => 'Randevu Al';
+
+	/// tr: 'Uzmanlık Alanları'
+	String get specializationsTitle => 'Uzmanlık Alanları';
+
+	/// tr: '$count makale'
+	String articleCount({required Object count}) => '${count} makale';
+
+	/// tr: 'Bu uzman şu an randevu kabul etmiyor.'
+	String get notAcceptingPatients => 'Bu uzman şu an randevu kabul etmiyor.';
+}
+
+// Path: booking
+class Translations$booking$tr {
+	Translations$booking$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Randevu Al'
+	String get title => 'Randevu Al';
+
+	/// tr: 'Çocuk'
+	String get childLabel => 'Çocuk';
+
+	/// tr: 'Randevu almak için önce bir çocuk ekleyin.'
+	String get noChild => 'Randevu almak için önce bir çocuk ekleyin.';
+
+	/// tr: 'Randevu Tipi'
+	String get typeLabel => 'Randevu Tipi';
+
+	/// tr: 'Tarih'
+	String get dateLabel => 'Tarih';
+
+	/// tr: 'Tarih seçin'
+	String get selectDate => 'Tarih seçin';
+
+	/// tr: '$day $month $year'
+	String dateValue({required Object day, required Object month, required Object year}) => '${day} ${month} ${year}';
+
+	/// tr: 'Saat'
+	String get timeLabel => 'Saat';
+
+	/// tr: 'Uygun saatleri görmek için önce tarih seçin.'
+	String get selectDateFirst => 'Uygun saatleri görmek için önce tarih seçin.';
+
+	/// tr: 'Bu gün için uygun saat yok.'
+	String get noSlots => 'Bu gün için uygun saat yok.';
+
+	/// tr: 'Not (isteğe bağlı)'
+	String get notesLabel => 'Not (isteğe bağlı)';
+
+	/// tr: 'Uzmana iletmek istediğiniz not'
+	String get notesHint => 'Uzmana iletmek istediğiniz not';
+
+	/// tr: 'Randevuyu Onayla'
+	String get confirm => 'Randevuyu Onayla';
+
+	/// tr: 'Randevu oluşturuldu.'
+	String get created => 'Randevu oluşturuldu.';
+
+	/// tr: 'Lütfen bir çocuk seçin.'
+	String get errorSelectChild => 'Lütfen bir çocuk seçin.';
+
+	/// tr: 'Lütfen bir saat seçin.'
+	String get errorSelectTime => 'Lütfen bir saat seçin.';
+}
+
 // Path: children
 class Translations$children$tr {
 	Translations$children$tr.internal(this._root);
@@ -939,6 +1019,26 @@ extension on Translations {
 			'appointments.cancelled' => 'Randevu iptal edildi.',
 			'appointments.confirmed' => 'Randevu onaylandı.',
 			'appointments.completed' => 'Randevu tamamlandı olarak işaretlendi.',
+			'expertDetail.bookAppointment' => 'Randevu Al',
+			'expertDetail.specializationsTitle' => 'Uzmanlık Alanları',
+			'expertDetail.articleCount' => ({required Object count}) => '${count} makale',
+			'expertDetail.notAcceptingPatients' => 'Bu uzman şu an randevu kabul etmiyor.',
+			'booking.title' => 'Randevu Al',
+			'booking.childLabel' => 'Çocuk',
+			'booking.noChild' => 'Randevu almak için önce bir çocuk ekleyin.',
+			'booking.typeLabel' => 'Randevu Tipi',
+			'booking.dateLabel' => 'Tarih',
+			'booking.selectDate' => 'Tarih seçin',
+			'booking.dateValue' => ({required Object day, required Object month, required Object year}) => '${day} ${month} ${year}',
+			'booking.timeLabel' => 'Saat',
+			'booking.selectDateFirst' => 'Uygun saatleri görmek için önce tarih seçin.',
+			'booking.noSlots' => 'Bu gün için uygun saat yok.',
+			'booking.notesLabel' => 'Not (isteğe bağlı)',
+			'booking.notesHint' => 'Uzmana iletmek istediğiniz not',
+			'booking.confirm' => 'Randevuyu Onayla',
+			'booking.created' => 'Randevu oluşturuldu.',
+			'booking.errorSelectChild' => 'Lütfen bir çocuk seçin.',
+			'booking.errorSelectTime' => 'Lütfen bir saat seçin.',
 			'children.title' => 'Çocuklarım',
 			'children.addTitle' => 'Çocuk Ekle',
 			'children.editTitle' => 'Çocuğu Düzenle',

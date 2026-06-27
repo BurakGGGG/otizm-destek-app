@@ -181,6 +181,30 @@ appointments:
   confirmed: Randevu onaylandı.
   completed: Randevu tamamlandı olarak işaretlendi.
 
+expertDetail:
+  bookAppointment: Randevu Al
+  specializationsTitle: Uzmanlık Alanları
+  articleCount: $count makale
+  notAcceptingPatients: Bu uzman şu an randevu kabul etmiyor.
+
+booking:
+  title: Randevu Al
+  childLabel: Çocuk
+  noChild: Randevu almak için önce bir çocuk ekleyin.
+  typeLabel: Randevu Tipi
+  dateLabel: Tarih
+  selectDate: Tarih seçin
+  dateValue: $day $month $year
+  timeLabel: Saat
+  selectDateFirst: Uygun saatleri görmek için önce tarih seçin.
+  noSlots: Bu gün için uygun saat yok.
+  notesLabel: Not (isteğe bağlı)
+  notesHint: Uzmana iletmek istediğiniz not
+  confirm: Randevuyu Onayla
+  created: Randevu oluşturuldu.
+  errorSelectChild: Lütfen bir çocuk seçin.
+  errorSelectTime: Lütfen bir saat seçin.
+
 children:
   title: Çocuklarım
   addTitle: Çocuk Ekle

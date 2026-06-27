@@ -54,6 +54,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$notifications$en notifications = _Translations$notifications$en._(_root);
 	@override late final _Translations$knowledge$en knowledge = _Translations$knowledge$en._(_root);
 	@override late final _Translations$appointments$en appointments = _Translations$appointments$en._(_root);
+	@override late final _Translations$expertDetail$en expertDetail = _Translations$expertDetail$en._(_root);
+	@override late final _Translations$booking$en booking = _Translations$booking$en._(_root);
 	@override late final _Translations$children$en children = _Translations$children$en._(_root);
 	@override late final _Translations$profile$en profile = _Translations$profile$en._(_root);
 	@override late final _Translations$errors$en errors = _Translations$errors$en._(_root);
@@ -347,6 +349,44 @@ class _Translations$appointments$en extends Translations$appointments$tr {
 	@override String get completed => 'Appointment marked as completed.';
 }
 
+// Path: expertDetail
+class _Translations$expertDetail$en extends Translations$expertDetail$tr {
+	_Translations$expertDetail$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get bookAppointment => 'Book Appointment';
+	@override String get specializationsTitle => 'Specializations';
+	@override String articleCount({required Object count}) => '${count} articles';
+	@override String get notAcceptingPatients => 'This expert is not accepting appointments right now.';
+}
+
+// Path: booking
+class _Translations$booking$en extends Translations$booking$tr {
+	_Translations$booking$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Book Appointment';
+	@override String get childLabel => 'Child';
+	@override String get noChild => 'Add a child first to book an appointment.';
+	@override String get typeLabel => 'Appointment Type';
+	@override String get dateLabel => 'Date';
+	@override String get selectDate => 'Select date';
+	@override String dateValue({required Object day, required Object month, required Object year}) => '${day} ${month} ${year}';
+	@override String get timeLabel => 'Time';
+	@override String get selectDateFirst => 'Select a date to see available times.';
+	@override String get noSlots => 'No available times for this day.';
+	@override String get notesLabel => 'Note (optional)';
+	@override String get notesHint => 'A note for the expert';
+	@override String get confirm => 'Confirm Appointment';
+	@override String get created => 'Appointment created.';
+	@override String get errorSelectChild => 'Please select a child.';
+	@override String get errorSelectTime => 'Please select a time.';
+}
+
 // Path: children
 class _Translations$children$en extends Translations$children$tr {
 	_Translations$children$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -575,6 +615,26 @@ extension on TranslationsEn {
 			'appointments.cancelled' => 'Appointment cancelled.',
 			'appointments.confirmed' => 'Appointment confirmed.',
 			'appointments.completed' => 'Appointment marked as completed.',
+			'expertDetail.bookAppointment' => 'Book Appointment',
+			'expertDetail.specializationsTitle' => 'Specializations',
+			'expertDetail.articleCount' => ({required Object count}) => '${count} articles',
+			'expertDetail.notAcceptingPatients' => 'This expert is not accepting appointments right now.',
+			'booking.title' => 'Book Appointment',
+			'booking.childLabel' => 'Child',
+			'booking.noChild' => 'Add a child first to book an appointment.',
+			'booking.typeLabel' => 'Appointment Type',
+			'booking.dateLabel' => 'Date',
+			'booking.selectDate' => 'Select date',
+			'booking.dateValue' => ({required Object day, required Object month, required Object year}) => '${day} ${month} ${year}',
+			'booking.timeLabel' => 'Time',
+			'booking.selectDateFirst' => 'Select a date to see available times.',
+			'booking.noSlots' => 'No available times for this day.',
+			'booking.notesLabel' => 'Note (optional)',
+			'booking.notesHint' => 'A note for the expert',
+			'booking.confirm' => 'Confirm Appointment',
+			'booking.created' => 'Appointment created.',
+			'booking.errorSelectChild' => 'Please select a child.',
+			'booking.errorSelectTime' => 'Please select a time.',
 			'children.title' => 'My Children',
 			'children.addTitle' => 'Add Child',
 			'children.editTitle' => 'Edit Child',

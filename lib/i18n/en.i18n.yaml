@@ -181,6 +181,30 @@ appointments:
   confirmed: Appointment confirmed.
   completed: Appointment marked as completed.
 
+expertDetail:
+  bookAppointment: Book Appointment
+  specializationsTitle: Specializations
+  articleCount: $count articles
+  notAcceptingPatients: This expert is not accepting appointments right now.
+
+booking:
+  title: Book Appointment
+  childLabel: Child
+  noChild: Add a child first to book an appointment.
+  typeLabel: Appointment Type
+  dateLabel: Date
+  selectDate: Select date
+  dateValue: $day $month $year
+  timeLabel: Time
+  selectDateFirst: Select a date to see available times.
+  noSlots: No available times for this day.
+  notesLabel: Note (optional)
+  notesHint: A note for the expert
+  confirm: Confirm Appointment
+  created: Appointment created.
+  errorSelectChild: Please select a child.
+  errorSelectTime: Please select a time.
+
 children:
   title: My Children
   addTitle: Add Child

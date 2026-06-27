@@ -44,7 +44,11 @@ class AppointmentsScreen extends ConsumerWidget {
             onRefresh: () async => ref.invalidate(appointmentsProvider),
             child: ListView(
               padding: const EdgeInsets.fromLTRB(
-                  AppSpacing.margin, 8, AppSpacing.margin, 24),
+                AppSpacing.margin,
+                8,
+                AppSpacing.margin,
+                24,
+              ),
               children: [
                 if (upcoming.isNotEmpty) ...[
                   _SectionLabel(t.appointments.upcoming),
@@ -74,11 +78,12 @@ class _SectionLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 8, bottom: 8),
-      child: Text(text,
-          style: Theme.of(context)
-              .textTheme
-              .titleSmall
-              ?.copyWith(color: AppColors.textTertiary)),
+      child: Text(
+        text,
+        style: Theme.of(
+          context,
+        ).textTheme.titleSmall?.copyWith(color: AppColors.textTertiary),
+      ),
     );
   }
 }
@@ -105,14 +110,16 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
       await action();
       ref.invalidate(appointmentsProvider);
       if (mounted) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text(okMsg)));
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(okMsg)));
       }
     } on ApiException catch (e) {
       if (mounted) {
         setState(() => _busy = false);
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text(e.message)));
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(e.message)));
       }
     }
   }
@@ -157,7 +164,8 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
     controller.dispose();
     if (confirmed != true) return;
     await _run(
-      () => ref.read(appointmentRepositoryProvider).cancel(a.id, reason: reason),
+      () =>
+          ref.read(appointmentRepositoryProvider).cancel(a.id, reason: reason),
       t.appointments.cancelled,
     );
   }
@@ -170,7 +178,10 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
     // Karşı taraf: veli için uzman; uzman için veli/çocuk.
     final counterpart = isExpert
         ? (a.parentName ?? a.childName ?? '')
-        : [a.expertName, a.expertTitle].where((s) => s?.isNotEmpty ?? false).join(' · ');
+        : [
+            a.expertName,
+            a.expertTitle,
+          ].where((s) => s?.isNotEmpty ?? false).join(' · ');
 
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
@@ -222,7 +233,9 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
               Padding(
                 padding: const EdgeInsets.only(top: 6),
                 child: Text(
-                  t.appointments.cancelReasonShown(reason: a.cancellationReason!),
+                  t.appointments.cancelReasonShown(
+                    reason: a.cancellationReason!,
+                  ),
                   style: text.bodySmall?.copyWith(color: AppColors.error),
                 ),
               ),
@@ -239,7 +252,9 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
                       child: SelectableText(
                         a.meetingLink!,
                         style: const TextStyle(
-                            color: AppColors.primary, fontSize: 13),
+                          color: AppColors.primary,
+                          fontSize: 13,
+                        ),
                       ),
                     ),
                   ],
@@ -258,54 +273,67 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
 
     if (isExpert) {
       if (kind == AppointmentStatusKind.pending) {
-        buttons.add(FilledButton.tonalIcon(
-          onPressed: _busy
-              ? null
-              : () => _run(
-                  () => ref.read(appointmentRepositoryProvider).confirm(a.id),
-                  t.appointments.confirmed),
-          icon: const Icon(Icons.check, size: 18),
-          label: Text(t.appointments.confirm),
-        ));
+        buttons.add(
+          FilledButton.tonalIcon(
+            onPressed: _busy
+                ? null
+                : () => _run(
+                    () => ref.read(appointmentRepositoryProvider).confirm(a.id),
+                    t.appointments.confirmed,
+                  ),
+            icon: const Icon(Icons.check, size: 18),
+            label: Text(t.appointments.confirm),
+          ),
+        );
       } else if (kind == AppointmentStatusKind.confirmed) {
-        buttons.add(FilledButton.tonalIcon(
-          onPressed: _busy
-              ? null
-              : () => _run(
-                  () => ref.read(appointmentRepositoryProvider).complete(a.id),
-                  t.appointments.completed),
-          icon: const Icon(Icons.task_alt, size: 18),
-          label: Text(t.appointments.complete),
-        ));
+        buttons.add(
+          FilledButton.tonalIcon(
+            onPressed: _busy
+                ? null
+                : () => _run(
+                    () =>
+                        ref.read(appointmentRepositoryProvider).complete(a.id),
+                    t.appointments.completed,
+                  ),
+            icon: const Icon(Icons.task_alt, size: 18),
+            label: Text(t.appointments.complete),
+          ),
+        );
       }
     } else {
       // PARENT — onay bekleyen/onaylı ve yaklaşan randevuyu iptal edebilir.
       if (a.isUpcoming &&
           (kind == AppointmentStatusKind.pending ||
               kind == AppointmentStatusKind.confirmed)) {
-        buttons.add(OutlinedButton.icon(
-          onPressed: _busy ? null : _cancel,
-          style: OutlinedButton.styleFrom(foregroundColor: AppColors.error),
-          icon: const Icon(Icons.close, size: 18),
-          label: Text(t.appointments.cancel),
-        ));
+        buttons.add(
+          OutlinedButton.icon(
+            onPressed: _busy ? null : _cancel,
+            style: OutlinedButton.styleFrom(foregroundColor: AppColors.error),
+            icon: const Icon(Icons.close, size: 18),
+            label: Text(t.appointments.cancel),
+          ),
+        );
       }
     }
 
     if (buttons.isEmpty) return const [];
     return [
       const SizedBox(height: 10),
-      Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-        if (_busy)
-          const Padding(
-            padding: EdgeInsets.only(right: 12),
-            child: SizedBox(
+      Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          if (_busy)
+            const Padding(
+              padding: EdgeInsets.only(right: 12),
+              child: SizedBox(
                 height: 18,
                 width: 18,
-                child: CircularProgressIndicator(strokeWidth: 2)),
-          ),
-        ...buttons,
-      ]),
+                child: CircularProgressIndicator(strokeWidth: 2),
+              ),
+            ),
+          ...buttons,
+        ],
+      ),
     ];
   }
 }
@@ -324,10 +352,12 @@ class _InfoRow extends StatelessWidget {
           Icon(icon, size: 16, color: AppColors.textTertiary),
           const SizedBox(width: 8),
           Expanded(
-            child: Text(text,
-                style: Theme.of(context).textTheme.bodyMedium,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis),
+            child: Text(
+              text,
+              style: Theme.of(context).textTheme.bodyMedium,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
         ],
       ),
@@ -343,10 +373,22 @@ class _StatusChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = context.t;
     final (label, color) = switch (kind) {
-      AppointmentStatusKind.pending => (t.appointments.statusPending, AppColors.warning),
-      AppointmentStatusKind.confirmed => (t.appointments.statusConfirmed, AppColors.primary),
-      AppointmentStatusKind.completed => (t.appointments.statusCompleted, AppColors.success),
-      AppointmentStatusKind.cancelled => (t.appointments.statusCancelled, AppColors.error),
+      AppointmentStatusKind.pending => (
+        t.appointments.statusPending,
+        AppColors.warning,
+      ),
+      AppointmentStatusKind.confirmed => (
+        t.appointments.statusConfirmed,
+        AppColors.primary,
+      ),
+      AppointmentStatusKind.completed => (
+        t.appointments.statusCompleted,
+        AppColors.success,
+      ),
+      AppointmentStatusKind.cancelled => (
+        t.appointments.statusCancelled,
+        AppColors.error,
+      ),
       AppointmentStatusKind.unknown => ('', AppColors.textTertiary),
     };
     if (label.isEmpty) return const SizedBox.shrink();
@@ -356,9 +398,14 @@ class _StatusChip extends StatelessWidget {
         color: color.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(AppRadius.full),
       ),
-      child: Text(label,
-          style: TextStyle(
-              color: color, fontSize: 12, fontWeight: FontWeight.w600)),
+      child: Text(
+        label,
+        style: TextStyle(
+          color: color,
+          fontSize: 12,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
     );
   }
 }
@@ -397,8 +444,11 @@ class _EmptyView extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.event_busy_outlined,
-                size: 48, color: AppColors.textTertiary),
+            const Icon(
+              Icons.event_busy_outlined,
+              size: 48,
+              color: AppColors.textTertiary,
+            ),
             const SizedBox(height: 12),
             Text(message, textAlign: TextAlign.center),
           ],
