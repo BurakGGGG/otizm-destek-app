@@ -52,6 +52,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$home$tr home = Translations$home$tr.internal(_root);
 	late final Translations$specialists$tr specialists = Translations$specialists$tr.internal(_root);
 	late final Translations$progress$tr progress = Translations$progress$tr.internal(_root);
+	late final Translations$notifications$tr notifications = Translations$notifications$tr.internal(_root);
 	late final Translations$knowledge$tr knowledge = Translations$knowledge$tr.internal(_root);
 	late final Translations$appointments$tr appointments = Translations$appointments$tr.internal(_root);
 	late final Translations$children$tr children = Translations$children$tr.internal(_root);
@@ -497,6 +498,18 @@ class Translations$progress$tr {
 	String goalProgress({required Object done, required Object total}) => '${done} / ${total}';
 }
 
+// Path: notifications
+class Translations$notifications$tr {
+	Translations$notifications$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Göster'
+	String get show => 'Göster';
+}
+
 // Path: knowledge
 class Translations$knowledge$tr {
 	Translations$knowledge$tr.internal(this._root);
@@ -892,6 +905,7 @@ extension on Translations {
 			'progress.noNotes' => 'Henüz gelişim notu eklenmemiş.',
 			'progress.noChild' => 'Gelişim takibi için önce bir çocuk ekleyin.',
 			'progress.goalProgress' => ({required Object done, required Object total}) => '${done} / ${total}',
+			'notifications.show' => 'Göster',
 			'knowledge.title' => 'Bilgi Bankası',
 			'knowledge.empty' => 'Henüz makale eklenmemiş.',
 			'knowledge.formatArticle' => 'Makale',

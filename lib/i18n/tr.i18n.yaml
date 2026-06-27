@@ -141,6 +141,9 @@ progress:
   noChild: Gelişim takibi için önce bir çocuk ekleyin.
   goalProgress: $done / $total
 
+notifications:
+  show: Göster
+
 knowledge:
   title: Bilgi Bankası
   empty: Henüz makale eklenmemiş.

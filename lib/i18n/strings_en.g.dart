@@ -51,6 +51,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$home$en home = _Translations$home$en._(_root);
 	@override late final _Translations$specialists$en specialists = _Translations$specialists$en._(_root);
 	@override late final _Translations$progress$en progress = _Translations$progress$en._(_root);
+	@override late final _Translations$notifications$en notifications = _Translations$notifications$en._(_root);
 	@override late final _Translations$knowledge$en knowledge = _Translations$knowledge$en._(_root);
 	@override late final _Translations$appointments$en appointments = _Translations$appointments$en._(_root);
 	@override late final _Translations$children$en children = _Translations$children$en._(_root);
@@ -283,6 +284,16 @@ class _Translations$progress$en extends Translations$progress$tr {
 	@override String get noNotes => 'No development notes yet.';
 	@override String get noChild => 'Add a child first to track development.';
 	@override String goalProgress({required Object done, required Object total}) => '${done} / ${total}';
+}
+
+// Path: notifications
+class _Translations$notifications$en extends Translations$notifications$tr {
+	_Translations$notifications$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get show => 'Show';
 }
 
 // Path: knowledge
@@ -530,6 +541,7 @@ extension on TranslationsEn {
 			'progress.noNotes' => 'No development notes yet.',
 			'progress.noChild' => 'Add a child first to track development.',
 			'progress.goalProgress' => ({required Object done, required Object total}) => '${done} / ${total}',
+			'notifications.show' => 'Show',
 			'knowledge.title' => 'Knowledge Base',
 			'knowledge.empty' => 'No articles yet.',
 			'knowledge.formatArticle' => 'Article',

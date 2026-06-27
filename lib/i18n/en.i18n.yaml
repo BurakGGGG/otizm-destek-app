@@ -141,6 +141,9 @@ progress:
   noChild: Add a child first to track development.
   goalProgress: $done / $total
 
+notifications:
+  show: Show
+
 knowledge:
   title: Knowledge Base
   empty: No articles yet.
