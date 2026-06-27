@@ -403,6 +403,7 @@ class _Translations$expertDetail$en extends Translations$expertDetail$tr {
 
 	// Translations
 	@override String get bookAppointment => 'Book Appointment';
+	@override String get sendMessage => 'Send Message';
 	@override String get specializationsTitle => 'Specializations';
 	@override String articleCount({required Object count}) => '${count} articles';
 	@override String get notAcceptingPatients => 'This expert is not accepting appointments right now.';
@@ -688,6 +689,7 @@ extension on TranslationsEn {
 			'appointments.confirmed' => 'Appointment confirmed.',
 			'appointments.completed' => 'Appointment marked as completed.',
 			'expertDetail.bookAppointment' => 'Book Appointment',
+			'expertDetail.sendMessage' => 'Send Message',
 			'expertDetail.specializationsTitle' => 'Specializations',
 			'expertDetail.articleCount' => ({required Object count}) => '${count} articles',
 			'expertDetail.notAcceptingPatients' => 'This expert is not accepting appointments right now.',

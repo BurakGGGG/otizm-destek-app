@@ -25,6 +25,16 @@ class MessagingRepository {
     }
   }
 
+  /// Bir kullanıcıyla birebir konuşmayı getir/oluştur — varsa mevcut döner.
+  Future<Conversation> getOrCreateDirect(String userId) async {
+    try {
+      final res = await _dio.post('/messages/conversations/direct/$userId');
+      return Conversation.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
   /// Bir konuşmanın mesajları (en yeni sayfa), eskiden yeniye sıralı.
   Future<List<Message>> getMessages(String conversationId,
       {int page = 0, int size = 30}) async {

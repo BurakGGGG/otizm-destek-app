@@ -213,6 +213,7 @@ appointments:
 
 expertDetail:
   bookAppointment: Book Appointment
+  sendMessage: Send Message
   specializationsTitle: Specializations
   articleCount: $count articles
   notAcceptingPatients: This expert is not accepting appointments right now.

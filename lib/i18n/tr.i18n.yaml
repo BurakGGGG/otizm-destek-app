@@ -213,6 +213,7 @@ appointments:
 
 expertDetail:
   bookAppointment: Randevu Al
+  sendMessage: Mesaj Gönder
   specializationsTitle: Uzmanlık Alanları
   articleCount: $count makale
   notAcceptingPatients: Bu uzman şu an randevu kabul etmiyor.

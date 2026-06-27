@@ -738,6 +738,9 @@ class Translations$expertDetail$tr {
 	/// tr: 'Randevu Al'
 	String get bookAppointment => 'Randevu Al';
 
+	/// tr: 'Mesaj Gönder'
+	String get sendMessage => 'Mesaj Gönder';
+
 	/// tr: 'Uzmanlık Alanları'
 	String get specializationsTitle => 'Uzmanlık Alanları';
 
@@ -1144,6 +1147,7 @@ extension on Translations {
 			'appointments.confirmed' => 'Randevu onaylandı.',
 			'appointments.completed' => 'Randevu tamamlandı olarak işaretlendi.',
 			'expertDetail.bookAppointment' => 'Randevu Al',
+			'expertDetail.sendMessage' => 'Mesaj Gönder',
 			'expertDetail.specializationsTitle' => 'Uzmanlık Alanları',
 			'expertDetail.articleCount' => ({required Object count}) => '${count} makale',
 			'expertDetail.notAcceptingPatients' => 'Bu uzman şu an randevu kabul etmiyor.',
