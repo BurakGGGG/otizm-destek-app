@@ -14,7 +14,7 @@ class ChatMessage {
 
   /// Backend geçmiş formatı: `{role: "user"|"model", text}`.
   Map<String, String> toHistoryJson() => {
-        'role': role == ChatRole.user ? 'user' : 'model',
-        'text': text,
-      };
+    'role': role == ChatRole.user ? 'user' : 'model',
+    'text': text,
+  };
 }

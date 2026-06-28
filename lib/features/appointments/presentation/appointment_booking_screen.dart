@@ -157,7 +157,7 @@ class _AppointmentBookingScreenState
               Text(
                 widget.expert.expertTitle!,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textSecondary,
+                  color: context.colors.textSecondary,
                 ),
               ),
             const SizedBox(height: 20),
@@ -271,7 +271,7 @@ class _AppointmentBookingScreenState
             label: Text(s),
             selected: _time == s,
             showCheckmark: false,
-            selectedColor: AppColors.primary.withValues(alpha: 0.16),
+            selectedColor: context.colors.primary.withValues(alpha: 0.16),
             onSelected: (_) => setState(() => _time = s),
           ),
       ],
@@ -300,7 +300,7 @@ class _ChildChips extends StatelessWidget {
             label: Text(c.name),
             selected: selectedId == c.id,
             showCheckmark: false,
-            selectedColor: AppColors.primary.withValues(alpha: 0.16),
+            selectedColor: context.colors.primary.withValues(alpha: 0.16),
             onSelected: (_) => onSelected(c.id),
           ),
       ],
@@ -336,12 +336,12 @@ class _EmptyHint extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(AppSpacing.md),
       decoration: BoxDecoration(
-        color: AppColors.surfaceVariant,
+        color: context.colors.surfaceVariant,
         borderRadius: BorderRadius.circular(AppRadius.md),
       ),
       child: Text(
         message,
-        style: const TextStyle(color: AppColors.textSecondary),
+        style: TextStyle(color: context.colors.textSecondary),
       ),
     );
   }

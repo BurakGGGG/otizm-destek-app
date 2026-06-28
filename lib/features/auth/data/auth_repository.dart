@@ -114,15 +114,18 @@ class AuthRepository {
     String? bio,
   }) async {
     try {
-      final res = await _dio.put('/users/me', data: {
-        'fullName': ?fullName,
-        'phone': ?phone,
-        'city': ?city,
-        'expertTitle': ?expertTitle,
-        'institution': ?institution,
-        'licenseNumber': ?licenseNumber,
-        'bio': ?bio,
-      });
+      final res = await _dio.put(
+        '/users/me',
+        data: {
+          'fullName': ?fullName,
+          'phone': ?phone,
+          'city': ?city,
+          'expertTitle': ?expertTitle,
+          'institution': ?institution,
+          'licenseNumber': ?licenseNumber,
+          'bio': ?bio,
+        },
+      );
       return AppUser.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
     } on DioException catch (e) {
       throw ApiException.fromDio(e);

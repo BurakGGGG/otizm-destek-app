@@ -12,8 +12,10 @@ String htmlToPlainText(String html) {
 
   // Blok kapanışları ve <br> satır sonuna dönüşsün.
   s = s.replaceAll(
-    RegExp(r'<br\s*/?>|</(p|div|li|h[1-6]|ul|ol|tr|section|article)>',
-        caseSensitive: false),
+    RegExp(
+      r'<br\s*/?>|</(p|div|li|h[1-6]|ul|ol|tr|section|article)>',
+      caseSensitive: false,
+    ),
     '\n',
   );
 

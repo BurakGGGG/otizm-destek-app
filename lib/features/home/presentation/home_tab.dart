@@ -156,7 +156,7 @@ class _ChildCard extends StatelessWidget {
                 ],
               ),
             ),
-            const Icon(Icons.chevron_right, color: AppColors.textTertiary),
+            Icon(Icons.chevron_right, color: context.colors.textTertiary),
           ],
         ),
       ),
@@ -225,7 +225,7 @@ class _AppointmentTile extends StatelessWidget {
                 width: 52,
                 height: 52,
                 decoration: BoxDecoration(
-                  color: AppColors.primary.withValues(alpha: 0.10),
+                  color: context.colors.primary.withValues(alpha: 0.10),
                   borderRadius: BorderRadius.circular(AppRadius.md),
                 ),
                 child: Column(
@@ -233,16 +233,16 @@ class _AppointmentTile extends StatelessWidget {
                   children: [
                     Text(
                       '${a.date.day}',
-                      style: const TextStyle(
-                        color: AppColors.primary,
+                      style: TextStyle(
+                        color: context.colors.primary,
                         fontWeight: FontWeight.w700,
                         fontSize: 18,
                       ),
                     ),
                     Text(
                       month,
-                      style: const TextStyle(
-                        color: AppColors.primary,
+                      style: TextStyle(
+                        color: context.colors.primary,
                         fontSize: 11,
                       ),
                     ),
@@ -260,10 +260,10 @@ class _AppointmentTile extends StatelessWidget {
                     const SizedBox(height: 2),
                     Row(
                       children: [
-                        const Icon(
+                        Icon(
                           Icons.schedule,
                           size: 14,
-                          color: AppColors.textTertiary,
+                          color: context.colors.textTertiary,
                         ),
                         const SizedBox(width: 4),
                         Text(a.time, style: text.bodySmall),
@@ -272,7 +272,7 @@ class _AppointmentTile extends StatelessWidget {
                   ],
                 ),
               ),
-              const Icon(Icons.chevron_right, color: AppColors.textTertiary),
+              Icon(Icons.chevron_right, color: context.colors.textTertiary),
             ],
           ),
         ),
@@ -345,12 +345,12 @@ class _ArticleCard extends StatelessWidget {
                 width: 64,
                 height: 64,
                 decoration: BoxDecoration(
-                  color: AppColors.surfaceVariant,
+                  color: context.colors.surfaceVariant,
                   borderRadius: BorderRadius.circular(AppRadius.md),
                 ),
-                child: const Icon(
+                child: Icon(
                   Icons.image_outlined,
-                  color: AppColors.textTertiary,
+                  color: context.colors.textTertiary,
                 ),
               ),
               const SizedBox(width: 12),
@@ -365,13 +365,13 @@ class _ArticleCard extends StatelessWidget {
                           vertical: 3,
                         ),
                         decoration: BoxDecoration(
-                          color: AppColors.primary.withValues(alpha: 0.10),
+                          color: context.colors.primary.withValues(alpha: 0.10),
                           borderRadius: BorderRadius.circular(AppRadius.sm),
                         ),
                         child: Text(
                           tag,
-                          style: const TextStyle(
-                            color: AppColors.primary,
+                          style: TextStyle(
+                            color: context.colors.primary,
                             fontSize: 11,
                             fontWeight: FontWeight.w600,
                           ),
@@ -428,7 +428,7 @@ class _SectionError extends StatelessWidget {
         padding: const EdgeInsets.all(AppSpacing.md),
         child: Row(
           children: [
-            const Icon(Icons.error_outline, color: AppColors.error),
+            Icon(Icons.error_outline, color: context.colors.error),
             const SizedBox(width: 12),
             Expanded(child: Text(t.common.loadError)),
             TextButton(onPressed: onRetry, child: Text(t.common.retry)),
@@ -459,7 +459,7 @@ class _EmptyCard extends StatelessWidget {
         padding: const EdgeInsets.all(AppSpacing.md),
         child: Row(
           children: [
-            Icon(icon, color: AppColors.textTertiary),
+            Icon(icon, color: context.colors.textTertiary),
             const SizedBox(width: 12),
             Expanded(child: Text(message)),
             if (actionLabel != null && onAction != null)

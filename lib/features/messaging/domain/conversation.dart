@@ -2,7 +2,11 @@ import 'message.dart';
 
 /// Konuşma katılımcısı (UserDto'nun hafif hâli).
 class Participant {
-  const Participant({required this.id, required this.fullName, this.profileImageUrl});
+  const Participant({
+    required this.id,
+    required this.fullName,
+    this.profileImageUrl,
+  });
 
   final String id;
   final String fullName;
@@ -40,8 +44,7 @@ class Conversation {
   /// Görünen başlık: grup/başlık varsa onu, yoksa karşı katılımcının adını verir.
   String displayTitle(String? currentUserId) {
     if (title?.isNotEmpty ?? false) return title!;
-    final others =
-        participants.where((p) => p.id != currentUserId).toList();
+    final others = participants.where((p) => p.id != currentUserId).toList();
     if (others.isNotEmpty) return others.first.fullName;
     return participants.isNotEmpty ? participants.first.fullName : '';
   }
@@ -57,7 +60,8 @@ class Conversation {
       id: json['id']?.toString() ?? '',
       type: json['type'] as String? ?? 'DIRECT',
       title: json['title'] as String?,
-      participants: (json['participants'] as List<dynamic>?)
+      participants:
+          (json['participants'] as List<dynamic>?)
               ?.whereType<Map<String, dynamic>>()
               .map(Participant.fromJson)
               .toList() ??

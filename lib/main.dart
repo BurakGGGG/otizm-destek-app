@@ -19,57 +19,62 @@ Future<void> main() async {
 
   // Tüm başlatma + uygulama, yakalanmamış async hataları Crashlytics'e
   // iletmek için tek bir zone içinde çalışır.
-  runZonedGuarded(() async {
-    WidgetsFlutterBinding.ensureInitialized();
+  runZonedGuarded(
+    () async {
+      WidgetsFlutterBinding.ensureInitialized();
 
-    // Cihaz diline göre başlat (desteklenmiyorsa temel dil tr).
-    LocaleSettings.useDeviceLocale();
+      // Cihaz diline göre başlat (desteklenmiyorsa temel dil tr).
+      LocaleSettings.useDeviceLocale();
 
-    try {
-      await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform,
-      );
-      firebaseReady = true;
-    } catch (e) {
-      // Native yapılandırma eksikse (ör. iOS plist) uygulama yine de açılsın.
-      debugPrint('Firebase başlatılamadı: $e');
-    }
+      try {
+        await Firebase.initializeApp(
+          options: DefaultFirebaseOptions.currentPlatform,
+        );
+        firebaseReady = true;
+      } catch (e) {
+        // Native yapılandırma eksikse (ör. iOS plist) uygulama yine de açılsın.
+        debugPrint('Firebase başlatılamadı: $e');
+      }
 
-    if (firebaseReady) {
-      // Debug'da toplama kapalı (gürültü olmasın); sürümde açık.
-      await FirebaseCrashlytics.instance
-          .setCrashlyticsCollectionEnabled(!kDebugMode);
-      await FirebaseAnalytics.instance
-          .setAnalyticsCollectionEnabled(!kDebugMode);
+      if (firebaseReady) {
+        // Debug'da toplama kapalı (gürültü olmasın); sürümde açık.
+        await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(
+          !kDebugMode,
+        );
+        await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(
+          !kDebugMode,
+        );
 
-      // Arka plan/kapalı push'lar için handler (token kaydı oturum açınca yapılır).
-      FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+        // Arka plan/kapalı push'lar için handler (token kaydı oturum açınca yapılır).
+        FirebaseMessaging.onBackgroundMessage(
+          firebaseMessagingBackgroundHandler,
+        );
 
-      // Flutter framework hatalarını Crashlytics'e yönlendir.
-      FlutterError.onError =
-          FirebaseCrashlytics.instance.recordFlutterFatalError;
-      // Framework dışı (platform) async hataları da yakala.
-      PlatformDispatcher.instance.onError = (error, stack) {
-        FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-        return true;
-      };
-    }
+        // Flutter framework hatalarını Crashlytics'e yönlendir.
+        FlutterError.onError =
+            FirebaseCrashlytics.instance.recordFlutterFatalError;
+        // Framework dışı (platform) async hataları da yakala.
+        PlatformDispatcher.instance.onError = (error, stack) {
+          FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+          return true;
+        };
+      }
 
-    runApp(
-      TranslationProvider(
-        child: ProviderScope(
-          overrides: [
-            firebaseReadyProvider.overrideWithValue(firebaseReady),
-          ],
-          child: const OtizmDestekApp(),
+      runApp(
+        TranslationProvider(
+          child: ProviderScope(
+            overrides: [firebaseReadyProvider.overrideWithValue(firebaseReady)],
+            child: const OtizmDestekApp(),
+          ),
         ),
-      ),
-    );
-  }, (error, stack) {
-    // Zone'da yakalanan hatalar (Firebase hazırsa) Crashlytics'e gider.
-    debugPrint('Yakalanmamış hata: $error');
-    if (firebaseReady) {
-      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-    }
-  });
+      );
+    },
+    (error, stack) {
+      // Zone'da yakalanan hatalar (Firebase hazırsa) Crashlytics'e gider.
+      debugPrint('Yakalanmamış hata: $error');
+      if (firebaseReady) {
+        FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+      }
+    },
+  );
 }

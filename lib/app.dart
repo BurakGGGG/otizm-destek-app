@@ -6,6 +6,7 @@ import 'core/app_keys.dart';
 import 'core/providers.dart';
 import 'core/router/app_router.dart';
 import 'core/theme/app_theme.dart';
+import 'core/theme/theme_mode_provider.dart';
 import 'features/auth/presentation/auth_controller.dart';
 import 'features/notifications/data/push_service.dart';
 import 'i18n/strings.g.dart';
@@ -16,6 +17,7 @@ class OtizmDestekApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(goRouterProvider);
+    final themeMode = ref.watch(themeModeProvider);
     // TranslationProvider üzerinden mevcut dil; dil değişince yeniden çizilir.
     final locale = TranslationProvider.of(context).flutterLocale;
 
@@ -36,6 +38,8 @@ class OtizmDestekApp extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       scaffoldMessengerKey: rootScaffoldMessengerKey,
       theme: AppTheme.light,
+      darkTheme: AppTheme.dark,
+      themeMode: themeMode,
       routerConfig: router,
       locale: locale,
       supportedLocales: AppLocaleUtils.supportedLocales,

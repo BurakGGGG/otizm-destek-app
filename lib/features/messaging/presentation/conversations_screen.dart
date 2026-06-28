@@ -87,8 +87,8 @@ class _ConversationTile extends StatelessWidget {
       trailing: c.unreadCount > 0
           ? Container(
               padding: const EdgeInsets.all(6),
-              decoration: const BoxDecoration(
-                color: AppColors.primary,
+              decoration: BoxDecoration(
+                color: context.colors.primary,
                 shape: BoxShape.circle,
               ),
               constraints: const BoxConstraints(minWidth: 22, minHeight: 22),
@@ -102,10 +102,9 @@ class _ConversationTile extends StatelessWidget {
                 ),
               ),
             )
-          : const Icon(Icons.chevron_right, color: AppColors.textTertiary),
+          : Icon(Icons.chevron_right, color: context.colors.textTertiary),
       onTap: () =>
           context.push('/messages/thread', extra: {'id': c.id, 'title': title}),
     );
   }
 }
-

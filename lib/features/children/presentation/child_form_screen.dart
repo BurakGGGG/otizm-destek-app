@@ -96,14 +96,15 @@ class _ChildFormScreenState extends ConsumerState<ChildFormScreen> {
       ref.invalidate(childrenProvider);
       if (!mounted) return;
       Haptics.success();
-      Navigator.of(context).pop(
-        widget.isEdit ? t.children.updated : t.children.created,
-      );
+      Navigator.of(
+        context,
+      ).pop(widget.isEdit ? t.children.updated : t.children.created);
     } on ApiException catch (e) {
       if (!mounted) return;
       setState(() => _saving = false);
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(e.message)));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.message)));
     }
   }
 
@@ -138,8 +139,10 @@ class _ChildFormScreenState extends ConsumerState<ChildFormScreen> {
                   : () => setState(() => _birthDate = null),
             ),
             const SizedBox(height: 16),
-            Text(t.children.genderLabel,
-                style: Theme.of(context).textTheme.labelLarge),
+            Text(
+              t.children.genderLabel,
+              style: Theme.of(context).textTheme.labelLarge,
+            ),
             const SizedBox(height: 8),
             Row(
               children: [
@@ -147,7 +150,8 @@ class _ChildFormScreenState extends ConsumerState<ChildFormScreen> {
                   label: t.children.genderMale,
                   selected: _gender == 'ERKEK',
                   onTap: () => setState(
-                      () => _gender = _gender == 'ERKEK' ? null : 'ERKEK'),
+                    () => _gender = _gender == 'ERKEK' ? null : 'ERKEK',
+                  ),
                 ),
                 const SizedBox(width: 12),
                 _GenderChip(
@@ -241,7 +245,9 @@ class _DateField extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
-            color: v == null ? AppColors.textTertiary : AppColors.textPrimary,
+            color: v == null
+                ? context.colors.textTertiary
+                : context.colors.textPrimary,
           ),
         ),
       ),
@@ -267,9 +273,9 @@ class _GenderChip extends StatelessWidget {
       selected: selected,
       onSelected: (_) => onTap(),
       showCheckmark: false,
-      selectedColor: AppColors.primary.withValues(alpha: 0.16),
+      selectedColor: context.colors.primary.withValues(alpha: 0.16),
       labelStyle: TextStyle(
-        color: selected ? AppColors.primary : AppColors.textPrimary,
+        color: selected ? context.colors.primary : context.colors.textPrimary,
         fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
       ),
     );

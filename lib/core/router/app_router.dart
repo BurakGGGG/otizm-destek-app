@@ -55,14 +55,8 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       return null;
     },
     routes: [
-      GoRoute(
-        path: '/splash',
-        builder: (_, _) => const SplashScreen(),
-      ),
-      GoRoute(
-        path: '/login',
-        builder: (_, _) => const LoginScreen(),
-      ),
+      GoRoute(path: '/splash', builder: (_, _) => const SplashScreen()),
+      GoRoute(path: '/login', builder: (_, _) => const LoginScreen()),
       GoRoute(
         path: '/register',
         builder: (_, state) {
@@ -72,34 +66,16 @@ final goRouterProvider = Provider<GoRouter>((ref) {
           );
         },
       ),
-      GoRoute(
-        path: '/home',
-        builder: (_, _) => const HomeShell(),
-      ),
-      GoRoute(
-        path: '/chat',
-        builder: (_, _) => const ChatScreen(),
-      ),
-      GoRoute(
-        path: '/children',
-        builder: (_, _) => const ChildrenScreen(),
-      ),
-      GoRoute(
-        path: '/account',
-        builder: (_, _) => const AccountScreen(),
-      ),
-      GoRoute(
-        path: '/help',
-        builder: (_, _) => const HelpScreen(),
-      ),
+      GoRoute(path: '/home', builder: (_, _) => const HomeShell()),
+      GoRoute(path: '/chat', builder: (_, _) => const ChatScreen()),
+      GoRoute(path: '/children', builder: (_, _) => const ChildrenScreen()),
+      GoRoute(path: '/account', builder: (_, _) => const AccountScreen()),
+      GoRoute(path: '/help', builder: (_, _) => const HelpScreen()),
       GoRoute(
         path: '/appointments',
         builder: (_, _) => const AppointmentsScreen(),
       ),
-      GoRoute(
-        path: '/knowledge',
-        builder: (_, _) => const KnowledgeScreen(),
-      ),
+      GoRoute(path: '/knowledge', builder: (_, _) => const KnowledgeScreen()),
       GoRoute(
         path: '/messages',
         builder: (_, _) => const ConversationsScreen(),

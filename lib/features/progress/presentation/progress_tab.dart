@@ -115,11 +115,11 @@ class _ChildSelector extends StatelessWidget {
             selected: selected,
             onSelected: (_) => onSelect(c.id),
             showCheckmark: false,
-            selectedColor: AppColors.primary,
-            backgroundColor: AppColors.surface,
-            side: const BorderSide(color: AppColors.border),
+            selectedColor: context.colors.primary,
+            backgroundColor: context.colors.surface,
+            side: BorderSide(color: context.colors.border),
             labelStyle: TextStyle(
-              color: selected ? Colors.white : AppColors.textSecondary,
+              color: selected ? Colors.white : context.colors.textSecondary,
               fontWeight: FontWeight.w600,
               fontSize: 13,
             ),
@@ -235,8 +235,8 @@ class _GoalCard extends StatelessWidget {
               child: LinearProgressIndicator(
                 value: goal.progress,
                 minHeight: 8,
-                backgroundColor: AppColors.surfaceVariant,
-                color: AppColors.primary,
+                backgroundColor: context.colors.surfaceVariant,
+                color: context.colors.primary,
               ),
             ),
             if (goal.category?.isNotEmpty ?? false) ...[
@@ -247,13 +247,13 @@ class _GoalCard extends StatelessWidget {
                   vertical: 4,
                 ),
                 decoration: BoxDecoration(
-                  color: AppColors.primary.withValues(alpha: 0.10),
+                  color: context.colors.primary.withValues(alpha: 0.10),
                   borderRadius: BorderRadius.circular(AppRadius.sm),
                 ),
                 child: Text(
                   goal.category!,
-                  style: const TextStyle(
-                    color: AppColors.primary,
+                  style: TextStyle(
+                    color: context.colors.primary,
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
                   ),
@@ -367,8 +367,8 @@ class _NoteCard extends StatelessWidget {
                   if (note.category?.isNotEmpty ?? false)
                     Text(
                       note.category!,
-                      style: const TextStyle(
-                        color: AppColors.primary,
+                      style: TextStyle(
+                        color: context.colors.primary,
                         fontSize: 12,
                         fontWeight: FontWeight.w600,
                       ),
@@ -410,7 +410,7 @@ class _SectionError extends StatelessWidget {
         padding: const EdgeInsets.all(AppSpacing.md),
         child: Row(
           children: [
-            const Icon(Icons.error_outline, color: AppColors.error),
+            Icon(Icons.error_outline, color: context.colors.error),
             const SizedBox(width: 12),
             Expanded(child: Text(t.common.loadError)),
             TextButton(onPressed: onRetry, child: Text(t.common.retry)),
@@ -433,7 +433,7 @@ class _EmptyCard extends StatelessWidget {
         padding: const EdgeInsets.all(AppSpacing.md),
         child: Row(
           children: [
-            Icon(icon, color: AppColors.textTertiary),
+            Icon(icon, color: context.colors.textTertiary),
             const SizedBox(width: 12),
             Expanded(child: Text(message)),
           ],
@@ -442,4 +442,3 @@ class _EmptyCard extends StatelessWidget {
     );
   }
 }
-

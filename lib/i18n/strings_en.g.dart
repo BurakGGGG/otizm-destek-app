@@ -42,6 +42,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$app$en app = _Translations$app$en._(_root);
 	@override late final _Translations$common$en common = _Translations$common$en._(_root);
 	@override late final _Translations$language$en language = _Translations$language$en._(_root);
+	@override late final _Translations$theme$en theme = _Translations$theme$en._(_root);
 	@override late final _Translations$roles$en roles = _Translations$roles$en._(_root);
 	@override late final _Translations$auth$en auth = _Translations$auth$en._(_root);
 	@override late final _Translations$register$en register = _Translations$register$en._(_root);
@@ -114,6 +115,19 @@ class _Translations$language$en extends Translations$language$tr {
 	@override String get title => 'Language';
 	@override String get turkish => 'Türkçe';
 	@override String get english => 'English';
+}
+
+// Path: theme
+class _Translations$theme$en extends Translations$theme$tr {
+	_Translations$theme$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Theme';
+	@override String get system => 'System';
+	@override String get light => 'Light';
+	@override String get dark => 'Dark';
 }
 
 // Path: roles
@@ -577,6 +591,10 @@ extension on TranslationsEn {
 			'language.title' => 'Language',
 			'language.turkish' => 'Türkçe',
 			'language.english' => 'English',
+			'theme.title' => 'Theme',
+			'theme.system' => 'System',
+			'theme.light' => 'Light',
+			'theme.dark' => 'Dark',
 			'roles.parent' => 'Parent',
 			'roles.expert' => 'Specialist',
 			'roles.admin' => 'Admin',

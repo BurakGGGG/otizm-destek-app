@@ -90,7 +90,7 @@ class _SectionLabel extends StatelessWidget {
         text,
         style: Theme.of(
           context,
-        ).textTheme.titleSmall?.copyWith(color: AppColors.textTertiary),
+        ).textTheme.titleSmall?.copyWith(color: context.colors.textTertiary),
       ),
     );
   }
@@ -161,7 +161,9 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
             child: Text(t.appointments.keepIt),
           ),
           FilledButton(
-            style: FilledButton.styleFrom(backgroundColor: AppColors.error),
+            style: FilledButton.styleFrom(
+              backgroundColor: context.colors.error,
+            ),
             onPressed: () => Navigator.of(ctx).pop(true),
             child: Text(t.appointments.cancel),
           ),
@@ -245,7 +247,7 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
                   t.appointments.cancelReasonShown(
                     reason: a.cancellationReason!,
                   ),
-                  style: text.bodySmall?.copyWith(color: AppColors.error),
+                  style: text.bodySmall?.copyWith(color: context.colors.error),
                 ),
               ),
             if (a.isOnline &&
@@ -255,13 +257,13 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
                 padding: const EdgeInsets.only(top: 8),
                 child: Row(
                   children: [
-                    const Icon(Icons.link, size: 18, color: AppColors.primary),
+                    Icon(Icons.link, size: 18, color: context.colors.primary),
                     const SizedBox(width: 6),
                     Expanded(
                       child: SelectableText(
                         a.meetingLink!,
-                        style: const TextStyle(
-                          color: AppColors.primary,
+                        style: TextStyle(
+                          color: context.colors.primary,
                           fontSize: 13,
                         ),
                       ),
@@ -317,7 +319,9 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
         buttons.add(
           OutlinedButton.icon(
             onPressed: _busy ? null : _cancel,
-            style: OutlinedButton.styleFrom(foregroundColor: AppColors.error),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: context.colors.error,
+            ),
             icon: const Icon(Icons.close, size: 18),
             label: Text(t.appointments.cancel),
           ),
@@ -358,7 +362,7 @@ class _InfoRow extends StatelessWidget {
       padding: const EdgeInsets.only(top: 2),
       child: Row(
         children: [
-          Icon(icon, size: 16, color: AppColors.textTertiary),
+          Icon(icon, size: 16, color: context.colors.textTertiary),
           const SizedBox(width: 8),
           Expanded(
             child: Text(
@@ -384,21 +388,21 @@ class _StatusChip extends StatelessWidget {
     final (label, color) = switch (kind) {
       AppointmentStatusKind.pending => (
         t.appointments.statusPending,
-        AppColors.warning,
+        context.colors.warning,
       ),
       AppointmentStatusKind.confirmed => (
         t.appointments.statusConfirmed,
-        AppColors.primary,
+        context.colors.primary,
       ),
       AppointmentStatusKind.completed => (
         t.appointments.statusCompleted,
-        AppColors.success,
+        context.colors.success,
       ),
       AppointmentStatusKind.cancelled => (
         t.appointments.statusCancelled,
-        AppColors.error,
+        context.colors.error,
       ),
-      AppointmentStatusKind.unknown => ('', AppColors.textTertiary),
+      AppointmentStatusKind.unknown => ('', context.colors.textTertiary),
     };
     if (label.isEmpty) return const SizedBox.shrink();
     return Container(
@@ -418,4 +422,3 @@ class _StatusChip extends StatelessWidget {
     );
   }
 }
-

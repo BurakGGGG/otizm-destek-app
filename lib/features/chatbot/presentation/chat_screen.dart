@@ -70,8 +70,9 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
         if (!mounted) return;
         setState(() {
           final last = _messages.last;
-          _messages[_messages.length - 1] =
-              last.copyWith(text: last.text + chunk);
+          _messages[_messages.length - 1] = last.copyWith(
+            text: last.text + chunk,
+          );
         });
         _scrollToBottom();
       },
@@ -81,8 +82,9 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
         setState(() {
           // Boş asistan baloncuğunu hata mesajıyla doldur.
           if (_messages.isNotEmpty && _messages.last.text.isEmpty) {
-            _messages[_messages.length - 1] =
-                _messages.last.copyWith(text: msg);
+            _messages[_messages.length - 1] = _messages.last.copyWith(
+              text: msg,
+            );
           }
           _streaming = false;
         });
@@ -92,8 +94,9 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
         setState(() {
           // Yanıt boş geldiyse hata göster.
           if (_messages.isNotEmpty && _messages.last.text.isEmpty) {
-            _messages[_messages.length - 1] =
-                _messages.last.copyWith(text: context.t.chat.errorGeneric);
+            _messages[_messages.length - 1] = _messages.last.copyWith(
+              text: context.t.chat.errorGeneric,
+            );
           }
           _streaming = false;
         });
@@ -106,7 +109,9 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
     final t = context.t;
     if (!_greeted) {
       _greeted = true;
-      _messages.add(ChatMessage(role: ChatRole.assistant, text: t.chat.greeting));
+      _messages.add(
+        ChatMessage(role: ChatRole.assistant, text: t.chat.greeting),
+      );
     }
 
     return Scaffold(
@@ -156,8 +161,8 @@ class _Bubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isUser = message.isUser;
-    final bg = isUser ? AppColors.primary : AppColors.surfaceVariant;
-    final fg = isUser ? Colors.white : AppColors.textPrimary;
+    final bg = isUser ? context.colors.primary : context.colors.surfaceVariant;
+    final fg = isUser ? Colors.white : context.colors.textPrimary;
     return Align(
       alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
@@ -224,9 +229,11 @@ class _InputBar extends StatelessWidget {
                 onSubmitted: (_) => onSend(),
                 decoration: InputDecoration(
                   hintText: hint,
-                  fillColor: AppColors.surfaceVariant,
+                  fillColor: context.colors.surfaceVariant,
                   contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 16, vertical: 12),
+                    horizontal: 16,
+                    vertical: 12,
+                  ),
                 ),
               ),
             ),
@@ -235,8 +242,8 @@ class _InputBar extends StatelessWidget {
               onPressed: enabled ? onSend : null,
               icon: const Icon(Icons.send),
               style: IconButton.styleFrom(
-                backgroundColor: AppColors.primary,
-                disabledBackgroundColor: AppColors.border,
+                backgroundColor: context.colors.primary,
+                disabledBackgroundColor: context.colors.border,
               ),
             ),
           ],

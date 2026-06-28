@@ -29,7 +29,7 @@ class EmptyState extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, size: 48, color: AppColors.textTertiary),
+            Icon(icon, size: 48, color: context.colors.textTertiary),
             const SizedBox(height: 12),
             Text(message, textAlign: TextAlign.center),
             if (hasAction) ...[
@@ -63,7 +63,7 @@ class ErrorRetry extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.error_outline, size: 48, color: AppColors.error),
+            Icon(Icons.error_outline, size: 48, color: context.colors.error),
             const SizedBox(height: 12),
             Text(message ?? t.common.loadError, textAlign: TextAlign.center),
             const SizedBox(height: 16),

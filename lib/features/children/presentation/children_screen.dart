@@ -93,7 +93,9 @@ class ChildrenScreen extends ConsumerWidget {
             child: Text(t.children.cancel),
           ),
           FilledButton(
-            style: FilledButton.styleFrom(backgroundColor: AppColors.error),
+            style: FilledButton.styleFrom(
+              backgroundColor: context.colors.error,
+            ),
             onPressed: () => Navigator.of(ctx).pop(true),
             child: Text(t.children.delete),
           ),
@@ -187,15 +189,15 @@ class _ChildCard extends StatelessWidget {
               value: 'delete',
               child: Row(
                 children: [
-                  const Icon(
+                  Icon(
                     Icons.delete_outline,
                     size: 20,
-                    color: AppColors.error,
+                    color: context.colors.error,
                   ),
                   const SizedBox(width: 12),
                   Text(
                     t.children.delete,
-                    style: const TextStyle(color: AppColors.error),
+                    style: TextStyle(color: context.colors.error),
                   ),
                 ],
               ),
@@ -207,4 +209,3 @@ class _ChildCard extends StatelessWidget {
     );
   }
 }
-

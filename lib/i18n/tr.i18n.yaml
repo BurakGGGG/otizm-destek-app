@@ -28,6 +28,12 @@ language:
   turkish: Türkçe
   english: English
 
+theme:
+  title: Tema
+  system: Sistem
+  light: Açık
+  dark: Koyu
+
 roles:
   parent: Veli
   expert: Uzman

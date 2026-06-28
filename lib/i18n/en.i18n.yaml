@@ -28,6 +28,12 @@ language:
   turkish: Türkçe
   english: English
 
+theme:
+  title: Theme
+  system: System
+  light: Light
+  dark: Dark
+
 roles:
   parent: Parent
   expert: Specialist

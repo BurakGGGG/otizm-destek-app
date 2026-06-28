@@ -130,7 +130,9 @@ class _NoteFormScreenState extends ConsumerState<NoteFormScreen> {
                     label: Text('${m.emoji} ${m.label}'),
                     selected: _mood == m.value,
                     showCheckmark: false,
-                    selectedColor: AppColors.primary.withValues(alpha: 0.16),
+                    selectedColor: context.colors.primary.withValues(
+                      alpha: 0.16,
+                    ),
                     onSelected: (_) => setState(
                       () => _mood = _mood == m.value ? null : m.value,
                     ),
@@ -152,7 +154,9 @@ class _NoteFormScreenState extends ConsumerState<NoteFormScreen> {
                     label: Text(c),
                     selected: _category == c,
                     showCheckmark: false,
-                    selectedColor: AppColors.primary.withValues(alpha: 0.16),
+                    selectedColor: context.colors.primary.withValues(
+                      alpha: 0.16,
+                    ),
                     onSelected: (_) =>
                         setState(() => _category = _category == c ? null : c),
                   ),

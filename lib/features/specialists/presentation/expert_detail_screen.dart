@@ -57,10 +57,10 @@ class ExpertDetailScreen extends ConsumerWidget {
                           ),
                           if (expert.verified) ...[
                             const SizedBox(width: 6),
-                            const Icon(
+                            Icon(
                               Icons.verified,
                               size: 18,
-                              color: AppColors.primary,
+                              color: context.colors.primary,
                             ),
                           ],
                         ],
@@ -69,7 +69,7 @@ class ExpertDetailScreen extends ConsumerWidget {
                         Text(
                           expert.expertTitle!,
                           style: text.bodyMedium?.copyWith(
-                            color: AppColors.textSecondary,
+                            color: context.colors.textSecondary,
                           ),
                         ),
                       const SizedBox(height: 6),
@@ -107,7 +107,7 @@ class ExpertDetailScreen extends ConsumerWidget {
                   for (final s in expert.specializations)
                     Chip(
                       label: Text(s),
-                      backgroundColor: AppColors.primary.withValues(
+                      backgroundColor: context.colors.primary.withValues(
                         alpha: 0.08,
                       ),
                       side: BorderSide.none,
@@ -234,12 +234,12 @@ class _RatingLine extends StatelessWidget {
     if (!expert.hasRating) {
       return Text(
         t.specialists.ratingNew,
-        style: const TextStyle(color: AppColors.textTertiary, fontSize: 13),
+        style: TextStyle(color: context.colors.textTertiary, fontSize: 13),
       );
     }
     return Row(
       children: [
-        const Icon(Icons.star, size: 16, color: AppColors.warning),
+        Icon(Icons.star, size: 16, color: context.colors.warning),
         const SizedBox(width: 4),
         Text(
           expert.avgRating.toStringAsFixed(1),
@@ -248,7 +248,7 @@ class _RatingLine extends StatelessWidget {
         const SizedBox(width: 6),
         Text(
           t.specialists.reviews(count: expert.reviewCount),
-          style: const TextStyle(color: AppColors.textTertiary, fontSize: 13),
+          style: TextStyle(color: context.colors.textTertiary, fontSize: 13),
         ),
       ],
     );
@@ -266,7 +266,7 @@ class _InfoRow extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 8),
       child: Row(
         children: [
-          Icon(icon, size: 18, color: AppColors.textTertiary),
+          Icon(icon, size: 18, color: context.colors.textTertiary),
           const SizedBox(width: 10),
           Expanded(child: Text(text)),
         ],
@@ -285,12 +285,12 @@ class _EmptyHint extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(AppSpacing.md),
       decoration: BoxDecoration(
-        color: AppColors.surfaceVariant,
+        color: context.colors.surfaceVariant,
         borderRadius: BorderRadius.circular(AppRadius.md),
       ),
       child: Text(
         message,
-        style: const TextStyle(color: AppColors.textSecondary),
+        style: TextStyle(color: context.colors.textSecondary),
       ),
     );
   }

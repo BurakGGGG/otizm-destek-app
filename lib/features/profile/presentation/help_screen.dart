@@ -27,19 +27,23 @@ class HelpScreen extends StatelessWidget {
                   Container(
                     width: 64,
                     height: 64,
-                    decoration: const BoxDecoration(
-                      color: AppColors.primary,
+                    decoration: BoxDecoration(
+                      color: context.colors.primary,
                       shape: BoxShape.circle,
                     ),
-                    child: const Icon(Icons.volunteer_activism,
-                        color: Colors.white, size: 32),
+                    child: const Icon(
+                      Icons.volunteer_activism,
+                      color: Colors.white,
+                      size: 32,
+                    ),
                   ),
                   const SizedBox(height: 12),
                   Text(t.app.name, style: text.titleLarge),
                   Text(
                     t.help.version(version: _appVersion),
                     style: text.bodySmall?.copyWith(
-                        color: AppColors.textTertiary),
+                      color: context.colors.textTertiary,
+                    ),
                   ),
                 ],
               ),
@@ -106,15 +110,18 @@ class _Tip extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(top: 2),
-            child: Icon(Icons.check_circle_outline,
-                size: 18, color: AppColors.primary),
+            child: Icon(
+              Icons.check_circle_outline,
+              size: 18,
+              color: context.colors.primary,
+            ),
           ),
           const SizedBox(width: 8),
           Expanded(
-              child: Text(text,
-                  style: Theme.of(context).textTheme.bodyMedium)),
+            child: Text(text, style: Theme.of(context).textTheme.bodyMedium),
+          ),
         ],
       ),
     );

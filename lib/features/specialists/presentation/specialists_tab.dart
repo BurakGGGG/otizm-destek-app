@@ -77,11 +77,11 @@ class _SpecialistsTabState extends ConsumerState<SpecialistsTab> {
                   onChanged: (v) => setState(() => _query = v.trim()),
                   decoration: InputDecoration(
                     hintText: t.specialists.searchHint,
-                    prefixIcon: const Icon(
+                    prefixIcon: Icon(
                       Icons.search,
-                      color: AppColors.textTertiary,
+                      color: context.colors.textTertiary,
                     ),
-                    fillColor: AppColors.surface,
+                    fillColor: context.colors.surface,
                   ),
                 ),
                 const SizedBox(height: 16),
@@ -96,13 +96,13 @@ class _SpecialistsTabState extends ConsumerState<SpecialistsTab> {
                       selected: _filter == i,
                       onSelected: (_) => setState(() => _filter = i),
                       showCheckmark: false,
-                      selectedColor: AppColors.primary,
-                      backgroundColor: AppColors.surface,
-                      side: const BorderSide(color: AppColors.border),
+                      selectedColor: context.colors.primary,
+                      backgroundColor: context.colors.surface,
+                      side: BorderSide(color: context.colors.border),
                       labelStyle: TextStyle(
                         color: _filter == i
                             ? Colors.white
-                            : AppColors.textSecondary,
+                            : context.colors.textSecondary,
                         fontWeight: FontWeight.w600,
                         fontSize: 13,
                       ),
@@ -193,19 +193,19 @@ class _ExpertCard extends StatelessWidget {
                               ),
                               if (e.verified) ...[
                                 const SizedBox(width: 4),
-                                const Icon(
+                                Icon(
                                   Icons.verified,
                                   size: 16,
-                                  color: AppColors.primary,
+                                  color: context.colors.primary,
                                 ),
                               ],
                             ],
                           ),
                         ),
-                        const Icon(
+                        Icon(
                           Icons.star,
                           size: 16,
-                          color: AppColors.warning,
+                          color: context.colors.warning,
                         ),
                         const SizedBox(width: 2),
                         Text(
@@ -222,7 +222,7 @@ class _ExpertCard extends StatelessWidget {
                       Text(
                         e.city!,
                         style: text.bodySmall?.copyWith(
-                          color: AppColors.textTertiary,
+                          color: context.colors.textTertiary,
                         ),
                       ),
                     if (e.specializations.isNotEmpty) ...[
@@ -238,7 +238,7 @@ class _ExpertCard extends StatelessWidget {
                                 vertical: 4,
                               ),
                               decoration: BoxDecoration(
-                                color: AppColors.primary.withValues(
+                                color: context.colors.primary.withValues(
                                   alpha: 0.10,
                                 ),
                                 borderRadius: BorderRadius.circular(
@@ -247,8 +247,8 @@ class _ExpertCard extends StatelessWidget {
                               ),
                               child: Text(
                                 tag,
-                                style: const TextStyle(
-                                  color: AppColors.primary,
+                                style: TextStyle(
+                                  color: context.colors.primary,
                                   fontSize: 12,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -267,4 +267,3 @@ class _ExpertCard extends StatelessWidget {
     );
   }
 }
-

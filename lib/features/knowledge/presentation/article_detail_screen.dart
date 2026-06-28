@@ -67,7 +67,7 @@ class _Content extends StatelessWidget {
                 child: Text(
                   article.category!,
                   style: text.labelMedium?.copyWith(
-                    color: AppColors.textTertiary,
+                    color: context.colors.textTertiary,
                   ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
@@ -82,7 +82,7 @@ class _Content extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             meta.join(' · '),
-            style: text.bodySmall?.copyWith(color: AppColors.textTertiary),
+            style: text.bodySmall?.copyWith(color: context.colors.textTertiary),
           ),
         ],
         const SizedBox(height: 16),
@@ -119,7 +119,7 @@ class _MediaLink extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(AppSpacing.md),
       decoration: BoxDecoration(
-        color: AppColors.surfaceVariant,
+        color: context.colors.surfaceVariant,
         borderRadius: BorderRadius.circular(AppRadius.lg),
       ),
       child: Column(
@@ -127,12 +127,12 @@ class _MediaLink extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(icon, size: 18, color: AppColors.primary),
+              Icon(icon, size: 18, color: context.colors.primary),
               const SizedBox(width: 8),
               Text(
                 label,
-                style: const TextStyle(
-                  color: AppColors.primary,
+                style: TextStyle(
+                  color: context.colors.primary,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -141,7 +141,7 @@ class _MediaLink extends StatelessWidget {
           const SizedBox(height: 6),
           SelectableText(
             url,
-            style: const TextStyle(color: AppColors.primary, fontSize: 13),
+            style: TextStyle(color: context.colors.primary, fontSize: 13),
           ),
         ],
       ),
@@ -160,7 +160,7 @@ class _ErrorView extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Icon(Icons.error_outline, size: 48, color: AppColors.error),
+          Icon(Icons.error_outline, size: 48, color: context.colors.error),
           const SizedBox(height: 12),
           Text(t.common.loadError),
           const SizedBox(height: 12),

@@ -88,7 +88,7 @@ class _ArticleTile extends StatelessWidget {
                       child: Text(
                         article.category!,
                         style: text.labelSmall?.copyWith(
-                          color: AppColors.textTertiary,
+                          color: context.colors.textTertiary,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -109,7 +109,7 @@ class _ArticleTile extends StatelessWidget {
                 Text(
                   summary!,
                   style: text.bodySmall?.copyWith(
-                    color: AppColors.textSecondary,
+                    color: context.colors.textSecondary,
                   ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
@@ -122,4 +122,3 @@ class _ArticleTile extends StatelessWidget {
     );
   }
 }
-

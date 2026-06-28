@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/theme/theme_mode_provider.dart';
 import '../../../core/widgets/user_avatar.dart';
 import '../../../i18n/strings.g.dart';
 import '../../auth/presentation/auth_controller.dart';
@@ -55,9 +56,9 @@ class ProfileTab extends ConsumerWidget {
           _ProfileItem(
             icon: Icons.notifications_none,
             label: t.profile.notificationSettings,
-            onTap: () => ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(t.common.comingSoon)),
-            ),
+            onTap: () => ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text(t.common.comingSoon))),
           ),
           _ProfileItem(
             icon: Icons.help_outline,
@@ -66,12 +67,16 @@ class ProfileTab extends ConsumerWidget {
           ),
           const SizedBox(height: 16),
           const _LanguageSelector(),
+          const SizedBox(height: 12),
+          const _ThemeSelector(),
           const SizedBox(height: 24),
           OutlinedButton.icon(
             onPressed: () =>
                 ref.read(authControllerProvider.notifier).signOut(),
-            icon: const Icon(Icons.logout, color: AppColors.error),
-            style: OutlinedButton.styleFrom(foregroundColor: AppColors.error),
+            icon: Icon(Icons.logout, color: context.colors.error),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: context.colors.error,
+            ),
             label: Text(t.profile.signOut),
           ),
         ],
@@ -96,7 +101,7 @@ class _LanguageSelector extends StatelessWidget {
           children: [
             Row(
               children: [
-                const Icon(Icons.language, color: AppColors.primary),
+                Icon(Icons.language, color: context.colors.primary),
                 const SizedBox(width: 12),
                 Text(
                   t.language.title,
@@ -128,6 +133,58 @@ class _LanguageSelector extends StatelessWidget {
   }
 }
 
+/// Tema seçici — Sistem/Açık/Koyu (kalıcı).
+class _ThemeSelector extends ConsumerWidget {
+  const _ThemeSelector();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.t;
+    final mode = ref.watch(themeModeProvider);
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(AppSpacing.md),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(
+                  Icons.brightness_6_outlined,
+                  color: context.colors.primary,
+                ),
+                const SizedBox(width: 12),
+                Text(
+                  t.theme.title,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            SegmentedButton<ThemeMode>(
+              segments: [
+                ButtonSegment(
+                  value: ThemeMode.system,
+                  label: Text(t.theme.system),
+                ),
+                ButtonSegment(
+                  value: ThemeMode.light,
+                  label: Text(t.theme.light),
+                ),
+                ButtonSegment(value: ThemeMode.dark, label: Text(t.theme.dark)),
+              ],
+              selected: {mode},
+              showSelectedIcon: false,
+              onSelectionChanged: (s) =>
+                  ref.read(themeModeProvider.notifier).setMode(s.first),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class _ProfileItem extends StatelessWidget {
   const _ProfileItem({required this.icon, required this.label, this.onTap});
   final IconData icon;
@@ -142,12 +199,9 @@ class _ProfileItem extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppRadius.lg),
         ),
-        leading: Icon(icon, color: AppColors.primary),
+        leading: Icon(icon, color: context.colors.primary),
         title: Text(label),
-        trailing: const Icon(
-          Icons.chevron_right,
-          color: AppColors.textTertiary,
-        ),
+        trailing: Icon(Icons.chevron_right, color: context.colors.textTertiary),
         onTap: onTap ?? () {},
       ),
     );

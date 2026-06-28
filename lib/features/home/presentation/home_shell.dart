@@ -40,12 +40,15 @@ class _HomeShellState extends ConsumerState<HomeShell> {
             Container(
               width: 32,
               height: 32,
-              decoration: const BoxDecoration(
-                color: AppColors.primary,
+              decoration: BoxDecoration(
+                color: context.colors.primary,
                 shape: BoxShape.circle,
               ),
-              child: const Icon(Icons.volunteer_activism,
-                  color: Colors.white, size: 18),
+              child: const Icon(
+                Icons.volunteer_activism,
+                color: Colors.white,
+                size: 18,
+              ),
             ),
             const SizedBox(width: 8),
             Text(t.app.name),
@@ -64,9 +67,9 @@ class _HomeShellState extends ConsumerState<HomeShell> {
           ),
           IconButton(
             tooltip: t.home.notifications,
-            onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(t.common.comingSoon)),
-            ),
+            onPressed: () => ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text(t.common.comingSoon))),
             icon: const Icon(Icons.notifications_none),
           ),
           const SizedBox(width: 4),
@@ -75,8 +78,8 @@ class _HomeShellState extends ConsumerState<HomeShell> {
       body: IndexedStack(index: _index, children: _tabs),
       bottomNavigationBar: NavigationBarTheme(
         data: NavigationBarThemeData(
-          backgroundColor: AppColors.surface,
-          indicatorColor: AppColors.primary.withValues(alpha: 0.12),
+          backgroundColor: context.colors.surface,
+          indicatorColor: context.colors.primary.withValues(alpha: 0.12),
           labelTextStyle: WidgetStateProperty.all(
             const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
           ),

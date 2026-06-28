@@ -17,17 +17,17 @@ class ArticleFormatBadge extends StatelessWidget {
       ArticleMedia.video => (
         t.knowledge.formatVideo,
         Icons.play_circle_outline,
-        AppColors.error,
+        context.colors.error,
       ),
       ArticleMedia.podcast => (
         t.knowledge.formatPodcast,
         Icons.mic_none,
-        AppColors.secondary,
+        context.colors.secondary,
       ),
       ArticleMedia.none => (
         t.knowledge.formatArticle,
         Icons.article_outlined,
-        AppColors.primary,
+        context.colors.primary,
       ),
     };
     return Container(

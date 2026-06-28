@@ -99,7 +99,9 @@ class _GoalFormScreenState extends ConsumerState<GoalFormScreen> {
                     label: Text(c),
                     selected: _category == c,
                     showCheckmark: false,
-                    selectedColor: AppColors.primary.withValues(alpha: 0.16),
+                    selectedColor: context.colors.primary.withValues(
+                      alpha: 0.16,
+                    ),
                     onSelected: (_) => setState(() => _category = c),
                   ),
               ],

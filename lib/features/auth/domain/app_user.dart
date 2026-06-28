@@ -20,10 +20,10 @@ enum UserRole {
 
   /// Backend'e gönderilecek değer (register).
   String get backendValue => switch (this) {
-        UserRole.expert => 'EXPERT',
-        UserRole.admin => 'ADMIN',
-        _ => 'PARENT',
-      };
+    UserRole.expert => 'EXPERT',
+    UserRole.admin => 'ADMIN',
+    _ => 'PARENT',
+  };
 }
 
 /// Oturum açmış kullanıcı — backend `UserDto` karşılığı.
@@ -75,7 +75,8 @@ class AppUser {
       bio: json['bio'] as String?,
       profileImageUrl: json['profileImageUrl'] as String?,
       verified: json['verified'] as bool? ?? false,
-      specializations: (json['specializations'] as List<dynamic>?)
+      specializations:
+          (json['specializations'] as List<dynamic>?)
               ?.map((e) => e.toString())
               .toList() ??
           const [],

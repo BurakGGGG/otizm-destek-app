@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../theme/app_colors.dart';
 import '../theme/app_theme.dart';
 
 /// Yükleme sırasında içerik yerini tutan, nazikçe yanıp sönen iskelet liste.
@@ -29,9 +30,6 @@ class _SkeletonListState extends State<SkeletonList>
     duration: const Duration(milliseconds: 1100),
   )..repeat(reverse: true);
 
-  static const _base = Color(0xFFE2E8F0); // border
-  static const _highlight = Color(0xFFF1F5F9); // surfaceVariant
-
   @override
   void dispose() {
     _c.dispose();
@@ -40,10 +38,13 @@ class _SkeletonListState extends State<SkeletonList>
 
   @override
   Widget build(BuildContext context) {
+    // Açık/koyu temaya uyumlu, ince bir parıltı aralığı.
+    final base = context.colors.surfaceVariant;
+    final highlight = Color.lerp(base, context.colors.textTertiary, 0.18)!;
     return AnimatedBuilder(
       animation: _c,
       builder: (context, _) {
-        final color = Color.lerp(_base, _highlight, _c.value)!;
+        final color = Color.lerp(base, highlight, _c.value)!;
         return ListView.separated(
           padding: widget.padding,
           shrinkWrap: true,
@@ -62,13 +63,13 @@ class _SkeletonCard extends StatelessWidget {
   final Color color;
 
   Widget _box(double w, double h, {double r = 6}) => Container(
-        width: w,
-        height: h,
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(r),
-        ),
-      );
+    width: w,
+    height: h,
+    decoration: BoxDecoration(
+      color: color,
+      borderRadius: BorderRadius.circular(r),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {

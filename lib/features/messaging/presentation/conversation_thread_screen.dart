@@ -69,10 +69,9 @@ class _ConversationThreadScreenState
       _scrollToBottom();
 
       // Canlı mesajlar için STOMP aboneliği.
-      _unsub = await ref.read(stompServiceProvider).subscribe(
-            '/topic/conversation/${widget.conversationId}',
-            _onFrame,
-          );
+      _unsub = await ref
+          .read(stompServiceProvider)
+          .subscribe('/topic/conversation/${widget.conversationId}', _onFrame);
     } catch (_) {
       if (!mounted) return;
       setState(() {
@@ -127,8 +126,9 @@ class _ConversationThreadScreenState
       _addMessage(sent); // STOMP echo'su id ile tekilleştirilecek
     } on ApiException catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text(e.message)));
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(e.message)));
       }
     } finally {
       if (mounted) setState(() => _sending = false);
@@ -163,7 +163,7 @@ class _ConversationThreadScreenState
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.error_outline, size: 48, color: AppColors.error),
+            Icon(Icons.error_outline, size: 48, color: context.colors.error),
             const SizedBox(height: 12),
             Text(t.common.loadError),
           ],
@@ -192,15 +192,16 @@ class _Bubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bg = mine ? AppColors.primary : AppColors.surfaceVariant;
-    final fg = mine ? Colors.white : AppColors.textPrimary;
+    final bg = mine ? context.colors.primary : context.colors.surfaceVariant;
+    final fg = mine ? Colors.white : context.colors.textPrimary;
     return Align(
       alignment: mine ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
         margin: const EdgeInsets.only(bottom: 10),
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-        constraints:
-            BoxConstraints(maxWidth: MediaQuery.sizeOf(context).width * 0.78),
+        constraints: BoxConstraints(
+          maxWidth: MediaQuery.sizeOf(context).width * 0.78,
+        ),
         decoration: BoxDecoration(
           color: bg,
           borderRadius: BorderRadius.only(
@@ -246,9 +247,11 @@ class _InputBar extends StatelessWidget {
                 onSubmitted: (_) => onSend(),
                 decoration: InputDecoration(
                   hintText: hint,
-                  fillColor: AppColors.surfaceVariant,
-                  contentPadding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  fillColor: context.colors.surfaceVariant,
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 12,
+                  ),
                 ),
               ),
             ),
@@ -257,8 +260,8 @@ class _InputBar extends StatelessWidget {
               onPressed: enabled ? onSend : null,
               icon: const Icon(Icons.send),
               style: IconButton.styleFrom(
-                backgroundColor: AppColors.primary,
-                disabledBackgroundColor: AppColors.border,
+                backgroundColor: context.colors.primary,
+                disabledBackgroundColor: context.colors.border,
               ),
             ),
           ],

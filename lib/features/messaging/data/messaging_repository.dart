@@ -36,8 +36,11 @@ class MessagingRepository {
   }
 
   /// Bir konuşmanın mesajları (en yeni sayfa), eskiden yeniye sıralı.
-  Future<List<Message>> getMessages(String conversationId,
-      {int page = 0, int size = 30}) async {
+  Future<List<Message>> getMessages(
+    String conversationId, {
+    int page = 0,
+    int size = 30,
+  }) async {
     try {
       final res = await _dio.get(
         '/messages/conversations/$conversationId',

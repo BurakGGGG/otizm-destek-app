@@ -43,7 +43,8 @@ class PushService {
     _started = true;
 
     try {
-      await _messaging.requestPermission(); // iOS + Android 13+ çalışma anı izni
+      await _messaging
+          .requestPermission(); // iOS + Android 13+ çalışma anı izni
       await _messaging.setForegroundNotificationPresentationOptions(
         alert: true,
         badge: true,
@@ -59,8 +60,7 @@ class PushService {
       // Uygulama bildirime dokunularak kapalıdan açıldıysa:
       final initial = await _messaging.getInitialMessage();
       if (initial != null) {
-        WidgetsBinding.instance
-            .addPostFrameCallback((_) => _onOpened(initial));
+        WidgetsBinding.instance.addPostFrameCallback((_) => _onOpened(initial));
       }
     } catch (e) {
       debugPrint('Push kurulum hatası: $e');
@@ -79,10 +79,12 @@ class PushService {
 
   Future<void> _sendToken(String token) async {
     try {
-      await _ref.read(dioProvider).post(
-        '/push/device-token',
-        data: {'token': token, 'platform': 'ANDROID'},
-      );
+      await _ref
+          .read(dioProvider)
+          .post(
+            '/push/device-token',
+            data: {'token': token, 'platform': 'ANDROID'},
+          );
     } on DioException catch (e) {
       // Backend uç noktası henüz yoksa (404) ya da geçici hata: sessiz geç.
       debugPrint('Cihaz token kaydı atlandı (${e.response?.statusCode}).');
@@ -94,10 +96,9 @@ class PushService {
     try {
       final token = await _messaging.getToken();
       if (token == null || token.isEmpty) return;
-      await _ref.read(dioProvider).delete(
-        '/push/device-token',
-        queryParameters: {'token': token},
-      );
+      await _ref
+          .read(dioProvider)
+          .delete('/push/device-token', queryParameters: {'token': token});
     } catch (e) {
       debugPrint('Cihaz token silme atlandı: $e');
     }
@@ -134,7 +135,10 @@ class PushService {
         if (id != null && id.isNotEmpty) {
           return (
             path: '/messages/thread',
-            extra: {'id': id, 'title': data['conversationTitle']?.toString() ?? ''},
+            extra: {
+              'id': id,
+              'title': data['conversationTitle']?.toString() ?? '',
+            },
           );
         }
         return (path: '/messages', extra: null);

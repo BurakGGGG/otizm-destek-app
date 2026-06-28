@@ -43,6 +43,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$app$tr app = Translations$app$tr.internal(_root);
 	late final Translations$common$tr common = Translations$common$tr.internal(_root);
 	late final Translations$language$tr language = Translations$language$tr.internal(_root);
+	late final Translations$theme$tr theme = Translations$theme$tr.internal(_root);
 	late final Translations$roles$tr roles = Translations$roles$tr.internal(_root);
 	late final Translations$auth$tr auth = Translations$auth$tr.internal(_root);
 	late final Translations$register$tr register = Translations$register$tr.internal(_root);
@@ -136,6 +137,27 @@ class Translations$language$tr {
 
 	/// tr: 'English'
 	String get english => 'English';
+}
+
+// Path: theme
+class Translations$theme$tr {
+	Translations$theme$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Tema'
+	String get title => 'Tema';
+
+	/// tr: 'Sistem'
+	String get system => 'Sistem';
+
+	/// tr: 'Açık'
+	String get light => 'Açık';
+
+	/// tr: 'Koyu'
+	String get dark => 'Koyu';
 }
 
 // Path: roles
@@ -1083,6 +1105,10 @@ extension on Translations {
 			'language.title' => 'Dil',
 			'language.turkish' => 'Türkçe',
 			'language.english' => 'English',
+			'theme.title' => 'Tema',
+			'theme.system' => 'Sistem',
+			'theme.light' => 'Açık',
+			'theme.dark' => 'Koyu',
 			'roles.parent' => 'Veli',
 			'roles.expert' => 'Uzman',
 			'roles.admin' => 'Yönetici',

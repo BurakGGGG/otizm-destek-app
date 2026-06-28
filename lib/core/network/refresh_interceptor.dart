@@ -8,14 +8,14 @@ import 'api_response.dart';
 ///
 /// [QueuedInterceptor] sayesinde eşzamanlı 401'ler tek bir yenileme tetikler.
 class RefreshInterceptor extends QueuedInterceptor {
-  RefreshInterceptor({
-    required this.storage,
-    required this.onSessionExpired,
-  }) : _refreshDio = Dio(BaseOptions(
+  RefreshInterceptor({required this.storage, required this.onSessionExpired})
+    : _refreshDio = Dio(
+        BaseOptions(
           baseUrl: Env.apiBase,
           connectTimeout: Env.connectTimeout,
           receiveTimeout: Env.receiveTimeout,
-        ));
+        ),
+      );
 
   final SecureStorage storage;
 
@@ -57,7 +57,10 @@ class RefreshInterceptor extends QueuedInterceptor {
         return handler.next(err);
       }
 
-      await storage.saveTokens(accessToken: newAccess, refreshToken: newRefresh);
+      await storage.saveTokens(
+        accessToken: newAccess,
+        refreshToken: newRefresh,
+      );
 
       // Orijinal isteği yeni token ile tekrar dene.
       options.extra['retried'] = true;
