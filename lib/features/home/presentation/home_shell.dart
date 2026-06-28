@@ -63,7 +63,9 @@ class _HomeShellState extends ConsumerState<HomeShell> {
           ),
           IconButton(
             tooltip: t.home.notifications,
-            onPressed: () {},
+            onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(t.common.comingSoon)),
+            ),
             icon: const Icon(Icons.notifications_none),
           ),
           const SizedBox(width: 4),

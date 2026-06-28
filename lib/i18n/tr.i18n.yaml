@@ -282,6 +282,18 @@ account:
   saved: Profil güncellendi.
   errorFullName: Ad soyad en az 2 karakter olmalıdır.
 
+help:
+  title: Yardım & Hakkında
+  aboutTitle: Otizm Destek Hakkında
+  aboutBody: Otizm Destek; çocuğunuzun gelişimini takip etmenize, uzmanlarla iletişim kurmanıza ve randevu almanıza yardımcı olan bir mobil uygulamadır.
+  tipsTitle: İpuçları
+  tip1: Çocuklarınızı "Çocuklarım"dan ekleyin; hedef ve gelişim notlarını "Gelişim" sekmesinden takip edin.
+  tip2: '"Uzmanlar"dan bir uzman seçip randevu alabilir veya mesaj gönderebilirsiniz.'
+  tip3: AI Asistan'a otizm ve çocuk gelişimi hakkında sorular sorabilirsiniz.
+  contactTitle: İletişim
+  contactBody: Soru ve önerileriniz için uygulama içinden bize ulaşabilirsiniz.
+  version: Sürüm $version
+
 profile:
   defaultUser: Kullanıcı
   accountInfo: Hesap Bilgileri

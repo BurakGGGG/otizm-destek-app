@@ -61,6 +61,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$booking$tr booking = Translations$booking$tr.internal(_root);
 	late final Translations$children$tr children = Translations$children$tr.internal(_root);
 	late final Translations$account$tr account = Translations$account$tr.internal(_root);
+	late final Translations$help$tr help = Translations$help$tr.internal(_root);
 	late final Translations$profile$tr profile = Translations$profile$tr.internal(_root);
 	late final Translations$errors$tr errors = Translations$errors$tr.internal(_root);
 }
@@ -953,6 +954,45 @@ class Translations$account$tr {
 	String get errorFullName => 'Ad soyad en az 2 karakter olmalıdır.';
 }
 
+// Path: help
+class Translations$help$tr {
+	Translations$help$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Yardım & Hakkında'
+	String get title => 'Yardım & Hakkında';
+
+	/// tr: 'Otizm Destek Hakkında'
+	String get aboutTitle => 'Otizm Destek Hakkında';
+
+	/// tr: 'Otizm Destek; çocuğunuzun gelişimini takip etmenize, uzmanlarla iletişim kurmanıza ve randevu almanıza yardımcı olan bir mobil uygulamadır.'
+	String get aboutBody => 'Otizm Destek; çocuğunuzun gelişimini takip etmenize, uzmanlarla iletişim kurmanıza ve randevu almanıza yardımcı olan bir mobil uygulamadır.';
+
+	/// tr: 'İpuçları'
+	String get tipsTitle => 'İpuçları';
+
+	/// tr: 'Çocuklarınızı "Çocuklarım"dan ekleyin; hedef ve gelişim notlarını "Gelişim" sekmesinden takip edin.'
+	String get tip1 => 'Çocuklarınızı "Çocuklarım"dan ekleyin; hedef ve gelişim notlarını "Gelişim" sekmesinden takip edin.';
+
+	/// tr: '"Uzmanlar"dan bir uzman seçip randevu alabilir veya mesaj gönderebilirsiniz.'
+	String get tip2 => '"Uzmanlar"dan bir uzman seçip randevu alabilir veya mesaj gönderebilirsiniz.';
+
+	/// tr: 'AI Asistan'a otizm ve çocuk gelişimi hakkında sorular sorabilirsiniz.'
+	String get tip3 => 'AI Asistan\'a otizm ve çocuk gelişimi hakkında sorular sorabilirsiniz.';
+
+	/// tr: 'İletişim'
+	String get contactTitle => 'İletişim';
+
+	/// tr: 'Soru ve önerileriniz için uygulama içinden bize ulaşabilirsiniz.'
+	String get contactBody => 'Soru ve önerileriniz için uygulama içinden bize ulaşabilirsiniz.';
+
+	/// tr: 'Sürüm $version'
+	String version({required Object version}) => 'Sürüm ${version}';
+}
+
 // Path: profile
 class Translations$profile$tr {
 	Translations$profile$tr.internal(this._root);
@@ -1261,6 +1301,16 @@ extension on Translations {
 			'account.save' => 'Kaydet',
 			'account.saved' => 'Profil güncellendi.',
 			'account.errorFullName' => 'Ad soyad en az 2 karakter olmalıdır.',
+			'help.title' => 'Yardım & Hakkında',
+			'help.aboutTitle' => 'Otizm Destek Hakkında',
+			'help.aboutBody' => 'Otizm Destek; çocuğunuzun gelişimini takip etmenize, uzmanlarla iletişim kurmanıza ve randevu almanıza yardımcı olan bir mobil uygulamadır.',
+			'help.tipsTitle' => 'İpuçları',
+			'help.tip1' => 'Çocuklarınızı "Çocuklarım"dan ekleyin; hedef ve gelişim notlarını "Gelişim" sekmesinden takip edin.',
+			'help.tip2' => '"Uzmanlar"dan bir uzman seçip randevu alabilir veya mesaj gönderebilirsiniz.',
+			'help.tip3' => 'AI Asistan\'a otizm ve çocuk gelişimi hakkında sorular sorabilirsiniz.',
+			'help.contactTitle' => 'İletişim',
+			'help.contactBody' => 'Soru ve önerileriniz için uygulama içinden bize ulaşabilirsiniz.',
+			'help.version' => ({required Object version}) => 'Sürüm ${version}',
 			'profile.defaultUser' => 'Kullanıcı',
 			'profile.accountInfo' => 'Hesap Bilgileri',
 			'profile.myChildren' => 'Çocuklarım',

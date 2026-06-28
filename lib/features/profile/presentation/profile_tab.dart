@@ -55,8 +55,15 @@ class ProfileTab extends ConsumerWidget {
           _ProfileItem(
             icon: Icons.notifications_none,
             label: t.profile.notificationSettings,
+            onTap: () => ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(t.common.comingSoon)),
+            ),
           ),
-          _ProfileItem(icon: Icons.help_outline, label: t.profile.help),
+          _ProfileItem(
+            icon: Icons.help_outline,
+            label: t.profile.help,
+            onTap: () => context.push('/help'),
+          ),
           const SizedBox(height: 16),
           const _LanguageSelector(),
           const SizedBox(height: 24),

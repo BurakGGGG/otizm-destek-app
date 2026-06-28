@@ -60,6 +60,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$booking$en booking = _Translations$booking$en._(_root);
 	@override late final _Translations$children$en children = _Translations$children$en._(_root);
 	@override late final _Translations$account$en account = _Translations$account$en._(_root);
+	@override late final _Translations$help$en help = _Translations$help$en._(_root);
 	@override late final _Translations$profile$en profile = _Translations$profile$en._(_root);
 	@override late final _Translations$errors$en errors = _Translations$errors$en._(_root);
 }
@@ -495,6 +496,25 @@ class _Translations$account$en extends Translations$account$tr {
 	@override String get errorFullName => 'Full name must be at least 2 characters.';
 }
 
+// Path: help
+class _Translations$help$en extends Translations$help$tr {
+	_Translations$help$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Help & About';
+	@override String get aboutTitle => 'About Otizm Destek';
+	@override String get aboutBody => 'Otizm Destek is a mobile app that helps you track your child\'s development, connect with experts, and book appointments.';
+	@override String get tipsTitle => 'Tips';
+	@override String get tip1 => 'Add your children under "My Children"; track goals and notes in the "Progress" tab.';
+	@override String get tip2 => 'Pick an expert under "Experts" to book an appointment or send a message.';
+	@override String get tip3 => 'Ask the AI Assistant questions about autism and child development.';
+	@override String get contactTitle => 'Contact';
+	@override String get contactBody => 'Reach us from within the app for any questions or suggestions.';
+	@override String version({required Object version}) => 'Version ${version}';
+}
+
 // Path: profile
 class _Translations$profile$en extends Translations$profile$tr {
 	_Translations$profile$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -775,6 +795,16 @@ extension on TranslationsEn {
 			'account.save' => 'Save',
 			'account.saved' => 'Profile updated.',
 			'account.errorFullName' => 'Full name must be at least 2 characters.',
+			'help.title' => 'Help & About',
+			'help.aboutTitle' => 'About Otizm Destek',
+			'help.aboutBody' => 'Otizm Destek is a mobile app that helps you track your child\'s development, connect with experts, and book appointments.',
+			'help.tipsTitle' => 'Tips',
+			'help.tip1' => 'Add your children under "My Children"; track goals and notes in the "Progress" tab.',
+			'help.tip2' => 'Pick an expert under "Experts" to book an appointment or send a message.',
+			'help.tip3' => 'Ask the AI Assistant questions about autism and child development.',
+			'help.contactTitle' => 'Contact',
+			'help.contactBody' => 'Reach us from within the app for any questions or suggestions.',
+			'help.version' => ({required Object version}) => 'Version ${version}',
 			'profile.defaultUser' => 'User',
 			'profile.accountInfo' => 'Account Information',
 			'profile.myChildren' => 'My Children',

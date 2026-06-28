@@ -282,6 +282,18 @@ account:
   saved: Profile updated.
   errorFullName: Full name must be at least 2 characters.
 
+help:
+  title: Help & About
+  aboutTitle: About Otizm Destek
+  aboutBody: Otizm Destek is a mobile app that helps you track your child's development, connect with experts, and book appointments.
+  tipsTitle: Tips
+  tip1: Add your children under "My Children"; track goals and notes in the "Progress" tab.
+  tip2: Pick an expert under "Experts" to book an appointment or send a message.
+  tip3: Ask the AI Assistant questions about autism and child development.
+  contactTitle: Contact
+  contactBody: Reach us from within the app for any questions or suggestions.
+  version: Version $version
+
 profile:
   defaultUser: User
   accountInfo: Account Information
