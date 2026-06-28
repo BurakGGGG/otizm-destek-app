@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/widgets/skeleton.dart';
 import '../../../i18n/strings.g.dart';
 import '../../children/data/child_repository.dart';
 import '../../children/domain/child.dart';
@@ -33,7 +34,7 @@ class _ProgressTabState extends ConsumerState<ProgressTab> {
 
     return SafeArea(
       child: childrenAsync.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const SkeletonList(count: 4),
         error: (e, _) =>
             _ErrorView(onRetry: () => ref.invalidate(childrenProvider)),
         data: (children) {
@@ -385,16 +386,7 @@ class _SectionLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(vertical: 24),
-      child: Center(
-        child: SizedBox(
-          height: 28,
-          width: 28,
-          child: CircularProgressIndicator(strokeWidth: 2.5),
-        ),
-      ),
-    );
+    return const SkeletonList(count: 2, padding: EdgeInsets.zero);
   }
 }
 

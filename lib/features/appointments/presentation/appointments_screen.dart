@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/network/api_exception.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/widgets/skeleton.dart';
 import '../../../i18n/strings.g.dart';
 import '../../auth/domain/app_user.dart';
 import '../../auth/presentation/auth_controller.dart';
@@ -23,7 +24,7 @@ class AppointmentsScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: Text(t.appointments.title)),
       body: async.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const SkeletonList(count: 4),
         error: (e, _) =>
             _ErrorView(onRetry: () => ref.invalidate(appointmentsProvider)),
         data: (all) {

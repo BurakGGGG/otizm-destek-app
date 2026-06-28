@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/user_avatar.dart';
 import '../../../i18n/strings.g.dart';
 import '../../auth/presentation/auth_controller.dart';
@@ -23,7 +24,7 @@ class ConversationsScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: Text(t.messages.title)),
       body: async.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const SkeletonList(count: 7),
         error: (e, _) =>
             _ErrorView(onRetry: () => ref.invalidate(conversationsProvider)),
         data: (conversations) {

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/user_avatar.dart';
 import '../../../i18n/strings.g.dart';
 import '../data/expert_repository.dart';
@@ -113,7 +114,7 @@ class _SpecialistsTabState extends ConsumerState<SpecialistsTab> {
           ),
           Expanded(
             child: expertsAsync.when(
-              loading: () => const Center(child: CircularProgressIndicator()),
+              loading: () => const SkeletonList(count: 6),
               error: (e, _) =>
                   _ErrorView(onRetry: () => ref.invalidate(expertsProvider)),
               data: (experts) {

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/widgets/skeleton.dart';
 import '../../../i18n/strings.g.dart';
 import '../data/knowledge_repository.dart';
 import '../domain/article.dart';
@@ -21,7 +22,7 @@ class KnowledgeScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: Text(t.knowledge.title)),
       body: async.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const SkeletonList(count: 5),
         error: (e, _) =>
             _ErrorView(onRetry: () => ref.invalidate(articlesProvider)),
         data: (articles) {

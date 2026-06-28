@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/network/api_exception.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/user_avatar.dart';
 import '../../../i18n/strings.g.dart';
 import '../data/child_repository.dart';
@@ -27,7 +28,7 @@ class ChildrenScreen extends ConsumerWidget {
         label: Text(t.children.add),
       ),
       body: async.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const SkeletonList(count: 4),
         error: (e, _) =>
             _ErrorView(onRetry: () => ref.invalidate(childrenProvider)),
         data: (children) {
