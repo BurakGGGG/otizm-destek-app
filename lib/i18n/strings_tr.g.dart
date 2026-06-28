@@ -648,6 +648,12 @@ class Translations$knowledge$tr {
 	/// tr: 'Henüz makale eklenmemiş.'
 	String get empty => 'Henüz makale eklenmemiş.';
 
+	/// tr: 'Bu filtreye uygun içerik yok.'
+	String get noResults => 'Bu filtreye uygun içerik yok.';
+
+	/// tr: 'Tümü'
+	String get filterAll => 'Tümü';
+
 	/// tr: 'Makale'
 	String get formatArticle => 'Makale';
 
@@ -1233,6 +1239,8 @@ extension on Translations {
 			'notifications.show' => 'Göster',
 			'knowledge.title' => 'Bilgi Bankası',
 			'knowledge.empty' => 'Henüz makale eklenmemiş.',
+			'knowledge.noResults' => 'Bu filtreye uygun içerik yok.',
+			'knowledge.filterAll' => 'Tümü',
 			'knowledge.formatArticle' => 'Makale',
 			'knowledge.formatVideo' => 'Video',
 			'knowledge.formatPodcast' => 'Podcast',

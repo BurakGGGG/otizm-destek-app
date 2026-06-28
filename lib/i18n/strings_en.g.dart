@@ -369,6 +369,8 @@ class _Translations$knowledge$en extends Translations$knowledge$tr {
 	// Translations
 	@override String get title => 'Knowledge Base';
 	@override String get empty => 'No articles yet.';
+	@override String get noResults => 'No content matches this filter.';
+	@override String get filterAll => 'All';
 	@override String get formatArticle => 'Article';
 	@override String get formatVideo => 'Video';
 	@override String get formatPodcast => 'Podcast';
@@ -719,6 +721,8 @@ extension on TranslationsEn {
 			'notifications.show' => 'Show',
 			'knowledge.title' => 'Knowledge Base',
 			'knowledge.empty' => 'No articles yet.',
+			'knowledge.noResults' => 'No content matches this filter.',
+			'knowledge.filterAll' => 'All',
 			'knowledge.formatArticle' => 'Article',
 			'knowledge.formatVideo' => 'Video',
 			'knowledge.formatPodcast' => 'Podcast',

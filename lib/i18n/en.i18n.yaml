@@ -183,6 +183,8 @@ notifications:
 knowledge:
   title: Knowledge Base
   empty: No articles yet.
+  noResults: No content matches this filter.
+  filterAll: All
   formatArticle: Article
   formatVideo: Video
   formatPodcast: Podcast

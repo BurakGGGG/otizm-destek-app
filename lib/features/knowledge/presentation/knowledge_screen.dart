@@ -11,12 +11,20 @@ import '../domain/article.dart';
 import 'article_detail_screen.dart';
 import 'widgets/article_format_badge.dart';
 
-/// Bilgi Bankası — yayınlanmış makale listesi (`/api/knowledge`).
-class KnowledgeScreen extends ConsumerWidget {
+/// Bilgi Bankası — yayınlanmış makale listesi (`/api/knowledge`) + format filtresi.
+class KnowledgeScreen extends ConsumerStatefulWidget {
   const KnowledgeScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<KnowledgeScreen> createState() => _KnowledgeScreenState();
+}
+
+class _KnowledgeScreenState extends ConsumerState<KnowledgeScreen> {
+  // null = Tümü; aksi halde içerik türüne göre süzülür.
+  ArticleMedia? _filter;
+
+  @override
+  Widget build(BuildContext context) {
     final t = context.t;
     final async = ref.watch(articlesProvider);
 
@@ -33,19 +41,90 @@ class KnowledgeScreen extends ConsumerWidget {
               message: t.knowledge.empty,
             );
           }
-          return RefreshIndicator(
-            onRefresh: () async => ref.invalidate(articlesProvider),
-            child: ListView.separated(
-              padding: const EdgeInsets.fromLTRB(
-                AppSpacing.margin,
-                12,
-                AppSpacing.margin,
-                24,
+          final filtered = _filter == null
+              ? articles
+              : articles
+                    .where((a) => a.parsedContent.media == _filter)
+                    .toList();
+          return Column(
+            children: [
+              _FilterBar(
+                selected: _filter,
+                onSelect: (f) => setState(() => _filter = f),
               ),
-              itemCount: articles.length,
-              separatorBuilder: (_, _) => const SizedBox(height: 12),
-              itemBuilder: (_, i) => _ArticleTile(article: articles[i]),
+              Expanded(
+                child: filtered.isEmpty
+                    ? EmptyState(
+                        icon: Icons.filter_list_off,
+                        message: t.knowledge.noResults,
+                      )
+                    : RefreshIndicator(
+                        onRefresh: () async =>
+                            ref.invalidate(articlesProvider),
+                        child: ListView.separated(
+                          padding: const EdgeInsets.fromLTRB(
+                            AppSpacing.margin,
+                            4,
+                            AppSpacing.margin,
+                            24,
+                          ),
+                          itemCount: filtered.length,
+                          separatorBuilder: (_, _) => const SizedBox(height: 12),
+                          itemBuilder: (_, i) =>
+                              _ArticleTile(article: filtered[i]),
+                        ),
+                      ),
+              ),
+            ],
+          );
+        },
+      ),
+    );
+  }
+}
+
+/// Format filtre çubuğu: Tümü / Makale / Video / Podcast.
+class _FilterBar extends StatelessWidget {
+  const _FilterBar({required this.selected, required this.onSelect});
+
+  final ArticleMedia? selected;
+  final ValueChanged<ArticleMedia?> onSelect;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    final items = <({ArticleMedia? value, String label})>[
+      (value: null, label: t.knowledge.filterAll),
+      (value: ArticleMedia.none, label: t.knowledge.formatArticle),
+      (value: ArticleMedia.video, label: t.knowledge.formatVideo),
+      (value: ArticleMedia.podcast, label: t.knowledge.formatPodcast),
+    ];
+    return SizedBox(
+      height: 48,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.margin,
+          vertical: 8,
+        ),
+        itemCount: items.length,
+        separatorBuilder: (_, _) => const SizedBox(width: 8),
+        itemBuilder: (_, i) {
+          final it = items[i];
+          final isSel = selected == it.value;
+          return ChoiceChip(
+            label: Text(it.label),
+            selected: isSel,
+            showCheckmark: false,
+            selectedColor: context.colors.primary,
+            backgroundColor: context.colors.surface,
+            side: BorderSide(color: context.colors.border),
+            labelStyle: TextStyle(
+              color: isSel ? Colors.white : context.colors.textSecondary,
+              fontWeight: FontWeight.w600,
+              fontSize: 13,
             ),
+            onSelected: (_) => onSelect(it.value),
           );
         },
       ),

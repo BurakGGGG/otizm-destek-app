@@ -183,6 +183,8 @@ notifications:
 knowledge:
   title: Bilgi Bankası
   empty: Henüz makale eklenmemiş.
+  noResults: Bu filtreye uygun içerik yok.
+  filterAll: Tümü
   formatArticle: Makale
   formatVideo: Video
   formatPodcast: Podcast
