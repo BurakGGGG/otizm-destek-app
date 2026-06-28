@@ -179,6 +179,10 @@ noteForm:
 
 notifications:
   show: Show
+  title: Notifications
+  empty: You have no notifications yet.
+  markAllRead: Mark all as read
+  dateLine: $day $month · $time
 
 knowledge:
   title: Knowledge Base

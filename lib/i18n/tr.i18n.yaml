@@ -179,6 +179,10 @@ noteForm:
 
 notifications:
   show: Göster
+  title: Bildirimler
+  empty: Henüz bildiriminiz yok.
+  markAllRead: Tümünü okundu işaretle
+  dateLine: $day $month · $time
 
 knowledge:
   title: Bilgi Bankası

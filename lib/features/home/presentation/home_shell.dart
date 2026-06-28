@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/haptics.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../i18n/strings.g.dart';
+import '../../notifications/data/notification_repository.dart';
 import '../../profile/presentation/profile_tab.dart';
 import '../../progress/presentation/progress_tab.dart';
 import '../../specialists/presentation/specialists_tab.dart';
@@ -65,12 +66,19 @@ class _HomeShellState extends ConsumerState<HomeShell> {
             onPressed: () => context.push('/chat'),
             icon: const Icon(Icons.smart_toy_outlined),
           ),
-          IconButton(
-            tooltip: t.home.notifications,
-            onPressed: () => ScaffoldMessenger.of(
-              context,
-            ).showSnackBar(SnackBar(content: Text(t.common.comingSoon))),
-            icon: const Icon(Icons.notifications_none),
+          Consumer(
+            builder: (context, ref, _) {
+              final unread = ref.watch(unreadCountProvider).asData?.value ?? 0;
+              return IconButton(
+                tooltip: t.home.notifications,
+                onPressed: () => context.push('/notifications'),
+                icon: Badge.count(
+                  count: unread,
+                  isLabelVisible: unread > 0,
+                  child: const Icon(Icons.notifications_none),
+                ),
+              );
+            },
           ),
           const SizedBox(width: 4),
         ],

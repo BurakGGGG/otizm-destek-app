@@ -358,6 +358,10 @@ class _Translations$notifications$en extends Translations$notifications$tr {
 
 	// Translations
 	@override String get show => 'Show';
+	@override String get title => 'Notifications';
+	@override String get empty => 'You have no notifications yet.';
+	@override String get markAllRead => 'Mark all as read';
+	@override String dateLine({required Object day, required Object month, required Object time}) => '${day} ${month} · ${time}';
 }
 
 // Path: knowledge
@@ -719,6 +723,10 @@ extension on TranslationsEn {
 			'noteForm.errorTitle' => 'Please enter a title.',
 			'noteForm.created' => 'Note added.',
 			'notifications.show' => 'Show',
+			'notifications.title' => 'Notifications',
+			'notifications.empty' => 'You have no notifications yet.',
+			'notifications.markAllRead' => 'Mark all as read',
+			'notifications.dateLine' => ({required Object day, required Object month, required Object time}) => '${day} ${month} · ${time}',
 			'knowledge.title' => 'Knowledge Base',
 			'knowledge.empty' => 'No articles yet.',
 			'knowledge.noResults' => 'No content matches this filter.',

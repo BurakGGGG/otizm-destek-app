@@ -632,6 +632,18 @@ class Translations$notifications$tr {
 
 	/// tr: 'Göster'
 	String get show => 'Göster';
+
+	/// tr: 'Bildirimler'
+	String get title => 'Bildirimler';
+
+	/// tr: 'Henüz bildiriminiz yok.'
+	String get empty => 'Henüz bildiriminiz yok.';
+
+	/// tr: 'Tümünü okundu işaretle'
+	String get markAllRead => 'Tümünü okundu işaretle';
+
+	/// tr: '$day $month · $time'
+	String dateLine({required Object day, required Object month, required Object time}) => '${day} ${month} · ${time}';
 }
 
 // Path: knowledge
@@ -1237,6 +1249,10 @@ extension on Translations {
 			'noteForm.errorTitle' => 'Lütfen bir başlık girin.',
 			'noteForm.created' => 'Not eklendi.',
 			'notifications.show' => 'Göster',
+			'notifications.title' => 'Bildirimler',
+			'notifications.empty' => 'Henüz bildiriminiz yok.',
+			'notifications.markAllRead' => 'Tümünü okundu işaretle',
+			'notifications.dateLine' => ({required Object day, required Object month, required Object time}) => '${day} ${month} · ${time}',
 			'knowledge.title' => 'Bilgi Bankası',
 			'knowledge.empty' => 'Henüz makale eklenmemiş.',
 			'knowledge.noResults' => 'Bu filtreye uygun içerik yok.',
