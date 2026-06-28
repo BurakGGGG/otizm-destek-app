@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/widgets/user_avatar.dart';
 import '../../../i18n/strings.g.dart';
 import '../../auth/presentation/auth_controller.dart';
 import '../data/messaging_repository.dart';
@@ -33,8 +34,7 @@ class ConversationsScreen extends ConsumerWidget {
             onRefresh: () async => ref.invalidate(conversationsProvider),
             child: ListView.separated(
               itemCount: conversations.length,
-              separatorBuilder: (_, _) =>
-                  const Divider(height: 1, indent: 76),
+              separatorBuilder: (_, _) => const Divider(height: 1, indent: 76),
               itemBuilder: (_, i) => _ConversationTile(
                 conversation: conversations[i],
                 currentUserId: currentUserId,
@@ -65,19 +65,17 @@ class _ConversationTile extends StatelessWidget {
     final preview = c.lastMessage?.content ?? '';
 
     return ListTile(
-      contentPadding:
-          const EdgeInsets.symmetric(horizontal: AppSpacing.margin, vertical: 4),
-      leading: CircleAvatar(
-        radius: 24,
-        backgroundColor: AppColors.primary.withValues(alpha: 0.12),
-        backgroundImage:
-            (avatar?.isNotEmpty ?? false) ? NetworkImage(avatar!) : null,
-        child: (avatar?.isEmpty ?? true)
-            ? const Icon(Icons.person, color: AppColors.primary)
-            : null,
+      contentPadding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.margin,
+        vertical: 4,
       ),
-      title: Text(title,
-          maxLines: 1, overflow: TextOverflow.ellipsis, style: text.titleMedium),
+      leading: UserAvatar(name: title, imageUrl: avatar, radius: 24),
+      title: Text(
+        title,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: text.titleMedium,
+      ),
       subtitle: preview.isEmpty
           ? null
           : Text(preview, maxLines: 1, overflow: TextOverflow.ellipsis),
@@ -93,16 +91,15 @@ class _ConversationTile extends StatelessWidget {
                 '${c.unreadCount}',
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 11,
-                    fontWeight: FontWeight.w700),
+                  color: Colors.white,
+                  fontSize: 11,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             )
           : const Icon(Icons.chevron_right, color: AppColors.textTertiary),
-      onTap: () => context.push('/messages/thread', extra: {
-        'id': c.id,
-        'title': title,
-      }),
+      onTap: () =>
+          context.push('/messages/thread', extra: {'id': c.id, 'title': title}),
     );
   }
 }
@@ -141,8 +138,11 @@ class _EmptyView extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.forum_outlined,
-                size: 48, color: AppColors.textTertiary),
+            const Icon(
+              Icons.forum_outlined,
+              size: 48,
+              color: AppColors.textTertiary,
+            ),
             const SizedBox(height: 12),
             Text(message, textAlign: TextAlign.center),
           ],

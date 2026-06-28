@@ -38,7 +38,8 @@ class Expert {
       city: json['city'] as String?,
       institution: json['institution'] as String?,
       profileImageUrl: json['profileImageUrl'] as String?,
-      specializations: (json['specializations'] as List<dynamic>?)
+      specializations:
+          (json['specializations'] as List<dynamic>?)
               ?.map((e) => e.toString())
               .toList() ??
           const [],

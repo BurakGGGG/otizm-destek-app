@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/widgets/user_avatar.dart';
 import '../../../i18n/strings.g.dart';
 import '../data/expert_repository.dart';
 import '../domain/expert.dart';
@@ -163,15 +164,10 @@ class _ExpertCard extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CircleAvatar(
+              UserAvatar(
+                name: e.fullName,
+                imageUrl: e.profileImageUrl,
                 radius: 28,
-                backgroundColor: AppColors.primary.withValues(alpha: 0.12),
-                backgroundImage: (e.profileImageUrl?.isNotEmpty ?? false)
-                    ? NetworkImage(e.profileImageUrl!)
-                    : null,
-                child: (e.profileImageUrl?.isEmpty ?? true)
-                    ? const Icon(Icons.person, color: AppColors.primary)
-                    : null,
               ),
               const SizedBox(width: 12),
               Expanded(

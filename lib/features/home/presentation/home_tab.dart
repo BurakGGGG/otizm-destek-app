@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/widgets/user_avatar.dart';
 import '../../../i18n/strings.g.dart';
 import '../../appointments/data/appointment_repository.dart';
 import '../../appointments/domain/appointment.dart';
@@ -127,15 +128,11 @@ class _ChildCard extends StatelessWidget {
         padding: const EdgeInsets.all(12),
         child: Row(
           children: [
-            CircleAvatar(
+            UserAvatar(
+              name: child.name,
+              imageUrl: child.profileImageUrl,
               radius: 26,
-              backgroundColor: AppColors.primary.withValues(alpha: 0.12),
-              backgroundImage: (child.profileImageUrl?.isNotEmpty ?? false)
-                  ? NetworkImage(child.profileImageUrl!)
-                  : null,
-              child: (child.profileImageUrl?.isEmpty ?? true)
-                  ? const Icon(Icons.face, color: AppColors.primary)
-                  : null,
+              fallbackIcon: Icons.face,
             ),
             const SizedBox(width: 12),
             Expanded(

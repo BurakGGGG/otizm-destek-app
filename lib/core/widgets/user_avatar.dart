@@ -1,0 +1,83 @@
+import 'package:flutter/material.dart';
+
+/// İsim baş harfli (veya görselli) yuvarlak avatar. Profil görseli varsa onu,
+/// yoksa isimden türetilen baş harfleri sabit bir renkle gösterir.
+class UserAvatar extends StatelessWidget {
+  const UserAvatar({
+    super.key,
+    required this.name,
+    this.imageUrl,
+    this.radius = 24,
+    this.fallbackIcon,
+  });
+
+  final String name;
+  final String? imageUrl;
+  final double radius;
+
+  /// İsim boşsa kullanılacak ikon (varsayılan: kişi).
+  final IconData? fallbackIcon;
+
+  // Sakin, düşük uyarımlı palet (tema ile uyumlu).
+  static const _palette = [
+    Color(0xFF2563EB), // mavi
+    Color(0xFF6366F1), // indigo
+    Color(0xFF0EA5E9), // gök
+    Color(0xFF10B981), // yeşil
+    Color(0xFF8B5CF6), // mor
+    Color(0xFFF59E0B), // amber
+    Color(0xFFEC4899), // pembe
+    Color(0xFF14B8A6), // teal
+  ];
+
+  String get _initials {
+    final parts = name
+        .trim()
+        .split(RegExp(r'\s+'))
+        .where((p) => p.isNotEmpty)
+        .toList();
+    if (parts.isEmpty) return '';
+    if (parts.length == 1) return _first(parts.first);
+    return _first(parts.first) + _first(parts.last);
+  }
+
+  static String _first(String s) =>
+      s.isEmpty ? '' : s.substring(0, 1).toUpperCase();
+
+  Color get _color {
+    if (name.isEmpty) return _palette.first;
+    var sum = 0;
+    for (final c in name.codeUnits) {
+      sum += c;
+    }
+    return _palette[sum % _palette.length];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final hasImage = imageUrl != null && imageUrl!.isNotEmpty;
+    if (hasImage) {
+      return CircleAvatar(
+        radius: radius,
+        backgroundColor: _color.withValues(alpha: 0.15),
+        backgroundImage: NetworkImage(imageUrl!),
+      );
+    }
+    final initials = _initials;
+    final color = _color;
+    return CircleAvatar(
+      radius: radius,
+      backgroundColor: color.withValues(alpha: 0.15),
+      child: initials.isNotEmpty
+          ? Text(
+              initials,
+              style: TextStyle(
+                color: color,
+                fontWeight: FontWeight.w700,
+                fontSize: radius * 0.72,
+              ),
+            )
+          : Icon(fallbackIcon ?? Icons.person, color: color, size: radius),
+    );
+  }
+}

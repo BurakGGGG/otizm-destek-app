@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/network/api_exception.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/widgets/user_avatar.dart';
 import '../../../i18n/strings.g.dart';
 import '../../appointments/presentation/appointment_booking_screen.dart';
 import '../../auth/domain/app_user.dart';
@@ -34,19 +35,10 @@ class ExpertDetailScreen extends ConsumerWidget {
           children: [
             Row(
               children: [
-                CircleAvatar(
+                UserAvatar(
+                  name: expert.fullName,
+                  imageUrl: expert.profileImageUrl,
                   radius: 36,
-                  backgroundColor: AppColors.primary.withValues(alpha: 0.12),
-                  backgroundImage: (expert.profileImageUrl?.isNotEmpty ?? false)
-                      ? NetworkImage(expert.profileImageUrl!)
-                      : null,
-                  child: (expert.profileImageUrl?.isEmpty ?? true)
-                      ? const Icon(
-                          Icons.person,
-                          size: 36,
-                          color: AppColors.primary,
-                        )
-                      : null,
                 ),
                 const SizedBox(width: 16),
                 Expanded(
@@ -166,8 +158,9 @@ class _ExpertActionsState extends ConsumerState<_ExpertActions> {
       ),
     );
     if (result != null && mounted) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(result)));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(result)));
     }
   }
 
@@ -188,8 +181,9 @@ class _ExpertActionsState extends ConsumerState<_ExpertActions> {
       );
     } on ApiException catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text(e.message)));
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(e.message)));
       }
     } finally {
       if (mounted) setState(() => _messaging = false);
@@ -216,7 +210,8 @@ class _ExpertActionsState extends ConsumerState<_ExpertActions> {
                 ? const SizedBox(
                     height: 18,
                     width: 18,
-                    child: CircularProgressIndicator(strokeWidth: 2))
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  )
                 : const Icon(Icons.chat_bubble_outline),
             label: Text(t.expertDetail.sendMessage),
           ),

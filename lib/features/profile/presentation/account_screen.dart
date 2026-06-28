@@ -62,8 +62,11 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
       _saving = true;
     });
 
-    final isExpert = ref.read(authControllerProvider).user?.role == UserRole.expert;
-    final error = await ref.read(authControllerProvider.notifier).updateProfile(
+    final isExpert =
+        ref.read(authControllerProvider).user?.role == UserRole.expert;
+    final error = await ref
+        .read(authControllerProvider.notifier)
+        .updateProfile(
           fullName: _fullName.text.trim(),
           phone: _phone.text.trim(),
           city: _city.text.trim(),
@@ -96,9 +99,9 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
         child: ListView(
           padding: const EdgeInsets.all(AppSpacing.margin),
           children: [
-            // E-posta (salt okunur)
-            TextField(
-              controller: TextEditingController(text: user?.email ?? ''),
+            // E-posta (salt okunur) — TextFormField kendi controller'ını yönetir.
+            TextFormField(
+              initialValue: user?.email ?? '',
               readOnly: true,
               enabled: false,
               decoration: InputDecoration(
@@ -134,20 +137,23 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
               const SizedBox(height: 16),
               TextField(
                 controller: _expertTitle,
-                decoration:
-                    InputDecoration(labelText: t.account.expertTitleLabel),
+                decoration: InputDecoration(
+                  labelText: t.account.expertTitleLabel,
+                ),
               ),
               const SizedBox(height: 16),
               TextField(
                 controller: _institution,
-                decoration:
-                    InputDecoration(labelText: t.account.institutionLabel),
+                decoration: InputDecoration(
+                  labelText: t.account.institutionLabel,
+                ),
               ),
               const SizedBox(height: 16),
               TextField(
                 controller: _licenseNumber,
-                decoration:
-                    InputDecoration(labelText: t.account.licenseNumberLabel),
+                decoration: InputDecoration(
+                  labelText: t.account.licenseNumberLabel,
+                ),
               ),
               const SizedBox(height: 16),
               TextField(
@@ -168,7 +174,8 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
                   ? const SizedBox(
                       height: 20,
                       width: 20,
-                      child: CircularProgressIndicator(strokeWidth: 2))
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
                   : Text(t.account.save),
             ),
           ],

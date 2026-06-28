@@ -11,14 +11,14 @@ class ExpertRepository {
   ExpertRepository(this._dio);
   final Dio _dio;
 
-  Future<List<Expert>> getExperts({String? city, String? specialization}) async {
+  Future<List<Expert>> getExperts({
+    String? city,
+    String? specialization,
+  }) async {
     try {
       final res = await _dio.get(
         '/experts',
-        queryParameters: {
-          'city': ?city,
-          'specialization': ?specialization,
-        },
+        queryParameters: {'city': ?city, 'specialization': ?specialization},
       );
       return ApiEnvelope.fromJson(res.data)
           .requireList()

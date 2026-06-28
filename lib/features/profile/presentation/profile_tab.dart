@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/widgets/user_avatar.dart';
 import '../../../i18n/strings.g.dart';
 import '../../auth/presentation/auth_controller.dart';
 
@@ -23,18 +24,23 @@ class ProfileTab extends ConsumerWidget {
         children: [
           const SizedBox(height: 8),
           Center(
-            child: CircleAvatar(
+            child: UserAvatar(
+              name: user?.displayName ?? '',
+              imageUrl: user?.profileImageUrl,
               radius: 40,
-              backgroundColor: AppColors.primary.withValues(alpha: 0.12),
-              child: const Icon(Icons.person,
-                  size: 40, color: AppColors.primary),
             ),
           ),
           const SizedBox(height: 12),
-          Text(user?.displayName ?? t.profile.defaultUser,
-              textAlign: TextAlign.center, style: text.headlineSmall),
-          Text(user?.email ?? '',
-              textAlign: TextAlign.center, style: text.bodySmall),
+          Text(
+            user?.displayName ?? t.profile.defaultUser,
+            textAlign: TextAlign.center,
+            style: text.headlineSmall,
+          ),
+          Text(
+            user?.email ?? '',
+            textAlign: TextAlign.center,
+            style: text.bodySmall,
+          ),
           const SizedBox(height: 24),
           _ProfileItem(
             icon: Icons.person_outline,
@@ -47,8 +53,9 @@ class ProfileTab extends ConsumerWidget {
             onTap: () => context.push('/children'),
           ),
           _ProfileItem(
-              icon: Icons.notifications_none,
-              label: t.profile.notificationSettings),
+            icon: Icons.notifications_none,
+            label: t.profile.notificationSettings,
+          ),
           _ProfileItem(icon: Icons.help_outline, label: t.profile.help),
           const SizedBox(height: 16),
           const _LanguageSelector(),
@@ -84,17 +91,23 @@ class _LanguageSelector extends StatelessWidget {
               children: [
                 const Icon(Icons.language, color: AppColors.primary),
                 const SizedBox(width: 12),
-                Text(t.language.title,
-                    style: Theme.of(context).textTheme.titleMedium),
+                Text(
+                  t.language.title,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
               ],
             ),
             const SizedBox(height: 12),
             SegmentedButton<AppLocale>(
               segments: [
                 ButtonSegment(
-                    value: AppLocale.tr, label: Text(t.language.turkish)),
+                  value: AppLocale.tr,
+                  label: Text(t.language.turkish),
+                ),
                 ButtonSegment(
-                    value: AppLocale.en, label: Text(t.language.english)),
+                  value: AppLocale.en,
+                  label: Text(t.language.english),
+                ),
               ],
               selected: {current},
               showSelectedIcon: false,
@@ -120,11 +133,14 @@ class _ProfileItem extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       child: ListTile(
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppRadius.lg)),
+          borderRadius: BorderRadius.circular(AppRadius.lg),
+        ),
         leading: Icon(icon, color: AppColors.primary),
         title: Text(label),
-        trailing:
-            const Icon(Icons.chevron_right, color: AppColors.textTertiary),
+        trailing: const Icon(
+          Icons.chevron_right,
+          color: AppColors.textTertiary,
+        ),
         onTap: onTap ?? () {},
       ),
     );

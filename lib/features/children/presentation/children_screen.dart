@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/network/api_exception.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/widgets/user_avatar.dart';
 import '../../../i18n/strings.g.dart';
 import '../data/child_repository.dart';
 import '../domain/child.dart';
@@ -37,7 +38,11 @@ class ChildrenScreen extends ConsumerWidget {
             onRefresh: () async => ref.invalidate(childrenProvider),
             child: ListView.separated(
               padding: const EdgeInsets.fromLTRB(
-                  AppSpacing.margin, 8, AppSpacing.margin, 96),
+                AppSpacing.margin,
+                8,
+                AppSpacing.margin,
+                96,
+              ),
               itemCount: children.length,
               separatorBuilder: (_, _) => const SizedBox(height: 10),
               itemBuilder: (_, i) => _ChildCard(
@@ -57,13 +62,17 @@ class ChildrenScreen extends ConsumerWidget {
       MaterialPageRoute(builder: (_) => ChildFormScreen(child: child)),
     );
     if (result != null && context.mounted) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(result)));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(result)));
     }
   }
 
   Future<void> _confirmDelete(
-      BuildContext context, WidgetRef ref, Child child) async {
+    BuildContext context,
+    WidgetRef ref,
+    Child child,
+  ) async {
     final t = context.t;
     final confirmed = await showDialog<bool>(
       context: context,
@@ -89,13 +98,15 @@ class ChildrenScreen extends ConsumerWidget {
       await ref.read(childRepositoryProvider).deleteChild(child.id);
       ref.invalidate(childrenProvider);
       if (context.mounted) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text(t.children.deleted)));
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(t.children.deleted)));
       }
     } on ApiException catch (e) {
       if (context.mounted) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text(e.message)));
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(e.message)));
       }
     }
   }
@@ -127,27 +138,29 @@ class _ChildCard extends StatelessWidget {
     return Card(
       margin: EdgeInsets.zero,
       child: ListTile(
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppRadius.lg)),
-        leading: CircleAvatar(
-          radius: 24,
-          backgroundColor: AppColors.primary.withValues(alpha: 0.12),
-          backgroundImage:
-              (avatar?.isNotEmpty ?? false) ? NetworkImage(avatar!) : null,
-          child: (avatar?.isEmpty ?? true)
-              ? const Icon(Icons.child_care, color: AppColors.primary)
-              : null,
+          borderRadius: BorderRadius.circular(AppRadius.lg),
         ),
-        title: Text(child.name,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: text.titleMedium),
+        leading: UserAvatar(
+          name: child.name,
+          imageUrl: avatar,
+          radius: 24,
+          fallbackIcon: Icons.child_care,
+        ),
+        title: Text(
+          child.name,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: text.titleMedium,
+        ),
         subtitle: subtitleParts.isEmpty
             ? null
-            : Text(subtitleParts.join(' · '),
-                maxLines: 1, overflow: TextOverflow.ellipsis),
+            : Text(
+                subtitleParts.join(' · '),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
         trailing: PopupMenuButton<String>(
           onSelected: (v) => v == 'edit' ? onEdit() : onDelete(),
           itemBuilder: (_) => [
@@ -165,11 +178,16 @@ class _ChildCard extends StatelessWidget {
               value: 'delete',
               child: Row(
                 children: [
-                  const Icon(Icons.delete_outline,
-                      size: 20, color: AppColors.error),
+                  const Icon(
+                    Icons.delete_outline,
+                    size: 20,
+                    color: AppColors.error,
+                  ),
                   const SizedBox(width: 12),
-                  Text(t.children.delete,
-                      style: const TextStyle(color: AppColors.error)),
+                  Text(
+                    t.children.delete,
+                    style: const TextStyle(color: AppColors.error),
+                  ),
                 ],
               ),
             ),
@@ -215,8 +233,11 @@ class _EmptyView extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.child_care_outlined,
-                size: 48, color: AppColors.textTertiary),
+            const Icon(
+              Icons.child_care_outlined,
+              size: 48,
+              color: AppColors.textTertiary,
+            ),
             const SizedBox(height: 12),
             Text(message, textAlign: TextAlign.center),
           ],
