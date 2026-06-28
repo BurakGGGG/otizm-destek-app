@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/widgets/empty_state.dart';
 import '../../../core/widgets/skeleton.dart';
 import '../../../i18n/strings.g.dart';
 import '../../children/data/child_repository.dart';
@@ -36,10 +38,16 @@ class _ProgressTabState extends ConsumerState<ProgressTab> {
       child: childrenAsync.when(
         loading: () => const SkeletonList(count: 4),
         error: (e, _) =>
-            _ErrorView(onRetry: () => ref.invalidate(childrenProvider)),
+            ErrorRetry(onRetry: () => ref.invalidate(childrenProvider)),
         data: (children) {
           if (children.isEmpty) {
-            return _EmptyView(message: t.progress.noChild);
+            return EmptyState(
+              icon: Icons.child_care_outlined,
+              message: t.progress.noChild,
+              actionLabel: t.children.add,
+              actionIcon: Icons.child_care_outlined,
+              onAction: () => context.push('/children'),
+            );
           }
           final selectedId = _selectedChildId ??= children.first.id;
 
@@ -435,50 +443,3 @@ class _EmptyCard extends StatelessWidget {
   }
 }
 
-class _ErrorView extends StatelessWidget {
-  const _ErrorView({required this.onRetry});
-  final VoidCallback onRetry;
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.t;
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const Icon(Icons.error_outline, size: 48, color: AppColors.error),
-          const SizedBox(height: 12),
-          Text(t.common.loadError),
-          const SizedBox(height: 12),
-          FilledButton.tonal(onPressed: onRetry, child: Text(t.common.retry)),
-        ],
-      ),
-    );
-  }
-}
-
-class _EmptyView extends StatelessWidget {
-  const _EmptyView({required this.message});
-  final String message;
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(32),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Icon(
-              Icons.child_care_outlined,
-              size: 48,
-              color: AppColors.textTertiary,
-            ),
-            const SizedBox(height: 12),
-            Text(message, textAlign: TextAlign.center),
-          ],
-        ),
-      ),
-    );
-  }
-}

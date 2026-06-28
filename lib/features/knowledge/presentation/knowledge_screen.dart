@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/widgets/empty_state.dart';
 import '../../../core/widgets/skeleton.dart';
 import '../../../i18n/strings.g.dart';
 import '../data/knowledge_repository.dart';
@@ -24,9 +25,14 @@ class KnowledgeScreen extends ConsumerWidget {
       body: async.when(
         loading: () => const SkeletonList(count: 5),
         error: (e, _) =>
-            _ErrorView(onRetry: () => ref.invalidate(articlesProvider)),
+            ErrorRetry(onRetry: () => ref.invalidate(articlesProvider)),
         data: (articles) {
-          if (articles.isEmpty) return _EmptyView(message: t.knowledge.empty);
+          if (articles.isEmpty) {
+            return EmptyState(
+              icon: Icons.menu_book_outlined,
+              message: t.knowledge.empty,
+            );
+          }
           return RefreshIndicator(
             onRefresh: () async => ref.invalidate(articlesProvider),
             child: ListView.separated(
@@ -117,50 +123,3 @@ class _ArticleTile extends StatelessWidget {
   }
 }
 
-class _ErrorView extends StatelessWidget {
-  const _ErrorView({required this.onRetry});
-  final VoidCallback onRetry;
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.t;
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const Icon(Icons.error_outline, size: 48, color: AppColors.error),
-          const SizedBox(height: 12),
-          Text(t.common.loadError),
-          const SizedBox(height: 12),
-          FilledButton.tonal(onPressed: onRetry, child: Text(t.common.retry)),
-        ],
-      ),
-    );
-  }
-}
-
-class _EmptyView extends StatelessWidget {
-  const _EmptyView({required this.message});
-  final String message;
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(32),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Icon(
-              Icons.menu_book_outlined,
-              size: 48,
-              color: AppColors.textTertiary,
-            ),
-            const SizedBox(height: 12),
-            Text(message, textAlign: TextAlign.center),
-          ],
-        ),
-      ),
-    );
-  }
-}
