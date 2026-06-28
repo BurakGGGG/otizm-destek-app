@@ -52,21 +52,40 @@ flutter build apk --debug
 - ✅ Faz 1: iskelet, core katman, tema (Stitch "Serene Path"), router, Firebase yapılandırma
   (Android tam; iOS plist Mac'te eklenecek). Debug APK derlendi.
 - ✅ Stitch tasarımları: Giriş, Ana Sayfa, Uzmanlar (Uzman Bulun), Gelişim (Gelişim Takibi),
-  Profil ekranları tasarıma göre yapıldı (veriler şimdilik mock).
+  Profil ekranları tasarıma göre yapıldı (tümü gerçek veriye bağlandı — aşağıya bkz.).
 - ✅ Faz 2 auth: backend JWT login/refresh/logout/me + oturum geri yükleme. Canlı backend'e
   karşı doğrulandı (login HTTP 200, role PARENT).
 - ✅ i18n (TR/EN): **slang** + YAML (`lib/i18n/tr.i18n.yaml`, `en.i18n.yaml` → `strings.g.dart`).
   Tüm UI metni `t.*`; kodda sabit metin yok. Profil'de TR/EN dil seçici (anlık geçiş).
   Yeni metin: YAML'a ekle + `dart run slang`. Çekirdek (hata) mesajları global `t` kullanır.
 - ✅ Kayıt ekranı (`/register`, Veli/Uzman + KVKK) → `/api/auth/register`.
-- ✅ Ana Sayfa gerçek veriye bağlı: `/api/children`, `/api/appointments` (yaklaşanlar),
-  `/api/knowledge` (Page→content). Yükleniyor/boş/hata durumları + RefreshIndicator.
-  Canlı doğrulandı (2 çocuk döndü).
-- ⏳ Sonraki: Uzmanlar/Gelişim sekmelerini backend'e bağla; mesajlaşma (STOMP /ws),
-  chatbot SSE; FCM (backend cihaz-token uç noktası gerekli — mevcut push Web Push/VAPID).
+- ✅ Tüm çekirdek ekranlar gerçek backend verisine bağlı (mock kalmadı):
+  - **Ana Sayfa:** `/api/children`, `/api/appointments` (yaklaşanlar), `/api/knowledge`.
+  - **Uzmanlar:** `/api/experts` + arama/filtre; **uzman detayı** → "Randevu Al" / "Mesaj Gönder".
+  - **Gelişim:** `/api/goals`, `/api/notes` (okuma + **hedef/not ekleme**).
+  - **Çocuklarım:** `/api/children` CRUD (ekle/düzenle/sil).
+  - **Randevular:** `/api/appointments` liste + iptal (veli) / onayla·tamamla (uzman);
+    **randevu alma akışı** (müsaitlik slotları + `POST /appointments`).
+  - **Bilgi Bankası:** `/api/knowledge` liste + makale detayı (HTML→düz metin).
+  - **Mesajlaşma:** REST geçmiş + **STOMP /ws** canlı; konuşma başlatma
+    (`/messages/conversations/direct/{userId}`).
+  - **AI Asistan:** `/api/chatbot/stream` (SSE) streaming.
+  - **Hesap:** `PUT /api/users/me` ile profil düzenleme.
+- ✅ Firebase: Crashlytics + Analytics kod entegrasyonu (debug'da kapalı, sürümde açık).
+- ✅ FCM push **mobil tarafı** hazır (izin/token/ön plan/dokunma deep-link); backend
+  cihaz-token uç noktası bekleniyor → sözleşme `docs/backend_fcm_spec.md`. Uç nokta canlıya
+  çıkınca otomatik bağlanır (404'ü sessiz geçer).
+- ✅ UI cilası: isim baş harfli avatarlar, skeleton yükleme, paylaşılan boş/hata
+  bileşenleri (+CTA), haptics, **karanlık tema** (theme-aware `AppPalette` + `context.colors`,
+  Profil'de Sistem/Açık/Koyu seçici, kalıcı).
+- ⏳ Sonraki adaylar: Bilgi Bankası kategori/format filtreleri; hedef ilerletme (+jeton);
+  randevu erteleme; bildirimler ekranı (`/api/notifications`); backend FCM uç noktası.
 - Modül kapsamı ve fazlar: bkz. plan `~/.claude/plans/bir-otizm-destek-mobil-compressed-fog.md`.
 
 ## Notlar
 
-- Giriş ekranındaki "Veli/Uzman kaydol" butonları henüz tam kayıt ekranına bağlı değil
-  (snackbar). Mock veri içeren ekranlar: Ana Sayfa, Uzmanlar, Gelişim.
+- **Renkler:** widget'lar `context.colors.X` (AppPalette) kullanır; sabit palet
+  `lib/core/theme/app_colors.dart` (`AppPalette.light`/`dark`). Tema kurarken `AppColors`
+  (sabit, açık) kullanılır. Yeni ekranlarda `AppColors.*` yerine `context.colors.*`.
+- Backend mutasyonları (POST/PUT/DELETE) canlı paylaşılan DB'yi kirletmemek için sözleşme
+  bazında kaynaktan doğrulandı; canlı deneme kullanıcıya bırakıldı.
