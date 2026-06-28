@@ -46,6 +46,8 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$theme$tr theme = Translations$theme$tr.internal(_root);
 	late final Translations$roles$tr roles = Translations$roles$tr.internal(_root);
 	late final Translations$auth$tr auth = Translations$auth$tr.internal(_root);
+	late final Translations$forgotPassword$tr forgotPassword = Translations$forgotPassword$tr.internal(_root);
+	late final Translations$resetPassword$tr resetPassword = Translations$resetPassword$tr.internal(_root);
 	late final Translations$register$tr register = Translations$register$tr.internal(_root);
 	late final Translations$nav$tr nav = Translations$nav$tr.internal(_root);
 	late final Translations$chat$tr chat = Translations$chat$tr.internal(_root);
@@ -224,6 +226,84 @@ class Translations$auth$tr {
 
 	/// tr: '$role kayıt ekranı yakında eklenecek.'
 	String registerComingSoon({required Object role}) => '${role} kayıt ekranı yakında eklenecek.';
+}
+
+// Path: forgotPassword
+class Translations$forgotPassword$tr {
+	Translations$forgotPassword$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Şifremi Unuttum'
+	String get title => 'Şifremi Unuttum';
+
+	/// tr: 'E-posta adresinizi girin; size bir şifre sıfırlama bağlantısı gönderelim.'
+	String get subtitle => 'E-posta adresinizi girin; size bir şifre sıfırlama bağlantısı gönderelim.';
+
+	/// tr: 'Sıfırlama Bağlantısı Gönder'
+	String get submit => 'Sıfırlama Bağlantısı Gönder';
+
+	/// tr: 'Bağlantı gönderildi'
+	String get sentTitle => 'Bağlantı gönderildi';
+
+	/// tr: 'Bu e-postaya kayıtlı bir hesap varsa, şifre sıfırlama bağlantısı gelen kutunuza ulaşacaktır.'
+	String get sentBody => 'Bu e-postaya kayıtlı bir hesap varsa, şifre sıfırlama bağlantısı gelen kutunuza ulaşacaktır.';
+
+	/// tr: 'Sıfırlama kodum var'
+	String get haveCode => 'Sıfırlama kodum var';
+
+	/// tr: 'Girişe dön'
+	String get backToLogin => 'Girişe dön';
+
+	/// tr: 'Lütfen e-posta girin.'
+	String get errorEmailRequired => 'Lütfen e-posta girin.';
+
+	/// tr: 'Geçerli bir e-posta girin.'
+	String get errorEmailInvalid => 'Geçerli bir e-posta girin.';
+}
+
+// Path: resetPassword
+class Translations$resetPassword$tr {
+	Translations$resetPassword$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Şifre Sıfırla'
+	String get title => 'Şifre Sıfırla';
+
+	/// tr: 'E-postadaki sıfırlama kodunu ve yeni şifrenizi girin.'
+	String get subtitle => 'E-postadaki sıfırlama kodunu ve yeni şifrenizi girin.';
+
+	/// tr: 'Sıfırlama Kodu'
+	String get tokenLabel => 'Sıfırlama Kodu';
+
+	/// tr: 'E-postadaki bağlantıdaki kod'
+	String get tokenHint => 'E-postadaki bağlantıdaki kod';
+
+	/// tr: 'Yeni Şifre'
+	String get newPasswordLabel => 'Yeni Şifre';
+
+	/// tr: 'Yeni Şifre (Tekrar)'
+	String get confirmLabel => 'Yeni Şifre (Tekrar)';
+
+	/// tr: 'Şifreyi Güncelle'
+	String get submit => 'Şifreyi Güncelle';
+
+	/// tr: 'Şifreniz güncellendi. Giriş yapabilirsiniz.'
+	String get success => 'Şifreniz güncellendi. Giriş yapabilirsiniz.';
+
+	/// tr: 'Lütfen sıfırlama kodunu girin.'
+	String get errorTokenRequired => 'Lütfen sıfırlama kodunu girin.';
+
+	/// tr: 'Şifre en az 8 karakter olmalıdır.'
+	String get errorPasswordShort => 'Şifre en az 8 karakter olmalıdır.';
+
+	/// tr: 'Şifreler eşleşmiyor.'
+	String get errorMismatch => 'Şifreler eşleşmiyor.';
 }
 
 // Path: register
@@ -1143,6 +1223,26 @@ extension on Translations {
 			'auth.registerExpert' => 'Uzman hesabı ile kaydol',
 			'auth.errorEmptyFields' => 'Lütfen e-posta ve şifrenizi girin.',
 			'auth.registerComingSoon' => ({required Object role}) => '${role} kayıt ekranı yakında eklenecek.',
+			'forgotPassword.title' => 'Şifremi Unuttum',
+			'forgotPassword.subtitle' => 'E-posta adresinizi girin; size bir şifre sıfırlama bağlantısı gönderelim.',
+			'forgotPassword.submit' => 'Sıfırlama Bağlantısı Gönder',
+			'forgotPassword.sentTitle' => 'Bağlantı gönderildi',
+			'forgotPassword.sentBody' => 'Bu e-postaya kayıtlı bir hesap varsa, şifre sıfırlama bağlantısı gelen kutunuza ulaşacaktır.',
+			'forgotPassword.haveCode' => 'Sıfırlama kodum var',
+			'forgotPassword.backToLogin' => 'Girişe dön',
+			'forgotPassword.errorEmailRequired' => 'Lütfen e-posta girin.',
+			'forgotPassword.errorEmailInvalid' => 'Geçerli bir e-posta girin.',
+			'resetPassword.title' => 'Şifre Sıfırla',
+			'resetPassword.subtitle' => 'E-postadaki sıfırlama kodunu ve yeni şifrenizi girin.',
+			'resetPassword.tokenLabel' => 'Sıfırlama Kodu',
+			'resetPassword.tokenHint' => 'E-postadaki bağlantıdaki kod',
+			'resetPassword.newPasswordLabel' => 'Yeni Şifre',
+			'resetPassword.confirmLabel' => 'Yeni Şifre (Tekrar)',
+			'resetPassword.submit' => 'Şifreyi Güncelle',
+			'resetPassword.success' => 'Şifreniz güncellendi. Giriş yapabilirsiniz.',
+			'resetPassword.errorTokenRequired' => 'Lütfen sıfırlama kodunu girin.',
+			'resetPassword.errorPasswordShort' => 'Şifre en az 8 karakter olmalıdır.',
+			'resetPassword.errorMismatch' => 'Şifreler eşleşmiyor.',
 			'register.titleParent' => 'Veli Hesabı Oluştur',
 			'register.titleExpert' => 'Uzman Hesabı Oluştur',
 			'register.roleQuestion' => 'Nasıl kaydolmak istersiniz?',

@@ -5,9 +5,11 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/auth/domain/app_user.dart';
 import '../../features/auth/presentation/auth_controller.dart';
+import '../../features/auth/presentation/forgot_password_screen.dart';
 import '../../features/auth/presentation/login_screen.dart';
 import '../../features/appointments/presentation/appointments_screen.dart';
 import '../../features/auth/presentation/register_screen.dart';
+import '../../features/auth/presentation/reset_password_screen.dart';
 import '../../features/chatbot/presentation/chat_screen.dart';
 import '../../features/children/presentation/children_screen.dart';
 import '../../features/home/presentation/home_shell.dart';
@@ -47,7 +49,10 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       if (status == AuthStatus.unknown) {
         return loc == '/splash' ? null : '/splash';
       }
-      final onAuthScreen = loc == '/login' || loc == '/register';
+      final onAuthScreen = loc == '/login' ||
+          loc == '/register' ||
+          loc == '/forgot-password' ||
+          loc == '/reset-password';
       if (status == AuthStatus.unauthenticated) {
         return onAuthScreen ? null : '/login';
       }
@@ -66,6 +71,15 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             initialRole: isExpert ? UserRole.expert : UserRole.parent,
           );
         },
+      ),
+      GoRoute(
+        path: '/forgot-password',
+        builder: (_, _) => const ForgotPasswordScreen(),
+      ),
+      GoRoute(
+        path: '/reset-password',
+        builder: (_, state) =>
+            ResetPasswordScreen(token: state.uri.queryParameters['token']),
       ),
       GoRoute(path: '/home', builder: (_, _) => const HomeShell()),
       GoRoute(path: '/chat', builder: (_, _) => const ChatScreen()),

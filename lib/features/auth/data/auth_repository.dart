@@ -132,6 +132,35 @@ class AuthRepository {
     }
   }
 
+  /// Şifre sıfırlama bağlantısı ister (`POST /auth/forgot-password`).
+  Future<void> forgotPassword(String email) async {
+    try {
+      await _dio.post(
+        '/auth/forgot-password',
+        data: {'email': email},
+        options: _noAuth,
+      );
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Token + yeni şifre ile sıfırlar (`POST /auth/reset-password`).
+  Future<void> resetPassword({
+    required String token,
+    required String password,
+  }) async {
+    try {
+      await _dio.post(
+        '/auth/reset-password',
+        data: {'token': token, 'password': password},
+        options: _noAuth,
+      );
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
   Future<void> logout(String refreshToken) async {
     try {
       await _dio.post('/auth/logout', data: {'refreshToken': refreshToken});

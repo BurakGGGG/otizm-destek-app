@@ -54,6 +54,30 @@ auth:
   errorEmptyFields: Please enter your email and password.
   registerComingSoon: $role sign-up screen is coming soon.
 
+forgotPassword:
+  title: Forgot Password
+  subtitle: Enter your email and we'll send you a password reset link.
+  submit: Send Reset Link
+  sentTitle: Link sent
+  sentBody: If an account exists for this email, a password reset link will arrive in your inbox.
+  haveCode: I have a reset code
+  backToLogin: Back to login
+  errorEmailRequired: Please enter your email.
+  errorEmailInvalid: Please enter a valid email.
+
+resetPassword:
+  title: Reset Password
+  subtitle: Enter the reset code from your email and your new password.
+  tokenLabel: Reset Code
+  tokenHint: The code from the email link
+  newPasswordLabel: New Password
+  confirmLabel: Confirm New Password
+  submit: Update Password
+  success: Your password has been updated. You can sign in now.
+  errorTokenRequired: Please enter the reset code.
+  errorPasswordShort: Password must be at least 8 characters.
+  errorMismatch: Passwords do not match.
+
 register:
   titleParent: Create Parent Account
   titleExpert: Create Specialist Account

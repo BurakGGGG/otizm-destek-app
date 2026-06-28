@@ -54,6 +54,30 @@ auth:
   errorEmptyFields: Lütfen e-posta ve şifrenizi girin.
   registerComingSoon: $role kayıt ekranı yakında eklenecek.
 
+forgotPassword:
+  title: Şifremi Unuttum
+  subtitle: E-posta adresinizi girin; size bir şifre sıfırlama bağlantısı gönderelim.
+  submit: Sıfırlama Bağlantısı Gönder
+  sentTitle: Bağlantı gönderildi
+  sentBody: Bu e-postaya kayıtlı bir hesap varsa, şifre sıfırlama bağlantısı gelen kutunuza ulaşacaktır.
+  haveCode: Sıfırlama kodum var
+  backToLogin: Girişe dön
+  errorEmailRequired: Lütfen e-posta girin.
+  errorEmailInvalid: Geçerli bir e-posta girin.
+
+resetPassword:
+  title: Şifre Sıfırla
+  subtitle: E-postadaki sıfırlama kodunu ve yeni şifrenizi girin.
+  tokenLabel: Sıfırlama Kodu
+  tokenHint: E-postadaki bağlantıdaki kod
+  newPasswordLabel: Yeni Şifre
+  confirmLabel: Yeni Şifre (Tekrar)
+  submit: Şifreyi Güncelle
+  success: Şifreniz güncellendi. Giriş yapabilirsiniz.
+  errorTokenRequired: Lütfen sıfırlama kodunu girin.
+  errorPasswordShort: Şifre en az 8 karakter olmalıdır.
+  errorMismatch: Şifreler eşleşmiyor.
+
 register:
   titleParent: Veli Hesabı Oluştur
   titleExpert: Uzman Hesabı Oluştur

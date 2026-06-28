@@ -45,6 +45,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$theme$en theme = _Translations$theme$en._(_root);
 	@override late final _Translations$roles$en roles = _Translations$roles$en._(_root);
 	@override late final _Translations$auth$en auth = _Translations$auth$en._(_root);
+	@override late final _Translations$forgotPassword$en forgotPassword = _Translations$forgotPassword$en._(_root);
+	@override late final _Translations$resetPassword$en resetPassword = _Translations$resetPassword$en._(_root);
 	@override late final _Translations$register$en register = _Translations$register$en._(_root);
 	@override late final _Translations$nav$en nav = _Translations$nav$en._(_root);
 	@override late final _Translations$chat$en chat = _Translations$chat$en._(_root);
@@ -162,6 +164,44 @@ class _Translations$auth$en extends Translations$auth$tr {
 	@override String get registerExpert => 'Sign up as a specialist';
 	@override String get errorEmptyFields => 'Please enter your email and password.';
 	@override String registerComingSoon({required Object role}) => '${role} sign-up screen is coming soon.';
+}
+
+// Path: forgotPassword
+class _Translations$forgotPassword$en extends Translations$forgotPassword$tr {
+	_Translations$forgotPassword$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Forgot Password';
+	@override String get subtitle => 'Enter your email and we\'ll send you a password reset link.';
+	@override String get submit => 'Send Reset Link';
+	@override String get sentTitle => 'Link sent';
+	@override String get sentBody => 'If an account exists for this email, a password reset link will arrive in your inbox.';
+	@override String get haveCode => 'I have a reset code';
+	@override String get backToLogin => 'Back to login';
+	@override String get errorEmailRequired => 'Please enter your email.';
+	@override String get errorEmailInvalid => 'Please enter a valid email.';
+}
+
+// Path: resetPassword
+class _Translations$resetPassword$en extends Translations$resetPassword$tr {
+	_Translations$resetPassword$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Reset Password';
+	@override String get subtitle => 'Enter the reset code from your email and your new password.';
+	@override String get tokenLabel => 'Reset Code';
+	@override String get tokenHint => 'The code from the email link';
+	@override String get newPasswordLabel => 'New Password';
+	@override String get confirmLabel => 'Confirm New Password';
+	@override String get submit => 'Update Password';
+	@override String get success => 'Your password has been updated. You can sign in now.';
+	@override String get errorTokenRequired => 'Please enter the reset code.';
+	@override String get errorPasswordShort => 'Password must be at least 8 characters.';
+	@override String get errorMismatch => 'Passwords do not match.';
 }
 
 // Path: register
@@ -617,6 +657,26 @@ extension on TranslationsEn {
 			'auth.registerExpert' => 'Sign up as a specialist',
 			'auth.errorEmptyFields' => 'Please enter your email and password.',
 			'auth.registerComingSoon' => ({required Object role}) => '${role} sign-up screen is coming soon.',
+			'forgotPassword.title' => 'Forgot Password',
+			'forgotPassword.subtitle' => 'Enter your email and we\'ll send you a password reset link.',
+			'forgotPassword.submit' => 'Send Reset Link',
+			'forgotPassword.sentTitle' => 'Link sent',
+			'forgotPassword.sentBody' => 'If an account exists for this email, a password reset link will arrive in your inbox.',
+			'forgotPassword.haveCode' => 'I have a reset code',
+			'forgotPassword.backToLogin' => 'Back to login',
+			'forgotPassword.errorEmailRequired' => 'Please enter your email.',
+			'forgotPassword.errorEmailInvalid' => 'Please enter a valid email.',
+			'resetPassword.title' => 'Reset Password',
+			'resetPassword.subtitle' => 'Enter the reset code from your email and your new password.',
+			'resetPassword.tokenLabel' => 'Reset Code',
+			'resetPassword.tokenHint' => 'The code from the email link',
+			'resetPassword.newPasswordLabel' => 'New Password',
+			'resetPassword.confirmLabel' => 'Confirm New Password',
+			'resetPassword.submit' => 'Update Password',
+			'resetPassword.success' => 'Your password has been updated. You can sign in now.',
+			'resetPassword.errorTokenRequired' => 'Please enter the reset code.',
+			'resetPassword.errorPasswordShort' => 'Password must be at least 8 characters.',
+			'resetPassword.errorMismatch' => 'Passwords do not match.',
 			'register.titleParent' => 'Create Parent Account',
 			'register.titleExpert' => 'Create Specialist Account',
 			'register.roleQuestion' => 'How would you like to sign up?',
