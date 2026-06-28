@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/haptics.dart';
 import '../../../core/network/api_exception.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
@@ -170,6 +171,7 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
     final reason = controller.text;
     controller.dispose();
     if (confirmed != true) return;
+    Haptics.warning();
     await _run(
       () =>
           ref.read(appointmentRepositoryProvider).cancel(a.id, reason: reason),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/haptics.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../i18n/strings.g.dart';
 import '../../auth/domain/app_user.dart';
@@ -80,6 +81,7 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
     setState(() => _saving = false);
     final messenger = ScaffoldMessenger.of(context);
     if (error == null) {
+      Haptics.success();
       messenger.showSnackBar(SnackBar(content: Text(t.account.saved)));
       Navigator.of(context).pop();
     } else {

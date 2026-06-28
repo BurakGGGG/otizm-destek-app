@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/haptics.dart';
 import '../../../core/network/api_exception.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
@@ -70,6 +71,7 @@ class _NoteFormScreenState extends ConsumerState<NoteFormScreen> {
           );
       ref.invalidate(recentNotesProvider(widget.childId));
       if (!mounted) return;
+      Haptics.success();
       Navigator.of(context).pop(t.noteForm.created);
     } on ApiException catch (e) {
       if (!mounted) return;

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/haptics.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../i18n/strings.g.dart';
 import '../../profile/presentation/profile_tab.dart';
@@ -82,7 +83,10 @@ class _HomeShellState extends ConsumerState<HomeShell> {
         ),
         child: NavigationBar(
           selectedIndex: _index,
-          onDestinationSelected: (i) => setState(() => _index = i),
+          onDestinationSelected: (i) {
+            if (i != _index) Haptics.selection();
+            setState(() => _index = i);
+          },
           destinations: [
             NavigationDestination(
               icon: const Icon(Icons.home_outlined),

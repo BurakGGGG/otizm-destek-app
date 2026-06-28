@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/haptics.dart';
 import '../../../core/network/api_exception.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
@@ -100,6 +101,7 @@ class ChildrenScreen extends ConsumerWidget {
       ),
     );
     if (confirmed != true) return;
+    Haptics.warning();
 
     try {
       await ref.read(childRepositoryProvider).deleteChild(child.id);

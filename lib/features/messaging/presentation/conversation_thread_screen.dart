@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stomp_dart_client/stomp_dart_client.dart';
 
+import '../../../core/haptics.dart';
 import '../../../core/network/api_exception.dart';
 import '../../../core/realtime/stomp_service.dart';
 import '../../../core/theme/app_colors.dart';
@@ -121,6 +122,7 @@ class _ConversationThreadScreenState
       final sent = await ref
           .read(messagingRepositoryProvider)
           .sendMessage(widget.conversationId, content);
+      Haptics.selection();
       _input.clear();
       _addMessage(sent); // STOMP echo'su id ile tekilleştirilecek
     } on ApiException catch (e) {
