@@ -19,6 +19,7 @@ import '../../features/messaging/presentation/conversations_screen.dart';
 import '../../features/notifications/presentation/notifications_screen.dart';
 import '../../features/profile/presentation/account_screen.dart';
 import '../../features/profile/presentation/help_screen.dart';
+import '../../features/routines/presentation/routines_screen.dart';
 import '../../features/splash/splash_screen.dart';
 import '../providers.dart';
 
@@ -95,6 +96,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         builder: (_, _) => const AppointmentsScreen(),
       ),
       GoRoute(path: '/knowledge', builder: (_, _) => const KnowledgeScreen()),
+      GoRoute(path: '/routines', builder: (_, _) => const RoutinesScreen()),
       GoRoute(
         path: '/messages',
         builder: (_, _) => const ConversationsScreen(),

@@ -61,6 +61,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$appointments$en appointments = _Translations$appointments$en._(_root);
 	@override late final _Translations$expertDetail$en expertDetail = _Translations$expertDetail$en._(_root);
 	@override late final _Translations$booking$en booking = _Translations$booking$en._(_root);
+	@override late final _Translations$routines$en routines = _Translations$routines$en._(_root);
+	@override late final _Translations$routineForm$en routineForm = _Translations$routineForm$en._(_root);
 	@override late final _Translations$children$en children = _Translations$children$en._(_root);
 	@override late final _Translations$account$en account = _Translations$account$en._(_root);
 	@override late final _Translations$help$en help = _Translations$help$en._(_root);
@@ -496,6 +498,51 @@ class _Translations$booking$en extends Translations$booking$tr {
 	@override String get errorSelectTime => 'Please select a time.';
 }
 
+// Path: routines
+class _Translations$routines$en extends Translations$routines$tr {
+	_Translations$routines$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Routines';
+	@override String get empty => 'No routines for this child yet.';
+	@override String get noChild => 'Add a child first to create routines.';
+	@override String get add => 'Add Routine';
+	@override String get addItem => 'Add Step';
+	@override String get noItems => 'No steps added yet.';
+	@override String get deleteRoutineTitle => 'Delete Routine';
+	@override String deleteRoutineConfirm({required Object name}) => 'Are you sure you want to delete the routine "${name}"?';
+	@override String get delete => 'Delete';
+	@override String get cancel => 'Cancel';
+	@override String get created => 'Routine added.';
+	@override String get itemAdded => 'Step added.';
+	@override String get deleted => 'Routine deleted.';
+	@override String get itemTitleLabel => 'Step Title';
+	@override String get itemTitleHint => 'e.g. Brush teeth';
+	@override String get itemTimeLabel => 'Time (optional)';
+	@override String get selectTime => 'Select time';
+	@override String get itemIconLabel => 'Icon';
+	@override String get itemSave => 'Add';
+	@override String get errorItemTitle => 'Please enter a step title.';
+}
+
+// Path: routineForm
+class _Translations$routineForm$en extends Translations$routineForm$tr {
+	_Translations$routineForm$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Add Routine';
+	@override String get nameLabel => 'Routine Name';
+	@override String get nameHint => 'e.g. Morning Routine';
+	@override String get descriptionLabel => 'Description (optional)';
+	@override String get descriptionHint => 'What is this routine for?';
+	@override String get save => 'Save';
+	@override String get errorName => 'Please enter a routine name.';
+}
+
 // Path: children
 class _Translations$children$en extends Translations$children$tr {
 	_Translations$children$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -843,6 +890,33 @@ extension on TranslationsEn {
 			'booking.created' => 'Appointment created.',
 			'booking.errorSelectChild' => 'Please select a child.',
 			'booking.errorSelectTime' => 'Please select a time.',
+			'routines.title' => 'Routines',
+			'routines.empty' => 'No routines for this child yet.',
+			'routines.noChild' => 'Add a child first to create routines.',
+			'routines.add' => 'Add Routine',
+			'routines.addItem' => 'Add Step',
+			'routines.noItems' => 'No steps added yet.',
+			'routines.deleteRoutineTitle' => 'Delete Routine',
+			'routines.deleteRoutineConfirm' => ({required Object name}) => 'Are you sure you want to delete the routine "${name}"?',
+			'routines.delete' => 'Delete',
+			'routines.cancel' => 'Cancel',
+			'routines.created' => 'Routine added.',
+			'routines.itemAdded' => 'Step added.',
+			'routines.deleted' => 'Routine deleted.',
+			'routines.itemTitleLabel' => 'Step Title',
+			'routines.itemTitleHint' => 'e.g. Brush teeth',
+			'routines.itemTimeLabel' => 'Time (optional)',
+			'routines.selectTime' => 'Select time',
+			'routines.itemIconLabel' => 'Icon',
+			'routines.itemSave' => 'Add',
+			'routines.errorItemTitle' => 'Please enter a step title.',
+			'routineForm.title' => 'Add Routine',
+			'routineForm.nameLabel' => 'Routine Name',
+			'routineForm.nameHint' => 'e.g. Morning Routine',
+			'routineForm.descriptionLabel' => 'Description (optional)',
+			'routineForm.descriptionHint' => 'What is this routine for?',
+			'routineForm.save' => 'Save',
+			'routineForm.errorName' => 'Please enter a routine name.',
 			'children.title' => 'My Children',
 			'children.addTitle' => 'Add Child',
 			'children.editTitle' => 'Edit Child',

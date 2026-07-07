@@ -62,6 +62,8 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$appointments$tr appointments = Translations$appointments$tr.internal(_root);
 	late final Translations$expertDetail$tr expertDetail = Translations$expertDetail$tr.internal(_root);
 	late final Translations$booking$tr booking = Translations$booking$tr.internal(_root);
+	late final Translations$routines$tr routines = Translations$routines$tr.internal(_root);
+	late final Translations$routineForm$tr routineForm = Translations$routineForm$tr.internal(_root);
 	late final Translations$children$tr children = Translations$children$tr.internal(_root);
 	late final Translations$account$tr account = Translations$account$tr.internal(_root);
 	late final Translations$help$tr help = Translations$help$tr.internal(_root);
@@ -930,6 +932,105 @@ class Translations$booking$tr {
 	String get errorSelectTime => 'Lütfen bir saat seçin.';
 }
 
+// Path: routines
+class Translations$routines$tr {
+	Translations$routines$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Rutinler'
+	String get title => 'Rutinler';
+
+	/// tr: 'Bu çocuk için henüz rutin yok.'
+	String get empty => 'Bu çocuk için henüz rutin yok.';
+
+	/// tr: 'Rutin oluşturmak için önce bir çocuk ekleyin.'
+	String get noChild => 'Rutin oluşturmak için önce bir çocuk ekleyin.';
+
+	/// tr: 'Rutin Ekle'
+	String get add => 'Rutin Ekle';
+
+	/// tr: 'Adım Ekle'
+	String get addItem => 'Adım Ekle';
+
+	/// tr: 'Henüz adım eklenmemiş.'
+	String get noItems => 'Henüz adım eklenmemiş.';
+
+	/// tr: 'Rutini Sil'
+	String get deleteRoutineTitle => 'Rutini Sil';
+
+	/// tr: '$name rutinini silmek istediğinize emin misiniz?'
+	String deleteRoutineConfirm({required Object name}) => '${name} rutinini silmek istediğinize emin misiniz?';
+
+	/// tr: 'Sil'
+	String get delete => 'Sil';
+
+	/// tr: 'İptal'
+	String get cancel => 'İptal';
+
+	/// tr: 'Rutin eklendi.'
+	String get created => 'Rutin eklendi.';
+
+	/// tr: 'Adım eklendi.'
+	String get itemAdded => 'Adım eklendi.';
+
+	/// tr: 'Rutin silindi.'
+	String get deleted => 'Rutin silindi.';
+
+	/// tr: 'Adım Başlığı'
+	String get itemTitleLabel => 'Adım Başlığı';
+
+	/// tr: 'Örn. Dişleri fırçala'
+	String get itemTitleHint => 'Örn. Dişleri fırçala';
+
+	/// tr: 'Saat (isteğe bağlı)'
+	String get itemTimeLabel => 'Saat (isteğe bağlı)';
+
+	/// tr: 'Saat seç'
+	String get selectTime => 'Saat seç';
+
+	/// tr: 'İkon'
+	String get itemIconLabel => 'İkon';
+
+	/// tr: 'Ekle'
+	String get itemSave => 'Ekle';
+
+	/// tr: 'Lütfen adım başlığı girin.'
+	String get errorItemTitle => 'Lütfen adım başlığı girin.';
+}
+
+// Path: routineForm
+class Translations$routineForm$tr {
+	Translations$routineForm$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Rutin Ekle'
+	String get title => 'Rutin Ekle';
+
+	/// tr: 'Rutin Adı'
+	String get nameLabel => 'Rutin Adı';
+
+	/// tr: 'Örn. Sabah Rutini'
+	String get nameHint => 'Örn. Sabah Rutini';
+
+	/// tr: 'Açıklama (isteğe bağlı)'
+	String get descriptionLabel => 'Açıklama (isteğe bağlı)';
+
+	/// tr: 'Bu rutin ne için?'
+	String get descriptionHint => 'Bu rutin ne için?';
+
+	/// tr: 'Kaydet'
+	String get save => 'Kaydet';
+
+	/// tr: 'Lütfen bir rutin adı girin.'
+	String get errorName => 'Lütfen bir rutin adı girin.';
+}
+
 // Path: children
 class Translations$children$tr {
 	Translations$children$tr.internal(this._root);
@@ -1409,6 +1510,33 @@ extension on Translations {
 			'booking.created' => 'Randevu oluşturuldu.',
 			'booking.errorSelectChild' => 'Lütfen bir çocuk seçin.',
 			'booking.errorSelectTime' => 'Lütfen bir saat seçin.',
+			'routines.title' => 'Rutinler',
+			'routines.empty' => 'Bu çocuk için henüz rutin yok.',
+			'routines.noChild' => 'Rutin oluşturmak için önce bir çocuk ekleyin.',
+			'routines.add' => 'Rutin Ekle',
+			'routines.addItem' => 'Adım Ekle',
+			'routines.noItems' => 'Henüz adım eklenmemiş.',
+			'routines.deleteRoutineTitle' => 'Rutini Sil',
+			'routines.deleteRoutineConfirm' => ({required Object name}) => '${name} rutinini silmek istediğinize emin misiniz?',
+			'routines.delete' => 'Sil',
+			'routines.cancel' => 'İptal',
+			'routines.created' => 'Rutin eklendi.',
+			'routines.itemAdded' => 'Adım eklendi.',
+			'routines.deleted' => 'Rutin silindi.',
+			'routines.itemTitleLabel' => 'Adım Başlığı',
+			'routines.itemTitleHint' => 'Örn. Dişleri fırçala',
+			'routines.itemTimeLabel' => 'Saat (isteğe bağlı)',
+			'routines.selectTime' => 'Saat seç',
+			'routines.itemIconLabel' => 'İkon',
+			'routines.itemSave' => 'Ekle',
+			'routines.errorItemTitle' => 'Lütfen adım başlığı girin.',
+			'routineForm.title' => 'Rutin Ekle',
+			'routineForm.nameLabel' => 'Rutin Adı',
+			'routineForm.nameHint' => 'Örn. Sabah Rutini',
+			'routineForm.descriptionLabel' => 'Açıklama (isteğe bağlı)',
+			'routineForm.descriptionHint' => 'Bu rutin ne için?',
+			'routineForm.save' => 'Kaydet',
+			'routineForm.errorName' => 'Lütfen bir rutin adı girin.',
 			'children.title' => 'Çocuklarım',
 			'children.addTitle' => 'Çocuk Ekle',
 			'children.editTitle' => 'Çocuğu Düzenle',

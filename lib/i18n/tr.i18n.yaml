@@ -272,6 +272,37 @@ booking:
   errorSelectChild: Lütfen bir çocuk seçin.
   errorSelectTime: Lütfen bir saat seçin.
 
+routines:
+  title: Rutinler
+  empty: Bu çocuk için henüz rutin yok.
+  noChild: Rutin oluşturmak için önce bir çocuk ekleyin.
+  add: Rutin Ekle
+  addItem: Adım Ekle
+  noItems: Henüz adım eklenmemiş.
+  deleteRoutineTitle: Rutini Sil
+  deleteRoutineConfirm: $name rutinini silmek istediğinize emin misiniz?
+  delete: Sil
+  cancel: İptal
+  created: Rutin eklendi.
+  itemAdded: Adım eklendi.
+  deleted: Rutin silindi.
+  itemTitleLabel: Adım Başlığı
+  itemTitleHint: Örn. Dişleri fırçala
+  itemTimeLabel: Saat (isteğe bağlı)
+  selectTime: Saat seç
+  itemIconLabel: İkon
+  itemSave: Ekle
+  errorItemTitle: Lütfen adım başlığı girin.
+
+routineForm:
+  title: Rutin Ekle
+  nameLabel: Rutin Adı
+  nameHint: Örn. Sabah Rutini
+  descriptionLabel: Açıklama (isteğe bağlı)
+  descriptionHint: Bu rutin ne için?
+  save: Kaydet
+  errorName: Lütfen bir rutin adı girin.
+
 children:
   title: Çocuklarım
   addTitle: Çocuk Ekle

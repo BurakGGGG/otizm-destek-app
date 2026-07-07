@@ -272,6 +272,37 @@ booking:
   errorSelectChild: Please select a child.
   errorSelectTime: Please select a time.
 
+routines:
+  title: Routines
+  empty: No routines for this child yet.
+  noChild: Add a child first to create routines.
+  add: Add Routine
+  addItem: Add Step
+  noItems: No steps added yet.
+  deleteRoutineTitle: Delete Routine
+  deleteRoutineConfirm: Are you sure you want to delete the routine "$name"?
+  delete: Delete
+  cancel: Cancel
+  created: Routine added.
+  itemAdded: Step added.
+  deleted: Routine deleted.
+  itemTitleLabel: Step Title
+  itemTitleHint: e.g. Brush teeth
+  itemTimeLabel: Time (optional)
+  selectTime: Select time
+  itemIconLabel: Icon
+  itemSave: Add
+  errorItemTitle: Please enter a step title.
+
+routineForm:
+  title: Add Routine
+  nameLabel: Routine Name
+  nameHint: e.g. Morning Routine
+  descriptionLabel: Description (optional)
+  descriptionHint: What is this routine for?
+  save: Save
+  errorName: Please enter a routine name.
+
 children:
   title: My Children
   addTitle: Add Child
