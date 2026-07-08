@@ -159,6 +159,14 @@ class _QuickLinks extends StatelessWidget {
             onTap: () => context.push('/daily-tracker'),
           ),
         ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: _QuickLinkCard(
+            icon: Icons.insights_outlined,
+            label: t.analytics.title,
+            onTap: () => context.push('/analytics'),
+          ),
+        ),
       ],
     );
   }
