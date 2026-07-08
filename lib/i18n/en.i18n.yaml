@@ -393,6 +393,54 @@ meds:
   logNotesHint: Anything you want to share with your doctor?
   logSaved: Dose log saved.
 
+emergency:
+  title: Emergency Card
+  subtitle: Information to show to anyone who meets your child in an emergency.
+  noChild: Add a child first to create an emergency card.
+  lastUpdated: Last updated $date
+  notSaved: This card has not been saved yet.
+  save: Save
+  saved: Emergency card saved.
+  call: Call
+  sectionChild: Child Information
+  sectionContacts: Emergency Contacts
+  sectionMedical: Medical Information
+  sectionBehavior: Behavioral Information
+  childName: Full Name
+  birthDate: Date of Birth
+  diagnosis: Diagnosis
+  bloodType: Blood Type
+  communicationLevel: Communication Level
+  languages: Language(s) Spoken
+  warningsLabel: Special condition warnings
+  selfInjury: May exhibit self-injury
+  wandering: Risk of wandering / getting lost
+  nonVerbal: Non-verbal
+  contact1: First Contact
+  contact2: Second Contact
+  doctor: Doctor / Hospital
+  name: Full Name
+  phone: Phone
+  relation: Relationship
+  doctorName: Doctor Name
+  doctorPhone: Doctor Phone
+  hospital: Hospital
+  medications: Current Medications
+  medicationsHint: Name - dose - time (one medication per line)
+  allergies: Allergies
+  allergiesHint: Food, drug, substance allergies
+  conditions: Other Medical Conditions
+  conditionsHint: Epilepsy, heart condition, etc.
+  triggers: Triggers (to avoid)
+  triggersHint: What causes a crisis? E.g. sudden noise, crowds
+  calming: Calming Strategies
+  calmingHint: What helps? E.g. favorite music, quiet room
+  avoid: Things to Never Do
+  avoidHint: E.g. don't shout, don't restrain, don't force eye contact
+  special: Special Instructions
+  specialHint: Extra notes for emergency services or caregivers
+  select: Select...
+
 behavior:
   title: Behavior Journal
   subtitle: ABC (Antecedent-Behavior-Consequence) observation log

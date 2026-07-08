@@ -67,6 +67,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$dailyTracker$tr dailyTracker = Translations$dailyTracker$tr.internal(_root);
 	late final Translations$sleep$tr sleep = Translations$sleep$tr.internal(_root);
 	late final Translations$meds$tr meds = Translations$meds$tr.internal(_root);
+	late final Translations$emergency$tr emergency = Translations$emergency$tr.internal(_root);
 	late final Translations$behavior$tr behavior = Translations$behavior$tr.internal(_root);
 	late final Translations$analytics$tr analytics = Translations$analytics$tr.internal(_root);
 	late final Translations$children$tr children = Translations$children$tr.internal(_root);
@@ -1312,6 +1313,153 @@ class Translations$meds$tr {
 	String get logSaved => 'Doz günlüğü kaydedildi.';
 }
 
+// Path: emergency
+class Translations$emergency$tr {
+	Translations$emergency$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Acil Durum Kartı'
+	String get title => 'Acil Durum Kartı';
+
+	/// tr: 'Acil bir durumda çocuğunuzla karşılaşan kişilere gösterilecek bilgiler.'
+	String get subtitle => 'Acil bir durumda çocuğunuzla karşılaşan kişilere gösterilecek bilgiler.';
+
+	/// tr: 'Acil durum kartı için önce bir çocuk ekleyin.'
+	String get noChild => 'Acil durum kartı için önce bir çocuk ekleyin.';
+
+	/// tr: 'Son güncelleme $date'
+	String lastUpdated({required Object date}) => 'Son güncelleme ${date}';
+
+	/// tr: 'Bu kart henüz kaydedilmedi.'
+	String get notSaved => 'Bu kart henüz kaydedilmedi.';
+
+	/// tr: 'Kaydet'
+	String get save => 'Kaydet';
+
+	/// tr: 'Acil durum kartı kaydedildi.'
+	String get saved => 'Acil durum kartı kaydedildi.';
+
+	/// tr: 'Ara'
+	String get call => 'Ara';
+
+	/// tr: 'Çocuk Bilgileri'
+	String get sectionChild => 'Çocuk Bilgileri';
+
+	/// tr: 'Acil İletişim'
+	String get sectionContacts => 'Acil İletişim';
+
+	/// tr: 'Tıbbi Bilgiler'
+	String get sectionMedical => 'Tıbbi Bilgiler';
+
+	/// tr: 'Davranışsal Bilgiler'
+	String get sectionBehavior => 'Davranışsal Bilgiler';
+
+	/// tr: 'Ad Soyad'
+	String get childName => 'Ad Soyad';
+
+	/// tr: 'Doğum Tarihi'
+	String get birthDate => 'Doğum Tarihi';
+
+	/// tr: 'Tanı'
+	String get diagnosis => 'Tanı';
+
+	/// tr: 'Kan Grubu'
+	String get bloodType => 'Kan Grubu';
+
+	/// tr: 'İletişim Seviyesi'
+	String get communicationLevel => 'İletişim Seviyesi';
+
+	/// tr: 'Konuşulan Dil(ler)'
+	String get languages => 'Konuşulan Dil(ler)';
+
+	/// tr: 'Özel durum uyarıları'
+	String get warningsLabel => 'Özel durum uyarıları';
+
+	/// tr: 'Öz-zarar davranışı olabilir'
+	String get selfInjury => 'Öz-zarar davranışı olabilir';
+
+	/// tr: 'Kaçma / kaybolma riski var'
+	String get wandering => 'Kaçma / kaybolma riski var';
+
+	/// tr: 'Sözel iletişim yoktur'
+	String get nonVerbal => 'Sözel iletişim yoktur';
+
+	/// tr: 'Birinci Kişi'
+	String get contact1 => 'Birinci Kişi';
+
+	/// tr: 'İkinci Kişi'
+	String get contact2 => 'İkinci Kişi';
+
+	/// tr: 'Doktor / Hastane'
+	String get doctor => 'Doktor / Hastane';
+
+	/// tr: 'Ad Soyad'
+	String get name => 'Ad Soyad';
+
+	/// tr: 'Telefon'
+	String get phone => 'Telefon';
+
+	/// tr: 'Yakınlık'
+	String get relation => 'Yakınlık';
+
+	/// tr: 'Doktor Adı'
+	String get doctorName => 'Doktor Adı';
+
+	/// tr: 'Doktor Telefonu'
+	String get doctorPhone => 'Doktor Telefonu';
+
+	/// tr: 'Hastane'
+	String get hospital => 'Hastane';
+
+	/// tr: 'Kullandığı İlaçlar'
+	String get medications => 'Kullandığı İlaçlar';
+
+	/// tr: 'İlaç adı - doz - saat (her satıra bir ilaç)'
+	String get medicationsHint => 'İlaç adı - doz - saat (her satıra bir ilaç)';
+
+	/// tr: 'Alerjiler'
+	String get allergies => 'Alerjiler';
+
+	/// tr: 'Gıda, ilaç, madde alerjileri'
+	String get allergiesHint => 'Gıda, ilaç, madde alerjileri';
+
+	/// tr: 'Diğer Tıbbi Durumlar'
+	String get conditions => 'Diğer Tıbbi Durumlar';
+
+	/// tr: 'Epilepsi, kalp hastalığı vb.'
+	String get conditionsHint => 'Epilepsi, kalp hastalığı vb.';
+
+	/// tr: 'Tetikleyiciler (kaçınılması gerekenler)'
+	String get triggers => 'Tetikleyiciler (kaçınılması gerekenler)';
+
+	/// tr: 'Neler kriz çıkarır? Örn: ani gürültü, kalabalık'
+	String get triggersHint => 'Neler kriz çıkarır? Örn: ani gürültü, kalabalık';
+
+	/// tr: 'Sakinleştirme Stratejileri'
+	String get calming => 'Sakinleştirme Stratejileri';
+
+	/// tr: 'Ne işe yarar? Örn: sevdiği müzik, sessiz oda'
+	String get calmingHint => 'Ne işe yarar? Örn: sevdiği müzik, sessiz oda';
+
+	/// tr: 'Kesinlikle Yapılmaması Gerekenler'
+	String get avoid => 'Kesinlikle Yapılmaması Gerekenler';
+
+	/// tr: 'Örn: bağırmayın, tutmayın, göz temasına zorlamayın'
+	String get avoidHint => 'Örn: bağırmayın, tutmayın, göz temasına zorlamayın';
+
+	/// tr: 'Özel Talimatlar'
+	String get special => 'Özel Talimatlar';
+
+	/// tr: 'Acil servis veya bakıcı için ek notlar'
+	String get specialHint => 'Acil servis veya bakıcı için ek notlar';
+
+	/// tr: 'Seçin...'
+	String get select => 'Seçin...';
+}
+
 // Path: behavior
 class Translations$behavior$tr {
 	Translations$behavior$tr.internal(this._root);
@@ -2045,6 +2193,52 @@ extension on Translations {
 			'meds.logNotesLabel' => 'Gözlem notları (isteğe bağlı)',
 			'meds.logNotesHint' => 'Doktorunuza iletmek istediğiniz bir gözlem var mı?',
 			'meds.logSaved' => 'Doz günlüğü kaydedildi.',
+			'emergency.title' => 'Acil Durum Kartı',
+			'emergency.subtitle' => 'Acil bir durumda çocuğunuzla karşılaşan kişilere gösterilecek bilgiler.',
+			'emergency.noChild' => 'Acil durum kartı için önce bir çocuk ekleyin.',
+			'emergency.lastUpdated' => ({required Object date}) => 'Son güncelleme ${date}',
+			'emergency.notSaved' => 'Bu kart henüz kaydedilmedi.',
+			'emergency.save' => 'Kaydet',
+			'emergency.saved' => 'Acil durum kartı kaydedildi.',
+			'emergency.call' => 'Ara',
+			'emergency.sectionChild' => 'Çocuk Bilgileri',
+			'emergency.sectionContacts' => 'Acil İletişim',
+			'emergency.sectionMedical' => 'Tıbbi Bilgiler',
+			'emergency.sectionBehavior' => 'Davranışsal Bilgiler',
+			'emergency.childName' => 'Ad Soyad',
+			'emergency.birthDate' => 'Doğum Tarihi',
+			'emergency.diagnosis' => 'Tanı',
+			'emergency.bloodType' => 'Kan Grubu',
+			'emergency.communicationLevel' => 'İletişim Seviyesi',
+			'emergency.languages' => 'Konuşulan Dil(ler)',
+			'emergency.warningsLabel' => 'Özel durum uyarıları',
+			'emergency.selfInjury' => 'Öz-zarar davranışı olabilir',
+			'emergency.wandering' => 'Kaçma / kaybolma riski var',
+			'emergency.nonVerbal' => 'Sözel iletişim yoktur',
+			'emergency.contact1' => 'Birinci Kişi',
+			'emergency.contact2' => 'İkinci Kişi',
+			'emergency.doctor' => 'Doktor / Hastane',
+			'emergency.name' => 'Ad Soyad',
+			'emergency.phone' => 'Telefon',
+			'emergency.relation' => 'Yakınlık',
+			'emergency.doctorName' => 'Doktor Adı',
+			'emergency.doctorPhone' => 'Doktor Telefonu',
+			'emergency.hospital' => 'Hastane',
+			'emergency.medications' => 'Kullandığı İlaçlar',
+			'emergency.medicationsHint' => 'İlaç adı - doz - saat (her satıra bir ilaç)',
+			'emergency.allergies' => 'Alerjiler',
+			'emergency.allergiesHint' => 'Gıda, ilaç, madde alerjileri',
+			'emergency.conditions' => 'Diğer Tıbbi Durumlar',
+			'emergency.conditionsHint' => 'Epilepsi, kalp hastalığı vb.',
+			'emergency.triggers' => 'Tetikleyiciler (kaçınılması gerekenler)',
+			'emergency.triggersHint' => 'Neler kriz çıkarır? Örn: ani gürültü, kalabalık',
+			'emergency.calming' => 'Sakinleştirme Stratejileri',
+			'emergency.calmingHint' => 'Ne işe yarar? Örn: sevdiği müzik, sessiz oda',
+			'emergency.avoid' => 'Kesinlikle Yapılmaması Gerekenler',
+			'emergency.avoidHint' => 'Örn: bağırmayın, tutmayın, göz temasına zorlamayın',
+			'emergency.special' => 'Özel Talimatlar',
+			'emergency.specialHint' => 'Acil servis veya bakıcı için ek notlar',
+			'emergency.select' => 'Seçin...',
 			'behavior.title' => 'Davranış Günlüğü',
 			'behavior.subtitle' => 'ABC (Öncesi-Davranış-Sonuç) gözlem kayıtları',
 			'behavior.add' => 'Kayıt Ekle',

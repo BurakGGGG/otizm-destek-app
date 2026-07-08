@@ -59,6 +59,11 @@ class ProfileTab extends ConsumerWidget {
             onTap: () => context.push('/routines'),
           ),
           _ProfileItem(
+            icon: Icons.emergency_outlined,
+            label: t.emergency.title,
+            onTap: () => context.push('/emergency'),
+          ),
+          _ProfileItem(
             icon: Icons.notifications_none,
             label: t.profile.notificationSettings,
             onTap: () => ScaffoldMessenger.of(

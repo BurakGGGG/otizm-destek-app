@@ -66,6 +66,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$dailyTracker$en dailyTracker = _Translations$dailyTracker$en._(_root);
 	@override late final _Translations$sleep$en sleep = _Translations$sleep$en._(_root);
 	@override late final _Translations$meds$en meds = _Translations$meds$en._(_root);
+	@override late final _Translations$emergency$en emergency = _Translations$emergency$en._(_root);
 	@override late final _Translations$behavior$en behavior = _Translations$behavior$en._(_root);
 	@override late final _Translations$analytics$en analytics = _Translations$analytics$en._(_root);
 	@override late final _Translations$children$en children = _Translations$children$en._(_root);
@@ -658,6 +659,61 @@ class _Translations$meds$en extends Translations$meds$tr {
 	@override String get logSaved => 'Dose log saved.';
 }
 
+// Path: emergency
+class _Translations$emergency$en extends Translations$emergency$tr {
+	_Translations$emergency$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Emergency Card';
+	@override String get subtitle => 'Information to show to anyone who meets your child in an emergency.';
+	@override String get noChild => 'Add a child first to create an emergency card.';
+	@override String lastUpdated({required Object date}) => 'Last updated ${date}';
+	@override String get notSaved => 'This card has not been saved yet.';
+	@override String get save => 'Save';
+	@override String get saved => 'Emergency card saved.';
+	@override String get call => 'Call';
+	@override String get sectionChild => 'Child Information';
+	@override String get sectionContacts => 'Emergency Contacts';
+	@override String get sectionMedical => 'Medical Information';
+	@override String get sectionBehavior => 'Behavioral Information';
+	@override String get childName => 'Full Name';
+	@override String get birthDate => 'Date of Birth';
+	@override String get diagnosis => 'Diagnosis';
+	@override String get bloodType => 'Blood Type';
+	@override String get communicationLevel => 'Communication Level';
+	@override String get languages => 'Language(s) Spoken';
+	@override String get warningsLabel => 'Special condition warnings';
+	@override String get selfInjury => 'May exhibit self-injury';
+	@override String get wandering => 'Risk of wandering / getting lost';
+	@override String get nonVerbal => 'Non-verbal';
+	@override String get contact1 => 'First Contact';
+	@override String get contact2 => 'Second Contact';
+	@override String get doctor => 'Doctor / Hospital';
+	@override String get name => 'Full Name';
+	@override String get phone => 'Phone';
+	@override String get relation => 'Relationship';
+	@override String get doctorName => 'Doctor Name';
+	@override String get doctorPhone => 'Doctor Phone';
+	@override String get hospital => 'Hospital';
+	@override String get medications => 'Current Medications';
+	@override String get medicationsHint => 'Name - dose - time (one medication per line)';
+	@override String get allergies => 'Allergies';
+	@override String get allergiesHint => 'Food, drug, substance allergies';
+	@override String get conditions => 'Other Medical Conditions';
+	@override String get conditionsHint => 'Epilepsy, heart condition, etc.';
+	@override String get triggers => 'Triggers (to avoid)';
+	@override String get triggersHint => 'What causes a crisis? E.g. sudden noise, crowds';
+	@override String get calming => 'Calming Strategies';
+	@override String get calmingHint => 'What helps? E.g. favorite music, quiet room';
+	@override String get avoid => 'Things to Never Do';
+	@override String get avoidHint => 'E.g. don\'t shout, don\'t restrain, don\'t force eye contact';
+	@override String get special => 'Special Instructions';
+	@override String get specialHint => 'Extra notes for emergency services or caregivers';
+	@override String get select => 'Select...';
+}
+
 // Path: behavior
 class _Translations$behavior$en extends Translations$behavior$tr {
 	_Translations$behavior$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -1175,6 +1231,52 @@ extension on TranslationsEn {
 			'meds.logNotesLabel' => 'Observation notes (optional)',
 			'meds.logNotesHint' => 'Anything you want to share with your doctor?',
 			'meds.logSaved' => 'Dose log saved.',
+			'emergency.title' => 'Emergency Card',
+			'emergency.subtitle' => 'Information to show to anyone who meets your child in an emergency.',
+			'emergency.noChild' => 'Add a child first to create an emergency card.',
+			'emergency.lastUpdated' => ({required Object date}) => 'Last updated ${date}',
+			'emergency.notSaved' => 'This card has not been saved yet.',
+			'emergency.save' => 'Save',
+			'emergency.saved' => 'Emergency card saved.',
+			'emergency.call' => 'Call',
+			'emergency.sectionChild' => 'Child Information',
+			'emergency.sectionContacts' => 'Emergency Contacts',
+			'emergency.sectionMedical' => 'Medical Information',
+			'emergency.sectionBehavior' => 'Behavioral Information',
+			'emergency.childName' => 'Full Name',
+			'emergency.birthDate' => 'Date of Birth',
+			'emergency.diagnosis' => 'Diagnosis',
+			'emergency.bloodType' => 'Blood Type',
+			'emergency.communicationLevel' => 'Communication Level',
+			'emergency.languages' => 'Language(s) Spoken',
+			'emergency.warningsLabel' => 'Special condition warnings',
+			'emergency.selfInjury' => 'May exhibit self-injury',
+			'emergency.wandering' => 'Risk of wandering / getting lost',
+			'emergency.nonVerbal' => 'Non-verbal',
+			'emergency.contact1' => 'First Contact',
+			'emergency.contact2' => 'Second Contact',
+			'emergency.doctor' => 'Doctor / Hospital',
+			'emergency.name' => 'Full Name',
+			'emergency.phone' => 'Phone',
+			'emergency.relation' => 'Relationship',
+			'emergency.doctorName' => 'Doctor Name',
+			'emergency.doctorPhone' => 'Doctor Phone',
+			'emergency.hospital' => 'Hospital',
+			'emergency.medications' => 'Current Medications',
+			'emergency.medicationsHint' => 'Name - dose - time (one medication per line)',
+			'emergency.allergies' => 'Allergies',
+			'emergency.allergiesHint' => 'Food, drug, substance allergies',
+			'emergency.conditions' => 'Other Medical Conditions',
+			'emergency.conditionsHint' => 'Epilepsy, heart condition, etc.',
+			'emergency.triggers' => 'Triggers (to avoid)',
+			'emergency.triggersHint' => 'What causes a crisis? E.g. sudden noise, crowds',
+			'emergency.calming' => 'Calming Strategies',
+			'emergency.calmingHint' => 'What helps? E.g. favorite music, quiet room',
+			'emergency.avoid' => 'Things to Never Do',
+			'emergency.avoidHint' => 'E.g. don\'t shout, don\'t restrain, don\'t force eye contact',
+			'emergency.special' => 'Special Instructions',
+			'emergency.specialHint' => 'Extra notes for emergency services or caregivers',
+			'emergency.select' => 'Select...',
 			'behavior.title' => 'Behavior Journal',
 			'behavior.subtitle' => 'ABC (Antecedent-Behavior-Consequence) observation log',
 			'behavior.add' => 'Add Entry',

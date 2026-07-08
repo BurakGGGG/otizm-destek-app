@@ -393,6 +393,54 @@ meds:
   logNotesHint: Doktorunuza iletmek istediğiniz bir gözlem var mı?
   logSaved: Doz günlüğü kaydedildi.
 
+emergency:
+  title: Acil Durum Kartı
+  subtitle: Acil bir durumda çocuğunuzla karşılaşan kişilere gösterilecek bilgiler.
+  noChild: Acil durum kartı için önce bir çocuk ekleyin.
+  lastUpdated: Son güncelleme $date
+  notSaved: Bu kart henüz kaydedilmedi.
+  save: Kaydet
+  saved: Acil durum kartı kaydedildi.
+  call: Ara
+  sectionChild: Çocuk Bilgileri
+  sectionContacts: Acil İletişim
+  sectionMedical: Tıbbi Bilgiler
+  sectionBehavior: Davranışsal Bilgiler
+  childName: Ad Soyad
+  birthDate: Doğum Tarihi
+  diagnosis: Tanı
+  bloodType: Kan Grubu
+  communicationLevel: İletişim Seviyesi
+  languages: Konuşulan Dil(ler)
+  warningsLabel: Özel durum uyarıları
+  selfInjury: Öz-zarar davranışı olabilir
+  wandering: Kaçma / kaybolma riski var
+  nonVerbal: Sözel iletişim yoktur
+  contact1: Birinci Kişi
+  contact2: İkinci Kişi
+  doctor: Doktor / Hastane
+  name: Ad Soyad
+  phone: Telefon
+  relation: Yakınlık
+  doctorName: Doktor Adı
+  doctorPhone: Doktor Telefonu
+  hospital: Hastane
+  medications: Kullandığı İlaçlar
+  medicationsHint: İlaç adı - doz - saat (her satıra bir ilaç)
+  allergies: Alerjiler
+  allergiesHint: Gıda, ilaç, madde alerjileri
+  conditions: Diğer Tıbbi Durumlar
+  conditionsHint: Epilepsi, kalp hastalığı vb.
+  triggers: Tetikleyiciler (kaçınılması gerekenler)
+  triggersHint: "Neler kriz çıkarır? Örn: ani gürültü, kalabalık"
+  calming: Sakinleştirme Stratejileri
+  calmingHint: "Ne işe yarar? Örn: sevdiği müzik, sessiz oda"
+  avoid: Kesinlikle Yapılmaması Gerekenler
+  avoidHint: "Örn: bağırmayın, tutmayın, göz temasına zorlamayın"
+  special: Özel Talimatlar
+  specialHint: Acil servis veya bakıcı için ek notlar
+  select: Seçin...
+
 behavior:
   title: Davranış Günlüğü
   subtitle: ABC (Öncesi-Davranış-Sonuç) gözlem kayıtları

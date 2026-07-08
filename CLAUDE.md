@@ -90,6 +90,12 @@ flutter build apk --debug
     kayıtları; kategori/yer/tetikleyici/sonuç sabitleri web ile birebir düz
     metin (çevrilmez!), şiddet 1-5. category+location DB'de NOT NULL. `/behavior`,
     Gelişim sekmesi kısayolu.
+  - **Acil Durum Kartı:** `/api/emergency-card/{childId}` — çocuğun kritik
+    bilgileri (tanı, kan grubu, iletişim seviyesi, acil kişiler, doktor,
+    ilaç/alerji, tetikleyici/sakinleştirme/yapılmayacaklar). Backend serbest
+    JSON blob'u; `data` string olarak gelir (jsonDecode). Alan anahtarları web
+    `EmergencyProfile` ile birebir aynı. Telefon alanlarında **dokun-ara**
+    (`url_launcher` tel:). `/emergency`, Profil menüsü kısayolu.
 - ✅ Firebase: Crashlytics + Analytics kod entegrasyonu (debug'da kapalı, sürümde açık).
 - ✅ FCM push: mobil taraf hazır; **backend uç noktaları da yazıldı** (POST/DELETE
   `/api/push/device-token`, MESSAGE/APPOINTMENT data payload — sözleşme
@@ -100,8 +106,10 @@ flutter build apk --debug
   Profil'de Sistem/Açık/Koyu seçici, kalıcı).
 - ✅ Hedef ilerletme (+jeton geri alma) — `PUT /api/goals/{id}` (entries JSON dizisi;
   title+category zorunlu). Gelişim sekmesindeki hedef kartlarında.
-- ⏳ Sonraki adaylar: backend FCM deploy sonrası uçtan uca push testi; sosyal
-  hikayeler (`/api/social-stories`); iyi oluş (wellbeing) günlüğü.
+- ⏳ Sonraki adaylar: backend FCM deploy sonrası uçtan uca push testi; takvim
+  (`/api/calendar`); kriz rehberi. Not: sosyal hikayeler (`/api/social-stories`)
+  ve wellbeing backend'de var ama web'de tam bir CRUD arayüzü yok (mirror
+  edilecek UX yok) — düşük öncelik.
 - Modül kapsamı ve fazlar: bkz. plan `~/.claude/plans/bir-otizm-destek-mobil-compressed-fog.md`.
 
 ## Notlar
