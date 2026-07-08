@@ -67,6 +67,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$dailyTracker$tr dailyTracker = Translations$dailyTracker$tr.internal(_root);
 	late final Translations$sleep$tr sleep = Translations$sleep$tr.internal(_root);
 	late final Translations$meds$tr meds = Translations$meds$tr.internal(_root);
+	late final Translations$behavior$tr behavior = Translations$behavior$tr.internal(_root);
 	late final Translations$analytics$tr analytics = Translations$analytics$tr.internal(_root);
 	late final Translations$children$tr children = Translations$children$tr.internal(_root);
 	late final Translations$account$tr account = Translations$account$tr.internal(_root);
@@ -1311,6 +1312,105 @@ class Translations$meds$tr {
 	String get logSaved => 'Doz günlüğü kaydedildi.';
 }
 
+// Path: behavior
+class Translations$behavior$tr {
+	Translations$behavior$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Davranış Günlüğü'
+	String get title => 'Davranış Günlüğü';
+
+	/// tr: 'ABC (Öncesi-Davranış-Sonuç) gözlem kayıtları'
+	String get subtitle => 'ABC (Öncesi-Davranış-Sonuç) gözlem kayıtları';
+
+	/// tr: 'Kayıt Ekle'
+	String get add => 'Kayıt Ekle';
+
+	/// tr: 'Yeni ABC Kaydı'
+	String get addTitle => 'Yeni ABC Kaydı';
+
+	/// tr: 'Henüz davranış kaydı yok. İlk gözlemi ekleyin.'
+	String get empty => 'Henüz davranış kaydı yok. İlk gözlemi ekleyin.';
+
+	/// tr: 'Davranış günlüğü için önce bir çocuk ekleyin.'
+	String get noChild => 'Davranış günlüğü için önce bir çocuk ekleyin.';
+
+	/// tr: 'Tarih'
+	String get date => 'Tarih';
+
+	/// tr: 'Saat'
+	String get time => 'Saat';
+
+	/// tr: 'Kategori'
+	String get category => 'Kategori';
+
+	/// tr: 'Yer'
+	String get location => 'Yer';
+
+	/// tr: 'A — Öncesi (Tetikleyici)'
+	String get antecedentLabel => 'A — Öncesi (Tetikleyici)';
+
+	/// tr: 'Tetikleyiciyi açıklayın'
+	String get antecedentHint => 'Tetikleyiciyi açıklayın';
+
+	/// tr: 'B — Davranış (Ne oldu?)'
+	String get behaviorLabel => 'B — Davranış (Ne oldu?)';
+
+	/// tr: 'Davranışı ayrıntılı açıklayın'
+	String get behaviorHint => 'Davranışı ayrıntılı açıklayın';
+
+	/// tr: 'C — Sonuç (Ne yaptınız?)'
+	String get consequenceLabel => 'C — Sonuç (Ne yaptınız?)';
+
+	/// tr: 'Uyguladığınız müdahaleyi açıklayın'
+	String get consequenceHint => 'Uyguladığınız müdahaleyi açıklayın';
+
+	/// tr: 'Diğer...'
+	String get other => 'Diğer...';
+
+	/// tr: 'Şiddet Düzeyi'
+	String get intensityLabel => 'Şiddet Düzeyi';
+
+	/// tr: 'Çok Hafif'
+	String get intensity1 => 'Çok Hafif';
+
+	/// tr: 'Hafif'
+	String get intensity2 => 'Hafif';
+
+	/// tr: 'Orta'
+	String get intensity3 => 'Orta';
+
+	/// tr: 'Şiddetli'
+	String get intensity4 => 'Şiddetli';
+
+	/// tr: 'Çok Şiddetli'
+	String get intensity5 => 'Çok Şiddetli';
+
+	/// tr: 'Ek notlar (isteğe bağlı)'
+	String get notesLabel => 'Ek notlar (isteğe bağlı)';
+
+	/// tr: 'Kaydet'
+	String get save => 'Kaydet';
+
+	/// tr: 'ABC kaydı oluşturuldu.'
+	String get saved => 'ABC kaydı oluşturuldu.';
+
+	/// tr: 'Kaydı Sil'
+	String get deleteTitle => 'Kaydı Sil';
+
+	/// tr: '$date tarihli ABC kaydını silmek istediğinize emin misiniz?'
+	String deleteConfirm({required Object date}) => '${date} tarihli ABC kaydını silmek istediğinize emin misiniz?';
+
+	/// tr: 'Kayıt silindi.'
+	String get deleted => 'Kayıt silindi.';
+
+	/// tr: 'Lütfen zorunlu alanları doldurun (kategori, yer, A, B, C).'
+	String get errorRequired => 'Lütfen zorunlu alanları doldurun (kategori, yer, A, B, C).';
+}
+
 // Path: analytics
 class Translations$analytics$tr {
 	Translations$analytics$tr.internal(this._root);
@@ -1945,6 +2045,36 @@ extension on Translations {
 			'meds.logNotesLabel' => 'Gözlem notları (isteğe bağlı)',
 			'meds.logNotesHint' => 'Doktorunuza iletmek istediğiniz bir gözlem var mı?',
 			'meds.logSaved' => 'Doz günlüğü kaydedildi.',
+			'behavior.title' => 'Davranış Günlüğü',
+			'behavior.subtitle' => 'ABC (Öncesi-Davranış-Sonuç) gözlem kayıtları',
+			'behavior.add' => 'Kayıt Ekle',
+			'behavior.addTitle' => 'Yeni ABC Kaydı',
+			'behavior.empty' => 'Henüz davranış kaydı yok. İlk gözlemi ekleyin.',
+			'behavior.noChild' => 'Davranış günlüğü için önce bir çocuk ekleyin.',
+			'behavior.date' => 'Tarih',
+			'behavior.time' => 'Saat',
+			'behavior.category' => 'Kategori',
+			'behavior.location' => 'Yer',
+			'behavior.antecedentLabel' => 'A — Öncesi (Tetikleyici)',
+			'behavior.antecedentHint' => 'Tetikleyiciyi açıklayın',
+			'behavior.behaviorLabel' => 'B — Davranış (Ne oldu?)',
+			'behavior.behaviorHint' => 'Davranışı ayrıntılı açıklayın',
+			'behavior.consequenceLabel' => 'C — Sonuç (Ne yaptınız?)',
+			'behavior.consequenceHint' => 'Uyguladığınız müdahaleyi açıklayın',
+			'behavior.other' => 'Diğer...',
+			'behavior.intensityLabel' => 'Şiddet Düzeyi',
+			'behavior.intensity1' => 'Çok Hafif',
+			'behavior.intensity2' => 'Hafif',
+			'behavior.intensity3' => 'Orta',
+			'behavior.intensity4' => 'Şiddetli',
+			'behavior.intensity5' => 'Çok Şiddetli',
+			'behavior.notesLabel' => 'Ek notlar (isteğe bağlı)',
+			'behavior.save' => 'Kaydet',
+			'behavior.saved' => 'ABC kaydı oluşturuldu.',
+			'behavior.deleteTitle' => 'Kaydı Sil',
+			'behavior.deleteConfirm' => ({required Object date}) => '${date} tarihli ABC kaydını silmek istediğinize emin misiniz?',
+			'behavior.deleted' => 'Kayıt silindi.',
+			'behavior.errorRequired' => 'Lütfen zorunlu alanları doldurun (kategori, yer, A, B, C).',
 			'analytics.title' => 'Gelişim Paneli',
 			'analytics.subtitle' => 'Son 6 ayın gelişim eğilimleri.',
 			'analytics.milestones' => 'Kilometre Taşları',

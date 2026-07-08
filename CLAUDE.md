@@ -86,6 +86,10 @@ flutter build apk --debug
     metinleri web ile birebir aynı düz metin (çevrilmez!).
   - **Gelişim Paneli:** `/api/analytics/child/{id}/trends` — 4 aylık trend
     çubuk grafiği (kilometre taşı, ruh hali, uyku, davranış). `/analytics`.
+  - **Davranış Günlüğü:** `/api/abc-entries` — ABC (Öncesi-Davranış-Sonuç)
+    kayıtları; kategori/yer/tetikleyici/sonuç sabitleri web ile birebir düz
+    metin (çevrilmez!), şiddet 1-5. category+location DB'de NOT NULL. `/behavior`,
+    Gelişim sekmesi kısayolu.
 - ✅ Firebase: Crashlytics + Analytics kod entegrasyonu (debug'da kapalı, sürümde açık).
 - ✅ FCM push: mobil taraf hazır; **backend uç noktaları da yazıldı** (POST/DELETE
   `/api/push/device-token`, MESSAGE/APPOINTMENT data payload — sözleşme
@@ -96,8 +100,8 @@ flutter build apk --debug
   Profil'de Sistem/Açık/Koyu seçici, kalıcı).
 - ✅ Hedef ilerletme (+jeton geri alma) — `PUT /api/goals/{id}` (entries JSON dizisi;
   title+category zorunlu). Gelişim sekmesindeki hedef kartlarında.
-- ⏳ Sonraki adaylar: backend FCM deploy sonrası uçtan uca push testi; davranış
-  günlüğü (`/api/behavior`); sosyal hikayeler.
+- ⏳ Sonraki adaylar: backend FCM deploy sonrası uçtan uca push testi; sosyal
+  hikayeler (`/api/social-stories`); iyi oluş (wellbeing) günlüğü.
 - Modül kapsamı ve fazlar: bkz. plan `~/.claude/plans/bir-otizm-destek-mobil-compressed-fog.md`.
 
 ## Notlar

@@ -393,6 +393,38 @@ meds:
   logNotesHint: Anything you want to share with your doctor?
   logSaved: Dose log saved.
 
+behavior:
+  title: Behavior Journal
+  subtitle: ABC (Antecedent-Behavior-Consequence) observation log
+  add: Add Entry
+  addTitle: New ABC Entry
+  empty: No behavior entries yet. Add the first observation.
+  noChild: Add a child first to use the behavior journal.
+  date: Date
+  time: Time
+  category: Category
+  location: Location
+  antecedentLabel: A — Antecedent (Trigger)
+  antecedentHint: Describe the trigger
+  behaviorLabel: B — Behavior (What happened?)
+  behaviorHint: Describe the behavior in detail
+  consequenceLabel: C — Consequence (What did you do?)
+  consequenceHint: Describe your intervention
+  other: Other...
+  intensityLabel: Intensity
+  intensity1: Very Mild
+  intensity2: Mild
+  intensity3: Moderate
+  intensity4: Severe
+  intensity5: Very Severe
+  notesLabel: Additional notes (optional)
+  save: Save
+  saved: ABC entry created.
+  deleteTitle: Delete Entry
+  deleteConfirm: Are you sure you want to delete the ABC entry dated $date?
+  deleted: Entry deleted.
+  errorRequired: Please fill the required fields (category, location, A, B, C).
+
 analytics:
   title: Development Panel
   subtitle: Development trends over the last 6 months.

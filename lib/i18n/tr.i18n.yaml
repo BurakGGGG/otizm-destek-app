@@ -393,6 +393,38 @@ meds:
   logNotesHint: Doktorunuza iletmek istediğiniz bir gözlem var mı?
   logSaved: Doz günlüğü kaydedildi.
 
+behavior:
+  title: Davranış Günlüğü
+  subtitle: ABC (Öncesi-Davranış-Sonuç) gözlem kayıtları
+  add: Kayıt Ekle
+  addTitle: Yeni ABC Kaydı
+  empty: Henüz davranış kaydı yok. İlk gözlemi ekleyin.
+  noChild: Davranış günlüğü için önce bir çocuk ekleyin.
+  date: Tarih
+  time: Saat
+  category: Kategori
+  location: Yer
+  antecedentLabel: A — Öncesi (Tetikleyici)
+  antecedentHint: Tetikleyiciyi açıklayın
+  behaviorLabel: B — Davranış (Ne oldu?)
+  behaviorHint: Davranışı ayrıntılı açıklayın
+  consequenceLabel: C — Sonuç (Ne yaptınız?)
+  consequenceHint: Uyguladığınız müdahaleyi açıklayın
+  other: Diğer...
+  intensityLabel: Şiddet Düzeyi
+  intensity1: Çok Hafif
+  intensity2: Hafif
+  intensity3: Orta
+  intensity4: Şiddetli
+  intensity5: Çok Şiddetli
+  notesLabel: Ek notlar (isteğe bağlı)
+  save: Kaydet
+  saved: ABC kaydı oluşturuldu.
+  deleteTitle: Kaydı Sil
+  deleteConfirm: $date tarihli ABC kaydını silmek istediğinize emin misiniz?
+  deleted: Kayıt silindi.
+  errorRequired: Lütfen zorunlu alanları doldurun (kategori, yer, A, B, C).
+
 analytics:
   title: Gelişim Paneli
   subtitle: Son 6 ayın gelişim eğilimleri.

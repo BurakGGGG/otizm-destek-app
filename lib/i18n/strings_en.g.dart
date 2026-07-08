@@ -66,6 +66,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$dailyTracker$en dailyTracker = _Translations$dailyTracker$en._(_root);
 	@override late final _Translations$sleep$en sleep = _Translations$sleep$en._(_root);
 	@override late final _Translations$meds$en meds = _Translations$meds$en._(_root);
+	@override late final _Translations$behavior$en behavior = _Translations$behavior$en._(_root);
 	@override late final _Translations$analytics$en analytics = _Translations$analytics$en._(_root);
 	@override late final _Translations$children$en children = _Translations$children$en._(_root);
 	@override late final _Translations$account$en account = _Translations$account$en._(_root);
@@ -657,6 +658,45 @@ class _Translations$meds$en extends Translations$meds$tr {
 	@override String get logSaved => 'Dose log saved.';
 }
 
+// Path: behavior
+class _Translations$behavior$en extends Translations$behavior$tr {
+	_Translations$behavior$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Behavior Journal';
+	@override String get subtitle => 'ABC (Antecedent-Behavior-Consequence) observation log';
+	@override String get add => 'Add Entry';
+	@override String get addTitle => 'New ABC Entry';
+	@override String get empty => 'No behavior entries yet. Add the first observation.';
+	@override String get noChild => 'Add a child first to use the behavior journal.';
+	@override String get date => 'Date';
+	@override String get time => 'Time';
+	@override String get category => 'Category';
+	@override String get location => 'Location';
+	@override String get antecedentLabel => 'A — Antecedent (Trigger)';
+	@override String get antecedentHint => 'Describe the trigger';
+	@override String get behaviorLabel => 'B — Behavior (What happened?)';
+	@override String get behaviorHint => 'Describe the behavior in detail';
+	@override String get consequenceLabel => 'C — Consequence (What did you do?)';
+	@override String get consequenceHint => 'Describe your intervention';
+	@override String get other => 'Other...';
+	@override String get intensityLabel => 'Intensity';
+	@override String get intensity1 => 'Very Mild';
+	@override String get intensity2 => 'Mild';
+	@override String get intensity3 => 'Moderate';
+	@override String get intensity4 => 'Severe';
+	@override String get intensity5 => 'Very Severe';
+	@override String get notesLabel => 'Additional notes (optional)';
+	@override String get save => 'Save';
+	@override String get saved => 'ABC entry created.';
+	@override String get deleteTitle => 'Delete Entry';
+	@override String deleteConfirm({required Object date}) => 'Are you sure you want to delete the ABC entry dated ${date}?';
+	@override String get deleted => 'Entry deleted.';
+	@override String get errorRequired => 'Please fill the required fields (category, location, A, B, C).';
+}
+
 // Path: analytics
 class _Translations$analytics$en extends Translations$analytics$tr {
 	_Translations$analytics$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -1135,6 +1175,36 @@ extension on TranslationsEn {
 			'meds.logNotesLabel' => 'Observation notes (optional)',
 			'meds.logNotesHint' => 'Anything you want to share with your doctor?',
 			'meds.logSaved' => 'Dose log saved.',
+			'behavior.title' => 'Behavior Journal',
+			'behavior.subtitle' => 'ABC (Antecedent-Behavior-Consequence) observation log',
+			'behavior.add' => 'Add Entry',
+			'behavior.addTitle' => 'New ABC Entry',
+			'behavior.empty' => 'No behavior entries yet. Add the first observation.',
+			'behavior.noChild' => 'Add a child first to use the behavior journal.',
+			'behavior.date' => 'Date',
+			'behavior.time' => 'Time',
+			'behavior.category' => 'Category',
+			'behavior.location' => 'Location',
+			'behavior.antecedentLabel' => 'A — Antecedent (Trigger)',
+			'behavior.antecedentHint' => 'Describe the trigger',
+			'behavior.behaviorLabel' => 'B — Behavior (What happened?)',
+			'behavior.behaviorHint' => 'Describe the behavior in detail',
+			'behavior.consequenceLabel' => 'C — Consequence (What did you do?)',
+			'behavior.consequenceHint' => 'Describe your intervention',
+			'behavior.other' => 'Other...',
+			'behavior.intensityLabel' => 'Intensity',
+			'behavior.intensity1' => 'Very Mild',
+			'behavior.intensity2' => 'Mild',
+			'behavior.intensity3' => 'Moderate',
+			'behavior.intensity4' => 'Severe',
+			'behavior.intensity5' => 'Very Severe',
+			'behavior.notesLabel' => 'Additional notes (optional)',
+			'behavior.save' => 'Save',
+			'behavior.saved' => 'ABC entry created.',
+			'behavior.deleteTitle' => 'Delete Entry',
+			'behavior.deleteConfirm' => ({required Object date}) => 'Are you sure you want to delete the ABC entry dated ${date}?',
+			'behavior.deleted' => 'Entry deleted.',
+			'behavior.errorRequired' => 'Please fill the required fields (category, location, A, B, C).',
 			'analytics.title' => 'Development Panel',
 			'analytics.subtitle' => 'Development trends over the last 6 months.',
 			'analytics.milestones' => 'Milestones',

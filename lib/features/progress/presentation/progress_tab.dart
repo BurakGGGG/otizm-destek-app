@@ -152,22 +152,32 @@ class _QuickLinks extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = context.t;
-    return Row(
+    return Column(
       children: [
-        Expanded(
-          child: _QuickLinkCard(
-            icon: Icons.mood_outlined,
-            label: t.dailyTracker.title,
-            onTap: () => context.push('/daily-tracker'),
-          ),
+        Row(
+          children: [
+            Expanded(
+              child: _QuickLinkCard(
+                icon: Icons.mood_outlined,
+                label: t.dailyTracker.title,
+                onTap: () => context.push('/daily-tracker'),
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: _QuickLinkCard(
+                icon: Icons.insights_outlined,
+                label: t.analytics.title,
+                onTap: () => context.push('/analytics'),
+              ),
+            ),
+          ],
         ),
-        const SizedBox(width: 12),
-        Expanded(
-          child: _QuickLinkCard(
-            icon: Icons.insights_outlined,
-            label: t.analytics.title,
-            onTap: () => context.push('/analytics'),
-          ),
+        const SizedBox(height: 12),
+        _QuickLinkCard(
+          icon: Icons.psychology_outlined,
+          label: t.behavior.title,
+          onTap: () => context.push('/behavior'),
         ),
       ],
     );
