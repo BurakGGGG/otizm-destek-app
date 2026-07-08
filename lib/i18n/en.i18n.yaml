@@ -251,6 +251,10 @@ appointments:
   cancelled: Appointment cancelled.
   confirmed: Appointment confirmed.
   completed: Appointment marked as completed.
+  reschedule: Reschedule
+  rescheduleTitle: Reschedule Appointment
+  rescheduleConfirm: Confirm New Time
+  rescheduled: Appointment rescheduled.
 
 expertDetail:
   bookAppointment: Book Appointment

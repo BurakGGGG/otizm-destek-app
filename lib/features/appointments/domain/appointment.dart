@@ -8,6 +8,7 @@ class Appointment {
     required this.date,
     required this.time,
     required this.status,
+    this.expertId,
     this.expertName,
     this.expertTitle,
     this.parentName,
@@ -24,6 +25,7 @@ class Appointment {
   final DateTime date;
   final String time; // "HH:mm"
   final String status; // PENDING | CONFIRMED | COMPLETED | CANCELLED ...
+  final String? expertId;
   final String? expertName;
   final String? expertTitle;
   final String? parentName;
@@ -69,6 +71,7 @@ class Appointment {
       date: DateTime.tryParse(json['date']?.toString() ?? '') ?? DateTime.now(),
       time: json['time'] as String? ?? '',
       status: json['status'] as String? ?? '',
+      expertId: json['expertId']?.toString(),
       expertName: json['expertName'] as String?,
       expertTitle: json['expertTitle'] as String?,
       parentName: json['parentName'] as String?,

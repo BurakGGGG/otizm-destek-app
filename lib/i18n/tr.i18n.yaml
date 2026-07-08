@@ -251,6 +251,10 @@ appointments:
   cancelled: Randevu iptal edildi.
   confirmed: Randevu onaylandı.
   completed: Randevu tamamlandı olarak işaretlendi.
+  reschedule: Ertele
+  rescheduleTitle: Randevuyu Ertele
+  rescheduleConfirm: Yeni Zamanı Onayla
+  rescheduled: Randevu yeniden planlandı.
 
 expertDetail:
   bookAppointment: Randevu Al

@@ -42,6 +42,20 @@ class AppointmentRepository {
   Future<Appointment> complete(String id) =>
       _patch('/appointments/$id/complete');
 
+  /// Randevuyu ertele (PARENT/EXPERT) — backend müsaitlik ve çakışma doğrular.
+  Future<Appointment> reschedule(
+    String id, {
+    required String dateIso,
+    required String time,
+    int? duration,
+  }) {
+    return _patch('/appointments/$id/reschedule', data: {
+      'date': dateIso,
+      'time': time,
+      'duration': ?duration,
+    });
+  }
+
   Future<Appointment> _patch(String path, {Object? data}) async {
     try {
       final res = await _dio.patch(path, data: data);

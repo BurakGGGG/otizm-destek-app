@@ -12,6 +12,7 @@ import '../../auth/domain/app_user.dart';
 import '../../auth/presentation/auth_controller.dart';
 import '../data/appointment_repository.dart';
 import '../domain/appointment.dart';
+import '../domain/expert_availability.dart';
 
 /// Randevular — liste + rol bazlı aksiyonlar (`/api/appointments`).
 class AppointmentsScreen extends ConsumerWidget {
@@ -181,6 +182,28 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
     );
   }
 
+  Future<void> _reschedule() async {
+    final t = context.t;
+    final expertId = a.expertId;
+    if (expertId == null || expertId.isEmpty) return;
+    final result = await showModalBottomSheet<({String dateIso, String time})>(
+      context: context,
+      isScrollControlled: true,
+      builder: (_) =>
+          _RescheduleSheet(expertId: expertId, duration: a.duration ?? 50),
+    );
+    if (result == null || !mounted) return;
+    await _run(
+      () => ref.read(appointmentRepositoryProvider).reschedule(
+            a.id,
+            dateIso: result.dateIso,
+            time: result.time,
+            duration: a.duration,
+          ),
+      t.appointments.rescheduled,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final t = context.t;
@@ -282,6 +305,21 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
     final buttons = <Widget>[];
     final kind = a.statusKind;
 
+    // Ertele — veli ve uzman için, yaklaşan bekleyen/onaylı randevularda.
+    final canReschedule = a.isUpcoming &&
+        (kind == AppointmentStatusKind.pending ||
+            kind == AppointmentStatusKind.confirmed) &&
+        (a.expertId?.isNotEmpty ?? false);
+    if (canReschedule) {
+      buttons.add(
+        OutlinedButton.icon(
+          onPressed: _busy ? null : _reschedule,
+          icon: const Icon(Icons.edit_calendar_outlined, size: 18),
+          label: Text(t.appointments.reschedule),
+        ),
+      );
+    }
+
     if (isExpert) {
       if (kind == AppointmentStatusKind.pending) {
         buttons.add(
@@ -344,7 +382,10 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
                 child: CircularProgressIndicator(strokeWidth: 2),
               ),
             ),
-          ...buttons,
+          for (var i = 0; i < buttons.length; i++) ...[
+            if (i > 0) const SizedBox(width: 8),
+            buttons[i],
+          ],
         ],
       ),
     ];
@@ -373,6 +414,160 @@ class _InfoRow extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// Erteleme alt sayfası — uzman müsaitliğinden yeni tarih + saat seçtirir,
+/// sonucu `(dateIso, time)` olarak döndürür.
+class _RescheduleSheet extends ConsumerStatefulWidget {
+  const _RescheduleSheet({required this.expertId, required this.duration});
+  final String expertId;
+  final int duration;
+
+  @override
+  ConsumerState<_RescheduleSheet> createState() => _RescheduleSheetState();
+}
+
+class _RescheduleSheetState extends ConsumerState<_RescheduleSheet> {
+  List<ExpertAvailability> _availability = const [];
+  List<String> _slots = const [];
+  DateTime? _date;
+  String? _time;
+  bool _loadingSlots = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadAvailability();
+  }
+
+  Future<void> _loadAvailability() async {
+    try {
+      final list = await ref
+          .read(appointmentRepositoryProvider)
+          .getAvailability(widget.expertId);
+      if (mounted) setState(() => _availability = list);
+    } catch (_) {
+      // müsaitlik alınamadıysa slot üretilemez; boş kalır
+    }
+  }
+
+  String _iso(DateTime d) =>
+      '${d.year}-${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}';
+
+  Future<void> _pickDate() async {
+    final now = DateTime.now();
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: _date ?? now,
+      firstDate: DateTime(now.year, now.month, now.day),
+      lastDate: now.add(const Duration(days: 183)), // ~6 ay
+    );
+    if (picked == null) return;
+    setState(() {
+      _date = picked;
+      _time = null;
+      _slots = const [];
+      _loadingSlots = true;
+    });
+    try {
+      final booked = await ref
+          .read(appointmentRepositoryProvider)
+          .getBookedTimes(widget.expertId, _iso(picked),
+              duration: widget.duration);
+      final free = buildFreeSlots(
+        availabilities: _availability,
+        date: picked,
+        bookedTimes: booked,
+        duration: widget.duration,
+      );
+      if (mounted) setState(() => _slots = free);
+    } catch (_) {
+      if (mounted) setState(() => _slots = const []);
+    } finally {
+      if (mounted) setState(() => _loadingSlots = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    final text = Theme.of(context).textTheme;
+    return Padding(
+      padding: EdgeInsets.only(
+        left: AppSpacing.margin,
+        right: AppSpacing.margin,
+        top: AppSpacing.lg,
+        bottom: MediaQuery.viewInsetsOf(context).bottom + AppSpacing.lg,
+      ),
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(t.appointments.rescheduleTitle, style: text.titleLarge),
+            const SizedBox(height: 16),
+            Text(t.booking.dateLabel,
+                style: text.labelLarge?.copyWith(fontWeight: FontWeight.w600)),
+            const SizedBox(height: 8),
+            OutlinedButton.icon(
+              onPressed: _pickDate,
+              icon: const Icon(Icons.calendar_today_outlined, size: 18),
+              label: Text(
+                _date == null
+                    ? t.booking.selectDate
+                    : t.booking.dateValue(
+                        day: _date!.day,
+                        month: t.common.monthsShort[_date!.month - 1],
+                        year: _date!.year,
+                      ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            Text(t.booking.timeLabel,
+                style: text.labelLarge?.copyWith(fontWeight: FontWeight.w600)),
+            const SizedBox(height: 8),
+            if (_date == null)
+              Text(t.booking.selectDateFirst,
+                  style: text.bodySmall
+                      ?.copyWith(color: context.colors.textSecondary))
+            else if (_loadingSlots)
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: LinearProgressIndicator(),
+              )
+            else if (_slots.isEmpty)
+              Text(t.booking.noSlots,
+                  style: text.bodySmall
+                      ?.copyWith(color: context.colors.textSecondary))
+            else
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  for (final s in _slots)
+                    ChoiceChip(
+                      label: Text(s),
+                      selected: _time == s,
+                      showCheckmark: false,
+                      selectedColor:
+                          context.colors.primary.withValues(alpha: 0.16),
+                      onSelected: (_) => setState(() => _time = s),
+                    ),
+                ],
+              ),
+            const SizedBox(height: 20),
+            FilledButton(
+              onPressed: _date == null || _time == null
+                  ? null
+                  : () => Navigator.of(context)
+                      .pop((dateIso: _iso(_date!), time: _time!)),
+              child: Text(t.appointments.rescheduleConfirm),
+            ),
+          ],
+        ),
       ),
     );
   }

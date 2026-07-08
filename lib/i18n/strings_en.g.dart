@@ -464,6 +464,10 @@ class _Translations$appointments$en extends Translations$appointments$tr {
 	@override String get cancelled => 'Appointment cancelled.';
 	@override String get confirmed => 'Appointment confirmed.';
 	@override String get completed => 'Appointment marked as completed.';
+	@override String get reschedule => 'Reschedule';
+	@override String get rescheduleTitle => 'Reschedule Appointment';
+	@override String get rescheduleConfirm => 'Confirm New Time';
+	@override String get rescheduled => 'Appointment rescheduled.';
 }
 
 // Path: expertDetail
@@ -935,6 +939,10 @@ extension on TranslationsEn {
 			'appointments.cancelled' => 'Appointment cancelled.',
 			'appointments.confirmed' => 'Appointment confirmed.',
 			'appointments.completed' => 'Appointment marked as completed.',
+			'appointments.reschedule' => 'Reschedule',
+			'appointments.rescheduleTitle' => 'Reschedule Appointment',
+			'appointments.rescheduleConfirm' => 'Confirm New Time',
+			'appointments.rescheduled' => 'Appointment rescheduled.',
 			'expertDetail.bookAppointment' => 'Book Appointment',
 			'expertDetail.sendMessage' => 'Send Message',
 			'expertDetail.specializationsTitle' => 'Specializations',

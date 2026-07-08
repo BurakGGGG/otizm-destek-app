@@ -866,6 +866,18 @@ class Translations$appointments$tr {
 
 	/// tr: 'Randevu tamamlandı olarak işaretlendi.'
 	String get completed => 'Randevu tamamlandı olarak işaretlendi.';
+
+	/// tr: 'Ertele'
+	String get reschedule => 'Ertele';
+
+	/// tr: 'Randevuyu Ertele'
+	String get rescheduleTitle => 'Randevuyu Ertele';
+
+	/// tr: 'Yeni Zamanı Onayla'
+	String get rescheduleConfirm => 'Yeni Zamanı Onayla';
+
+	/// tr: 'Randevu yeniden planlandı.'
+	String get rescheduled => 'Randevu yeniden planlandı.';
 }
 
 // Path: expertDetail
@@ -1637,6 +1649,10 @@ extension on Translations {
 			'appointments.cancelled' => 'Randevu iptal edildi.',
 			'appointments.confirmed' => 'Randevu onaylandı.',
 			'appointments.completed' => 'Randevu tamamlandı olarak işaretlendi.',
+			'appointments.reschedule' => 'Ertele',
+			'appointments.rescheduleTitle' => 'Randevuyu Ertele',
+			'appointments.rescheduleConfirm' => 'Yeni Zamanı Onayla',
+			'appointments.rescheduled' => 'Randevu yeniden planlandı.',
 			'expertDetail.bookAppointment' => 'Randevu Al',
 			'expertDetail.sendMessage' => 'Mesaj Gönder',
 			'expertDetail.specializationsTitle' => 'Uzmanlık Alanları',
