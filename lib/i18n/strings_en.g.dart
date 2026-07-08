@@ -350,6 +350,11 @@ class _Translations$progress$en extends Translations$progress$tr {
 	@override String goalProgress({required Object done, required Object total}) => '${done} / ${total}';
 	@override String get addGoal => 'Add Goal';
 	@override String get addNote => 'Add Note';
+	@override String get addToken => 'Add Token';
+	@override String get tokenAdded => 'Token added 🎉';
+	@override String get tokenRemoved => 'Token removed.';
+	@override String get goalCompleted => 'Goal completed! 🎉';
+	@override String rewardLine({required Object title}) => 'Reward: ${title}';
 }
 
 // Path: goalForm
@@ -861,6 +866,11 @@ extension on TranslationsEn {
 			'progress.goalProgress' => ({required Object done, required Object total}) => '${done} / ${total}',
 			'progress.addGoal' => 'Add Goal',
 			'progress.addNote' => 'Add Note',
+			'progress.addToken' => 'Add Token',
+			'progress.tokenAdded' => 'Token added 🎉',
+			'progress.tokenRemoved' => 'Token removed.',
+			'progress.goalCompleted' => 'Goal completed! 🎉',
+			'progress.rewardLine' => ({required Object title}) => 'Reward: ${title}',
 			'goalForm.title' => 'Add Goal',
 			'goalForm.nameLabel' => 'Title',
 			'goalForm.nameHint' => 'e.g. Making eye contact',

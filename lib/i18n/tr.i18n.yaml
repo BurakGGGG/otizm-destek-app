@@ -172,6 +172,11 @@ progress:
   goalProgress: $done / $total
   addGoal: Hedef Ekle
   addNote: Not Ekle
+  addToken: Jeton Ekle
+  tokenAdded: Jeton eklendi 🎉
+  tokenRemoved: Jeton geri alındı.
+  goalCompleted: Hedef tamamlandı! 🎉
+  rewardLine: 'Ödül: $title'
 
 goalForm:
   title: Hedef Ekle

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/haptics.dart';
+import '../../../core/network/api_exception.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/widgets/empty_state.dart';
@@ -260,7 +262,7 @@ class _GoalsSection extends ConsumerWidget {
                 return Column(
                   children: [
                     for (final g in goals) ...[
-                      _GoalCard(goal: g),
+                      _GoalCard(childId: childId, goal: g),
                       const SizedBox(height: 12),
                     ],
                   ],
@@ -272,14 +274,52 @@ class _GoalsSection extends ConsumerWidget {
   }
 }
 
-class _GoalCard extends StatelessWidget {
-  const _GoalCard({required this.goal});
+class _GoalCard extends ConsumerStatefulWidget {
+  const _GoalCard({required this.childId, required this.goal});
+  final String childId;
   final Goal goal;
+
+  @override
+  ConsumerState<_GoalCard> createState() => _GoalCardState();
+}
+
+class _GoalCardState extends ConsumerState<_GoalCard> {
+  bool _busy = false;
+
+  Future<void> _mutate(Future<Goal> Function(GoalRepository) op) async {
+    final t = context.t;
+    setState(() => _busy = true);
+    try {
+      final updated = await op(ref.read(goalRepositoryProvider));
+      ref.invalidate(goalsProvider(widget.childId));
+      if (!mounted) return;
+      final grew = updated.doneCount > widget.goal.doneCount;
+      if (grew) {
+        Haptics.success();
+      } else {
+        Haptics.selection();
+      }
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(updated.completed && grew
+            ? t.progress.goalCompleted
+            : grew
+                ? t.progress.tokenAdded
+                : t.progress.tokenRemoved),
+      ));
+    } on ApiException catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.message)));
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final t = context.t;
     final text = Theme.of(context).textTheme;
+    final goal = widget.goal;
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(AppSpacing.md),
@@ -310,28 +350,83 @@ class _GoalCard extends StatelessWidget {
                 value: goal.progress,
                 minHeight: 8,
                 backgroundColor: context.colors.surfaceVariant,
-                color: context.colors.primary,
+                color: goal.completed
+                    ? context.colors.success
+                    : context.colors.primary,
               ),
             ),
-            if (goal.category?.isNotEmpty ?? false) ...[
-              const SizedBox(height: 10),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 4,
-                ),
-                decoration: BoxDecoration(
-                  color: context.colors.primary.withValues(alpha: 0.10),
-                  borderRadius: BorderRadius.circular(AppRadius.sm),
-                ),
-                child: Text(
-                  goal.category!,
-                  style: TextStyle(
-                    color: context.colors.primary,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                if (goal.category?.isNotEmpty ?? false)
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 4,
+                    ),
+                    decoration: BoxDecoration(
+                      color: context.colors.primary.withValues(alpha: 0.10),
+                      borderRadius: BorderRadius.circular(AppRadius.sm),
+                    ),
+                    child: Text(
+                      goal.category!,
+                      style: TextStyle(
+                        color: context.colors.primary,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                   ),
-                ),
+                const Spacer(),
+                if (goal.doneCount > 0 && !goal.completed)
+                  IconButton(
+                    tooltip: t.progress.tokenRemoved,
+                    visualDensity: VisualDensity.compact,
+                    icon: Icon(Icons.undo,
+                        size: 18, color: context.colors.textTertiary),
+                    onPressed: _busy
+                        ? null
+                        : () => _mutate((repo) =>
+                            repo.removeLastToken(goal)),
+                  ),
+                if (goal.completed)
+                  Row(
+                    children: [
+                      Icon(Icons.check_circle,
+                          size: 18, color: context.colors.success),
+                      const SizedBox(width: 6),
+                      Text(
+                        t.progress.goalCompleted,
+                        style: TextStyle(
+                          color: context.colors.success,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  )
+                else
+                  FilledButton.tonalIcon(
+                    onPressed: _busy
+                        ? null
+                        : () => _mutate((repo) => repo.addToken(goal)),
+                    icon: _busy
+                        ? const SizedBox(
+                            height: 14,
+                            width: 14,
+                            child: CircularProgressIndicator(strokeWidth: 2),
+                          )
+                        : const Icon(Icons.add, size: 18),
+                    label: Text(t.progress.addToken),
+                  ),
+              ],
+            ),
+            if (goal.completed && (goal.rewardTitle?.isNotEmpty ?? false)) ...[
+              const SizedBox(height: 6),
+              Text(
+                t.progress.rewardLine(title: goal.rewardTitle!),
+                style: text.bodySmall
+                    ?.copyWith(color: context.colors.textSecondary),
               ),
             ],
           ],

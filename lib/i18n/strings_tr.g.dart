@@ -614,6 +614,21 @@ class Translations$progress$tr {
 
 	/// tr: 'Not Ekle'
 	String get addNote => 'Not Ekle';
+
+	/// tr: 'Jeton Ekle'
+	String get addToken => 'Jeton Ekle';
+
+	/// tr: 'Jeton eklendi 🎉'
+	String get tokenAdded => 'Jeton eklendi 🎉';
+
+	/// tr: 'Jeton geri alındı.'
+	String get tokenRemoved => 'Jeton geri alındı.';
+
+	/// tr: 'Hedef tamamlandı! 🎉'
+	String get goalCompleted => 'Hedef tamamlandı! 🎉';
+
+	/// tr: 'Ödül: $title'
+	String rewardLine({required Object title}) => 'Ödül: ${title}';
 }
 
 // Path: goalForm
@@ -1553,6 +1568,11 @@ extension on Translations {
 			'progress.goalProgress' => ({required Object done, required Object total}) => '${done} / ${total}',
 			'progress.addGoal' => 'Hedef Ekle',
 			'progress.addNote' => 'Not Ekle',
+			'progress.addToken' => 'Jeton Ekle',
+			'progress.tokenAdded' => 'Jeton eklendi 🎉',
+			'progress.tokenRemoved' => 'Jeton geri alındı.',
+			'progress.goalCompleted' => 'Hedef tamamlandı! 🎉',
+			'progress.rewardLine' => ({required Object title}) => 'Ödül: ${title}',
 			'goalForm.title' => 'Hedef Ekle',
 			'goalForm.nameLabel' => 'Başlık',
 			'goalForm.nameHint' => 'Örn. Göz teması kurma',

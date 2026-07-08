@@ -48,6 +48,46 @@ class GoalRepository {
       throw ApiException.fromDio(e);
     }
   }
+
+  /// Jeton listesini günceller — `PUT /goals/{goalId}`. Backend doğrulaması
+  /// title + category zorunlu tuttuğu için mevcut değerler birlikte gönderilir;
+  /// `entries` gerçek JSON dizisi olarak gider (string değil).
+  Future<Goal> updateEntries(
+    Goal goal,
+    List<Map<String, dynamic>> entries,
+  ) async {
+    try {
+      final res = await _dio.put('/goals/${goal.id}', data: {
+        'title': goal.title,
+        'category': goal.category ?? 'Genel',
+        'entries': entries,
+      });
+      return Goal.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Bir jeton ekler (+1 ilerleme).
+  Future<Goal> addToken(Goal goal) {
+    return updateEntries(goal, [
+      ...goal.entries,
+      {
+        'id': DateTime.now().millisecondsSinceEpoch.toString(),
+        'date': DateTime.now().toIso8601String(),
+        'achieved': true,
+      },
+    ]);
+  }
+
+  /// Son jetonu geri alır (yanlış dokunma için).
+  Future<Goal> removeLastToken(Goal goal) {
+    if (goal.entries.isEmpty) return Future.value(goal);
+    return updateEntries(
+      goal,
+      goal.entries.sublist(0, goal.entries.length - 1),
+    );
+  }
 }
 
 final goalRepositoryProvider = Provider<GoalRepository>((ref) {

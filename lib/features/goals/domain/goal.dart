@@ -1,26 +1,36 @@
 import 'dart:convert';
 
-/// Backend `Goal` karşılığı (jeton/ödül temelli hedef).
+/// Backend `Goal` karşılığı (jeton/ödül temelli hedef). `entries` kazanılan
+/// jetonların ham listesidir (`{id, date, achieved, note?}`); web ile aynı
+/// yapıda saklanır ve ilerletme PUT ile tüm liste gönderilerek yapılır.
 class Goal {
   const Goal({
     required this.id,
     required this.title,
     required this.targetCount,
-    required this.doneCount,
+    this.entries = const [],
     this.description,
     this.category,
     this.tokenEmoji,
+    this.rewardTitle,
     this.active = true,
   });
 
   final String id;
   final String title;
   final int targetCount;
-  final int doneCount;
+  final List<Map<String, dynamic>> entries;
   final String? description;
   final String? category;
   final String? tokenEmoji;
+  final String? rewardTitle;
   final bool active;
+
+  /// Kazanılan jeton sayısı.
+  int get doneCount => entries.length;
+
+  /// Hedefe ulaşıldı mı?
+  bool get completed => targetCount > 0 && doneCount >= targetCount;
 
   /// 0..1 arası ilerleme oranı.
   double get progress {
@@ -33,25 +43,28 @@ class Goal {
       id: json['id']?.toString() ?? '',
       title: json['title'] as String? ?? '',
       targetCount: (json['targetCount'] as num?)?.toInt() ?? 0,
-      doneCount: _entryCount(json['entries']),
+      entries: _parseEntries(json['entries']),
       description: json['description'] as String?,
       category: json['category'] as String?,
       tokenEmoji: json['tokenEmoji'] as String?,
+      rewardTitle: json['rewardTitle'] as String?,
       active: json['active'] as bool? ?? true,
     );
   }
 
-  /// `entries` JSON dizisindeki öğe sayısı (kazanılan jetonlar).
-  static int _entryCount(dynamic raw) {
-    if (raw is List) return raw.length;
+  /// `entries` alanı JSON dizisi ya da dizi içeren string olabilir.
+  static List<Map<String, dynamic>> _parseEntries(dynamic raw) {
+    dynamic decoded = raw;
     if (raw is String && raw.isNotEmpty) {
       try {
-        final decoded = jsonDecode(raw);
-        if (decoded is List) return decoded.length;
+        decoded = jsonDecode(raw);
       } catch (_) {
-        // bozuk JSON → 0
+        return const []; // bozuk JSON
       }
     }
-    return 0;
+    if (decoded is List) {
+      return decoded.whereType<Map<String, dynamic>>().toList();
+    }
+    return const [];
   }
 }

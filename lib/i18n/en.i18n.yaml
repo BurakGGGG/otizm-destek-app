@@ -172,6 +172,11 @@ progress:
   goalProgress: $done / $total
   addGoal: Add Goal
   addNote: Add Note
+  addToken: Add Token
+  tokenAdded: Token added 🎉
+  tokenRemoved: Token removed.
+  goalCompleted: Goal completed! 🎉
+  rewardLine: 'Reward: $title'
 
 goalForm:
   title: Add Goal
