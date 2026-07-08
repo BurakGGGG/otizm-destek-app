@@ -12,6 +12,7 @@ import '../../features/auth/presentation/register_screen.dart';
 import '../../features/analytics/presentation/analytics_screen.dart';
 import '../../features/auth/presentation/reset_password_screen.dart';
 import '../../features/behavior/presentation/behavior_screen.dart';
+import '../../features/calendar/presentation/calendar_screen.dart';
 import '../../features/chatbot/presentation/chat_screen.dart';
 import '../../features/children/presentation/children_screen.dart';
 import '../../features/emergency/presentation/emergency_screen.dart';
@@ -108,6 +109,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/analytics', builder: (_, _) => const AnalyticsScreen()),
       GoRoute(path: '/behavior', builder: (_, _) => const BehaviorScreen()),
       GoRoute(path: '/emergency', builder: (_, _) => const EmergencyScreen()),
+      GoRoute(path: '/calendar', builder: (_, _) => const CalendarScreen()),
       GoRoute(
         path: '/messages',
         builder: (_, _) => const ConversationsScreen(),

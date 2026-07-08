@@ -67,6 +67,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$dailyTracker$tr dailyTracker = Translations$dailyTracker$tr.internal(_root);
 	late final Translations$sleep$tr sleep = Translations$sleep$tr.internal(_root);
 	late final Translations$meds$tr meds = Translations$meds$tr.internal(_root);
+	late final Translations$calendar$tr calendar = Translations$calendar$tr.internal(_root);
 	late final Translations$emergency$tr emergency = Translations$emergency$tr.internal(_root);
 	late final Translations$behavior$tr behavior = Translations$behavior$tr.internal(_root);
 	late final Translations$analytics$tr analytics = Translations$analytics$tr.internal(_root);
@@ -1313,6 +1314,141 @@ class Translations$meds$tr {
 	String get logSaved => 'Doz günlüğü kaydedildi.';
 }
 
+// Path: calendar
+class Translations$calendar$tr {
+	Translations$calendar$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Takvim'
+	String get title => 'Takvim';
+
+	/// tr: 'Çocuğa özel terapi, doktor ve etkinlik planı.'
+	String get subtitle => 'Çocuğa özel terapi, doktor ve etkinlik planı.';
+
+	/// tr: 'Takvim için önce bir çocuk ekleyin.'
+	String get noChild => 'Takvim için önce bir çocuk ekleyin.';
+
+	/// tr: 'Henüz etkinlik yok. İlk etkinliği ekleyin.'
+	String get empty => 'Henüz etkinlik yok. İlk etkinliği ekleyin.';
+
+	/// tr: 'Etkinlik Ekle'
+	String get add => 'Etkinlik Ekle';
+
+	/// tr: 'Yeni Etkinlik'
+	String get addTitle => 'Yeni Etkinlik';
+
+	/// tr: 'Etkinliği Düzenle'
+	String get editTitle => 'Etkinliği Düzenle';
+
+	/// tr: 'Etkinlik Tipi'
+	String get eventType => 'Etkinlik Tipi';
+
+	/// tr: 'Terapi'
+	String get typeTerapi => 'Terapi';
+
+	/// tr: 'Doktor'
+	String get typeDoktor => 'Doktor';
+
+	/// tr: 'Eğitim'
+	String get typeEgitim => 'Eğitim';
+
+	/// tr: 'Aktivite'
+	String get typeAktivite => 'Aktivite';
+
+	/// tr: 'Randevu'
+	String get typeAppointment => 'Randevu';
+
+	/// tr: 'Diğer'
+	String get typeDiger => 'Diğer';
+
+	/// tr: 'Başlık'
+	String get eventTitle => 'Başlık';
+
+	/// tr: 'Etkinlik adı'
+	String get titleHint => 'Etkinlik adı';
+
+	/// tr: 'Konum'
+	String get location => 'Konum';
+
+	/// tr: 'Klinik adı, adres'
+	String get locationHint => 'Klinik adı, adres';
+
+	/// tr: 'Açıklama'
+	String get description => 'Açıklama';
+
+	/// tr: 'Başlangıç'
+	String get start => 'Başlangıç';
+
+	/// tr: 'Bitiş (isteğe bağlı)'
+	String get end => 'Bitiş (isteğe bağlı)';
+
+	/// tr: 'Hatırlatma'
+	String get reminder => 'Hatırlatma';
+
+	/// tr: 'Kapalı'
+	String get reminderOff => 'Kapalı';
+
+	/// tr: '$count dk önce'
+	String reminderMin({required Object count}) => '${count} dk önce';
+
+	/// tr: '$count saat önce'
+	String reminderHour({required Object count}) => '${count} saat önce';
+
+	/// tr: '1 gün önce'
+	String get reminderDay => '1 gün önce';
+
+	/// tr: 'Planlandı'
+	String get statusPlanned => 'Planlandı';
+
+	/// tr: 'Tamamlandı'
+	String get statusCompleted => 'Tamamlandı';
+
+	/// tr: 'İptal'
+	String get statusCancelled => 'İptal';
+
+	/// tr: 'Tamamlandı işaretle'
+	String get markCompleted => 'Tamamlandı işaretle';
+
+	/// tr: 'Planlandı yap'
+	String get markPlanned => 'Planlandı yap';
+
+	/// tr: 'İptal et'
+	String get markCancelled => 'İptal et';
+
+	/// tr: 'Bugün'
+	String get today => 'Bugün';
+
+	/// tr: 'Yarın'
+	String get tomorrow => 'Yarın';
+
+	/// tr: 'Kaydet'
+	String get save => 'Kaydet';
+
+	/// tr: 'Etkinlik kaydedildi.'
+	String get saved => 'Etkinlik kaydedildi.';
+
+	/// tr: 'Etkinliği Sil'
+	String get deleteTitle => 'Etkinliği Sil';
+
+	/// tr: '"$title" etkinliğini silmek istediğinize emin misiniz?'
+	String deleteConfirm({required Object title}) => '"${title}" etkinliğini silmek istediğinize emin misiniz?';
+
+	/// tr: 'Etkinlik silindi.'
+	String get deleted => 'Etkinlik silindi.';
+
+	/// tr: 'Lütfen bir başlık girin.'
+	String get errorTitle => 'Lütfen bir başlık girin.';
+
+	/// tr: 'İptal'
+	String get cancel => 'İptal';
+
+	/// tr: 'Sil'
+	String get delete => 'Sil';
+}
+
 // Path: emergency
 class Translations$emergency$tr {
 	Translations$emergency$tr.internal(this._root);
@@ -2193,6 +2329,48 @@ extension on Translations {
 			'meds.logNotesLabel' => 'Gözlem notları (isteğe bağlı)',
 			'meds.logNotesHint' => 'Doktorunuza iletmek istediğiniz bir gözlem var mı?',
 			'meds.logSaved' => 'Doz günlüğü kaydedildi.',
+			'calendar.title' => 'Takvim',
+			'calendar.subtitle' => 'Çocuğa özel terapi, doktor ve etkinlik planı.',
+			'calendar.noChild' => 'Takvim için önce bir çocuk ekleyin.',
+			'calendar.empty' => 'Henüz etkinlik yok. İlk etkinliği ekleyin.',
+			'calendar.add' => 'Etkinlik Ekle',
+			'calendar.addTitle' => 'Yeni Etkinlik',
+			'calendar.editTitle' => 'Etkinliği Düzenle',
+			'calendar.eventType' => 'Etkinlik Tipi',
+			'calendar.typeTerapi' => 'Terapi',
+			'calendar.typeDoktor' => 'Doktor',
+			'calendar.typeEgitim' => 'Eğitim',
+			'calendar.typeAktivite' => 'Aktivite',
+			'calendar.typeAppointment' => 'Randevu',
+			'calendar.typeDiger' => 'Diğer',
+			'calendar.eventTitle' => 'Başlık',
+			'calendar.titleHint' => 'Etkinlik adı',
+			'calendar.location' => 'Konum',
+			'calendar.locationHint' => 'Klinik adı, adres',
+			'calendar.description' => 'Açıklama',
+			'calendar.start' => 'Başlangıç',
+			'calendar.end' => 'Bitiş (isteğe bağlı)',
+			'calendar.reminder' => 'Hatırlatma',
+			'calendar.reminderOff' => 'Kapalı',
+			'calendar.reminderMin' => ({required Object count}) => '${count} dk önce',
+			'calendar.reminderHour' => ({required Object count}) => '${count} saat önce',
+			'calendar.reminderDay' => '1 gün önce',
+			'calendar.statusPlanned' => 'Planlandı',
+			'calendar.statusCompleted' => 'Tamamlandı',
+			'calendar.statusCancelled' => 'İptal',
+			'calendar.markCompleted' => 'Tamamlandı işaretle',
+			'calendar.markPlanned' => 'Planlandı yap',
+			'calendar.markCancelled' => 'İptal et',
+			'calendar.today' => 'Bugün',
+			'calendar.tomorrow' => 'Yarın',
+			'calendar.save' => 'Kaydet',
+			'calendar.saved' => 'Etkinlik kaydedildi.',
+			'calendar.deleteTitle' => 'Etkinliği Sil',
+			'calendar.deleteConfirm' => ({required Object title}) => '"${title}" etkinliğini silmek istediğinize emin misiniz?',
+			'calendar.deleted' => 'Etkinlik silindi.',
+			'calendar.errorTitle' => 'Lütfen bir başlık girin.',
+			'calendar.cancel' => 'İptal',
+			'calendar.delete' => 'Sil',
 			'emergency.title' => 'Acil Durum Kartı',
 			'emergency.subtitle' => 'Acil bir durumda çocuğunuzla karşılaşan kişilere gösterilecek bilgiler.',
 			'emergency.noChild' => 'Acil durum kartı için önce bir çocuk ekleyin.',
@@ -2325,6 +2503,8 @@ extension on Translations {
 			'account.errorFullName' => 'Ad soyad en az 2 karakter olmalıdır.',
 			'help.title' => 'Yardım & Hakkında',
 			'help.aboutTitle' => 'Otizm Destek Hakkında',
+			_ => null,
+		} ?? switch (path) {
 			'help.aboutBody' => 'Otizm Destek; çocuğunuzun gelişimini takip etmenize, uzmanlarla iletişim kurmanıza ve randevu almanıza yardımcı olan bir mobil uygulamadır.',
 			'help.tipsTitle' => 'İpuçları',
 			'help.tip1' => 'Çocuklarınızı "Çocuklarım"dan ekleyin; hedef ve gelişim notlarını "Gelişim" sekmesinden takip edin.',

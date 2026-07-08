@@ -66,6 +66,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$dailyTracker$en dailyTracker = _Translations$dailyTracker$en._(_root);
 	@override late final _Translations$sleep$en sleep = _Translations$sleep$en._(_root);
 	@override late final _Translations$meds$en meds = _Translations$meds$en._(_root);
+	@override late final _Translations$calendar$en calendar = _Translations$calendar$en._(_root);
 	@override late final _Translations$emergency$en emergency = _Translations$emergency$en._(_root);
 	@override late final _Translations$behavior$en behavior = _Translations$behavior$en._(_root);
 	@override late final _Translations$analytics$en analytics = _Translations$analytics$en._(_root);
@@ -659,6 +660,57 @@ class _Translations$meds$en extends Translations$meds$tr {
 	@override String get logSaved => 'Dose log saved.';
 }
 
+// Path: calendar
+class _Translations$calendar$en extends Translations$calendar$tr {
+	_Translations$calendar$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Calendar';
+	@override String get subtitle => 'Child-specific therapy, doctor and activity schedule.';
+	@override String get noChild => 'Add a child first to use the calendar.';
+	@override String get empty => 'No events yet. Add the first one.';
+	@override String get add => 'Add Event';
+	@override String get addTitle => 'New Event';
+	@override String get editTitle => 'Edit Event';
+	@override String get eventType => 'Event Type';
+	@override String get typeTerapi => 'Therapy';
+	@override String get typeDoktor => 'Doctor';
+	@override String get typeEgitim => 'Education';
+	@override String get typeAktivite => 'Activity';
+	@override String get typeAppointment => 'Appointment';
+	@override String get typeDiger => 'Other';
+	@override String get eventTitle => 'Title';
+	@override String get titleHint => 'Event name';
+	@override String get location => 'Location';
+	@override String get locationHint => 'Clinic name, address';
+	@override String get description => 'Description';
+	@override String get start => 'Start';
+	@override String get end => 'End (optional)';
+	@override String get reminder => 'Reminder';
+	@override String get reminderOff => 'Off';
+	@override String reminderMin({required Object count}) => '${count} min before';
+	@override String reminderHour({required Object count}) => '${count} h before';
+	@override String get reminderDay => '1 day before';
+	@override String get statusPlanned => 'Planned';
+	@override String get statusCompleted => 'Completed';
+	@override String get statusCancelled => 'Cancelled';
+	@override String get markCompleted => 'Mark completed';
+	@override String get markPlanned => 'Mark planned';
+	@override String get markCancelled => 'Cancel event';
+	@override String get today => 'Today';
+	@override String get tomorrow => 'Tomorrow';
+	@override String get save => 'Save';
+	@override String get saved => 'Event saved.';
+	@override String get deleteTitle => 'Delete Event';
+	@override String deleteConfirm({required Object title}) => 'Are you sure you want to delete "${title}"?';
+	@override String get deleted => 'Event deleted.';
+	@override String get errorTitle => 'Please enter a title.';
+	@override String get cancel => 'Cancel';
+	@override String get delete => 'Delete';
+}
+
 // Path: emergency
 class _Translations$emergency$en extends Translations$emergency$tr {
 	_Translations$emergency$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -1231,6 +1283,48 @@ extension on TranslationsEn {
 			'meds.logNotesLabel' => 'Observation notes (optional)',
 			'meds.logNotesHint' => 'Anything you want to share with your doctor?',
 			'meds.logSaved' => 'Dose log saved.',
+			'calendar.title' => 'Calendar',
+			'calendar.subtitle' => 'Child-specific therapy, doctor and activity schedule.',
+			'calendar.noChild' => 'Add a child first to use the calendar.',
+			'calendar.empty' => 'No events yet. Add the first one.',
+			'calendar.add' => 'Add Event',
+			'calendar.addTitle' => 'New Event',
+			'calendar.editTitle' => 'Edit Event',
+			'calendar.eventType' => 'Event Type',
+			'calendar.typeTerapi' => 'Therapy',
+			'calendar.typeDoktor' => 'Doctor',
+			'calendar.typeEgitim' => 'Education',
+			'calendar.typeAktivite' => 'Activity',
+			'calendar.typeAppointment' => 'Appointment',
+			'calendar.typeDiger' => 'Other',
+			'calendar.eventTitle' => 'Title',
+			'calendar.titleHint' => 'Event name',
+			'calendar.location' => 'Location',
+			'calendar.locationHint' => 'Clinic name, address',
+			'calendar.description' => 'Description',
+			'calendar.start' => 'Start',
+			'calendar.end' => 'End (optional)',
+			'calendar.reminder' => 'Reminder',
+			'calendar.reminderOff' => 'Off',
+			'calendar.reminderMin' => ({required Object count}) => '${count} min before',
+			'calendar.reminderHour' => ({required Object count}) => '${count} h before',
+			'calendar.reminderDay' => '1 day before',
+			'calendar.statusPlanned' => 'Planned',
+			'calendar.statusCompleted' => 'Completed',
+			'calendar.statusCancelled' => 'Cancelled',
+			'calendar.markCompleted' => 'Mark completed',
+			'calendar.markPlanned' => 'Mark planned',
+			'calendar.markCancelled' => 'Cancel event',
+			'calendar.today' => 'Today',
+			'calendar.tomorrow' => 'Tomorrow',
+			'calendar.save' => 'Save',
+			'calendar.saved' => 'Event saved.',
+			'calendar.deleteTitle' => 'Delete Event',
+			'calendar.deleteConfirm' => ({required Object title}) => 'Are you sure you want to delete "${title}"?',
+			'calendar.deleted' => 'Event deleted.',
+			'calendar.errorTitle' => 'Please enter a title.',
+			'calendar.cancel' => 'Cancel',
+			'calendar.delete' => 'Delete',
 			'emergency.title' => 'Emergency Card',
 			'emergency.subtitle' => 'Information to show to anyone who meets your child in an emergency.',
 			'emergency.noChild' => 'Add a child first to create an emergency card.',
@@ -1363,6 +1457,8 @@ extension on TranslationsEn {
 			'account.errorFullName' => 'Full name must be at least 2 characters.',
 			'help.title' => 'Help & About',
 			'help.aboutTitle' => 'About Otizm Destek',
+			_ => null,
+		} ?? switch (path) {
 			'help.aboutBody' => 'Otizm Destek is a mobile app that helps you track your child\'s development, connect with experts, and book appointments.',
 			'help.tipsTitle' => 'Tips',
 			'help.tip1' => 'Add your children under "My Children"; track goals and notes in the "Progress" tab.',

@@ -393,6 +393,50 @@ meds:
   logNotesHint: Anything you want to share with your doctor?
   logSaved: Dose log saved.
 
+calendar:
+  title: Calendar
+  subtitle: Child-specific therapy, doctor and activity schedule.
+  noChild: Add a child first to use the calendar.
+  empty: No events yet. Add the first one.
+  add: Add Event
+  addTitle: New Event
+  editTitle: Edit Event
+  eventType: Event Type
+  typeTerapi: Therapy
+  typeDoktor: Doctor
+  typeEgitim: Education
+  typeAktivite: Activity
+  typeAppointment: Appointment
+  typeDiger: Other
+  eventTitle: Title
+  titleHint: Event name
+  location: Location
+  locationHint: Clinic name, address
+  description: Description
+  start: Start
+  end: End (optional)
+  reminder: Reminder
+  reminderOff: Off
+  reminderMin: $count min before
+  reminderHour: $count h before
+  reminderDay: 1 day before
+  statusPlanned: Planned
+  statusCompleted: Completed
+  statusCancelled: Cancelled
+  markCompleted: Mark completed
+  markPlanned: Mark planned
+  markCancelled: Cancel event
+  today: Today
+  tomorrow: Tomorrow
+  save: Save
+  saved: Event saved.
+  deleteTitle: Delete Event
+  deleteConfirm: "Are you sure you want to delete \"$title\"?"
+  deleted: Event deleted.
+  errorTitle: Please enter a title.
+  cancel: Cancel
+  delete: Delete
+
 emergency:
   title: Emergency Card
   subtitle: Information to show to anyone who meets your child in an emergency.

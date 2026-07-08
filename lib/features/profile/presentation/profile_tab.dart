@@ -59,6 +59,11 @@ class ProfileTab extends ConsumerWidget {
             onTap: () => context.push('/routines'),
           ),
           _ProfileItem(
+            icon: Icons.calendar_month_outlined,
+            label: t.calendar.title,
+            onTap: () => context.push('/calendar'),
+          ),
+          _ProfileItem(
             icon: Icons.emergency_outlined,
             label: t.emergency.title,
             onTap: () => context.push('/emergency'),

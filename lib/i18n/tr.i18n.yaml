@@ -393,6 +393,50 @@ meds:
   logNotesHint: Doktorunuza iletmek istediğiniz bir gözlem var mı?
   logSaved: Doz günlüğü kaydedildi.
 
+calendar:
+  title: Takvim
+  subtitle: Çocuğa özel terapi, doktor ve etkinlik planı.
+  noChild: Takvim için önce bir çocuk ekleyin.
+  empty: Henüz etkinlik yok. İlk etkinliği ekleyin.
+  add: Etkinlik Ekle
+  addTitle: Yeni Etkinlik
+  editTitle: Etkinliği Düzenle
+  eventType: Etkinlik Tipi
+  typeTerapi: Terapi
+  typeDoktor: Doktor
+  typeEgitim: Eğitim
+  typeAktivite: Aktivite
+  typeAppointment: Randevu
+  typeDiger: Diğer
+  eventTitle: Başlık
+  titleHint: Etkinlik adı
+  location: Konum
+  locationHint: Klinik adı, adres
+  description: Açıklama
+  start: Başlangıç
+  end: Bitiş (isteğe bağlı)
+  reminder: Hatırlatma
+  reminderOff: Kapalı
+  reminderMin: $count dk önce
+  reminderHour: $count saat önce
+  reminderDay: 1 gün önce
+  statusPlanned: Planlandı
+  statusCompleted: Tamamlandı
+  statusCancelled: İptal
+  markCompleted: Tamamlandı işaretle
+  markPlanned: Planlandı yap
+  markCancelled: İptal et
+  today: Bugün
+  tomorrow: Yarın
+  save: Kaydet
+  saved: Etkinlik kaydedildi.
+  deleteTitle: Etkinliği Sil
+  deleteConfirm: "\"$title\" etkinliğini silmek istediğinize emin misiniz?"
+  deleted: Etkinlik silindi.
+  errorTitle: Lütfen bir başlık girin.
+  cancel: İptal
+  delete: Sil
+
 emergency:
   title: Acil Durum Kartı
   subtitle: Acil bir durumda çocuğunuzla karşılaşan kişilere gösterilecek bilgiler.
