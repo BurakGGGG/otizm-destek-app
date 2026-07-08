@@ -63,6 +63,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$booking$en booking = _Translations$booking$en._(_root);
 	@override late final _Translations$routines$en routines = _Translations$routines$en._(_root);
 	@override late final _Translations$routineForm$en routineForm = _Translations$routineForm$en._(_root);
+	@override late final _Translations$dailyTracker$en dailyTracker = _Translations$dailyTracker$en._(_root);
+	@override late final _Translations$analytics$en analytics = _Translations$analytics$en._(_root);
 	@override late final _Translations$children$en children = _Translations$children$en._(_root);
 	@override late final _Translations$account$en account = _Translations$account$en._(_root);
 	@override late final _Translations$help$en help = _Translations$help$en._(_root);
@@ -543,6 +545,60 @@ class _Translations$routineForm$en extends Translations$routineForm$tr {
 	@override String get errorName => 'Please enter a routine name.';
 }
 
+// Path: dailyTracker
+class _Translations$dailyTracker$en extends Translations$dailyTracker$tr {
+	_Translations$dailyTracker$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Daily Tracker';
+	@override String get todayTitle => 'How was today?';
+	@override String get today => 'Today';
+	@override String get mood1 => 'Very Bad';
+	@override String get mood2 => 'Bad';
+	@override String get mood3 => 'Okay';
+	@override String get mood4 => 'Good';
+	@override String get mood5 => 'Great';
+	@override String get triggersLabel => 'Possible triggers (optional)';
+	@override String get notesLabel => 'Note (optional)';
+	@override String get notesHint => 'Your observations about today';
+	@override String get save => 'Save';
+	@override String get update => 'Update';
+	@override String get saved => 'Mood saved.';
+	@override String get historyTitle => 'Past Entries';
+	@override String get empty => 'No entries yet. Add the first one today.';
+	@override String get noChild => 'Add a child first to use the daily tracker.';
+	@override String get deleteTitle => 'Delete Entry';
+	@override String deleteConfirm({required Object date}) => 'Are you sure you want to delete the entry dated ${date}?';
+	@override String get delete => 'Delete';
+	@override String get cancel => 'Cancel';
+	@override String get deleted => 'Entry deleted.';
+	@override String get errorSelectMood => 'Please select a mood.';
+	@override String dateLine({required Object day, required Object month, required Object year}) => '${day} ${month} ${year}';
+}
+
+// Path: analytics
+class _Translations$analytics$en extends Translations$analytics$tr {
+	_Translations$analytics$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Development Panel';
+	@override String get subtitle => 'Development trends over the last 6 months.';
+	@override String get milestones => 'Milestones';
+	@override String get milestonesUnit => 'achievements per month';
+	@override String get mood => 'Average Mood';
+	@override String get moodUnit => 'monthly average (1-5)';
+	@override String get sleep => 'Average Sleep';
+	@override String get sleepUnit => 'hours per night (monthly average)';
+	@override String get behavior => 'Behavior Logs';
+	@override String get behaviorUnit => 'entries per month';
+	@override String get noData => 'No data in this range yet.';
+	@override String get noChild => 'Add a child first to see the development panel.';
+}
+
 // Path: children
 class _Translations$children$en extends Translations$children$tr {
 	_Translations$children$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -917,6 +973,42 @@ extension on TranslationsEn {
 			'routineForm.descriptionHint' => 'What is this routine for?',
 			'routineForm.save' => 'Save',
 			'routineForm.errorName' => 'Please enter a routine name.',
+			'dailyTracker.title' => 'Daily Tracker',
+			'dailyTracker.todayTitle' => 'How was today?',
+			'dailyTracker.today' => 'Today',
+			'dailyTracker.mood1' => 'Very Bad',
+			'dailyTracker.mood2' => 'Bad',
+			'dailyTracker.mood3' => 'Okay',
+			'dailyTracker.mood4' => 'Good',
+			'dailyTracker.mood5' => 'Great',
+			'dailyTracker.triggersLabel' => 'Possible triggers (optional)',
+			'dailyTracker.notesLabel' => 'Note (optional)',
+			'dailyTracker.notesHint' => 'Your observations about today',
+			'dailyTracker.save' => 'Save',
+			'dailyTracker.update' => 'Update',
+			'dailyTracker.saved' => 'Mood saved.',
+			'dailyTracker.historyTitle' => 'Past Entries',
+			'dailyTracker.empty' => 'No entries yet. Add the first one today.',
+			'dailyTracker.noChild' => 'Add a child first to use the daily tracker.',
+			'dailyTracker.deleteTitle' => 'Delete Entry',
+			'dailyTracker.deleteConfirm' => ({required Object date}) => 'Are you sure you want to delete the entry dated ${date}?',
+			'dailyTracker.delete' => 'Delete',
+			'dailyTracker.cancel' => 'Cancel',
+			'dailyTracker.deleted' => 'Entry deleted.',
+			'dailyTracker.errorSelectMood' => 'Please select a mood.',
+			'dailyTracker.dateLine' => ({required Object day, required Object month, required Object year}) => '${day} ${month} ${year}',
+			'analytics.title' => 'Development Panel',
+			'analytics.subtitle' => 'Development trends over the last 6 months.',
+			'analytics.milestones' => 'Milestones',
+			'analytics.milestonesUnit' => 'achievements per month',
+			'analytics.mood' => 'Average Mood',
+			'analytics.moodUnit' => 'monthly average (1-5)',
+			'analytics.sleep' => 'Average Sleep',
+			'analytics.sleepUnit' => 'hours per night (monthly average)',
+			'analytics.behavior' => 'Behavior Logs',
+			'analytics.behaviorUnit' => 'entries per month',
+			'analytics.noData' => 'No data in this range yet.',
+			'analytics.noChild' => 'Add a child first to see the development panel.',
 			'children.title' => 'My Children',
 			'children.addTitle' => 'Add Child',
 			'children.editTitle' => 'Edit Child',

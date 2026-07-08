@@ -64,6 +64,8 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$booking$tr booking = Translations$booking$tr.internal(_root);
 	late final Translations$routines$tr routines = Translations$routines$tr.internal(_root);
 	late final Translations$routineForm$tr routineForm = Translations$routineForm$tr.internal(_root);
+	late final Translations$dailyTracker$tr dailyTracker = Translations$dailyTracker$tr.internal(_root);
+	late final Translations$analytics$tr analytics = Translations$analytics$tr.internal(_root);
 	late final Translations$children$tr children = Translations$children$tr.internal(_root);
 	late final Translations$account$tr account = Translations$account$tr.internal(_root);
 	late final Translations$help$tr help = Translations$help$tr.internal(_root);
@@ -1031,6 +1033,132 @@ class Translations$routineForm$tr {
 	String get errorName => 'Lütfen bir rutin adı girin.';
 }
 
+// Path: dailyTracker
+class Translations$dailyTracker$tr {
+	Translations$dailyTracker$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Günlük Takip'
+	String get title => 'Günlük Takip';
+
+	/// tr: 'Bugün nasıldı?'
+	String get todayTitle => 'Bugün nasıldı?';
+
+	/// tr: 'Bugün'
+	String get today => 'Bugün';
+
+	/// tr: 'Çok Kötü'
+	String get mood1 => 'Çok Kötü';
+
+	/// tr: 'Kötü'
+	String get mood2 => 'Kötü';
+
+	/// tr: 'Orta'
+	String get mood3 => 'Orta';
+
+	/// tr: 'İyi'
+	String get mood4 => 'İyi';
+
+	/// tr: 'Harika'
+	String get mood5 => 'Harika';
+
+	/// tr: 'Olası tetikleyiciler (isteğe bağlı)'
+	String get triggersLabel => 'Olası tetikleyiciler (isteğe bağlı)';
+
+	/// tr: 'Not (isteğe bağlı)'
+	String get notesLabel => 'Not (isteğe bağlı)';
+
+	/// tr: 'Bugüne dair gözlemleriniz'
+	String get notesHint => 'Bugüne dair gözlemleriniz';
+
+	/// tr: 'Kaydet'
+	String get save => 'Kaydet';
+
+	/// tr: 'Güncelle'
+	String get update => 'Güncelle';
+
+	/// tr: 'Ruh hali kaydedildi.'
+	String get saved => 'Ruh hali kaydedildi.';
+
+	/// tr: 'Geçmiş Kayıtlar'
+	String get historyTitle => 'Geçmiş Kayıtlar';
+
+	/// tr: 'Henüz kayıt yok. İlk kaydı bugün ekleyin.'
+	String get empty => 'Henüz kayıt yok. İlk kaydı bugün ekleyin.';
+
+	/// tr: 'Günlük takip için önce bir çocuk ekleyin.'
+	String get noChild => 'Günlük takip için önce bir çocuk ekleyin.';
+
+	/// tr: 'Kaydı Sil'
+	String get deleteTitle => 'Kaydı Sil';
+
+	/// tr: '$date tarihli kaydı silmek istediğinize emin misiniz?'
+	String deleteConfirm({required Object date}) => '${date} tarihli kaydı silmek istediğinize emin misiniz?';
+
+	/// tr: 'Sil'
+	String get delete => 'Sil';
+
+	/// tr: 'İptal'
+	String get cancel => 'İptal';
+
+	/// tr: 'Kayıt silindi.'
+	String get deleted => 'Kayıt silindi.';
+
+	/// tr: 'Lütfen bir ruh hali seçin.'
+	String get errorSelectMood => 'Lütfen bir ruh hali seçin.';
+
+	/// tr: '$day $month $year'
+	String dateLine({required Object day, required Object month, required Object year}) => '${day} ${month} ${year}';
+}
+
+// Path: analytics
+class Translations$analytics$tr {
+	Translations$analytics$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Gelişim Paneli'
+	String get title => 'Gelişim Paneli';
+
+	/// tr: 'Son 6 ayın gelişim eğilimleri.'
+	String get subtitle => 'Son 6 ayın gelişim eğilimleri.';
+
+	/// tr: 'Kilometre Taşları'
+	String get milestones => 'Kilometre Taşları';
+
+	/// tr: 'aylık kazanım sayısı'
+	String get milestonesUnit => 'aylık kazanım sayısı';
+
+	/// tr: 'Ruh Hali Ortalaması'
+	String get mood => 'Ruh Hali Ortalaması';
+
+	/// tr: '1-5 arası aylık ortalama'
+	String get moodUnit => '1-5 arası aylık ortalama';
+
+	/// tr: 'Ortalama Uyku'
+	String get sleep => 'Ortalama Uyku';
+
+	/// tr: 'gecelik saat (aylık ortalama)'
+	String get sleepUnit => 'gecelik saat (aylık ortalama)';
+
+	/// tr: 'Davranış Kayıtları'
+	String get behavior => 'Davranış Kayıtları';
+
+	/// tr: 'aylık kayıt sayısı'
+	String get behaviorUnit => 'aylık kayıt sayısı';
+
+	/// tr: 'Bu aralıkta henüz veri yok.'
+	String get noData => 'Bu aralıkta henüz veri yok.';
+
+	/// tr: 'Gelişim paneli için önce bir çocuk ekleyin.'
+	String get noChild => 'Gelişim paneli için önce bir çocuk ekleyin.';
+}
+
 // Path: children
 class Translations$children$tr {
 	Translations$children$tr.internal(this._root);
@@ -1537,6 +1665,42 @@ extension on Translations {
 			'routineForm.descriptionHint' => 'Bu rutin ne için?',
 			'routineForm.save' => 'Kaydet',
 			'routineForm.errorName' => 'Lütfen bir rutin adı girin.',
+			'dailyTracker.title' => 'Günlük Takip',
+			'dailyTracker.todayTitle' => 'Bugün nasıldı?',
+			'dailyTracker.today' => 'Bugün',
+			'dailyTracker.mood1' => 'Çok Kötü',
+			'dailyTracker.mood2' => 'Kötü',
+			'dailyTracker.mood3' => 'Orta',
+			'dailyTracker.mood4' => 'İyi',
+			'dailyTracker.mood5' => 'Harika',
+			'dailyTracker.triggersLabel' => 'Olası tetikleyiciler (isteğe bağlı)',
+			'dailyTracker.notesLabel' => 'Not (isteğe bağlı)',
+			'dailyTracker.notesHint' => 'Bugüne dair gözlemleriniz',
+			'dailyTracker.save' => 'Kaydet',
+			'dailyTracker.update' => 'Güncelle',
+			'dailyTracker.saved' => 'Ruh hali kaydedildi.',
+			'dailyTracker.historyTitle' => 'Geçmiş Kayıtlar',
+			'dailyTracker.empty' => 'Henüz kayıt yok. İlk kaydı bugün ekleyin.',
+			'dailyTracker.noChild' => 'Günlük takip için önce bir çocuk ekleyin.',
+			'dailyTracker.deleteTitle' => 'Kaydı Sil',
+			'dailyTracker.deleteConfirm' => ({required Object date}) => '${date} tarihli kaydı silmek istediğinize emin misiniz?',
+			'dailyTracker.delete' => 'Sil',
+			'dailyTracker.cancel' => 'İptal',
+			'dailyTracker.deleted' => 'Kayıt silindi.',
+			'dailyTracker.errorSelectMood' => 'Lütfen bir ruh hali seçin.',
+			'dailyTracker.dateLine' => ({required Object day, required Object month, required Object year}) => '${day} ${month} ${year}',
+			'analytics.title' => 'Gelişim Paneli',
+			'analytics.subtitle' => 'Son 6 ayın gelişim eğilimleri.',
+			'analytics.milestones' => 'Kilometre Taşları',
+			'analytics.milestonesUnit' => 'aylık kazanım sayısı',
+			'analytics.mood' => 'Ruh Hali Ortalaması',
+			'analytics.moodUnit' => '1-5 arası aylık ortalama',
+			'analytics.sleep' => 'Ortalama Uyku',
+			'analytics.sleepUnit' => 'gecelik saat (aylık ortalama)',
+			'analytics.behavior' => 'Davranış Kayıtları',
+			'analytics.behaviorUnit' => 'aylık kayıt sayısı',
+			'analytics.noData' => 'Bu aralıkta henüz veri yok.',
+			'analytics.noChild' => 'Gelişim paneli için önce bir çocuk ekleyin.',
 			'children.title' => 'Çocuklarım',
 			'children.addTitle' => 'Çocuk Ekle',
 			'children.editTitle' => 'Çocuğu Düzenle',

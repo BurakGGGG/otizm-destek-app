@@ -303,6 +303,46 @@ routineForm:
   save: Save
   errorName: Please enter a routine name.
 
+dailyTracker:
+  title: Daily Tracker
+  todayTitle: How was today?
+  today: Today
+  mood1: Very Bad
+  mood2: Bad
+  mood3: Okay
+  mood4: Good
+  mood5: Great
+  triggersLabel: Possible triggers (optional)
+  notesLabel: Note (optional)
+  notesHint: Your observations about today
+  save: Save
+  update: Update
+  saved: Mood saved.
+  historyTitle: Past Entries
+  empty: No entries yet. Add the first one today.
+  noChild: Add a child first to use the daily tracker.
+  deleteTitle: Delete Entry
+  deleteConfirm: Are you sure you want to delete the entry dated $date?
+  delete: Delete
+  cancel: Cancel
+  deleted: Entry deleted.
+  errorSelectMood: Please select a mood.
+  dateLine: $day $month $year
+
+analytics:
+  title: Development Panel
+  subtitle: Development trends over the last 6 months.
+  milestones: Milestones
+  milestonesUnit: achievements per month
+  mood: Average Mood
+  moodUnit: monthly average (1-5)
+  sleep: Average Sleep
+  sleepUnit: hours per night (monthly average)
+  behavior: Behavior Logs
+  behaviorUnit: entries per month
+  noData: No data in this range yet.
+  noChild: Add a child first to see the development panel.
+
 children:
   title: My Children
   addTitle: Add Child

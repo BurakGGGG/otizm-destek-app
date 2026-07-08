@@ -16,6 +16,7 @@ import '../../features/home/presentation/home_shell.dart';
 import '../../features/knowledge/presentation/knowledge_screen.dart';
 import '../../features/messaging/presentation/conversation_thread_screen.dart';
 import '../../features/messaging/presentation/conversations_screen.dart';
+import '../../features/mood/presentation/daily_tracker_screen.dart';
 import '../../features/notifications/presentation/notifications_screen.dart';
 import '../../features/profile/presentation/account_screen.dart';
 import '../../features/profile/presentation/help_screen.dart';
@@ -97,6 +98,10 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(path: '/knowledge', builder: (_, _) => const KnowledgeScreen()),
       GoRoute(path: '/routines', builder: (_, _) => const RoutinesScreen()),
+      GoRoute(
+        path: '/daily-tracker',
+        builder: (_, _) => const DailyTrackerScreen(),
+      ),
       GoRoute(
         path: '/messages',
         builder: (_, _) => const ConversationsScreen(),

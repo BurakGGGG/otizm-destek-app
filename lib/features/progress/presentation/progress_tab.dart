@@ -76,6 +76,8 @@ class _ProgressTabState extends ConsumerState<ProgressTab> {
                   ),
                   const SizedBox(height: 16),
                 ],
+                const _QuickLinks(),
+                const SizedBox(height: 20),
                 _GoalsSection(childId: selectedId),
                 const SizedBox(height: 24),
                 _NotesSection(childId: selectedId),
@@ -138,6 +140,70 @@ Future<void> _openForm(BuildContext context, Widget form) async {
   ).push<String>(MaterialPageRoute(builder: (_) => form));
   if (result != null && context.mounted) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(result)));
+  }
+}
+
+/// Günlük Takip ve Gelişim Paneli kısayolları.
+class _QuickLinks extends StatelessWidget {
+  const _QuickLinks();
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    return Row(
+      children: [
+        Expanded(
+          child: _QuickLinkCard(
+            icon: Icons.mood_outlined,
+            label: t.dailyTracker.title,
+            onTap: () => context.push('/daily-tracker'),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _QuickLinkCard extends StatelessWidget {
+  const _QuickLinkCard({
+    required this.icon,
+    required this.label,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final String label;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: EdgeInsets.zero,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(AppRadius.lg),
+        child: Padding(
+          padding:
+              const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+          child: Row(
+            children: [
+              Icon(icon, size: 22, color: context.colors.primary),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  label,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+              ),
+              Icon(Icons.chevron_right,
+                  size: 18, color: context.colors.textTertiary),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
 

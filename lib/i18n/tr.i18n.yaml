@@ -303,6 +303,46 @@ routineForm:
   save: Kaydet
   errorName: Lütfen bir rutin adı girin.
 
+dailyTracker:
+  title: Günlük Takip
+  todayTitle: Bugün nasıldı?
+  today: Bugün
+  mood1: Çok Kötü
+  mood2: Kötü
+  mood3: Orta
+  mood4: İyi
+  mood5: Harika
+  triggersLabel: Olası tetikleyiciler (isteğe bağlı)
+  notesLabel: Not (isteğe bağlı)
+  notesHint: Bugüne dair gözlemleriniz
+  save: Kaydet
+  update: Güncelle
+  saved: Ruh hali kaydedildi.
+  historyTitle: Geçmiş Kayıtlar
+  empty: Henüz kayıt yok. İlk kaydı bugün ekleyin.
+  noChild: Günlük takip için önce bir çocuk ekleyin.
+  deleteTitle: Kaydı Sil
+  deleteConfirm: $date tarihli kaydı silmek istediğinize emin misiniz?
+  delete: Sil
+  cancel: İptal
+  deleted: Kayıt silindi.
+  errorSelectMood: Lütfen bir ruh hali seçin.
+  dateLine: $day $month $year
+
+analytics:
+  title: Gelişim Paneli
+  subtitle: Son 6 ayın gelişim eğilimleri.
+  milestones: Kilometre Taşları
+  milestonesUnit: aylık kazanım sayısı
+  mood: Ruh Hali Ortalaması
+  moodUnit: 1-5 arası aylık ortalama
+  sleep: Ortalama Uyku
+  sleepUnit: gecelik saat (aylık ortalama)
+  behavior: Davranış Kayıtları
+  behaviorUnit: aylık kayıt sayısı
+  noData: Bu aralıkta henüz veri yok.
+  noChild: Gelişim paneli için önce bir çocuk ekleyin.
+
 children:
   title: Çocuklarım
   addTitle: Çocuk Ekle
