@@ -71,15 +71,26 @@ flutter build apk --debug
     (`/messages/conversations/direct/{userId}`).
   - **AI Asistan:** `/api/chatbot/stream` (SSE) streaming.
   - **Hesap:** `PUT /api/users/me` ile profil düzenleme.
+  - **Bildirimler:** `/api/notifications` liste + okundu işaretleme; Ana Sayfa'da
+    okunmamış rozeti.
+  - **Şifremi unuttum / sıfırla:** `/api/auth/forgot-password|reset-password`.
+  - **Rutinler:** `/api/routines` — çocuk bazlı görsel program; rutin/adım
+    ekleme-silme (saat + ikon). Profil menüsünden `/routines`.
+  - **Günlük Takip:** `/api/mood` — 5'li emoji ölçeği + tetikleyiciler + not
+    (gün başına upsert). Tetikleyici metinleri web ile birebir aynı düz metin
+    (çevrilmez!). Gelişim sekmesi kısayolu → `/daily-tracker`.
+  - **Gelişim Paneli:** `/api/analytics/child/{id}/trends` — 4 aylık trend
+    çubuk grafiği (kilometre taşı, ruh hali, uyku, davranış). `/analytics`.
 - ✅ Firebase: Crashlytics + Analytics kod entegrasyonu (debug'da kapalı, sürümde açık).
-- ✅ FCM push **mobil tarafı** hazır (izin/token/ön plan/dokunma deep-link); backend
-  cihaz-token uç noktası bekleniyor → sözleşme `docs/backend_fcm_spec.md`. Uç nokta canlıya
-  çıkınca otomatik bağlanır (404'ü sessiz geçer).
+- ✅ FCM push: mobil taraf hazır; **backend uç noktaları da yazıldı** (POST/DELETE
+  `/api/push/device-token`, MESSAGE/APPOINTMENT data payload — sözleşme
+  `docs/backend_fcm_spec.md` ile birebir). Render'a deploy edilince uçtan uca
+  çalışır; mobil 404'ü sessiz geçtiği için kod değişikliği gerekmez.
 - ✅ UI cilası: isim baş harfli avatarlar, skeleton yükleme, paylaşılan boş/hata
   bileşenleri (+CTA), haptics, **karanlık tema** (theme-aware `AppPalette` + `context.colors`,
   Profil'de Sistem/Açık/Koyu seçici, kalıcı).
-- ⏳ Sonraki adaylar: Bilgi Bankası kategori/format filtreleri; hedef ilerletme (+jeton);
-  randevu erteleme; bildirimler ekranı (`/api/notifications`); backend FCM uç noktası.
+- ⏳ Sonraki adaylar: hedef ilerletme (+jeton); randevu erteleme; uyku/ilaç takibi
+  (Günlük Takip'e ek sekmeler); backend FCM deploy sonrası uçtan uca push testi.
 - Modül kapsamı ve fazlar: bkz. plan `~/.claude/plans/bir-otizm-destek-mobil-compressed-fog.md`.
 
 ## Notlar
