@@ -314,6 +314,9 @@ routineForm:
 
 dailyTracker:
   title: Daily Tracker
+  tabMood: Mood
+  tabSleep: Sleep
+  tabMeds: Medication
   todayTitle: How was today?
   today: Today
   mood1: Very Bad
@@ -337,6 +340,58 @@ dailyTracker:
   deleted: Entry deleted.
   errorSelectMood: Please select a mood.
   dateLine: $day $month $year
+
+sleep:
+  todayTitle: Last Night / This Morning
+  bedtime: Bedtime
+  wakeTime: Wake Time
+  quality: Sleep Quality
+  nightWakings: Night wakings
+  factorsLabel: Sensory and environmental factors
+  factorWeighted: 🛏️ Weighted Blanket
+  factorSensory: 👕 Sensory Sensitivity
+  factorMelatonin: 💊 Melatonin Support
+  factorNoise: 🔊 Noise / Light
+  saved: Sleep saved.
+  empty: No sleep entries yet. Add the first one today.
+  deleteConfirm: Are you sure you want to delete the sleep entry dated $date?
+  deleted: Sleep entry deleted.
+  duration: $h h $m min
+  wakings: woke $count times
+
+meds:
+  safetyTitle: Medication safety
+  safetyBody: Medication reminders are for support only. Decisions about starting,
+    stopping, changing doses or side effects should be made only with your doctor.
+  add: Add Medication
+  addTitle: Add New Medication
+  editTitle: Edit Medication
+  empty: No medications yet. Add your child's medications and supplements here.
+  name: Medication / Supplement Name
+  nameHint: "E.g. Omega-3"
+  dosage: Dose
+  unit: Unit
+  frequency: Frequency
+  freqDaily: Once a day
+  freqTwiceDaily: Twice a day
+  freqThreeDaily: 3 times a day
+  freqAsNeeded: As needed
+  freqWeekly: Weekly
+  timesLabel: Dose times
+  addTime: Add Time
+  noTime: No time
+  added: Medication added.
+  updated: Medication updated.
+  deleteTitle: Delete Medication
+  deleteConfirm: $name and its dose logs will be permanently deleted. Are you sure?
+  deleted: Medication deleted.
+  errorName: Please enter the medication name.
+  logTitle: Dose Log
+  taken: Medication taken
+  sideEffectsLabel: Observed side effects
+  logNotesLabel: Observation notes (optional)
+  logNotesHint: Anything you want to share with your doctor?
+  logSaved: Dose log saved.
 
 analytics:
   title: Development Panel

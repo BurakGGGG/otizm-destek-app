@@ -65,6 +65,8 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$routines$tr routines = Translations$routines$tr.internal(_root);
 	late final Translations$routineForm$tr routineForm = Translations$routineForm$tr.internal(_root);
 	late final Translations$dailyTracker$tr dailyTracker = Translations$dailyTracker$tr.internal(_root);
+	late final Translations$sleep$tr sleep = Translations$sleep$tr.internal(_root);
+	late final Translations$meds$tr meds = Translations$meds$tr.internal(_root);
 	late final Translations$analytics$tr analytics = Translations$analytics$tr.internal(_root);
 	late final Translations$children$tr children = Translations$children$tr.internal(_root);
 	late final Translations$account$tr account = Translations$account$tr.internal(_root);
@@ -1071,6 +1073,15 @@ class Translations$dailyTracker$tr {
 	/// tr: 'Günlük Takip'
 	String get title => 'Günlük Takip';
 
+	/// tr: 'Duygu'
+	String get tabMood => 'Duygu';
+
+	/// tr: 'Uyku'
+	String get tabSleep => 'Uyku';
+
+	/// tr: 'İlaç'
+	String get tabMeds => 'İlaç';
+
 	/// tr: 'Bugün nasıldı?'
 	String get todayTitle => 'Bugün nasıldı?';
 
@@ -1139,6 +1150,165 @@ class Translations$dailyTracker$tr {
 
 	/// tr: '$day $month $year'
 	String dateLine({required Object day, required Object month, required Object year}) => '${day} ${month} ${year}';
+}
+
+// Path: sleep
+class Translations$sleep$tr {
+	Translations$sleep$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Dün Gece / Bu Sabah'
+	String get todayTitle => 'Dün Gece / Bu Sabah';
+
+	/// tr: 'Yatış Saati'
+	String get bedtime => 'Yatış Saati';
+
+	/// tr: 'Uyanış Saati'
+	String get wakeTime => 'Uyanış Saati';
+
+	/// tr: 'Uyku Kalitesi'
+	String get quality => 'Uyku Kalitesi';
+
+	/// tr: 'Gece uyanma sayısı'
+	String get nightWakings => 'Gece uyanma sayısı';
+
+	/// tr: 'Duyusal ve çevresel faktörler'
+	String get factorsLabel => 'Duyusal ve çevresel faktörler';
+
+	/// tr: '🛏️ Ağır Battaniye'
+	String get factorWeighted => '🛏️ Ağır Battaniye';
+
+	/// tr: '👕 Duyusal Hassasiyet'
+	String get factorSensory => '👕 Duyusal Hassasiyet';
+
+	/// tr: '💊 Melatonin Desteği'
+	String get factorMelatonin => '💊 Melatonin Desteği';
+
+	/// tr: '🔊 Gürültü / Işık'
+	String get factorNoise => '🔊 Gürültü / Işık';
+
+	/// tr: 'Uyku kaydedildi.'
+	String get saved => 'Uyku kaydedildi.';
+
+	/// tr: 'Henüz uyku kaydı yok. İlk kaydı bugün ekleyin.'
+	String get empty => 'Henüz uyku kaydı yok. İlk kaydı bugün ekleyin.';
+
+	/// tr: '$date tarihli uyku kaydını silmek istediğinize emin misiniz?'
+	String deleteConfirm({required Object date}) => '${date} tarihli uyku kaydını silmek istediğinize emin misiniz?';
+
+	/// tr: 'Uyku kaydı silindi.'
+	String get deleted => 'Uyku kaydı silindi.';
+
+	/// tr: '$h sa $m dk'
+	String duration({required Object h, required Object m}) => '${h} sa ${m} dk';
+
+	/// tr: '$count kez uyandı'
+	String wakings({required Object count}) => '${count} kez uyandı';
+}
+
+// Path: meds
+class Translations$meds$tr {
+	Translations$meds$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'İlaç güvenliği'
+	String get safetyTitle => 'İlaç güvenliği';
+
+	/// tr: 'İlaç hatırlatıcıları destek amaçlıdır. İlaç başlama, bırakma, doz değişikliği veya yan etki kararlarını yalnızca doktorunuzla birlikte verin.'
+	String get safetyBody => 'İlaç hatırlatıcıları destek amaçlıdır. İlaç başlama, bırakma, doz değişikliği veya yan etki kararlarını yalnızca doktorunuzla birlikte verin.';
+
+	/// tr: 'İlaç Ekle'
+	String get add => 'İlaç Ekle';
+
+	/// tr: 'Yeni İlaç Ekle'
+	String get addTitle => 'Yeni İlaç Ekle';
+
+	/// tr: 'İlacı Düzenle'
+	String get editTitle => 'İlacı Düzenle';
+
+	/// tr: 'Henüz ilaç kaydı yok. Çocuğunuzun ilaç ve takviyelerini buraya ekleyin.'
+	String get empty => 'Henüz ilaç kaydı yok. Çocuğunuzun ilaç ve takviyelerini buraya ekleyin.';
+
+	/// tr: 'İlaç / Takviye Adı'
+	String get name => 'İlaç / Takviye Adı';
+
+	/// tr: 'Örn: Omega-3'
+	String get nameHint => 'Örn: Omega-3';
+
+	/// tr: 'Doz'
+	String get dosage => 'Doz';
+
+	/// tr: 'Birim'
+	String get unit => 'Birim';
+
+	/// tr: 'Sıklık'
+	String get frequency => 'Sıklık';
+
+	/// tr: 'Günde 1'
+	String get freqDaily => 'Günde 1';
+
+	/// tr: 'Günde 2'
+	String get freqTwiceDaily => 'Günde 2';
+
+	/// tr: 'Günde 3'
+	String get freqThreeDaily => 'Günde 3';
+
+	/// tr: 'Gerektiğinde'
+	String get freqAsNeeded => 'Gerektiğinde';
+
+	/// tr: 'Haftalık'
+	String get freqWeekly => 'Haftalık';
+
+	/// tr: 'Doz saatleri'
+	String get timesLabel => 'Doz saatleri';
+
+	/// tr: 'Saat Ekle'
+	String get addTime => 'Saat Ekle';
+
+	/// tr: 'Saatsiz'
+	String get noTime => 'Saatsiz';
+
+	/// tr: 'İlaç eklendi.'
+	String get added => 'İlaç eklendi.';
+
+	/// tr: 'İlaç güncellendi.'
+	String get updated => 'İlaç güncellendi.';
+
+	/// tr: 'İlacı Sil'
+	String get deleteTitle => 'İlacı Sil';
+
+	/// tr: '$name ve doz kayıtları kalıcı olarak silinecek. Emin misiniz?'
+	String deleteConfirm({required Object name}) => '${name} ve doz kayıtları kalıcı olarak silinecek. Emin misiniz?';
+
+	/// tr: 'İlaç silindi.'
+	String get deleted => 'İlaç silindi.';
+
+	/// tr: 'Lütfen ilaç adını girin.'
+	String get errorName => 'Lütfen ilaç adını girin.';
+
+	/// tr: 'Doz Günlüğü'
+	String get logTitle => 'Doz Günlüğü';
+
+	/// tr: 'İlaç alındı'
+	String get taken => 'İlaç alındı';
+
+	/// tr: 'Gözlemlenen yan etkiler'
+	String get sideEffectsLabel => 'Gözlemlenen yan etkiler';
+
+	/// tr: 'Gözlem notları (isteğe bağlı)'
+	String get logNotesLabel => 'Gözlem notları (isteğe bağlı)';
+
+	/// tr: 'Doktorunuza iletmek istediğiniz bir gözlem var mı?'
+	String get logNotesHint => 'Doktorunuza iletmek istediğiniz bir gözlem var mı?';
+
+	/// tr: 'Doz günlüğü kaydedildi.'
+	String get logSaved => 'Doz günlüğü kaydedildi.';
 }
 
 // Path: analytics
@@ -1702,6 +1872,9 @@ extension on Translations {
 			'routineForm.save' => 'Kaydet',
 			'routineForm.errorName' => 'Lütfen bir rutin adı girin.',
 			'dailyTracker.title' => 'Günlük Takip',
+			'dailyTracker.tabMood' => 'Duygu',
+			'dailyTracker.tabSleep' => 'Uyku',
+			'dailyTracker.tabMeds' => 'İlaç',
 			'dailyTracker.todayTitle' => 'Bugün nasıldı?',
 			'dailyTracker.today' => 'Bugün',
 			'dailyTracker.mood1' => 'Çok Kötü',
@@ -1725,6 +1898,53 @@ extension on Translations {
 			'dailyTracker.deleted' => 'Kayıt silindi.',
 			'dailyTracker.errorSelectMood' => 'Lütfen bir ruh hali seçin.',
 			'dailyTracker.dateLine' => ({required Object day, required Object month, required Object year}) => '${day} ${month} ${year}',
+			'sleep.todayTitle' => 'Dün Gece / Bu Sabah',
+			'sleep.bedtime' => 'Yatış Saati',
+			'sleep.wakeTime' => 'Uyanış Saati',
+			'sleep.quality' => 'Uyku Kalitesi',
+			'sleep.nightWakings' => 'Gece uyanma sayısı',
+			'sleep.factorsLabel' => 'Duyusal ve çevresel faktörler',
+			'sleep.factorWeighted' => '🛏️ Ağır Battaniye',
+			'sleep.factorSensory' => '👕 Duyusal Hassasiyet',
+			'sleep.factorMelatonin' => '💊 Melatonin Desteği',
+			'sleep.factorNoise' => '🔊 Gürültü / Işık',
+			'sleep.saved' => 'Uyku kaydedildi.',
+			'sleep.empty' => 'Henüz uyku kaydı yok. İlk kaydı bugün ekleyin.',
+			'sleep.deleteConfirm' => ({required Object date}) => '${date} tarihli uyku kaydını silmek istediğinize emin misiniz?',
+			'sleep.deleted' => 'Uyku kaydı silindi.',
+			'sleep.duration' => ({required Object h, required Object m}) => '${h} sa ${m} dk',
+			'sleep.wakings' => ({required Object count}) => '${count} kez uyandı',
+			'meds.safetyTitle' => 'İlaç güvenliği',
+			'meds.safetyBody' => 'İlaç hatırlatıcıları destek amaçlıdır. İlaç başlama, bırakma, doz değişikliği veya yan etki kararlarını yalnızca doktorunuzla birlikte verin.',
+			'meds.add' => 'İlaç Ekle',
+			'meds.addTitle' => 'Yeni İlaç Ekle',
+			'meds.editTitle' => 'İlacı Düzenle',
+			'meds.empty' => 'Henüz ilaç kaydı yok. Çocuğunuzun ilaç ve takviyelerini buraya ekleyin.',
+			'meds.name' => 'İlaç / Takviye Adı',
+			'meds.nameHint' => 'Örn: Omega-3',
+			'meds.dosage' => 'Doz',
+			'meds.unit' => 'Birim',
+			'meds.frequency' => 'Sıklık',
+			'meds.freqDaily' => 'Günde 1',
+			'meds.freqTwiceDaily' => 'Günde 2',
+			'meds.freqThreeDaily' => 'Günde 3',
+			'meds.freqAsNeeded' => 'Gerektiğinde',
+			'meds.freqWeekly' => 'Haftalık',
+			'meds.timesLabel' => 'Doz saatleri',
+			'meds.addTime' => 'Saat Ekle',
+			'meds.noTime' => 'Saatsiz',
+			'meds.added' => 'İlaç eklendi.',
+			'meds.updated' => 'İlaç güncellendi.',
+			'meds.deleteTitle' => 'İlacı Sil',
+			'meds.deleteConfirm' => ({required Object name}) => '${name} ve doz kayıtları kalıcı olarak silinecek. Emin misiniz?',
+			'meds.deleted' => 'İlaç silindi.',
+			'meds.errorName' => 'Lütfen ilaç adını girin.',
+			'meds.logTitle' => 'Doz Günlüğü',
+			'meds.taken' => 'İlaç alındı',
+			'meds.sideEffectsLabel' => 'Gözlemlenen yan etkiler',
+			'meds.logNotesLabel' => 'Gözlem notları (isteğe bağlı)',
+			'meds.logNotesHint' => 'Doktorunuza iletmek istediğiniz bir gözlem var mı?',
+			'meds.logSaved' => 'Doz günlüğü kaydedildi.',
 			'analytics.title' => 'Gelişim Paneli',
 			'analytics.subtitle' => 'Son 6 ayın gelişim eğilimleri.',
 			'analytics.milestones' => 'Kilometre Taşları',

@@ -65,7 +65,8 @@ flutter build apk --debug
   - **Gelişim:** `/api/goals`, `/api/notes` (okuma + **hedef/not ekleme**).
   - **Çocuklarım:** `/api/children` CRUD (ekle/düzenle/sil).
   - **Randevular:** `/api/appointments` liste + iptal (veli) / onayla·tamamla (uzman);
-    **randevu alma akışı** (müsaitlik slotları + `POST /appointments`).
+    **randevu alma akışı** (müsaitlik slotları + `POST /appointments`);
+    **erteleme** (`PATCH /{id}/reschedule`, veli+uzman, müsaitlik slotlu).
   - **Bilgi Bankası:** `/api/knowledge` liste + makale detayı (HTML→düz metin).
   - **Mesajlaşma:** REST geçmiş + **STOMP /ws** canlı; konuşma başlatma
     (`/messages/conversations/direct/{userId}`).
@@ -76,9 +77,13 @@ flutter build apk --debug
   - **Şifremi unuttum / sıfırla:** `/api/auth/forgot-password|reset-password`.
   - **Rutinler:** `/api/routines` — çocuk bazlı görsel program; rutin/adım
     ekleme-silme (saat + ikon). Profil menüsünden `/routines`.
-  - **Günlük Takip:** `/api/mood` — 5'li emoji ölçeği + tetikleyiciler + not
-    (gün başına upsert). Tetikleyici metinleri web ile birebir aynı düz metin
-    (çevrilmez!). Gelişim sekmesi kısayolu → `/daily-tracker`.
+  - **Günlük Takip:** 3 sekme — `/daily-tracker`. **Duygu** `/api/mood` (5'li emoji
+    + tetikleyiciler + not, gün başına upsert); **Uyku** `/api/sleep` (yatış/uyanış,
+    kalite 1-5, gece uyanma, duyusal faktörler — faktörler web ile aynı
+    `Weighted:..|Sensory:..|Melatonin:..|Disturbance:..|Notes:..` formatında notes
+    içinde serileşir!); **İlaç** `/api/medications` (CRUD + doz günlüğü
+    `POST /{id}/log`: alındı + yan etkiler + not). Tetikleyici ve yan etki
+    metinleri web ile birebir aynı düz metin (çevrilmez!).
   - **Gelişim Paneli:** `/api/analytics/child/{id}/trends` — 4 aylık trend
     çubuk grafiği (kilometre taşı, ruh hali, uyku, davranış). `/analytics`.
 - ✅ Firebase: Crashlytics + Analytics kod entegrasyonu (debug'da kapalı, sürümde açık).
@@ -89,8 +94,10 @@ flutter build apk --debug
 - ✅ UI cilası: isim baş harfli avatarlar, skeleton yükleme, paylaşılan boş/hata
   bileşenleri (+CTA), haptics, **karanlık tema** (theme-aware `AppPalette` + `context.colors`,
   Profil'de Sistem/Açık/Koyu seçici, kalıcı).
-- ⏳ Sonraki adaylar: hedef ilerletme (+jeton); randevu erteleme; uyku/ilaç takibi
-  (Günlük Takip'e ek sekmeler); backend FCM deploy sonrası uçtan uca push testi.
+- ✅ Hedef ilerletme (+jeton geri alma) — `PUT /api/goals/{id}` (entries JSON dizisi;
+  title+category zorunlu). Gelişim sekmesindeki hedef kartlarında.
+- ⏳ Sonraki adaylar: backend FCM deploy sonrası uçtan uca push testi; davranış
+  günlüğü (`/api/behavior`); sosyal hikayeler.
 - Modül kapsamı ve fazlar: bkz. plan `~/.claude/plans/bir-otizm-destek-mobil-compressed-fog.md`.
 
 ## Notlar

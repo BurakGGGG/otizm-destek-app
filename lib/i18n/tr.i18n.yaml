@@ -314,6 +314,9 @@ routineForm:
 
 dailyTracker:
   title: Günlük Takip
+  tabMood: Duygu
+  tabSleep: Uyku
+  tabMeds: İlaç
   todayTitle: Bugün nasıldı?
   today: Bugün
   mood1: Çok Kötü
@@ -337,6 +340,58 @@ dailyTracker:
   deleted: Kayıt silindi.
   errorSelectMood: Lütfen bir ruh hali seçin.
   dateLine: $day $month $year
+
+sleep:
+  todayTitle: Dün Gece / Bu Sabah
+  bedtime: Yatış Saati
+  wakeTime: Uyanış Saati
+  quality: Uyku Kalitesi
+  nightWakings: Gece uyanma sayısı
+  factorsLabel: Duyusal ve çevresel faktörler
+  factorWeighted: 🛏️ Ağır Battaniye
+  factorSensory: 👕 Duyusal Hassasiyet
+  factorMelatonin: 💊 Melatonin Desteği
+  factorNoise: 🔊 Gürültü / Işık
+  saved: Uyku kaydedildi.
+  empty: Henüz uyku kaydı yok. İlk kaydı bugün ekleyin.
+  deleteConfirm: $date tarihli uyku kaydını silmek istediğinize emin misiniz?
+  deleted: Uyku kaydı silindi.
+  duration: $h sa $m dk
+  wakings: $count kez uyandı
+
+meds:
+  safetyTitle: İlaç güvenliği
+  safetyBody: İlaç hatırlatıcıları destek amaçlıdır. İlaç başlama, bırakma,
+    doz değişikliği veya yan etki kararlarını yalnızca doktorunuzla birlikte verin.
+  add: İlaç Ekle
+  addTitle: Yeni İlaç Ekle
+  editTitle: İlacı Düzenle
+  empty: Henüz ilaç kaydı yok. Çocuğunuzun ilaç ve takviyelerini buraya ekleyin.
+  name: İlaç / Takviye Adı
+  nameHint: "Örn: Omega-3"
+  dosage: Doz
+  unit: Birim
+  frequency: Sıklık
+  freqDaily: Günde 1
+  freqTwiceDaily: Günde 2
+  freqThreeDaily: Günde 3
+  freqAsNeeded: Gerektiğinde
+  freqWeekly: Haftalık
+  timesLabel: Doz saatleri
+  addTime: Saat Ekle
+  noTime: Saatsiz
+  added: İlaç eklendi.
+  updated: İlaç güncellendi.
+  deleteTitle: İlacı Sil
+  deleteConfirm: $name ve doz kayıtları kalıcı olarak silinecek. Emin misiniz?
+  deleted: İlaç silindi.
+  errorName: Lütfen ilaç adını girin.
+  logTitle: Doz Günlüğü
+  taken: İlaç alındı
+  sideEffectsLabel: Gözlemlenen yan etkiler
+  logNotesLabel: Gözlem notları (isteğe bağlı)
+  logNotesHint: Doktorunuza iletmek istediğiniz bir gözlem var mı?
+  logSaved: Doz günlüğü kaydedildi.
 
 analytics:
   title: Gelişim Paneli

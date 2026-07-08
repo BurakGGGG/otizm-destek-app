@@ -64,6 +64,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$routines$en routines = _Translations$routines$en._(_root);
 	@override late final _Translations$routineForm$en routineForm = _Translations$routineForm$en._(_root);
 	@override late final _Translations$dailyTracker$en dailyTracker = _Translations$dailyTracker$en._(_root);
+	@override late final _Translations$sleep$en sleep = _Translations$sleep$en._(_root);
+	@override late final _Translations$meds$en meds = _Translations$meds$en._(_root);
 	@override late final _Translations$analytics$en analytics = _Translations$analytics$en._(_root);
 	@override late final _Translations$children$en children = _Translations$children$en._(_root);
 	@override late final _Translations$account$en account = _Translations$account$en._(_root);
@@ -562,6 +564,9 @@ class _Translations$dailyTracker$en extends Translations$dailyTracker$tr {
 
 	// Translations
 	@override String get title => 'Daily Tracker';
+	@override String get tabMood => 'Mood';
+	@override String get tabSleep => 'Sleep';
+	@override String get tabMeds => 'Medication';
 	@override String get todayTitle => 'How was today?';
 	@override String get today => 'Today';
 	@override String get mood1 => 'Very Bad';
@@ -585,6 +590,71 @@ class _Translations$dailyTracker$en extends Translations$dailyTracker$tr {
 	@override String get deleted => 'Entry deleted.';
 	@override String get errorSelectMood => 'Please select a mood.';
 	@override String dateLine({required Object day, required Object month, required Object year}) => '${day} ${month} ${year}';
+}
+
+// Path: sleep
+class _Translations$sleep$en extends Translations$sleep$tr {
+	_Translations$sleep$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get todayTitle => 'Last Night / This Morning';
+	@override String get bedtime => 'Bedtime';
+	@override String get wakeTime => 'Wake Time';
+	@override String get quality => 'Sleep Quality';
+	@override String get nightWakings => 'Night wakings';
+	@override String get factorsLabel => 'Sensory and environmental factors';
+	@override String get factorWeighted => '🛏️ Weighted Blanket';
+	@override String get factorSensory => '👕 Sensory Sensitivity';
+	@override String get factorMelatonin => '💊 Melatonin Support';
+	@override String get factorNoise => '🔊 Noise / Light';
+	@override String get saved => 'Sleep saved.';
+	@override String get empty => 'No sleep entries yet. Add the first one today.';
+	@override String deleteConfirm({required Object date}) => 'Are you sure you want to delete the sleep entry dated ${date}?';
+	@override String get deleted => 'Sleep entry deleted.';
+	@override String duration({required Object h, required Object m}) => '${h} h ${m} min';
+	@override String wakings({required Object count}) => 'woke ${count} times';
+}
+
+// Path: meds
+class _Translations$meds$en extends Translations$meds$tr {
+	_Translations$meds$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get safetyTitle => 'Medication safety';
+	@override String get safetyBody => 'Medication reminders are for support only. Decisions about starting, stopping, changing doses or side effects should be made only with your doctor.';
+	@override String get add => 'Add Medication';
+	@override String get addTitle => 'Add New Medication';
+	@override String get editTitle => 'Edit Medication';
+	@override String get empty => 'No medications yet. Add your child\'s medications and supplements here.';
+	@override String get name => 'Medication / Supplement Name';
+	@override String get nameHint => 'E.g. Omega-3';
+	@override String get dosage => 'Dose';
+	@override String get unit => 'Unit';
+	@override String get frequency => 'Frequency';
+	@override String get freqDaily => 'Once a day';
+	@override String get freqTwiceDaily => 'Twice a day';
+	@override String get freqThreeDaily => '3 times a day';
+	@override String get freqAsNeeded => 'As needed';
+	@override String get freqWeekly => 'Weekly';
+	@override String get timesLabel => 'Dose times';
+	@override String get addTime => 'Add Time';
+	@override String get noTime => 'No time';
+	@override String get added => 'Medication added.';
+	@override String get updated => 'Medication updated.';
+	@override String get deleteTitle => 'Delete Medication';
+	@override String deleteConfirm({required Object name}) => '${name} and its dose logs will be permanently deleted. Are you sure?';
+	@override String get deleted => 'Medication deleted.';
+	@override String get errorName => 'Please enter the medication name.';
+	@override String get logTitle => 'Dose Log';
+	@override String get taken => 'Medication taken';
+	@override String get sideEffectsLabel => 'Observed side effects';
+	@override String get logNotesLabel => 'Observation notes (optional)';
+	@override String get logNotesHint => 'Anything you want to share with your doctor?';
+	@override String get logSaved => 'Dose log saved.';
 }
 
 // Path: analytics
@@ -992,6 +1062,9 @@ extension on TranslationsEn {
 			'routineForm.save' => 'Save',
 			'routineForm.errorName' => 'Please enter a routine name.',
 			'dailyTracker.title' => 'Daily Tracker',
+			'dailyTracker.tabMood' => 'Mood',
+			'dailyTracker.tabSleep' => 'Sleep',
+			'dailyTracker.tabMeds' => 'Medication',
 			'dailyTracker.todayTitle' => 'How was today?',
 			'dailyTracker.today' => 'Today',
 			'dailyTracker.mood1' => 'Very Bad',
@@ -1015,6 +1088,53 @@ extension on TranslationsEn {
 			'dailyTracker.deleted' => 'Entry deleted.',
 			'dailyTracker.errorSelectMood' => 'Please select a mood.',
 			'dailyTracker.dateLine' => ({required Object day, required Object month, required Object year}) => '${day} ${month} ${year}',
+			'sleep.todayTitle' => 'Last Night / This Morning',
+			'sleep.bedtime' => 'Bedtime',
+			'sleep.wakeTime' => 'Wake Time',
+			'sleep.quality' => 'Sleep Quality',
+			'sleep.nightWakings' => 'Night wakings',
+			'sleep.factorsLabel' => 'Sensory and environmental factors',
+			'sleep.factorWeighted' => '🛏️ Weighted Blanket',
+			'sleep.factorSensory' => '👕 Sensory Sensitivity',
+			'sleep.factorMelatonin' => '💊 Melatonin Support',
+			'sleep.factorNoise' => '🔊 Noise / Light',
+			'sleep.saved' => 'Sleep saved.',
+			'sleep.empty' => 'No sleep entries yet. Add the first one today.',
+			'sleep.deleteConfirm' => ({required Object date}) => 'Are you sure you want to delete the sleep entry dated ${date}?',
+			'sleep.deleted' => 'Sleep entry deleted.',
+			'sleep.duration' => ({required Object h, required Object m}) => '${h} h ${m} min',
+			'sleep.wakings' => ({required Object count}) => 'woke ${count} times',
+			'meds.safetyTitle' => 'Medication safety',
+			'meds.safetyBody' => 'Medication reminders are for support only. Decisions about starting, stopping, changing doses or side effects should be made only with your doctor.',
+			'meds.add' => 'Add Medication',
+			'meds.addTitle' => 'Add New Medication',
+			'meds.editTitle' => 'Edit Medication',
+			'meds.empty' => 'No medications yet. Add your child\'s medications and supplements here.',
+			'meds.name' => 'Medication / Supplement Name',
+			'meds.nameHint' => 'E.g. Omega-3',
+			'meds.dosage' => 'Dose',
+			'meds.unit' => 'Unit',
+			'meds.frequency' => 'Frequency',
+			'meds.freqDaily' => 'Once a day',
+			'meds.freqTwiceDaily' => 'Twice a day',
+			'meds.freqThreeDaily' => '3 times a day',
+			'meds.freqAsNeeded' => 'As needed',
+			'meds.freqWeekly' => 'Weekly',
+			'meds.timesLabel' => 'Dose times',
+			'meds.addTime' => 'Add Time',
+			'meds.noTime' => 'No time',
+			'meds.added' => 'Medication added.',
+			'meds.updated' => 'Medication updated.',
+			'meds.deleteTitle' => 'Delete Medication',
+			'meds.deleteConfirm' => ({required Object name}) => '${name} and its dose logs will be permanently deleted. Are you sure?',
+			'meds.deleted' => 'Medication deleted.',
+			'meds.errorName' => 'Please enter the medication name.',
+			'meds.logTitle' => 'Dose Log',
+			'meds.taken' => 'Medication taken',
+			'meds.sideEffectsLabel' => 'Observed side effects',
+			'meds.logNotesLabel' => 'Observation notes (optional)',
+			'meds.logNotesHint' => 'Anything you want to share with your doctor?',
+			'meds.logSaved' => 'Dose log saved.',
 			'analytics.title' => 'Development Panel',
 			'analytics.subtitle' => 'Development trends over the last 6 months.',
 			'analytics.milestones' => 'Milestones',
