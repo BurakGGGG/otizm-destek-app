@@ -132,6 +132,17 @@ flutter build apk --debug
     döner, iyimser UI). Oluşturma formu şehir seçici `kTurkishCities` (81 il,
     web `TURKISH_CITIES` birebir). Geri sayım rozeti (Bugün/Yarın/X gün sonra).
     `/meetups`, Profil menüsü kısayolu.
+  - **Benzer Aileler:** `/api/matching` + `/api/buddies` — eşleştirme motorunun
+    çocuğa yakın bulduğu aileler. Çocuk seçici → `GET /matching/similar/{childId}`
+    (uyum skoru %, ortak etiketler, eşleşme nedenleri); keşfedilebilirlik
+    anahtarı (`GET /matching/status` + `PUT /matching/opt-out`, toggle → yeni
+    durumu döner). Kart aksiyonları: **Mesaj** (mevcut `getOrCreateDirect` →
+    thread), **Arkadaş** ve **Mentor** (`POST /buddies/request`
+    `{receiverId, isMentorRequest, message}`, iyimser → PENDING).
+    `relationshipStatus` PENDING/ACCEPTED ise buddy/mentor kilitli, rozet
+    gösterilir. `/similar-families`, Profil menüsü kısayolu. (Not: web'deki
+    per-aile "Buluşma" isteği akışı kapsam dışı — topluluk buluşmaları ayrı
+    `/meetups` özelliğinde.)
 - ✅ Firebase: Crashlytics + Analytics kod entegrasyonu (debug'da kapalı, sürümde açık).
 - ✅ FCM push: mobil taraf hazır; **backend uç noktaları da yazıldı** (POST/DELETE
   `/api/push/device-token`, MESSAGE/APPOINTMENT data payload — sözleşme

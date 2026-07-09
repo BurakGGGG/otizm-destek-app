@@ -28,6 +28,7 @@ import '../../features/notifications/presentation/notifications_screen.dart';
 import '../../features/profile/presentation/account_screen.dart';
 import '../../features/profile/presentation/help_screen.dart';
 import '../../features/routines/presentation/routines_screen.dart';
+import '../../features/similar_families/presentation/similar_families_screen.dart';
 import '../../features/splash/splash_screen.dart';
 import '../../features/support_wall/presentation/support_wall_screen.dart';
 import '../providers.dart';
@@ -124,6 +125,10 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         builder: (_, _) => const WeeklyQuestionScreen(),
       ),
       GoRoute(path: '/meetups', builder: (_, _) => const MeetupsScreen()),
+      GoRoute(
+        path: '/similar-families',
+        builder: (_, _) => const SimilarFamiliesScreen(),
+      ),
       GoRoute(
         path: '/messages',
         builder: (_, _) => const ConversationsScreen(),

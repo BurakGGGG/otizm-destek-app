@@ -69,6 +69,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$wall$en wall = _Translations$wall$en._(_root);
 	@override late final _Translations$weekly$en weekly = _Translations$weekly$en._(_root);
 	@override late final _Translations$meetup$en meetup = _Translations$meetup$en._(_root);
+	@override late final _Translations$similar$en similar = _Translations$similar$en._(_root);
 	@override late final _Translations$crisis$en crisis = _Translations$crisis$en._(_root);
 	@override late final _Translations$calendar$en calendar = _Translations$calendar$en._(_root);
 	@override late final _Translations$emergency$en emergency = _Translations$emergency$en._(_root);
@@ -778,6 +779,40 @@ class _Translations$meetup$en extends Translations$meetup$tr {
 	@override String inDays({required Object count}) => 'in ${count} days';
 	@override String get past => 'Past';
 	@override String organizerBy({required Object name}) => 'Organized by ${name}';
+}
+
+// Path: similar
+class _Translations$similar$en extends Translations$similar$tr {
+	_Translations$similar$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Similar Families';
+	@override String get subtitle => 'Meet families at a similar stage to your child and share experiences.';
+	@override String get noChild => 'Add a child first, then discover similar families.';
+	@override String get discoverable => 'You\'re discoverable in matching';
+	@override String get hidden => 'You\'re hidden from matching';
+	@override String get discoverableHint => 'If you turn this off, other families won\'t see you in suggestions.';
+	@override String get empty => 'No matching families right now. Updating your profile and tags can improve your chances.';
+	@override String get matchLabel => 'match';
+	@override String get commonTagsTitle => 'Common areas';
+	@override String moreTags({required Object count}) => '+${count}';
+	@override String get reasonsTitle => 'Why you matched';
+	@override String ageRange({required Object range}) => 'Age ${range}';
+	@override String get message => 'Message';
+	@override String get buddy => 'Buddy';
+	@override String get mentor => 'Mentor';
+	@override String get pendingLabel => 'Request pending';
+	@override String get buddyLabel => 'Buddy connection';
+	@override String get mentorLabel => 'Mentor connection';
+	@override String get requestTitle => 'Connection request';
+	@override String get mentorRequestTitle => 'Mentor request';
+	@override String get requestHint => 'Write a short intro message (optional)';
+	@override String get requestDefault => 'Hi, I noticed we\'ve been through similar journeys. If you\'re open to it, I\'d like to start with a brief introduction here.';
+	@override String get send => 'Send Request';
+	@override String get sent => 'Connection request sent.';
+	@override String get cancel => 'Cancel';
 }
 
 // Path: crisis
@@ -1633,6 +1668,31 @@ extension on TranslationsEn {
 			'meetup.inDays' => ({required Object count}) => 'in ${count} days',
 			'meetup.past' => 'Past',
 			'meetup.organizerBy' => ({required Object name}) => 'Organized by ${name}',
+			'similar.title' => 'Similar Families',
+			'similar.subtitle' => 'Meet families at a similar stage to your child and share experiences.',
+			'similar.noChild' => 'Add a child first, then discover similar families.',
+			'similar.discoverable' => 'You\'re discoverable in matching',
+			'similar.hidden' => 'You\'re hidden from matching',
+			'similar.discoverableHint' => 'If you turn this off, other families won\'t see you in suggestions.',
+			'similar.empty' => 'No matching families right now. Updating your profile and tags can improve your chances.',
+			'similar.matchLabel' => 'match',
+			'similar.commonTagsTitle' => 'Common areas',
+			'similar.moreTags' => ({required Object count}) => '+${count}',
+			'similar.reasonsTitle' => 'Why you matched',
+			'similar.ageRange' => ({required Object range}) => 'Age ${range}',
+			'similar.message' => 'Message',
+			'similar.buddy' => 'Buddy',
+			'similar.mentor' => 'Mentor',
+			'similar.pendingLabel' => 'Request pending',
+			'similar.buddyLabel' => 'Buddy connection',
+			'similar.mentorLabel' => 'Mentor connection',
+			'similar.requestTitle' => 'Connection request',
+			'similar.mentorRequestTitle' => 'Mentor request',
+			'similar.requestHint' => 'Write a short intro message (optional)',
+			'similar.requestDefault' => 'Hi, I noticed we\'ve been through similar journeys. If you\'re open to it, I\'d like to start with a brief introduction here.',
+			'similar.send' => 'Send Request',
+			'similar.sent' => 'Connection request sent.',
+			'similar.cancel' => 'Cancel',
 			'crisis.title' => 'Crisis Guide',
 			'crisis.heroTitle' => 'What To Do in Hard Moments?',
 			'crisis.heroSubtitle' => 'A quick guide to help you stay calm and take the right steps when your child is overwhelmed.',
@@ -1693,6 +1753,8 @@ extension on TranslationsEn {
 			'crisis.cards.anxiety.subtitle' => 'Trembling, shortness of breath, crying, withdrawing',
 			'crisis.cards.anxiety.steps.0' => 'Say in a calm tone, "I\'m here, you\'re safe."',
 			'crisis.cards.anxiety.steps.1' => 'Do a deep breathing exercise: 4 seconds in, 6 seconds out.',
+			_ => null,
+		} ?? switch (path) {
 			'crisis.cards.anxiety.steps.2' => 'Use the "see 5 things, touch 4 things" grounding exercise.',
 			'crisis.cards.anxiety.steps.3' => 'Offer a safe person or object (favorite toy, headphones).',
 			'crisis.cards.anxiety.steps.4' => 'Give time for it to pass; don\'t rush them.',
@@ -1718,8 +1780,6 @@ extension on TranslationsEn {
 			'calendar.location' => 'Location',
 			'calendar.locationHint' => 'Clinic name, address',
 			'calendar.description' => 'Description',
-			_ => null,
-		} ?? switch (path) {
 			'calendar.start' => 'Start',
 			'calendar.end' => 'End (optional)',
 			'calendar.reminder' => 'Reminder',

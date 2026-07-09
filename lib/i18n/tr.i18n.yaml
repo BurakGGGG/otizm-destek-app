@@ -490,6 +490,36 @@ meetup:
   past: Geçmiş
   organizerBy: Düzenleyen $name
 
+similar:
+  title: Benzer Aileler
+  subtitle: Çocuğunuza yakın gelişim sürecindeki ailelerle tanışın, deneyim
+    paylaşın.
+  noChild: Önce bir çocuk ekleyin, sonra benzer aileleri keşfedin.
+  discoverable: Eşleştirmede görünürsün
+  hidden: Eşleştirmede gizlisin
+  discoverableHint: Kapatırsan diğer aileler seni öneriler arasında göremez.
+  empty: Şu an eşleşen aile yok. Profilinizi ve etiketlerinizi güncelleyerek
+    eşleşme şansını artırabilirsiniz.
+  matchLabel: uyum
+  commonTagsTitle: Ortak alanlar
+  moreTags: +$count
+  reasonsTitle: Neden eşleştiniz
+  ageRange: Yaş $range
+  message: Mesaj
+  buddy: Arkadaş
+  mentor: Mentor
+  pendingLabel: İstek bekliyor
+  buddyLabel: Arkadaş bağlantısı
+  mentorLabel: Mentor bağlantısı
+  requestTitle: Bağlantı isteği
+  mentorRequestTitle: Mentor isteği
+  requestHint: Kısa bir tanışma mesajı yaz (isteğe bağlı)
+  requestDefault: Merhaba, benzer süreçlerden geçtiğimizi gördüm. Uygunsanız
+    önce burada kısa bir tanışma mesajlaşması yapmak isterim.
+  send: İsteği Gönder
+  sent: Bağlantı isteği gönderildi.
+  cancel: İptal
+
 crisis:
   title: Kriz Rehberi
   heroTitle: Zor Anlarda Ne Yapmalı?

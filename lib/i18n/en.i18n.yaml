@@ -489,6 +489,36 @@ meetup:
   past: Past
   organizerBy: Organized by $name
 
+similar:
+  title: Similar Families
+  subtitle: Meet families at a similar stage to your child and share experiences.
+  noChild: Add a child first, then discover similar families.
+  discoverable: You're discoverable in matching
+  hidden: You're hidden from matching
+  discoverableHint: If you turn this off, other families won't see you in
+    suggestions.
+  empty: No matching families right now. Updating your profile and tags can
+    improve your chances.
+  matchLabel: match
+  commonTagsTitle: Common areas
+  moreTags: +$count
+  reasonsTitle: Why you matched
+  ageRange: Age $range
+  message: Message
+  buddy: Buddy
+  mentor: Mentor
+  pendingLabel: Request pending
+  buddyLabel: Buddy connection
+  mentorLabel: Mentor connection
+  requestTitle: Connection request
+  mentorRequestTitle: Mentor request
+  requestHint: Write a short intro message (optional)
+  requestDefault: Hi, I noticed we've been through similar journeys. If you're
+    open to it, I'd like to start with a brief introduction here.
+  send: Send Request
+  sent: Connection request sent.
+  cancel: Cancel
+
 crisis:
   title: Crisis Guide
   heroTitle: What To Do in Hard Moments?

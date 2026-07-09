@@ -89,6 +89,11 @@ class ProfileTab extends ConsumerWidget {
             onTap: () => context.push('/meetups'),
           ),
           _ProfileItem(
+            icon: Icons.diversity_3_outlined,
+            label: t.similar.title,
+            onTap: () => context.push('/similar-families'),
+          ),
+          _ProfileItem(
             icon: Icons.notifications_none,
             label: t.profile.notificationSettings,
             onTap: () => ScaffoldMessenger.of(

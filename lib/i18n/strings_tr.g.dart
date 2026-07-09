@@ -70,6 +70,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$wall$tr wall = Translations$wall$tr.internal(_root);
 	late final Translations$weekly$tr weekly = Translations$weekly$tr.internal(_root);
 	late final Translations$meetup$tr meetup = Translations$meetup$tr.internal(_root);
+	late final Translations$similar$tr similar = Translations$similar$tr.internal(_root);
 	late final Translations$crisis$tr crisis = Translations$crisis$tr.internal(_root);
 	late final Translations$calendar$tr calendar = Translations$calendar$tr.internal(_root);
 	late final Translations$emergency$tr emergency = Translations$emergency$tr.internal(_root);
@@ -1612,6 +1613,90 @@ class Translations$meetup$tr {
 	String organizerBy({required Object name}) => 'Düzenleyen ${name}';
 }
 
+// Path: similar
+class Translations$similar$tr {
+	Translations$similar$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Benzer Aileler'
+	String get title => 'Benzer Aileler';
+
+	/// tr: 'Çocuğunuza yakın gelişim sürecindeki ailelerle tanışın, deneyim paylaşın.'
+	String get subtitle => 'Çocuğunuza yakın gelişim sürecindeki ailelerle tanışın, deneyim paylaşın.';
+
+	/// tr: 'Önce bir çocuk ekleyin, sonra benzer aileleri keşfedin.'
+	String get noChild => 'Önce bir çocuk ekleyin, sonra benzer aileleri keşfedin.';
+
+	/// tr: 'Eşleştirmede görünürsün'
+	String get discoverable => 'Eşleştirmede görünürsün';
+
+	/// tr: 'Eşleştirmede gizlisin'
+	String get hidden => 'Eşleştirmede gizlisin';
+
+	/// tr: 'Kapatırsan diğer aileler seni öneriler arasında göremez.'
+	String get discoverableHint => 'Kapatırsan diğer aileler seni öneriler arasında göremez.';
+
+	/// tr: 'Şu an eşleşen aile yok. Profilinizi ve etiketlerinizi güncelleyerek eşleşme şansını artırabilirsiniz.'
+	String get empty => 'Şu an eşleşen aile yok. Profilinizi ve etiketlerinizi güncelleyerek eşleşme şansını artırabilirsiniz.';
+
+	/// tr: 'uyum'
+	String get matchLabel => 'uyum';
+
+	/// tr: 'Ortak alanlar'
+	String get commonTagsTitle => 'Ortak alanlar';
+
+	/// tr: '+$count'
+	String moreTags({required Object count}) => '+${count}';
+
+	/// tr: 'Neden eşleştiniz'
+	String get reasonsTitle => 'Neden eşleştiniz';
+
+	/// tr: 'Yaş $range'
+	String ageRange({required Object range}) => 'Yaş ${range}';
+
+	/// tr: 'Mesaj'
+	String get message => 'Mesaj';
+
+	/// tr: 'Arkadaş'
+	String get buddy => 'Arkadaş';
+
+	/// tr: 'Mentor'
+	String get mentor => 'Mentor';
+
+	/// tr: 'İstek bekliyor'
+	String get pendingLabel => 'İstek bekliyor';
+
+	/// tr: 'Arkadaş bağlantısı'
+	String get buddyLabel => 'Arkadaş bağlantısı';
+
+	/// tr: 'Mentor bağlantısı'
+	String get mentorLabel => 'Mentor bağlantısı';
+
+	/// tr: 'Bağlantı isteği'
+	String get requestTitle => 'Bağlantı isteği';
+
+	/// tr: 'Mentor isteği'
+	String get mentorRequestTitle => 'Mentor isteği';
+
+	/// tr: 'Kısa bir tanışma mesajı yaz (isteğe bağlı)'
+	String get requestHint => 'Kısa bir tanışma mesajı yaz (isteğe bağlı)';
+
+	/// tr: 'Merhaba, benzer süreçlerden geçtiğimizi gördüm. Uygunsanız önce burada kısa bir tanışma mesajlaşması yapmak isterim.'
+	String get requestDefault => 'Merhaba, benzer süreçlerden geçtiğimizi gördüm. Uygunsanız önce burada kısa bir tanışma mesajlaşması yapmak isterim.';
+
+	/// tr: 'İsteği Gönder'
+	String get send => 'İsteği Gönder';
+
+	/// tr: 'Bağlantı isteği gönderildi.'
+	String get sent => 'Bağlantı isteği gönderildi.';
+
+	/// tr: 'İptal'
+	String get cancel => 'İptal';
+}
+
 // Path: crisis
 class Translations$crisis$tr {
 	Translations$crisis$tr.internal(this._root);
@@ -2924,6 +3009,31 @@ extension on Translations {
 			'meetup.inDays' => ({required Object count}) => '${count} gün sonra',
 			'meetup.past' => 'Geçmiş',
 			'meetup.organizerBy' => ({required Object name}) => 'Düzenleyen ${name}',
+			'similar.title' => 'Benzer Aileler',
+			'similar.subtitle' => 'Çocuğunuza yakın gelişim sürecindeki ailelerle tanışın, deneyim paylaşın.',
+			'similar.noChild' => 'Önce bir çocuk ekleyin, sonra benzer aileleri keşfedin.',
+			'similar.discoverable' => 'Eşleştirmede görünürsün',
+			'similar.hidden' => 'Eşleştirmede gizlisin',
+			'similar.discoverableHint' => 'Kapatırsan diğer aileler seni öneriler arasında göremez.',
+			'similar.empty' => 'Şu an eşleşen aile yok. Profilinizi ve etiketlerinizi güncelleyerek eşleşme şansını artırabilirsiniz.',
+			'similar.matchLabel' => 'uyum',
+			'similar.commonTagsTitle' => 'Ortak alanlar',
+			'similar.moreTags' => ({required Object count}) => '+${count}',
+			'similar.reasonsTitle' => 'Neden eşleştiniz',
+			'similar.ageRange' => ({required Object range}) => 'Yaş ${range}',
+			'similar.message' => 'Mesaj',
+			'similar.buddy' => 'Arkadaş',
+			'similar.mentor' => 'Mentor',
+			'similar.pendingLabel' => 'İstek bekliyor',
+			'similar.buddyLabel' => 'Arkadaş bağlantısı',
+			'similar.mentorLabel' => 'Mentor bağlantısı',
+			'similar.requestTitle' => 'Bağlantı isteği',
+			'similar.mentorRequestTitle' => 'Mentor isteği',
+			'similar.requestHint' => 'Kısa bir tanışma mesajı yaz (isteğe bağlı)',
+			'similar.requestDefault' => 'Merhaba, benzer süreçlerden geçtiğimizi gördüm. Uygunsanız önce burada kısa bir tanışma mesajlaşması yapmak isterim.',
+			'similar.send' => 'İsteği Gönder',
+			'similar.sent' => 'Bağlantı isteği gönderildi.',
+			'similar.cancel' => 'İptal',
 			'crisis.title' => 'Kriz Rehberi',
 			'crisis.heroTitle' => 'Zor Anlarda Ne Yapmalı?',
 			'crisis.heroSubtitle' => 'Çocuğunuz bunaldığında sakin kalmanıza ve doğru adımları atmanıza yardımcı olacak hızlı rehber.',
@@ -2984,6 +3094,8 @@ extension on Translations {
 			'crisis.cards.anxiety.subtitle' => 'Titreme, nefes darlığı, ağlama, ortalıktan çekilme',
 			'crisis.cards.anxiety.steps.0' => 'Sakin bir ses tonuyla "Yanındayım, güvendesin" deyin.',
 			'crisis.cards.anxiety.steps.1' => 'Derin nefes egzersizi yapın: 4 saniye içeri, 6 saniye dışarı.',
+			_ => null,
+		} ?? switch (path) {
 			'crisis.cards.anxiety.steps.2' => '"Şu an 5 şey gör, 4 şey dokun" duyusal zemin egzersizi uygulayın.',
 			'crisis.cards.anxiety.steps.3' => 'Güvenli kişi veya nesne sunun (sevdiği oyuncak, kulaklık).',
 			'crisis.cards.anxiety.steps.4' => 'Krizin geçmesi için zaman verin, acele ettirmeyin.',
@@ -3009,8 +3121,6 @@ extension on Translations {
 			'calendar.location' => 'Konum',
 			'calendar.locationHint' => 'Klinik adı, adres',
 			'calendar.description' => 'Açıklama',
-			_ => null,
-		} ?? switch (path) {
 			'calendar.start' => 'Başlangıç',
 			'calendar.end' => 'Bitiş (isteğe bağlı)',
 			'calendar.reminder' => 'Hatırlatma',
