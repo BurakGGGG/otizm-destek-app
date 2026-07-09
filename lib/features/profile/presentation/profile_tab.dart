@@ -84,6 +84,11 @@ class ProfileTab extends ConsumerWidget {
             onTap: () => context.push('/weekly-question'),
           ),
           _ProfileItem(
+            icon: Icons.groups_outlined,
+            label: t.meetup.title,
+            onTap: () => context.push('/meetups'),
+          ),
+          _ProfileItem(
             icon: Icons.notifications_none,
             label: t.profile.notificationSettings,
             onTap: () => ScaffoldMessenger.of(

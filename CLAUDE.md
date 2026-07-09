@@ -124,7 +124,14 @@ flutter build apk --debug
     `[ANONYMOUS_META:true]` + `[TAGS:a,b]` önekleri (`WeeklyAnswer.encode`/parse);
     etiket kodları (`kWeeklyAnswerTags`) çevrilmez. Uzman rozeti: rol EXPERT ya
     da ad "Uzm."/"Dr." içerir. `/weekly-question`, Profil menüsü kısayolu.
-    (Aynı `communityService` Buluşmalar'ı da içerir — sonraki aday.)
+  - **Yerel Buluşmalar:** `/api/community/meetups` — şehir bazlı aile
+    buluşmaları. Şehir filtresi (`kMeetupFilterCities`, `Tümü` sunucuya
+    gönderilmez), liste + oluşturma (`POST /meetups`, title/city/date zorunlu;
+    `date` `yyyy-MM-dd` LocalDate, `time` `HH:mm` LocalTime; emoji varsayılan
+    '📍'), katılım aç-kapa (`POST /meetups/{id}/attendance`, güncel buluşmayı
+    döner, iyimser UI). Oluşturma formu şehir seçici `kTurkishCities` (81 il,
+    web `TURKISH_CITIES` birebir). Geri sayım rozeti (Bugün/Yarın/X gün sonra).
+    `/meetups`, Profil menüsü kısayolu.
 - ✅ Firebase: Crashlytics + Analytics kod entegrasyonu (debug'da kapalı, sürümde açık).
 - ✅ FCM push: mobil taraf hazır; **backend uç noktaları da yazıldı** (POST/DELETE
   `/api/push/device-token`, MESSAGE/APPOINTMENT data payload — sözleşme

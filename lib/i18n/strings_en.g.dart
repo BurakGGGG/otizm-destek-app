@@ -68,6 +68,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$meds$en meds = _Translations$meds$en._(_root);
 	@override late final _Translations$wall$en wall = _Translations$wall$en._(_root);
 	@override late final _Translations$weekly$en weekly = _Translations$weekly$en._(_root);
+	@override late final _Translations$meetup$en meetup = _Translations$meetup$en._(_root);
 	@override late final _Translations$crisis$en crisis = _Translations$crisis$en._(_root);
 	@override late final _Translations$calendar$en calendar = _Translations$calendar$en._(_root);
 	@override late final _Translations$emergency$en emergency = _Translations$emergency$en._(_root);
@@ -738,6 +739,45 @@ class _Translations$weekly$en extends Translations$weekly$tr {
 	@override String minsAgo({required Object count}) => '${count} m ago';
 	@override String hoursAgo({required Object count}) => '${count} h ago';
 	@override String daysAgo({required Object count}) => '${count} d ago';
+}
+
+// Path: meetup
+class _Translations$meetup$en extends Translations$meetup$tr {
+	_Translations$meetup$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Local Meetups';
+	@override String get subtitle => 'Meet families in your city and spend time together.';
+	@override String get empty => 'No meetups in this city yet. Be the first to create one.';
+	@override String get add => 'Create Meetup';
+	@override String get addTitle => 'New Meetup';
+	@override String get titleLabel => 'Meetup Name';
+	@override String get titleHint => 'e.g. Morning Meetup at the Park';
+	@override String get cityLabel => 'City';
+	@override String get cityHint => 'Select a city';
+	@override String get districtLabel => 'District';
+	@override String get districtHint => 'e.g. Kadıköy';
+	@override String get venueLabel => 'Venue';
+	@override String get venueHint => 'e.g. Moda Park or a cafe name';
+	@override String get dateLabel => 'Date';
+	@override String get timeLabel => 'Time';
+	@override String get descriptionLabel => 'Description';
+	@override String get descriptionHint => 'Who can join, what will it be like?';
+	@override String get create => 'Create';
+	@override String get created => 'Your meetup was created. Other families can see it now.';
+	@override String get errorRequired => 'Please fill in the title, city and date fields.';
+	@override String attendCount({required Object count}) => '${count} attending';
+	@override String get join => 'Join';
+	@override String get joined => 'Attending';
+	@override String get joinedMsg => 'You\'re attending the meetup!';
+	@override String get leftMsg => 'Your attendance was cancelled.';
+	@override String get today => 'Today';
+	@override String get tomorrow => 'Tomorrow';
+	@override String inDays({required Object count}) => 'in ${count} days';
+	@override String get past => 'Past';
+	@override String organizerBy({required Object name}) => 'Organized by ${name}';
 }
 
 // Path: crisis
@@ -1563,6 +1603,36 @@ extension on TranslationsEn {
 			'weekly.minsAgo' => ({required Object count}) => '${count} m ago',
 			'weekly.hoursAgo' => ({required Object count}) => '${count} h ago',
 			'weekly.daysAgo' => ({required Object count}) => '${count} d ago',
+			'meetup.title' => 'Local Meetups',
+			'meetup.subtitle' => 'Meet families in your city and spend time together.',
+			'meetup.empty' => 'No meetups in this city yet. Be the first to create one.',
+			'meetup.add' => 'Create Meetup',
+			'meetup.addTitle' => 'New Meetup',
+			'meetup.titleLabel' => 'Meetup Name',
+			'meetup.titleHint' => 'e.g. Morning Meetup at the Park',
+			'meetup.cityLabel' => 'City',
+			'meetup.cityHint' => 'Select a city',
+			'meetup.districtLabel' => 'District',
+			'meetup.districtHint' => 'e.g. Kadıköy',
+			'meetup.venueLabel' => 'Venue',
+			'meetup.venueHint' => 'e.g. Moda Park or a cafe name',
+			'meetup.dateLabel' => 'Date',
+			'meetup.timeLabel' => 'Time',
+			'meetup.descriptionLabel' => 'Description',
+			'meetup.descriptionHint' => 'Who can join, what will it be like?',
+			'meetup.create' => 'Create',
+			'meetup.created' => 'Your meetup was created. Other families can see it now.',
+			'meetup.errorRequired' => 'Please fill in the title, city and date fields.',
+			'meetup.attendCount' => ({required Object count}) => '${count} attending',
+			'meetup.join' => 'Join',
+			'meetup.joined' => 'Attending',
+			'meetup.joinedMsg' => 'You\'re attending the meetup!',
+			'meetup.leftMsg' => 'Your attendance was cancelled.',
+			'meetup.today' => 'Today',
+			'meetup.tomorrow' => 'Tomorrow',
+			'meetup.inDays' => ({required Object count}) => 'in ${count} days',
+			'meetup.past' => 'Past',
+			'meetup.organizerBy' => ({required Object name}) => 'Organized by ${name}',
 			'crisis.title' => 'Crisis Guide',
 			'crisis.heroTitle' => 'What To Do in Hard Moments?',
 			'crisis.heroSubtitle' => 'A quick guide to help you stay calm and take the right steps when your child is overwhelmed.',
@@ -1648,6 +1718,8 @@ extension on TranslationsEn {
 			'calendar.location' => 'Location',
 			'calendar.locationHint' => 'Clinic name, address',
 			'calendar.description' => 'Description',
+			_ => null,
+		} ?? switch (path) {
 			'calendar.start' => 'Start',
 			'calendar.end' => 'End (optional)',
 			'calendar.reminder' => 'Reminder',
@@ -1678,8 +1750,6 @@ extension on TranslationsEn {
 			'emergency.notSaved' => 'This card has not been saved yet.',
 			'emergency.save' => 'Save',
 			'emergency.saved' => 'Emergency card saved.',
-			_ => null,
-		} ?? switch (path) {
 			'emergency.call' => 'Call',
 			'emergency.sectionChild' => 'Child Information',
 			'emergency.sectionContacts' => 'Emergency Contacts',

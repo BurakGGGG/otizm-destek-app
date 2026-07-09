@@ -69,6 +69,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$meds$tr meds = Translations$meds$tr.internal(_root);
 	late final Translations$wall$tr wall = Translations$wall$tr.internal(_root);
 	late final Translations$weekly$tr weekly = Translations$weekly$tr.internal(_root);
+	late final Translations$meetup$tr meetup = Translations$meetup$tr.internal(_root);
 	late final Translations$crisis$tr crisis = Translations$crisis$tr.internal(_root);
 	late final Translations$calendar$tr calendar = Translations$calendar$tr.internal(_root);
 	late final Translations$emergency$tr emergency = Translations$emergency$tr.internal(_root);
@@ -1512,6 +1513,105 @@ class Translations$weekly$tr {
 	String daysAgo({required Object count}) => '${count} gün önce';
 }
 
+// Path: meetup
+class Translations$meetup$tr {
+	Translations$meetup$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Yerel Buluşmalar'
+	String get title => 'Yerel Buluşmalar';
+
+	/// tr: 'Şehrindeki ailelerle tanış, birlikte vakit geçir.'
+	String get subtitle => 'Şehrindeki ailelerle tanış, birlikte vakit geçir.';
+
+	/// tr: 'Bu şehirde henüz buluşma yok. İlk buluşmayı sen oluştur.'
+	String get empty => 'Bu şehirde henüz buluşma yok. İlk buluşmayı sen oluştur.';
+
+	/// tr: 'Buluşma Oluştur'
+	String get add => 'Buluşma Oluştur';
+
+	/// tr: 'Yeni Buluşma'
+	String get addTitle => 'Yeni Buluşma';
+
+	/// tr: 'Buluşma Adı'
+	String get titleLabel => 'Buluşma Adı';
+
+	/// tr: 'ör: Parkta Sabah Buluşması'
+	String get titleHint => 'ör: Parkta Sabah Buluşması';
+
+	/// tr: 'Şehir'
+	String get cityLabel => 'Şehir';
+
+	/// tr: 'Şehir seç'
+	String get cityHint => 'Şehir seç';
+
+	/// tr: 'İlçe'
+	String get districtLabel => 'İlçe';
+
+	/// tr: 'ör: Kadıköy'
+	String get districtHint => 'ör: Kadıköy';
+
+	/// tr: 'Buluşma Yeri'
+	String get venueLabel => 'Buluşma Yeri';
+
+	/// tr: 'ör: Moda Parkı veya kafe adı'
+	String get venueHint => 'ör: Moda Parkı veya kafe adı';
+
+	/// tr: 'Tarih'
+	String get dateLabel => 'Tarih';
+
+	/// tr: 'Saat'
+	String get timeLabel => 'Saat';
+
+	/// tr: 'Açıklama'
+	String get descriptionLabel => 'Açıklama';
+
+	/// tr: 'Kimler katılabilir, ortam nasıl olacak?'
+	String get descriptionHint => 'Kimler katılabilir, ortam nasıl olacak?';
+
+	/// tr: 'Oluştur'
+	String get create => 'Oluştur';
+
+	/// tr: 'Buluşman oluşturuldu. Diğer aileler görebilecek.'
+	String get created => 'Buluşman oluşturuldu. Diğer aileler görebilecek.';
+
+	/// tr: 'Lütfen başlık, şehir ve tarih alanlarını doldurun.'
+	String get errorRequired => 'Lütfen başlık, şehir ve tarih alanlarını doldurun.';
+
+	/// tr: '$count katılımcı'
+	String attendCount({required Object count}) => '${count} katılımcı';
+
+	/// tr: 'Katıl'
+	String get join => 'Katıl';
+
+	/// tr: 'Katılıyorsun'
+	String get joined => 'Katılıyorsun';
+
+	/// tr: 'Buluşmaya katılıyorsun!'
+	String get joinedMsg => 'Buluşmaya katılıyorsun!';
+
+	/// tr: 'Katılımın iptal edildi.'
+	String get leftMsg => 'Katılımın iptal edildi.';
+
+	/// tr: 'Bugün'
+	String get today => 'Bugün';
+
+	/// tr: 'Yarın'
+	String get tomorrow => 'Yarın';
+
+	/// tr: '$count gün sonra'
+	String inDays({required Object count}) => '${count} gün sonra';
+
+	/// tr: 'Geçmiş'
+	String get past => 'Geçmiş';
+
+	/// tr: 'Düzenleyen $name'
+	String organizerBy({required Object name}) => 'Düzenleyen ${name}';
+}
+
 // Path: crisis
 class Translations$crisis$tr {
 	Translations$crisis$tr.internal(this._root);
@@ -2794,6 +2894,36 @@ extension on Translations {
 			'weekly.minsAgo' => ({required Object count}) => '${count} dk önce',
 			'weekly.hoursAgo' => ({required Object count}) => '${count} sa önce',
 			'weekly.daysAgo' => ({required Object count}) => '${count} gün önce',
+			'meetup.title' => 'Yerel Buluşmalar',
+			'meetup.subtitle' => 'Şehrindeki ailelerle tanış, birlikte vakit geçir.',
+			'meetup.empty' => 'Bu şehirde henüz buluşma yok. İlk buluşmayı sen oluştur.',
+			'meetup.add' => 'Buluşma Oluştur',
+			'meetup.addTitle' => 'Yeni Buluşma',
+			'meetup.titleLabel' => 'Buluşma Adı',
+			'meetup.titleHint' => 'ör: Parkta Sabah Buluşması',
+			'meetup.cityLabel' => 'Şehir',
+			'meetup.cityHint' => 'Şehir seç',
+			'meetup.districtLabel' => 'İlçe',
+			'meetup.districtHint' => 'ör: Kadıköy',
+			'meetup.venueLabel' => 'Buluşma Yeri',
+			'meetup.venueHint' => 'ör: Moda Parkı veya kafe adı',
+			'meetup.dateLabel' => 'Tarih',
+			'meetup.timeLabel' => 'Saat',
+			'meetup.descriptionLabel' => 'Açıklama',
+			'meetup.descriptionHint' => 'Kimler katılabilir, ortam nasıl olacak?',
+			'meetup.create' => 'Oluştur',
+			'meetup.created' => 'Buluşman oluşturuldu. Diğer aileler görebilecek.',
+			'meetup.errorRequired' => 'Lütfen başlık, şehir ve tarih alanlarını doldurun.',
+			'meetup.attendCount' => ({required Object count}) => '${count} katılımcı',
+			'meetup.join' => 'Katıl',
+			'meetup.joined' => 'Katılıyorsun',
+			'meetup.joinedMsg' => 'Buluşmaya katılıyorsun!',
+			'meetup.leftMsg' => 'Katılımın iptal edildi.',
+			'meetup.today' => 'Bugün',
+			'meetup.tomorrow' => 'Yarın',
+			'meetup.inDays' => ({required Object count}) => '${count} gün sonra',
+			'meetup.past' => 'Geçmiş',
+			'meetup.organizerBy' => ({required Object name}) => 'Düzenleyen ${name}',
 			'crisis.title' => 'Kriz Rehberi',
 			'crisis.heroTitle' => 'Zor Anlarda Ne Yapmalı?',
 			'crisis.heroSubtitle' => 'Çocuğunuz bunaldığında sakin kalmanıza ve doğru adımları atmanıza yardımcı olacak hızlı rehber.',
@@ -2879,6 +3009,8 @@ extension on Translations {
 			'calendar.location' => 'Konum',
 			'calendar.locationHint' => 'Klinik adı, adres',
 			'calendar.description' => 'Açıklama',
+			_ => null,
+		} ?? switch (path) {
 			'calendar.start' => 'Başlangıç',
 			'calendar.end' => 'Bitiş (isteğe bağlı)',
 			'calendar.reminder' => 'Hatırlatma',
@@ -2909,8 +3041,6 @@ extension on Translations {
 			'emergency.notSaved' => 'Bu kart henüz kaydedilmedi.',
 			'emergency.save' => 'Kaydet',
 			'emergency.saved' => 'Acil durum kartı kaydedildi.',
-			_ => null,
-		} ?? switch (path) {
 			'emergency.call' => 'Ara',
 			'emergency.sectionChild' => 'Çocuk Bilgileri',
 			'emergency.sectionContacts' => 'Acil İletişim',

@@ -14,6 +14,7 @@ import '../../features/auth/presentation/reset_password_screen.dart';
 import '../../features/behavior/presentation/behavior_screen.dart';
 import '../../features/calendar/presentation/calendar_screen.dart';
 import '../../features/chatbot/presentation/chat_screen.dart';
+import '../../features/community/presentation/meetups_screen.dart';
 import '../../features/community/presentation/weekly_question_screen.dart';
 import '../../features/children/presentation/children_screen.dart';
 import '../../features/crisis/presentation/crisis_screen.dart';
@@ -122,6 +123,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         path: '/weekly-question',
         builder: (_, _) => const WeeklyQuestionScreen(),
       ),
+      GoRoute(path: '/meetups', builder: (_, _) => const MeetupsScreen()),
       GoRoute(
         path: '/messages',
         builder: (_, _) => const ConversationsScreen(),

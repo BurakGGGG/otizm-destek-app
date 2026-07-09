@@ -457,6 +457,38 @@ weekly:
   hoursAgo: $count h ago
   daysAgo: $count d ago
 
+meetup:
+  title: Local Meetups
+  subtitle: Meet families in your city and spend time together.
+  empty: No meetups in this city yet. Be the first to create one.
+  add: Create Meetup
+  addTitle: New Meetup
+  titleLabel: Meetup Name
+  titleHint: "e.g. Morning Meetup at the Park"
+  cityLabel: City
+  cityHint: Select a city
+  districtLabel: District
+  districtHint: "e.g. Kadıköy"
+  venueLabel: Venue
+  venueHint: "e.g. Moda Park or a cafe name"
+  dateLabel: Date
+  timeLabel: Time
+  descriptionLabel: Description
+  descriptionHint: Who can join, what will it be like?
+  create: Create
+  created: Your meetup was created. Other families can see it now.
+  errorRequired: Please fill in the title, city and date fields.
+  attendCount: $count attending
+  join: Join
+  joined: Attending
+  joinedMsg: You're attending the meetup!
+  leftMsg: Your attendance was cancelled.
+  today: Today
+  tomorrow: Tomorrow
+  inDays: in $count days
+  past: Past
+  organizerBy: Organized by $name
+
 crisis:
   title: Crisis Guide
   heroTitle: What To Do in Hard Moments?

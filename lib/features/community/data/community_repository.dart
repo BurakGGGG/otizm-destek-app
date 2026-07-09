@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/network/api_exception.dart';
 import '../../../core/network/api_response.dart';
 import '../../../core/providers.dart';
+import '../domain/community_meetup.dart';
 import '../domain/weekly_question.dart';
 
 /// Topluluk deposu — `/api/community` (Haftanın Sorusu + Buluşmalar).
@@ -50,6 +51,69 @@ class CommunityRepository {
       throw ApiException.fromDio(e);
     }
   }
+
+  /// Buluşmaları getirir. [city] verilir ve `Tümü` değilse şehre göre süzülür.
+  Future<List<CommunityMeetup>> getMeetups({String? city}) async {
+    try {
+      final res = await _dio.get(
+        '/community/meetups',
+        queryParameters:
+            (city != null && city.isNotEmpty && city != 'Tümü')
+                ? {'city': city}
+                : null,
+      );
+      return ApiEnvelope.fromJson(res.data)
+          .requireList()
+          .whereType<Map<String, dynamic>>()
+          .map(CommunityMeetup.fromJson)
+          .toList();
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Yeni buluşma oluşturur. `title`/`city`/`date` zorunlu; `date` `yyyy-MM-dd`,
+  /// `time` `HH:mm`.
+  Future<CommunityMeetup> createMeetup({
+    required String title,
+    required String city,
+    required String date,
+    String? district,
+    String? venue,
+    String? time,
+    String? description,
+  }) async {
+    // Boş isteğe bağlı alanları `null`'a indir; `?` ile JSON'dan tümüyle çıkar.
+    String? clean(String? v) => (v == null || v.trim().isEmpty) ? null : v.trim();
+    try {
+      final res = await _dio.post('/community/meetups', data: {
+        'title': title.trim(),
+        'city': city,
+        'date': date,
+        'district': ?clean(district),
+        'venue': ?clean(venue),
+        'time': ?clean(time),
+        'description': ?clean(description),
+        'emoji': '📍',
+      });
+      return CommunityMeetup.fromJson(
+          ApiEnvelope.fromJson(res.data).requireMap());
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Katılımı aç-kapa; güncel buluşmayı (attendees/joined) döner.
+  Future<CommunityMeetup> toggleMeetupAttendance(String meetupId) async {
+    try {
+      final res =
+          await _dio.post('/community/meetups/$meetupId/attendance');
+      return CommunityMeetup.fromJson(
+          ApiEnvelope.fromJson(res.data).requireMap());
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
 }
 
 final communityRepositoryProvider = Provider<CommunityRepository>((ref) {
@@ -59,4 +123,10 @@ final communityRepositoryProvider = Provider<CommunityRepository>((ref) {
 /// Haftanın Soruları (cevaplarıyla birlikte).
 final weeklyQuestionsProvider = FutureProvider<List<WeeklyQuestion>>((ref) {
   return ref.watch(communityRepositoryProvider).getWeeklyQuestions();
+});
+
+/// Şehir filtresine göre buluşmalar (`Tümü` = tüm şehirler).
+final meetupsProvider =
+    FutureProvider.family<List<CommunityMeetup>, String>((ref, city) {
+  return ref.watch(communityRepositoryProvider).getMeetups(city: city);
 });

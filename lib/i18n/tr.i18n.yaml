@@ -458,6 +458,38 @@ weekly:
   hoursAgo: $count sa önce
   daysAgo: $count gün önce
 
+meetup:
+  title: Yerel Buluşmalar
+  subtitle: Şehrindeki ailelerle tanış, birlikte vakit geçir.
+  empty: Bu şehirde henüz buluşma yok. İlk buluşmayı sen oluştur.
+  add: Buluşma Oluştur
+  addTitle: Yeni Buluşma
+  titleLabel: Buluşma Adı
+  titleHint: "ör: Parkta Sabah Buluşması"
+  cityLabel: Şehir
+  cityHint: Şehir seç
+  districtLabel: İlçe
+  districtHint: "ör: Kadıköy"
+  venueLabel: Buluşma Yeri
+  venueHint: "ör: Moda Parkı veya kafe adı"
+  dateLabel: Tarih
+  timeLabel: Saat
+  descriptionLabel: Açıklama
+  descriptionHint: Kimler katılabilir, ortam nasıl olacak?
+  create: Oluştur
+  created: Buluşman oluşturuldu. Diğer aileler görebilecek.
+  errorRequired: Lütfen başlık, şehir ve tarih alanlarını doldurun.
+  attendCount: $count katılımcı
+  join: Katıl
+  joined: Katılıyorsun
+  joinedMsg: Buluşmaya katılıyorsun!
+  leftMsg: Katılımın iptal edildi.
+  today: Bugün
+  tomorrow: Yarın
+  inDays: $count gün sonra
+  past: Geçmiş
+  organizerBy: Düzenleyen $name
+
 crisis:
   title: Kriz Rehberi
   heroTitle: Zor Anlarda Ne Yapmalı?
