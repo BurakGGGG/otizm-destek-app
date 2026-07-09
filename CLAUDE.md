@@ -143,6 +143,16 @@ flutter build apk --debug
     gösterilir. `/similar-families`, Profil menüsü kısayolu. (Not: web'deki
     per-aile "Buluşma" isteği akışı kapsam dışı — topluluk buluşmaları ayrı
     `/meetups` özelliğinde.)
+  - **Destek Grupları:** `/api/groups` — kategori bazlı aile/uzman toplulukları
+    + grup sohbeti. İki sekme: **Gruplarım** (`/groups/my`) ve **Keşfet** (arama
+    `/groups/search?query=` + kategori `/groups/category/{cat}`). Katıl
+    (`POST /groups/{id}/join`), ayrıl (`/leave`), oluştur (`POST /groups`,
+    name zorunlu; kategori `kGroupCategories` web `groupCategories` birebir —
+    veri, çevrilmez). Üyeyse **Grup Sohbeti** →
+    `POST /messages/conversations/group/{groupId}` (messaging repo'ya
+    `getOrCreateGroup` eklendi) → mevcut `ConversationThreadScreen`.
+    Mutasyon sonrası her iki liste invalidate edilir. `/groups`, Profil menüsü
+    kısayolu.
 - ✅ Firebase: Crashlytics + Analytics kod entegrasyonu (debug'da kapalı, sürümde açık).
 - ✅ FCM push: mobil taraf hazır; **backend uç noktaları da yazıldı** (POST/DELETE
   `/api/push/device-token`, MESSAGE/APPOINTMENT data payload — sözleşme

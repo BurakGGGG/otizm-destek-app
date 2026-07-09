@@ -35,6 +35,16 @@ class MessagingRepository {
     }
   }
 
+  /// Bir grubun sohbet konuşmasını getir/oluştur (grup üyeleri için).
+  Future<Conversation> getOrCreateGroup(String groupId) async {
+    try {
+      final res = await _dio.post('/messages/conversations/group/$groupId');
+      return Conversation.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
   /// Bir konuşmanın mesajları (en yeni sayfa), eskiden yeniye sıralı.
   Future<List<Message>> getMessages(
     String conversationId, {

@@ -70,6 +70,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$weekly$en weekly = _Translations$weekly$en._(_root);
 	@override late final _Translations$meetup$en meetup = _Translations$meetup$en._(_root);
 	@override late final _Translations$similar$en similar = _Translations$similar$en._(_root);
+	@override late final _Translations$groups$en groups = _Translations$groups$en._(_root);
 	@override late final _Translations$crisis$en crisis = _Translations$crisis$en._(_root);
 	@override late final _Translations$calendar$en calendar = _Translations$calendar$en._(_root);
 	@override late final _Translations$emergency$en emergency = _Translations$emergency$en._(_root);
@@ -813,6 +814,44 @@ class _Translations$similar$en extends Translations$similar$tr {
 	@override String get send => 'Send Request';
 	@override String get sent => 'Connection request sent.';
 	@override String get cancel => 'Cancel';
+}
+
+// Path: groups
+class _Translations$groups$en extends Translations$groups$tr {
+	_Translations$groups$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Support Groups';
+	@override String get subtitle => 'Meet families on similar topics and join the group chat.';
+	@override String get tabMy => 'My Groups';
+	@override String get tabDiscover => 'Discover';
+	@override String get searchHint => 'Search groups…';
+	@override String get allCategories => 'All';
+	@override String get emptyMy => 'You haven\'t joined any group yet. Browse groups in the Discover tab.';
+	@override String get emptyDiscover => 'No groups match these criteria. You can create a new one.';
+	@override String memberCount({required Object count}) => '${count} members';
+	@override String expertCount({required Object count}) => '${count} experts';
+	@override String get verified => 'Verified';
+	@override String get join => 'Join';
+	@override String get joined => 'Joined';
+	@override String get leave => 'Leave';
+	@override String get chat => 'Group Chat';
+	@override String get joinedMsg => 'You joined the group.';
+	@override String get leftMsg => 'You left the group.';
+	@override String get leaveTitle => 'Leave Group';
+	@override String get leaveConfirm => 'Are you sure you want to leave this group?';
+	@override String get add => 'Create Group';
+	@override String get addTitle => 'New Group';
+	@override String get nameLabel => 'Group Name';
+	@override String get nameHint => 'e.g. Istanbul Early Intervention';
+	@override String get descriptionLabel => 'Description';
+	@override String get descriptionHint => 'What is the group about, who can join?';
+	@override String get categoryLabel => 'Category';
+	@override String get create => 'Create';
+	@override String get created => 'Group created.';
+	@override String get errorName => 'Please enter a group name.';
 }
 
 // Path: crisis
@@ -1693,6 +1732,35 @@ extension on TranslationsEn {
 			'similar.send' => 'Send Request',
 			'similar.sent' => 'Connection request sent.',
 			'similar.cancel' => 'Cancel',
+			'groups.title' => 'Support Groups',
+			'groups.subtitle' => 'Meet families on similar topics and join the group chat.',
+			'groups.tabMy' => 'My Groups',
+			'groups.tabDiscover' => 'Discover',
+			'groups.searchHint' => 'Search groups…',
+			'groups.allCategories' => 'All',
+			'groups.emptyMy' => 'You haven\'t joined any group yet. Browse groups in the Discover tab.',
+			'groups.emptyDiscover' => 'No groups match these criteria. You can create a new one.',
+			'groups.memberCount' => ({required Object count}) => '${count} members',
+			'groups.expertCount' => ({required Object count}) => '${count} experts',
+			'groups.verified' => 'Verified',
+			'groups.join' => 'Join',
+			'groups.joined' => 'Joined',
+			'groups.leave' => 'Leave',
+			'groups.chat' => 'Group Chat',
+			'groups.joinedMsg' => 'You joined the group.',
+			'groups.leftMsg' => 'You left the group.',
+			'groups.leaveTitle' => 'Leave Group',
+			'groups.leaveConfirm' => 'Are you sure you want to leave this group?',
+			'groups.add' => 'Create Group',
+			'groups.addTitle' => 'New Group',
+			'groups.nameLabel' => 'Group Name',
+			'groups.nameHint' => 'e.g. Istanbul Early Intervention',
+			'groups.descriptionLabel' => 'Description',
+			'groups.descriptionHint' => 'What is the group about, who can join?',
+			'groups.categoryLabel' => 'Category',
+			'groups.create' => 'Create',
+			'groups.created' => 'Group created.',
+			'groups.errorName' => 'Please enter a group name.',
 			'crisis.title' => 'Crisis Guide',
 			'crisis.heroTitle' => 'What To Do in Hard Moments?',
 			'crisis.heroSubtitle' => 'A quick guide to help you stay calm and take the right steps when your child is overwhelmed.',
@@ -1724,6 +1792,8 @@ extension on TranslationsEn {
 			'crisis.cards.meltdown.steps.5' => 'Once the crisis passes, reassure with a calm tone.',
 			'crisis.cards.meltdown.avoid.0' => 'Don\'t speak loudly.',
 			'crisis.cards.meltdown.avoid.1' => 'Don\'t try to reason or explain.',
+			_ => null,
+		} ?? switch (path) {
 			'crisis.cards.meltdown.avoid.2' => 'Don\'t punish or threaten.',
 			'crisis.cards.meltdown.avoid.3' => 'Don\'t leave them in a crowd.',
 			'crisis.cards.meltdown.emergency' => '112 — Emergency Health Line',
@@ -1753,8 +1823,6 @@ extension on TranslationsEn {
 			'crisis.cards.anxiety.subtitle' => 'Trembling, shortness of breath, crying, withdrawing',
 			'crisis.cards.anxiety.steps.0' => 'Say in a calm tone, "I\'m here, you\'re safe."',
 			'crisis.cards.anxiety.steps.1' => 'Do a deep breathing exercise: 4 seconds in, 6 seconds out.',
-			_ => null,
-		} ?? switch (path) {
 			'crisis.cards.anxiety.steps.2' => 'Use the "see 5 things, touch 4 things" grounding exercise.',
 			'crisis.cards.anxiety.steps.3' => 'Offer a safe person or object (favorite toy, headphones).',
 			'crisis.cards.anxiety.steps.4' => 'Give time for it to pass; don\'t rush them.',

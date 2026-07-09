@@ -71,6 +71,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$weekly$tr weekly = Translations$weekly$tr.internal(_root);
 	late final Translations$meetup$tr meetup = Translations$meetup$tr.internal(_root);
 	late final Translations$similar$tr similar = Translations$similar$tr.internal(_root);
+	late final Translations$groups$tr groups = Translations$groups$tr.internal(_root);
 	late final Translations$crisis$tr crisis = Translations$crisis$tr.internal(_root);
 	late final Translations$calendar$tr calendar = Translations$calendar$tr.internal(_root);
 	late final Translations$emergency$tr emergency = Translations$emergency$tr.internal(_root);
@@ -1697,6 +1698,102 @@ class Translations$similar$tr {
 	String get cancel => 'İptal';
 }
 
+// Path: groups
+class Translations$groups$tr {
+	Translations$groups$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Destek Grupları'
+	String get title => 'Destek Grupları';
+
+	/// tr: 'Benzer konularda ailelerle bir araya gel, grup sohbetine katıl.'
+	String get subtitle => 'Benzer konularda ailelerle bir araya gel, grup sohbetine katıl.';
+
+	/// tr: 'Gruplarım'
+	String get tabMy => 'Gruplarım';
+
+	/// tr: 'Keşfet'
+	String get tabDiscover => 'Keşfet';
+
+	/// tr: 'Grup ara…'
+	String get searchHint => 'Grup ara…';
+
+	/// tr: 'Tümü'
+	String get allCategories => 'Tümü';
+
+	/// tr: 'Henüz bir gruba katılmadın. Keşfet sekmesinden gruplara göz at.'
+	String get emptyMy => 'Henüz bir gruba katılmadın. Keşfet sekmesinden gruplara göz at.';
+
+	/// tr: 'Bu ölçütlerle grup bulunamadı. Yeni bir grup oluşturabilirsin.'
+	String get emptyDiscover => 'Bu ölçütlerle grup bulunamadı. Yeni bir grup oluşturabilirsin.';
+
+	/// tr: '$count üye'
+	String memberCount({required Object count}) => '${count} üye';
+
+	/// tr: '$count uzman'
+	String expertCount({required Object count}) => '${count} uzman';
+
+	/// tr: 'Onaylı'
+	String get verified => 'Onaylı';
+
+	/// tr: 'Katıl'
+	String get join => 'Katıl';
+
+	/// tr: 'Katıldın'
+	String get joined => 'Katıldın';
+
+	/// tr: 'Ayrıl'
+	String get leave => 'Ayrıl';
+
+	/// tr: 'Grup Sohbeti'
+	String get chat => 'Grup Sohbeti';
+
+	/// tr: 'Gruba katıldın.'
+	String get joinedMsg => 'Gruba katıldın.';
+
+	/// tr: 'Gruptan ayrıldın.'
+	String get leftMsg => 'Gruptan ayrıldın.';
+
+	/// tr: 'Gruptan Ayrıl'
+	String get leaveTitle => 'Gruptan Ayrıl';
+
+	/// tr: 'Bu gruptan ayrılmak istediğine emin misin?'
+	String get leaveConfirm => 'Bu gruptan ayrılmak istediğine emin misin?';
+
+	/// tr: 'Grup Oluştur'
+	String get add => 'Grup Oluştur';
+
+	/// tr: 'Yeni Grup'
+	String get addTitle => 'Yeni Grup';
+
+	/// tr: 'Grup Adı'
+	String get nameLabel => 'Grup Adı';
+
+	/// tr: 'ör: İstanbul Erken Müdahale'
+	String get nameHint => 'ör: İstanbul Erken Müdahale';
+
+	/// tr: 'Açıklama'
+	String get descriptionLabel => 'Açıklama';
+
+	/// tr: 'Grup ne hakkında, kimler katılabilir?'
+	String get descriptionHint => 'Grup ne hakkında, kimler katılabilir?';
+
+	/// tr: 'Kategori'
+	String get categoryLabel => 'Kategori';
+
+	/// tr: 'Oluştur'
+	String get create => 'Oluştur';
+
+	/// tr: 'Grup oluşturuldu.'
+	String get created => 'Grup oluşturuldu.';
+
+	/// tr: 'Lütfen bir grup adı girin.'
+	String get errorName => 'Lütfen bir grup adı girin.';
+}
+
 // Path: crisis
 class Translations$crisis$tr {
 	Translations$crisis$tr.internal(this._root);
@@ -3034,6 +3131,35 @@ extension on Translations {
 			'similar.send' => 'İsteği Gönder',
 			'similar.sent' => 'Bağlantı isteği gönderildi.',
 			'similar.cancel' => 'İptal',
+			'groups.title' => 'Destek Grupları',
+			'groups.subtitle' => 'Benzer konularda ailelerle bir araya gel, grup sohbetine katıl.',
+			'groups.tabMy' => 'Gruplarım',
+			'groups.tabDiscover' => 'Keşfet',
+			'groups.searchHint' => 'Grup ara…',
+			'groups.allCategories' => 'Tümü',
+			'groups.emptyMy' => 'Henüz bir gruba katılmadın. Keşfet sekmesinden gruplara göz at.',
+			'groups.emptyDiscover' => 'Bu ölçütlerle grup bulunamadı. Yeni bir grup oluşturabilirsin.',
+			'groups.memberCount' => ({required Object count}) => '${count} üye',
+			'groups.expertCount' => ({required Object count}) => '${count} uzman',
+			'groups.verified' => 'Onaylı',
+			'groups.join' => 'Katıl',
+			'groups.joined' => 'Katıldın',
+			'groups.leave' => 'Ayrıl',
+			'groups.chat' => 'Grup Sohbeti',
+			'groups.joinedMsg' => 'Gruba katıldın.',
+			'groups.leftMsg' => 'Gruptan ayrıldın.',
+			'groups.leaveTitle' => 'Gruptan Ayrıl',
+			'groups.leaveConfirm' => 'Bu gruptan ayrılmak istediğine emin misin?',
+			'groups.add' => 'Grup Oluştur',
+			'groups.addTitle' => 'Yeni Grup',
+			'groups.nameLabel' => 'Grup Adı',
+			'groups.nameHint' => 'ör: İstanbul Erken Müdahale',
+			'groups.descriptionLabel' => 'Açıklama',
+			'groups.descriptionHint' => 'Grup ne hakkında, kimler katılabilir?',
+			'groups.categoryLabel' => 'Kategori',
+			'groups.create' => 'Oluştur',
+			'groups.created' => 'Grup oluşturuldu.',
+			'groups.errorName' => 'Lütfen bir grup adı girin.',
 			'crisis.title' => 'Kriz Rehberi',
 			'crisis.heroTitle' => 'Zor Anlarda Ne Yapmalı?',
 			'crisis.heroSubtitle' => 'Çocuğunuz bunaldığında sakin kalmanıza ve doğru adımları atmanıza yardımcı olacak hızlı rehber.',
@@ -3065,6 +3191,8 @@ extension on Translations {
 			'crisis.cards.meltdown.steps.5' => 'Kriz geçtikten sonra sakin ses tonuyla güvence verin.',
 			'crisis.cards.meltdown.avoid.0' => 'Yüksek sesle konuşmayın.',
 			'crisis.cards.meltdown.avoid.1' => 'Mantık yürütmeye ya da açıklamaya çalışmayın.',
+			_ => null,
+		} ?? switch (path) {
 			'crisis.cards.meltdown.avoid.2' => 'Cezalandırma veya tehdit etmeyin.',
 			'crisis.cards.meltdown.avoid.3' => 'Kalabalık içinde bırakmayın.',
 			'crisis.cards.meltdown.emergency' => '112 — Acil Sağlık Hattı',
@@ -3094,8 +3222,6 @@ extension on Translations {
 			'crisis.cards.anxiety.subtitle' => 'Titreme, nefes darlığı, ağlama, ortalıktan çekilme',
 			'crisis.cards.anxiety.steps.0' => 'Sakin bir ses tonuyla "Yanındayım, güvendesin" deyin.',
 			'crisis.cards.anxiety.steps.1' => 'Derin nefes egzersizi yapın: 4 saniye içeri, 6 saniye dışarı.',
-			_ => null,
-		} ?? switch (path) {
 			'crisis.cards.anxiety.steps.2' => '"Şu an 5 şey gör, 4 şey dokun" duyusal zemin egzersizi uygulayın.',
 			'crisis.cards.anxiety.steps.3' => 'Güvenli kişi veya nesne sunun (sevdiği oyuncak, kulaklık).',
 			'crisis.cards.anxiety.steps.4' => 'Krizin geçmesi için zaman verin, acele ettirmeyin.',

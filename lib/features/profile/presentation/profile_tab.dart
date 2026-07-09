@@ -94,6 +94,11 @@ class ProfileTab extends ConsumerWidget {
             onTap: () => context.push('/similar-families'),
           ),
           _ProfileItem(
+            icon: Icons.groups_2_outlined,
+            label: t.groups.title,
+            onTap: () => context.push('/groups'),
+          ),
+          _ProfileItem(
             icon: Icons.notifications_none,
             label: t.profile.notificationSettings,
             onTap: () => ScaffoldMessenger.of(

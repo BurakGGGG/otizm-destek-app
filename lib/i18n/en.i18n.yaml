@@ -519,6 +519,37 @@ similar:
   sent: Connection request sent.
   cancel: Cancel
 
+groups:
+  title: Support Groups
+  subtitle: Meet families on similar topics and join the group chat.
+  tabMy: My Groups
+  tabDiscover: Discover
+  searchHint: Search groups…
+  allCategories: All
+  emptyMy: You haven't joined any group yet. Browse groups in the Discover tab.
+  emptyDiscover: No groups match these criteria. You can create a new one.
+  memberCount: $count members
+  expertCount: $count experts
+  verified: Verified
+  join: Join
+  joined: Joined
+  leave: Leave
+  chat: Group Chat
+  joinedMsg: You joined the group.
+  leftMsg: You left the group.
+  leaveTitle: Leave Group
+  leaveConfirm: Are you sure you want to leave this group?
+  add: Create Group
+  addTitle: New Group
+  nameLabel: Group Name
+  nameHint: "e.g. Istanbul Early Intervention"
+  descriptionLabel: Description
+  descriptionHint: What is the group about, who can join?
+  categoryLabel: Category
+  create: Create
+  created: Group created.
+  errorName: Please enter a group name.
+
 crisis:
   title: Crisis Guide
   heroTitle: What To Do in Hard Moments?

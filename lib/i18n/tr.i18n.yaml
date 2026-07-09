@@ -520,6 +520,37 @@ similar:
   sent: Bağlantı isteği gönderildi.
   cancel: İptal
 
+groups:
+  title: Destek Grupları
+  subtitle: Benzer konularda ailelerle bir araya gel, grup sohbetine katıl.
+  tabMy: Gruplarım
+  tabDiscover: Keşfet
+  searchHint: Grup ara…
+  allCategories: Tümü
+  emptyMy: Henüz bir gruba katılmadın. Keşfet sekmesinden gruplara göz at.
+  emptyDiscover: Bu ölçütlerle grup bulunamadı. Yeni bir grup oluşturabilirsin.
+  memberCount: $count üye
+  expertCount: $count uzman
+  verified: Onaylı
+  join: Katıl
+  joined: Katıldın
+  leave: Ayrıl
+  chat: Grup Sohbeti
+  joinedMsg: Gruba katıldın.
+  leftMsg: Gruptan ayrıldın.
+  leaveTitle: Gruptan Ayrıl
+  leaveConfirm: Bu gruptan ayrılmak istediğine emin misin?
+  add: Grup Oluştur
+  addTitle: Yeni Grup
+  nameLabel: Grup Adı
+  nameHint: "ör: İstanbul Erken Müdahale"
+  descriptionLabel: Açıklama
+  descriptionHint: Grup ne hakkında, kimler katılabilir?
+  categoryLabel: Kategori
+  create: Oluştur
+  created: Grup oluşturuldu.
+  errorName: Lütfen bir grup adı girin.
+
 crisis:
   title: Kriz Rehberi
   heroTitle: Zor Anlarda Ne Yapmalı?

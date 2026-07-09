@@ -19,6 +19,7 @@ import '../../features/community/presentation/weekly_question_screen.dart';
 import '../../features/children/presentation/children_screen.dart';
 import '../../features/crisis/presentation/crisis_screen.dart';
 import '../../features/emergency/presentation/emergency_screen.dart';
+import '../../features/groups/presentation/groups_screen.dart';
 import '../../features/home/presentation/home_shell.dart';
 import '../../features/knowledge/presentation/knowledge_screen.dart';
 import '../../features/messaging/presentation/conversation_thread_screen.dart';
@@ -129,6 +130,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         path: '/similar-families',
         builder: (_, _) => const SimilarFamiliesScreen(),
       ),
+      GoRoute(path: '/groups', builder: (_, _) => const GroupsScreen()),
       GoRoute(
         path: '/messages',
         builder: (_, _) => const ConversationsScreen(),
