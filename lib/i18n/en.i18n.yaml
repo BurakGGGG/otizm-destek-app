@@ -393,6 +393,90 @@ meds:
   logNotesHint: Anything you want to share with your doctor?
   logSaved: Dose log saved.
 
+crisis:
+  title: Crisis Guide
+  heroTitle: What To Do in Hard Moments?
+  heroSubtitle: A quick guide to help you stay calm and take the right steps when
+    your child is overwhelmed.
+  breathingTitle: Breathing Regulator
+  breathingSubtitle: Calm yourself first. Start and match your breathing to the
+    ring's expand-and-shrink pace.
+  breathingStart: Start Exercise
+  breathingStop: Stop
+  breathingReady: Ready
+  breathingReadyHint: Tap to start
+  breathingInhale: Breathe In
+  breathingExhale: Breathe Out
+  breathingSeconds: seconds
+  stepsLabel: What To Do?
+  avoidLabel: What To Avoid
+  emergencyLabel: Suggested Emergency Line
+  contactsTitle: Emergency Numbers
+  disclaimer: This guide is for general information; in emergencies or medical
+    situations always call your local emergency number.
+  contact112Label: Emergency Health and Safety
+  contact112Desc: Ambulance, Police, Fire
+  contact183Label: Social Support Line
+  contact183Desc: Family, Children and Social Services
+  cards:
+    meltdown:
+      title: Crisis / Meltdown
+      subtitle: Loss of control, crying, screaming, self-harm attempts
+      steps:
+        - Stay calm — your voice and body language transfer to the child.
+        - "Create a safe space: move away sharp or hard objects."
+        - Keep verbal input minimal; single words or short sentences.
+        - "Reduce sensory input: dim the lights, lower the sound."
+        - Stay nearby — don't leave, but don't touch.
+        - Once the crisis passes, reassure with a calm tone.
+      avoid:
+        - Don't speak loudly.
+        - Don't try to reason or explain.
+        - Don't punish or threaten.
+        - Don't leave them in a crowd.
+      emergency: 112 — Emergency Health Line
+    sensory:
+      title: Sensory Overload
+      subtitle: Covering ears, avoiding light/sound, freezing
+      steps:
+        - Move to a calmer, less stimulating environment right away.
+        - Offer favorite sensory objects (weighted blanket, squishy).
+        - Speak briefly in a predictable, calm tone.
+        - Deep pressure (firm hug) may help if the child consents.
+        - Give time — stay quiet for a few minutes.
+        - Note the trigger and take precautions going forward.
+      avoid:
+        - Don't keep giving verbal directions without changing the environment.
+        - Don't force them to hold anything.
+        - "Don't say \"Why are you overreacting?\""
+    aggression:
+      title: Aggression / Self-Harm
+      subtitle: Hitting, biting, head-banging, throwing objects
+      steps:
+        - Keep a safe distance; move others away if nearby.
+        - "Give low, short, calm directives (\"Stop\", \"Here\")."
+        - Remove provoking objects and people from the area.
+        - "Offer an alternative outlet: hitting a pillow, running."
+        - Once it passes, note the event; analyze the trigger.
+      avoid:
+        - Avoid using physical force (unless necessary).
+        - Don't fuel it by drawing attention or creating an audience.
+        - Don't reward during the behavior.
+      emergency: 112 — Emergency Call Center
+    anxiety:
+      title: Intense Anxiety / Panic
+      subtitle: Trembling, shortness of breath, crying, withdrawing
+      steps:
+        - "Say in a calm tone, \"I'm here, you're safe.\""
+        - "Do a deep breathing exercise: 4 seconds in, 6 seconds out."
+        - "Use the \"see 5 things, touch 4 things\" grounding exercise."
+        - Offer a safe person or object (favorite toy, headphones).
+        - Give time for it to pass; don't rush them.
+      avoid:
+        - "Don't belittle it by saying \"Calm down, it's fine.\""
+        - Don't keep asking and applying pressure.
+        - Don't add new demands during anxiety.
+
 calendar:
   title: Calendar
   subtitle: Child-specific therapy, doctor and activity schedule.

@@ -393,6 +393,90 @@ meds:
   logNotesHint: Doktorunuza iletmek istediğiniz bir gözlem var mı?
   logSaved: Doz günlüğü kaydedildi.
 
+crisis:
+  title: Kriz Rehberi
+  heroTitle: Zor Anlarda Ne Yapmalı?
+  heroSubtitle: Çocuğunuz bunaldığında sakin kalmanıza ve doğru adımları atmanıza
+    yardımcı olacak hızlı rehber.
+  breathingTitle: Nefes Regülatörü
+  breathingSubtitle: Önce siz sakinleşin. Başlatın ve nefesinizi halkanın
+    büyüme-küçülme hızına uydurun.
+  breathingStart: Egzersizi Başlat
+  breathingStop: Durdur
+  breathingReady: Hazır
+  breathingReadyHint: Başlamak için dokunun
+  breathingInhale: Nefes Al
+  breathingExhale: Nefes Ver
+  breathingSeconds: saniye
+  stepsLabel: Ne Yapmalı?
+  avoidLabel: Kaçınılması Gerekenler
+  emergencyLabel: Önerilen Acil Hat
+  contactsTitle: Acil Numaralar
+  disclaimer: Bu rehber genel bilgilendirme amaçlıdır; acil ve tıbbi durumlarda
+    mutlaka 112'yi arayın.
+  contact112Label: Acil Sağlık ve Güvenlik
+  contact112Desc: Ambulans, Polis, İtfaiye
+  contact183Label: Sosyal Destek Hattı
+  contact183Desc: Kadın, Çocuk ve Sosyal Hizmetler
+  cards:
+    meltdown:
+      title: Kriz / Meltdown
+      subtitle: Kontrol kaybı, ağlama, bağırma, kendine zarar verme girişimi
+      steps:
+        - Sakin kalın — sesiniz ve beden diliniz çocuğa geçer.
+        - "Güvenli alan oluşturun: keskin/sert nesneleri uzaklaştırın."
+        - Sözel uyarıyı minimuma indirin; tek kelime veya kısa cümleler.
+        - "Duyusal uyaranları azaltın: ışıkları kısın, sesi düşürün."
+        - Yanında olmaya devam edin — uzaklaşmayın ama dokunmayın.
+        - Kriz geçtikten sonra sakin ses tonuyla güvence verin.
+      avoid:
+        - Yüksek sesle konuşmayın.
+        - Mantık yürütmeye ya da açıklamaya çalışmayın.
+        - Cezalandırma veya tehdit etmeyin.
+        - Kalabalık içinde bırakmayın.
+      emergency: 112 — Acil Sağlık Hattı
+    sensory:
+      title: Duyusal Aşırı Yüklenme
+      subtitle: Ellerini kulaklarına kapatma, ışıktan/sesten kaçma, donup kalma
+      steps:
+        - Hemen daha sakin ve az uyarıcı bir ortama geçin.
+        - Sevilen duyusal nesneleri sunun (ağırlıklı battaniye, squishy).
+        - Tahmin edilebilir ve sakin bir ses tonuyla kısaca konuşun.
+        - Derin baskı (sıkı sarılma) çocuk onay verirse uygulanabilir.
+        - Zaman verin — birkaç dakika sessiz kalın.
+        - Tetikleyiciyi not alın, ilerleyen dönemde önlem alın.
+      avoid:
+        - Ortamı değiştirmeden sözlü yönlendirmeye devam etmeyin.
+        - Zorla bir şey tutturmaya çalışmayın.
+        - "\"Neden bu kadar abartıyorsun?\" demeyin."
+    aggression:
+      title: Saldırganlık / Kendine Zarar Verme
+      subtitle: Vurma, ısırma, kafaya vurma, nesneleri fırlatma
+      steps:
+        - Güvenli mesafe koruyun; yakınlarda başkası varsa uzaklaştırın.
+        - "Düşük sesli, kısa ve sakin direktifler verin (\"Dur\", \"Burada\")."
+        - Tahrik edici nesneleri ve kişileri ortamdan uzaklaştırın.
+        - "Alternatif çıkış noktası sunun: yastık vurma, koşu."
+        - Kriz geçince olayı not edin; tetikleyiciyi analiz edin.
+      avoid:
+        - Fiziksel güç uygulamaktan kaçının (zorunlu değilse).
+        - Dikkat çekerek ya da izleyici yaratarak ortamı körüklemeyin.
+        - Eylem anında ödüllendirmeyin.
+      emergency: 112 — Acil Çağrı Merkezi
+    anxiety:
+      title: Yoğun Kaygı / Panik
+      subtitle: Titreme, nefes darlığı, ağlama, ortalıktan çekilme
+      steps:
+        - "Sakin bir ses tonuyla \"Yanındayım, güvendesin\" deyin."
+        - "Derin nefes egzersizi yapın: 4 saniye içeri, 6 saniye dışarı."
+        - "\"Şu an 5 şey gör, 4 şey dokun\" duyusal zemin egzersizi uygulayın."
+        - Güvenli kişi veya nesne sunun (sevdiği oyuncak, kulaklık).
+        - Krizin geçmesi için zaman verin, acele ettirmeyin.
+      avoid:
+        - "\"Sakin ol, sorun yok\" diyerek küçümsemeyin."
+        - Sormaya devam edip baskı uygulamayın.
+        - Kaygı anında yeni talep eklemeyin.
+
 calendar:
   title: Takvim
   subtitle: Çocuğa özel terapi, doktor ve etkinlik planı.

@@ -66,6 +66,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$dailyTracker$en dailyTracker = _Translations$dailyTracker$en._(_root);
 	@override late final _Translations$sleep$en sleep = _Translations$sleep$en._(_root);
 	@override late final _Translations$meds$en meds = _Translations$meds$en._(_root);
+	@override late final _Translations$crisis$en crisis = _Translations$crisis$en._(_root);
 	@override late final _Translations$calendar$en calendar = _Translations$calendar$en._(_root);
 	@override late final _Translations$emergency$en emergency = _Translations$emergency$en._(_root);
 	@override late final _Translations$behavior$en behavior = _Translations$behavior$en._(_root);
@@ -660,6 +661,37 @@ class _Translations$meds$en extends Translations$meds$tr {
 	@override String get logSaved => 'Dose log saved.';
 }
 
+// Path: crisis
+class _Translations$crisis$en extends Translations$crisis$tr {
+	_Translations$crisis$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Crisis Guide';
+	@override String get heroTitle => 'What To Do in Hard Moments?';
+	@override String get heroSubtitle => 'A quick guide to help you stay calm and take the right steps when your child is overwhelmed.';
+	@override String get breathingTitle => 'Breathing Regulator';
+	@override String get breathingSubtitle => 'Calm yourself first. Start and match your breathing to the ring\'s expand-and-shrink pace.';
+	@override String get breathingStart => 'Start Exercise';
+	@override String get breathingStop => 'Stop';
+	@override String get breathingReady => 'Ready';
+	@override String get breathingReadyHint => 'Tap to start';
+	@override String get breathingInhale => 'Breathe In';
+	@override String get breathingExhale => 'Breathe Out';
+	@override String get breathingSeconds => 'seconds';
+	@override String get stepsLabel => 'What To Do?';
+	@override String get avoidLabel => 'What To Avoid';
+	@override String get emergencyLabel => 'Suggested Emergency Line';
+	@override String get contactsTitle => 'Emergency Numbers';
+	@override String get disclaimer => 'This guide is for general information; in emergencies or medical situations always call your local emergency number.';
+	@override String get contact112Label => 'Emergency Health and Safety';
+	@override String get contact112Desc => 'Ambulance, Police, Fire';
+	@override String get contact183Label => 'Social Support Line';
+	@override String get contact183Desc => 'Family, Children and Social Services';
+	@override late final _Translations$crisis$cards$en cards = _Translations$crisis$cards$en._(_root);
+}
+
 // Path: calendar
 class _Translations$calendar$en extends Translations$calendar$tr {
 	_Translations$calendar$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -935,6 +967,116 @@ class _Translations$errors$en extends Translations$errors$tr {
 	@override String get unexpectedResponse => 'Unexpected server response.';
 	@override String get operationFailed => 'Operation failed.';
 	@override String get noUserInResponse => 'No user information in the server response.';
+}
+
+// Path: crisis.cards
+class _Translations$crisis$cards$en extends Translations$crisis$cards$tr {
+	_Translations$crisis$cards$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override late final _Translations$crisis$cards$meltdown$en meltdown = _Translations$crisis$cards$meltdown$en._(_root);
+	@override late final _Translations$crisis$cards$sensory$en sensory = _Translations$crisis$cards$sensory$en._(_root);
+	@override late final _Translations$crisis$cards$aggression$en aggression = _Translations$crisis$cards$aggression$en._(_root);
+	@override late final _Translations$crisis$cards$anxiety$en anxiety = _Translations$crisis$cards$anxiety$en._(_root);
+}
+
+// Path: crisis.cards.meltdown
+class _Translations$crisis$cards$meltdown$en extends Translations$crisis$cards$meltdown$tr {
+	_Translations$crisis$cards$meltdown$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Crisis / Meltdown';
+	@override String get subtitle => 'Loss of control, crying, screaming, self-harm attempts';
+	@override List<String> get steps => [
+		'Stay calm — your voice and body language transfer to the child.',
+		'Create a safe space: move away sharp or hard objects.',
+		'Keep verbal input minimal; single words or short sentences.',
+		'Reduce sensory input: dim the lights, lower the sound.',
+		'Stay nearby — don\'t leave, but don\'t touch.',
+		'Once the crisis passes, reassure with a calm tone.',
+	];
+	@override List<String> get avoid => [
+		'Don\'t speak loudly.',
+		'Don\'t try to reason or explain.',
+		'Don\'t punish or threaten.',
+		'Don\'t leave them in a crowd.',
+	];
+	@override String get emergency => '112 — Emergency Health Line';
+}
+
+// Path: crisis.cards.sensory
+class _Translations$crisis$cards$sensory$en extends Translations$crisis$cards$sensory$tr {
+	_Translations$crisis$cards$sensory$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Sensory Overload';
+	@override String get subtitle => 'Covering ears, avoiding light/sound, freezing';
+	@override List<String> get steps => [
+		'Move to a calmer, less stimulating environment right away.',
+		'Offer favorite sensory objects (weighted blanket, squishy).',
+		'Speak briefly in a predictable, calm tone.',
+		'Deep pressure (firm hug) may help if the child consents.',
+		'Give time — stay quiet for a few minutes.',
+		'Note the trigger and take precautions going forward.',
+	];
+	@override List<String> get avoid => [
+		'Don\'t keep giving verbal directions without changing the environment.',
+		'Don\'t force them to hold anything.',
+		'Don\'t say "Why are you overreacting?"',
+	];
+}
+
+// Path: crisis.cards.aggression
+class _Translations$crisis$cards$aggression$en extends Translations$crisis$cards$aggression$tr {
+	_Translations$crisis$cards$aggression$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Aggression / Self-Harm';
+	@override String get subtitle => 'Hitting, biting, head-banging, throwing objects';
+	@override List<String> get steps => [
+		'Keep a safe distance; move others away if nearby.',
+		'Give low, short, calm directives ("Stop", "Here").',
+		'Remove provoking objects and people from the area.',
+		'Offer an alternative outlet: hitting a pillow, running.',
+		'Once it passes, note the event; analyze the trigger.',
+	];
+	@override List<String> get avoid => [
+		'Avoid using physical force (unless necessary).',
+		'Don\'t fuel it by drawing attention or creating an audience.',
+		'Don\'t reward during the behavior.',
+	];
+	@override String get emergency => '112 — Emergency Call Center';
+}
+
+// Path: crisis.cards.anxiety
+class _Translations$crisis$cards$anxiety$en extends Translations$crisis$cards$anxiety$tr {
+	_Translations$crisis$cards$anxiety$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Intense Anxiety / Panic';
+	@override String get subtitle => 'Trembling, shortness of breath, crying, withdrawing';
+	@override List<String> get steps => [
+		'Say in a calm tone, "I\'m here, you\'re safe."',
+		'Do a deep breathing exercise: 4 seconds in, 6 seconds out.',
+		'Use the "see 5 things, touch 4 things" grounding exercise.',
+		'Offer a safe person or object (favorite toy, headphones).',
+		'Give time for it to pass; don\'t rush them.',
+	];
+	@override List<String> get avoid => [
+		'Don\'t belittle it by saying "Calm down, it\'s fine."',
+		'Don\'t keep asking and applying pressure.',
+		'Don\'t add new demands during anxiety.',
+	];
 }
 
 /// The flat map containing all translations for locale <en>.
@@ -1283,6 +1425,72 @@ extension on TranslationsEn {
 			'meds.logNotesLabel' => 'Observation notes (optional)',
 			'meds.logNotesHint' => 'Anything you want to share with your doctor?',
 			'meds.logSaved' => 'Dose log saved.',
+			'crisis.title' => 'Crisis Guide',
+			'crisis.heroTitle' => 'What To Do in Hard Moments?',
+			'crisis.heroSubtitle' => 'A quick guide to help you stay calm and take the right steps when your child is overwhelmed.',
+			'crisis.breathingTitle' => 'Breathing Regulator',
+			'crisis.breathingSubtitle' => 'Calm yourself first. Start and match your breathing to the ring\'s expand-and-shrink pace.',
+			'crisis.breathingStart' => 'Start Exercise',
+			'crisis.breathingStop' => 'Stop',
+			'crisis.breathingReady' => 'Ready',
+			'crisis.breathingReadyHint' => 'Tap to start',
+			'crisis.breathingInhale' => 'Breathe In',
+			'crisis.breathingExhale' => 'Breathe Out',
+			'crisis.breathingSeconds' => 'seconds',
+			'crisis.stepsLabel' => 'What To Do?',
+			'crisis.avoidLabel' => 'What To Avoid',
+			'crisis.emergencyLabel' => 'Suggested Emergency Line',
+			'crisis.contactsTitle' => 'Emergency Numbers',
+			'crisis.disclaimer' => 'This guide is for general information; in emergencies or medical situations always call your local emergency number.',
+			'crisis.contact112Label' => 'Emergency Health and Safety',
+			'crisis.contact112Desc' => 'Ambulance, Police, Fire',
+			'crisis.contact183Label' => 'Social Support Line',
+			'crisis.contact183Desc' => 'Family, Children and Social Services',
+			'crisis.cards.meltdown.title' => 'Crisis / Meltdown',
+			'crisis.cards.meltdown.subtitle' => 'Loss of control, crying, screaming, self-harm attempts',
+			'crisis.cards.meltdown.steps.0' => 'Stay calm — your voice and body language transfer to the child.',
+			'crisis.cards.meltdown.steps.1' => 'Create a safe space: move away sharp or hard objects.',
+			'crisis.cards.meltdown.steps.2' => 'Keep verbal input minimal; single words or short sentences.',
+			'crisis.cards.meltdown.steps.3' => 'Reduce sensory input: dim the lights, lower the sound.',
+			'crisis.cards.meltdown.steps.4' => 'Stay nearby — don\'t leave, but don\'t touch.',
+			'crisis.cards.meltdown.steps.5' => 'Once the crisis passes, reassure with a calm tone.',
+			'crisis.cards.meltdown.avoid.0' => 'Don\'t speak loudly.',
+			'crisis.cards.meltdown.avoid.1' => 'Don\'t try to reason or explain.',
+			'crisis.cards.meltdown.avoid.2' => 'Don\'t punish or threaten.',
+			'crisis.cards.meltdown.avoid.3' => 'Don\'t leave them in a crowd.',
+			'crisis.cards.meltdown.emergency' => '112 — Emergency Health Line',
+			'crisis.cards.sensory.title' => 'Sensory Overload',
+			'crisis.cards.sensory.subtitle' => 'Covering ears, avoiding light/sound, freezing',
+			'crisis.cards.sensory.steps.0' => 'Move to a calmer, less stimulating environment right away.',
+			'crisis.cards.sensory.steps.1' => 'Offer favorite sensory objects (weighted blanket, squishy).',
+			'crisis.cards.sensory.steps.2' => 'Speak briefly in a predictable, calm tone.',
+			'crisis.cards.sensory.steps.3' => 'Deep pressure (firm hug) may help if the child consents.',
+			'crisis.cards.sensory.steps.4' => 'Give time — stay quiet for a few minutes.',
+			'crisis.cards.sensory.steps.5' => 'Note the trigger and take precautions going forward.',
+			'crisis.cards.sensory.avoid.0' => 'Don\'t keep giving verbal directions without changing the environment.',
+			'crisis.cards.sensory.avoid.1' => 'Don\'t force them to hold anything.',
+			'crisis.cards.sensory.avoid.2' => 'Don\'t say "Why are you overreacting?"',
+			'crisis.cards.aggression.title' => 'Aggression / Self-Harm',
+			'crisis.cards.aggression.subtitle' => 'Hitting, biting, head-banging, throwing objects',
+			'crisis.cards.aggression.steps.0' => 'Keep a safe distance; move others away if nearby.',
+			'crisis.cards.aggression.steps.1' => 'Give low, short, calm directives ("Stop", "Here").',
+			'crisis.cards.aggression.steps.2' => 'Remove provoking objects and people from the area.',
+			'crisis.cards.aggression.steps.3' => 'Offer an alternative outlet: hitting a pillow, running.',
+			'crisis.cards.aggression.steps.4' => 'Once it passes, note the event; analyze the trigger.',
+			'crisis.cards.aggression.avoid.0' => 'Avoid using physical force (unless necessary).',
+			'crisis.cards.aggression.avoid.1' => 'Don\'t fuel it by drawing attention or creating an audience.',
+			'crisis.cards.aggression.avoid.2' => 'Don\'t reward during the behavior.',
+			'crisis.cards.aggression.emergency' => '112 — Emergency Call Center',
+			'crisis.cards.anxiety.title' => 'Intense Anxiety / Panic',
+			'crisis.cards.anxiety.subtitle' => 'Trembling, shortness of breath, crying, withdrawing',
+			'crisis.cards.anxiety.steps.0' => 'Say in a calm tone, "I\'m here, you\'re safe."',
+			'crisis.cards.anxiety.steps.1' => 'Do a deep breathing exercise: 4 seconds in, 6 seconds out.',
+			'crisis.cards.anxiety.steps.2' => 'Use the "see 5 things, touch 4 things" grounding exercise.',
+			'crisis.cards.anxiety.steps.3' => 'Offer a safe person or object (favorite toy, headphones).',
+			'crisis.cards.anxiety.steps.4' => 'Give time for it to pass; don\'t rush them.',
+			'crisis.cards.anxiety.avoid.0' => 'Don\'t belittle it by saying "Calm down, it\'s fine."',
+			'crisis.cards.anxiety.avoid.1' => 'Don\'t keep asking and applying pressure.',
+			'crisis.cards.anxiety.avoid.2' => 'Don\'t add new demands during anxiety.',
 			'calendar.title' => 'Calendar',
 			'calendar.subtitle' => 'Child-specific therapy, doctor and activity schedule.',
 			'calendar.noChild' => 'Add a child first to use the calendar.',
@@ -1391,6 +1599,8 @@ extension on TranslationsEn {
 			'behavior.intensityLabel' => 'Intensity',
 			'behavior.intensity1' => 'Very Mild',
 			'behavior.intensity2' => 'Mild',
+			_ => null,
+		} ?? switch (path) {
 			'behavior.intensity3' => 'Moderate',
 			'behavior.intensity4' => 'Severe',
 			'behavior.intensity5' => 'Very Severe',
@@ -1457,8 +1667,6 @@ extension on TranslationsEn {
 			'account.errorFullName' => 'Full name must be at least 2 characters.',
 			'help.title' => 'Help & About',
 			'help.aboutTitle' => 'About Otizm Destek',
-			_ => null,
-		} ?? switch (path) {
 			'help.aboutBody' => 'Otizm Destek is a mobile app that helps you track your child\'s development, connect with experts, and book appointments.',
 			'help.tipsTitle' => 'Tips',
 			'help.tip1' => 'Add your children under "My Children"; track goals and notes in the "Progress" tab.',

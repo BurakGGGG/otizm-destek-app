@@ -67,6 +67,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$dailyTracker$tr dailyTracker = Translations$dailyTracker$tr.internal(_root);
 	late final Translations$sleep$tr sleep = Translations$sleep$tr.internal(_root);
 	late final Translations$meds$tr meds = Translations$meds$tr.internal(_root);
+	late final Translations$crisis$tr crisis = Translations$crisis$tr.internal(_root);
 	late final Translations$calendar$tr calendar = Translations$calendar$tr.internal(_root);
 	late final Translations$emergency$tr emergency = Translations$emergency$tr.internal(_root);
 	late final Translations$behavior$tr behavior = Translations$behavior$tr.internal(_root);
@@ -1314,6 +1315,80 @@ class Translations$meds$tr {
 	String get logSaved => 'Doz günlüğü kaydedildi.';
 }
 
+// Path: crisis
+class Translations$crisis$tr {
+	Translations$crisis$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Kriz Rehberi'
+	String get title => 'Kriz Rehberi';
+
+	/// tr: 'Zor Anlarda Ne Yapmalı?'
+	String get heroTitle => 'Zor Anlarda Ne Yapmalı?';
+
+	/// tr: 'Çocuğunuz bunaldığında sakin kalmanıza ve doğru adımları atmanıza yardımcı olacak hızlı rehber.'
+	String get heroSubtitle => 'Çocuğunuz bunaldığında sakin kalmanıza ve doğru adımları atmanıza yardımcı olacak hızlı rehber.';
+
+	/// tr: 'Nefes Regülatörü'
+	String get breathingTitle => 'Nefes Regülatörü';
+
+	/// tr: 'Önce siz sakinleşin. Başlatın ve nefesinizi halkanın büyüme-küçülme hızına uydurun.'
+	String get breathingSubtitle => 'Önce siz sakinleşin. Başlatın ve nefesinizi halkanın büyüme-küçülme hızına uydurun.';
+
+	/// tr: 'Egzersizi Başlat'
+	String get breathingStart => 'Egzersizi Başlat';
+
+	/// tr: 'Durdur'
+	String get breathingStop => 'Durdur';
+
+	/// tr: 'Hazır'
+	String get breathingReady => 'Hazır';
+
+	/// tr: 'Başlamak için dokunun'
+	String get breathingReadyHint => 'Başlamak için dokunun';
+
+	/// tr: 'Nefes Al'
+	String get breathingInhale => 'Nefes Al';
+
+	/// tr: 'Nefes Ver'
+	String get breathingExhale => 'Nefes Ver';
+
+	/// tr: 'saniye'
+	String get breathingSeconds => 'saniye';
+
+	/// tr: 'Ne Yapmalı?'
+	String get stepsLabel => 'Ne Yapmalı?';
+
+	/// tr: 'Kaçınılması Gerekenler'
+	String get avoidLabel => 'Kaçınılması Gerekenler';
+
+	/// tr: 'Önerilen Acil Hat'
+	String get emergencyLabel => 'Önerilen Acil Hat';
+
+	/// tr: 'Acil Numaralar'
+	String get contactsTitle => 'Acil Numaralar';
+
+	/// tr: 'Bu rehber genel bilgilendirme amaçlıdır; acil ve tıbbi durumlarda mutlaka 112'yi arayın.'
+	String get disclaimer => 'Bu rehber genel bilgilendirme amaçlıdır; acil ve tıbbi durumlarda mutlaka 112\'yi arayın.';
+
+	/// tr: 'Acil Sağlık ve Güvenlik'
+	String get contact112Label => 'Acil Sağlık ve Güvenlik';
+
+	/// tr: 'Ambulans, Polis, İtfaiye'
+	String get contact112Desc => 'Ambulans, Polis, İtfaiye';
+
+	/// tr: 'Sosyal Destek Hattı'
+	String get contact183Label => 'Sosyal Destek Hattı';
+
+	/// tr: 'Kadın, Çocuk ve Sosyal Hizmetler'
+	String get contact183Desc => 'Kadın, Çocuk ve Sosyal Hizmetler';
+
+	late final Translations$crisis$cards$tr cards = Translations$crisis$cards$tr.internal(_root);
+}
+
 // Path: calendar
 class Translations$calendar$tr {
 	Translations$calendar$tr.internal(this._root);
@@ -1983,6 +2058,140 @@ class Translations$errors$tr {
 	String get noUserInResponse => 'Sunucu yanıtında kullanıcı bilgisi yok.';
 }
 
+// Path: crisis.cards
+class Translations$crisis$cards$tr {
+	Translations$crisis$cards$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	late final Translations$crisis$cards$meltdown$tr meltdown = Translations$crisis$cards$meltdown$tr.internal(_root);
+	late final Translations$crisis$cards$sensory$tr sensory = Translations$crisis$cards$sensory$tr.internal(_root);
+	late final Translations$crisis$cards$aggression$tr aggression = Translations$crisis$cards$aggression$tr.internal(_root);
+	late final Translations$crisis$cards$anxiety$tr anxiety = Translations$crisis$cards$anxiety$tr.internal(_root);
+}
+
+// Path: crisis.cards.meltdown
+class Translations$crisis$cards$meltdown$tr {
+	Translations$crisis$cards$meltdown$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Kriz / Meltdown'
+	String get title => 'Kriz / Meltdown';
+
+	/// tr: 'Kontrol kaybı, ağlama, bağırma, kendine zarar verme girişimi'
+	String get subtitle => 'Kontrol kaybı, ağlama, bağırma, kendine zarar verme girişimi';
+
+	List<String> get steps => [
+		'Sakin kalın — sesiniz ve beden diliniz çocuğa geçer.',
+		'Güvenli alan oluşturun: keskin/sert nesneleri uzaklaştırın.',
+		'Sözel uyarıyı minimuma indirin; tek kelime veya kısa cümleler.',
+		'Duyusal uyaranları azaltın: ışıkları kısın, sesi düşürün.',
+		'Yanında olmaya devam edin — uzaklaşmayın ama dokunmayın.',
+		'Kriz geçtikten sonra sakin ses tonuyla güvence verin.',
+	];
+	List<String> get avoid => [
+		'Yüksek sesle konuşmayın.',
+		'Mantık yürütmeye ya da açıklamaya çalışmayın.',
+		'Cezalandırma veya tehdit etmeyin.',
+		'Kalabalık içinde bırakmayın.',
+	];
+
+	/// tr: '112 — Acil Sağlık Hattı'
+	String get emergency => '112 — Acil Sağlık Hattı';
+}
+
+// Path: crisis.cards.sensory
+class Translations$crisis$cards$sensory$tr {
+	Translations$crisis$cards$sensory$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Duyusal Aşırı Yüklenme'
+	String get title => 'Duyusal Aşırı Yüklenme';
+
+	/// tr: 'Ellerini kulaklarına kapatma, ışıktan/sesten kaçma, donup kalma'
+	String get subtitle => 'Ellerini kulaklarına kapatma, ışıktan/sesten kaçma, donup kalma';
+
+	List<String> get steps => [
+		'Hemen daha sakin ve az uyarıcı bir ortama geçin.',
+		'Sevilen duyusal nesneleri sunun (ağırlıklı battaniye, squishy).',
+		'Tahmin edilebilir ve sakin bir ses tonuyla kısaca konuşun.',
+		'Derin baskı (sıkı sarılma) çocuk onay verirse uygulanabilir.',
+		'Zaman verin — birkaç dakika sessiz kalın.',
+		'Tetikleyiciyi not alın, ilerleyen dönemde önlem alın.',
+	];
+	List<String> get avoid => [
+		'Ortamı değiştirmeden sözlü yönlendirmeye devam etmeyin.',
+		'Zorla bir şey tutturmaya çalışmayın.',
+		'"Neden bu kadar abartıyorsun?" demeyin.',
+	];
+}
+
+// Path: crisis.cards.aggression
+class Translations$crisis$cards$aggression$tr {
+	Translations$crisis$cards$aggression$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Saldırganlık / Kendine Zarar Verme'
+	String get title => 'Saldırganlık / Kendine Zarar Verme';
+
+	/// tr: 'Vurma, ısırma, kafaya vurma, nesneleri fırlatma'
+	String get subtitle => 'Vurma, ısırma, kafaya vurma, nesneleri fırlatma';
+
+	List<String> get steps => [
+		'Güvenli mesafe koruyun; yakınlarda başkası varsa uzaklaştırın.',
+		'Düşük sesli, kısa ve sakin direktifler verin ("Dur", "Burada").',
+		'Tahrik edici nesneleri ve kişileri ortamdan uzaklaştırın.',
+		'Alternatif çıkış noktası sunun: yastık vurma, koşu.',
+		'Kriz geçince olayı not edin; tetikleyiciyi analiz edin.',
+	];
+	List<String> get avoid => [
+		'Fiziksel güç uygulamaktan kaçının (zorunlu değilse).',
+		'Dikkat çekerek ya da izleyici yaratarak ortamı körüklemeyin.',
+		'Eylem anında ödüllendirmeyin.',
+	];
+
+	/// tr: '112 — Acil Çağrı Merkezi'
+	String get emergency => '112 — Acil Çağrı Merkezi';
+}
+
+// Path: crisis.cards.anxiety
+class Translations$crisis$cards$anxiety$tr {
+	Translations$crisis$cards$anxiety$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Yoğun Kaygı / Panik'
+	String get title => 'Yoğun Kaygı / Panik';
+
+	/// tr: 'Titreme, nefes darlığı, ağlama, ortalıktan çekilme'
+	String get subtitle => 'Titreme, nefes darlığı, ağlama, ortalıktan çekilme';
+
+	List<String> get steps => [
+		'Sakin bir ses tonuyla "Yanındayım, güvendesin" deyin.',
+		'Derin nefes egzersizi yapın: 4 saniye içeri, 6 saniye dışarı.',
+		'"Şu an 5 şey gör, 4 şey dokun" duyusal zemin egzersizi uygulayın.',
+		'Güvenli kişi veya nesne sunun (sevdiği oyuncak, kulaklık).',
+		'Krizin geçmesi için zaman verin, acele ettirmeyin.',
+	];
+	List<String> get avoid => [
+		'"Sakin ol, sorun yok" diyerek küçümsemeyin.',
+		'Sormaya devam edip baskı uygulamayın.',
+		'Kaygı anında yeni talep eklemeyin.',
+	];
+}
+
 /// The flat map containing all translations for locale <tr>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -2329,6 +2538,72 @@ extension on Translations {
 			'meds.logNotesLabel' => 'Gözlem notları (isteğe bağlı)',
 			'meds.logNotesHint' => 'Doktorunuza iletmek istediğiniz bir gözlem var mı?',
 			'meds.logSaved' => 'Doz günlüğü kaydedildi.',
+			'crisis.title' => 'Kriz Rehberi',
+			'crisis.heroTitle' => 'Zor Anlarda Ne Yapmalı?',
+			'crisis.heroSubtitle' => 'Çocuğunuz bunaldığında sakin kalmanıza ve doğru adımları atmanıza yardımcı olacak hızlı rehber.',
+			'crisis.breathingTitle' => 'Nefes Regülatörü',
+			'crisis.breathingSubtitle' => 'Önce siz sakinleşin. Başlatın ve nefesinizi halkanın büyüme-küçülme hızına uydurun.',
+			'crisis.breathingStart' => 'Egzersizi Başlat',
+			'crisis.breathingStop' => 'Durdur',
+			'crisis.breathingReady' => 'Hazır',
+			'crisis.breathingReadyHint' => 'Başlamak için dokunun',
+			'crisis.breathingInhale' => 'Nefes Al',
+			'crisis.breathingExhale' => 'Nefes Ver',
+			'crisis.breathingSeconds' => 'saniye',
+			'crisis.stepsLabel' => 'Ne Yapmalı?',
+			'crisis.avoidLabel' => 'Kaçınılması Gerekenler',
+			'crisis.emergencyLabel' => 'Önerilen Acil Hat',
+			'crisis.contactsTitle' => 'Acil Numaralar',
+			'crisis.disclaimer' => 'Bu rehber genel bilgilendirme amaçlıdır; acil ve tıbbi durumlarda mutlaka 112\'yi arayın.',
+			'crisis.contact112Label' => 'Acil Sağlık ve Güvenlik',
+			'crisis.contact112Desc' => 'Ambulans, Polis, İtfaiye',
+			'crisis.contact183Label' => 'Sosyal Destek Hattı',
+			'crisis.contact183Desc' => 'Kadın, Çocuk ve Sosyal Hizmetler',
+			'crisis.cards.meltdown.title' => 'Kriz / Meltdown',
+			'crisis.cards.meltdown.subtitle' => 'Kontrol kaybı, ağlama, bağırma, kendine zarar verme girişimi',
+			'crisis.cards.meltdown.steps.0' => 'Sakin kalın — sesiniz ve beden diliniz çocuğa geçer.',
+			'crisis.cards.meltdown.steps.1' => 'Güvenli alan oluşturun: keskin/sert nesneleri uzaklaştırın.',
+			'crisis.cards.meltdown.steps.2' => 'Sözel uyarıyı minimuma indirin; tek kelime veya kısa cümleler.',
+			'crisis.cards.meltdown.steps.3' => 'Duyusal uyaranları azaltın: ışıkları kısın, sesi düşürün.',
+			'crisis.cards.meltdown.steps.4' => 'Yanında olmaya devam edin — uzaklaşmayın ama dokunmayın.',
+			'crisis.cards.meltdown.steps.5' => 'Kriz geçtikten sonra sakin ses tonuyla güvence verin.',
+			'crisis.cards.meltdown.avoid.0' => 'Yüksek sesle konuşmayın.',
+			'crisis.cards.meltdown.avoid.1' => 'Mantık yürütmeye ya da açıklamaya çalışmayın.',
+			'crisis.cards.meltdown.avoid.2' => 'Cezalandırma veya tehdit etmeyin.',
+			'crisis.cards.meltdown.avoid.3' => 'Kalabalık içinde bırakmayın.',
+			'crisis.cards.meltdown.emergency' => '112 — Acil Sağlık Hattı',
+			'crisis.cards.sensory.title' => 'Duyusal Aşırı Yüklenme',
+			'crisis.cards.sensory.subtitle' => 'Ellerini kulaklarına kapatma, ışıktan/sesten kaçma, donup kalma',
+			'crisis.cards.sensory.steps.0' => 'Hemen daha sakin ve az uyarıcı bir ortama geçin.',
+			'crisis.cards.sensory.steps.1' => 'Sevilen duyusal nesneleri sunun (ağırlıklı battaniye, squishy).',
+			'crisis.cards.sensory.steps.2' => 'Tahmin edilebilir ve sakin bir ses tonuyla kısaca konuşun.',
+			'crisis.cards.sensory.steps.3' => 'Derin baskı (sıkı sarılma) çocuk onay verirse uygulanabilir.',
+			'crisis.cards.sensory.steps.4' => 'Zaman verin — birkaç dakika sessiz kalın.',
+			'crisis.cards.sensory.steps.5' => 'Tetikleyiciyi not alın, ilerleyen dönemde önlem alın.',
+			'crisis.cards.sensory.avoid.0' => 'Ortamı değiştirmeden sözlü yönlendirmeye devam etmeyin.',
+			'crisis.cards.sensory.avoid.1' => 'Zorla bir şey tutturmaya çalışmayın.',
+			'crisis.cards.sensory.avoid.2' => '"Neden bu kadar abartıyorsun?" demeyin.',
+			'crisis.cards.aggression.title' => 'Saldırganlık / Kendine Zarar Verme',
+			'crisis.cards.aggression.subtitle' => 'Vurma, ısırma, kafaya vurma, nesneleri fırlatma',
+			'crisis.cards.aggression.steps.0' => 'Güvenli mesafe koruyun; yakınlarda başkası varsa uzaklaştırın.',
+			'crisis.cards.aggression.steps.1' => 'Düşük sesli, kısa ve sakin direktifler verin ("Dur", "Burada").',
+			'crisis.cards.aggression.steps.2' => 'Tahrik edici nesneleri ve kişileri ortamdan uzaklaştırın.',
+			'crisis.cards.aggression.steps.3' => 'Alternatif çıkış noktası sunun: yastık vurma, koşu.',
+			'crisis.cards.aggression.steps.4' => 'Kriz geçince olayı not edin; tetikleyiciyi analiz edin.',
+			'crisis.cards.aggression.avoid.0' => 'Fiziksel güç uygulamaktan kaçının (zorunlu değilse).',
+			'crisis.cards.aggression.avoid.1' => 'Dikkat çekerek ya da izleyici yaratarak ortamı körüklemeyin.',
+			'crisis.cards.aggression.avoid.2' => 'Eylem anında ödüllendirmeyin.',
+			'crisis.cards.aggression.emergency' => '112 — Acil Çağrı Merkezi',
+			'crisis.cards.anxiety.title' => 'Yoğun Kaygı / Panik',
+			'crisis.cards.anxiety.subtitle' => 'Titreme, nefes darlığı, ağlama, ortalıktan çekilme',
+			'crisis.cards.anxiety.steps.0' => 'Sakin bir ses tonuyla "Yanındayım, güvendesin" deyin.',
+			'crisis.cards.anxiety.steps.1' => 'Derin nefes egzersizi yapın: 4 saniye içeri, 6 saniye dışarı.',
+			'crisis.cards.anxiety.steps.2' => '"Şu an 5 şey gör, 4 şey dokun" duyusal zemin egzersizi uygulayın.',
+			'crisis.cards.anxiety.steps.3' => 'Güvenli kişi veya nesne sunun (sevdiği oyuncak, kulaklık).',
+			'crisis.cards.anxiety.steps.4' => 'Krizin geçmesi için zaman verin, acele ettirmeyin.',
+			'crisis.cards.anxiety.avoid.0' => '"Sakin ol, sorun yok" diyerek küçümsemeyin.',
+			'crisis.cards.anxiety.avoid.1' => 'Sormaya devam edip baskı uygulamayın.',
+			'crisis.cards.anxiety.avoid.2' => 'Kaygı anında yeni talep eklemeyin.',
 			'calendar.title' => 'Takvim',
 			'calendar.subtitle' => 'Çocuğa özel terapi, doktor ve etkinlik planı.',
 			'calendar.noChild' => 'Takvim için önce bir çocuk ekleyin.',
@@ -2437,6 +2712,8 @@ extension on Translations {
 			'behavior.intensityLabel' => 'Şiddet Düzeyi',
 			'behavior.intensity1' => 'Çok Hafif',
 			'behavior.intensity2' => 'Hafif',
+			_ => null,
+		} ?? switch (path) {
 			'behavior.intensity3' => 'Orta',
 			'behavior.intensity4' => 'Şiddetli',
 			'behavior.intensity5' => 'Çok Şiddetli',
@@ -2503,8 +2780,6 @@ extension on Translations {
 			'account.errorFullName' => 'Ad soyad en az 2 karakter olmalıdır.',
 			'help.title' => 'Yardım & Hakkında',
 			'help.aboutTitle' => 'Otizm Destek Hakkında',
-			_ => null,
-		} ?? switch (path) {
 			'help.aboutBody' => 'Otizm Destek; çocuğunuzun gelişimini takip etmenize, uzmanlarla iletişim kurmanıza ve randevu almanıza yardımcı olan bir mobil uygulamadır.',
 			'help.tipsTitle' => 'İpuçları',
 			'help.tip1' => 'Çocuklarınızı "Çocuklarım"dan ekleyin; hedef ve gelişim notlarını "Gelişim" sekmesinden takip edin.',

@@ -15,6 +15,7 @@ import '../../features/behavior/presentation/behavior_screen.dart';
 import '../../features/calendar/presentation/calendar_screen.dart';
 import '../../features/chatbot/presentation/chat_screen.dart';
 import '../../features/children/presentation/children_screen.dart';
+import '../../features/crisis/presentation/crisis_screen.dart';
 import '../../features/emergency/presentation/emergency_screen.dart';
 import '../../features/home/presentation/home_shell.dart';
 import '../../features/knowledge/presentation/knowledge_screen.dart';
@@ -110,6 +111,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/behavior', builder: (_, _) => const BehaviorScreen()),
       GoRoute(path: '/emergency', builder: (_, _) => const EmergencyScreen()),
       GoRoute(path: '/calendar', builder: (_, _) => const CalendarScreen()),
+      GoRoute(path: '/crisis', builder: (_, _) => const CrisisScreen()),
       GoRoute(
         path: '/messages',
         builder: (_, _) => const ConversationsScreen(),

@@ -90,6 +90,11 @@ flutter build apk --debug
     kayıtları; kategori/yer/tetikleyici/sonuç sabitleri web ile birebir düz
     metin (çevrilmez!), şiddet 1-5. category+location DB'de NOT NULL. `/behavior`,
     Gelişim sekmesi kısayolu.
+  - **Kriz Rehberi:** statik içerik (API yok) — 4 kriz kartı (meltdown, duyusal
+    aşırı yüklenme, saldırganlık, kaygı) adım-adım müdahale + kaçınılacaklar +
+    acil hat; nefes egzersizi (4sn al / 6sn ver animasyonlu halka); acil
+    numaralar (112/183) dokun-ara. İçerik i18n'de (TR birebir web'den, EN
+    dikkatli çeviri). `/crisis`, Profil menüsü kısayolu.
   - **Takvim:** `/api/calendar` — çocuğa özel etkinlik ajandası (terapi/doktor/
     eğitim/aktivite/randevu/diğer). Ekle/düzenle/sil + durum (PLANNED/COMPLETED/
     CANCELLED, PATCH `?status=`) + hatırlatma (15/30/60/120/1440 dk). Tip kodları
@@ -112,10 +117,10 @@ flutter build apk --debug
   Profil'de Sistem/Açık/Koyu seçici, kalıcı).
 - ✅ Hedef ilerletme (+jeton geri alma) — `PUT /api/goals/{id}` (entries JSON dizisi;
   title+category zorunlu). Gelişim sekmesindeki hedef kartlarında.
-- ⏳ Sonraki adaylar: backend FCM deploy sonrası uçtan uca push testi; kriz
-  rehberi (`/kriz-rehberi`, statik içerik); görevler (`/api/tasks`, uzman). Not:
-  sosyal hikayeler (`/api/social-stories`) ve wellbeing backend'de var ama
-  web'de tam bir CRUD arayüzü yok (mirror edilecek UX yok) — düşük öncelik.
+- ⏳ Sonraki adaylar: backend FCM deploy sonrası uçtan uca push testi; görevler
+  (`/api/tasks`, uzman rolü); BEP oluşturucu. Not: sosyal hikayeler
+  (`/api/social-stories`) ve wellbeing backend'de var ama web'de tam bir CRUD
+  arayüzü yok (mirror edilecek UX yok) — düşük öncelik.
 - Modül kapsamı ve fazlar: bkz. plan `~/.claude/plans/bir-otizm-destek-mobil-compressed-fog.md`.
 
 ## Notlar
