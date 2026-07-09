@@ -79,6 +79,11 @@ class ProfileTab extends ConsumerWidget {
             onTap: () => context.push('/support-wall'),
           ),
           _ProfileItem(
+            icon: Icons.local_fire_department_outlined,
+            label: t.weekly.title,
+            onTap: () => context.push('/weekly-question'),
+          ),
+          _ProfileItem(
             icon: Icons.notifications_none,
             label: t.profile.notificationSettings,
             onTap: () => ScaffoldMessenger.of(

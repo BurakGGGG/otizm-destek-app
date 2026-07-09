@@ -434,6 +434,30 @@ wall:
   hoursAgo: $count sa önce
   daysAgo: $count gün önce
 
+weekly:
+  title: Haftanın Sorusu
+  subtitle: Bu hafta ailelere sorduğumuz soru. Deneyimini paylaş, birbirinize
+    destek olun.
+  empty: Henüz haftalık soru yok. Yeni soru yayınlandığında burada olacak.
+  answersTitle: Aile Cevapları
+  answerCount: $count cevap
+  expertCount: $count uzman
+  expertBadge: Uzman
+  anonymousUser: Anonim Aile
+  yourAnswerTitle: Cevabını Yaz
+  answerHint: Kısa da olsa değerli. Deneyimini paylaş…
+  anonymous: Anonim paylaş
+  tagsLabel: Etiketler (isteğe bağlı)
+  send: Paylaş
+  sent: Cevabın paylaşıldı, teşekkürler!
+  errorEmpty: Lütfen bir cevap yazın.
+  noAnswers: Henüz cevap yok. İlk cevabı sen paylaş.
+  likeError: Beğeni kaydedilemedi.
+  justNow: az önce
+  minsAgo: $count dk önce
+  hoursAgo: $count sa önce
+  daysAgo: $count gün önce
+
 crisis:
   title: Kriz Rehberi
   heroTitle: Zor Anlarda Ne Yapmalı?

@@ -67,6 +67,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$sleep$en sleep = _Translations$sleep$en._(_root);
 	@override late final _Translations$meds$en meds = _Translations$meds$en._(_root);
 	@override late final _Translations$wall$en wall = _Translations$wall$en._(_root);
+	@override late final _Translations$weekly$en weekly = _Translations$weekly$en._(_root);
 	@override late final _Translations$crisis$en crisis = _Translations$crisis$en._(_root);
 	@override late final _Translations$calendar$en calendar = _Translations$calendar$en._(_root);
 	@override late final _Translations$emergency$en emergency = _Translations$emergency$en._(_root);
@@ -705,6 +706,36 @@ class _Translations$wall$en extends Translations$wall$tr {
 	@override String get save => 'Save';
 	@override String get justNow => 'just now';
 	@override String minsAgo({required Object count}) => '${count} min ago';
+	@override String hoursAgo({required Object count}) => '${count} h ago';
+	@override String daysAgo({required Object count}) => '${count} d ago';
+}
+
+// Path: weekly
+class _Translations$weekly$en extends Translations$weekly$tr {
+	_Translations$weekly$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Question of the Week';
+	@override String get subtitle => 'This week\'s question for families. Share your experience and support each other.';
+	@override String get empty => 'No weekly question yet. It will appear here when a new one is published.';
+	@override String get answersTitle => 'Family Answers';
+	@override String answerCount({required Object count}) => '${count} answers';
+	@override String expertCount({required Object count}) => '${count} expert';
+	@override String get expertBadge => 'Expert';
+	@override String get anonymousUser => 'Anonymous Family';
+	@override String get yourAnswerTitle => 'Write Your Answer';
+	@override String get answerHint => 'Even a short note helps. Share your experience…';
+	@override String get anonymous => 'Post anonymously';
+	@override String get tagsLabel => 'Tags (optional)';
+	@override String get send => 'Share';
+	@override String get sent => 'Your answer was shared, thank you!';
+	@override String get errorEmpty => 'Please write an answer.';
+	@override String get noAnswers => 'No answers yet. Be the first to share.';
+	@override String get likeError => 'Could not save the like.';
+	@override String get justNow => 'just now';
+	@override String minsAgo({required Object count}) => '${count} m ago';
 	@override String hoursAgo({required Object count}) => '${count} h ago';
 	@override String daysAgo({required Object count}) => '${count} d ago';
 }
@@ -1511,6 +1542,27 @@ extension on TranslationsEn {
 			'wall.minsAgo' => ({required Object count}) => '${count} min ago',
 			'wall.hoursAgo' => ({required Object count}) => '${count} h ago',
 			'wall.daysAgo' => ({required Object count}) => '${count} d ago',
+			'weekly.title' => 'Question of the Week',
+			'weekly.subtitle' => 'This week\'s question for families. Share your experience and support each other.',
+			'weekly.empty' => 'No weekly question yet. It will appear here when a new one is published.',
+			'weekly.answersTitle' => 'Family Answers',
+			'weekly.answerCount' => ({required Object count}) => '${count} answers',
+			'weekly.expertCount' => ({required Object count}) => '${count} expert',
+			'weekly.expertBadge' => 'Expert',
+			'weekly.anonymousUser' => 'Anonymous Family',
+			'weekly.yourAnswerTitle' => 'Write Your Answer',
+			'weekly.answerHint' => 'Even a short note helps. Share your experience…',
+			'weekly.anonymous' => 'Post anonymously',
+			'weekly.tagsLabel' => 'Tags (optional)',
+			'weekly.send' => 'Share',
+			'weekly.sent' => 'Your answer was shared, thank you!',
+			'weekly.errorEmpty' => 'Please write an answer.',
+			'weekly.noAnswers' => 'No answers yet. Be the first to share.',
+			'weekly.likeError' => 'Could not save the like.',
+			'weekly.justNow' => 'just now',
+			'weekly.minsAgo' => ({required Object count}) => '${count} m ago',
+			'weekly.hoursAgo' => ({required Object count}) => '${count} h ago',
+			'weekly.daysAgo' => ({required Object count}) => '${count} d ago',
 			'crisis.title' => 'Crisis Guide',
 			'crisis.heroTitle' => 'What To Do in Hard Moments?',
 			'crisis.heroSubtitle' => 'A quick guide to help you stay calm and take the right steps when your child is overwhelmed.',
@@ -1626,6 +1678,8 @@ extension on TranslationsEn {
 			'emergency.notSaved' => 'This card has not been saved yet.',
 			'emergency.save' => 'Save',
 			'emergency.saved' => 'Emergency card saved.',
+			_ => null,
+		} ?? switch (path) {
 			'emergency.call' => 'Call',
 			'emergency.sectionChild' => 'Child Information',
 			'emergency.sectionContacts' => 'Emergency Contacts',
@@ -1647,8 +1701,6 @@ extension on TranslationsEn {
 			'emergency.name' => 'Full Name',
 			'emergency.phone' => 'Phone',
 			'emergency.relation' => 'Relationship',
-			_ => null,
-		} ?? switch (path) {
 			'emergency.doctorName' => 'Doctor Name',
 			'emergency.doctorPhone' => 'Doctor Phone',
 			'emergency.hospital' => 'Hospital',

@@ -433,6 +433,30 @@ wall:
   hoursAgo: $count h ago
   daysAgo: $count d ago
 
+weekly:
+  title: Question of the Week
+  subtitle: This week's question for families. Share your experience and support
+    each other.
+  empty: No weekly question yet. It will appear here when a new one is published.
+  answersTitle: Family Answers
+  answerCount: $count answers
+  expertCount: $count expert
+  expertBadge: Expert
+  anonymousUser: Anonymous Family
+  yourAnswerTitle: Write Your Answer
+  answerHint: Even a short note helps. Share your experience…
+  anonymous: Post anonymously
+  tagsLabel: Tags (optional)
+  send: Share
+  sent: Your answer was shared, thank you!
+  errorEmpty: Please write an answer.
+  noAnswers: No answers yet. Be the first to share.
+  likeError: Could not save the like.
+  justNow: just now
+  minsAgo: $count m ago
+  hoursAgo: $count h ago
+  daysAgo: $count d ago
+
 crisis:
   title: Crisis Guide
   heroTitle: What To Do in Hard Moments?

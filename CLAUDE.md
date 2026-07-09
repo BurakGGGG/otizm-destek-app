@@ -116,6 +116,15 @@ flutter build apk --debug
     aç-kapa (`POST /votes` `{targetType:'POST', targetId, voteValue:1}`, iyimser
     UI). Liste + detay (tam metin + yorumlar + yazma çubuğu). `/support-wall`,
     Profil menüsü kısayolu.
+  - **Haftanın Sorusu:** `/api/community/weekly-questions` — topluluk sorusu +
+    aile cevapları. Soru listesi → detay (cevaplar + cevap yazma). Cevap
+    (`POST /weekly-questions/{id}/answers` `{text}`, `text` zorunlu),
+    beğeni aç-kapa (`POST /weekly-answers/{id}/like`, güncel cevabı döner,
+    iyimser UI). Cevap metnine web ile **birebir aynı** meta gömülür:
+    `[ANONYMOUS_META:true]` + `[TAGS:a,b]` önekleri (`WeeklyAnswer.encode`/parse);
+    etiket kodları (`kWeeklyAnswerTags`) çevrilmez. Uzman rozeti: rol EXPERT ya
+    da ad "Uzm."/"Dr." içerir. `/weekly-question`, Profil menüsü kısayolu.
+    (Aynı `communityService` Buluşmalar'ı da içerir — sonraki aday.)
 - ✅ Firebase: Crashlytics + Analytics kod entegrasyonu (debug'da kapalı, sürümde açık).
 - ✅ FCM push: mobil taraf hazır; **backend uç noktaları da yazıldı** (POST/DELETE
   `/api/push/device-token`, MESSAGE/APPOINTMENT data payload — sözleşme

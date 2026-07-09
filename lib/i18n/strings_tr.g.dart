@@ -68,6 +68,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$sleep$tr sleep = Translations$sleep$tr.internal(_root);
 	late final Translations$meds$tr meds = Translations$meds$tr.internal(_root);
 	late final Translations$wall$tr wall = Translations$wall$tr.internal(_root);
+	late final Translations$weekly$tr weekly = Translations$weekly$tr.internal(_root);
 	late final Translations$crisis$tr crisis = Translations$crisis$tr.internal(_root);
 	late final Translations$calendar$tr calendar = Translations$calendar$tr.internal(_root);
 	late final Translations$emergency$tr emergency = Translations$emergency$tr.internal(_root);
@@ -1439,6 +1440,78 @@ class Translations$wall$tr {
 	String daysAgo({required Object count}) => '${count} gün önce';
 }
 
+// Path: weekly
+class Translations$weekly$tr {
+	Translations$weekly$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Haftanın Sorusu'
+	String get title => 'Haftanın Sorusu';
+
+	/// tr: 'Bu hafta ailelere sorduğumuz soru. Deneyimini paylaş, birbirinize destek olun.'
+	String get subtitle => 'Bu hafta ailelere sorduğumuz soru. Deneyimini paylaş, birbirinize destek olun.';
+
+	/// tr: 'Henüz haftalık soru yok. Yeni soru yayınlandığında burada olacak.'
+	String get empty => 'Henüz haftalık soru yok. Yeni soru yayınlandığında burada olacak.';
+
+	/// tr: 'Aile Cevapları'
+	String get answersTitle => 'Aile Cevapları';
+
+	/// tr: '$count cevap'
+	String answerCount({required Object count}) => '${count} cevap';
+
+	/// tr: '$count uzman'
+	String expertCount({required Object count}) => '${count} uzman';
+
+	/// tr: 'Uzman'
+	String get expertBadge => 'Uzman';
+
+	/// tr: 'Anonim Aile'
+	String get anonymousUser => 'Anonim Aile';
+
+	/// tr: 'Cevabını Yaz'
+	String get yourAnswerTitle => 'Cevabını Yaz';
+
+	/// tr: 'Kısa da olsa değerli. Deneyimini paylaş…'
+	String get answerHint => 'Kısa da olsa değerli. Deneyimini paylaş…';
+
+	/// tr: 'Anonim paylaş'
+	String get anonymous => 'Anonim paylaş';
+
+	/// tr: 'Etiketler (isteğe bağlı)'
+	String get tagsLabel => 'Etiketler (isteğe bağlı)';
+
+	/// tr: 'Paylaş'
+	String get send => 'Paylaş';
+
+	/// tr: 'Cevabın paylaşıldı, teşekkürler!'
+	String get sent => 'Cevabın paylaşıldı, teşekkürler!';
+
+	/// tr: 'Lütfen bir cevap yazın.'
+	String get errorEmpty => 'Lütfen bir cevap yazın.';
+
+	/// tr: 'Henüz cevap yok. İlk cevabı sen paylaş.'
+	String get noAnswers => 'Henüz cevap yok. İlk cevabı sen paylaş.';
+
+	/// tr: 'Beğeni kaydedilemedi.'
+	String get likeError => 'Beğeni kaydedilemedi.';
+
+	/// tr: 'az önce'
+	String get justNow => 'az önce';
+
+	/// tr: '$count dk önce'
+	String minsAgo({required Object count}) => '${count} dk önce';
+
+	/// tr: '$count sa önce'
+	String hoursAgo({required Object count}) => '${count} sa önce';
+
+	/// tr: '$count gün önce'
+	String daysAgo({required Object count}) => '${count} gün önce';
+}
+
 // Path: crisis
 class Translations$crisis$tr {
 	Translations$crisis$tr.internal(this._root);
@@ -2700,6 +2773,27 @@ extension on Translations {
 			'wall.minsAgo' => ({required Object count}) => '${count} dk önce',
 			'wall.hoursAgo' => ({required Object count}) => '${count} sa önce',
 			'wall.daysAgo' => ({required Object count}) => '${count} gün önce',
+			'weekly.title' => 'Haftanın Sorusu',
+			'weekly.subtitle' => 'Bu hafta ailelere sorduğumuz soru. Deneyimini paylaş, birbirinize destek olun.',
+			'weekly.empty' => 'Henüz haftalık soru yok. Yeni soru yayınlandığında burada olacak.',
+			'weekly.answersTitle' => 'Aile Cevapları',
+			'weekly.answerCount' => ({required Object count}) => '${count} cevap',
+			'weekly.expertCount' => ({required Object count}) => '${count} uzman',
+			'weekly.expertBadge' => 'Uzman',
+			'weekly.anonymousUser' => 'Anonim Aile',
+			'weekly.yourAnswerTitle' => 'Cevabını Yaz',
+			'weekly.answerHint' => 'Kısa da olsa değerli. Deneyimini paylaş…',
+			'weekly.anonymous' => 'Anonim paylaş',
+			'weekly.tagsLabel' => 'Etiketler (isteğe bağlı)',
+			'weekly.send' => 'Paylaş',
+			'weekly.sent' => 'Cevabın paylaşıldı, teşekkürler!',
+			'weekly.errorEmpty' => 'Lütfen bir cevap yazın.',
+			'weekly.noAnswers' => 'Henüz cevap yok. İlk cevabı sen paylaş.',
+			'weekly.likeError' => 'Beğeni kaydedilemedi.',
+			'weekly.justNow' => 'az önce',
+			'weekly.minsAgo' => ({required Object count}) => '${count} dk önce',
+			'weekly.hoursAgo' => ({required Object count}) => '${count} sa önce',
+			'weekly.daysAgo' => ({required Object count}) => '${count} gün önce',
 			'crisis.title' => 'Kriz Rehberi',
 			'crisis.heroTitle' => 'Zor Anlarda Ne Yapmalı?',
 			'crisis.heroSubtitle' => 'Çocuğunuz bunaldığında sakin kalmanıza ve doğru adımları atmanıza yardımcı olacak hızlı rehber.',
@@ -2815,6 +2909,8 @@ extension on Translations {
 			'emergency.notSaved' => 'Bu kart henüz kaydedilmedi.',
 			'emergency.save' => 'Kaydet',
 			'emergency.saved' => 'Acil durum kartı kaydedildi.',
+			_ => null,
+		} ?? switch (path) {
 			'emergency.call' => 'Ara',
 			'emergency.sectionChild' => 'Çocuk Bilgileri',
 			'emergency.sectionContacts' => 'Acil İletişim',
@@ -2836,8 +2932,6 @@ extension on Translations {
 			'emergency.name' => 'Ad Soyad',
 			'emergency.phone' => 'Telefon',
 			'emergency.relation' => 'Yakınlık',
-			_ => null,
-		} ?? switch (path) {
 			'emergency.doctorName' => 'Doktor Adı',
 			'emergency.doctorPhone' => 'Doktor Telefonu',
 			'emergency.hospital' => 'Hastane',
