@@ -66,6 +66,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$dailyTracker$en dailyTracker = _Translations$dailyTracker$en._(_root);
 	@override late final _Translations$sleep$en sleep = _Translations$sleep$en._(_root);
 	@override late final _Translations$meds$en meds = _Translations$meds$en._(_root);
+	@override late final _Translations$wall$en wall = _Translations$wall$en._(_root);
 	@override late final _Translations$crisis$en crisis = _Translations$crisis$en._(_root);
 	@override late final _Translations$calendar$en calendar = _Translations$calendar$en._(_root);
 	@override late final _Translations$emergency$en emergency = _Translations$emergency$en._(_root);
@@ -659,6 +660,53 @@ class _Translations$meds$en extends Translations$meds$tr {
 	@override String get logNotesLabel => 'Observation notes (optional)';
 	@override String get logNotesHint => 'Anything you want to share with your doctor?';
 	@override String get logSaved => 'Dose log saved.';
+}
+
+// Path: wall
+class _Translations$wall$en extends Translations$wall$tr {
+	_Translations$wall$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Support Wall';
+	@override String get subtitle => 'Share your feelings and support each other. Posts can be anonymous.';
+	@override String get empty => 'No posts yet. Be the first to share.';
+	@override String get add => 'Share';
+	@override String get addTitle => 'Support Post';
+	@override String get editTitle => 'Edit Post';
+	@override String get titleLabel => 'Title (optional)';
+	@override String get titleHint => 'A short title';
+	@override String get contentLabel => 'How are you feeling?';
+	@override String get contentHint => 'You can let it out; you\'re not alone here.';
+	@override String get anonymous => 'Post anonymously';
+	@override String get anonymousUser => 'Anonymous User';
+	@override String get post => 'Share';
+	@override String get posted => 'Your post was added to the wall.';
+	@override String get updated => 'Post updated.';
+	@override String get deleteTitle => 'Delete Post';
+	@override String get deleteConfirm => 'Are you sure you want to delete this post?';
+	@override String get deleted => 'Post deleted.';
+	@override String get errorContent => 'Please write something.';
+	@override String supportCount({required Object count}) => '${count} support';
+	@override String commentCount({required Object count}) => '${count} comments';
+	@override String get detailTitle => 'Post';
+	@override String get commentsTitle => 'Support Messages';
+	@override String get commentHint => 'Write a message of support…';
+	@override String get commentSend => 'Send';
+	@override String get commentSent => 'Support message sent.';
+	@override String get commentEmpty => 'No support messages yet. Be the first.';
+	@override String get commentDeleteTitle => 'Delete Comment';
+	@override String get commentDeleteConfirm => 'Are you sure you want to delete this support message?';
+	@override String get commentDeleted => 'Comment deleted.';
+	@override String get edit => 'Edit';
+	@override String get delete => 'Delete';
+	@override String get cancel => 'Cancel';
+	@override String get save => 'Save';
+	@override String get justNow => 'just now';
+	@override String minsAgo({required Object count}) => '${count} min ago';
+	@override String hoursAgo({required Object count}) => '${count} h ago';
+	@override String daysAgo({required Object count}) => '${count} d ago';
 }
 
 // Path: crisis
@@ -1425,6 +1473,44 @@ extension on TranslationsEn {
 			'meds.logNotesLabel' => 'Observation notes (optional)',
 			'meds.logNotesHint' => 'Anything you want to share with your doctor?',
 			'meds.logSaved' => 'Dose log saved.',
+			'wall.title' => 'Support Wall',
+			'wall.subtitle' => 'Share your feelings and support each other. Posts can be anonymous.',
+			'wall.empty' => 'No posts yet. Be the first to share.',
+			'wall.add' => 'Share',
+			'wall.addTitle' => 'Support Post',
+			'wall.editTitle' => 'Edit Post',
+			'wall.titleLabel' => 'Title (optional)',
+			'wall.titleHint' => 'A short title',
+			'wall.contentLabel' => 'How are you feeling?',
+			'wall.contentHint' => 'You can let it out; you\'re not alone here.',
+			'wall.anonymous' => 'Post anonymously',
+			'wall.anonymousUser' => 'Anonymous User',
+			'wall.post' => 'Share',
+			'wall.posted' => 'Your post was added to the wall.',
+			'wall.updated' => 'Post updated.',
+			'wall.deleteTitle' => 'Delete Post',
+			'wall.deleteConfirm' => 'Are you sure you want to delete this post?',
+			'wall.deleted' => 'Post deleted.',
+			'wall.errorContent' => 'Please write something.',
+			'wall.supportCount' => ({required Object count}) => '${count} support',
+			'wall.commentCount' => ({required Object count}) => '${count} comments',
+			'wall.detailTitle' => 'Post',
+			'wall.commentsTitle' => 'Support Messages',
+			'wall.commentHint' => 'Write a message of support…',
+			'wall.commentSend' => 'Send',
+			'wall.commentSent' => 'Support message sent.',
+			'wall.commentEmpty' => 'No support messages yet. Be the first.',
+			'wall.commentDeleteTitle' => 'Delete Comment',
+			'wall.commentDeleteConfirm' => 'Are you sure you want to delete this support message?',
+			'wall.commentDeleted' => 'Comment deleted.',
+			'wall.edit' => 'Edit',
+			'wall.delete' => 'Delete',
+			'wall.cancel' => 'Cancel',
+			'wall.save' => 'Save',
+			'wall.justNow' => 'just now',
+			'wall.minsAgo' => ({required Object count}) => '${count} min ago',
+			'wall.hoursAgo' => ({required Object count}) => '${count} h ago',
+			'wall.daysAgo' => ({required Object count}) => '${count} d ago',
 			'crisis.title' => 'Crisis Guide',
 			'crisis.heroTitle' => 'What To Do in Hard Moments?',
 			'crisis.heroSubtitle' => 'A quick guide to help you stay calm and take the right steps when your child is overwhelmed.',
@@ -1561,6 +1647,8 @@ extension on TranslationsEn {
 			'emergency.name' => 'Full Name',
 			'emergency.phone' => 'Phone',
 			'emergency.relation' => 'Relationship',
+			_ => null,
+		} ?? switch (path) {
 			'emergency.doctorName' => 'Doctor Name',
 			'emergency.doctorPhone' => 'Doctor Phone',
 			'emergency.hospital' => 'Hospital',
@@ -1599,8 +1687,6 @@ extension on TranslationsEn {
 			'behavior.intensityLabel' => 'Intensity',
 			'behavior.intensity1' => 'Very Mild',
 			'behavior.intensity2' => 'Mild',
-			_ => null,
-		} ?? switch (path) {
 			'behavior.intensity3' => 'Moderate',
 			'behavior.intensity4' => 'Severe',
 			'behavior.intensity5' => 'Very Severe',

@@ -393,6 +393,46 @@ meds:
   logNotesHint: Anything you want to share with your doctor?
   logSaved: Dose log saved.
 
+wall:
+  title: Support Wall
+  subtitle: Share your feelings and support each other. Posts can be anonymous.
+  empty: No posts yet. Be the first to share.
+  add: Share
+  addTitle: Support Post
+  editTitle: Edit Post
+  titleLabel: Title (optional)
+  titleHint: A short title
+  contentLabel: How are you feeling?
+  contentHint: You can let it out; you're not alone here.
+  anonymous: Post anonymously
+  anonymousUser: Anonymous User
+  post: Share
+  posted: Your post was added to the wall.
+  updated: Post updated.
+  deleteTitle: Delete Post
+  deleteConfirm: Are you sure you want to delete this post?
+  deleted: Post deleted.
+  errorContent: Please write something.
+  supportCount: $count support
+  commentCount: $count comments
+  detailTitle: Post
+  commentsTitle: Support Messages
+  commentHint: Write a message of support…
+  commentSend: Send
+  commentSent: Support message sent.
+  commentEmpty: No support messages yet. Be the first.
+  commentDeleteTitle: Delete Comment
+  commentDeleteConfirm: Are you sure you want to delete this support message?
+  commentDeleted: Comment deleted.
+  edit: Edit
+  delete: Delete
+  cancel: Cancel
+  save: Save
+  justNow: just now
+  minsAgo: $count min ago
+  hoursAgo: $count h ago
+  daysAgo: $count d ago
+
 crisis:
   title: Crisis Guide
   heroTitle: What To Do in Hard Moments?

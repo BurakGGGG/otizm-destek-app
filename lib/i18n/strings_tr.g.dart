@@ -67,6 +67,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$dailyTracker$tr dailyTracker = Translations$dailyTracker$tr.internal(_root);
 	late final Translations$sleep$tr sleep = Translations$sleep$tr.internal(_root);
 	late final Translations$meds$tr meds = Translations$meds$tr.internal(_root);
+	late final Translations$wall$tr wall = Translations$wall$tr.internal(_root);
 	late final Translations$crisis$tr crisis = Translations$crisis$tr.internal(_root);
 	late final Translations$calendar$tr calendar = Translations$calendar$tr.internal(_root);
 	late final Translations$emergency$tr emergency = Translations$emergency$tr.internal(_root);
@@ -1315,6 +1316,129 @@ class Translations$meds$tr {
 	String get logSaved => 'Doz günlüğü kaydedildi.';
 }
 
+// Path: wall
+class Translations$wall$tr {
+	Translations$wall$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Dertleşme Duvarı'
+	String get title => 'Dertleşme Duvarı';
+
+	/// tr: 'Duygularınızı paylaşın, birbirinize destek olun. Paylaşımlar anonim olabilir.'
+	String get subtitle => 'Duygularınızı paylaşın, birbirinize destek olun. Paylaşımlar anonim olabilir.';
+
+	/// tr: 'Henüz paylaşım yok. İlk paylaşımı sen yap.'
+	String get empty => 'Henüz paylaşım yok. İlk paylaşımı sen yap.';
+
+	/// tr: 'Paylaş'
+	String get add => 'Paylaş';
+
+	/// tr: 'Dertleşme Paylaşımı'
+	String get addTitle => 'Dertleşme Paylaşımı';
+
+	/// tr: 'Paylaşımı Düzenle'
+	String get editTitle => 'Paylaşımı Düzenle';
+
+	/// tr: 'Başlık (isteğe bağlı)'
+	String get titleLabel => 'Başlık (isteğe bağlı)';
+
+	/// tr: 'Kısa bir başlık'
+	String get titleHint => 'Kısa bir başlık';
+
+	/// tr: 'Ne hissediyorsun?'
+	String get contentLabel => 'Ne hissediyorsun?';
+
+	/// tr: 'İçini dökebilirsin; burada yalnız değilsin.'
+	String get contentHint => 'İçini dökebilirsin; burada yalnız değilsin.';
+
+	/// tr: 'Anonim paylaş'
+	String get anonymous => 'Anonim paylaş';
+
+	/// tr: 'Anonim Kullanıcı'
+	String get anonymousUser => 'Anonim Kullanıcı';
+
+	/// tr: 'Paylaş'
+	String get post => 'Paylaş';
+
+	/// tr: 'Paylaşımınız duvara eklendi.'
+	String get posted => 'Paylaşımınız duvara eklendi.';
+
+	/// tr: 'Paylaşım güncellendi.'
+	String get updated => 'Paylaşım güncellendi.';
+
+	/// tr: 'Paylaşımı Sil'
+	String get deleteTitle => 'Paylaşımı Sil';
+
+	/// tr: 'Bu paylaşımı silmek istediğinize emin misiniz?'
+	String get deleteConfirm => 'Bu paylaşımı silmek istediğinize emin misiniz?';
+
+	/// tr: 'Paylaşım silindi.'
+	String get deleted => 'Paylaşım silindi.';
+
+	/// tr: 'Lütfen bir şeyler yazın.'
+	String get errorContent => 'Lütfen bir şeyler yazın.';
+
+	/// tr: '$count destek'
+	String supportCount({required Object count}) => '${count} destek';
+
+	/// tr: '$count yorum'
+	String commentCount({required Object count}) => '${count} yorum';
+
+	/// tr: 'Paylaşım'
+	String get detailTitle => 'Paylaşım';
+
+	/// tr: 'Destek Mesajları'
+	String get commentsTitle => 'Destek Mesajları';
+
+	/// tr: 'Bir destek mesajı yaz…'
+	String get commentHint => 'Bir destek mesajı yaz…';
+
+	/// tr: 'Gönder'
+	String get commentSend => 'Gönder';
+
+	/// tr: 'Destek mesajı gönderildi.'
+	String get commentSent => 'Destek mesajı gönderildi.';
+
+	/// tr: 'Henüz destek mesajı yok. İlk desteği sen ver.'
+	String get commentEmpty => 'Henüz destek mesajı yok. İlk desteği sen ver.';
+
+	/// tr: 'Yorumu Sil'
+	String get commentDeleteTitle => 'Yorumu Sil';
+
+	/// tr: 'Bu destek mesajını silmek istediğinize emin misiniz?'
+	String get commentDeleteConfirm => 'Bu destek mesajını silmek istediğinize emin misiniz?';
+
+	/// tr: 'Yorum silindi.'
+	String get commentDeleted => 'Yorum silindi.';
+
+	/// tr: 'Düzenle'
+	String get edit => 'Düzenle';
+
+	/// tr: 'Sil'
+	String get delete => 'Sil';
+
+	/// tr: 'İptal'
+	String get cancel => 'İptal';
+
+	/// tr: 'Kaydet'
+	String get save => 'Kaydet';
+
+	/// tr: 'az önce'
+	String get justNow => 'az önce';
+
+	/// tr: '$count dk önce'
+	String minsAgo({required Object count}) => '${count} dk önce';
+
+	/// tr: '$count sa önce'
+	String hoursAgo({required Object count}) => '${count} sa önce';
+
+	/// tr: '$count gün önce'
+	String daysAgo({required Object count}) => '${count} gün önce';
+}
+
 // Path: crisis
 class Translations$crisis$tr {
 	Translations$crisis$tr.internal(this._root);
@@ -2538,6 +2662,44 @@ extension on Translations {
 			'meds.logNotesLabel' => 'Gözlem notları (isteğe bağlı)',
 			'meds.logNotesHint' => 'Doktorunuza iletmek istediğiniz bir gözlem var mı?',
 			'meds.logSaved' => 'Doz günlüğü kaydedildi.',
+			'wall.title' => 'Dertleşme Duvarı',
+			'wall.subtitle' => 'Duygularınızı paylaşın, birbirinize destek olun. Paylaşımlar anonim olabilir.',
+			'wall.empty' => 'Henüz paylaşım yok. İlk paylaşımı sen yap.',
+			'wall.add' => 'Paylaş',
+			'wall.addTitle' => 'Dertleşme Paylaşımı',
+			'wall.editTitle' => 'Paylaşımı Düzenle',
+			'wall.titleLabel' => 'Başlık (isteğe bağlı)',
+			'wall.titleHint' => 'Kısa bir başlık',
+			'wall.contentLabel' => 'Ne hissediyorsun?',
+			'wall.contentHint' => 'İçini dökebilirsin; burada yalnız değilsin.',
+			'wall.anonymous' => 'Anonim paylaş',
+			'wall.anonymousUser' => 'Anonim Kullanıcı',
+			'wall.post' => 'Paylaş',
+			'wall.posted' => 'Paylaşımınız duvara eklendi.',
+			'wall.updated' => 'Paylaşım güncellendi.',
+			'wall.deleteTitle' => 'Paylaşımı Sil',
+			'wall.deleteConfirm' => 'Bu paylaşımı silmek istediğinize emin misiniz?',
+			'wall.deleted' => 'Paylaşım silindi.',
+			'wall.errorContent' => 'Lütfen bir şeyler yazın.',
+			'wall.supportCount' => ({required Object count}) => '${count} destek',
+			'wall.commentCount' => ({required Object count}) => '${count} yorum',
+			'wall.detailTitle' => 'Paylaşım',
+			'wall.commentsTitle' => 'Destek Mesajları',
+			'wall.commentHint' => 'Bir destek mesajı yaz…',
+			'wall.commentSend' => 'Gönder',
+			'wall.commentSent' => 'Destek mesajı gönderildi.',
+			'wall.commentEmpty' => 'Henüz destek mesajı yok. İlk desteği sen ver.',
+			'wall.commentDeleteTitle' => 'Yorumu Sil',
+			'wall.commentDeleteConfirm' => 'Bu destek mesajını silmek istediğinize emin misiniz?',
+			'wall.commentDeleted' => 'Yorum silindi.',
+			'wall.edit' => 'Düzenle',
+			'wall.delete' => 'Sil',
+			'wall.cancel' => 'İptal',
+			'wall.save' => 'Kaydet',
+			'wall.justNow' => 'az önce',
+			'wall.minsAgo' => ({required Object count}) => '${count} dk önce',
+			'wall.hoursAgo' => ({required Object count}) => '${count} sa önce',
+			'wall.daysAgo' => ({required Object count}) => '${count} gün önce',
 			'crisis.title' => 'Kriz Rehberi',
 			'crisis.heroTitle' => 'Zor Anlarda Ne Yapmalı?',
 			'crisis.heroSubtitle' => 'Çocuğunuz bunaldığında sakin kalmanıza ve doğru adımları atmanıza yardımcı olacak hızlı rehber.',
@@ -2674,6 +2836,8 @@ extension on Translations {
 			'emergency.name' => 'Ad Soyad',
 			'emergency.phone' => 'Telefon',
 			'emergency.relation' => 'Yakınlık',
+			_ => null,
+		} ?? switch (path) {
 			'emergency.doctorName' => 'Doktor Adı',
 			'emergency.doctorPhone' => 'Doktor Telefonu',
 			'emergency.hospital' => 'Hastane',
@@ -2712,8 +2876,6 @@ extension on Translations {
 			'behavior.intensityLabel' => 'Şiddet Düzeyi',
 			'behavior.intensity1' => 'Çok Hafif',
 			'behavior.intensity2' => 'Hafif',
-			_ => null,
-		} ?? switch (path) {
 			'behavior.intensity3' => 'Orta',
 			'behavior.intensity4' => 'Şiddetli',
 			'behavior.intensity5' => 'Çok Şiddetli',

@@ -393,6 +393,47 @@ meds:
   logNotesHint: Doktorunuza iletmek istediğiniz bir gözlem var mı?
   logSaved: Doz günlüğü kaydedildi.
 
+wall:
+  title: Dertleşme Duvarı
+  subtitle: Duygularınızı paylaşın, birbirinize destek olun. Paylaşımlar anonim
+    olabilir.
+  empty: Henüz paylaşım yok. İlk paylaşımı sen yap.
+  add: Paylaş
+  addTitle: Dertleşme Paylaşımı
+  editTitle: Paylaşımı Düzenle
+  titleLabel: Başlık (isteğe bağlı)
+  titleHint: Kısa bir başlık
+  contentLabel: Ne hissediyorsun?
+  contentHint: İçini dökebilirsin; burada yalnız değilsin.
+  anonymous: Anonim paylaş
+  anonymousUser: Anonim Kullanıcı
+  post: Paylaş
+  posted: Paylaşımınız duvara eklendi.
+  updated: Paylaşım güncellendi.
+  deleteTitle: Paylaşımı Sil
+  deleteConfirm: Bu paylaşımı silmek istediğinize emin misiniz?
+  deleted: Paylaşım silindi.
+  errorContent: Lütfen bir şeyler yazın.
+  supportCount: $count destek
+  commentCount: $count yorum
+  detailTitle: Paylaşım
+  commentsTitle: Destek Mesajları
+  commentHint: Bir destek mesajı yaz…
+  commentSend: Gönder
+  commentSent: Destek mesajı gönderildi.
+  commentEmpty: Henüz destek mesajı yok. İlk desteği sen ver.
+  commentDeleteTitle: Yorumu Sil
+  commentDeleteConfirm: Bu destek mesajını silmek istediğinize emin misiniz?
+  commentDeleted: Yorum silindi.
+  edit: Düzenle
+  delete: Sil
+  cancel: İptal
+  save: Kaydet
+  justNow: az önce
+  minsAgo: $count dk önce
+  hoursAgo: $count sa önce
+  daysAgo: $count gün önce
+
 crisis:
   title: Kriz Rehberi
   heroTitle: Zor Anlarda Ne Yapmalı?

@@ -27,6 +27,7 @@ import '../../features/profile/presentation/account_screen.dart';
 import '../../features/profile/presentation/help_screen.dart';
 import '../../features/routines/presentation/routines_screen.dart';
 import '../../features/splash/splash_screen.dart';
+import '../../features/support_wall/presentation/support_wall_screen.dart';
 import '../providers.dart';
 
 /// Uygulama rotaları. Oturum durumuna göre yönlendirir (role duyarlı kabuk
@@ -112,6 +113,10 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/emergency', builder: (_, _) => const EmergencyScreen()),
       GoRoute(path: '/calendar', builder: (_, _) => const CalendarScreen()),
       GoRoute(path: '/crisis', builder: (_, _) => const CrisisScreen()),
+      GoRoute(
+        path: '/support-wall',
+        builder: (_, _) => const SupportWallScreen(),
+      ),
       GoRoute(
         path: '/messages',
         builder: (_, _) => const ConversationsScreen(),

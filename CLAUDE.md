@@ -107,6 +107,15 @@ flutter build apk --debug
     JSON blob'u; `data` string olarak gelir (jsonDecode). Alan anahtarları web
     `EmergencyProfile` ile birebir aynı. Telefon alanlarında **dokun-ara**
     (`url_launcher` tel:). `/emergency`, Profil menüsü kısayolu.
+  - **Dertleşme Duvarı:** forum'un `SUPPORT_WALL` kategorisi — veli topluluğu
+    desteği. `GET /api/forum/posts/category/SUPPORT_WALL` (sayfalı
+    `PageResponseDto.content`); paylaşım oluştur (`POST /forum/posts`
+    `{category:'SUPPORT_WALL', postType:'DENEYIM', anonymous}`, başlık boşsa web
+    gibi varsayılan başlık), düzenle/sil (sahibi); destek mesajları
+    (`/forum/posts/{id}/comments`, yorum daima `anonymous:true`); beğeni/destek
+    aç-kapa (`POST /votes` `{targetType:'POST', targetId, voteValue:1}`, iyimser
+    UI). Liste + detay (tam metin + yorumlar + yazma çubuğu). `/support-wall`,
+    Profil menüsü kısayolu.
 - ✅ Firebase: Crashlytics + Analytics kod entegrasyonu (debug'da kapalı, sürümde açık).
 - ✅ FCM push: mobil taraf hazır; **backend uç noktaları da yazıldı** (POST/DELETE
   `/api/push/device-token`, MESSAGE/APPOINTMENT data payload — sözleşme
