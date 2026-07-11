@@ -72,6 +72,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$meetup$tr meetup = Translations$meetup$tr.internal(_root);
 	late final Translations$similar$tr similar = Translations$similar$tr.internal(_root);
 	late final Translations$groups$tr groups = Translations$groups$tr.internal(_root);
+	late final Translations$treatment$tr treatment = Translations$treatment$tr.internal(_root);
 	late final Translations$crisis$tr crisis = Translations$crisis$tr.internal(_root);
 	late final Translations$calendar$tr calendar = Translations$calendar$tr.internal(_root);
 	late final Translations$emergency$tr emergency = Translations$emergency$tr.internal(_root);
@@ -1794,6 +1795,559 @@ class Translations$groups$tr {
 	String get errorName => 'Lütfen bir grup adı girin.';
 }
 
+// Path: treatment
+class Translations$treatment$tr {
+	Translations$treatment$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Tedavi Paneli'
+	String get title => 'Tedavi Paneli';
+
+	/// tr: 'Günlük Destek Planı'
+	String get subtitle => 'Günlük Destek Planı';
+
+	/// tr: '$name planı aktif'
+	String programActive({required Object name}) => '${name} planı aktif';
+
+	/// tr: 'Profil seç'
+	String get selectChild => 'Profil seç';
+
+	/// tr: 'Henüz çocuk profili yok'
+	String get noChildrenTitle => 'Henüz çocuk profili yok';
+
+	/// tr: 'Tedavi planı için önce bir çocuk profili ekleyin.'
+	String get noChildrenBody => 'Tedavi planı için önce bir çocuk profili ekleyin.';
+
+	/// tr: 'Çocuk Ekle'
+	String get addChild => 'Çocuk Ekle';
+
+	/// tr: 'Tedavi verileri kaydedilemedi, değişiklik geri alındı.'
+	String get saveError => 'Tedavi verileri kaydedilemedi, değişiklik geri alındı.';
+
+	/// tr: 'Bugün'
+	String get tabToday => 'Bugün';
+
+	/// tr: 'Hedefler'
+	String get tabGoals => 'Hedefler';
+
+	/// tr: 'Oyunlar'
+	String get tabGames => 'Oyunlar';
+
+	/// tr: 'Araçlar'
+	String get tabTools => 'Araçlar';
+
+	List<String> get daysShort => [
+		'Paz',
+		'Pzt',
+		'Sal',
+		'Çar',
+		'Per',
+		'Cum',
+		'Cmt',
+	];
+
+	/// tr: 'Merhaba! 3 adımda başlayın 👋'
+	String get onboardTitle => 'Merhaba! 3 adımda başlayın 👋';
+
+	/// tr: 'Bu sayfa, her gün çocuğunuzla yapabileceğiniz küçük destekleri takip etmenizi sağlar.'
+	String get onboardBody => 'Bu sayfa, her gün çocuğunuzla yapabileceğiniz küçük destekleri takip etmenizi sağlar.';
+
+	/// tr: '1. Hedefler sekmesinden bugün takip etmek istediğiniz küçük bir şey yazın.'
+	String get onboardStep1 => '1. Hedefler sekmesinden bugün takip etmek istediğiniz küçük bir şey yazın.';
+
+	/// tr: '2. Oyunlar sekmesindeki 5-10 dakikalık etkinlikleri deneyin.'
+	String get onboardStep2 => '2. Oyunlar sekmesindeki 5-10 dakikalık etkinlikleri deneyin.';
+
+	/// tr: '3. Oyun sonrası "Kolay geldi / Zorlandı" seçin — gerisini sistem halleder.'
+	String get onboardStep3 => '3. Oyun sonrası "Kolay geldi / Zorlandı" seçin — gerisini sistem halleder.';
+
+	/// tr: 'Bugünün kısa planı'
+	String get todayTitle => 'Bugünün kısa planı';
+
+	/// tr: 'Bir madde seçin, uygulayın, sonra tamamlandı olarak işaretleyin.'
+	String get todaySubtitle => 'Bir madde seçin, uygulayın, sonra tamamlandı olarak işaretleyin.';
+
+	/// tr: '$count gün seri'
+	String streakDays({required Object count}) => '${count} gün seri';
+
+	/// tr: '$done/$total yapıldı'
+	String doneOf({required Object done, required Object total}) => '${done}/${total} yapıldı';
+
+	/// tr: '$count adım'
+	String stepCount({required Object count}) => '${count} adım';
+
+	/// tr: 'Bugün için plan bulunamadı.'
+	String get emptyPlanTitle => 'Bugün için plan bulunamadı.';
+
+	/// tr: 'Hedef eklediğinizde burada kısa günlük adımlar görünecek.'
+	String get emptyPlanBody => 'Hedef eklediğinizde burada kısa günlük adımlar görünecek.';
+
+	/// tr: 'Bugünün planı tamamlandı.'
+	String get planDone => 'Bugünün planı tamamlandı.';
+
+	/// tr: 'Bugünlük bu kadar yeterli.'
+	String get planDoneSub => 'Bugünlük bu kadar yeterli.';
+
+	/// tr: 'Bugünkü ruh halini kaydet'
+	String get moodSaveTitle => 'Bugünkü ruh halini kaydet';
+
+	/// tr: 'Plan, çocuğun durumuna göre otomatik uyarlanır'
+	String get moodSaveSub => 'Plan, çocuğun durumuna göre otomatik uyarlanır';
+
+	/// tr: 'Bugünkü ruh hali: $label'
+	String moodTodayLabel({required Object label}) => 'Bugünkü ruh hali: ${label}';
+
+	/// tr: 'Plan bu duruma göre hazırlandı'
+	String get moodPlanned => 'Plan bu duruma göre hazırlandı';
+
+	/// tr: 'Zorlanıyor'
+	String get moodLevel1 => 'Zorlanıyor';
+
+	/// tr: 'Hassas'
+	String get moodLevel2 => 'Hassas';
+
+	/// tr: 'Dengeli'
+	String get moodLevel3 => 'Dengeli';
+
+	/// tr: 'İyi'
+	String get moodLevel4 => 'İyi';
+
+	/// tr: 'Çok iyi'
+	String get moodLevel5 => 'Çok iyi';
+
+	/// tr: 'Bugün dikkat edilecekler'
+	String get suggestionsTitle => 'Bugün dikkat edilecekler';
+
+	/// tr: 'Son not'
+	String get latestNoteTitle => 'Son not';
+
+	/// tr: 'Uzman Terapist'
+	String get defaultExpert => 'Uzman Terapist';
+
+	/// tr: 'Platform Terapi Modülü'
+	String get noNoteAuthor => 'Platform Terapi Modülü';
+
+	/// tr: 'Otomatik günlük plan'
+	String get noNoteRole => 'Otomatik günlük plan';
+
+	/// tr: 'Henüz uzman notu yok. Bugünün planı, çocuğunuzun kayıtlarına göre hazırlandı.'
+	String get noNoteBody => 'Henüz uzman notu yok. Bugünün planı, çocuğunuzun kayıtlarına göre hazırlandı.';
+
+	/// tr: 'Bu nota eklenmiş detay bulunmuyor.'
+	String get noteEmptyContent => 'Bu nota eklenmiş detay bulunmuyor.';
+
+	/// tr: 'Haftalık özet'
+	String get weeklyTitle => 'Haftalık özet';
+
+	/// tr: 'Bu bölüm sadece genel durumu gösterir.'
+	String get weeklySubtitle => 'Bu bölüm sadece genel durumu gösterir.';
+
+	/// tr: 'Oyun'
+	String get legendGame => 'Oyun';
+
+	/// tr: 'Hedef'
+	String get legendGoal => 'Hedef';
+
+	/// tr: '$count oyun'
+	String chartGames({required Object count}) => '${count} oyun';
+
+	/// tr: '%$percent hedef'
+	String chartGoal({required Object percent}) => '%${percent} hedef';
+
+	/// tr: 'Bu hafta oyun'
+	String get weekGamesTitle => 'Bu hafta oyun';
+
+	/// tr: 'Bu hafta tekrar edilen mini egzersiz sayısı'
+	String get weekGamesDetail => 'Bu hafta tekrar edilen mini egzersiz sayısı';
+
+	/// tr: 'Bugün ilk oyunu planlayabilirsiniz'
+	String get weekGamesEmpty => 'Bugün ilk oyunu planlayabilirsiniz';
+
+	/// tr: 'Tamamlanan hedef'
+	String get weekGoalsTitle => 'Tamamlanan hedef';
+
+	/// tr: 'Tüm aktif beceri alanlarındaki toplam ilerleme'
+	String get weekGoalsDetail => 'Tüm aktif beceri alanlarındaki toplam ilerleme';
+
+	/// tr: 'Hedefler sekmesinden hedef ekleyebilirsiniz'
+	String get weekGoalsEmpty => 'Hedefler sekmesinden hedef ekleyebilirsiniz';
+
+	/// tr: 'Yaklaşan Seans'
+	String get weekSessionsTitle => 'Yaklaşan Seans';
+
+	/// tr: 'Planlanmış randevu veya etkinlik'
+	String get weekSessionsDetail => 'Planlanmış randevu veya etkinlik';
+
+	/// tr: 'Henüz randevu planlanmamış'
+	String get weekSessionsEmpty => 'Henüz randevu planlanmamış';
+
+	/// tr: 'Gelişim alanları'
+	String get microTitle => 'Gelişim alanları';
+
+	/// tr: 'Ayrıntıya gerek olduğunda buraya bakabilirsiniz.'
+	String get microSubtitle => 'Ayrıntıya gerek olduğunda buraya bakabilirsiniz.';
+
+	/// tr: 'Destekleyen oyun:'
+	String get microLinkedGame => 'Destekleyen oyun:';
+
+	/// tr: 'Günlük Hedef Ekle'
+	String get addGoalTitle => 'Günlük Hedef Ekle';
+
+	/// tr: 'Bugün çocuğunuza özel takip etmek istediğiniz küçük bir şey yazın.'
+	String get addGoalSubtitle => 'Bugün çocuğunuza özel takip etmek istediğiniz küçük bir şey yazın.';
+
+	/// tr: 'Örn: 2 kez göz teması kurdu'
+	String get goalHint => 'Örn: 2 kez göz teması kurdu';
+
+	/// tr: 'Hedef alanı'
+	String get focusLabel => 'Hedef alanı';
+
+	/// tr: 'Bitiş tarihi (isteğe bağlı)'
+	String get dueDateLabel => 'Bitiş tarihi (isteğe bağlı)';
+
+	/// tr: 'Hedef Ekle'
+	String get addGoal => 'Hedef Ekle';
+
+	/// tr: 'Kaydediliyor…'
+	String get saving => 'Kaydediliyor…';
+
+	/// tr: 'Sizin eklediğiniz hedefler'
+	String get yourGoals => 'Sizin eklediğiniz hedefler';
+
+	/// tr: 'Düzenle'
+	String get edit => 'Düzenle';
+
+	/// tr: 'Sil'
+	String get delete => 'Sil';
+
+	/// tr: 'Kaydet'
+	String get save => 'Kaydet';
+
+	/// tr: 'Vazgeç'
+	String get cancel => 'Vazgeç';
+
+	/// tr: 'Yeni hedef eklendi.'
+	String get goalAdded => 'Yeni hedef eklendi.';
+
+	/// tr: 'Hedef güncellendi.'
+	String get goalUpdated => 'Hedef güncellendi.';
+
+	/// tr: 'Hedef düzenlendi.'
+	String get goalEdited => 'Hedef düzenlendi.';
+
+	/// tr: 'Hedef silindi.'
+	String get goalDeleted => 'Hedef silindi.';
+
+	/// tr: 'Terapi Hedefleri — Alana Göre İlerleme'
+	String get groupsHeader => 'Terapi Hedefleri — Alana Göre İlerleme';
+
+	/// tr: '$done/$total tamamlandı'
+	String groupDone({required Object done, required Object total}) => '${done}/${total} tamamlandı';
+
+	/// tr: 'Tamamlandı'
+	String get statusDone => 'Tamamlandı';
+
+	/// tr: 'Devam'
+	String get statusActive => 'Devam';
+
+	/// tr: 'Sırada'
+	String get statusUpcoming => 'Sırada';
+
+	/// tr: 'Henüz terapi hedefi görünmüyor'
+	String get emptyGroupsTitle => 'Henüz terapi hedefi görünmüyor';
+
+	/// tr: 'Çocuğunuzun profiline terapi türü eklendiğinde hedefler otomatik olarak burada listelenir.'
+	String get emptyGroupsBody => 'Çocuğunuzun profiline terapi türü eklendiğinde hedefler otomatik olarak burada listelenir.';
+
+	/// tr: 'Büyük Bir Başarı Kaydet 🏅'
+	String get milestoneTitle => 'Büyük Bir Başarı Kaydet 🏅';
+
+	/// tr: 'Hatırlamak istediğiniz önemli bir an'
+	String get milestoneSubtitle => 'Hatırlamak istediğiniz önemli bir an';
+
+	/// tr: 'Örn: İlk kez adını söyledi'
+	String get milestoneHint => 'Örn: İlk kez adını söyledi';
+
+	/// tr: 'Kilometre taşı kaydedildi 🎉'
+	String get milestoneSaved => 'Kilometre taşı kaydedildi 🎉';
+
+	/// tr: 'Son Gözlem Notları'
+	String get notesTitle => 'Son Gözlem Notları';
+
+	/// tr: 'Henüz bu çocuğa ait uzman veya ebeveyn notu yok.'
+	String get notesEmpty => 'Henüz bu çocuğa ait uzman veya ebeveyn notu yok.';
+
+	/// tr: 'Yaklaşan Etkinlikler'
+	String get upcomingTitle => 'Yaklaşan Etkinlikler';
+
+	/// tr: 'Yakın tarihte planlanmış aktif seans veya etkinlik görünmüyor.'
+	String get upcomingEmpty => 'Yakın tarihte planlanmış aktif seans veya etkinlik görünmüyor.';
+
+	/// tr: 'Randevular'
+	String get goAppointments => 'Randevular';
+
+	/// tr: 'Takvime Git'
+	String get goCalendar => 'Takvime Git';
+
+	/// tr: 'Günlük Aktiviteler'
+	String get gamesTitle => 'Günlük Aktiviteler';
+
+	/// tr: 'Çocuğunuzun terapi hedeflerine göre önerilen kısa etkinlikler. Oynadıktan sonra nasıl gittiğini seçin.'
+	String get gamesSubtitle => 'Çocuğunuzun terapi hedeflerine göre önerilen kısa etkinlikler. Oynadıktan sonra nasıl gittiğini seçin.';
+
+	/// tr: '$done/$total bugün tamamlandı'
+	String todayDone({required Object done, required Object total}) => '${done}/${total} bugün tamamlandı';
+
+	/// tr: 'Tümü'
+	String get filterAll => 'Tümü';
+
+	/// tr: 'Hazır'
+	String get gameReady => 'Hazır';
+
+	/// tr: '✅ Yapıldı'
+	String get gameDoneBadge => '✅ Yapıldı';
+
+	/// tr: 'Yöntem: $name'
+	String methodLabel({required Object name}) => 'Yöntem: ${name}';
+
+	/// tr: 'Neden iyi gelir?'
+	String get whyGood => 'Neden iyi gelir?';
+
+	/// tr: 'Hedef: $name'
+	String goalBadge({required Object name}) => 'Hedef: ${name}';
+
+	/// tr: 'Araç: $name'
+	String toolBadge({required Object name}) => 'Araç: ${name}';
+
+	/// tr: 'Bugün oynat'
+	String get playToday => 'Bugün oynat';
+
+	/// tr: 'Yapıldı olarak işaretli'
+	String get playedToday => 'Yapıldı olarak işaretli';
+
+	/// tr: 'Nasıl gitti? (isteğe bağlı)'
+	String get feedbackQuestion => 'Nasıl gitti? (isteğe bağlı)';
+
+	/// tr: 'Henüz sonuç seçilmedi'
+	String get fbNone => 'Henüz sonuç seçilmedi';
+
+	/// tr: 'Çok kolay'
+	String get fbEasy => 'Çok kolay';
+
+	/// tr: 'Yardımla'
+	String get fbAssisted => 'Yardımla';
+
+	/// tr: 'Kendi başına'
+	String get fbIndependent => 'Kendi başına';
+
+	/// tr: 'Zorlandı'
+	String get fbChallenging => 'Zorlandı';
+
+	/// tr: 'Kolay geldi'
+	String get fbEasyLong => 'Kolay geldi';
+
+	/// tr: 'Yardımla yaptı'
+	String get fbAssistedLong => 'Yardımla yaptı';
+
+	/// tr: 'Tek başına yaptı'
+	String get fbIndependentLong => 'Tek başına yaptı';
+
+	/// tr: 'Zorlandı'
+	String get fbChallengingLong => 'Zorlandı';
+
+	/// tr: 'Oyun geri bildirimi kaydedildi.'
+	String get feedbackSaved => 'Oyun geri bildirimi kaydedildi.';
+
+	/// tr: '🎉 Bugünün tüm oyunları tamamlandı. Harika gidiyorsunuz!'
+	String get allDoneTitle => '🎉 Bugünün tüm oyunları tamamlandı. Harika gidiyorsunuz!';
+
+	/// tr: 'Bugünkü destek akışını tamamladınız; isterseniz notlar bölümüne kısa bir gözlem ekleyebilirsiniz.'
+	String get allDoneBody => 'Bugünkü destek akışını tamamladınız; isterseniz notlar bölümüne kısa bir gözlem ekleyebilirsiniz.';
+
+	/// tr: 'Ustalık kazandı! Daha zor varyant deneyin.'
+	String get hintMastered => 'Ustalık kazandı! Daha zor varyant deneyin.';
+
+	/// tr: 'Çok kolay geliyor. Zorluk artırın.'
+	String get hintEasy => 'Çok kolay geliyor. Zorluk artırın.';
+
+	/// tr: 'Zorlanıyor. Aktiviteyi parçalara bölün.'
+	String get hintChallenging => 'Zorlanıyor. Aktiviteyi parçalara bölün.';
+
+	/// tr: 'Uzmana Bildir'
+	String get notifyExpert => 'Uzmana Bildir';
+
+	/// tr: '$game aktivitesindeki zorlanma hakkında uzmanınıza kısa bir not gönderin.'
+	String notifyBody({required Object game}) => '${game} aktivitesindeki zorlanma hakkında uzmanınıza kısa bir not gönderin.';
+
+	/// tr: '"$game" aktivitesinde son zamanlarda zorlanıyor. Önerisi olan var mı?'
+	String notifyDefaultMsg({required Object game}) => '"${game}" aktivitesinde son zamanlarda zorlanıyor. Önerisi olan var mı?';
+
+	/// tr: 'Henüz mesajlaştığınız bir uzman yok. Önce bir uzmanla bağlantı kurmanız gerekiyor.'
+	String get notifyNoExpert => 'Henüz mesajlaştığınız bir uzman yok. Önce bir uzmanla bağlantı kurmanız gerekiyor.';
+
+	/// tr: 'Uzmanları Görüntüle'
+	String get notifySeeExperts => 'Uzmanları Görüntüle';
+
+	/// tr: 'Gönder'
+	String get notifySend => 'Gönder';
+
+	/// tr: 'Uzmana bildirildi.'
+	String get notifySent => 'Uzmana bildirildi.';
+
+	/// tr: 'Bu alanda henüz etkinlik önerilmiyor. Çocuğunuzun profil sayfasına terapi bilgisi eklediğinizde etkinlikler burada görünür.'
+	String get emptyGames => 'Bu alanda henüz etkinlik önerilmiyor. Çocuğunuzun profil sayfasına terapi bilgisi eklediğinizde etkinlikler burada görünür.';
+
+	/// tr: 'Oyun Geçmişi'
+	String get historyTitle => 'Oyun Geçmişi';
+
+	/// tr: 'Oynadığınız etkinliklerin geçmişi burada görünür.'
+	String get historySubtitle => 'Oynadığınız etkinliklerin geçmişi burada görünür.';
+
+	/// tr: '$count kayıt'
+	String historyCount({required Object count}) => '${count} kayıt';
+
+	/// tr: 'Henüz oyun kaydı yok. İlk kayıt oluşturulduğunda geçmiş burada görünür.'
+	String get historyEmpty => 'Henüz oyun kaydı yok. İlk kayıt oluşturulduğunda geçmiş burada görünür.';
+
+	/// tr: '💪 $count etkinlikte "Zorlandı" işaretlenmiş. Zorlanılan etkinlikleri tekrar denerken daha küçük adımlara bölmeyi ya da uzmanınıza bildirmeyi düşünebilirsiniz.'
+	String challengingSummary({required Object count}) => '💪 ${count} etkinlikte "Zorlandı" işaretlenmiş. Zorlanılan etkinlikleri tekrar denerken daha küçük adımlara bölmeyi ya da uzmanınıza bildirmeyi düşünebilirsiniz.';
+
+	/// tr: 'Sosyal Hikâyeler ve Görsel Akış'
+	String get storiesTitle => 'Sosyal Hikâyeler ve Görsel Akış';
+
+	/// tr: 'Bir etkinliğe başlamadan önce çocuğunuza "Ne olacak?" sorusunu yanıtlayan kısa resimli hikâyeler — geçişleri kolaylaştırır.'
+	String get storiesSubtitle => 'Bir etkinliğe başlamadan önce çocuğunuza "Ne olacak?" sorusunu yanıtlayan kısa resimli hikâyeler — geçişleri kolaylaştırır.';
+
+	/// tr: 'Özel hikâye'
+	String get customBadge => 'Özel hikâye';
+
+	/// tr: 'Bağlı hedef: $name'
+	String linkedGoalBadge({required Object name}) => 'Bağlı hedef: ${name}';
+
+	/// tr: 'Özel Sosyal Hikâye Ekle'
+	String get addStoryTitle => 'Özel Sosyal Hikâye Ekle';
+
+	/// tr: 'Hikâye başlığı (örn: Alışverişe Gidiyorum)'
+	String get storyTitleHint => 'Hikâye başlığı (örn: Alışverişe Gidiyorum)';
+
+	/// tr: 'Bağlı hedef (isteğe bağlı)'
+	String get storyGoalHint => 'Bağlı hedef (isteğe bağlı)';
+
+	/// tr: 'Ekle'
+	String get storyAdd => 'Ekle';
+
+	/// tr: 'Sosyal hikâye eklendi.'
+	String get storyAdded => 'Sosyal hikâye eklendi.';
+
+	/// tr: 'Hikâye silindi.'
+	String get storyDeleted => 'Hikâye silindi.';
+
+	/// tr: 'Hikâyeyi Sil'
+	String get deleteStoryTitle => 'Hikâyeyi Sil';
+
+	/// tr: 'Bu hikâyeyi silmek istediğinize emin misiniz?'
+	String get deleteStoryConfirm => 'Bu hikâyeyi silmek istediğinize emin misiniz?';
+
+	/// tr: 'Rahatlatan Şeyler Ayarları'
+	String get sensoryTitle => 'Rahatlatan Şeyler Ayarları';
+
+	/// tr: 'Ölçüm Kartları'
+	String get sensorySubtitle => 'Ölçüm Kartları';
+
+	/// tr: 'Duyusal profil güncellendi.'
+	String get sensorySaved => 'Duyusal profil güncellendi.';
+
+	/// tr: 'Duyusal Hassasiyet Seviyeleri'
+	String get sliderHeader => 'Duyusal Hassasiyet Seviyeleri';
+
+	/// tr: '🔊 Ses Hassasiyeti'
+	String get sliderSound => '🔊 Ses Hassasiyeti';
+
+	/// tr: '🖐️ Dokunsal Hassasiyet'
+	String get sliderTouch => '🖐️ Dokunsal Hassasiyet';
+
+	/// tr: '👁️ Görsel Hassasiyet'
+	String get sliderVisual => '👁️ Görsel Hassasiyet';
+
+	/// tr: 'Ses hassasiyeti'
+	String get metricSound => 'Ses hassasiyeti';
+
+	/// tr: 'Dokunsal hassasiyet'
+	String get metricTouch => 'Dokunsal hassasiyet';
+
+	/// tr: 'Görsel uyarı toleransı'
+	String get metricVisual => 'Görsel uyarı toleransı';
+
+	/// tr: 'Geçişlerde duyusal mola oyunu ile birlikte izleniyor.'
+	String get metricSoundNote => 'Geçişlerde duyusal mola oyunu ile birlikte izleniyor.';
+
+	/// tr: 'Dokunsal uyaranlar sıra alma ve basınç aktiviteleriyle destekleniyor.'
+	String get metricTouchNote => 'Dokunsal uyaranlar sıra alma ve basınç aktiviteleriyle destekleniyor.';
+
+	/// tr: 'Görsel hikâyeler ve zaman çizelgesi ile dengede tutuluyor.'
+	String get metricVisualNote => 'Görsel hikâyeler ve zaman çizelgesi ile dengede tutuluyor.';
+
+	/// tr: 'Tetikleyici Günlüğü'
+	String get triggerTitle => 'Tetikleyici Günlüğü';
+
+	/// tr: 'Dijital Jeton Panosu'
+	String get tokenTitle => 'Dijital Jeton Panosu';
+
+	/// tr: 'Çocuğunuzla bir hedef seçin. Görevleri başardıkça yıldız ekleyin. 5 yıldıza ulaştığında hak ettiği ödülü kazansın!'
+	String get tokenSubtitle => 'Çocuğunuzla bir hedef seçin. Görevleri başardıkça yıldız ekleyin. 5 yıldıza ulaştığında hak ettiği ödülü kazansın!';
+
+	/// tr: 'Hedeflenen Ödül'
+	String get tokenRewardLabel => 'Hedeflenen Ödül';
+
+	/// tr: 'Örn: Salıncağa binmek 🛝'
+	String get tokenRewardHint => 'Örn: Salıncağa binmek 🛝';
+
+	/// tr: 'Ödülü Tanımla'
+	String get tokenSetReward => 'Ödülü Tanımla';
+
+	/// tr: 'Aktif Ödül'
+	String get tokenActive => 'Aktif Ödül';
+
+	/// tr: 'Başarı Yıldızlarını Toplayın ($count/5)'
+	String tokenCollect({required Object count}) => 'Başarı Yıldızlarını Toplayın (${count}/5)';
+
+	/// tr: '⭐ Yıldız Ekle'
+	String get tokenAdd => '⭐ Yıldız Ekle';
+
+	/// tr: 'Tebrikler! Jeton Kartı Doldu'
+	String get tokenFullTitle => 'Tebrikler! Jeton Kartı Doldu';
+
+	/// tr: 'Çocuğunuz bütün adımları başarıyla tamamladı ve $reward hakkı kazandı!'
+	String tokenFullBody({required Object reward}) => 'Çocuğunuz bütün adımları başarıyla tamamladı ve ${reward} hakkı kazandı!';
+
+	/// tr: 'Panoyu Sıfırla'
+	String get tokenReset => 'Panoyu Sıfırla';
+
+	/// tr: 'Parka Gitmek 🛝'
+	String get tokenDefaultReward => 'Parka Gitmek 🛝';
+
+	/// tr: 'Nefes Alıştırması'
+	String get breathTitle => 'Nefes Alıştırması';
+
+	/// tr: 'Çocuğunuz aşırı uyarılmış hissettiğinde Kriz Rehberi'ndeki nefes regülatörünü birlikte kullanın.'
+	String get breathBody => 'Çocuğunuz aşırı uyarılmış hissettiğinde Kriz Rehberi\'ndeki nefes regülatörünü birlikte kullanın.';
+
+	/// tr: 'Nefes Egzersizini Aç'
+	String get breathOpen => 'Nefes Egzersizini Aç';
+
+	/// tr: 'AI ile Sosyal Hikâye'
+	String get aiStoryTitle => 'AI ile Sosyal Hikâye';
+
+	/// tr: 'Yeni bir durum için AI Asistan'dan çocuğunuza özel kısa bir sosyal hikâye taslağı isteyin.'
+	String get aiStoryBody => 'Yeni bir durum için AI Asistan\'dan çocuğunuza özel kısa bir sosyal hikâye taslağı isteyin.';
+
+	/// tr: 'AI Asistan'ı Aç'
+	String get aiStoryOpen => 'AI Asistan\'ı Aç';
+}
+
 // Path: crisis
 class Translations$crisis$tr {
 	Translations$crisis$tr.internal(this._root);
@@ -3160,6 +3714,193 @@ extension on Translations {
 			'groups.create' => 'Oluştur',
 			'groups.created' => 'Grup oluşturuldu.',
 			'groups.errorName' => 'Lütfen bir grup adı girin.',
+			'treatment.title' => 'Tedavi Paneli',
+			'treatment.subtitle' => 'Günlük Destek Planı',
+			'treatment.programActive' => ({required Object name}) => '${name} planı aktif',
+			'treatment.selectChild' => 'Profil seç',
+			'treatment.noChildrenTitle' => 'Henüz çocuk profili yok',
+			'treatment.noChildrenBody' => 'Tedavi planı için önce bir çocuk profili ekleyin.',
+			'treatment.addChild' => 'Çocuk Ekle',
+			'treatment.saveError' => 'Tedavi verileri kaydedilemedi, değişiklik geri alındı.',
+			'treatment.tabToday' => 'Bugün',
+			'treatment.tabGoals' => 'Hedefler',
+			'treatment.tabGames' => 'Oyunlar',
+			'treatment.tabTools' => 'Araçlar',
+			'treatment.daysShort.0' => 'Paz',
+			'treatment.daysShort.1' => 'Pzt',
+			'treatment.daysShort.2' => 'Sal',
+			'treatment.daysShort.3' => 'Çar',
+			'treatment.daysShort.4' => 'Per',
+			'treatment.daysShort.5' => 'Cum',
+			'treatment.daysShort.6' => 'Cmt',
+			'treatment.onboardTitle' => 'Merhaba! 3 adımda başlayın 👋',
+			'treatment.onboardBody' => 'Bu sayfa, her gün çocuğunuzla yapabileceğiniz küçük destekleri takip etmenizi sağlar.',
+			'treatment.onboardStep1' => '1. Hedefler sekmesinden bugün takip etmek istediğiniz küçük bir şey yazın.',
+			'treatment.onboardStep2' => '2. Oyunlar sekmesindeki 5-10 dakikalık etkinlikleri deneyin.',
+			'treatment.onboardStep3' => '3. Oyun sonrası "Kolay geldi / Zorlandı" seçin — gerisini sistem halleder.',
+			'treatment.todayTitle' => 'Bugünün kısa planı',
+			'treatment.todaySubtitle' => 'Bir madde seçin, uygulayın, sonra tamamlandı olarak işaretleyin.',
+			'treatment.streakDays' => ({required Object count}) => '${count} gün seri',
+			'treatment.doneOf' => ({required Object done, required Object total}) => '${done}/${total} yapıldı',
+			'treatment.stepCount' => ({required Object count}) => '${count} adım',
+			'treatment.emptyPlanTitle' => 'Bugün için plan bulunamadı.',
+			'treatment.emptyPlanBody' => 'Hedef eklediğinizde burada kısa günlük adımlar görünecek.',
+			_ => null,
+		} ?? switch (path) {
+			'treatment.planDone' => 'Bugünün planı tamamlandı.',
+			'treatment.planDoneSub' => 'Bugünlük bu kadar yeterli.',
+			'treatment.moodSaveTitle' => 'Bugünkü ruh halini kaydet',
+			'treatment.moodSaveSub' => 'Plan, çocuğun durumuna göre otomatik uyarlanır',
+			'treatment.moodTodayLabel' => ({required Object label}) => 'Bugünkü ruh hali: ${label}',
+			'treatment.moodPlanned' => 'Plan bu duruma göre hazırlandı',
+			'treatment.moodLevel1' => 'Zorlanıyor',
+			'treatment.moodLevel2' => 'Hassas',
+			'treatment.moodLevel3' => 'Dengeli',
+			'treatment.moodLevel4' => 'İyi',
+			'treatment.moodLevel5' => 'Çok iyi',
+			'treatment.suggestionsTitle' => 'Bugün dikkat edilecekler',
+			'treatment.latestNoteTitle' => 'Son not',
+			'treatment.defaultExpert' => 'Uzman Terapist',
+			'treatment.noNoteAuthor' => 'Platform Terapi Modülü',
+			'treatment.noNoteRole' => 'Otomatik günlük plan',
+			'treatment.noNoteBody' => 'Henüz uzman notu yok. Bugünün planı, çocuğunuzun kayıtlarına göre hazırlandı.',
+			'treatment.noteEmptyContent' => 'Bu nota eklenmiş detay bulunmuyor.',
+			'treatment.weeklyTitle' => 'Haftalık özet',
+			'treatment.weeklySubtitle' => 'Bu bölüm sadece genel durumu gösterir.',
+			'treatment.legendGame' => 'Oyun',
+			'treatment.legendGoal' => 'Hedef',
+			'treatment.chartGames' => ({required Object count}) => '${count} oyun',
+			'treatment.chartGoal' => ({required Object percent}) => '%${percent} hedef',
+			'treatment.weekGamesTitle' => 'Bu hafta oyun',
+			'treatment.weekGamesDetail' => 'Bu hafta tekrar edilen mini egzersiz sayısı',
+			'treatment.weekGamesEmpty' => 'Bugün ilk oyunu planlayabilirsiniz',
+			'treatment.weekGoalsTitle' => 'Tamamlanan hedef',
+			'treatment.weekGoalsDetail' => 'Tüm aktif beceri alanlarındaki toplam ilerleme',
+			'treatment.weekGoalsEmpty' => 'Hedefler sekmesinden hedef ekleyebilirsiniz',
+			'treatment.weekSessionsTitle' => 'Yaklaşan Seans',
+			'treatment.weekSessionsDetail' => 'Planlanmış randevu veya etkinlik',
+			'treatment.weekSessionsEmpty' => 'Henüz randevu planlanmamış',
+			'treatment.microTitle' => 'Gelişim alanları',
+			'treatment.microSubtitle' => 'Ayrıntıya gerek olduğunda buraya bakabilirsiniz.',
+			'treatment.microLinkedGame' => 'Destekleyen oyun:',
+			'treatment.addGoalTitle' => 'Günlük Hedef Ekle',
+			'treatment.addGoalSubtitle' => 'Bugün çocuğunuza özel takip etmek istediğiniz küçük bir şey yazın.',
+			'treatment.goalHint' => 'Örn: 2 kez göz teması kurdu',
+			'treatment.focusLabel' => 'Hedef alanı',
+			'treatment.dueDateLabel' => 'Bitiş tarihi (isteğe bağlı)',
+			'treatment.addGoal' => 'Hedef Ekle',
+			'treatment.saving' => 'Kaydediliyor…',
+			'treatment.yourGoals' => 'Sizin eklediğiniz hedefler',
+			'treatment.edit' => 'Düzenle',
+			'treatment.delete' => 'Sil',
+			'treatment.save' => 'Kaydet',
+			'treatment.cancel' => 'Vazgeç',
+			'treatment.goalAdded' => 'Yeni hedef eklendi.',
+			'treatment.goalUpdated' => 'Hedef güncellendi.',
+			'treatment.goalEdited' => 'Hedef düzenlendi.',
+			'treatment.goalDeleted' => 'Hedef silindi.',
+			'treatment.groupsHeader' => 'Terapi Hedefleri — Alana Göre İlerleme',
+			'treatment.groupDone' => ({required Object done, required Object total}) => '${done}/${total} tamamlandı',
+			'treatment.statusDone' => 'Tamamlandı',
+			'treatment.statusActive' => 'Devam',
+			'treatment.statusUpcoming' => 'Sırada',
+			'treatment.emptyGroupsTitle' => 'Henüz terapi hedefi görünmüyor',
+			'treatment.emptyGroupsBody' => 'Çocuğunuzun profiline terapi türü eklendiğinde hedefler otomatik olarak burada listelenir.',
+			'treatment.milestoneTitle' => 'Büyük Bir Başarı Kaydet 🏅',
+			'treatment.milestoneSubtitle' => 'Hatırlamak istediğiniz önemli bir an',
+			'treatment.milestoneHint' => 'Örn: İlk kez adını söyledi',
+			'treatment.milestoneSaved' => 'Kilometre taşı kaydedildi 🎉',
+			'treatment.notesTitle' => 'Son Gözlem Notları',
+			'treatment.notesEmpty' => 'Henüz bu çocuğa ait uzman veya ebeveyn notu yok.',
+			'treatment.upcomingTitle' => 'Yaklaşan Etkinlikler',
+			'treatment.upcomingEmpty' => 'Yakın tarihte planlanmış aktif seans veya etkinlik görünmüyor.',
+			'treatment.goAppointments' => 'Randevular',
+			'treatment.goCalendar' => 'Takvime Git',
+			'treatment.gamesTitle' => 'Günlük Aktiviteler',
+			'treatment.gamesSubtitle' => 'Çocuğunuzun terapi hedeflerine göre önerilen kısa etkinlikler. Oynadıktan sonra nasıl gittiğini seçin.',
+			'treatment.todayDone' => ({required Object done, required Object total}) => '${done}/${total} bugün tamamlandı',
+			'treatment.filterAll' => 'Tümü',
+			'treatment.gameReady' => 'Hazır',
+			'treatment.gameDoneBadge' => '✅ Yapıldı',
+			'treatment.methodLabel' => ({required Object name}) => 'Yöntem: ${name}',
+			'treatment.whyGood' => 'Neden iyi gelir?',
+			'treatment.goalBadge' => ({required Object name}) => 'Hedef: ${name}',
+			'treatment.toolBadge' => ({required Object name}) => 'Araç: ${name}',
+			'treatment.playToday' => 'Bugün oynat',
+			'treatment.playedToday' => 'Yapıldı olarak işaretli',
+			'treatment.feedbackQuestion' => 'Nasıl gitti? (isteğe bağlı)',
+			'treatment.fbNone' => 'Henüz sonuç seçilmedi',
+			'treatment.fbEasy' => 'Çok kolay',
+			'treatment.fbAssisted' => 'Yardımla',
+			'treatment.fbIndependent' => 'Kendi başına',
+			'treatment.fbChallenging' => 'Zorlandı',
+			'treatment.fbEasyLong' => 'Kolay geldi',
+			'treatment.fbAssistedLong' => 'Yardımla yaptı',
+			'treatment.fbIndependentLong' => 'Tek başına yaptı',
+			'treatment.fbChallengingLong' => 'Zorlandı',
+			'treatment.feedbackSaved' => 'Oyun geri bildirimi kaydedildi.',
+			'treatment.allDoneTitle' => '🎉 Bugünün tüm oyunları tamamlandı. Harika gidiyorsunuz!',
+			'treatment.allDoneBody' => 'Bugünkü destek akışını tamamladınız; isterseniz notlar bölümüne kısa bir gözlem ekleyebilirsiniz.',
+			'treatment.hintMastered' => 'Ustalık kazandı! Daha zor varyant deneyin.',
+			'treatment.hintEasy' => 'Çok kolay geliyor. Zorluk artırın.',
+			'treatment.hintChallenging' => 'Zorlanıyor. Aktiviteyi parçalara bölün.',
+			'treatment.notifyExpert' => 'Uzmana Bildir',
+			'treatment.notifyBody' => ({required Object game}) => '${game} aktivitesindeki zorlanma hakkında uzmanınıza kısa bir not gönderin.',
+			'treatment.notifyDefaultMsg' => ({required Object game}) => '"${game}" aktivitesinde son zamanlarda zorlanıyor. Önerisi olan var mı?',
+			'treatment.notifyNoExpert' => 'Henüz mesajlaştığınız bir uzman yok. Önce bir uzmanla bağlantı kurmanız gerekiyor.',
+			'treatment.notifySeeExperts' => 'Uzmanları Görüntüle',
+			'treatment.notifySend' => 'Gönder',
+			'treatment.notifySent' => 'Uzmana bildirildi.',
+			'treatment.emptyGames' => 'Bu alanda henüz etkinlik önerilmiyor. Çocuğunuzun profil sayfasına terapi bilgisi eklediğinizde etkinlikler burada görünür.',
+			'treatment.historyTitle' => 'Oyun Geçmişi',
+			'treatment.historySubtitle' => 'Oynadığınız etkinliklerin geçmişi burada görünür.',
+			'treatment.historyCount' => ({required Object count}) => '${count} kayıt',
+			'treatment.historyEmpty' => 'Henüz oyun kaydı yok. İlk kayıt oluşturulduğunda geçmiş burada görünür.',
+			'treatment.challengingSummary' => ({required Object count}) => '💪 ${count} etkinlikte "Zorlandı" işaretlenmiş. Zorlanılan etkinlikleri tekrar denerken daha küçük adımlara bölmeyi ya da uzmanınıza bildirmeyi düşünebilirsiniz.',
+			'treatment.storiesTitle' => 'Sosyal Hikâyeler ve Görsel Akış',
+			'treatment.storiesSubtitle' => 'Bir etkinliğe başlamadan önce çocuğunuza "Ne olacak?" sorusunu yanıtlayan kısa resimli hikâyeler — geçişleri kolaylaştırır.',
+			'treatment.customBadge' => 'Özel hikâye',
+			'treatment.linkedGoalBadge' => ({required Object name}) => 'Bağlı hedef: ${name}',
+			'treatment.addStoryTitle' => 'Özel Sosyal Hikâye Ekle',
+			'treatment.storyTitleHint' => 'Hikâye başlığı (örn: Alışverişe Gidiyorum)',
+			'treatment.storyGoalHint' => 'Bağlı hedef (isteğe bağlı)',
+			'treatment.storyAdd' => 'Ekle',
+			'treatment.storyAdded' => 'Sosyal hikâye eklendi.',
+			'treatment.storyDeleted' => 'Hikâye silindi.',
+			'treatment.deleteStoryTitle' => 'Hikâyeyi Sil',
+			'treatment.deleteStoryConfirm' => 'Bu hikâyeyi silmek istediğinize emin misiniz?',
+			'treatment.sensoryTitle' => 'Rahatlatan Şeyler Ayarları',
+			'treatment.sensorySubtitle' => 'Ölçüm Kartları',
+			'treatment.sensorySaved' => 'Duyusal profil güncellendi.',
+			'treatment.sliderHeader' => 'Duyusal Hassasiyet Seviyeleri',
+			'treatment.sliderSound' => '🔊 Ses Hassasiyeti',
+			'treatment.sliderTouch' => '🖐️ Dokunsal Hassasiyet',
+			'treatment.sliderVisual' => '👁️ Görsel Hassasiyet',
+			'treatment.metricSound' => 'Ses hassasiyeti',
+			'treatment.metricTouch' => 'Dokunsal hassasiyet',
+			'treatment.metricVisual' => 'Görsel uyarı toleransı',
+			'treatment.metricSoundNote' => 'Geçişlerde duyusal mola oyunu ile birlikte izleniyor.',
+			'treatment.metricTouchNote' => 'Dokunsal uyaranlar sıra alma ve basınç aktiviteleriyle destekleniyor.',
+			'treatment.metricVisualNote' => 'Görsel hikâyeler ve zaman çizelgesi ile dengede tutuluyor.',
+			'treatment.triggerTitle' => 'Tetikleyici Günlüğü',
+			'treatment.tokenTitle' => 'Dijital Jeton Panosu',
+			'treatment.tokenSubtitle' => 'Çocuğunuzla bir hedef seçin. Görevleri başardıkça yıldız ekleyin. 5 yıldıza ulaştığında hak ettiği ödülü kazansın!',
+			'treatment.tokenRewardLabel' => 'Hedeflenen Ödül',
+			'treatment.tokenRewardHint' => 'Örn: Salıncağa binmek 🛝',
+			'treatment.tokenSetReward' => 'Ödülü Tanımla',
+			'treatment.tokenActive' => 'Aktif Ödül',
+			'treatment.tokenCollect' => ({required Object count}) => 'Başarı Yıldızlarını Toplayın (${count}/5)',
+			'treatment.tokenAdd' => '⭐ Yıldız Ekle',
+			'treatment.tokenFullTitle' => 'Tebrikler! Jeton Kartı Doldu',
+			'treatment.tokenFullBody' => ({required Object reward}) => 'Çocuğunuz bütün adımları başarıyla tamamladı ve ${reward} hakkı kazandı!',
+			'treatment.tokenReset' => 'Panoyu Sıfırla',
+			'treatment.tokenDefaultReward' => 'Parka Gitmek 🛝',
+			'treatment.breathTitle' => 'Nefes Alıştırması',
+			'treatment.breathBody' => 'Çocuğunuz aşırı uyarılmış hissettiğinde Kriz Rehberi\'ndeki nefes regülatörünü birlikte kullanın.',
+			'treatment.breathOpen' => 'Nefes Egzersizini Aç',
+			'treatment.aiStoryTitle' => 'AI ile Sosyal Hikâye',
+			'treatment.aiStoryBody' => 'Yeni bir durum için AI Asistan\'dan çocuğunuza özel kısa bir sosyal hikâye taslağı isteyin.',
+			'treatment.aiStoryOpen' => 'AI Asistan\'ı Aç',
 			'crisis.title' => 'Kriz Rehberi',
 			'crisis.heroTitle' => 'Zor Anlarda Ne Yapmalı?',
 			'crisis.heroSubtitle' => 'Çocuğunuz bunaldığında sakin kalmanıza ve doğru adımları atmanıza yardımcı olacak hızlı rehber.',
@@ -3191,8 +3932,6 @@ extension on Translations {
 			'crisis.cards.meltdown.steps.5' => 'Kriz geçtikten sonra sakin ses tonuyla güvence verin.',
 			'crisis.cards.meltdown.avoid.0' => 'Yüksek sesle konuşmayın.',
 			'crisis.cards.meltdown.avoid.1' => 'Mantık yürütmeye ya da açıklamaya çalışmayın.',
-			_ => null,
-		} ?? switch (path) {
 			'crisis.cards.meltdown.avoid.2' => 'Cezalandırma veya tehdit etmeyin.',
 			'crisis.cards.meltdown.avoid.3' => 'Kalabalık içinde bırakmayın.',
 			'crisis.cards.meltdown.emergency' => '112 — Acil Sağlık Hattı',

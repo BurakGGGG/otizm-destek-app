@@ -550,6 +550,210 @@ groups:
   created: Group created.
   errorName: Please enter a group name.
 
+treatment:
+  title: Treatment Panel
+  subtitle: Daily Support Plan
+  programActive: $name plan is active
+  selectChild: Select profile
+  noChildrenTitle: No child profile yet
+  noChildrenBody: Add a child profile first to build a treatment plan.
+  addChild: Add Child
+  saveError: Treatment data could not be saved; the change was rolled back.
+  tabToday: Today
+  tabGoals: Goals
+  tabGames: Games
+  tabTools: Tools
+  daysShort:
+    - Sun
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    - Fri
+    - Sat
+  onboardTitle: Hello! Start in 3 steps 👋
+  onboardBody: This page helps you track the small supports you can do with
+    your child every day.
+  onboardStep1: "1. In the Goals tab, write one small thing to track today."
+  onboardStep2: "2. Try the 5-10 minute activities in the Games tab."
+  onboardStep3: "3. After playing, pick \"Easy / Struggled\" — the system
+    handles the rest."
+  todayTitle: Today's short plan
+  todaySubtitle: Pick an item, apply it, then mark it as done.
+  streakDays: $count day streak
+  doneOf: $done/$total done
+  stepCount: $count steps
+  emptyPlanTitle: No plan found for today.
+  emptyPlanBody: Short daily steps will appear here once you add goals.
+  planDone: Today's plan is complete.
+  planDoneSub: That's enough for today.
+  moodSaveTitle: Log today's mood
+  moodSaveSub: The plan adapts automatically to your child's state
+  moodTodayLabel: "Today's mood: $label"
+  moodPlanned: The plan was prepared for this state
+  moodLevel1: Struggling
+  moodLevel2: Sensitive
+  moodLevel3: Balanced
+  moodLevel4: Good
+  moodLevel5: Great
+  suggestionsTitle: Things to watch today
+  latestNoteTitle: Latest note
+  defaultExpert: Expert Therapist
+  noNoteAuthor: Platform Therapy Module
+  noNoteRole: Automatic daily plan
+  noNoteBody: No expert note yet. Today's plan was prepared from your
+    child's records.
+  noteEmptyContent: This note has no additional details.
+  weeklyTitle: Weekly summary
+  weeklySubtitle: This section only shows the overall picture.
+  legendGame: Games
+  legendGoal: Goals
+  chartGames: $count games
+  chartGoal: $percent% goals
+  weekGamesTitle: Games this week
+  weekGamesDetail: Mini exercises repeated this week
+  weekGamesEmpty: You can plan the first game today
+  weekGoalsTitle: Goals completed
+  weekGoalsDetail: Total progress across all active skill areas
+  weekGoalsEmpty: You can add goals from the Goals tab
+  weekSessionsTitle: Upcoming sessions
+  weekSessionsDetail: Planned appointments or events
+  weekSessionsEmpty: No appointments planned yet
+  microTitle: Development areas
+  microSubtitle: Check here when you need the details.
+  microLinkedGame: "Supporting game:"
+  addGoalTitle: Add a Daily Goal
+  addGoalSubtitle: Write one small thing you want to track for your child today.
+  goalHint: "e.g. Made eye contact twice"
+  focusLabel: Goal area
+  dueDateLabel: Due date (optional)
+  addGoal: Add Goal
+  saving: Saving…
+  yourGoals: Goals you added
+  edit: Edit
+  delete: Delete
+  save: Save
+  cancel: Cancel
+  goalAdded: New goal added.
+  goalUpdated: Goal updated.
+  goalEdited: Goal edited.
+  goalDeleted: Goal deleted.
+  groupsHeader: Therapy Goals — Progress by Area
+  groupDone: $done/$total completed
+  statusDone: Done
+  statusActive: Active
+  statusUpcoming: Queued
+  emptyGroupsTitle: No therapy goals yet
+  emptyGroupsBody: Goals are listed here automatically once a therapy type is
+    added to your child's profile.
+  milestoneTitle: Record a Big Win 🏅
+  milestoneSubtitle: An important moment you want to remember
+  milestoneHint: "e.g. Said their name for the first time"
+  milestoneSaved: Milestone saved 🎉
+  notesTitle: Recent Observation Notes
+  notesEmpty: No expert or parent notes for this child yet.
+  upcomingTitle: Upcoming Events
+  upcomingEmpty: No active sessions or events planned soon.
+  goAppointments: Appointments
+  goCalendar: Open Calendar
+  gamesTitle: Daily Activities
+  gamesSubtitle: Short activities suggested from your child's therapy goals.
+    Pick how it went after playing.
+  todayDone: $done/$total done today
+  filterAll: All
+  gameReady: Ready
+  gameDoneBadge: ✅ Done
+  methodLabel: "Method: $name"
+  whyGood: Why it helps
+  goalBadge: "Goal: $name"
+  toolBadge: "Tool: $name"
+  playToday: Play today
+  playedToday: Marked as done
+  feedbackQuestion: How did it go? (optional)
+  fbNone: No result selected yet
+  fbEasy: Very easy
+  fbAssisted: With help
+  fbIndependent: On their own
+  fbChallenging: Struggled
+  fbEasyLong: Found it easy
+  fbAssistedLong: Did it with help
+  fbIndependentLong: Did it independently
+  fbChallengingLong: Struggled
+  feedbackSaved: Game feedback saved.
+  allDoneTitle: 🎉 All of today's games are done. You're doing great!
+  allDoneBody: You completed today's support flow; you can add a short
+    observation to the notes if you like.
+  hintMastered: Mastered it! Try a harder variant.
+  hintEasy: Finding it very easy. Increase the difficulty.
+  hintChallenging: Struggling. Break the activity into smaller parts.
+  notifyExpert: Notify Expert
+  notifyBody: Send your expert a short note about the difficulty in $game.
+  notifyDefaultMsg: "\"$game\" aktivitesinde son zamanlarda zorlanıyor.
+    Önerisi olan var mı?"
+  notifyNoExpert: You haven't messaged an expert yet. Connect with an
+    expert first.
+  notifySeeExperts: View Experts
+  notifySend: Send
+  notifySent: Expert notified.
+  emptyGames: No activities suggested for this area yet. They appear once
+    therapy info is added to your child's profile.
+  historyTitle: Game History
+  historySubtitle: The history of played activities appears here.
+  historyCount: $count records
+  historyEmpty: No game records yet. History appears after the first record.
+  challengingSummary: 💪 "Struggled" was marked in $count activities. Consider
+    breaking them into smaller steps or notifying your expert when retrying.
+  storiesTitle: Social Stories & Visual Flow
+  storiesSubtitle: Short picture stories that answer "What will happen?"
+    before an activity — they ease transitions.
+  customBadge: Custom story
+  linkedGoalBadge: "Linked goal: $name"
+  addStoryTitle: Add a Custom Social Story
+  storyTitleHint: "Story title (e.g. Going Shopping)"
+  storyGoalHint: Linked goal (optional)
+  storyAdd: Add
+  storyAdded: Social story added.
+  storyDeleted: Story deleted.
+  deleteStoryTitle: Delete Story
+  deleteStoryConfirm: Are you sure you want to delete this story?
+  sensoryTitle: Comfort Settings
+  sensorySubtitle: Measurement Cards
+  sensorySaved: Sensory profile updated.
+  sliderHeader: Sensory Sensitivity Levels
+  sliderSound: 🔊 Sound Sensitivity
+  sliderTouch: 🖐️ Tactile Sensitivity
+  sliderVisual: 👁️ Visual Sensitivity
+  metricSound: Sound sensitivity
+  metricTouch: Tactile sensitivity
+  metricVisual: Visual stimulus tolerance
+  metricSoundNote: Monitored together with the sensory break game during
+    transitions.
+  metricTouchNote: Tactile stimuli are supported with turn-taking and
+    pressure activities.
+  metricVisualNote: Kept in balance with visual stories and the timeline.
+  triggerTitle: Trigger Log
+  tokenTitle: Digital Token Board
+  tokenSubtitle: Pick a goal with your child. Add a star for each success.
+    At 5 stars they earn the reward!
+  tokenRewardLabel: Target Reward
+  tokenRewardHint: "e.g. Riding the swing 🛝"
+  tokenSetReward: Set Reward
+  tokenActive: Active Reward
+  tokenCollect: Collect success stars ($count/5)
+  tokenAdd: ⭐ Add Star
+  tokenFullTitle: Congrats! The token card is full
+  tokenFullBody: Your child completed all the steps and earned $reward!
+  tokenReset: Reset Board
+  tokenDefaultReward: Going to the park 🛝
+  breathTitle: Breathing Exercise
+  breathBody: When your child feels overstimulated, use the breathing
+    regulator in the Crisis Guide together.
+  breathOpen: Open Breathing Exercise
+  aiStoryTitle: Social Story with AI
+  aiStoryBody: Ask the AI Assistant for a short custom social story draft
+    for a new situation.
+  aiStoryOpen: Open AI Assistant
+
 crisis:
   title: Crisis Guide
   heroTitle: What To Do in Hard Moments?

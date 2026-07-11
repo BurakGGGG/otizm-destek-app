@@ -6,17 +6,20 @@ class Participant {
     required this.id,
     required this.fullName,
     this.profileImageUrl,
+    this.role,
   });
 
   final String id;
   final String fullName;
   final String? profileImageUrl;
+  final String? role; // PARENT | EXPERT | ADMIN
 
   factory Participant.fromJson(Map<String, dynamic> json) {
     return Participant(
       id: json['id']?.toString() ?? '',
       fullName: json['fullName'] as String? ?? '',
       profileImageUrl: json['profileImageUrl'] as String?,
+      role: json['role'] as String?,
     );
   }
 }

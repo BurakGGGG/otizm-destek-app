@@ -153,6 +153,27 @@ flutter build apk --debug
     `getOrCreateGroup` eklendi) → mevcut `ConversationThreadScreen`.
     Mutasyon sonrası her iki liste invalidate edilir. `/groups`, Profil menüsü
     kısayolu.
+  - **Tedavi Paneli:** `/api/treatment-state/{childId}` — günlük destek planı
+    (web `/tedavi` birebir). **DİKKAT: bu uç nokta zarfsız** — GET/PUT ham
+    `TreatmentStateDto` döner/alır (`{success,data}` yok, tek istisna). Backend
+    yalnızca 5 alanı kalıcılaştırır (gameFeedback, customGoals, sensoryProfile,
+    gameSessions, goalProgressHistory); templateGoalToggles/completedPlanSteps/
+    customStories sunucuda düşer (web'de de oturum içi) — mobil aynı davranışı
+    yansıtır. Plan şablonu (hedef etiketleri, 18 oyunluk kütüphane, hikayeler,
+    plan adımları, linkedGoal/linkedTool, kilometre taşı kategorileri) web
+    treatmentPlan.tsx'ten **birebir Türkçe** — paylaşılan blob'da saklanan
+    VERİ, çevrilmez. Anahtar formatları: gameFeedback `yyyy-MM-dd:gameId`,
+    completedPlanSteps `yyyy-MM-dd:stepId`; tarih anahtarı YEREL saat
+    (`treatmentDateKey`). 4 sekme: **Bugün** (plan adımları, duygu, öneriler,
+    son not, haftalık grafik), **Hedefler** (özel hedef CRUD + şablon toggle +
+    kilometre taşı `POST /api/milestones`), **Oyunlar** (geri bildirim 4'lü +
+    uyum ipuçları + **Uzmana Bildir** gerçek mesajlaşma REST'iyle + hikayeler),
+    **Araçlar** (duyusal profil kaydırıcıları kalıcı; jeton panosu oturum içi;
+    /crisis ve /chat kısayolları). İyimser kaydet + hatada geri alma (web
+    `persistTreatmentState` deseni); 90 günlük oturum budama. Web'in statik
+    demo işbirliği paneli (sabit sahte veri) kapsam dışı. Saf geçişler
+    `test/treatment_state_test.dart` ile korunur. `/treatment`, Profil menüsü
+    kısayolu.
 - ✅ Firebase: Crashlytics + Analytics kod entegrasyonu (debug'da kapalı, sürümde açık).
 - ✅ FCM push: mobil taraf hazır; **backend uç noktaları da yazıldı** (POST/DELETE
   `/api/push/device-token`, MESSAGE/APPOINTMENT data payload — sözleşme

@@ -551,6 +551,215 @@ groups:
   created: Grup oluşturuldu.
   errorName: Lütfen bir grup adı girin.
 
+treatment:
+  title: Tedavi Paneli
+  subtitle: Günlük Destek Planı
+  programActive: $name planı aktif
+  selectChild: Profil seç
+  noChildrenTitle: Henüz çocuk profili yok
+  noChildrenBody: Tedavi planı için önce bir çocuk profili ekleyin.
+  addChild: Çocuk Ekle
+  saveError: Tedavi verileri kaydedilemedi, değişiklik geri alındı.
+  tabToday: Bugün
+  tabGoals: Hedefler
+  tabGames: Oyunlar
+  tabTools: Araçlar
+  daysShort:
+    - Paz
+    - Pzt
+    - Sal
+    - Çar
+    - Per
+    - Cum
+    - Cmt
+  onboardTitle: Merhaba! 3 adımda başlayın 👋
+  onboardBody: Bu sayfa, her gün çocuğunuzla yapabileceğiniz küçük destekleri
+    takip etmenizi sağlar.
+  onboardStep1: "1. Hedefler sekmesinden bugün takip etmek istediğiniz küçük
+    bir şey yazın."
+  onboardStep2: "2. Oyunlar sekmesindeki 5-10 dakikalık etkinlikleri deneyin."
+  onboardStep3: "3. Oyun sonrası \"Kolay geldi / Zorlandı\" seçin — gerisini
+    sistem halleder."
+  todayTitle: Bugünün kısa planı
+  todaySubtitle: Bir madde seçin, uygulayın, sonra tamamlandı olarak işaretleyin.
+  streakDays: $count gün seri
+  doneOf: $done/$total yapıldı
+  stepCount: $count adım
+  emptyPlanTitle: Bugün için plan bulunamadı.
+  emptyPlanBody: Hedef eklediğinizde burada kısa günlük adımlar görünecek.
+  planDone: Bugünün planı tamamlandı.
+  planDoneSub: Bugünlük bu kadar yeterli.
+  moodSaveTitle: Bugünkü ruh halini kaydet
+  moodSaveSub: Plan, çocuğun durumuna göre otomatik uyarlanır
+  moodTodayLabel: "Bugünkü ruh hali: $label"
+  moodPlanned: Plan bu duruma göre hazırlandı
+  moodLevel1: Zorlanıyor
+  moodLevel2: Hassas
+  moodLevel3: Dengeli
+  moodLevel4: İyi
+  moodLevel5: Çok iyi
+  suggestionsTitle: Bugün dikkat edilecekler
+  latestNoteTitle: Son not
+  defaultExpert: Uzman Terapist
+  noNoteAuthor: Platform Terapi Modülü
+  noNoteRole: Otomatik günlük plan
+  noNoteBody: Henüz uzman notu yok. Bugünün planı, çocuğunuzun kayıtlarına
+    göre hazırlandı.
+  noteEmptyContent: Bu nota eklenmiş detay bulunmuyor.
+  weeklyTitle: Haftalık özet
+  weeklySubtitle: Bu bölüm sadece genel durumu gösterir.
+  legendGame: Oyun
+  legendGoal: Hedef
+  chartGames: $count oyun
+  chartGoal: "%$percent hedef"
+  weekGamesTitle: Bu hafta oyun
+  weekGamesDetail: Bu hafta tekrar edilen mini egzersiz sayısı
+  weekGamesEmpty: Bugün ilk oyunu planlayabilirsiniz
+  weekGoalsTitle: Tamamlanan hedef
+  weekGoalsDetail: Tüm aktif beceri alanlarındaki toplam ilerleme
+  weekGoalsEmpty: Hedefler sekmesinden hedef ekleyebilirsiniz
+  weekSessionsTitle: Yaklaşan Seans
+  weekSessionsDetail: Planlanmış randevu veya etkinlik
+  weekSessionsEmpty: Henüz randevu planlanmamış
+  microTitle: Gelişim alanları
+  microSubtitle: Ayrıntıya gerek olduğunda buraya bakabilirsiniz.
+  microLinkedGame: "Destekleyen oyun:"
+  addGoalTitle: Günlük Hedef Ekle
+  addGoalSubtitle: Bugün çocuğunuza özel takip etmek istediğiniz küçük bir
+    şey yazın.
+  goalHint: "Örn: 2 kez göz teması kurdu"
+  focusLabel: Hedef alanı
+  dueDateLabel: Bitiş tarihi (isteğe bağlı)
+  addGoal: Hedef Ekle
+  saving: Kaydediliyor…
+  yourGoals: Sizin eklediğiniz hedefler
+  edit: Düzenle
+  delete: Sil
+  save: Kaydet
+  cancel: Vazgeç
+  goalAdded: Yeni hedef eklendi.
+  goalUpdated: Hedef güncellendi.
+  goalEdited: Hedef düzenlendi.
+  goalDeleted: Hedef silindi.
+  groupsHeader: Terapi Hedefleri — Alana Göre İlerleme
+  groupDone: $done/$total tamamlandı
+  statusDone: Tamamlandı
+  statusActive: Devam
+  statusUpcoming: Sırada
+  emptyGroupsTitle: Henüz terapi hedefi görünmüyor
+  emptyGroupsBody: Çocuğunuzun profiline terapi türü eklendiğinde hedefler
+    otomatik olarak burada listelenir.
+  milestoneTitle: Büyük Bir Başarı Kaydet 🏅
+  milestoneSubtitle: Hatırlamak istediğiniz önemli bir an
+  milestoneHint: "Örn: İlk kez adını söyledi"
+  milestoneSaved: Kilometre taşı kaydedildi 🎉
+  notesTitle: Son Gözlem Notları
+  notesEmpty: Henüz bu çocuğa ait uzman veya ebeveyn notu yok.
+  upcomingTitle: Yaklaşan Etkinlikler
+  upcomingEmpty: Yakın tarihte planlanmış aktif seans veya etkinlik görünmüyor.
+  goAppointments: Randevular
+  goCalendar: Takvime Git
+  gamesTitle: Günlük Aktiviteler
+  gamesSubtitle: Çocuğunuzun terapi hedeflerine göre önerilen kısa etkinlikler.
+    Oynadıktan sonra nasıl gittiğini seçin.
+  todayDone: $done/$total bugün tamamlandı
+  filterAll: Tümü
+  gameReady: Hazır
+  gameDoneBadge: ✅ Yapıldı
+  methodLabel: "Yöntem: $name"
+  whyGood: Neden iyi gelir?
+  goalBadge: "Hedef: $name"
+  toolBadge: "Araç: $name"
+  playToday: Bugün oynat
+  playedToday: Yapıldı olarak işaretli
+  feedbackQuestion: Nasıl gitti? (isteğe bağlı)
+  fbNone: Henüz sonuç seçilmedi
+  fbEasy: Çok kolay
+  fbAssisted: Yardımla
+  fbIndependent: Kendi başına
+  fbChallenging: Zorlandı
+  fbEasyLong: Kolay geldi
+  fbAssistedLong: Yardımla yaptı
+  fbIndependentLong: Tek başına yaptı
+  fbChallengingLong: Zorlandı
+  feedbackSaved: Oyun geri bildirimi kaydedildi.
+  allDoneTitle: 🎉 Bugünün tüm oyunları tamamlandı. Harika gidiyorsunuz!
+  allDoneBody: Bugünkü destek akışını tamamladınız; isterseniz notlar bölümüne
+    kısa bir gözlem ekleyebilirsiniz.
+  hintMastered: Ustalık kazandı! Daha zor varyant deneyin.
+  hintEasy: Çok kolay geliyor. Zorluk artırın.
+  hintChallenging: Zorlanıyor. Aktiviteyi parçalara bölün.
+  notifyExpert: Uzmana Bildir
+  notifyBody: $game aktivitesindeki zorlanma hakkında uzmanınıza kısa bir not
+    gönderin.
+  notifyDefaultMsg: "\"$game\" aktivitesinde son zamanlarda zorlanıyor.
+    Önerisi olan var mı?"
+  notifyNoExpert: Henüz mesajlaştığınız bir uzman yok. Önce bir uzmanla
+    bağlantı kurmanız gerekiyor.
+  notifySeeExperts: Uzmanları Görüntüle
+  notifySend: Gönder
+  notifySent: Uzmana bildirildi.
+  emptyGames: Bu alanda henüz etkinlik önerilmiyor. Çocuğunuzun profil
+    sayfasına terapi bilgisi eklediğinizde etkinlikler burada görünür.
+  historyTitle: Oyun Geçmişi
+  historySubtitle: Oynadığınız etkinliklerin geçmişi burada görünür.
+  historyCount: $count kayıt
+  historyEmpty: Henüz oyun kaydı yok. İlk kayıt oluşturulduğunda geçmiş
+    burada görünür.
+  challengingSummary: 💪 $count etkinlikte "Zorlandı" işaretlenmiş. Zorlanılan
+    etkinlikleri tekrar denerken daha küçük adımlara bölmeyi ya da uzmanınıza
+    bildirmeyi düşünebilirsiniz.
+  storiesTitle: Sosyal Hikâyeler ve Görsel Akış
+  storiesSubtitle: Bir etkinliğe başlamadan önce çocuğunuza "Ne olacak?"
+    sorusunu yanıtlayan kısa resimli hikâyeler — geçişleri kolaylaştırır.
+  customBadge: Özel hikâye
+  linkedGoalBadge: "Bağlı hedef: $name"
+  addStoryTitle: Özel Sosyal Hikâye Ekle
+  storyTitleHint: "Hikâye başlığı (örn: Alışverişe Gidiyorum)"
+  storyGoalHint: Bağlı hedef (isteğe bağlı)
+  storyAdd: Ekle
+  storyAdded: Sosyal hikâye eklendi.
+  storyDeleted: Hikâye silindi.
+  deleteStoryTitle: Hikâyeyi Sil
+  deleteStoryConfirm: Bu hikâyeyi silmek istediğinize emin misiniz?
+  sensoryTitle: Rahatlatan Şeyler Ayarları
+  sensorySubtitle: Ölçüm Kartları
+  sensorySaved: Duyusal profil güncellendi.
+  sliderHeader: Duyusal Hassasiyet Seviyeleri
+  sliderSound: 🔊 Ses Hassasiyeti
+  sliderTouch: 🖐️ Dokunsal Hassasiyet
+  sliderVisual: 👁️ Görsel Hassasiyet
+  metricSound: Ses hassasiyeti
+  metricTouch: Dokunsal hassasiyet
+  metricVisual: Görsel uyarı toleransı
+  metricSoundNote: Geçişlerde duyusal mola oyunu ile birlikte izleniyor.
+  metricTouchNote: Dokunsal uyaranlar sıra alma ve basınç aktiviteleriyle
+    destekleniyor.
+  metricVisualNote: Görsel hikâyeler ve zaman çizelgesi ile dengede tutuluyor.
+  triggerTitle: Tetikleyici Günlüğü
+  tokenTitle: Dijital Jeton Panosu
+  tokenSubtitle: Çocuğunuzla bir hedef seçin. Görevleri başardıkça yıldız
+    ekleyin. 5 yıldıza ulaştığında hak ettiği ödülü kazansın!
+  tokenRewardLabel: Hedeflenen Ödül
+  tokenRewardHint: "Örn: Salıncağa binmek 🛝"
+  tokenSetReward: Ödülü Tanımla
+  tokenActive: Aktif Ödül
+  tokenCollect: Başarı Yıldızlarını Toplayın ($count/5)
+  tokenAdd: ⭐ Yıldız Ekle
+  tokenFullTitle: Tebrikler! Jeton Kartı Doldu
+  tokenFullBody: Çocuğunuz bütün adımları başarıyla tamamladı ve $reward
+    hakkı kazandı!
+  tokenReset: Panoyu Sıfırla
+  tokenDefaultReward: Parka Gitmek 🛝
+  breathTitle: Nefes Alıştırması
+  breathBody: Çocuğunuz aşırı uyarılmış hissettiğinde Kriz Rehberi'ndeki
+    nefes regülatörünü birlikte kullanın.
+  breathOpen: Nefes Egzersizini Aç
+  aiStoryTitle: AI ile Sosyal Hikâye
+  aiStoryBody: Yeni bir durum için AI Asistan'dan çocuğunuza özel kısa bir
+    sosyal hikâye taslağı isteyin.
+  aiStoryOpen: AI Asistan'ı Aç
+
 crisis:
   title: Kriz Rehberi
   heroTitle: Zor Anlarda Ne Yapmalı?

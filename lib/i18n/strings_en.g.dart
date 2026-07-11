@@ -71,6 +71,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$meetup$en meetup = _Translations$meetup$en._(_root);
 	@override late final _Translations$similar$en similar = _Translations$similar$en._(_root);
 	@override late final _Translations$groups$en groups = _Translations$groups$en._(_root);
+	@override late final _Translations$treatment$en treatment = _Translations$treatment$en._(_root);
 	@override late final _Translations$crisis$en crisis = _Translations$crisis$en._(_root);
 	@override late final _Translations$calendar$en calendar = _Translations$calendar$en._(_root);
 	@override late final _Translations$emergency$en emergency = _Translations$emergency$en._(_root);
@@ -852,6 +853,202 @@ class _Translations$groups$en extends Translations$groups$tr {
 	@override String get create => 'Create';
 	@override String get created => 'Group created.';
 	@override String get errorName => 'Please enter a group name.';
+}
+
+// Path: treatment
+class _Translations$treatment$en extends Translations$treatment$tr {
+	_Translations$treatment$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Treatment Panel';
+	@override String get subtitle => 'Daily Support Plan';
+	@override String programActive({required Object name}) => '${name} plan is active';
+	@override String get selectChild => 'Select profile';
+	@override String get noChildrenTitle => 'No child profile yet';
+	@override String get noChildrenBody => 'Add a child profile first to build a treatment plan.';
+	@override String get addChild => 'Add Child';
+	@override String get saveError => 'Treatment data could not be saved; the change was rolled back.';
+	@override String get tabToday => 'Today';
+	@override String get tabGoals => 'Goals';
+	@override String get tabGames => 'Games';
+	@override String get tabTools => 'Tools';
+	@override List<String> get daysShort => [
+		'Sun',
+		'Mon',
+		'Tue',
+		'Wed',
+		'Thu',
+		'Fri',
+		'Sat',
+	];
+	@override String get onboardTitle => 'Hello! Start in 3 steps 👋';
+	@override String get onboardBody => 'This page helps you track the small supports you can do with your child every day.';
+	@override String get onboardStep1 => '1. In the Goals tab, write one small thing to track today.';
+	@override String get onboardStep2 => '2. Try the 5-10 minute activities in the Games tab.';
+	@override String get onboardStep3 => '3. After playing, pick "Easy / Struggled" — the system handles the rest.';
+	@override String get todayTitle => 'Today\'s short plan';
+	@override String get todaySubtitle => 'Pick an item, apply it, then mark it as done.';
+	@override String streakDays({required Object count}) => '${count} day streak';
+	@override String doneOf({required Object done, required Object total}) => '${done}/${total} done';
+	@override String stepCount({required Object count}) => '${count} steps';
+	@override String get emptyPlanTitle => 'No plan found for today.';
+	@override String get emptyPlanBody => 'Short daily steps will appear here once you add goals.';
+	@override String get planDone => 'Today\'s plan is complete.';
+	@override String get planDoneSub => 'That\'s enough for today.';
+	@override String get moodSaveTitle => 'Log today\'s mood';
+	@override String get moodSaveSub => 'The plan adapts automatically to your child\'s state';
+	@override String moodTodayLabel({required Object label}) => 'Today\'s mood: ${label}';
+	@override String get moodPlanned => 'The plan was prepared for this state';
+	@override String get moodLevel1 => 'Struggling';
+	@override String get moodLevel2 => 'Sensitive';
+	@override String get moodLevel3 => 'Balanced';
+	@override String get moodLevel4 => 'Good';
+	@override String get moodLevel5 => 'Great';
+	@override String get suggestionsTitle => 'Things to watch today';
+	@override String get latestNoteTitle => 'Latest note';
+	@override String get defaultExpert => 'Expert Therapist';
+	@override String get noNoteAuthor => 'Platform Therapy Module';
+	@override String get noNoteRole => 'Automatic daily plan';
+	@override String get noNoteBody => 'No expert note yet. Today\'s plan was prepared from your child\'s records.';
+	@override String get noteEmptyContent => 'This note has no additional details.';
+	@override String get weeklyTitle => 'Weekly summary';
+	@override String get weeklySubtitle => 'This section only shows the overall picture.';
+	@override String get legendGame => 'Games';
+	@override String get legendGoal => 'Goals';
+	@override String chartGames({required Object count}) => '${count} games';
+	@override String chartGoal({required Object percent}) => '${percent}% goals';
+	@override String get weekGamesTitle => 'Games this week';
+	@override String get weekGamesDetail => 'Mini exercises repeated this week';
+	@override String get weekGamesEmpty => 'You can plan the first game today';
+	@override String get weekGoalsTitle => 'Goals completed';
+	@override String get weekGoalsDetail => 'Total progress across all active skill areas';
+	@override String get weekGoalsEmpty => 'You can add goals from the Goals tab';
+	@override String get weekSessionsTitle => 'Upcoming sessions';
+	@override String get weekSessionsDetail => 'Planned appointments or events';
+	@override String get weekSessionsEmpty => 'No appointments planned yet';
+	@override String get microTitle => 'Development areas';
+	@override String get microSubtitle => 'Check here when you need the details.';
+	@override String get microLinkedGame => 'Supporting game:';
+	@override String get addGoalTitle => 'Add a Daily Goal';
+	@override String get addGoalSubtitle => 'Write one small thing you want to track for your child today.';
+	@override String get goalHint => 'e.g. Made eye contact twice';
+	@override String get focusLabel => 'Goal area';
+	@override String get dueDateLabel => 'Due date (optional)';
+	@override String get addGoal => 'Add Goal';
+	@override String get saving => 'Saving…';
+	@override String get yourGoals => 'Goals you added';
+	@override String get edit => 'Edit';
+	@override String get delete => 'Delete';
+	@override String get save => 'Save';
+	@override String get cancel => 'Cancel';
+	@override String get goalAdded => 'New goal added.';
+	@override String get goalUpdated => 'Goal updated.';
+	@override String get goalEdited => 'Goal edited.';
+	@override String get goalDeleted => 'Goal deleted.';
+	@override String get groupsHeader => 'Therapy Goals — Progress by Area';
+	@override String groupDone({required Object done, required Object total}) => '${done}/${total} completed';
+	@override String get statusDone => 'Done';
+	@override String get statusActive => 'Active';
+	@override String get statusUpcoming => 'Queued';
+	@override String get emptyGroupsTitle => 'No therapy goals yet';
+	@override String get emptyGroupsBody => 'Goals are listed here automatically once a therapy type is added to your child\'s profile.';
+	@override String get milestoneTitle => 'Record a Big Win 🏅';
+	@override String get milestoneSubtitle => 'An important moment you want to remember';
+	@override String get milestoneHint => 'e.g. Said their name for the first time';
+	@override String get milestoneSaved => 'Milestone saved 🎉';
+	@override String get notesTitle => 'Recent Observation Notes';
+	@override String get notesEmpty => 'No expert or parent notes for this child yet.';
+	@override String get upcomingTitle => 'Upcoming Events';
+	@override String get upcomingEmpty => 'No active sessions or events planned soon.';
+	@override String get goAppointments => 'Appointments';
+	@override String get goCalendar => 'Open Calendar';
+	@override String get gamesTitle => 'Daily Activities';
+	@override String get gamesSubtitle => 'Short activities suggested from your child\'s therapy goals. Pick how it went after playing.';
+	@override String todayDone({required Object done, required Object total}) => '${done}/${total} done today';
+	@override String get filterAll => 'All';
+	@override String get gameReady => 'Ready';
+	@override String get gameDoneBadge => '✅ Done';
+	@override String methodLabel({required Object name}) => 'Method: ${name}';
+	@override String get whyGood => 'Why it helps';
+	@override String goalBadge({required Object name}) => 'Goal: ${name}';
+	@override String toolBadge({required Object name}) => 'Tool: ${name}';
+	@override String get playToday => 'Play today';
+	@override String get playedToday => 'Marked as done';
+	@override String get feedbackQuestion => 'How did it go? (optional)';
+	@override String get fbNone => 'No result selected yet';
+	@override String get fbEasy => 'Very easy';
+	@override String get fbAssisted => 'With help';
+	@override String get fbIndependent => 'On their own';
+	@override String get fbChallenging => 'Struggled';
+	@override String get fbEasyLong => 'Found it easy';
+	@override String get fbAssistedLong => 'Did it with help';
+	@override String get fbIndependentLong => 'Did it independently';
+	@override String get fbChallengingLong => 'Struggled';
+	@override String get feedbackSaved => 'Game feedback saved.';
+	@override String get allDoneTitle => '🎉 All of today\'s games are done. You\'re doing great!';
+	@override String get allDoneBody => 'You completed today\'s support flow; you can add a short observation to the notes if you like.';
+	@override String get hintMastered => 'Mastered it! Try a harder variant.';
+	@override String get hintEasy => 'Finding it very easy. Increase the difficulty.';
+	@override String get hintChallenging => 'Struggling. Break the activity into smaller parts.';
+	@override String get notifyExpert => 'Notify Expert';
+	@override String notifyBody({required Object game}) => 'Send your expert a short note about the difficulty in ${game}.';
+	@override String notifyDefaultMsg({required Object game}) => '"${game}" aktivitesinde son zamanlarda zorlanıyor. Önerisi olan var mı?';
+	@override String get notifyNoExpert => 'You haven\'t messaged an expert yet. Connect with an expert first.';
+	@override String get notifySeeExperts => 'View Experts';
+	@override String get notifySend => 'Send';
+	@override String get notifySent => 'Expert notified.';
+	@override String get emptyGames => 'No activities suggested for this area yet. They appear once therapy info is added to your child\'s profile.';
+	@override String get historyTitle => 'Game History';
+	@override String get historySubtitle => 'The history of played activities appears here.';
+	@override String historyCount({required Object count}) => '${count} records';
+	@override String get historyEmpty => 'No game records yet. History appears after the first record.';
+	@override String challengingSummary({required Object count}) => '💪 "Struggled" was marked in ${count} activities. Consider breaking them into smaller steps or notifying your expert when retrying.';
+	@override String get storiesTitle => 'Social Stories & Visual Flow';
+	@override String get storiesSubtitle => 'Short picture stories that answer "What will happen?" before an activity — they ease transitions.';
+	@override String get customBadge => 'Custom story';
+	@override String linkedGoalBadge({required Object name}) => 'Linked goal: ${name}';
+	@override String get addStoryTitle => 'Add a Custom Social Story';
+	@override String get storyTitleHint => 'Story title (e.g. Going Shopping)';
+	@override String get storyGoalHint => 'Linked goal (optional)';
+	@override String get storyAdd => 'Add';
+	@override String get storyAdded => 'Social story added.';
+	@override String get storyDeleted => 'Story deleted.';
+	@override String get deleteStoryTitle => 'Delete Story';
+	@override String get deleteStoryConfirm => 'Are you sure you want to delete this story?';
+	@override String get sensoryTitle => 'Comfort Settings';
+	@override String get sensorySubtitle => 'Measurement Cards';
+	@override String get sensorySaved => 'Sensory profile updated.';
+	@override String get sliderHeader => 'Sensory Sensitivity Levels';
+	@override String get sliderSound => '🔊 Sound Sensitivity';
+	@override String get sliderTouch => '🖐️ Tactile Sensitivity';
+	@override String get sliderVisual => '👁️ Visual Sensitivity';
+	@override String get metricSound => 'Sound sensitivity';
+	@override String get metricTouch => 'Tactile sensitivity';
+	@override String get metricVisual => 'Visual stimulus tolerance';
+	@override String get metricSoundNote => 'Monitored together with the sensory break game during transitions.';
+	@override String get metricTouchNote => 'Tactile stimuli are supported with turn-taking and pressure activities.';
+	@override String get metricVisualNote => 'Kept in balance with visual stories and the timeline.';
+	@override String get triggerTitle => 'Trigger Log';
+	@override String get tokenTitle => 'Digital Token Board';
+	@override String get tokenSubtitle => 'Pick a goal with your child. Add a star for each success. At 5 stars they earn the reward!';
+	@override String get tokenRewardLabel => 'Target Reward';
+	@override String get tokenRewardHint => 'e.g. Riding the swing 🛝';
+	@override String get tokenSetReward => 'Set Reward';
+	@override String get tokenActive => 'Active Reward';
+	@override String tokenCollect({required Object count}) => 'Collect success stars (${count}/5)';
+	@override String get tokenAdd => '⭐ Add Star';
+	@override String get tokenFullTitle => 'Congrats! The token card is full';
+	@override String tokenFullBody({required Object reward}) => 'Your child completed all the steps and earned ${reward}!';
+	@override String get tokenReset => 'Reset Board';
+	@override String get tokenDefaultReward => 'Going to the park 🛝';
+	@override String get breathTitle => 'Breathing Exercise';
+	@override String get breathBody => 'When your child feels overstimulated, use the breathing regulator in the Crisis Guide together.';
+	@override String get breathOpen => 'Open Breathing Exercise';
+	@override String get aiStoryTitle => 'Social Story with AI';
+	@override String get aiStoryBody => 'Ask the AI Assistant for a short custom social story draft for a new situation.';
+	@override String get aiStoryOpen => 'Open AI Assistant';
 }
 
 // Path: crisis
@@ -1761,6 +1958,193 @@ extension on TranslationsEn {
 			'groups.create' => 'Create',
 			'groups.created' => 'Group created.',
 			'groups.errorName' => 'Please enter a group name.',
+			'treatment.title' => 'Treatment Panel',
+			'treatment.subtitle' => 'Daily Support Plan',
+			'treatment.programActive' => ({required Object name}) => '${name} plan is active',
+			'treatment.selectChild' => 'Select profile',
+			'treatment.noChildrenTitle' => 'No child profile yet',
+			'treatment.noChildrenBody' => 'Add a child profile first to build a treatment plan.',
+			'treatment.addChild' => 'Add Child',
+			'treatment.saveError' => 'Treatment data could not be saved; the change was rolled back.',
+			'treatment.tabToday' => 'Today',
+			'treatment.tabGoals' => 'Goals',
+			'treatment.tabGames' => 'Games',
+			'treatment.tabTools' => 'Tools',
+			'treatment.daysShort.0' => 'Sun',
+			'treatment.daysShort.1' => 'Mon',
+			'treatment.daysShort.2' => 'Tue',
+			'treatment.daysShort.3' => 'Wed',
+			'treatment.daysShort.4' => 'Thu',
+			'treatment.daysShort.5' => 'Fri',
+			'treatment.daysShort.6' => 'Sat',
+			'treatment.onboardTitle' => 'Hello! Start in 3 steps 👋',
+			'treatment.onboardBody' => 'This page helps you track the small supports you can do with your child every day.',
+			'treatment.onboardStep1' => '1. In the Goals tab, write one small thing to track today.',
+			'treatment.onboardStep2' => '2. Try the 5-10 minute activities in the Games tab.',
+			'treatment.onboardStep3' => '3. After playing, pick "Easy / Struggled" — the system handles the rest.',
+			'treatment.todayTitle' => 'Today\'s short plan',
+			'treatment.todaySubtitle' => 'Pick an item, apply it, then mark it as done.',
+			'treatment.streakDays' => ({required Object count}) => '${count} day streak',
+			'treatment.doneOf' => ({required Object done, required Object total}) => '${done}/${total} done',
+			'treatment.stepCount' => ({required Object count}) => '${count} steps',
+			'treatment.emptyPlanTitle' => 'No plan found for today.',
+			'treatment.emptyPlanBody' => 'Short daily steps will appear here once you add goals.',
+			_ => null,
+		} ?? switch (path) {
+			'treatment.planDone' => 'Today\'s plan is complete.',
+			'treatment.planDoneSub' => 'That\'s enough for today.',
+			'treatment.moodSaveTitle' => 'Log today\'s mood',
+			'treatment.moodSaveSub' => 'The plan adapts automatically to your child\'s state',
+			'treatment.moodTodayLabel' => ({required Object label}) => 'Today\'s mood: ${label}',
+			'treatment.moodPlanned' => 'The plan was prepared for this state',
+			'treatment.moodLevel1' => 'Struggling',
+			'treatment.moodLevel2' => 'Sensitive',
+			'treatment.moodLevel3' => 'Balanced',
+			'treatment.moodLevel4' => 'Good',
+			'treatment.moodLevel5' => 'Great',
+			'treatment.suggestionsTitle' => 'Things to watch today',
+			'treatment.latestNoteTitle' => 'Latest note',
+			'treatment.defaultExpert' => 'Expert Therapist',
+			'treatment.noNoteAuthor' => 'Platform Therapy Module',
+			'treatment.noNoteRole' => 'Automatic daily plan',
+			'treatment.noNoteBody' => 'No expert note yet. Today\'s plan was prepared from your child\'s records.',
+			'treatment.noteEmptyContent' => 'This note has no additional details.',
+			'treatment.weeklyTitle' => 'Weekly summary',
+			'treatment.weeklySubtitle' => 'This section only shows the overall picture.',
+			'treatment.legendGame' => 'Games',
+			'treatment.legendGoal' => 'Goals',
+			'treatment.chartGames' => ({required Object count}) => '${count} games',
+			'treatment.chartGoal' => ({required Object percent}) => '${percent}% goals',
+			'treatment.weekGamesTitle' => 'Games this week',
+			'treatment.weekGamesDetail' => 'Mini exercises repeated this week',
+			'treatment.weekGamesEmpty' => 'You can plan the first game today',
+			'treatment.weekGoalsTitle' => 'Goals completed',
+			'treatment.weekGoalsDetail' => 'Total progress across all active skill areas',
+			'treatment.weekGoalsEmpty' => 'You can add goals from the Goals tab',
+			'treatment.weekSessionsTitle' => 'Upcoming sessions',
+			'treatment.weekSessionsDetail' => 'Planned appointments or events',
+			'treatment.weekSessionsEmpty' => 'No appointments planned yet',
+			'treatment.microTitle' => 'Development areas',
+			'treatment.microSubtitle' => 'Check here when you need the details.',
+			'treatment.microLinkedGame' => 'Supporting game:',
+			'treatment.addGoalTitle' => 'Add a Daily Goal',
+			'treatment.addGoalSubtitle' => 'Write one small thing you want to track for your child today.',
+			'treatment.goalHint' => 'e.g. Made eye contact twice',
+			'treatment.focusLabel' => 'Goal area',
+			'treatment.dueDateLabel' => 'Due date (optional)',
+			'treatment.addGoal' => 'Add Goal',
+			'treatment.saving' => 'Saving…',
+			'treatment.yourGoals' => 'Goals you added',
+			'treatment.edit' => 'Edit',
+			'treatment.delete' => 'Delete',
+			'treatment.save' => 'Save',
+			'treatment.cancel' => 'Cancel',
+			'treatment.goalAdded' => 'New goal added.',
+			'treatment.goalUpdated' => 'Goal updated.',
+			'treatment.goalEdited' => 'Goal edited.',
+			'treatment.goalDeleted' => 'Goal deleted.',
+			'treatment.groupsHeader' => 'Therapy Goals — Progress by Area',
+			'treatment.groupDone' => ({required Object done, required Object total}) => '${done}/${total} completed',
+			'treatment.statusDone' => 'Done',
+			'treatment.statusActive' => 'Active',
+			'treatment.statusUpcoming' => 'Queued',
+			'treatment.emptyGroupsTitle' => 'No therapy goals yet',
+			'treatment.emptyGroupsBody' => 'Goals are listed here automatically once a therapy type is added to your child\'s profile.',
+			'treatment.milestoneTitle' => 'Record a Big Win 🏅',
+			'treatment.milestoneSubtitle' => 'An important moment you want to remember',
+			'treatment.milestoneHint' => 'e.g. Said their name for the first time',
+			'treatment.milestoneSaved' => 'Milestone saved 🎉',
+			'treatment.notesTitle' => 'Recent Observation Notes',
+			'treatment.notesEmpty' => 'No expert or parent notes for this child yet.',
+			'treatment.upcomingTitle' => 'Upcoming Events',
+			'treatment.upcomingEmpty' => 'No active sessions or events planned soon.',
+			'treatment.goAppointments' => 'Appointments',
+			'treatment.goCalendar' => 'Open Calendar',
+			'treatment.gamesTitle' => 'Daily Activities',
+			'treatment.gamesSubtitle' => 'Short activities suggested from your child\'s therapy goals. Pick how it went after playing.',
+			'treatment.todayDone' => ({required Object done, required Object total}) => '${done}/${total} done today',
+			'treatment.filterAll' => 'All',
+			'treatment.gameReady' => 'Ready',
+			'treatment.gameDoneBadge' => '✅ Done',
+			'treatment.methodLabel' => ({required Object name}) => 'Method: ${name}',
+			'treatment.whyGood' => 'Why it helps',
+			'treatment.goalBadge' => ({required Object name}) => 'Goal: ${name}',
+			'treatment.toolBadge' => ({required Object name}) => 'Tool: ${name}',
+			'treatment.playToday' => 'Play today',
+			'treatment.playedToday' => 'Marked as done',
+			'treatment.feedbackQuestion' => 'How did it go? (optional)',
+			'treatment.fbNone' => 'No result selected yet',
+			'treatment.fbEasy' => 'Very easy',
+			'treatment.fbAssisted' => 'With help',
+			'treatment.fbIndependent' => 'On their own',
+			'treatment.fbChallenging' => 'Struggled',
+			'treatment.fbEasyLong' => 'Found it easy',
+			'treatment.fbAssistedLong' => 'Did it with help',
+			'treatment.fbIndependentLong' => 'Did it independently',
+			'treatment.fbChallengingLong' => 'Struggled',
+			'treatment.feedbackSaved' => 'Game feedback saved.',
+			'treatment.allDoneTitle' => '🎉 All of today\'s games are done. You\'re doing great!',
+			'treatment.allDoneBody' => 'You completed today\'s support flow; you can add a short observation to the notes if you like.',
+			'treatment.hintMastered' => 'Mastered it! Try a harder variant.',
+			'treatment.hintEasy' => 'Finding it very easy. Increase the difficulty.',
+			'treatment.hintChallenging' => 'Struggling. Break the activity into smaller parts.',
+			'treatment.notifyExpert' => 'Notify Expert',
+			'treatment.notifyBody' => ({required Object game}) => 'Send your expert a short note about the difficulty in ${game}.',
+			'treatment.notifyDefaultMsg' => ({required Object game}) => '"${game}" aktivitesinde son zamanlarda zorlanıyor. Önerisi olan var mı?',
+			'treatment.notifyNoExpert' => 'You haven\'t messaged an expert yet. Connect with an expert first.',
+			'treatment.notifySeeExperts' => 'View Experts',
+			'treatment.notifySend' => 'Send',
+			'treatment.notifySent' => 'Expert notified.',
+			'treatment.emptyGames' => 'No activities suggested for this area yet. They appear once therapy info is added to your child\'s profile.',
+			'treatment.historyTitle' => 'Game History',
+			'treatment.historySubtitle' => 'The history of played activities appears here.',
+			'treatment.historyCount' => ({required Object count}) => '${count} records',
+			'treatment.historyEmpty' => 'No game records yet. History appears after the first record.',
+			'treatment.challengingSummary' => ({required Object count}) => '💪 "Struggled" was marked in ${count} activities. Consider breaking them into smaller steps or notifying your expert when retrying.',
+			'treatment.storiesTitle' => 'Social Stories & Visual Flow',
+			'treatment.storiesSubtitle' => 'Short picture stories that answer "What will happen?" before an activity — they ease transitions.',
+			'treatment.customBadge' => 'Custom story',
+			'treatment.linkedGoalBadge' => ({required Object name}) => 'Linked goal: ${name}',
+			'treatment.addStoryTitle' => 'Add a Custom Social Story',
+			'treatment.storyTitleHint' => 'Story title (e.g. Going Shopping)',
+			'treatment.storyGoalHint' => 'Linked goal (optional)',
+			'treatment.storyAdd' => 'Add',
+			'treatment.storyAdded' => 'Social story added.',
+			'treatment.storyDeleted' => 'Story deleted.',
+			'treatment.deleteStoryTitle' => 'Delete Story',
+			'treatment.deleteStoryConfirm' => 'Are you sure you want to delete this story?',
+			'treatment.sensoryTitle' => 'Comfort Settings',
+			'treatment.sensorySubtitle' => 'Measurement Cards',
+			'treatment.sensorySaved' => 'Sensory profile updated.',
+			'treatment.sliderHeader' => 'Sensory Sensitivity Levels',
+			'treatment.sliderSound' => '🔊 Sound Sensitivity',
+			'treatment.sliderTouch' => '🖐️ Tactile Sensitivity',
+			'treatment.sliderVisual' => '👁️ Visual Sensitivity',
+			'treatment.metricSound' => 'Sound sensitivity',
+			'treatment.metricTouch' => 'Tactile sensitivity',
+			'treatment.metricVisual' => 'Visual stimulus tolerance',
+			'treatment.metricSoundNote' => 'Monitored together with the sensory break game during transitions.',
+			'treatment.metricTouchNote' => 'Tactile stimuli are supported with turn-taking and pressure activities.',
+			'treatment.metricVisualNote' => 'Kept in balance with visual stories and the timeline.',
+			'treatment.triggerTitle' => 'Trigger Log',
+			'treatment.tokenTitle' => 'Digital Token Board',
+			'treatment.tokenSubtitle' => 'Pick a goal with your child. Add a star for each success. At 5 stars they earn the reward!',
+			'treatment.tokenRewardLabel' => 'Target Reward',
+			'treatment.tokenRewardHint' => 'e.g. Riding the swing 🛝',
+			'treatment.tokenSetReward' => 'Set Reward',
+			'treatment.tokenActive' => 'Active Reward',
+			'treatment.tokenCollect' => ({required Object count}) => 'Collect success stars (${count}/5)',
+			'treatment.tokenAdd' => '⭐ Add Star',
+			'treatment.tokenFullTitle' => 'Congrats! The token card is full',
+			'treatment.tokenFullBody' => ({required Object reward}) => 'Your child completed all the steps and earned ${reward}!',
+			'treatment.tokenReset' => 'Reset Board',
+			'treatment.tokenDefaultReward' => 'Going to the park 🛝',
+			'treatment.breathTitle' => 'Breathing Exercise',
+			'treatment.breathBody' => 'When your child feels overstimulated, use the breathing regulator in the Crisis Guide together.',
+			'treatment.breathOpen' => 'Open Breathing Exercise',
+			'treatment.aiStoryTitle' => 'Social Story with AI',
+			'treatment.aiStoryBody' => 'Ask the AI Assistant for a short custom social story draft for a new situation.',
+			'treatment.aiStoryOpen' => 'Open AI Assistant',
 			'crisis.title' => 'Crisis Guide',
 			'crisis.heroTitle' => 'What To Do in Hard Moments?',
 			'crisis.heroSubtitle' => 'A quick guide to help you stay calm and take the right steps when your child is overwhelmed.',
@@ -1792,8 +2176,6 @@ extension on TranslationsEn {
 			'crisis.cards.meltdown.steps.5' => 'Once the crisis passes, reassure with a calm tone.',
 			'crisis.cards.meltdown.avoid.0' => 'Don\'t speak loudly.',
 			'crisis.cards.meltdown.avoid.1' => 'Don\'t try to reason or explain.',
-			_ => null,
-		} ?? switch (path) {
 			'crisis.cards.meltdown.avoid.2' => 'Don\'t punish or threaten.',
 			'crisis.cards.meltdown.avoid.3' => 'Don\'t leave them in a crowd.',
 			'crisis.cards.meltdown.emergency' => '112 — Emergency Health Line',

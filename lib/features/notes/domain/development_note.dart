@@ -7,6 +7,7 @@ class DevelopmentNote {
     this.category,
     this.mood,
     this.noteDate,
+    this.createdAt,
   });
 
   final String id;
@@ -15,6 +16,7 @@ class DevelopmentNote {
   final String? category;
   final String? mood;
   final DateTime? noteDate;
+  final DateTime? createdAt;
 
   factory DevelopmentNote.fromJson(Map<String, dynamic> json) {
     return DevelopmentNote(
@@ -24,6 +26,7 @@ class DevelopmentNote {
       category: json['category'] as String?,
       mood: json['mood'] as String?,
       noteDate: DateTime.tryParse(json['noteDate']?.toString() ?? ''),
+      createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? ''),
     );
   }
 }

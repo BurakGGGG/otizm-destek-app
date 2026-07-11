@@ -32,6 +32,7 @@ import '../../features/routines/presentation/routines_screen.dart';
 import '../../features/similar_families/presentation/similar_families_screen.dart';
 import '../../features/splash/splash_screen.dart';
 import '../../features/support_wall/presentation/support_wall_screen.dart';
+import '../../features/treatment/presentation/treatment_screen.dart';
 import '../providers.dart';
 
 /// Uygulama rotaları. Oturum durumuna göre yönlendirir (role duyarlı kabuk
@@ -131,6 +132,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         builder: (_, _) => const SimilarFamiliesScreen(),
       ),
       GoRoute(path: '/groups', builder: (_, _) => const GroupsScreen()),
+      GoRoute(path: '/treatment', builder: (_, _) => const TreatmentScreen()),
       GoRoute(
         path: '/messages',
         builder: (_, _) => const ConversationsScreen(),

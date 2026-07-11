@@ -9,6 +9,7 @@ class Appointment {
     required this.time,
     required this.status,
     this.expertId,
+    this.childId,
     this.expertName,
     this.expertTitle,
     this.parentName,
@@ -26,6 +27,7 @@ class Appointment {
   final String time; // "HH:mm"
   final String status; // PENDING | CONFIRMED | COMPLETED | CANCELLED ...
   final String? expertId;
+  final String? childId;
   final String? expertName;
   final String? expertTitle;
   final String? parentName;
@@ -72,6 +74,7 @@ class Appointment {
       time: json['time'] as String? ?? '',
       status: json['status'] as String? ?? '',
       expertId: json['expertId']?.toString(),
+      childId: json['childId']?.toString(),
       expertName: json['expertName'] as String?,
       expertTitle: json['expertTitle'] as String?,
       parentName: json['parentName'] as String?,

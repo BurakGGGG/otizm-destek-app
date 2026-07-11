@@ -54,6 +54,11 @@ class ProfileTab extends ConsumerWidget {
             onTap: () => context.push('/children'),
           ),
           _ProfileItem(
+            icon: Icons.volunteer_activism_outlined,
+            label: t.treatment.title,
+            onTap: () => context.push('/treatment'),
+          ),
+          _ProfileItem(
             icon: Icons.checklist_outlined,
             label: t.routines.title,
             onTap: () => context.push('/routines'),
