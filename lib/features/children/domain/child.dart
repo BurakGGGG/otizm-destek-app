@@ -1,3 +1,21 @@
+/// Çocuğa atanmış semptom etiketi (backend `TagDto`). Adı paylaşılan veridir,
+/// çevrilmez; `category` ILETISIM/SOSYAL/... enum kodudur.
+class ChildTag {
+  const ChildTag({required this.id, required this.name, this.category});
+
+  final String id;
+  final String name;
+  final String? category;
+
+  factory ChildTag.fromJson(Map<String, dynamic> json) {
+    return ChildTag(
+      id: json['id']?.toString() ?? '',
+      name: json['name'] as String? ?? '',
+      category: json['category'] as String?,
+    );
+  }
+}
+
 /// Backend `ChildDto` karşılığı (çocuk profili).
 class Child {
   const Child({
@@ -9,6 +27,7 @@ class Child {
     this.diagnosisInfo,
     this.educationProgram,
     this.therapies,
+    this.tags = const [],
   });
 
   final String id;
@@ -21,6 +40,7 @@ class Child {
   final String? diagnosisInfo;
   final String? educationProgram;
   final String? therapies;
+  final List<ChildTag> tags;
 
   /// Doğum tarihinden tam yaş (yoksa null).
   int? get ageYears {
@@ -35,6 +55,7 @@ class Child {
   }
 
   factory Child.fromJson(Map<String, dynamic> json) {
+    final tags = json['tags'];
     return Child(
       id: json['id']?.toString() ?? '',
       name: json['name'] as String? ?? '',
@@ -44,6 +65,12 @@ class Child {
       diagnosisInfo: json['diagnosisInfo'] as String?,
       educationProgram: json['educationProgram'] as String?,
       therapies: json['therapies'] as String?,
+      tags: tags is List
+          ? tags
+              .whereType<Map<String, dynamic>>()
+              .map(ChildTag.fromJson)
+              .toList()
+          : const [],
     );
   }
 

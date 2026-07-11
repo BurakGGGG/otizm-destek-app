@@ -11,6 +11,7 @@ import '../../../core/widgets/user_avatar.dart';
 import '../../../i18n/strings.g.dart';
 import '../data/child_repository.dart';
 import '../domain/child.dart';
+import 'child_detail_screen.dart';
 import 'child_form_screen.dart';
 
 /// Çocuklarım — liste + ekle/düzenle/sil (`/api/children`).
@@ -57,6 +58,12 @@ class ChildrenScreen extends ConsumerWidget {
                 child: children[i],
                 onEdit: () => _openForm(context, child: children[i]),
                 onDelete: () => _confirmDelete(context, ref, children[i]),
+                onOpen: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) =>
+                        ChildDetailScreen(childId: children[i].id),
+                  ),
+                ),
               ),
             ),
           );
@@ -128,11 +135,13 @@ class _ChildCard extends StatelessWidget {
     required this.child,
     required this.onEdit,
     required this.onDelete,
+    required this.onOpen,
   });
 
   final Child child;
   final VoidCallback onEdit;
   final VoidCallback onDelete;
+  final VoidCallback onOpen;
 
   @override
   Widget build(BuildContext context) {
@@ -204,7 +213,7 @@ class _ChildCard extends StatelessWidget {
             ),
           ],
         ),
-        onTap: onEdit,
+        onTap: onOpen,
       ),
     );
   }

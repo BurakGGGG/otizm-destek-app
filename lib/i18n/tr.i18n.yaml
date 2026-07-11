@@ -874,6 +874,52 @@ forum:
   privacyMatching: Eşleştirme algoritmasında kullanılsın
   share: Paylaş
 
+childDetail:
+  title: Çocuk Profili
+  editProfile: Profili Düzenle
+  ageYears: $age yaş
+  genderBoy: Erkek
+  genderGirl: Kız
+  photoUpdated: Profil fotoğrafı güncellendi.
+  infoTitle: Bilgiler
+  infoEmpty: Henüz tanı/eğitim bilgisi eklenmemiş. Sağ üstten profili
+    düzenleyebilirsiniz.
+  diagnosis: Tanı Bilgisi
+  educationProgram: Eğitim Programı
+  therapies: Terapiler
+  tagsTitle: Semptom Etiketleri
+  tagsEmpty: Henüz etiket seçilmemiş. Etiketler benzer aile eşleştirmesinde
+    ve forumda kullanılır.
+  tagsEdit: Etiketleri Düzenle
+  tagsError: Etiketler yüklenemedi.
+  edit: Düzenle
+  save: Kaydet
+  cancel: Vazgeç
+  delete: Sil
+  milestonesTitle: Kilometre Taşları
+  milestonesEmpty: Henüz kilometre taşı eklenmemiş. İlk büyük başarıyı
+    kaydedin!
+  milestonesError: Kilometre taşları yüklenemedi.
+  milestoneAdd: Ekle
+  milestoneEdit: Kilometre Taşını Düzenle
+  milestoneTitleLabel: Başlık
+  milestoneTitleHint: 'Örn: İlk kez göz teması kurdu'
+  milestoneDescLabel: Açıklama (isteğe bağlı)
+  milestoneSave: Kilometre Taşı Ekle
+  milestoneDeleteTitle: Kilometre Taşını Sil
+  milestoneDeleteConfirm: Bu kaydı silmek istediğinize emin misiniz?
+  screeningTitle: Tarama Sonuçları
+  screeningEmpty: Henüz tarama sonucu yok.
+  scoreOf: $score/20
+  riskLow: Düşük risk
+  riskMedium: Orta risk
+  riskHigh: Yüksek risk
+  shortcutsTitle: Hızlı Erişim
+  shortcutTracker: Günlük Takip
+  shortcutBehavior: Davranış Günlüğü
+  shortcutTreatment: Tedavi Paneli
+  shortcutAnalytics: Gelişim Paneli
+
 crisis:
   title: Kriz Rehberi
   heroTitle: Zor Anlarda Ne Yapmalı?

@@ -204,6 +204,20 @@ flutter build apk --debug
     ayarları (web `defaultPrivacy` birebir; anonimse ad+tanı kapalı). Forum
     yorumları duvardan farklı: `anonymous` bayrağı gönderilmez. `/forum`,
     Profil menüsü kısayolu.
+  - **Çocuk Detayı:** `GET /api/children/{id}` — web `/cocuklarim/:id`
+    panelinin mobilde eksik olan özgün bölümleri (duygu/uyku/ilaç/davranış/
+    not bölümlerinin kendi ekranları zaten var; kısayol çipleri verildi).
+    Bölümler: **profil fotoğrafı** (image_picker galeri → `POST /upload`
+    multipart `{data:{url}}` → child PUT `profileImageUrl`), bilgiler (tanı/
+    eğitim/terapi + mevcut form ekranına düzenleme), **semptom etiketleri**
+    (`/tags/grouped` çoklu seçim; kayıt tam gövde + `tagIds` PUT — web
+    birebir; Child modeline `tags` eklendi), **kilometre taşları**
+    (`/api/milestones` tam CRUD; kategori değerleri Türkçe sabit veri
+    `kMilestoneCategoryValues` — çevrilmez; `achievedDate` `yyyy-MM-dd`),
+    **tarama sonuçları** (salt okunur `GET /screening/child/{id}`, skor /20 +
+    LOW/MEDIUM/HIGH). Çocuklarım listesinde karta dokunmak detayı açar
+    (düzenle/sil menüde kaldı). Tarama anketi web'de olmadığı için mobilde de
+    yok.
 - ✅ Firebase: Crashlytics + Analytics kod entegrasyonu (debug'da kapalı, sürümde açık).
 - ✅ FCM push: mobil taraf hazır; **backend uç noktaları da yazıldı** (POST/DELETE
   `/api/push/device-token`, MESSAGE/APPOINTMENT data payload — sözleşme
@@ -214,13 +228,13 @@ flutter build apk --debug
   Profil'de Sistem/Açık/Koyu seçici, kalıcı).
 - ✅ Hedef ilerletme (+jeton geri alma) — `PUT /api/goals/{id}` (entries JSON dizisi;
   title+category zorunlu). Gelişim sekmesindeki hedef kartlarında.
-- ⏳ Sonraki adaylar: backend FCM deploy sonrası uçtan uca push testi; çocuk
-  detay paneli (web `/cocuklarim/:id` — çoğu verinin mobilde kendi ekranı
-  var; özgün kısımlar: kilometre taşı listesi, etiketler, foto). Kapsam dışı:
-  BEP oluşturucu web'de EXPERT_ONLY; tarama anketi web'de YOK (yalnızca sonuç
-  gösterimi, `/tarama` → `/cocuklarim` redirect). Not: sosyal hikayeler
-  (`/api/social-stories`) ve wellbeing backend'de var ama web'de tam bir CRUD
-  arayüzü yok (mirror edilecek UX yok) — düşük öncelik.
+- ⏳ Sonraki adaylar: backend FCM deploy sonrası uçtan uca push testi (mobil
+  kod hazır). **Veli tarafı web pariteye ulaştı** — kalan web rotaları kapsam
+  dışı: BEP oluşturucu + danışanlar EXPERT_ONLY; tarama anketi web'de YOK
+  (yalnızca sonuç gösterimi, `/tarama` → `/cocuklarim` redirect); admin
+  paneli mobil hedefi değil. Not: sosyal hikayeler (`/api/social-stories`)
+  ve wellbeing backend'de var ama web'de tam bir CRUD arayüzü yok (mirror
+  edilecek UX yok) — düşük öncelik.
 - Modül kapsamı ve fazlar: bkz. plan `~/.claude/plans/bir-otizm-destek-mobil-compressed-fog.md`.
 
 ## Notlar

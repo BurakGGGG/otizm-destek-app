@@ -75,6 +75,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$treatment$tr treatment = Translations$treatment$tr.internal(_root);
 	late final Translations$tasks$tr tasks = Translations$tasks$tr.internal(_root);
 	late final Translations$forum$tr forum = Translations$forum$tr.internal(_root);
+	late final Translations$childDetail$tr childDetail = Translations$childDetail$tr.internal(_root);
 	late final Translations$crisis$tr crisis = Translations$crisis$tr.internal(_root);
 	late final Translations$calendar$tr calendar = Translations$calendar$tr.internal(_root);
 	late final Translations$emergency$tr emergency = Translations$emergency$tr.internal(_root);
@@ -2683,6 +2684,138 @@ class Translations$forum$tr {
 	String get share => 'Paylaş';
 }
 
+// Path: childDetail
+class Translations$childDetail$tr {
+	Translations$childDetail$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Çocuk Profili'
+	String get title => 'Çocuk Profili';
+
+	/// tr: 'Profili Düzenle'
+	String get editProfile => 'Profili Düzenle';
+
+	/// tr: '$age yaş'
+	String ageYears({required Object age}) => '${age} yaş';
+
+	/// tr: 'Erkek'
+	String get genderBoy => 'Erkek';
+
+	/// tr: 'Kız'
+	String get genderGirl => 'Kız';
+
+	/// tr: 'Profil fotoğrafı güncellendi.'
+	String get photoUpdated => 'Profil fotoğrafı güncellendi.';
+
+	/// tr: 'Bilgiler'
+	String get infoTitle => 'Bilgiler';
+
+	/// tr: 'Henüz tanı/eğitim bilgisi eklenmemiş. Sağ üstten profili düzenleyebilirsiniz.'
+	String get infoEmpty => 'Henüz tanı/eğitim bilgisi eklenmemiş. Sağ üstten profili düzenleyebilirsiniz.';
+
+	/// tr: 'Tanı Bilgisi'
+	String get diagnosis => 'Tanı Bilgisi';
+
+	/// tr: 'Eğitim Programı'
+	String get educationProgram => 'Eğitim Programı';
+
+	/// tr: 'Terapiler'
+	String get therapies => 'Terapiler';
+
+	/// tr: 'Semptom Etiketleri'
+	String get tagsTitle => 'Semptom Etiketleri';
+
+	/// tr: 'Henüz etiket seçilmemiş. Etiketler benzer aile eşleştirmesinde ve forumda kullanılır.'
+	String get tagsEmpty => 'Henüz etiket seçilmemiş. Etiketler benzer aile eşleştirmesinde ve forumda kullanılır.';
+
+	/// tr: 'Etiketleri Düzenle'
+	String get tagsEdit => 'Etiketleri Düzenle';
+
+	/// tr: 'Etiketler yüklenemedi.'
+	String get tagsError => 'Etiketler yüklenemedi.';
+
+	/// tr: 'Düzenle'
+	String get edit => 'Düzenle';
+
+	/// tr: 'Kaydet'
+	String get save => 'Kaydet';
+
+	/// tr: 'Vazgeç'
+	String get cancel => 'Vazgeç';
+
+	/// tr: 'Sil'
+	String get delete => 'Sil';
+
+	/// tr: 'Kilometre Taşları'
+	String get milestonesTitle => 'Kilometre Taşları';
+
+	/// tr: 'Henüz kilometre taşı eklenmemiş. İlk büyük başarıyı kaydedin!'
+	String get milestonesEmpty => 'Henüz kilometre taşı eklenmemiş. İlk büyük başarıyı kaydedin!';
+
+	/// tr: 'Kilometre taşları yüklenemedi.'
+	String get milestonesError => 'Kilometre taşları yüklenemedi.';
+
+	/// tr: 'Ekle'
+	String get milestoneAdd => 'Ekle';
+
+	/// tr: 'Kilometre Taşını Düzenle'
+	String get milestoneEdit => 'Kilometre Taşını Düzenle';
+
+	/// tr: 'Başlık'
+	String get milestoneTitleLabel => 'Başlık';
+
+	/// tr: 'Örn: İlk kez göz teması kurdu'
+	String get milestoneTitleHint => 'Örn: İlk kez göz teması kurdu';
+
+	/// tr: 'Açıklama (isteğe bağlı)'
+	String get milestoneDescLabel => 'Açıklama (isteğe bağlı)';
+
+	/// tr: 'Kilometre Taşı Ekle'
+	String get milestoneSave => 'Kilometre Taşı Ekle';
+
+	/// tr: 'Kilometre Taşını Sil'
+	String get milestoneDeleteTitle => 'Kilometre Taşını Sil';
+
+	/// tr: 'Bu kaydı silmek istediğinize emin misiniz?'
+	String get milestoneDeleteConfirm => 'Bu kaydı silmek istediğinize emin misiniz?';
+
+	/// tr: 'Tarama Sonuçları'
+	String get screeningTitle => 'Tarama Sonuçları';
+
+	/// tr: 'Henüz tarama sonucu yok.'
+	String get screeningEmpty => 'Henüz tarama sonucu yok.';
+
+	/// tr: '$score/20'
+	String scoreOf({required Object score}) => '${score}/20';
+
+	/// tr: 'Düşük risk'
+	String get riskLow => 'Düşük risk';
+
+	/// tr: 'Orta risk'
+	String get riskMedium => 'Orta risk';
+
+	/// tr: 'Yüksek risk'
+	String get riskHigh => 'Yüksek risk';
+
+	/// tr: 'Hızlı Erişim'
+	String get shortcutsTitle => 'Hızlı Erişim';
+
+	/// tr: 'Günlük Takip'
+	String get shortcutTracker => 'Günlük Takip';
+
+	/// tr: 'Davranış Günlüğü'
+	String get shortcutBehavior => 'Davranış Günlüğü';
+
+	/// tr: 'Tedavi Paneli'
+	String get shortcutTreatment => 'Tedavi Paneli';
+
+	/// tr: 'Gelişim Paneli'
+	String get shortcutAnalytics => 'Gelişim Paneli';
+}
+
 // Path: crisis
 class Translations$crisis$tr {
 	Translations$crisis$tr.internal(this._root);
@@ -4341,6 +4474,47 @@ extension on Translations {
 			'forum.privacyDiagnosis' => 'Tanı detaylarını göster',
 			'forum.privacyMatching' => 'Eşleştirme algoritmasında kullanılsın',
 			'forum.share' => 'Paylaş',
+			'childDetail.title' => 'Çocuk Profili',
+			'childDetail.editProfile' => 'Profili Düzenle',
+			'childDetail.ageYears' => ({required Object age}) => '${age} yaş',
+			'childDetail.genderBoy' => 'Erkek',
+			'childDetail.genderGirl' => 'Kız',
+			'childDetail.photoUpdated' => 'Profil fotoğrafı güncellendi.',
+			'childDetail.infoTitle' => 'Bilgiler',
+			'childDetail.infoEmpty' => 'Henüz tanı/eğitim bilgisi eklenmemiş. Sağ üstten profili düzenleyebilirsiniz.',
+			'childDetail.diagnosis' => 'Tanı Bilgisi',
+			'childDetail.educationProgram' => 'Eğitim Programı',
+			'childDetail.therapies' => 'Terapiler',
+			'childDetail.tagsTitle' => 'Semptom Etiketleri',
+			'childDetail.tagsEmpty' => 'Henüz etiket seçilmemiş. Etiketler benzer aile eşleştirmesinde ve forumda kullanılır.',
+			'childDetail.tagsEdit' => 'Etiketleri Düzenle',
+			'childDetail.tagsError' => 'Etiketler yüklenemedi.',
+			'childDetail.edit' => 'Düzenle',
+			'childDetail.save' => 'Kaydet',
+			'childDetail.cancel' => 'Vazgeç',
+			'childDetail.delete' => 'Sil',
+			'childDetail.milestonesTitle' => 'Kilometre Taşları',
+			'childDetail.milestonesEmpty' => 'Henüz kilometre taşı eklenmemiş. İlk büyük başarıyı kaydedin!',
+			'childDetail.milestonesError' => 'Kilometre taşları yüklenemedi.',
+			'childDetail.milestoneAdd' => 'Ekle',
+			'childDetail.milestoneEdit' => 'Kilometre Taşını Düzenle',
+			'childDetail.milestoneTitleLabel' => 'Başlık',
+			'childDetail.milestoneTitleHint' => 'Örn: İlk kez göz teması kurdu',
+			'childDetail.milestoneDescLabel' => 'Açıklama (isteğe bağlı)',
+			'childDetail.milestoneSave' => 'Kilometre Taşı Ekle',
+			'childDetail.milestoneDeleteTitle' => 'Kilometre Taşını Sil',
+			'childDetail.milestoneDeleteConfirm' => 'Bu kaydı silmek istediğinize emin misiniz?',
+			'childDetail.screeningTitle' => 'Tarama Sonuçları',
+			'childDetail.screeningEmpty' => 'Henüz tarama sonucu yok.',
+			'childDetail.scoreOf' => ({required Object score}) => '${score}/20',
+			'childDetail.riskLow' => 'Düşük risk',
+			'childDetail.riskMedium' => 'Orta risk',
+			'childDetail.riskHigh' => 'Yüksek risk',
+			'childDetail.shortcutsTitle' => 'Hızlı Erişim',
+			'childDetail.shortcutTracker' => 'Günlük Takip',
+			'childDetail.shortcutBehavior' => 'Davranış Günlüğü',
+			'childDetail.shortcutTreatment' => 'Tedavi Paneli',
+			'childDetail.shortcutAnalytics' => 'Gelişim Paneli',
 			'crisis.title' => 'Kriz Rehberi',
 			'crisis.heroTitle' => 'Zor Anlarda Ne Yapmalı?',
 			'crisis.heroSubtitle' => 'Çocuğunuz bunaldığında sakin kalmanıza ve doğru adımları atmanıza yardımcı olacak hızlı rehber.',
@@ -4553,6 +4727,8 @@ extension on Translations {
 			'children.diagnosisHint' => 'Varsa tanı bilgisi',
 			'children.educationLabel' => 'Eğitim Programı (isteğe bağlı)',
 			'children.educationHint' => 'Devam ettiği eğitim programı',
+			_ => null,
+		} ?? switch (path) {
 			'children.therapiesLabel' => 'Terapiler (isteğe bağlı)',
 			'children.therapiesHint' => 'Aldığı terapiler',
 			'children.ageYears' => ({required Object years}) => '${years} yaş',
@@ -4594,8 +4770,6 @@ extension on Translations {
 			'profile.myChildren' => 'Çocuklarım',
 			'profile.notificationSettings' => 'Bildirim Ayarları',
 			'profile.help' => 'Yardım',
-			_ => null,
-		} ?? switch (path) {
 			'profile.signOut' => 'Çıkış Yap',
 			'errors.timeout' => 'Sunucuya ulaşılamadı, lütfen tekrar deneyin.',
 			'errors.noConnection' => 'İnternet bağlantısı yok gibi görünüyor.',

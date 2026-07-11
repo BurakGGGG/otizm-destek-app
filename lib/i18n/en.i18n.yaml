@@ -870,6 +870,51 @@ forum:
   privacyMatching: Allow use in the matching algorithm
   share: Share
 
+childDetail:
+  title: Child Profile
+  editProfile: Edit Profile
+  ageYears: $age yrs
+  genderBoy: Boy
+  genderGirl: Girl
+  photoUpdated: Profile photo updated.
+  infoTitle: Details
+  infoEmpty: No diagnosis/education info yet. You can edit the profile from
+    the top right.
+  diagnosis: Diagnosis Info
+  educationProgram: Education Program
+  therapies: Therapies
+  tagsTitle: Symptom Tags
+  tagsEmpty: No tags selected yet. Tags are used in similar-family matching
+    and the forum.
+  tagsEdit: Edit Tags
+  tagsError: Could not load tags.
+  edit: Edit
+  save: Save
+  cancel: Cancel
+  delete: Delete
+  milestonesTitle: Milestones
+  milestonesEmpty: No milestones yet. Record the first big achievement!
+  milestonesError: Could not load milestones.
+  milestoneAdd: Add
+  milestoneEdit: Edit Milestone
+  milestoneTitleLabel: Title
+  milestoneTitleHint: 'e.g. Made eye contact for the first time'
+  milestoneDescLabel: Description (optional)
+  milestoneSave: Add Milestone
+  milestoneDeleteTitle: Delete Milestone
+  milestoneDeleteConfirm: Are you sure you want to delete this record?
+  screeningTitle: Screening Results
+  screeningEmpty: No screening results yet.
+  scoreOf: $score/20
+  riskLow: Low risk
+  riskMedium: Medium risk
+  riskHigh: High risk
+  shortcutsTitle: Quick Access
+  shortcutTracker: Daily Tracker
+  shortcutBehavior: Behavior Journal
+  shortcutTreatment: Treatment Panel
+  shortcutAnalytics: Progress Panel
+
 crisis:
   title: Crisis Guide
   heroTitle: What To Do in Hard Moments?

@@ -74,6 +74,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$treatment$en treatment = _Translations$treatment$en._(_root);
 	@override late final _Translations$tasks$en tasks = _Translations$tasks$en._(_root);
 	@override late final _Translations$forum$en forum = _Translations$forum$en._(_root);
+	@override late final _Translations$childDetail$en childDetail = _Translations$childDetail$en._(_root);
 	@override late final _Translations$crisis$en crisis = _Translations$crisis$en._(_root);
 	@override late final _Translations$calendar$en calendar = _Translations$calendar$en._(_root);
 	@override late final _Translations$emergency$en emergency = _Translations$emergency$en._(_root);
@@ -1174,6 +1175,56 @@ class _Translations$forum$en extends Translations$forum$tr {
 	@override String get privacyDiagnosis => 'Show diagnosis details';
 	@override String get privacyMatching => 'Allow use in the matching algorithm';
 	@override String get share => 'Share';
+}
+
+// Path: childDetail
+class _Translations$childDetail$en extends Translations$childDetail$tr {
+	_Translations$childDetail$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Child Profile';
+	@override String get editProfile => 'Edit Profile';
+	@override String ageYears({required Object age}) => '${age} yrs';
+	@override String get genderBoy => 'Boy';
+	@override String get genderGirl => 'Girl';
+	@override String get photoUpdated => 'Profile photo updated.';
+	@override String get infoTitle => 'Details';
+	@override String get infoEmpty => 'No diagnosis/education info yet. You can edit the profile from the top right.';
+	@override String get diagnosis => 'Diagnosis Info';
+	@override String get educationProgram => 'Education Program';
+	@override String get therapies => 'Therapies';
+	@override String get tagsTitle => 'Symptom Tags';
+	@override String get tagsEmpty => 'No tags selected yet. Tags are used in similar-family matching and the forum.';
+	@override String get tagsEdit => 'Edit Tags';
+	@override String get tagsError => 'Could not load tags.';
+	@override String get edit => 'Edit';
+	@override String get save => 'Save';
+	@override String get cancel => 'Cancel';
+	@override String get delete => 'Delete';
+	@override String get milestonesTitle => 'Milestones';
+	@override String get milestonesEmpty => 'No milestones yet. Record the first big achievement!';
+	@override String get milestonesError => 'Could not load milestones.';
+	@override String get milestoneAdd => 'Add';
+	@override String get milestoneEdit => 'Edit Milestone';
+	@override String get milestoneTitleLabel => 'Title';
+	@override String get milestoneTitleHint => 'e.g. Made eye contact for the first time';
+	@override String get milestoneDescLabel => 'Description (optional)';
+	@override String get milestoneSave => 'Add Milestone';
+	@override String get milestoneDeleteTitle => 'Delete Milestone';
+	@override String get milestoneDeleteConfirm => 'Are you sure you want to delete this record?';
+	@override String get screeningTitle => 'Screening Results';
+	@override String get screeningEmpty => 'No screening results yet.';
+	@override String scoreOf({required Object score}) => '${score}/20';
+	@override String get riskLow => 'Low risk';
+	@override String get riskMedium => 'Medium risk';
+	@override String get riskHigh => 'High risk';
+	@override String get shortcutsTitle => 'Quick Access';
+	@override String get shortcutTracker => 'Daily Tracker';
+	@override String get shortcutBehavior => 'Behavior Journal';
+	@override String get shortcutTreatment => 'Treatment Panel';
+	@override String get shortcutAnalytics => 'Progress Panel';
 }
 
 // Path: crisis
@@ -2375,6 +2426,47 @@ extension on TranslationsEn {
 			'forum.privacyDiagnosis' => 'Show diagnosis details',
 			'forum.privacyMatching' => 'Allow use in the matching algorithm',
 			'forum.share' => 'Share',
+			'childDetail.title' => 'Child Profile',
+			'childDetail.editProfile' => 'Edit Profile',
+			'childDetail.ageYears' => ({required Object age}) => '${age} yrs',
+			'childDetail.genderBoy' => 'Boy',
+			'childDetail.genderGirl' => 'Girl',
+			'childDetail.photoUpdated' => 'Profile photo updated.',
+			'childDetail.infoTitle' => 'Details',
+			'childDetail.infoEmpty' => 'No diagnosis/education info yet. You can edit the profile from the top right.',
+			'childDetail.diagnosis' => 'Diagnosis Info',
+			'childDetail.educationProgram' => 'Education Program',
+			'childDetail.therapies' => 'Therapies',
+			'childDetail.tagsTitle' => 'Symptom Tags',
+			'childDetail.tagsEmpty' => 'No tags selected yet. Tags are used in similar-family matching and the forum.',
+			'childDetail.tagsEdit' => 'Edit Tags',
+			'childDetail.tagsError' => 'Could not load tags.',
+			'childDetail.edit' => 'Edit',
+			'childDetail.save' => 'Save',
+			'childDetail.cancel' => 'Cancel',
+			'childDetail.delete' => 'Delete',
+			'childDetail.milestonesTitle' => 'Milestones',
+			'childDetail.milestonesEmpty' => 'No milestones yet. Record the first big achievement!',
+			'childDetail.milestonesError' => 'Could not load milestones.',
+			'childDetail.milestoneAdd' => 'Add',
+			'childDetail.milestoneEdit' => 'Edit Milestone',
+			'childDetail.milestoneTitleLabel' => 'Title',
+			'childDetail.milestoneTitleHint' => 'e.g. Made eye contact for the first time',
+			'childDetail.milestoneDescLabel' => 'Description (optional)',
+			'childDetail.milestoneSave' => 'Add Milestone',
+			'childDetail.milestoneDeleteTitle' => 'Delete Milestone',
+			'childDetail.milestoneDeleteConfirm' => 'Are you sure you want to delete this record?',
+			'childDetail.screeningTitle' => 'Screening Results',
+			'childDetail.screeningEmpty' => 'No screening results yet.',
+			'childDetail.scoreOf' => ({required Object score}) => '${score}/20',
+			'childDetail.riskLow' => 'Low risk',
+			'childDetail.riskMedium' => 'Medium risk',
+			'childDetail.riskHigh' => 'High risk',
+			'childDetail.shortcutsTitle' => 'Quick Access',
+			'childDetail.shortcutTracker' => 'Daily Tracker',
+			'childDetail.shortcutBehavior' => 'Behavior Journal',
+			'childDetail.shortcutTreatment' => 'Treatment Panel',
+			'childDetail.shortcutAnalytics' => 'Progress Panel',
 			'crisis.title' => 'Crisis Guide',
 			'crisis.heroTitle' => 'What To Do in Hard Moments?',
 			'crisis.heroSubtitle' => 'A quick guide to help you stay calm and take the right steps when your child is overwhelmed.',
@@ -2587,6 +2679,8 @@ extension on TranslationsEn {
 			'children.diagnosisHint' => 'Diagnosis info, if any',
 			'children.educationLabel' => 'Education Program (optional)',
 			'children.educationHint' => 'Current education program',
+			_ => null,
+		} ?? switch (path) {
 			'children.therapiesLabel' => 'Therapies (optional)',
 			'children.therapiesHint' => 'Therapies received',
 			'children.ageYears' => ({required Object years}) => '${years} yrs',
@@ -2628,8 +2722,6 @@ extension on TranslationsEn {
 			'profile.myChildren' => 'My Children',
 			'profile.notificationSettings' => 'Notification Settings',
 			'profile.help' => 'Help',
-			_ => null,
-		} ?? switch (path) {
 			'profile.signOut' => 'Sign Out',
 			'errors.timeout' => 'Could not reach the server, please try again.',
 			'errors.noConnection' => 'You appear to be offline.',
