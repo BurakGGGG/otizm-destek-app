@@ -760,6 +760,47 @@ treatment:
     sosyal hikâye taslağı isteyin.
   aiStoryOpen: AI Asistan'ı Aç
 
+tasks:
+  title: Ödevlerim
+  subtitle: Uzmanınızın size atadığı çalışmalar burada görünür; tamamladıkça
+    teslim edebilirsiniz.
+  pendingLabel: Bekleyen
+  completedLabel: Tamamlanan
+  progressLabel: Ne kadar tamamlandı
+  overdueSummary: $count görevin son teslim tarihi geçmiş
+  filterAll: Tümü ($count)
+  filterPending: Yapılacaklar ($count)
+  filterCompleted: Teslim Edilenler ($count)
+  emptyAll: Henüz uzman tarafından görev atanmamış. Uzmanınız yeni ödev
+    belirlediğinde burada görebileceksiniz.
+  emptyPending: Bekleyen görev bulunmuyor.
+  emptyCompleted: Tamamlanan görev bulunmuyor.
+  overdueBanner: 'Son tarih geçti! Uzmanınız teslimat bekliyor.'
+  difficultyEasy: Kolay
+  difficultyMedium: Orta
+  difficultyHard: Zor
+  dueLabel: 'Son: $date'
+  detailLabel: Görev Detayı
+  openMaterial: Gerekli Materyale Git
+  submitTask: Görevi Teslim Et
+  submitted: Görev başarıyla uzmanınıza teslim edildi!
+  submissionsError: Teslim kaydı yüklenemedi.
+  noSubmission: Bu görev için teslim kaydı bulunamadı (eski görev olabilir).
+  yourNote: Sizin Notunuz
+  evidenceLink: Eklenmiş Kanıt / Video
+  expertFeedback: Uzman Değerlendirmesi
+  expertApprovedNoNote: Uzman onayladı ama not bırakmadı.
+  awaitingReview: Uzman değerlendirmesi bekleniyor…
+  submitTitle: Görevi Teslim Et
+  selectedTask: Seçili Görev
+  noteLabel: Uzmana İletilecek Not
+  noteHint: 'Çocuğunuz bu görevi yaparken nasıl hissetti? (Örn: Çok rahat
+    tamamladı)'
+  evidenceLabel: Kanıt / Eklenti Bağlantısı (İsteğe Bağlı)
+  evidenceHint: Uzmanınızın görebilmesi için ilgili çalışma anının videosunu
+    veya fotoğrafını bulut bağlantısı olarak ekleyebilirsiniz.
+  submitConfirm: Teslim Et ve Kapat
+
 crisis:
   title: Kriz Rehberi
   heroTitle: Zor Anlarda Ne Yapmalı?

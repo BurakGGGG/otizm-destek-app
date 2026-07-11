@@ -174,6 +174,20 @@ flutter build apk --debug
     demo işbirliği paneli (sabit sahte veri) kapsam dışı. Saf geçişler
     `test/treatment_state_test.dart` ile korunur. `/treatment`, Profil menüsü
     kısayolu.
+  - **Ödevlerim:** `GET /api/patients/my-tasks` — uzmanın veliye atadığı
+    görevler (web `/gorevler` PARENT_EXPERT; CLAUDE.md'deki eski "uzman rolü"
+    notu yanlıştı, veli tarafı var). Filtreler (Tümü/Yapılacaklar/Teslim
+    Edilenler), bekleyenler son tarihe göre sıralı (tarihsiz sona), CANCELLED
+    listelenmez; gün bazlı gecikme uyarısı (bugün son gün ise gecikmiş
+    sayılmaz). Teslim: `POST /api/task-submissions`
+    `{taskId, parentId, parentNote, evidenceUrl}` — görevi backend'de
+    COMPLETED yapar + uzmana bildirim gider. Teslim kayıtları
+    `GET /task-submissions/task/{id}` (veli notu + kanıt linki + uzman geri
+    bildirimi `expertReviewed`). `category`/`frequency` uzmanın serbest Türkçe
+    metni (veri, çevrilmez); `difficulty` EASY/MEDIUM/HARD ve `status`
+    PENDING/COMPLETED/CANCELLED enum kodları (etiketler i18n).
+    `dueDate` `yyyy-MM-dd` LocalDate. Sıralama/gecikme mantığı
+    `test/expert_task_test.dart` ile korunur. `/tasks`, Profil menüsü kısayolu.
 - ✅ Firebase: Crashlytics + Analytics kod entegrasyonu (debug'da kapalı, sürümde açık).
 - ✅ FCM push: mobil taraf hazır; **backend uç noktaları da yazıldı** (POST/DELETE
   `/api/push/device-token`, MESSAGE/APPOINTMENT data payload — sözleşme
@@ -184,10 +198,12 @@ flutter build apk --debug
   Profil'de Sistem/Açık/Koyu seçici, kalıcı).
 - ✅ Hedef ilerletme (+jeton geri alma) — `PUT /api/goals/{id}` (entries JSON dizisi;
   title+category zorunlu). Gelişim sekmesindeki hedef kartlarında.
-- ⏳ Sonraki adaylar: backend FCM deploy sonrası uçtan uca push testi; görevler
-  (`/api/tasks`, uzman rolü); BEP oluşturucu. Not: sosyal hikayeler
-  (`/api/social-stories`) ve wellbeing backend'de var ama web'de tam bir CRUD
-  arayüzü yok (mirror edilecek UX yok) — düşük öncelik.
+- ⏳ Sonraki adaylar: backend FCM deploy sonrası uçtan uca push testi; tam
+  forum (mobilde yalnızca SUPPORT_WALL kategorisi var); çocuk detay/tarama
+  (web `/cocuklarim/:id`). Kapsam dışı: BEP oluşturucu web'de EXPERT_ONLY.
+  Not: sosyal hikayeler (`/api/social-stories`) ve wellbeing backend'de var
+  ama web'de tam bir CRUD arayüzü yok (mirror edilecek UX yok) — düşük
+  öncelik.
 - Modül kapsamı ve fazlar: bkz. plan `~/.claude/plans/bir-otizm-destek-mobil-compressed-fog.md`.
 
 ## Notlar

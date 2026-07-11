@@ -73,6 +73,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$similar$tr similar = Translations$similar$tr.internal(_root);
 	late final Translations$groups$tr groups = Translations$groups$tr.internal(_root);
 	late final Translations$treatment$tr treatment = Translations$treatment$tr.internal(_root);
+	late final Translations$tasks$tr tasks = Translations$tasks$tr.internal(_root);
 	late final Translations$crisis$tr crisis = Translations$crisis$tr.internal(_root);
 	late final Translations$calendar$tr calendar = Translations$calendar$tr.internal(_root);
 	late final Translations$emergency$tr emergency = Translations$emergency$tr.internal(_root);
@@ -2348,6 +2349,120 @@ class Translations$treatment$tr {
 	String get aiStoryOpen => 'AI Asistan\'ı Aç';
 }
 
+// Path: tasks
+class Translations$tasks$tr {
+	Translations$tasks$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Ödevlerim'
+	String get title => 'Ödevlerim';
+
+	/// tr: 'Uzmanınızın size atadığı çalışmalar burada görünür; tamamladıkça teslim edebilirsiniz.'
+	String get subtitle => 'Uzmanınızın size atadığı çalışmalar burada görünür; tamamladıkça teslim edebilirsiniz.';
+
+	/// tr: 'Bekleyen'
+	String get pendingLabel => 'Bekleyen';
+
+	/// tr: 'Tamamlanan'
+	String get completedLabel => 'Tamamlanan';
+
+	/// tr: 'Ne kadar tamamlandı'
+	String get progressLabel => 'Ne kadar tamamlandı';
+
+	/// tr: '$count görevin son teslim tarihi geçmiş'
+	String overdueSummary({required Object count}) => '${count} görevin son teslim tarihi geçmiş';
+
+	/// tr: 'Tümü ($count)'
+	String filterAll({required Object count}) => 'Tümü (${count})';
+
+	/// tr: 'Yapılacaklar ($count)'
+	String filterPending({required Object count}) => 'Yapılacaklar (${count})';
+
+	/// tr: 'Teslim Edilenler ($count)'
+	String filterCompleted({required Object count}) => 'Teslim Edilenler (${count})';
+
+	/// tr: 'Henüz uzman tarafından görev atanmamış. Uzmanınız yeni ödev belirlediğinde burada görebileceksiniz.'
+	String get emptyAll => 'Henüz uzman tarafından görev atanmamış. Uzmanınız yeni ödev belirlediğinde burada görebileceksiniz.';
+
+	/// tr: 'Bekleyen görev bulunmuyor.'
+	String get emptyPending => 'Bekleyen görev bulunmuyor.';
+
+	/// tr: 'Tamamlanan görev bulunmuyor.'
+	String get emptyCompleted => 'Tamamlanan görev bulunmuyor.';
+
+	/// tr: 'Son tarih geçti! Uzmanınız teslimat bekliyor.'
+	String get overdueBanner => 'Son tarih geçti! Uzmanınız teslimat bekliyor.';
+
+	/// tr: 'Kolay'
+	String get difficultyEasy => 'Kolay';
+
+	/// tr: 'Orta'
+	String get difficultyMedium => 'Orta';
+
+	/// tr: 'Zor'
+	String get difficultyHard => 'Zor';
+
+	/// tr: 'Son: $date'
+	String dueLabel({required Object date}) => 'Son: ${date}';
+
+	/// tr: 'Görev Detayı'
+	String get detailLabel => 'Görev Detayı';
+
+	/// tr: 'Gerekli Materyale Git'
+	String get openMaterial => 'Gerekli Materyale Git';
+
+	/// tr: 'Görevi Teslim Et'
+	String get submitTask => 'Görevi Teslim Et';
+
+	/// tr: 'Görev başarıyla uzmanınıza teslim edildi!'
+	String get submitted => 'Görev başarıyla uzmanınıza teslim edildi!';
+
+	/// tr: 'Teslim kaydı yüklenemedi.'
+	String get submissionsError => 'Teslim kaydı yüklenemedi.';
+
+	/// tr: 'Bu görev için teslim kaydı bulunamadı (eski görev olabilir).'
+	String get noSubmission => 'Bu görev için teslim kaydı bulunamadı (eski görev olabilir).';
+
+	/// tr: 'Sizin Notunuz'
+	String get yourNote => 'Sizin Notunuz';
+
+	/// tr: 'Eklenmiş Kanıt / Video'
+	String get evidenceLink => 'Eklenmiş Kanıt / Video';
+
+	/// tr: 'Uzman Değerlendirmesi'
+	String get expertFeedback => 'Uzman Değerlendirmesi';
+
+	/// tr: 'Uzman onayladı ama not bırakmadı.'
+	String get expertApprovedNoNote => 'Uzman onayladı ama not bırakmadı.';
+
+	/// tr: 'Uzman değerlendirmesi bekleniyor…'
+	String get awaitingReview => 'Uzman değerlendirmesi bekleniyor…';
+
+	/// tr: 'Görevi Teslim Et'
+	String get submitTitle => 'Görevi Teslim Et';
+
+	/// tr: 'Seçili Görev'
+	String get selectedTask => 'Seçili Görev';
+
+	/// tr: 'Uzmana İletilecek Not'
+	String get noteLabel => 'Uzmana İletilecek Not';
+
+	/// tr: 'Çocuğunuz bu görevi yaparken nasıl hissetti? (Örn: Çok rahat tamamladı)'
+	String get noteHint => 'Çocuğunuz bu görevi yaparken nasıl hissetti? (Örn: Çok rahat tamamladı)';
+
+	/// tr: 'Kanıt / Eklenti Bağlantısı (İsteğe Bağlı)'
+	String get evidenceLabel => 'Kanıt / Eklenti Bağlantısı (İsteğe Bağlı)';
+
+	/// tr: 'Uzmanınızın görebilmesi için ilgili çalışma anının videosunu veya fotoğrafını bulut bağlantısı olarak ekleyebilirsiniz.'
+	String get evidenceHint => 'Uzmanınızın görebilmesi için ilgili çalışma anının videosunu veya fotoğrafını bulut bağlantısı olarak ekleyebilirsiniz.';
+
+	/// tr: 'Teslim Et ve Kapat'
+	String get submitConfirm => 'Teslim Et ve Kapat';
+}
+
 // Path: crisis
 class Translations$crisis$tr {
 	Translations$crisis$tr.internal(this._root);
@@ -3901,6 +4016,41 @@ extension on Translations {
 			'treatment.aiStoryTitle' => 'AI ile Sosyal Hikâye',
 			'treatment.aiStoryBody' => 'Yeni bir durum için AI Asistan\'dan çocuğunuza özel kısa bir sosyal hikâye taslağı isteyin.',
 			'treatment.aiStoryOpen' => 'AI Asistan\'ı Aç',
+			'tasks.title' => 'Ödevlerim',
+			'tasks.subtitle' => 'Uzmanınızın size atadığı çalışmalar burada görünür; tamamladıkça teslim edebilirsiniz.',
+			'tasks.pendingLabel' => 'Bekleyen',
+			'tasks.completedLabel' => 'Tamamlanan',
+			'tasks.progressLabel' => 'Ne kadar tamamlandı',
+			'tasks.overdueSummary' => ({required Object count}) => '${count} görevin son teslim tarihi geçmiş',
+			'tasks.filterAll' => ({required Object count}) => 'Tümü (${count})',
+			'tasks.filterPending' => ({required Object count}) => 'Yapılacaklar (${count})',
+			'tasks.filterCompleted' => ({required Object count}) => 'Teslim Edilenler (${count})',
+			'tasks.emptyAll' => 'Henüz uzman tarafından görev atanmamış. Uzmanınız yeni ödev belirlediğinde burada görebileceksiniz.',
+			'tasks.emptyPending' => 'Bekleyen görev bulunmuyor.',
+			'tasks.emptyCompleted' => 'Tamamlanan görev bulunmuyor.',
+			'tasks.overdueBanner' => 'Son tarih geçti! Uzmanınız teslimat bekliyor.',
+			'tasks.difficultyEasy' => 'Kolay',
+			'tasks.difficultyMedium' => 'Orta',
+			'tasks.difficultyHard' => 'Zor',
+			'tasks.dueLabel' => ({required Object date}) => 'Son: ${date}',
+			'tasks.detailLabel' => 'Görev Detayı',
+			'tasks.openMaterial' => 'Gerekli Materyale Git',
+			'tasks.submitTask' => 'Görevi Teslim Et',
+			'tasks.submitted' => 'Görev başarıyla uzmanınıza teslim edildi!',
+			'tasks.submissionsError' => 'Teslim kaydı yüklenemedi.',
+			'tasks.noSubmission' => 'Bu görev için teslim kaydı bulunamadı (eski görev olabilir).',
+			'tasks.yourNote' => 'Sizin Notunuz',
+			'tasks.evidenceLink' => 'Eklenmiş Kanıt / Video',
+			'tasks.expertFeedback' => 'Uzman Değerlendirmesi',
+			'tasks.expertApprovedNoNote' => 'Uzman onayladı ama not bırakmadı.',
+			'tasks.awaitingReview' => 'Uzman değerlendirmesi bekleniyor…',
+			'tasks.submitTitle' => 'Görevi Teslim Et',
+			'tasks.selectedTask' => 'Seçili Görev',
+			'tasks.noteLabel' => 'Uzmana İletilecek Not',
+			'tasks.noteHint' => 'Çocuğunuz bu görevi yaparken nasıl hissetti? (Örn: Çok rahat tamamladı)',
+			'tasks.evidenceLabel' => 'Kanıt / Eklenti Bağlantısı (İsteğe Bağlı)',
+			'tasks.evidenceHint' => 'Uzmanınızın görebilmesi için ilgili çalışma anının videosunu veya fotoğrafını bulut bağlantısı olarak ekleyebilirsiniz.',
+			'tasks.submitConfirm' => 'Teslim Et ve Kapat',
 			'crisis.title' => 'Kriz Rehberi',
 			'crisis.heroTitle' => 'Zor Anlarda Ne Yapmalı?',
 			'crisis.heroSubtitle' => 'Çocuğunuz bunaldığında sakin kalmanıza ve doğru adımları atmanıza yardımcı olacak hızlı rehber.',

@@ -72,6 +72,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$similar$en similar = _Translations$similar$en._(_root);
 	@override late final _Translations$groups$en groups = _Translations$groups$en._(_root);
 	@override late final _Translations$treatment$en treatment = _Translations$treatment$en._(_root);
+	@override late final _Translations$tasks$en tasks = _Translations$tasks$en._(_root);
 	@override late final _Translations$crisis$en crisis = _Translations$crisis$en._(_root);
 	@override late final _Translations$calendar$en calendar = _Translations$calendar$en._(_root);
 	@override late final _Translations$emergency$en emergency = _Translations$emergency$en._(_root);
@@ -1049,6 +1050,50 @@ class _Translations$treatment$en extends Translations$treatment$tr {
 	@override String get aiStoryTitle => 'Social Story with AI';
 	@override String get aiStoryBody => 'Ask the AI Assistant for a short custom social story draft for a new situation.';
 	@override String get aiStoryOpen => 'Open AI Assistant';
+}
+
+// Path: tasks
+class _Translations$tasks$en extends Translations$tasks$tr {
+	_Translations$tasks$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'My Assignments';
+	@override String get subtitle => 'Tasks assigned by your expert appear here; submit them as you complete each one.';
+	@override String get pendingLabel => 'Pending';
+	@override String get completedLabel => 'Completed';
+	@override String get progressLabel => 'How much is done';
+	@override String overdueSummary({required Object count}) => '${count} task(s) are past their due date';
+	@override String filterAll({required Object count}) => 'All (${count})';
+	@override String filterPending({required Object count}) => 'To Do (${count})';
+	@override String filterCompleted({required Object count}) => 'Submitted (${count})';
+	@override String get emptyAll => 'No tasks have been assigned by an expert yet. When your expert sets new assignments you will see them here.';
+	@override String get emptyPending => 'No pending tasks.';
+	@override String get emptyCompleted => 'No completed tasks.';
+	@override String get overdueBanner => 'Due date passed! Your expert is waiting for the submission.';
+	@override String get difficultyEasy => 'Easy';
+	@override String get difficultyMedium => 'Medium';
+	@override String get difficultyHard => 'Hard';
+	@override String dueLabel({required Object date}) => 'Due: ${date}';
+	@override String get detailLabel => 'Task Details';
+	@override String get openMaterial => 'Open Required Material';
+	@override String get submitTask => 'Submit Task';
+	@override String get submitted => 'Task submitted to your expert!';
+	@override String get submissionsError => 'Could not load the submission record.';
+	@override String get noSubmission => 'No submission record found for this task (it may be an old task).';
+	@override String get yourNote => 'Your Note';
+	@override String get evidenceLink => 'Attached Evidence / Video';
+	@override String get expertFeedback => 'Expert Review';
+	@override String get expertApprovedNoNote => 'The expert approved but left no note.';
+	@override String get awaitingReview => 'Awaiting expert review…';
+	@override String get submitTitle => 'Submit Task';
+	@override String get selectedTask => 'Selected Task';
+	@override String get noteLabel => 'Note for Your Expert';
+	@override String get noteHint => 'How did your child feel doing this task? (e.g. Completed it very comfortably)';
+	@override String get evidenceLabel => 'Evidence / Attachment Link (Optional)';
+	@override String get evidenceHint => 'You can add a cloud link to a video or photo of the practice moment so your expert can see it.';
+	@override String get submitConfirm => 'Submit and Close';
 }
 
 // Path: crisis
@@ -2145,6 +2190,41 @@ extension on TranslationsEn {
 			'treatment.aiStoryTitle' => 'Social Story with AI',
 			'treatment.aiStoryBody' => 'Ask the AI Assistant for a short custom social story draft for a new situation.',
 			'treatment.aiStoryOpen' => 'Open AI Assistant',
+			'tasks.title' => 'My Assignments',
+			'tasks.subtitle' => 'Tasks assigned by your expert appear here; submit them as you complete each one.',
+			'tasks.pendingLabel' => 'Pending',
+			'tasks.completedLabel' => 'Completed',
+			'tasks.progressLabel' => 'How much is done',
+			'tasks.overdueSummary' => ({required Object count}) => '${count} task(s) are past their due date',
+			'tasks.filterAll' => ({required Object count}) => 'All (${count})',
+			'tasks.filterPending' => ({required Object count}) => 'To Do (${count})',
+			'tasks.filterCompleted' => ({required Object count}) => 'Submitted (${count})',
+			'tasks.emptyAll' => 'No tasks have been assigned by an expert yet. When your expert sets new assignments you will see them here.',
+			'tasks.emptyPending' => 'No pending tasks.',
+			'tasks.emptyCompleted' => 'No completed tasks.',
+			'tasks.overdueBanner' => 'Due date passed! Your expert is waiting for the submission.',
+			'tasks.difficultyEasy' => 'Easy',
+			'tasks.difficultyMedium' => 'Medium',
+			'tasks.difficultyHard' => 'Hard',
+			'tasks.dueLabel' => ({required Object date}) => 'Due: ${date}',
+			'tasks.detailLabel' => 'Task Details',
+			'tasks.openMaterial' => 'Open Required Material',
+			'tasks.submitTask' => 'Submit Task',
+			'tasks.submitted' => 'Task submitted to your expert!',
+			'tasks.submissionsError' => 'Could not load the submission record.',
+			'tasks.noSubmission' => 'No submission record found for this task (it may be an old task).',
+			'tasks.yourNote' => 'Your Note',
+			'tasks.evidenceLink' => 'Attached Evidence / Video',
+			'tasks.expertFeedback' => 'Expert Review',
+			'tasks.expertApprovedNoNote' => 'The expert approved but left no note.',
+			'tasks.awaitingReview' => 'Awaiting expert review…',
+			'tasks.submitTitle' => 'Submit Task',
+			'tasks.selectedTask' => 'Selected Task',
+			'tasks.noteLabel' => 'Note for Your Expert',
+			'tasks.noteHint' => 'How did your child feel doing this task? (e.g. Completed it very comfortably)',
+			'tasks.evidenceLabel' => 'Evidence / Attachment Link (Optional)',
+			'tasks.evidenceHint' => 'You can add a cloud link to a video or photo of the practice moment so your expert can see it.',
+			'tasks.submitConfirm' => 'Submit and Close',
 			'crisis.title' => 'Crisis Guide',
 			'crisis.heroTitle' => 'What To Do in Hard Moments?',
 			'crisis.heroSubtitle' => 'A quick guide to help you stay calm and take the right steps when your child is overwhelmed.',

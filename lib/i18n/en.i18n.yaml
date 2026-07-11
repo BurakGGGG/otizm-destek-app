@@ -754,6 +754,48 @@ treatment:
     for a new situation.
   aiStoryOpen: Open AI Assistant
 
+tasks:
+  title: My Assignments
+  subtitle: Tasks assigned by your expert appear here; submit them as you
+    complete each one.
+  pendingLabel: Pending
+  completedLabel: Completed
+  progressLabel: How much is done
+  overdueSummary: $count task(s) are past their due date
+  filterAll: All ($count)
+  filterPending: To Do ($count)
+  filterCompleted: Submitted ($count)
+  emptyAll: No tasks have been assigned by an expert yet. When your expert
+    sets new assignments you will see them here.
+  emptyPending: No pending tasks.
+  emptyCompleted: No completed tasks.
+  overdueBanner: 'Due date passed! Your expert is waiting for the submission.'
+  difficultyEasy: Easy
+  difficultyMedium: Medium
+  difficultyHard: Hard
+  dueLabel: 'Due: $date'
+  detailLabel: Task Details
+  openMaterial: Open Required Material
+  submitTask: Submit Task
+  submitted: Task submitted to your expert!
+  submissionsError: Could not load the submission record.
+  noSubmission: No submission record found for this task (it may be an old
+    task).
+  yourNote: Your Note
+  evidenceLink: Attached Evidence / Video
+  expertFeedback: Expert Review
+  expertApprovedNoNote: The expert approved but left no note.
+  awaitingReview: Awaiting expert review…
+  submitTitle: Submit Task
+  selectedTask: Selected Task
+  noteLabel: Note for Your Expert
+  noteHint: 'How did your child feel doing this task? (e.g. Completed it
+    very comfortably)'
+  evidenceLabel: Evidence / Attachment Link (Optional)
+  evidenceHint: You can add a cloud link to a video or photo of the practice
+    moment so your expert can see it.
+  submitConfirm: Submit and Close
+
 crisis:
   title: Crisis Guide
   heroTitle: What To Do in Hard Moments?

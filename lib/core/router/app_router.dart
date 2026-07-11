@@ -32,6 +32,7 @@ import '../../features/routines/presentation/routines_screen.dart';
 import '../../features/similar_families/presentation/similar_families_screen.dart';
 import '../../features/splash/splash_screen.dart';
 import '../../features/support_wall/presentation/support_wall_screen.dart';
+import '../../features/tasks/presentation/tasks_screen.dart';
 import '../../features/treatment/presentation/treatment_screen.dart';
 import '../providers.dart';
 
@@ -133,6 +134,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(path: '/groups', builder: (_, _) => const GroupsScreen()),
       GoRoute(path: '/treatment', builder: (_, _) => const TreatmentScreen()),
+      GoRoute(path: '/tasks', builder: (_, _) => const TasksScreen()),
       GoRoute(
         path: '/messages',
         builder: (_, _) => const ConversationsScreen(),
