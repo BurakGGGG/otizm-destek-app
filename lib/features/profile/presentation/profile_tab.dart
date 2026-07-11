@@ -89,6 +89,11 @@ class ProfileTab extends ConsumerWidget {
             onTap: () => context.push('/support-wall'),
           ),
           _ProfileItem(
+            icon: Icons.groups_2_outlined,
+            label: t.forum.title,
+            onTap: () => context.push('/forum'),
+          ),
+          _ProfileItem(
             icon: Icons.local_fire_department_outlined,
             label: t.weekly.title,
             onTap: () => context.push('/weekly-question'),

@@ -796,6 +796,80 @@ tasks:
     moment so your expert can see it.
   submitConfirm: Submit and Close
 
+forum:
+  title: Community Forum
+  typeExperience: Experiences
+  typeQuestion: Q&A
+  typeAdvice: Advice
+  typeSuccess: Success Stories
+  catCommunication: Communication
+  catSocial: Social
+  catSensory: Sensory
+  catBehavior: Behavior
+  catMotor: Motor
+  catEducation: Education
+  justNow: just now
+  minsAgo: $count min ago
+  hoursAgo: $count h ago
+  daysAgo: $count d ago
+  searchHint: Search the forum…
+  tagFilter: Tag filter
+  sortNew: New
+  sortHot: Hot
+  sortUnanswered: Unanswered
+  sortExpert: Expert
+  empty: No posts yet. Start by sharing an experience with the community.
+  emptyQuestion: No questions yet. Ask the first question to start the
+    discussion.
+  add: Share
+  loadMore: Load More
+  posted: Post shared.
+  anonymousUser: Anonymous User
+  expertBadge: Expert
+  pinnedBadge: Pinned
+  answeredBadge: Answered
+  postTitle: Post
+  commentsHeader: Comments ($count)
+  commentsError: Could not load comments.
+  noComments: No comments yet. Be the first to write one.
+  commentHint: Write a comment…
+  replyHint: Write your reply…
+  replyingTo: 'Replying to $name'
+  reply: Reply
+  acceptAnswer: Best Answer
+  answerAccepted: Marked as best answer.
+  acceptedBadge: Best Answer
+  expertApproved: Expert Approved
+  editComment: Edit Comment
+  deleteCommentTitle: Delete Comment
+  deleteCommentConfirm: Are you sure you want to delete this comment?
+  deleteTitle: Delete Post
+  deleteConfirm: Are you sure you want to delete this post?
+  cancel: Cancel
+  delete: Delete
+  save: Save
+  reportTitle: Report
+  reportHint: Briefly describe the reason for your report
+  reportSend: Send
+  reportSent: Your report has been received.
+  newPost: New Post
+  editPost: Edit Post
+  titleLabel: Title
+  titleHintQuestion: Briefly summarize your question
+  titleHint: Title of your post
+  contentLabel: Content
+  tagsLabel: Symptom Tags
+  anonymousTitle: Share Anonymously
+  anonymousBody: Your profile details are hidden; you appear as "Anonymous
+    User".
+  privacyTitle: Privacy Settings
+  privacyRealName: Show my real name
+  privacyChildAge: Show my child's age range
+  privacySymptoms: Show symptom tags
+  privacyDiagnosis: Show diagnosis details
+  privacyMatching: Allow use in the matching algorithm
+  share: Share
+
 crisis:
   title: Crisis Guide
   heroTitle: What To Do in Hard Moments?

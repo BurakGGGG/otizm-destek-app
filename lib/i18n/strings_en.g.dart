@@ -73,6 +73,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$groups$en groups = _Translations$groups$en._(_root);
 	@override late final _Translations$treatment$en treatment = _Translations$treatment$en._(_root);
 	@override late final _Translations$tasks$en tasks = _Translations$tasks$en._(_root);
+	@override late final _Translations$forum$en forum = _Translations$forum$en._(_root);
 	@override late final _Translations$crisis$en crisis = _Translations$crisis$en._(_root);
 	@override late final _Translations$calendar$en calendar = _Translations$calendar$en._(_root);
 	@override late final _Translations$emergency$en emergency = _Translations$emergency$en._(_root);
@@ -1094,6 +1095,85 @@ class _Translations$tasks$en extends Translations$tasks$tr {
 	@override String get evidenceLabel => 'Evidence / Attachment Link (Optional)';
 	@override String get evidenceHint => 'You can add a cloud link to a video or photo of the practice moment so your expert can see it.';
 	@override String get submitConfirm => 'Submit and Close';
+}
+
+// Path: forum
+class _Translations$forum$en extends Translations$forum$tr {
+	_Translations$forum$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Community Forum';
+	@override String get typeExperience => 'Experiences';
+	@override String get typeQuestion => 'Q&A';
+	@override String get typeAdvice => 'Advice';
+	@override String get typeSuccess => 'Success Stories';
+	@override String get catCommunication => 'Communication';
+	@override String get catSocial => 'Social';
+	@override String get catSensory => 'Sensory';
+	@override String get catBehavior => 'Behavior';
+	@override String get catMotor => 'Motor';
+	@override String get catEducation => 'Education';
+	@override String get justNow => 'just now';
+	@override String minsAgo({required Object count}) => '${count} min ago';
+	@override String hoursAgo({required Object count}) => '${count} h ago';
+	@override String daysAgo({required Object count}) => '${count} d ago';
+	@override String get searchHint => 'Search the forum…';
+	@override String get tagFilter => 'Tag filter';
+	@override String get sortNew => 'New';
+	@override String get sortHot => 'Hot';
+	@override String get sortUnanswered => 'Unanswered';
+	@override String get sortExpert => 'Expert';
+	@override String get empty => 'No posts yet. Start by sharing an experience with the community.';
+	@override String get emptyQuestion => 'No questions yet. Ask the first question to start the discussion.';
+	@override String get add => 'Share';
+	@override String get loadMore => 'Load More';
+	@override String get posted => 'Post shared.';
+	@override String get anonymousUser => 'Anonymous User';
+	@override String get expertBadge => 'Expert';
+	@override String get pinnedBadge => 'Pinned';
+	@override String get answeredBadge => 'Answered';
+	@override String get postTitle => 'Post';
+	@override String commentsHeader({required Object count}) => 'Comments (${count})';
+	@override String get commentsError => 'Could not load comments.';
+	@override String get noComments => 'No comments yet. Be the first to write one.';
+	@override String get commentHint => 'Write a comment…';
+	@override String get replyHint => 'Write your reply…';
+	@override String replyingTo({required Object name}) => 'Replying to ${name}';
+	@override String get reply => 'Reply';
+	@override String get acceptAnswer => 'Best Answer';
+	@override String get answerAccepted => 'Marked as best answer.';
+	@override String get acceptedBadge => 'Best Answer';
+	@override String get expertApproved => 'Expert Approved';
+	@override String get editComment => 'Edit Comment';
+	@override String get deleteCommentTitle => 'Delete Comment';
+	@override String get deleteCommentConfirm => 'Are you sure you want to delete this comment?';
+	@override String get deleteTitle => 'Delete Post';
+	@override String get deleteConfirm => 'Are you sure you want to delete this post?';
+	@override String get cancel => 'Cancel';
+	@override String get delete => 'Delete';
+	@override String get save => 'Save';
+	@override String get reportTitle => 'Report';
+	@override String get reportHint => 'Briefly describe the reason for your report';
+	@override String get reportSend => 'Send';
+	@override String get reportSent => 'Your report has been received.';
+	@override String get newPost => 'New Post';
+	@override String get editPost => 'Edit Post';
+	@override String get titleLabel => 'Title';
+	@override String get titleHintQuestion => 'Briefly summarize your question';
+	@override String get titleHint => 'Title of your post';
+	@override String get contentLabel => 'Content';
+	@override String get tagsLabel => 'Symptom Tags';
+	@override String get anonymousTitle => 'Share Anonymously';
+	@override String get anonymousBody => 'Your profile details are hidden; you appear as "Anonymous User".';
+	@override String get privacyTitle => 'Privacy Settings';
+	@override String get privacyRealName => 'Show my real name';
+	@override String get privacyChildAge => 'Show my child\'s age range';
+	@override String get privacySymptoms => 'Show symptom tags';
+	@override String get privacyDiagnosis => 'Show diagnosis details';
+	@override String get privacyMatching => 'Allow use in the matching algorithm';
+	@override String get share => 'Share';
 }
 
 // Path: crisis
@@ -2225,6 +2305,76 @@ extension on TranslationsEn {
 			'tasks.evidenceLabel' => 'Evidence / Attachment Link (Optional)',
 			'tasks.evidenceHint' => 'You can add a cloud link to a video or photo of the practice moment so your expert can see it.',
 			'tasks.submitConfirm' => 'Submit and Close',
+			'forum.title' => 'Community Forum',
+			'forum.typeExperience' => 'Experiences',
+			'forum.typeQuestion' => 'Q&A',
+			'forum.typeAdvice' => 'Advice',
+			'forum.typeSuccess' => 'Success Stories',
+			'forum.catCommunication' => 'Communication',
+			'forum.catSocial' => 'Social',
+			'forum.catSensory' => 'Sensory',
+			'forum.catBehavior' => 'Behavior',
+			'forum.catMotor' => 'Motor',
+			'forum.catEducation' => 'Education',
+			'forum.justNow' => 'just now',
+			'forum.minsAgo' => ({required Object count}) => '${count} min ago',
+			'forum.hoursAgo' => ({required Object count}) => '${count} h ago',
+			'forum.daysAgo' => ({required Object count}) => '${count} d ago',
+			'forum.searchHint' => 'Search the forum…',
+			'forum.tagFilter' => 'Tag filter',
+			'forum.sortNew' => 'New',
+			'forum.sortHot' => 'Hot',
+			'forum.sortUnanswered' => 'Unanswered',
+			'forum.sortExpert' => 'Expert',
+			'forum.empty' => 'No posts yet. Start by sharing an experience with the community.',
+			'forum.emptyQuestion' => 'No questions yet. Ask the first question to start the discussion.',
+			'forum.add' => 'Share',
+			'forum.loadMore' => 'Load More',
+			'forum.posted' => 'Post shared.',
+			'forum.anonymousUser' => 'Anonymous User',
+			'forum.expertBadge' => 'Expert',
+			'forum.pinnedBadge' => 'Pinned',
+			'forum.answeredBadge' => 'Answered',
+			'forum.postTitle' => 'Post',
+			'forum.commentsHeader' => ({required Object count}) => 'Comments (${count})',
+			'forum.commentsError' => 'Could not load comments.',
+			'forum.noComments' => 'No comments yet. Be the first to write one.',
+			'forum.commentHint' => 'Write a comment…',
+			'forum.replyHint' => 'Write your reply…',
+			'forum.replyingTo' => ({required Object name}) => 'Replying to ${name}',
+			'forum.reply' => 'Reply',
+			'forum.acceptAnswer' => 'Best Answer',
+			'forum.answerAccepted' => 'Marked as best answer.',
+			'forum.acceptedBadge' => 'Best Answer',
+			'forum.expertApproved' => 'Expert Approved',
+			'forum.editComment' => 'Edit Comment',
+			'forum.deleteCommentTitle' => 'Delete Comment',
+			'forum.deleteCommentConfirm' => 'Are you sure you want to delete this comment?',
+			'forum.deleteTitle' => 'Delete Post',
+			'forum.deleteConfirm' => 'Are you sure you want to delete this post?',
+			'forum.cancel' => 'Cancel',
+			'forum.delete' => 'Delete',
+			'forum.save' => 'Save',
+			'forum.reportTitle' => 'Report',
+			'forum.reportHint' => 'Briefly describe the reason for your report',
+			'forum.reportSend' => 'Send',
+			'forum.reportSent' => 'Your report has been received.',
+			'forum.newPost' => 'New Post',
+			'forum.editPost' => 'Edit Post',
+			'forum.titleLabel' => 'Title',
+			'forum.titleHintQuestion' => 'Briefly summarize your question',
+			'forum.titleHint' => 'Title of your post',
+			'forum.contentLabel' => 'Content',
+			'forum.tagsLabel' => 'Symptom Tags',
+			'forum.anonymousTitle' => 'Share Anonymously',
+			'forum.anonymousBody' => 'Your profile details are hidden; you appear as "Anonymous User".',
+			'forum.privacyTitle' => 'Privacy Settings',
+			'forum.privacyRealName' => 'Show my real name',
+			'forum.privacyChildAge' => 'Show my child\'s age range',
+			'forum.privacySymptoms' => 'Show symptom tags',
+			'forum.privacyDiagnosis' => 'Show diagnosis details',
+			'forum.privacyMatching' => 'Allow use in the matching algorithm',
+			'forum.share' => 'Share',
 			'crisis.title' => 'Crisis Guide',
 			'crisis.heroTitle' => 'What To Do in Hard Moments?',
 			'crisis.heroSubtitle' => 'A quick guide to help you stay calm and take the right steps when your child is overwhelmed.',
@@ -2478,6 +2628,8 @@ extension on TranslationsEn {
 			'profile.myChildren' => 'My Children',
 			'profile.notificationSettings' => 'Notification Settings',
 			'profile.help' => 'Help',
+			_ => null,
+		} ?? switch (path) {
 			'profile.signOut' => 'Sign Out',
 			'errors.timeout' => 'Could not reach the server, please try again.',
 			'errors.noConnection' => 'You appear to be offline.',

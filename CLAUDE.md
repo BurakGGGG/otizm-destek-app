@@ -188,6 +188,22 @@ flutter build apk --debug
     PENDING/COMPLETED/CANCELLED enum kodları (etiketler i18n).
     `dueDate` `yyyy-MM-dd` LocalDate. Sıralama/gecikme mantığı
     `test/expert_task_test.dart` ile korunur. `/tasks`, Profil menüsü kısayolu.
+  - **Topluluk Forumu:** `GET /api/forum/posts?type=&tagIds=&q=&order=` —
+    tam forum (web ForumPage; Dertleşme Duvarı `SUPPORT_WALL` ayrı özellikte
+    kalır). 4 tip sekmesi (DENEYIM/QUESTION/TAVSIYE/BASARI_HIKAYESI — kodlar
+    sabit, etiketler i18n), arama, sıralama (`order` new/hot/unanswered/
+    expert), semptom etiketi filtresi (`GET /tags/grouped`; kategori kodları
+    ILETISIM/SOSYAL/... i18n etiketli, **etiket adları veri — çevrilmez**),
+    sayfalı liste (Daha Fazla Yükle). Detay: tam metin (HTML→düz metin),
+    beğeni (`POST /votes` POST +1 toggle), yorumlar (uzman onaylı önce) +
+    tek seviye yanıt (`parentCommentId`) + yorum oyu (+1/-1,
+    upvotedByMe/downvotedByMe), soru sahibi **en iyi cevap**
+    (`POST /forum/posts/{id}/accept/{commentId}`), kendi gönderi/yorum
+    düzenle-sil, şikayet (`POST /reports {targetType,targetId,reason}`).
+    Oluşturma: tip + başlık + içerik + etiketler + anonimlik + gizlilik
+    ayarları (web `defaultPrivacy` birebir; anonimse ad+tanı kapalı). Forum
+    yorumları duvardan farklı: `anonymous` bayrağı gönderilmez. `/forum`,
+    Profil menüsü kısayolu.
 - ✅ Firebase: Crashlytics + Analytics kod entegrasyonu (debug'da kapalı, sürümde açık).
 - ✅ FCM push: mobil taraf hazır; **backend uç noktaları da yazıldı** (POST/DELETE
   `/api/push/device-token`, MESSAGE/APPOINTMENT data payload — sözleşme
@@ -198,12 +214,13 @@ flutter build apk --debug
   Profil'de Sistem/Açık/Koyu seçici, kalıcı).
 - ✅ Hedef ilerletme (+jeton geri alma) — `PUT /api/goals/{id}` (entries JSON dizisi;
   title+category zorunlu). Gelişim sekmesindeki hedef kartlarında.
-- ⏳ Sonraki adaylar: backend FCM deploy sonrası uçtan uca push testi; tam
-  forum (mobilde yalnızca SUPPORT_WALL kategorisi var); çocuk detay/tarama
-  (web `/cocuklarim/:id`). Kapsam dışı: BEP oluşturucu web'de EXPERT_ONLY.
-  Not: sosyal hikayeler (`/api/social-stories`) ve wellbeing backend'de var
-  ama web'de tam bir CRUD arayüzü yok (mirror edilecek UX yok) — düşük
-  öncelik.
+- ⏳ Sonraki adaylar: backend FCM deploy sonrası uçtan uca push testi; çocuk
+  detay paneli (web `/cocuklarim/:id` — çoğu verinin mobilde kendi ekranı
+  var; özgün kısımlar: kilometre taşı listesi, etiketler, foto). Kapsam dışı:
+  BEP oluşturucu web'de EXPERT_ONLY; tarama anketi web'de YOK (yalnızca sonuç
+  gösterimi, `/tarama` → `/cocuklarim` redirect). Not: sosyal hikayeler
+  (`/api/social-stories`) ve wellbeing backend'de var ama web'de tam bir CRUD
+  arayüzü yok (mirror edilecek UX yok) — düşük öncelik.
 - Modül kapsamı ve fazlar: bkz. plan `~/.claude/plans/bir-otizm-destek-mobil-compressed-fog.md`.
 
 ## Notlar

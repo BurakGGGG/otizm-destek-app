@@ -801,6 +801,79 @@ tasks:
     veya fotoğrafını bulut bağlantısı olarak ekleyebilirsiniz.
   submitConfirm: Teslim Et ve Kapat
 
+forum:
+  title: Topluluk Forumu
+  typeExperience: Deneyimler
+  typeQuestion: Soru-Cevap
+  typeAdvice: Tavsiyeler
+  typeSuccess: Başarı Hikayeleri
+  catCommunication: İletişim
+  catSocial: Sosyal
+  catSensory: Duyusal
+  catBehavior: Davranış
+  catMotor: Motor
+  catEducation: Eğitim
+  justNow: az önce
+  minsAgo: $count dk önce
+  hoursAgo: $count sa önce
+  daysAgo: $count gün önce
+  searchHint: Forumda ara…
+  tagFilter: Etiket filtresi
+  sortNew: Yeni
+  sortHot: Sıcak
+  sortUnanswered: Cevapsız
+  sortExpert: Uzmanlı
+  empty: Henüz gönderi yok. Toplulukla bir deneyiminizi paylaşarak başlayın.
+  emptyQuestion: Henüz soru yok. İlk soruyu sorarak tartışmayı başlatın.
+  add: Paylaş
+  loadMore: Daha Fazla Yükle
+  posted: Gönderi paylaşıldı.
+  anonymousUser: Anonim Kullanıcı
+  expertBadge: Uzman
+  pinnedBadge: Sabitlenmiş
+  answeredBadge: Cevaplanmış
+  postTitle: Gönderi
+  commentsHeader: Yorumlar ($count)
+  commentsError: Yorumlar yüklenemedi.
+  noComments: Henüz yorum yok. İlk yorumu siz yazın.
+  commentHint: Bir yorum yazın…
+  replyHint: Yanıtınızı yazın…
+  replyingTo: '$name kişisine yanıt veriliyor'
+  reply: Yanıtla
+  acceptAnswer: En İyi Cevap
+  answerAccepted: En iyi cevap işaretlendi.
+  acceptedBadge: En İyi Cevap
+  expertApproved: Uzman Onaylı
+  editComment: Yorumu Düzenle
+  deleteCommentTitle: Yorumu Sil
+  deleteCommentConfirm: Bu yorumu silmek istediğinize emin misiniz?
+  deleteTitle: Gönderiyi Sil
+  deleteConfirm: Bu gönderiyi silmek istediğinize emin misiniz?
+  cancel: Vazgeç
+  delete: Sil
+  save: Kaydet
+  reportTitle: Şikayet Et
+  reportHint: Şikayet nedeninizi kısaca yazın
+  reportSend: Gönder
+  reportSent: Şikayetiniz alındı.
+  newPost: Yeni Gönderi
+  editPost: Gönderiyi Düzenle
+  titleLabel: Başlık
+  titleHintQuestion: Sorunuzu kısaca özetleyin
+  titleHint: Gönderinizin başlığı
+  contentLabel: İçerik
+  tagsLabel: Semptom Etiketleri
+  anonymousTitle: Anonim Olarak Paylaş
+  anonymousBody: Profil bilgileriniz gizlenir, "Anonim Kullanıcı" olarak
+    görünürsünüz.
+  privacyTitle: Gizlilik Ayarları
+  privacyRealName: Gerçek adımı göster
+  privacyChildAge: Çocuğumun yaş aralığını göster
+  privacySymptoms: Semptom etiketlerini göster
+  privacyDiagnosis: Tanı detaylarını göster
+  privacyMatching: Eşleştirme algoritmasında kullanılsın
+  share: Paylaş
+
 crisis:
   title: Kriz Rehberi
   heroTitle: Zor Anlarda Ne Yapmalı?

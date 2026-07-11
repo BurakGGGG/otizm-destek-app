@@ -74,6 +74,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$groups$tr groups = Translations$groups$tr.internal(_root);
 	late final Translations$treatment$tr treatment = Translations$treatment$tr.internal(_root);
 	late final Translations$tasks$tr tasks = Translations$tasks$tr.internal(_root);
+	late final Translations$forum$tr forum = Translations$forum$tr.internal(_root);
 	late final Translations$crisis$tr crisis = Translations$crisis$tr.internal(_root);
 	late final Translations$calendar$tr calendar = Translations$calendar$tr.internal(_root);
 	late final Translations$emergency$tr emergency = Translations$emergency$tr.internal(_root);
@@ -2463,6 +2464,225 @@ class Translations$tasks$tr {
 	String get submitConfirm => 'Teslim Et ve Kapat';
 }
 
+// Path: forum
+class Translations$forum$tr {
+	Translations$forum$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Topluluk Forumu'
+	String get title => 'Topluluk Forumu';
+
+	/// tr: 'Deneyimler'
+	String get typeExperience => 'Deneyimler';
+
+	/// tr: 'Soru-Cevap'
+	String get typeQuestion => 'Soru-Cevap';
+
+	/// tr: 'Tavsiyeler'
+	String get typeAdvice => 'Tavsiyeler';
+
+	/// tr: 'Başarı Hikayeleri'
+	String get typeSuccess => 'Başarı Hikayeleri';
+
+	/// tr: 'İletişim'
+	String get catCommunication => 'İletişim';
+
+	/// tr: 'Sosyal'
+	String get catSocial => 'Sosyal';
+
+	/// tr: 'Duyusal'
+	String get catSensory => 'Duyusal';
+
+	/// tr: 'Davranış'
+	String get catBehavior => 'Davranış';
+
+	/// tr: 'Motor'
+	String get catMotor => 'Motor';
+
+	/// tr: 'Eğitim'
+	String get catEducation => 'Eğitim';
+
+	/// tr: 'az önce'
+	String get justNow => 'az önce';
+
+	/// tr: '$count dk önce'
+	String minsAgo({required Object count}) => '${count} dk önce';
+
+	/// tr: '$count sa önce'
+	String hoursAgo({required Object count}) => '${count} sa önce';
+
+	/// tr: '$count gün önce'
+	String daysAgo({required Object count}) => '${count} gün önce';
+
+	/// tr: 'Forumda ara…'
+	String get searchHint => 'Forumda ara…';
+
+	/// tr: 'Etiket filtresi'
+	String get tagFilter => 'Etiket filtresi';
+
+	/// tr: 'Yeni'
+	String get sortNew => 'Yeni';
+
+	/// tr: 'Sıcak'
+	String get sortHot => 'Sıcak';
+
+	/// tr: 'Cevapsız'
+	String get sortUnanswered => 'Cevapsız';
+
+	/// tr: 'Uzmanlı'
+	String get sortExpert => 'Uzmanlı';
+
+	/// tr: 'Henüz gönderi yok. Toplulukla bir deneyiminizi paylaşarak başlayın.'
+	String get empty => 'Henüz gönderi yok. Toplulukla bir deneyiminizi paylaşarak başlayın.';
+
+	/// tr: 'Henüz soru yok. İlk soruyu sorarak tartışmayı başlatın.'
+	String get emptyQuestion => 'Henüz soru yok. İlk soruyu sorarak tartışmayı başlatın.';
+
+	/// tr: 'Paylaş'
+	String get add => 'Paylaş';
+
+	/// tr: 'Daha Fazla Yükle'
+	String get loadMore => 'Daha Fazla Yükle';
+
+	/// tr: 'Gönderi paylaşıldı.'
+	String get posted => 'Gönderi paylaşıldı.';
+
+	/// tr: 'Anonim Kullanıcı'
+	String get anonymousUser => 'Anonim Kullanıcı';
+
+	/// tr: 'Uzman'
+	String get expertBadge => 'Uzman';
+
+	/// tr: 'Sabitlenmiş'
+	String get pinnedBadge => 'Sabitlenmiş';
+
+	/// tr: 'Cevaplanmış'
+	String get answeredBadge => 'Cevaplanmış';
+
+	/// tr: 'Gönderi'
+	String get postTitle => 'Gönderi';
+
+	/// tr: 'Yorumlar ($count)'
+	String commentsHeader({required Object count}) => 'Yorumlar (${count})';
+
+	/// tr: 'Yorumlar yüklenemedi.'
+	String get commentsError => 'Yorumlar yüklenemedi.';
+
+	/// tr: 'Henüz yorum yok. İlk yorumu siz yazın.'
+	String get noComments => 'Henüz yorum yok. İlk yorumu siz yazın.';
+
+	/// tr: 'Bir yorum yazın…'
+	String get commentHint => 'Bir yorum yazın…';
+
+	/// tr: 'Yanıtınızı yazın…'
+	String get replyHint => 'Yanıtınızı yazın…';
+
+	/// tr: '$name kişisine yanıt veriliyor'
+	String replyingTo({required Object name}) => '${name} kişisine yanıt veriliyor';
+
+	/// tr: 'Yanıtla'
+	String get reply => 'Yanıtla';
+
+	/// tr: 'En İyi Cevap'
+	String get acceptAnswer => 'En İyi Cevap';
+
+	/// tr: 'En iyi cevap işaretlendi.'
+	String get answerAccepted => 'En iyi cevap işaretlendi.';
+
+	/// tr: 'En İyi Cevap'
+	String get acceptedBadge => 'En İyi Cevap';
+
+	/// tr: 'Uzman Onaylı'
+	String get expertApproved => 'Uzman Onaylı';
+
+	/// tr: 'Yorumu Düzenle'
+	String get editComment => 'Yorumu Düzenle';
+
+	/// tr: 'Yorumu Sil'
+	String get deleteCommentTitle => 'Yorumu Sil';
+
+	/// tr: 'Bu yorumu silmek istediğinize emin misiniz?'
+	String get deleteCommentConfirm => 'Bu yorumu silmek istediğinize emin misiniz?';
+
+	/// tr: 'Gönderiyi Sil'
+	String get deleteTitle => 'Gönderiyi Sil';
+
+	/// tr: 'Bu gönderiyi silmek istediğinize emin misiniz?'
+	String get deleteConfirm => 'Bu gönderiyi silmek istediğinize emin misiniz?';
+
+	/// tr: 'Vazgeç'
+	String get cancel => 'Vazgeç';
+
+	/// tr: 'Sil'
+	String get delete => 'Sil';
+
+	/// tr: 'Kaydet'
+	String get save => 'Kaydet';
+
+	/// tr: 'Şikayet Et'
+	String get reportTitle => 'Şikayet Et';
+
+	/// tr: 'Şikayet nedeninizi kısaca yazın'
+	String get reportHint => 'Şikayet nedeninizi kısaca yazın';
+
+	/// tr: 'Gönder'
+	String get reportSend => 'Gönder';
+
+	/// tr: 'Şikayetiniz alındı.'
+	String get reportSent => 'Şikayetiniz alındı.';
+
+	/// tr: 'Yeni Gönderi'
+	String get newPost => 'Yeni Gönderi';
+
+	/// tr: 'Gönderiyi Düzenle'
+	String get editPost => 'Gönderiyi Düzenle';
+
+	/// tr: 'Başlık'
+	String get titleLabel => 'Başlık';
+
+	/// tr: 'Sorunuzu kısaca özetleyin'
+	String get titleHintQuestion => 'Sorunuzu kısaca özetleyin';
+
+	/// tr: 'Gönderinizin başlığı'
+	String get titleHint => 'Gönderinizin başlığı';
+
+	/// tr: 'İçerik'
+	String get contentLabel => 'İçerik';
+
+	/// tr: 'Semptom Etiketleri'
+	String get tagsLabel => 'Semptom Etiketleri';
+
+	/// tr: 'Anonim Olarak Paylaş'
+	String get anonymousTitle => 'Anonim Olarak Paylaş';
+
+	/// tr: 'Profil bilgileriniz gizlenir, "Anonim Kullanıcı" olarak görünürsünüz.'
+	String get anonymousBody => 'Profil bilgileriniz gizlenir, "Anonim Kullanıcı" olarak görünürsünüz.';
+
+	/// tr: 'Gizlilik Ayarları'
+	String get privacyTitle => 'Gizlilik Ayarları';
+
+	/// tr: 'Gerçek adımı göster'
+	String get privacyRealName => 'Gerçek adımı göster';
+
+	/// tr: 'Çocuğumun yaş aralığını göster'
+	String get privacyChildAge => 'Çocuğumun yaş aralığını göster';
+
+	/// tr: 'Semptom etiketlerini göster'
+	String get privacySymptoms => 'Semptom etiketlerini göster';
+
+	/// tr: 'Tanı detaylarını göster'
+	String get privacyDiagnosis => 'Tanı detaylarını göster';
+
+	/// tr: 'Eşleştirme algoritmasında kullanılsın'
+	String get privacyMatching => 'Eşleştirme algoritmasında kullanılsın';
+
+	/// tr: 'Paylaş'
+	String get share => 'Paylaş';
+}
+
 // Path: crisis
 class Translations$crisis$tr {
 	Translations$crisis$tr.internal(this._root);
@@ -4051,6 +4271,76 @@ extension on Translations {
 			'tasks.evidenceLabel' => 'Kanıt / Eklenti Bağlantısı (İsteğe Bağlı)',
 			'tasks.evidenceHint' => 'Uzmanınızın görebilmesi için ilgili çalışma anının videosunu veya fotoğrafını bulut bağlantısı olarak ekleyebilirsiniz.',
 			'tasks.submitConfirm' => 'Teslim Et ve Kapat',
+			'forum.title' => 'Topluluk Forumu',
+			'forum.typeExperience' => 'Deneyimler',
+			'forum.typeQuestion' => 'Soru-Cevap',
+			'forum.typeAdvice' => 'Tavsiyeler',
+			'forum.typeSuccess' => 'Başarı Hikayeleri',
+			'forum.catCommunication' => 'İletişim',
+			'forum.catSocial' => 'Sosyal',
+			'forum.catSensory' => 'Duyusal',
+			'forum.catBehavior' => 'Davranış',
+			'forum.catMotor' => 'Motor',
+			'forum.catEducation' => 'Eğitim',
+			'forum.justNow' => 'az önce',
+			'forum.minsAgo' => ({required Object count}) => '${count} dk önce',
+			'forum.hoursAgo' => ({required Object count}) => '${count} sa önce',
+			'forum.daysAgo' => ({required Object count}) => '${count} gün önce',
+			'forum.searchHint' => 'Forumda ara…',
+			'forum.tagFilter' => 'Etiket filtresi',
+			'forum.sortNew' => 'Yeni',
+			'forum.sortHot' => 'Sıcak',
+			'forum.sortUnanswered' => 'Cevapsız',
+			'forum.sortExpert' => 'Uzmanlı',
+			'forum.empty' => 'Henüz gönderi yok. Toplulukla bir deneyiminizi paylaşarak başlayın.',
+			'forum.emptyQuestion' => 'Henüz soru yok. İlk soruyu sorarak tartışmayı başlatın.',
+			'forum.add' => 'Paylaş',
+			'forum.loadMore' => 'Daha Fazla Yükle',
+			'forum.posted' => 'Gönderi paylaşıldı.',
+			'forum.anonymousUser' => 'Anonim Kullanıcı',
+			'forum.expertBadge' => 'Uzman',
+			'forum.pinnedBadge' => 'Sabitlenmiş',
+			'forum.answeredBadge' => 'Cevaplanmış',
+			'forum.postTitle' => 'Gönderi',
+			'forum.commentsHeader' => ({required Object count}) => 'Yorumlar (${count})',
+			'forum.commentsError' => 'Yorumlar yüklenemedi.',
+			'forum.noComments' => 'Henüz yorum yok. İlk yorumu siz yazın.',
+			'forum.commentHint' => 'Bir yorum yazın…',
+			'forum.replyHint' => 'Yanıtınızı yazın…',
+			'forum.replyingTo' => ({required Object name}) => '${name} kişisine yanıt veriliyor',
+			'forum.reply' => 'Yanıtla',
+			'forum.acceptAnswer' => 'En İyi Cevap',
+			'forum.answerAccepted' => 'En iyi cevap işaretlendi.',
+			'forum.acceptedBadge' => 'En İyi Cevap',
+			'forum.expertApproved' => 'Uzman Onaylı',
+			'forum.editComment' => 'Yorumu Düzenle',
+			'forum.deleteCommentTitle' => 'Yorumu Sil',
+			'forum.deleteCommentConfirm' => 'Bu yorumu silmek istediğinize emin misiniz?',
+			'forum.deleteTitle' => 'Gönderiyi Sil',
+			'forum.deleteConfirm' => 'Bu gönderiyi silmek istediğinize emin misiniz?',
+			'forum.cancel' => 'Vazgeç',
+			'forum.delete' => 'Sil',
+			'forum.save' => 'Kaydet',
+			'forum.reportTitle' => 'Şikayet Et',
+			'forum.reportHint' => 'Şikayet nedeninizi kısaca yazın',
+			'forum.reportSend' => 'Gönder',
+			'forum.reportSent' => 'Şikayetiniz alındı.',
+			'forum.newPost' => 'Yeni Gönderi',
+			'forum.editPost' => 'Gönderiyi Düzenle',
+			'forum.titleLabel' => 'Başlık',
+			'forum.titleHintQuestion' => 'Sorunuzu kısaca özetleyin',
+			'forum.titleHint' => 'Gönderinizin başlığı',
+			'forum.contentLabel' => 'İçerik',
+			'forum.tagsLabel' => 'Semptom Etiketleri',
+			'forum.anonymousTitle' => 'Anonim Olarak Paylaş',
+			'forum.anonymousBody' => 'Profil bilgileriniz gizlenir, "Anonim Kullanıcı" olarak görünürsünüz.',
+			'forum.privacyTitle' => 'Gizlilik Ayarları',
+			'forum.privacyRealName' => 'Gerçek adımı göster',
+			'forum.privacyChildAge' => 'Çocuğumun yaş aralığını göster',
+			'forum.privacySymptoms' => 'Semptom etiketlerini göster',
+			'forum.privacyDiagnosis' => 'Tanı detaylarını göster',
+			'forum.privacyMatching' => 'Eşleştirme algoritmasında kullanılsın',
+			'forum.share' => 'Paylaş',
 			'crisis.title' => 'Kriz Rehberi',
 			'crisis.heroTitle' => 'Zor Anlarda Ne Yapmalı?',
 			'crisis.heroSubtitle' => 'Çocuğunuz bunaldığında sakin kalmanıza ve doğru adımları atmanıza yardımcı olacak hızlı rehber.',
@@ -4304,6 +4594,8 @@ extension on Translations {
 			'profile.myChildren' => 'Çocuklarım',
 			'profile.notificationSettings' => 'Bildirim Ayarları',
 			'profile.help' => 'Yardım',
+			_ => null,
+		} ?? switch (path) {
 			'profile.signOut' => 'Çıkış Yap',
 			'errors.timeout' => 'Sunucuya ulaşılamadı, lütfen tekrar deneyin.',
 			'errors.noConnection' => 'İnternet bağlantısı yok gibi görünüyor.',
