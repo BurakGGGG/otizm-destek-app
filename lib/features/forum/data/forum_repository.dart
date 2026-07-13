@@ -129,20 +129,31 @@ class ForumRepository {
     }
   }
 
-  Future<List<ForumComment>> getComments(String postId, {int page = 0}) async {
+  /// Bir gönderinin tüm yorumlarını çeker. Yorumlar sayfalıdır ve yanıtlar
+  /// (parentCommentId) da aynı listede döndüğü için tek sayfayla yetinmek
+  /// üst-seviye yorumları/yanıtları görünmez bırakabilir; bu yüzden makul bir
+  /// üst sınıra (10 sayfa × 50 = 500) kadar tüm sayfalar toplanır.
+  Future<List<ForumComment>> getComments(String postId) async {
+    const size = 50;
+    const maxPages = 10;
+    final comments = <ForumComment>[];
     try {
-      final res = await _dio.get(
-        '/forum/posts/$postId/comments',
-        queryParameters: {'page': page, 'size': 50},
-      );
-      final data = ApiEnvelope.fromJson(res.data).data;
-      if (data is Map<String, dynamic> && data['content'] is List) {
-        return (data['content'] as List)
+      var page = 0;
+      var totalPages = 1;
+      while (page < totalPages && page < maxPages) {
+        final res = await _dio.get(
+          '/forum/posts/$postId/comments',
+          queryParameters: {'page': page, 'size': size},
+        );
+        final data = ApiEnvelope.fromJson(res.data).data;
+        if (data is! Map<String, dynamic> || data['content'] is! List) break;
+        comments.addAll((data['content'] as List)
             .whereType<Map<String, dynamic>>()
-            .map(ForumComment.fromJson)
-            .toList();
+            .map(ForumComment.fromJson));
+        totalPages = (data['totalPages'] as num?)?.toInt() ?? 1;
+        page++;
       }
-      return const [];
+      return comments;
     } on DioException catch (e) {
       throw ApiException.fromDio(e);
     }

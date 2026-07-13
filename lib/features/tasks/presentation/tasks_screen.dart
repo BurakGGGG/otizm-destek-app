@@ -109,6 +109,7 @@ class _TasksScreenState extends ConsumerState<TasksScreen> {
                   else
                     for (final task in displayed) ...[
                       _TaskCard(
+                        key: ValueKey(task.id),
                         task: task,
                         onSubmit: () => _openSubmitSheet(task),
                       ),
@@ -335,7 +336,7 @@ class _FilterChips extends StatelessWidget {
 /// Tek görev kartı — dokununca genişler; bekleyense teslim butonu, teslim
 /// edildiyse teslim kaydı + uzman geri bildirimi gösterilir.
 class _TaskCard extends ConsumerStatefulWidget {
-  const _TaskCard({required this.task, required this.onSubmit});
+  const _TaskCard({super.key, required this.task, required this.onSubmit});
 
   final ExpertTask task;
   final VoidCallback onSubmit;

@@ -156,7 +156,12 @@ class _ForumScreenState extends ConsumerState<ForumScreen> {
           );
     } on ApiException catch (e) {
       if (!mounted) return;
-      setState(() => _posts = [..._posts]..[index] = post);
+      // Geri alma: bu arada liste yeniden yüklenmiş olabilir, indexi id ile
+      // yeniden bul (eski index artık sınır dışı ya da farklı gönderi olabilir).
+      final rollbackIndex = _posts.indexWhere((p) => p.id == post.id);
+      if (rollbackIndex >= 0) {
+        setState(() => _posts = [..._posts]..[rollbackIndex] = post);
+      }
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.message)));
     }
