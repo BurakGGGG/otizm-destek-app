@@ -192,6 +192,7 @@ goalForm:
 
 noteForm:
   title: Add Note
+  editTitle: Edit Note
   nameLabel: Title
   nameHint: e.g. Today's progress
   contentLabel: Content (optional)
@@ -199,12 +200,28 @@ noteForm:
   categoryLabel: Category (optional)
   moodLabel: Mood (optional)
   moodHappy: Happy
-  moodCalm: Calm
-  moodSad: Sad
+  moodNeutral: Normal
+  moodSad: Hard Day
   dateLabel: Date
   save: Save
   errorTitle: Please enter a title.
   created: Note added.
+  updated: Note updated.
+
+notesPage:
+  title: My Notes
+  add: Add Note
+  searchHint: Search notes…
+  empty: No development notes yet. Start by adding the first note.
+  noResults: No results. Try changing the filter or search.
+  noChildren: Add a child profile first.
+  loadMore: Load More
+  edit: Edit
+  delete: Delete
+  cancel: Cancel
+  deleteTitle: Delete Note
+  deleteConfirm: Are you sure you want to delete this note?
+  deleted: Note deleted.
 
 notifications:
   show: Show

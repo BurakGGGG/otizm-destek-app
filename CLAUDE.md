@@ -62,7 +62,18 @@ flutter build apk --debug
 - ✅ Tüm çekirdek ekranlar gerçek backend verisine bağlı (mock kalmadı):
   - **Ana Sayfa:** `/api/children`, `/api/appointments` (yaklaşanlar), `/api/knowledge`.
   - **Uzmanlar:** `/api/experts` + arama/filtre; **uzman detayı** → "Randevu Al" / "Mesaj Gönder".
-  - **Gelişim:** `/api/goals`, `/api/notes` (okuma + **hedef/not ekleme**).
+  - **Gelişim:** `/api/goals`, `/api/notes` (okuma + **hedef/not ekleme**);
+    Gelişim sekmesindeki not bölümünden **Notlarım** tam ekranına geçiş.
+  - **Notlarım:** `/api/notes` tam CRUD (web NotesPage birebir) — çocuk
+    seçici, sayfalı liste (`GET /notes/child/{id}?page=`), arama +
+    kategori/ruh hâli filtresi (client-side, web gibi), oluştur/**düzenle**
+    (`PUT /notes/{id}`)/**sil** (`DELETE /notes/{id}`). **Veri uyumu
+    düzeltmesi:** not kategorileri artık web ile birebir `kNoteCategories`
+    (`Dil Gelişimi/Sosyal Beceri/Motor Gelişim/Davranış/Eğitim/Genel` —
+    goal kategorilerinden AYRI, çevrilmez veri); ruh hâli ortası kodu
+    `calm`→**`neutral`** (web `moods` birebir: happy/neutral/sad, paylaşılan
+    DB'de saklanan veri). Not formu (`note_form_screen`) artık edit modunu da
+    destekler. `/notes`, Profil menüsü + Gelişim sekmesi kısayolu.
   - **Çocuklarım:** `/api/children` CRUD (ekle/düzenle/sil).
   - **Randevular:** `/api/appointments` liste + iptal (veli) / onayla·tamamla (uzman);
     **randevu alma akışı** (müsaitlik slotları + `POST /appointments`);

@@ -17,6 +17,7 @@ import '../../goals/presentation/goal_form_screen.dart';
 import '../../notes/data/note_repository.dart';
 import '../../notes/domain/development_note.dart';
 import '../../notes/presentation/note_form_screen.dart';
+import '../../notes/presentation/notes_screen.dart';
 
 /// Gelişim sekmesi — seçili çocuğun hedefleri (`/api/goals`) ve son gelişim
 /// notları (`/api/notes`).
@@ -465,11 +466,19 @@ class _NotesSection extends ConsumerWidget {
             Expanded(
               child: Text(t.progress.recentNotes, style: text.titleMedium),
             ),
-            TextButton.icon(
+            TextButton(
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => NotesScreen(initialChildId: childId),
+                ),
+              ),
+              child: Text(t.common.seeAll),
+            ),
+            IconButton(
+              tooltip: t.progress.addNote,
               onPressed: () =>
                   _openForm(context, NoteFormScreen(childId: childId)),
-              icon: const Icon(Icons.add, size: 18),
-              label: Text(t.progress.addNote),
+              icon: const Icon(Icons.add, size: 20),
             ),
           ],
         ),

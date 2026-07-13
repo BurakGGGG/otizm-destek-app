@@ -6,26 +6,45 @@ import '../../../core/network/api_exception.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../i18n/strings.g.dart';
-import '../../goals/domain/goal_categories.dart';
+import '../domain/development_note.dart';
+import '../domain/note_categories.dart';
 import '../data/note_repository.dart';
 
-/// Yeni gelişim notu formu — `POST /notes`.
+/// Gelişim notu formu — `POST /notes` (oluştur) ya da `PUT /notes/{id}`
+/// (düzenle). Kategori ve ruh hâli değerleri web ile birebir paylaşılan
+/// VERİdir ([kNoteCategories] / [kNoteMoods]); çevrilmez.
 class NoteFormScreen extends ConsumerStatefulWidget {
-  const NoteFormScreen({super.key, required this.childId});
+  const NoteFormScreen({super.key, required this.childId, this.existing});
   final String childId;
+
+  /// Doluysa düzenleme modu.
+  final DevelopmentNote? existing;
 
   @override
   ConsumerState<NoteFormScreen> createState() => _NoteFormScreenState();
 }
 
 class _NoteFormScreenState extends ConsumerState<NoteFormScreen> {
-  final _title = TextEditingController();
-  final _content = TextEditingController();
+  late final TextEditingController _title;
+  late final TextEditingController _content;
   String? _category;
-  String? _mood; // happy | calm | sad
-  DateTime _date = DateTime.now();
+  String? _mood; // happy | neutral | sad — web ile birebir
+  late DateTime _date;
   bool _saving = false;
   String? _titleError;
+
+  bool get _isEdit => widget.existing != null;
+
+  @override
+  void initState() {
+    super.initState();
+    final existing = widget.existing;
+    _title = TextEditingController(text: existing?.title ?? '');
+    _content = TextEditingController(text: existing?.content ?? '');
+    _category = existing?.category;
+    _mood = existing?.mood;
+    _date = existing?.noteDate ?? DateTime.now();
+  }
 
   @override
   void dispose() {
@@ -59,20 +78,32 @@ class _NoteFormScreenState extends ConsumerState<NoteFormScreen> {
       _saving = true;
     });
     try {
-      await ref
-          .read(noteRepositoryProvider)
-          .createNote(
-            childId: widget.childId,
-            title: _title.text,
-            content: _content.text,
-            category: _category,
-            mood: _mood,
-            noteDateIso: _iso(_date),
-          );
+      final repo = ref.read(noteRepositoryProvider);
+      if (_isEdit) {
+        await repo.updateNote(
+          id: widget.existing!.id,
+          childId: widget.childId,
+          title: _title.text,
+          content: _content.text,
+          category: _category,
+          mood: _mood,
+          noteDateIso: _iso(_date),
+        );
+      } else {
+        await repo.createNote(
+          childId: widget.childId,
+          title: _title.text,
+          content: _content.text,
+          category: _category,
+          mood: _mood,
+          noteDateIso: _iso(_date),
+        );
+      }
       ref.invalidate(recentNotesProvider(widget.childId));
       if (!mounted) return;
       Haptics.success();
-      Navigator.of(context).pop(t.noteForm.created);
+      Navigator.of(context)
+          .pop(_isEdit ? t.noteForm.updated : t.noteForm.created);
     } on ApiException catch (e) {
       if (!mounted) return;
       setState(() => _saving = false);
@@ -87,12 +118,14 @@ class _NoteFormScreenState extends ConsumerState<NoteFormScreen> {
     final t = context.t;
     final moods = <({String value, String emoji, String label})>[
       (value: 'happy', emoji: '😄', label: t.noteForm.moodHappy),
-      (value: 'calm', emoji: '😐', label: t.noteForm.moodCalm),
+      (value: 'neutral', emoji: '😐', label: t.noteForm.moodNeutral),
       (value: 'sad', emoji: '😢', label: t.noteForm.moodSad),
     ];
 
     return Scaffold(
-      appBar: AppBar(title: Text(t.noteForm.title)),
+      appBar: AppBar(
+        title: Text(_isEdit ? t.noteForm.editTitle : t.noteForm.title),
+      ),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.all(AppSpacing.margin),
@@ -149,7 +182,7 @@ class _NoteFormScreenState extends ConsumerState<NoteFormScreen> {
               spacing: 8,
               runSpacing: 8,
               children: [
-                for (final c in kDevelopmentCategories)
+                for (final c in kNoteCategories)
                   ChoiceChip(
                     label: Text(c),
                     selected: _category == c,

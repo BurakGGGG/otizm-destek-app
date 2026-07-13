@@ -192,6 +192,7 @@ goalForm:
 
 noteForm:
   title: Not Ekle
+  editTitle: Notu Düzenle
   nameLabel: Başlık
   nameHint: Örn. Bugünkü gelişme
   contentLabel: İçerik (isteğe bağlı)
@@ -199,12 +200,28 @@ noteForm:
   categoryLabel: Kategori (isteğe bağlı)
   moodLabel: Ruh Hali (isteğe bağlı)
   moodHappy: Mutlu
-  moodCalm: Sakin
-  moodSad: Üzgün
+  moodNeutral: Normal
+  moodSad: Zor Gün
   dateLabel: Tarih
   save: Kaydet
   errorTitle: Lütfen bir başlık girin.
   created: Not eklendi.
+  updated: Not güncellendi.
+
+notesPage:
+  title: Notlarım
+  add: Not Ekle
+  searchHint: Notlarda ara…
+  empty: Henüz gelişim notu yok. İlk notu ekleyerek başlayın.
+  noResults: Sonuç bulunamadı. Filtre veya aramayı değiştirin.
+  noChildren: Önce bir çocuk profili ekleyin.
+  loadMore: Daha Fazla Yükle
+  edit: Düzenle
+  delete: Sil
+  cancel: Vazgeç
+  deleteTitle: Notu Sil
+  deleteConfirm: Bu notu silmek istediğinize emin misiniz?
+  deleted: Not silindi.
 
 notifications:
   show: Göster

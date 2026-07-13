@@ -57,6 +57,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$progress$tr progress = Translations$progress$tr.internal(_root);
 	late final Translations$goalForm$tr goalForm = Translations$goalForm$tr.internal(_root);
 	late final Translations$noteForm$tr noteForm = Translations$noteForm$tr.internal(_root);
+	late final Translations$notesPage$tr notesPage = Translations$notesPage$tr.internal(_root);
 	late final Translations$notifications$tr notifications = Translations$notifications$tr.internal(_root);
 	late final Translations$knowledge$tr knowledge = Translations$knowledge$tr.internal(_root);
 	late final Translations$appointments$tr appointments = Translations$appointments$tr.internal(_root);
@@ -696,6 +697,9 @@ class Translations$noteForm$tr {
 	/// tr: 'Not Ekle'
 	String get title => 'Not Ekle';
 
+	/// tr: 'Notu Düzenle'
+	String get editTitle => 'Notu Düzenle';
+
 	/// tr: 'Başlık'
 	String get nameLabel => 'Başlık';
 
@@ -717,11 +721,11 @@ class Translations$noteForm$tr {
 	/// tr: 'Mutlu'
 	String get moodHappy => 'Mutlu';
 
-	/// tr: 'Sakin'
-	String get moodCalm => 'Sakin';
+	/// tr: 'Normal'
+	String get moodNeutral => 'Normal';
 
-	/// tr: 'Üzgün'
-	String get moodSad => 'Üzgün';
+	/// tr: 'Zor Gün'
+	String get moodSad => 'Zor Gün';
 
 	/// tr: 'Tarih'
 	String get dateLabel => 'Tarih';
@@ -734,6 +738,57 @@ class Translations$noteForm$tr {
 
 	/// tr: 'Not eklendi.'
 	String get created => 'Not eklendi.';
+
+	/// tr: 'Not güncellendi.'
+	String get updated => 'Not güncellendi.';
+}
+
+// Path: notesPage
+class Translations$notesPage$tr {
+	Translations$notesPage$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Notlarım'
+	String get title => 'Notlarım';
+
+	/// tr: 'Not Ekle'
+	String get add => 'Not Ekle';
+
+	/// tr: 'Notlarda ara…'
+	String get searchHint => 'Notlarda ara…';
+
+	/// tr: 'Henüz gelişim notu yok. İlk notu ekleyerek başlayın.'
+	String get empty => 'Henüz gelişim notu yok. İlk notu ekleyerek başlayın.';
+
+	/// tr: 'Sonuç bulunamadı. Filtre veya aramayı değiştirin.'
+	String get noResults => 'Sonuç bulunamadı. Filtre veya aramayı değiştirin.';
+
+	/// tr: 'Önce bir çocuk profili ekleyin.'
+	String get noChildren => 'Önce bir çocuk profili ekleyin.';
+
+	/// tr: 'Daha Fazla Yükle'
+	String get loadMore => 'Daha Fazla Yükle';
+
+	/// tr: 'Düzenle'
+	String get edit => 'Düzenle';
+
+	/// tr: 'Sil'
+	String get delete => 'Sil';
+
+	/// tr: 'Vazgeç'
+	String get cancel => 'Vazgeç';
+
+	/// tr: 'Notu Sil'
+	String get deleteTitle => 'Notu Sil';
+
+	/// tr: 'Bu notu silmek istediğinize emin misiniz?'
+	String get deleteConfirm => 'Bu notu silmek istediğinize emin misiniz?';
+
+	/// tr: 'Not silindi.'
+	String get deleted => 'Not silindi.';
 }
 
 // Path: notifications
@@ -3860,6 +3915,7 @@ extension on Translations {
 			'goalForm.errorTitle' => 'Lütfen bir başlık girin.',
 			'goalForm.created' => 'Hedef eklendi.',
 			'noteForm.title' => 'Not Ekle',
+			'noteForm.editTitle' => 'Notu Düzenle',
 			'noteForm.nameLabel' => 'Başlık',
 			'noteForm.nameHint' => 'Örn. Bugünkü gelişme',
 			'noteForm.contentLabel' => 'İçerik (isteğe bağlı)',
@@ -3867,12 +3923,26 @@ extension on Translations {
 			'noteForm.categoryLabel' => 'Kategori (isteğe bağlı)',
 			'noteForm.moodLabel' => 'Ruh Hali (isteğe bağlı)',
 			'noteForm.moodHappy' => 'Mutlu',
-			'noteForm.moodCalm' => 'Sakin',
-			'noteForm.moodSad' => 'Üzgün',
+			'noteForm.moodNeutral' => 'Normal',
+			'noteForm.moodSad' => 'Zor Gün',
 			'noteForm.dateLabel' => 'Tarih',
 			'noteForm.save' => 'Kaydet',
 			'noteForm.errorTitle' => 'Lütfen bir başlık girin.',
 			'noteForm.created' => 'Not eklendi.',
+			'noteForm.updated' => 'Not güncellendi.',
+			'notesPage.title' => 'Notlarım',
+			'notesPage.add' => 'Not Ekle',
+			'notesPage.searchHint' => 'Notlarda ara…',
+			'notesPage.empty' => 'Henüz gelişim notu yok. İlk notu ekleyerek başlayın.',
+			'notesPage.noResults' => 'Sonuç bulunamadı. Filtre veya aramayı değiştirin.',
+			'notesPage.noChildren' => 'Önce bir çocuk profili ekleyin.',
+			'notesPage.loadMore' => 'Daha Fazla Yükle',
+			'notesPage.edit' => 'Düzenle',
+			'notesPage.delete' => 'Sil',
+			'notesPage.cancel' => 'Vazgeç',
+			'notesPage.deleteTitle' => 'Notu Sil',
+			'notesPage.deleteConfirm' => 'Bu notu silmek istediğinize emin misiniz?',
+			'notesPage.deleted' => 'Not silindi.',
 			'notifications.show' => 'Göster',
 			'notifications.title' => 'Bildirimler',
 			'notifications.empty' => 'Henüz bildiriminiz yok.',
@@ -4198,6 +4268,8 @@ extension on Translations {
 			'treatment.daysShort.1' => 'Pzt',
 			'treatment.daysShort.2' => 'Sal',
 			'treatment.daysShort.3' => 'Çar',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.daysShort.4' => 'Per',
 			'treatment.daysShort.5' => 'Cum',
 			'treatment.daysShort.6' => 'Cmt',
@@ -4213,8 +4285,6 @@ extension on Translations {
 			'treatment.stepCount' => ({required Object count}) => '${count} adım',
 			'treatment.emptyPlanTitle' => 'Bugün için plan bulunamadı.',
 			'treatment.emptyPlanBody' => 'Hedef eklediğinizde burada kısa günlük adımlar görünecek.',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.planDone' => 'Bugünün planı tamamlandı.',
 			'treatment.planDoneSub' => 'Bugünlük bu kadar yeterli.',
 			'treatment.moodSaveTitle' => 'Bugünkü ruh halini kaydet',
@@ -4712,6 +4782,8 @@ extension on Translations {
 			'analytics.noData' => 'Bu aralıkta henüz veri yok.',
 			'analytics.noChild' => 'Gelişim paneli için önce bir çocuk ekleyin.',
 			'children.title' => 'Çocuklarım',
+			_ => null,
+		} ?? switch (path) {
 			'children.addTitle' => 'Çocuk Ekle',
 			'children.editTitle' => 'Çocuğu Düzenle',
 			'children.empty' => 'Henüz çocuk eklemediniz.',
@@ -4727,8 +4799,6 @@ extension on Translations {
 			'children.diagnosisHint' => 'Varsa tanı bilgisi',
 			'children.educationLabel' => 'Eğitim Programı (isteğe bağlı)',
 			'children.educationHint' => 'Devam ettiği eğitim programı',
-			_ => null,
-		} ?? switch (path) {
 			'children.therapiesLabel' => 'Terapiler (isteğe bağlı)',
 			'children.therapiesHint' => 'Aldığı terapiler',
 			'children.ageYears' => ({required Object years}) => '${years} yaş',

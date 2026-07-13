@@ -56,6 +56,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$progress$en progress = _Translations$progress$en._(_root);
 	@override late final _Translations$goalForm$en goalForm = _Translations$goalForm$en._(_root);
 	@override late final _Translations$noteForm$en noteForm = _Translations$noteForm$en._(_root);
+	@override late final _Translations$notesPage$en notesPage = _Translations$notesPage$en._(_root);
 	@override late final _Translations$notifications$en notifications = _Translations$notifications$en._(_root);
 	@override late final _Translations$knowledge$en knowledge = _Translations$knowledge$en._(_root);
 	@override late final _Translations$appointments$en appointments = _Translations$appointments$en._(_root);
@@ -399,6 +400,7 @@ class _Translations$noteForm$en extends Translations$noteForm$tr {
 
 	// Translations
 	@override String get title => 'Add Note';
+	@override String get editTitle => 'Edit Note';
 	@override String get nameLabel => 'Title';
 	@override String get nameHint => 'e.g. Today\'s progress';
 	@override String get contentLabel => 'Content (optional)';
@@ -406,12 +408,35 @@ class _Translations$noteForm$en extends Translations$noteForm$tr {
 	@override String get categoryLabel => 'Category (optional)';
 	@override String get moodLabel => 'Mood (optional)';
 	@override String get moodHappy => 'Happy';
-	@override String get moodCalm => 'Calm';
-	@override String get moodSad => 'Sad';
+	@override String get moodNeutral => 'Normal';
+	@override String get moodSad => 'Hard Day';
 	@override String get dateLabel => 'Date';
 	@override String get save => 'Save';
 	@override String get errorTitle => 'Please enter a title.';
 	@override String get created => 'Note added.';
+	@override String get updated => 'Note updated.';
+}
+
+// Path: notesPage
+class _Translations$notesPage$en extends Translations$notesPage$tr {
+	_Translations$notesPage$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'My Notes';
+	@override String get add => 'Add Note';
+	@override String get searchHint => 'Search notes…';
+	@override String get empty => 'No development notes yet. Start by adding the first note.';
+	@override String get noResults => 'No results. Try changing the filter or search.';
+	@override String get noChildren => 'Add a child profile first.';
+	@override String get loadMore => 'Load More';
+	@override String get edit => 'Edit';
+	@override String get delete => 'Delete';
+	@override String get cancel => 'Cancel';
+	@override String get deleteTitle => 'Delete Note';
+	@override String get deleteConfirm => 'Are you sure you want to delete this note?';
+	@override String get deleted => 'Note deleted.';
 }
 
 // Path: notifications
@@ -1812,6 +1837,7 @@ extension on TranslationsEn {
 			'goalForm.errorTitle' => 'Please enter a title.',
 			'goalForm.created' => 'Goal added.',
 			'noteForm.title' => 'Add Note',
+			'noteForm.editTitle' => 'Edit Note',
 			'noteForm.nameLabel' => 'Title',
 			'noteForm.nameHint' => 'e.g. Today\'s progress',
 			'noteForm.contentLabel' => 'Content (optional)',
@@ -1819,12 +1845,26 @@ extension on TranslationsEn {
 			'noteForm.categoryLabel' => 'Category (optional)',
 			'noteForm.moodLabel' => 'Mood (optional)',
 			'noteForm.moodHappy' => 'Happy',
-			'noteForm.moodCalm' => 'Calm',
-			'noteForm.moodSad' => 'Sad',
+			'noteForm.moodNeutral' => 'Normal',
+			'noteForm.moodSad' => 'Hard Day',
 			'noteForm.dateLabel' => 'Date',
 			'noteForm.save' => 'Save',
 			'noteForm.errorTitle' => 'Please enter a title.',
 			'noteForm.created' => 'Note added.',
+			'noteForm.updated' => 'Note updated.',
+			'notesPage.title' => 'My Notes',
+			'notesPage.add' => 'Add Note',
+			'notesPage.searchHint' => 'Search notes…',
+			'notesPage.empty' => 'No development notes yet. Start by adding the first note.',
+			'notesPage.noResults' => 'No results. Try changing the filter or search.',
+			'notesPage.noChildren' => 'Add a child profile first.',
+			'notesPage.loadMore' => 'Load More',
+			'notesPage.edit' => 'Edit',
+			'notesPage.delete' => 'Delete',
+			'notesPage.cancel' => 'Cancel',
+			'notesPage.deleteTitle' => 'Delete Note',
+			'notesPage.deleteConfirm' => 'Are you sure you want to delete this note?',
+			'notesPage.deleted' => 'Note deleted.',
 			'notifications.show' => 'Show',
 			'notifications.title' => 'Notifications',
 			'notifications.empty' => 'You have no notifications yet.',
@@ -2150,6 +2190,8 @@ extension on TranslationsEn {
 			'treatment.daysShort.1' => 'Mon',
 			'treatment.daysShort.2' => 'Tue',
 			'treatment.daysShort.3' => 'Wed',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.daysShort.4' => 'Thu',
 			'treatment.daysShort.5' => 'Fri',
 			'treatment.daysShort.6' => 'Sat',
@@ -2165,8 +2207,6 @@ extension on TranslationsEn {
 			'treatment.stepCount' => ({required Object count}) => '${count} steps',
 			'treatment.emptyPlanTitle' => 'No plan found for today.',
 			'treatment.emptyPlanBody' => 'Short daily steps will appear here once you add goals.',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.planDone' => 'Today\'s plan is complete.',
 			'treatment.planDoneSub' => 'That\'s enough for today.',
 			'treatment.moodSaveTitle' => 'Log today\'s mood',
@@ -2664,6 +2704,8 @@ extension on TranslationsEn {
 			'analytics.noData' => 'No data in this range yet.',
 			'analytics.noChild' => 'Add a child first to see the development panel.',
 			'children.title' => 'My Children',
+			_ => null,
+		} ?? switch (path) {
 			'children.addTitle' => 'Add Child',
 			'children.editTitle' => 'Edit Child',
 			'children.empty' => 'You haven\'t added any children yet.',
@@ -2679,8 +2721,6 @@ extension on TranslationsEn {
 			'children.diagnosisHint' => 'Diagnosis info, if any',
 			'children.educationLabel' => 'Education Program (optional)',
 			'children.educationHint' => 'Current education program',
-			_ => null,
-		} ?? switch (path) {
 			'children.therapiesLabel' => 'Therapies (optional)',
 			'children.therapiesHint' => 'Therapies received',
 			'children.ageYears' => ({required Object years}) => '${years} yrs',
