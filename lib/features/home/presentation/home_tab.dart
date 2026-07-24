@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/widgets/skeleton.dart';
+import '../../../core/widgets/user_avatar.dart';
 import '../../../i18n/strings.g.dart';
 import '../../appointments/data/appointment_repository.dart';
 import '../../appointments/domain/appointment.dart';
@@ -11,6 +14,7 @@ import '../../children/data/child_repository.dart';
 import '../../children/domain/child.dart';
 import '../../knowledge/data/knowledge_repository.dart';
 import '../../knowledge/domain/article.dart';
+import '../../knowledge/presentation/article_detail_screen.dart';
 import 'widgets/section_header.dart';
 
 /// Ana Sayfa sekmesi — backend'den gerçek veri (çocuklar, randevular, makaleler).
@@ -33,19 +37,29 @@ class HomeTab extends ConsumerWidget {
         },
         child: ListView(
           padding: const EdgeInsets.fromLTRB(
-              AppSpacing.margin, 8, AppSpacing.margin, 24),
+            AppSpacing.margin,
+            8,
+            AppSpacing.margin,
+            24,
+          ),
           children: [
             Text(t.home.greeting(name: name), style: text.headlineLarge),
             const SizedBox(height: 4),
             Text(t.home.subtitle, style: text.bodySmall),
             const SizedBox(height: AppSpacing.lg),
 
-            SectionHeader(title: t.home.childrenTitle, onAction: () {}),
+            SectionHeader(
+              title: t.home.childrenTitle,
+              onAction: () => context.push('/children'),
+            ),
             const SizedBox(height: 12),
             const _ChildrenSection(),
             const SizedBox(height: AppSpacing.lg),
 
-            SectionHeader(title: t.home.upcomingAppointments, onAction: () {}),
+            SectionHeader(
+              title: t.home.upcomingAppointments,
+              onAction: () => context.push('/appointments'),
+            ),
             const SizedBox(height: 12),
             const _AppointmentsSection(),
             const SizedBox(height: AppSpacing.lg),
@@ -53,7 +67,7 @@ class HomeTab extends ConsumerWidget {
             SectionHeader(
               title: t.home.recommendedArticles,
               actionLabel: t.common.more,
-              onAction: () {},
+              onAction: () => context.push('/knowledge'),
             ),
             const SizedBox(height: 12),
             const _ArticlesSection(),
@@ -73,7 +87,9 @@ class _ChildrenSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t;
-    return ref.watch(childrenProvider).when(
+    return ref
+        .watch(childrenProvider)
+        .when(
           loading: () => const _SectionLoading(),
           error: (e, _) =>
               _SectionError(onRetry: () => ref.invalidate(childrenProvider)),
@@ -83,7 +99,7 @@ class _ChildrenSection extends ConsumerWidget {
                 message: t.home.noChildren,
                 actionLabel: t.home.addChild,
                 icon: Icons.child_care_outlined,
-                onAction: () {},
+                onAction: () => context.push('/children'),
               );
             }
             return Column(
@@ -113,15 +129,11 @@ class _ChildCard extends StatelessWidget {
         padding: const EdgeInsets.all(12),
         child: Row(
           children: [
-            CircleAvatar(
+            UserAvatar(
+              name: child.name,
+              imageUrl: child.profileImageUrl,
               radius: 26,
-              backgroundColor: AppColors.primary.withValues(alpha: 0.12),
-              backgroundImage: (child.profileImageUrl?.isNotEmpty ?? false)
-                  ? NetworkImage(child.profileImageUrl!)
-                  : null,
-              child: (child.profileImageUrl?.isEmpty ?? true)
-                  ? const Icon(Icons.face, color: AppColors.primary)
-                  : null,
+              fallbackIcon: Icons.face,
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -130,17 +142,21 @@ class _ChildCard extends StatelessWidget {
                 children: [
                   Text(child.name, style: text.titleMedium),
                   if (age != null)
-                    Text(t.home.ageYears(years: age.toString()),
-                        style: text.bodySmall)
+                    Text(
+                      t.home.ageYears(years: age.toString()),
+                      style: text.bodySmall,
+                    )
                   else if (child.diagnosisInfo?.isNotEmpty ?? false)
-                    Text(child.diagnosisInfo!,
-                        style: text.bodySmall,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis),
+                    Text(
+                      child.diagnosisInfo!,
+                      style: text.bodySmall,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                 ],
               ),
             ),
-            const Icon(Icons.chevron_right, color: AppColors.textTertiary),
+            Icon(Icons.chevron_right, color: context.colors.textTertiary),
           ],
         ),
       ),
@@ -157,15 +173,19 @@ class _AppointmentsSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t;
-    return ref.watch(upcomingAppointmentsProvider).when(
+    return ref
+        .watch(upcomingAppointmentsProvider)
+        .when(
           loading: () => const _SectionLoading(),
           error: (e, _) => _SectionError(
-              onRetry: () => ref.invalidate(appointmentsProvider)),
+            onRetry: () => ref.invalidate(appointmentsProvider),
+          ),
           data: (items) {
             if (items.isEmpty) {
               return _EmptyCard(
-                  message: t.home.noAppointments,
-                  icon: Icons.event_available_outlined);
+                message: t.home.noAppointments,
+                icon: Icons.event_available_outlined,
+              );
             }
             return Column(
               children: [
@@ -194,53 +214,67 @@ class _AppointmentTile extends StatelessWidget {
     final subtitle = a.expertTitle ?? a.childName ?? '';
 
     return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Row(
-          children: [
-            Container(
-              width: 52,
-              height: 52,
-              decoration: BoxDecoration(
-                color: AppColors.primary.withValues(alpha: 0.10),
-                borderRadius: BorderRadius.circular(AppRadius.md),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(AppRadius.lg),
+        onTap: () => context.push('/appointments'),
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Row(
+            children: [
+              Container(
+                width: 52,
+                height: 52,
+                decoration: BoxDecoration(
+                  color: context.colors.primary.withValues(alpha: 0.10),
+                  borderRadius: BorderRadius.circular(AppRadius.md),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      '${a.date.day}',
+                      style: TextStyle(
+                        color: context.colors.primary,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 18,
+                      ),
+                    ),
+                    Text(
+                      month,
+                      style: TextStyle(
+                        color: context.colors.primary,
+                        fontSize: 11,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('${a.date.day}',
-                      style: const TextStyle(
-                          color: AppColors.primary,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 18)),
-                  Text(month,
-                      style: const TextStyle(
-                          color: AppColors.primary, fontSize: 11)),
-                ],
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(title, style: text.titleMedium),
+                    if (subtitle.isNotEmpty)
+                      Text(subtitle, style: text.bodySmall),
+                    const SizedBox(height: 2),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.schedule,
+                          size: 14,
+                          color: context.colors.textTertiary,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(a.time, style: text.bodySmall),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(title, style: text.titleMedium),
-                  if (subtitle.isNotEmpty)
-                    Text(subtitle, style: text.bodySmall),
-                  const SizedBox(height: 2),
-                  Row(
-                    children: [
-                      const Icon(Icons.schedule,
-                          size: 14, color: AppColors.textTertiary),
-                      const SizedBox(width: 4),
-                      Text(a.time, style: text.bodySmall),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            const Icon(Icons.chevron_right, color: AppColors.textTertiary),
-          ],
+              Icon(Icons.chevron_right, color: context.colors.textTertiary),
+            ],
+          ),
         ),
       ),
     );
@@ -256,15 +290,19 @@ class _ArticlesSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t;
-    return ref.watch(recommendedArticlesProvider).when(
+    return ref
+        .watch(recommendedArticlesProvider)
+        .when(
           loading: () => const _SectionLoading(),
           error: (e, _) => _SectionError(
-              onRetry: () => ref.invalidate(recommendedArticlesProvider)),
+            onRetry: () => ref.invalidate(recommendedArticlesProvider),
+          ),
           data: (items) {
             if (items.isEmpty) {
               return _EmptyCard(
-                  message: t.home.noArticles,
-                  icon: Icons.menu_book_outlined);
+                message: t.home.noArticles,
+                icon: Icons.menu_book_outlined,
+              );
             }
             return Column(
               children: [
@@ -288,56 +326,78 @@ class _ArticleCard extends StatelessWidget {
     final text = Theme.of(context).textTheme;
     final tag = article.category ?? article.format ?? '';
     return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(AppSpacing.md),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              width: 64,
-              height: 64,
-              decoration: BoxDecoration(
-                color: AppColors.surfaceVariant,
-                borderRadius: BorderRadius.circular(AppRadius.md),
-              ),
-              child: const Icon(Icons.image_outlined,
-                  color: AppColors.textTertiary),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(AppRadius.lg),
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => ArticleDetailScreen(
+              id: article.id,
+              initialTitle: article.title,
             ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (tag.isNotEmpty)
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 3),
-                      decoration: BoxDecoration(
-                        color: AppColors.primary.withValues(alpha: 0.10),
-                        borderRadius: BorderRadius.circular(AppRadius.sm),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(AppSpacing.md),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 64,
+                height: 64,
+                decoration: BoxDecoration(
+                  color: context.colors.surfaceVariant,
+                  borderRadius: BorderRadius.circular(AppRadius.md),
+                ),
+                child: Icon(
+                  Icons.image_outlined,
+                  color: context.colors.textTertiary,
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (tag.isNotEmpty)
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 3,
+                        ),
+                        decoration: BoxDecoration(
+                          color: context.colors.primary.withValues(alpha: 0.10),
+                          borderRadius: BorderRadius.circular(AppRadius.sm),
+                        ),
+                        child: Text(
+                          tag,
+                          style: TextStyle(
+                            color: context.colors.primary,
+                            fontSize: 11,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                       ),
-                      child: Text(tag,
-                          style: const TextStyle(
-                              color: AppColors.primary,
-                              fontSize: 11,
-                              fontWeight: FontWeight.w600)),
-                    ),
-                  const SizedBox(height: 6),
-                  Text(article.title,
+                    const SizedBox(height: 6),
+                    Text(
+                      article.title,
                       style: text.titleMedium,
                       maxLines: 2,
-                      overflow: TextOverflow.ellipsis),
-                  if (article.summary?.isNotEmpty ?? false) ...[
-                    const SizedBox(height: 2),
-                    Text(article.summary!,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    if (article.summary?.isNotEmpty ?? false) ...[
+                      const SizedBox(height: 2),
+                      Text(
+                        article.summary!,
                         style: text.bodySmall,
                         maxLines: 2,
-                        overflow: TextOverflow.ellipsis),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
                   ],
-                ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -352,16 +412,7 @@ class _SectionLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(vertical: 24),
-      child: Center(
-        child: SizedBox(
-          height: 28,
-          width: 28,
-          child: CircularProgressIndicator(strokeWidth: 2.5),
-        ),
-      ),
-    );
+    return const SkeletonList(count: 2, padding: EdgeInsets.zero);
   }
 }
 
@@ -377,7 +428,7 @@ class _SectionError extends StatelessWidget {
         padding: const EdgeInsets.all(AppSpacing.md),
         child: Row(
           children: [
-            const Icon(Icons.error_outline, color: AppColors.error),
+            Icon(Icons.error_outline, color: context.colors.error),
             const SizedBox(width: 12),
             Expanded(child: Text(t.common.loadError)),
             TextButton(onPressed: onRetry, child: Text(t.common.retry)),
@@ -408,7 +459,7 @@ class _EmptyCard extends StatelessWidget {
         padding: const EdgeInsets.all(AppSpacing.md),
         child: Row(
           children: [
-            Icon(icon, color: AppColors.textTertiary),
+            Icon(icon, color: context.colors.textTertiary),
             const SizedBox(width: 12),
             Expanded(child: Text(message)),
             if (actionLabel != null && onAction != null)

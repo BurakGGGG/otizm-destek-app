@@ -14,12 +14,15 @@ class SplashScreen extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.volunteer_activism,
-                size: 56, color: AppColors.primary),
+            Icon(
+              Icons.volunteer_activism,
+              size: 56,
+              color: context.colors.primary,
+            ),
             const SizedBox(height: 16),
             Text(context.t.app.name),
             const SizedBox(height: 24),
-            const CircularProgressIndicator(color: AppColors.primary),
+            CircularProgressIndicator(color: context.colors.primary),
           ],
         ),
       ),

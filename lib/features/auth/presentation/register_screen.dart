@@ -63,7 +63,9 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(_isExpert ? t.register.titleExpert : t.register.titleParent),
+        title: Text(
+          _isExpert ? t.register.titleExpert : t.register.titleParent,
+        ),
       ),
       body: SafeArea(
         child: ListView(
@@ -118,7 +120,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                   _obscure
                       ? Icons.visibility_outlined
                       : Icons.visibility_off_outlined,
-                  color: AppColors.textTertiary,
+                  color: context.colors.textTertiary,
                 ),
               ),
             ),
@@ -235,7 +237,9 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
         .where((e) => e.isNotEmpty)
         .toList();
 
-    final error = await ref.read(authControllerProvider.notifier).register(
+    final error = await ref
+        .read(authControllerProvider.notifier)
+        .register(
           email: email,
           password: _password.text,
           fullName: _fullName.text,
@@ -247,8 +251,9 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
           institution: _isExpert ? _emptyToNull(_institution.text) : null,
           licenseNumber: _isExpert ? _emptyToNull(_licenseNumber.text) : null,
           bio: _isExpert ? _emptyToNull(_bio.text) : null,
-          specializations:
-              _isExpert && specializations.isNotEmpty ? specializations : null,
+          specializations: _isExpert && specializations.isNotEmpty
+              ? specializations
+              : null,
         );
     if (error != null) _showError(error);
     // Başarılıysa router otomatik /home'a yönlendirir.
@@ -258,9 +263,9 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
 
   void _showError(String message) {
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message)),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
   }
 }
 
@@ -302,9 +307,9 @@ class _Field extends StatelessWidget {
           maxLines: obscure ? 1 : maxLines,
           decoration: InputDecoration(
             hintText: hint,
-            prefixIcon: Icon(icon, color: AppColors.textTertiary),
+            prefixIcon: Icon(icon, color: context.colors.textTertiary),
             suffixIcon: trailing,
-            fillColor: AppColors.surfaceVariant,
+            fillColor: context.colors.surfaceVariant,
           ),
         ),
       ],

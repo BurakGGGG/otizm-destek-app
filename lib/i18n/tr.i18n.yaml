@@ -28,6 +28,12 @@ language:
   turkish: Türkçe
   english: English
 
+theme:
+  title: Tema
+  system: Sistem
+  light: Açık
+  dark: Koyu
+
 roles:
   parent: Veli
   expert: Uzman
@@ -47,6 +53,30 @@ auth:
   registerExpert: Uzman hesabı ile kaydol
   errorEmptyFields: Lütfen e-posta ve şifrenizi girin.
   registerComingSoon: $role kayıt ekranı yakında eklenecek.
+
+forgotPassword:
+  title: Şifremi Unuttum
+  subtitle: E-posta adresinizi girin; size bir şifre sıfırlama bağlantısı gönderelim.
+  submit: Sıfırlama Bağlantısı Gönder
+  sentTitle: Bağlantı gönderildi
+  sentBody: Bu e-postaya kayıtlı bir hesap varsa, şifre sıfırlama bağlantısı gelen kutunuza ulaşacaktır.
+  haveCode: Sıfırlama kodum var
+  backToLogin: Girişe dön
+  errorEmailRequired: Lütfen e-posta girin.
+  errorEmailInvalid: Geçerli bir e-posta girin.
+
+resetPassword:
+  title: Şifre Sıfırla
+  subtitle: E-postadaki sıfırlama kodunu ve yeni şifrenizi girin.
+  tokenLabel: Sıfırlama Kodu
+  tokenHint: E-postadaki bağlantıdaki kod
+  newPasswordLabel: Yeni Şifre
+  confirmLabel: Yeni Şifre (Tekrar)
+  submit: Şifreyi Güncelle
+  success: Şifreniz güncellendi. Giriş yapabilirsiniz.
+  errorTokenRequired: Lütfen sıfırlama kodunu girin.
+  errorPasswordShort: Şifre en az 8 karakter olmalıdır.
+  errorMismatch: Şifreler eşleşmiyor.
 
 register:
   titleParent: Veli Hesabı Oluştur
@@ -84,8 +114,23 @@ nav:
   progress: Gelişim
   profile: Profil
 
+chat:
+  title: AI Asistan
+  greeting: Merhaba! Otizm ve çocuk gelişimi hakkındaki sorularınızı yanıtlamaya çalışayım.
+  inputHint: Bir soru sorun...
+  errorGeneric: Yanıt alınamadı, lütfen tekrar deneyin.
+
+messages:
+  title: Mesajlar
+  noConversations: Henüz bir konuşmanız yok.
+  noMessages: Henüz mesaj yok. İlk mesajı gönderin.
+  inputHint: Mesaj yazın...
+  connecting: Bağlanıyor...
+
 home:
   notifications: Bildirimler
+  assistant: AI Asistan
+  messages: Mesajlar
   greeting: Merhaba, $name
   greetingFallback: Veli
   subtitle: Bugün gelişim için neler yapabiliriz?
@@ -111,26 +156,1066 @@ specialists:
   filterPsychologist: Psikolog
   filterSpecialEducation: Özel Eğitim
   filterSpeech: Dil ve Konuşma
+  noResults: Aramanıza uygun uzman bulunamadı.
+  ratingNew: Yeni
+  reviews: $count değerlendirme
 
 progress:
   title: Gelişim Takibi
-  subtitle: Haftalık aktivite ve başarı günlüğü.
+  subtitle: Hedefler ve gelişim notları.
   addRecord: Yeni Kayıt Ekle
-  weeklyActivity: Haftalık Aktivite
-  thisWeek: Bu Hafta
-  completedTasks: Tamamlanan Görevler
+  goalsTitle: Hedefler
+  recentNotes: Son Gelişim Notları
+  noGoals: Henüz hedef eklenmemiş.
+  noNotes: Henüz gelişim notu eklenmemiş.
+  noChild: Gelişim takibi için önce bir çocuk ekleyin.
+  goalProgress: $done / $total
+  addGoal: Hedef Ekle
+  addNote: Not Ekle
+  addToken: Jeton Ekle
+  tokenAdded: Jeton eklendi 🎉
+  tokenRemoved: Jeton geri alındı.
+  goalCompleted: Hedef tamamlandı! 🎉
+  rewardLine: 'Ödül: $title'
+
+goalForm:
+  title: Hedef Ekle
+  nameLabel: Başlık
+  nameHint: Örn. Göz teması kurma
+  categoryLabel: Kategori
+  targetLabel: Hedef Sayısı
+  descriptionLabel: Açıklama (isteğe bağlı)
+  descriptionHint: Hedefle ilgili detay
+  save: Kaydet
+  errorTitle: Lütfen bir başlık girin.
+  created: Hedef eklendi.
+
+noteForm:
+  title: Not Ekle
+  editTitle: Notu Düzenle
+  nameLabel: Başlık
+  nameHint: Örn. Bugünkü gelişme
+  contentLabel: İçerik (isteğe bağlı)
+  contentHint: Gözlemlerinizi yazın
+  categoryLabel: Kategori (isteğe bağlı)
+  moodLabel: Ruh Hali (isteğe bağlı)
+  moodHappy: Mutlu
+  moodNeutral: Normal
+  moodSad: Zor Gün
+  dateLabel: Tarih
+  save: Kaydet
+  errorTitle: Lütfen bir başlık girin.
+  created: Not eklendi.
+  updated: Not güncellendi.
+
+notesPage:
+  title: Notlarım
+  add: Not Ekle
+  searchHint: Notlarda ara…
+  empty: Henüz gelişim notu yok. İlk notu ekleyerek başlayın.
+  noResults: Sonuç bulunamadı. Filtre veya aramayı değiştirin.
+  noChildren: Önce bir çocuk profili ekleyin.
+  loadMore: Daha Fazla Yükle
+  edit: Düzenle
+  delete: Sil
+  cancel: Vazgeç
+  deleteTitle: Notu Sil
+  deleteConfirm: Bu notu silmek istediğinize emin misiniz?
+  deleted: Not silindi.
+
+notifications:
+  show: Göster
+  title: Bildirimler
+  empty: Henüz bildiriminiz yok.
+  markAllRead: Tümünü okundu işaretle
+  dateLine: $day $month · $time
+
+knowledge:
+  title: Bilgi Bankası
+  empty: Henüz makale eklenmemiş.
+  noResults: Bu filtreye uygun içerik yok.
+  filterAll: Tümü
+  formatArticle: Makale
+  formatVideo: Video
+  formatPodcast: Podcast
+  views: $count görüntülenme
+  dateLine: $day $month $year
+  videoLink: Video bağlantısı
+  podcastLink: Podcast bağlantısı
+
+appointments:
+  title: Randevular
+  empty: Henüz randevunuz yok.
+  upcoming: Yaklaşan
+  past: Geçmiş
+  statusPending: Onay Bekliyor
+  statusConfirmed: Onaylandı
   statusCompleted: Tamamlandı
-  statusPartial: Kısmen
-  categoryCognitive: Bilişsel
-  categoryCommunication: İletişim
-  weekdays:
+  statusCancelled: İptal Edildi
+  typeOnline: Online Görüşme
+  typeFaceToFace: Yüz Yüze
+  withChild: 'Çocuk: $name'
+  dateLine: $day $month $year · $time
+  cancel: İptal Et
+  confirm: Onayla
+  complete: Tamamla
+  joinMeeting: Görüşmeye Katıl
+  cancelTitle: Randevuyu İptal Et
+  cancelConfirm: Bu randevuyu iptal etmek istediğinize emin misiniz?
+  cancelReasonLabel: İptal nedeni (isteğe bağlı)
+  cancelReasonShown: 'İptal nedeni: $reason'
+  keepIt: Vazgeç
+  cancelled: Randevu iptal edildi.
+  confirmed: Randevu onaylandı.
+  completed: Randevu tamamlandı olarak işaretlendi.
+  reschedule: Ertele
+  rescheduleTitle: Randevuyu Ertele
+  rescheduleConfirm: Yeni Zamanı Onayla
+  rescheduled: Randevu yeniden planlandı.
+
+expertDetail:
+  bookAppointment: Randevu Al
+  sendMessage: Mesaj Gönder
+  specializationsTitle: Uzmanlık Alanları
+  articleCount: $count makale
+  notAcceptingPatients: Bu uzman şu an randevu kabul etmiyor.
+
+booking:
+  title: Randevu Al
+  childLabel: Çocuk
+  noChild: Randevu almak için önce bir çocuk ekleyin.
+  typeLabel: Randevu Tipi
+  dateLabel: Tarih
+  selectDate: Tarih seçin
+  dateValue: $day $month $year
+  timeLabel: Saat
+  selectDateFirst: Uygun saatleri görmek için önce tarih seçin.
+  noSlots: Bu gün için uygun saat yok.
+  notesLabel: Not (isteğe bağlı)
+  notesHint: Uzmana iletmek istediğiniz not
+  confirm: Randevuyu Onayla
+  created: Randevu oluşturuldu.
+  errorSelectChild: Lütfen bir çocuk seçin.
+  errorSelectTime: Lütfen bir saat seçin.
+
+routines:
+  title: Rutinler
+  empty: Bu çocuk için henüz rutin yok.
+  noChild: Rutin oluşturmak için önce bir çocuk ekleyin.
+  add: Rutin Ekle
+  addItem: Adım Ekle
+  noItems: Henüz adım eklenmemiş.
+  deleteRoutineTitle: Rutini Sil
+  deleteRoutineConfirm: $name rutinini silmek istediğinize emin misiniz?
+  delete: Sil
+  cancel: İptal
+  created: Rutin eklendi.
+  itemAdded: Adım eklendi.
+  deleted: Rutin silindi.
+  itemTitleLabel: Adım Başlığı
+  itemTitleHint: Örn. Dişleri fırçala
+  itemTimeLabel: Saat (isteğe bağlı)
+  selectTime: Saat seç
+  itemIconLabel: İkon
+  itemSave: Ekle
+  errorItemTitle: Lütfen adım başlığı girin.
+
+routineForm:
+  title: Rutin Ekle
+  nameLabel: Rutin Adı
+  nameHint: Örn. Sabah Rutini
+  descriptionLabel: Açıklama (isteğe bağlı)
+  descriptionHint: Bu rutin ne için?
+  save: Kaydet
+  errorName: Lütfen bir rutin adı girin.
+
+dailyTracker:
+  title: Günlük Takip
+  tabMood: Duygu
+  tabSleep: Uyku
+  tabMeds: İlaç
+  todayTitle: Bugün nasıldı?
+  today: Bugün
+  mood1: Çok Kötü
+  mood2: Kötü
+  mood3: Orta
+  mood4: İyi
+  mood5: Harika
+  triggersLabel: Olası tetikleyiciler (isteğe bağlı)
+  notesLabel: Not (isteğe bağlı)
+  notesHint: Bugüne dair gözlemleriniz
+  save: Kaydet
+  update: Güncelle
+  saved: Ruh hali kaydedildi.
+  historyTitle: Geçmiş Kayıtlar
+  empty: Henüz kayıt yok. İlk kaydı bugün ekleyin.
+  noChild: Günlük takip için önce bir çocuk ekleyin.
+  deleteTitle: Kaydı Sil
+  deleteConfirm: $date tarihli kaydı silmek istediğinize emin misiniz?
+  delete: Sil
+  cancel: İptal
+  deleted: Kayıt silindi.
+  errorSelectMood: Lütfen bir ruh hali seçin.
+  dateLine: $day $month $year
+
+sleep:
+  todayTitle: Dün Gece / Bu Sabah
+  bedtime: Yatış Saati
+  wakeTime: Uyanış Saati
+  quality: Uyku Kalitesi
+  nightWakings: Gece uyanma sayısı
+  factorsLabel: Duyusal ve çevresel faktörler
+  factorWeighted: 🛏️ Ağır Battaniye
+  factorSensory: 👕 Duyusal Hassasiyet
+  factorMelatonin: 💊 Melatonin Desteği
+  factorNoise: 🔊 Gürültü / Işık
+  saved: Uyku kaydedildi.
+  empty: Henüz uyku kaydı yok. İlk kaydı bugün ekleyin.
+  deleteConfirm: $date tarihli uyku kaydını silmek istediğinize emin misiniz?
+  deleted: Uyku kaydı silindi.
+  duration: $h sa $m dk
+  wakings: $count kez uyandı
+
+meds:
+  safetyTitle: İlaç güvenliği
+  safetyBody: İlaç hatırlatıcıları destek amaçlıdır. İlaç başlama, bırakma,
+    doz değişikliği veya yan etki kararlarını yalnızca doktorunuzla birlikte verin.
+  add: İlaç Ekle
+  addTitle: Yeni İlaç Ekle
+  editTitle: İlacı Düzenle
+  empty: Henüz ilaç kaydı yok. Çocuğunuzun ilaç ve takviyelerini buraya ekleyin.
+  name: İlaç / Takviye Adı
+  nameHint: "Örn: Omega-3"
+  dosage: Doz
+  unit: Birim
+  frequency: Sıklık
+  freqDaily: Günde 1
+  freqTwiceDaily: Günde 2
+  freqThreeDaily: Günde 3
+  freqAsNeeded: Gerektiğinde
+  freqWeekly: Haftalık
+  timesLabel: Doz saatleri
+  addTime: Saat Ekle
+  noTime: Saatsiz
+  added: İlaç eklendi.
+  updated: İlaç güncellendi.
+  deleteTitle: İlacı Sil
+  deleteConfirm: $name ve doz kayıtları kalıcı olarak silinecek. Emin misiniz?
+  deleted: İlaç silindi.
+  errorName: Lütfen ilaç adını girin.
+  logTitle: Doz Günlüğü
+  taken: İlaç alındı
+  sideEffectsLabel: Gözlemlenen yan etkiler
+  logNotesLabel: Gözlem notları (isteğe bağlı)
+  logNotesHint: Doktorunuza iletmek istediğiniz bir gözlem var mı?
+  logSaved: Doz günlüğü kaydedildi.
+
+wall:
+  title: Dertleşme Duvarı
+  subtitle: Duygularınızı paylaşın, birbirinize destek olun. Paylaşımlar anonim
+    olabilir.
+  empty: Henüz paylaşım yok. İlk paylaşımı sen yap.
+  add: Paylaş
+  addTitle: Dertleşme Paylaşımı
+  editTitle: Paylaşımı Düzenle
+  titleLabel: Başlık (isteğe bağlı)
+  titleHint: Kısa bir başlık
+  contentLabel: Ne hissediyorsun?
+  contentHint: İçini dökebilirsin; burada yalnız değilsin.
+  anonymous: Anonim paylaş
+  anonymousUser: Anonim Kullanıcı
+  post: Paylaş
+  posted: Paylaşımınız duvara eklendi.
+  updated: Paylaşım güncellendi.
+  deleteTitle: Paylaşımı Sil
+  deleteConfirm: Bu paylaşımı silmek istediğinize emin misiniz?
+  deleted: Paylaşım silindi.
+  errorContent: Lütfen bir şeyler yazın.
+  supportCount: $count destek
+  commentCount: $count yorum
+  detailTitle: Paylaşım
+  commentsTitle: Destek Mesajları
+  commentHint: Bir destek mesajı yaz…
+  commentSend: Gönder
+  commentSent: Destek mesajı gönderildi.
+  commentEmpty: Henüz destek mesajı yok. İlk desteği sen ver.
+  commentDeleteTitle: Yorumu Sil
+  commentDeleteConfirm: Bu destek mesajını silmek istediğinize emin misiniz?
+  commentDeleted: Yorum silindi.
+  edit: Düzenle
+  delete: Sil
+  cancel: İptal
+  save: Kaydet
+  justNow: az önce
+  minsAgo: $count dk önce
+  hoursAgo: $count sa önce
+  daysAgo: $count gün önce
+
+weekly:
+  title: Haftanın Sorusu
+  subtitle: Bu hafta ailelere sorduğumuz soru. Deneyimini paylaş, birbirinize
+    destek olun.
+  empty: Henüz haftalık soru yok. Yeni soru yayınlandığında burada olacak.
+  answersTitle: Aile Cevapları
+  answerCount: $count cevap
+  expertCount: $count uzman
+  expertBadge: Uzman
+  anonymousUser: Anonim Aile
+  yourAnswerTitle: Cevabını Yaz
+  answerHint: Kısa da olsa değerli. Deneyimini paylaş…
+  anonymous: Anonim paylaş
+  tagsLabel: Etiketler (isteğe bağlı)
+  send: Paylaş
+  sent: Cevabın paylaşıldı, teşekkürler!
+  errorEmpty: Lütfen bir cevap yazın.
+  noAnswers: Henüz cevap yok. İlk cevabı sen paylaş.
+  likeError: Beğeni kaydedilemedi.
+  justNow: az önce
+  minsAgo: $count dk önce
+  hoursAgo: $count sa önce
+  daysAgo: $count gün önce
+
+meetup:
+  title: Yerel Buluşmalar
+  subtitle: Şehrindeki ailelerle tanış, birlikte vakit geçir.
+  empty: Bu şehirde henüz buluşma yok. İlk buluşmayı sen oluştur.
+  add: Buluşma Oluştur
+  addTitle: Yeni Buluşma
+  titleLabel: Buluşma Adı
+  titleHint: "ör: Parkta Sabah Buluşması"
+  cityLabel: Şehir
+  cityHint: Şehir seç
+  districtLabel: İlçe
+  districtHint: "ör: Kadıköy"
+  venueLabel: Buluşma Yeri
+  venueHint: "ör: Moda Parkı veya kafe adı"
+  dateLabel: Tarih
+  timeLabel: Saat
+  descriptionLabel: Açıklama
+  descriptionHint: Kimler katılabilir, ortam nasıl olacak?
+  create: Oluştur
+  created: Buluşman oluşturuldu. Diğer aileler görebilecek.
+  errorRequired: Lütfen başlık, şehir ve tarih alanlarını doldurun.
+  attendCount: $count katılımcı
+  join: Katıl
+  joined: Katılıyorsun
+  joinedMsg: Buluşmaya katılıyorsun!
+  leftMsg: Katılımın iptal edildi.
+  today: Bugün
+  tomorrow: Yarın
+  inDays: $count gün sonra
+  past: Geçmiş
+  organizerBy: Düzenleyen $name
+
+similar:
+  title: Benzer Aileler
+  subtitle: Çocuğunuza yakın gelişim sürecindeki ailelerle tanışın, deneyim
+    paylaşın.
+  noChild: Önce bir çocuk ekleyin, sonra benzer aileleri keşfedin.
+  discoverable: Eşleştirmede görünürsün
+  hidden: Eşleştirmede gizlisin
+  discoverableHint: Kapatırsan diğer aileler seni öneriler arasında göremez.
+  empty: Şu an eşleşen aile yok. Profilinizi ve etiketlerinizi güncelleyerek
+    eşleşme şansını artırabilirsiniz.
+  matchLabel: uyum
+  commonTagsTitle: Ortak alanlar
+  moreTags: +$count
+  reasonsTitle: Neden eşleştiniz
+  ageRange: Yaş $range
+  message: Mesaj
+  buddy: Arkadaş
+  mentor: Mentor
+  pendingLabel: İstek bekliyor
+  buddyLabel: Arkadaş bağlantısı
+  mentorLabel: Mentor bağlantısı
+  requestTitle: Bağlantı isteği
+  mentorRequestTitle: Mentor isteği
+  requestHint: Kısa bir tanışma mesajı yaz (isteğe bağlı)
+  requestDefault: Merhaba, benzer süreçlerden geçtiğimizi gördüm. Uygunsanız
+    önce burada kısa bir tanışma mesajlaşması yapmak isterim.
+  send: İsteği Gönder
+  sent: Bağlantı isteği gönderildi.
+  cancel: İptal
+
+groups:
+  title: Destek Grupları
+  subtitle: Benzer konularda ailelerle bir araya gel, grup sohbetine katıl.
+  tabMy: Gruplarım
+  tabDiscover: Keşfet
+  searchHint: Grup ara…
+  allCategories: Tümü
+  emptyMy: Henüz bir gruba katılmadın. Keşfet sekmesinden gruplara göz at.
+  emptyDiscover: Bu ölçütlerle grup bulunamadı. Yeni bir grup oluşturabilirsin.
+  memberCount: $count üye
+  expertCount: $count uzman
+  verified: Onaylı
+  join: Katıl
+  joined: Katıldın
+  leave: Ayrıl
+  chat: Grup Sohbeti
+  joinedMsg: Gruba katıldın.
+  leftMsg: Gruptan ayrıldın.
+  leaveTitle: Gruptan Ayrıl
+  leaveConfirm: Bu gruptan ayrılmak istediğine emin misin?
+  add: Grup Oluştur
+  addTitle: Yeni Grup
+  nameLabel: Grup Adı
+  nameHint: "ör: İstanbul Erken Müdahale"
+  descriptionLabel: Açıklama
+  descriptionHint: Grup ne hakkında, kimler katılabilir?
+  categoryLabel: Kategori
+  create: Oluştur
+  created: Grup oluşturuldu.
+  errorName: Lütfen bir grup adı girin.
+
+treatment:
+  title: Tedavi Paneli
+  subtitle: Günlük Destek Planı
+  programActive: $name planı aktif
+  selectChild: Profil seç
+  noChildrenTitle: Henüz çocuk profili yok
+  noChildrenBody: Tedavi planı için önce bir çocuk profili ekleyin.
+  addChild: Çocuk Ekle
+  saveError: Tedavi verileri kaydedilemedi, değişiklik geri alındı.
+  tabToday: Bugün
+  tabGoals: Hedefler
+  tabGames: Oyunlar
+  tabTools: Araçlar
+  daysShort:
+    - Paz
     - Pzt
     - Sal
     - Çar
     - Per
     - Cum
     - Cmt
-    - Paz
+  onboardTitle: Merhaba! 3 adımda başlayın 👋
+  onboardBody: Bu sayfa, her gün çocuğunuzla yapabileceğiniz küçük destekleri
+    takip etmenizi sağlar.
+  onboardStep1: "1. Hedefler sekmesinden bugün takip etmek istediğiniz küçük
+    bir şey yazın."
+  onboardStep2: "2. Oyunlar sekmesindeki 5-10 dakikalık etkinlikleri deneyin."
+  onboardStep3: "3. Oyun sonrası \"Kolay geldi / Zorlandı\" seçin — gerisini
+    sistem halleder."
+  todayTitle: Bugünün kısa planı
+  todaySubtitle: Bir madde seçin, uygulayın, sonra tamamlandı olarak işaretleyin.
+  streakDays: $count gün seri
+  doneOf: $done/$total yapıldı
+  stepCount: $count adım
+  emptyPlanTitle: Bugün için plan bulunamadı.
+  emptyPlanBody: Hedef eklediğinizde burada kısa günlük adımlar görünecek.
+  planDone: Bugünün planı tamamlandı.
+  planDoneSub: Bugünlük bu kadar yeterli.
+  moodSaveTitle: Bugünkü ruh halini kaydet
+  moodSaveSub: Plan, çocuğun durumuna göre otomatik uyarlanır
+  moodTodayLabel: "Bugünkü ruh hali: $label"
+  moodPlanned: Plan bu duruma göre hazırlandı
+  moodLevel1: Zorlanıyor
+  moodLevel2: Hassas
+  moodLevel3: Dengeli
+  moodLevel4: İyi
+  moodLevel5: Çok iyi
+  suggestionsTitle: Bugün dikkat edilecekler
+  latestNoteTitle: Son not
+  defaultExpert: Uzman Terapist
+  noNoteAuthor: Platform Terapi Modülü
+  noNoteRole: Otomatik günlük plan
+  noNoteBody: Henüz uzman notu yok. Bugünün planı, çocuğunuzun kayıtlarına
+    göre hazırlandı.
+  noteEmptyContent: Bu nota eklenmiş detay bulunmuyor.
+  weeklyTitle: Haftalık özet
+  weeklySubtitle: Bu bölüm sadece genel durumu gösterir.
+  legendGame: Oyun
+  legendGoal: Hedef
+  chartGames: $count oyun
+  chartGoal: "%$percent hedef"
+  weekGamesTitle: Bu hafta oyun
+  weekGamesDetail: Bu hafta tekrar edilen mini egzersiz sayısı
+  weekGamesEmpty: Bugün ilk oyunu planlayabilirsiniz
+  weekGoalsTitle: Tamamlanan hedef
+  weekGoalsDetail: Tüm aktif beceri alanlarındaki toplam ilerleme
+  weekGoalsEmpty: Hedefler sekmesinden hedef ekleyebilirsiniz
+  weekSessionsTitle: Yaklaşan Seans
+  weekSessionsDetail: Planlanmış randevu veya etkinlik
+  weekSessionsEmpty: Henüz randevu planlanmamış
+  microTitle: Gelişim alanları
+  microSubtitle: Ayrıntıya gerek olduğunda buraya bakabilirsiniz.
+  microLinkedGame: "Destekleyen oyun:"
+  addGoalTitle: Günlük Hedef Ekle
+  addGoalSubtitle: Bugün çocuğunuza özel takip etmek istediğiniz küçük bir
+    şey yazın.
+  goalHint: "Örn: 2 kez göz teması kurdu"
+  focusLabel: Hedef alanı
+  dueDateLabel: Bitiş tarihi (isteğe bağlı)
+  addGoal: Hedef Ekle
+  saving: Kaydediliyor…
+  yourGoals: Sizin eklediğiniz hedefler
+  edit: Düzenle
+  delete: Sil
+  save: Kaydet
+  cancel: Vazgeç
+  goalAdded: Yeni hedef eklendi.
+  goalUpdated: Hedef güncellendi.
+  goalEdited: Hedef düzenlendi.
+  goalDeleted: Hedef silindi.
+  groupsHeader: Terapi Hedefleri — Alana Göre İlerleme
+  groupDone: $done/$total tamamlandı
+  statusDone: Tamamlandı
+  statusActive: Devam
+  statusUpcoming: Sırada
+  emptyGroupsTitle: Henüz terapi hedefi görünmüyor
+  emptyGroupsBody: Çocuğunuzun profiline terapi türü eklendiğinde hedefler
+    otomatik olarak burada listelenir.
+  milestoneTitle: Büyük Bir Başarı Kaydet 🏅
+  milestoneSubtitle: Hatırlamak istediğiniz önemli bir an
+  milestoneHint: "Örn: İlk kez adını söyledi"
+  milestoneSaved: Kilometre taşı kaydedildi 🎉
+  notesTitle: Son Gözlem Notları
+  notesEmpty: Henüz bu çocuğa ait uzman veya ebeveyn notu yok.
+  upcomingTitle: Yaklaşan Etkinlikler
+  upcomingEmpty: Yakın tarihte planlanmış aktif seans veya etkinlik görünmüyor.
+  goAppointments: Randevular
+  goCalendar: Takvime Git
+  gamesTitle: Günlük Aktiviteler
+  gamesSubtitle: Çocuğunuzun terapi hedeflerine göre önerilen kısa etkinlikler.
+    Oynadıktan sonra nasıl gittiğini seçin.
+  todayDone: $done/$total bugün tamamlandı
+  filterAll: Tümü
+  gameReady: Hazır
+  gameDoneBadge: ✅ Yapıldı
+  methodLabel: "Yöntem: $name"
+  whyGood: Neden iyi gelir?
+  goalBadge: "Hedef: $name"
+  toolBadge: "Araç: $name"
+  playToday: Bugün oynat
+  playedToday: Yapıldı olarak işaretli
+  feedbackQuestion: Nasıl gitti? (isteğe bağlı)
+  fbNone: Henüz sonuç seçilmedi
+  fbEasy: Çok kolay
+  fbAssisted: Yardımla
+  fbIndependent: Kendi başına
+  fbChallenging: Zorlandı
+  fbEasyLong: Kolay geldi
+  fbAssistedLong: Yardımla yaptı
+  fbIndependentLong: Tek başına yaptı
+  fbChallengingLong: Zorlandı
+  feedbackSaved: Oyun geri bildirimi kaydedildi.
+  allDoneTitle: 🎉 Bugünün tüm oyunları tamamlandı. Harika gidiyorsunuz!
+  allDoneBody: Bugünkü destek akışını tamamladınız; isterseniz notlar bölümüne
+    kısa bir gözlem ekleyebilirsiniz.
+  hintMastered: Ustalık kazandı! Daha zor varyant deneyin.
+  hintEasy: Çok kolay geliyor. Zorluk artırın.
+  hintChallenging: Zorlanıyor. Aktiviteyi parçalara bölün.
+  notifyExpert: Uzmana Bildir
+  notifyBody: $game aktivitesindeki zorlanma hakkında uzmanınıza kısa bir not
+    gönderin.
+  notifyDefaultMsg: "\"$game\" aktivitesinde son zamanlarda zorlanıyor.
+    Önerisi olan var mı?"
+  notifyNoExpert: Henüz mesajlaştığınız bir uzman yok. Önce bir uzmanla
+    bağlantı kurmanız gerekiyor.
+  notifySeeExperts: Uzmanları Görüntüle
+  notifySend: Gönder
+  notifySent: Uzmana bildirildi.
+  emptyGames: Bu alanda henüz etkinlik önerilmiyor. Çocuğunuzun profil
+    sayfasına terapi bilgisi eklediğinizde etkinlikler burada görünür.
+  historyTitle: Oyun Geçmişi
+  historySubtitle: Oynadığınız etkinliklerin geçmişi burada görünür.
+  historyCount: $count kayıt
+  historyEmpty: Henüz oyun kaydı yok. İlk kayıt oluşturulduğunda geçmiş
+    burada görünür.
+  challengingSummary: 💪 $count etkinlikte "Zorlandı" işaretlenmiş. Zorlanılan
+    etkinlikleri tekrar denerken daha küçük adımlara bölmeyi ya da uzmanınıza
+    bildirmeyi düşünebilirsiniz.
+  storiesTitle: Sosyal Hikâyeler ve Görsel Akış
+  storiesSubtitle: Bir etkinliğe başlamadan önce çocuğunuza "Ne olacak?"
+    sorusunu yanıtlayan kısa resimli hikâyeler — geçişleri kolaylaştırır.
+  customBadge: Özel hikâye
+  linkedGoalBadge: "Bağlı hedef: $name"
+  addStoryTitle: Özel Sosyal Hikâye Ekle
+  storyTitleHint: "Hikâye başlığı (örn: Alışverişe Gidiyorum)"
+  storyGoalHint: Bağlı hedef (isteğe bağlı)
+  storyAdd: Ekle
+  storyAdded: Sosyal hikâye eklendi.
+  storyDeleted: Hikâye silindi.
+  deleteStoryTitle: Hikâyeyi Sil
+  deleteStoryConfirm: Bu hikâyeyi silmek istediğinize emin misiniz?
+  sensoryTitle: Rahatlatan Şeyler Ayarları
+  sensorySubtitle: Ölçüm Kartları
+  sensorySaved: Duyusal profil güncellendi.
+  sliderHeader: Duyusal Hassasiyet Seviyeleri
+  sliderSound: 🔊 Ses Hassasiyeti
+  sliderTouch: 🖐️ Dokunsal Hassasiyet
+  sliderVisual: 👁️ Görsel Hassasiyet
+  metricSound: Ses hassasiyeti
+  metricTouch: Dokunsal hassasiyet
+  metricVisual: Görsel uyarı toleransı
+  metricSoundNote: Geçişlerde duyusal mola oyunu ile birlikte izleniyor.
+  metricTouchNote: Dokunsal uyaranlar sıra alma ve basınç aktiviteleriyle
+    destekleniyor.
+  metricVisualNote: Görsel hikâyeler ve zaman çizelgesi ile dengede tutuluyor.
+  triggerTitle: Tetikleyici Günlüğü
+  tokenTitle: Dijital Jeton Panosu
+  tokenSubtitle: Çocuğunuzla bir hedef seçin. Görevleri başardıkça yıldız
+    ekleyin. 5 yıldıza ulaştığında hak ettiği ödülü kazansın!
+  tokenRewardLabel: Hedeflenen Ödül
+  tokenRewardHint: "Örn: Salıncağa binmek 🛝"
+  tokenSetReward: Ödülü Tanımla
+  tokenActive: Aktif Ödül
+  tokenCollect: Başarı Yıldızlarını Toplayın ($count/5)
+  tokenAdd: ⭐ Yıldız Ekle
+  tokenFullTitle: Tebrikler! Jeton Kartı Doldu
+  tokenFullBody: Çocuğunuz bütün adımları başarıyla tamamladı ve $reward
+    hakkı kazandı!
+  tokenReset: Panoyu Sıfırla
+  tokenDefaultReward: Parka Gitmek 🛝
+  breathTitle: Nefes Alıştırması
+  breathBody: Çocuğunuz aşırı uyarılmış hissettiğinde Kriz Rehberi'ndeki
+    nefes regülatörünü birlikte kullanın.
+  breathOpen: Nefes Egzersizini Aç
+  aiStoryTitle: AI ile Sosyal Hikâye
+  aiStoryBody: Yeni bir durum için AI Asistan'dan çocuğunuza özel kısa bir
+    sosyal hikâye taslağı isteyin.
+  aiStoryOpen: AI Asistan'ı Aç
+
+tasks:
+  title: Ödevlerim
+  subtitle: Uzmanınızın size atadığı çalışmalar burada görünür; tamamladıkça
+    teslim edebilirsiniz.
+  pendingLabel: Bekleyen
+  completedLabel: Tamamlanan
+  progressLabel: Ne kadar tamamlandı
+  overdueSummary: $count görevin son teslim tarihi geçmiş
+  filterAll: Tümü ($count)
+  filterPending: Yapılacaklar ($count)
+  filterCompleted: Teslim Edilenler ($count)
+  emptyAll: Henüz uzman tarafından görev atanmamış. Uzmanınız yeni ödev
+    belirlediğinde burada görebileceksiniz.
+  emptyPending: Bekleyen görev bulunmuyor.
+  emptyCompleted: Tamamlanan görev bulunmuyor.
+  overdueBanner: 'Son tarih geçti! Uzmanınız teslimat bekliyor.'
+  difficultyEasy: Kolay
+  difficultyMedium: Orta
+  difficultyHard: Zor
+  dueLabel: 'Son: $date'
+  detailLabel: Görev Detayı
+  openMaterial: Gerekli Materyale Git
+  submitTask: Görevi Teslim Et
+  submitted: Görev başarıyla uzmanınıza teslim edildi!
+  submissionsError: Teslim kaydı yüklenemedi.
+  noSubmission: Bu görev için teslim kaydı bulunamadı (eski görev olabilir).
+  yourNote: Sizin Notunuz
+  evidenceLink: Eklenmiş Kanıt / Video
+  expertFeedback: Uzman Değerlendirmesi
+  expertApprovedNoNote: Uzman onayladı ama not bırakmadı.
+  awaitingReview: Uzman değerlendirmesi bekleniyor…
+  submitTitle: Görevi Teslim Et
+  selectedTask: Seçili Görev
+  noteLabel: Uzmana İletilecek Not
+  noteHint: 'Çocuğunuz bu görevi yaparken nasıl hissetti? (Örn: Çok rahat
+    tamamladı)'
+  evidenceLabel: Kanıt / Eklenti Bağlantısı (İsteğe Bağlı)
+  evidenceHint: Uzmanınızın görebilmesi için ilgili çalışma anının videosunu
+    veya fotoğrafını bulut bağlantısı olarak ekleyebilirsiniz.
+  submitConfirm: Teslim Et ve Kapat
+
+forum:
+  title: Topluluk Forumu
+  typeExperience: Deneyimler
+  typeQuestion: Soru-Cevap
+  typeAdvice: Tavsiyeler
+  typeSuccess: Başarı Hikayeleri
+  catCommunication: İletişim
+  catSocial: Sosyal
+  catSensory: Duyusal
+  catBehavior: Davranış
+  catMotor: Motor
+  catEducation: Eğitim
+  justNow: az önce
+  minsAgo: $count dk önce
+  hoursAgo: $count sa önce
+  daysAgo: $count gün önce
+  searchHint: Forumda ara…
+  tagFilter: Etiket filtresi
+  sortNew: Yeni
+  sortHot: Sıcak
+  sortUnanswered: Cevapsız
+  sortExpert: Uzmanlı
+  empty: Henüz gönderi yok. Toplulukla bir deneyiminizi paylaşarak başlayın.
+  emptyQuestion: Henüz soru yok. İlk soruyu sorarak tartışmayı başlatın.
+  add: Paylaş
+  loadMore: Daha Fazla Yükle
+  posted: Gönderi paylaşıldı.
+  anonymousUser: Anonim Kullanıcı
+  expertBadge: Uzman
+  pinnedBadge: Sabitlenmiş
+  answeredBadge: Cevaplanmış
+  postTitle: Gönderi
+  commentsHeader: Yorumlar ($count)
+  commentsError: Yorumlar yüklenemedi.
+  noComments: Henüz yorum yok. İlk yorumu siz yazın.
+  commentHint: Bir yorum yazın…
+  replyHint: Yanıtınızı yazın…
+  replyingTo: '$name kişisine yanıt veriliyor'
+  reply: Yanıtla
+  acceptAnswer: En İyi Cevap
+  answerAccepted: En iyi cevap işaretlendi.
+  acceptedBadge: En İyi Cevap
+  expertApproved: Uzman Onaylı
+  editComment: Yorumu Düzenle
+  deleteCommentTitle: Yorumu Sil
+  deleteCommentConfirm: Bu yorumu silmek istediğinize emin misiniz?
+  deleteTitle: Gönderiyi Sil
+  deleteConfirm: Bu gönderiyi silmek istediğinize emin misiniz?
+  cancel: Vazgeç
+  delete: Sil
+  save: Kaydet
+  reportTitle: Şikayet Et
+  reportHint: Şikayet nedeninizi kısaca yazın
+  reportSend: Gönder
+  reportSent: Şikayetiniz alındı.
+  newPost: Yeni Gönderi
+  editPost: Gönderiyi Düzenle
+  titleLabel: Başlık
+  titleHintQuestion: Sorunuzu kısaca özetleyin
+  titleHint: Gönderinizin başlığı
+  contentLabel: İçerik
+  tagsLabel: Semptom Etiketleri
+  anonymousTitle: Anonim Olarak Paylaş
+  anonymousBody: Profil bilgileriniz gizlenir, "Anonim Kullanıcı" olarak
+    görünürsünüz.
+  privacyTitle: Gizlilik Ayarları
+  privacyRealName: Gerçek adımı göster
+  privacyChildAge: Çocuğumun yaş aralığını göster
+  privacySymptoms: Semptom etiketlerini göster
+  privacyDiagnosis: Tanı detaylarını göster
+  privacyMatching: Eşleştirme algoritmasında kullanılsın
+  share: Paylaş
+
+childDetail:
+  title: Çocuk Profili
+  editProfile: Profili Düzenle
+  ageYears: $age yaş
+  genderBoy: Erkek
+  genderGirl: Kız
+  photoUpdated: Profil fotoğrafı güncellendi.
+  infoTitle: Bilgiler
+  infoEmpty: Henüz tanı/eğitim bilgisi eklenmemiş. Sağ üstten profili
+    düzenleyebilirsiniz.
+  diagnosis: Tanı Bilgisi
+  educationProgram: Eğitim Programı
+  therapies: Terapiler
+  tagsTitle: Semptom Etiketleri
+  tagsEmpty: Henüz etiket seçilmemiş. Etiketler benzer aile eşleştirmesinde
+    ve forumda kullanılır.
+  tagsEdit: Etiketleri Düzenle
+  tagsError: Etiketler yüklenemedi.
+  edit: Düzenle
+  save: Kaydet
+  cancel: Vazgeç
+  delete: Sil
+  milestonesTitle: Kilometre Taşları
+  milestonesEmpty: Henüz kilometre taşı eklenmemiş. İlk büyük başarıyı
+    kaydedin!
+  milestonesError: Kilometre taşları yüklenemedi.
+  milestoneAdd: Ekle
+  milestoneEdit: Kilometre Taşını Düzenle
+  milestoneTitleLabel: Başlık
+  milestoneTitleHint: 'Örn: İlk kez göz teması kurdu'
+  milestoneDescLabel: Açıklama (isteğe bağlı)
+  milestoneSave: Kilometre Taşı Ekle
+  milestoneDeleteTitle: Kilometre Taşını Sil
+  milestoneDeleteConfirm: Bu kaydı silmek istediğinize emin misiniz?
+  screeningTitle: Tarama Sonuçları
+  screeningEmpty: Henüz tarama sonucu yok.
+  scoreOf: $score/20
+  riskLow: Düşük risk
+  riskMedium: Orta risk
+  riskHigh: Yüksek risk
+  shortcutsTitle: Hızlı Erişim
+  shortcutTracker: Günlük Takip
+  shortcutBehavior: Davranış Günlüğü
+  shortcutTreatment: Tedavi Paneli
+  shortcutAnalytics: Gelişim Paneli
+
+crisis:
+  title: Kriz Rehberi
+  heroTitle: Zor Anlarda Ne Yapmalı?
+  heroSubtitle: Çocuğunuz bunaldığında sakin kalmanıza ve doğru adımları atmanıza
+    yardımcı olacak hızlı rehber.
+  breathingTitle: Nefes Regülatörü
+  breathingSubtitle: Önce siz sakinleşin. Başlatın ve nefesinizi halkanın
+    büyüme-küçülme hızına uydurun.
+  breathingStart: Egzersizi Başlat
+  breathingStop: Durdur
+  breathingReady: Hazır
+  breathingReadyHint: Başlamak için dokunun
+  breathingInhale: Nefes Al
+  breathingExhale: Nefes Ver
+  breathingSeconds: saniye
+  stepsLabel: Ne Yapmalı?
+  avoidLabel: Kaçınılması Gerekenler
+  emergencyLabel: Önerilen Acil Hat
+  contactsTitle: Acil Numaralar
+  disclaimer: Bu rehber genel bilgilendirme amaçlıdır; acil ve tıbbi durumlarda
+    mutlaka 112'yi arayın.
+  contact112Label: Acil Sağlık ve Güvenlik
+  contact112Desc: Ambulans, Polis, İtfaiye
+  contact183Label: Sosyal Destek Hattı
+  contact183Desc: Kadın, Çocuk ve Sosyal Hizmetler
+  cards:
+    meltdown:
+      title: Kriz / Meltdown
+      subtitle: Kontrol kaybı, ağlama, bağırma, kendine zarar verme girişimi
+      steps:
+        - Sakin kalın — sesiniz ve beden diliniz çocuğa geçer.
+        - "Güvenli alan oluşturun: keskin/sert nesneleri uzaklaştırın."
+        - Sözel uyarıyı minimuma indirin; tek kelime veya kısa cümleler.
+        - "Duyusal uyaranları azaltın: ışıkları kısın, sesi düşürün."
+        - Yanında olmaya devam edin — uzaklaşmayın ama dokunmayın.
+        - Kriz geçtikten sonra sakin ses tonuyla güvence verin.
+      avoid:
+        - Yüksek sesle konuşmayın.
+        - Mantık yürütmeye ya da açıklamaya çalışmayın.
+        - Cezalandırma veya tehdit etmeyin.
+        - Kalabalık içinde bırakmayın.
+      emergency: 112 — Acil Sağlık Hattı
+    sensory:
+      title: Duyusal Aşırı Yüklenme
+      subtitle: Ellerini kulaklarına kapatma, ışıktan/sesten kaçma, donup kalma
+      steps:
+        - Hemen daha sakin ve az uyarıcı bir ortama geçin.
+        - Sevilen duyusal nesneleri sunun (ağırlıklı battaniye, squishy).
+        - Tahmin edilebilir ve sakin bir ses tonuyla kısaca konuşun.
+        - Derin baskı (sıkı sarılma) çocuk onay verirse uygulanabilir.
+        - Zaman verin — birkaç dakika sessiz kalın.
+        - Tetikleyiciyi not alın, ilerleyen dönemde önlem alın.
+      avoid:
+        - Ortamı değiştirmeden sözlü yönlendirmeye devam etmeyin.
+        - Zorla bir şey tutturmaya çalışmayın.
+        - "\"Neden bu kadar abartıyorsun?\" demeyin."
+    aggression:
+      title: Saldırganlık / Kendine Zarar Verme
+      subtitle: Vurma, ısırma, kafaya vurma, nesneleri fırlatma
+      steps:
+        - Güvenli mesafe koruyun; yakınlarda başkası varsa uzaklaştırın.
+        - "Düşük sesli, kısa ve sakin direktifler verin (\"Dur\", \"Burada\")."
+        - Tahrik edici nesneleri ve kişileri ortamdan uzaklaştırın.
+        - "Alternatif çıkış noktası sunun: yastık vurma, koşu."
+        - Kriz geçince olayı not edin; tetikleyiciyi analiz edin.
+      avoid:
+        - Fiziksel güç uygulamaktan kaçının (zorunlu değilse).
+        - Dikkat çekerek ya da izleyici yaratarak ortamı körüklemeyin.
+        - Eylem anında ödüllendirmeyin.
+      emergency: 112 — Acil Çağrı Merkezi
+    anxiety:
+      title: Yoğun Kaygı / Panik
+      subtitle: Titreme, nefes darlığı, ağlama, ortalıktan çekilme
+      steps:
+        - "Sakin bir ses tonuyla \"Yanındayım, güvendesin\" deyin."
+        - "Derin nefes egzersizi yapın: 4 saniye içeri, 6 saniye dışarı."
+        - "\"Şu an 5 şey gör, 4 şey dokun\" duyusal zemin egzersizi uygulayın."
+        - Güvenli kişi veya nesne sunun (sevdiği oyuncak, kulaklık).
+        - Krizin geçmesi için zaman verin, acele ettirmeyin.
+      avoid:
+        - "\"Sakin ol, sorun yok\" diyerek küçümsemeyin."
+        - Sormaya devam edip baskı uygulamayın.
+        - Kaygı anında yeni talep eklemeyin.
+
+calendar:
+  title: Takvim
+  subtitle: Çocuğa özel terapi, doktor ve etkinlik planı.
+  noChild: Takvim için önce bir çocuk ekleyin.
+  empty: Henüz etkinlik yok. İlk etkinliği ekleyin.
+  add: Etkinlik Ekle
+  addTitle: Yeni Etkinlik
+  editTitle: Etkinliği Düzenle
+  eventType: Etkinlik Tipi
+  typeTerapi: Terapi
+  typeDoktor: Doktor
+  typeEgitim: Eğitim
+  typeAktivite: Aktivite
+  typeAppointment: Randevu
+  typeDiger: Diğer
+  eventTitle: Başlık
+  titleHint: Etkinlik adı
+  location: Konum
+  locationHint: Klinik adı, adres
+  description: Açıklama
+  start: Başlangıç
+  end: Bitiş (isteğe bağlı)
+  reminder: Hatırlatma
+  reminderOff: Kapalı
+  reminderMin: $count dk önce
+  reminderHour: $count saat önce
+  reminderDay: 1 gün önce
+  statusPlanned: Planlandı
+  statusCompleted: Tamamlandı
+  statusCancelled: İptal
+  markCompleted: Tamamlandı işaretle
+  markPlanned: Planlandı yap
+  markCancelled: İptal et
+  today: Bugün
+  tomorrow: Yarın
+  save: Kaydet
+  saved: Etkinlik kaydedildi.
+  deleteTitle: Etkinliği Sil
+  deleteConfirm: "\"$title\" etkinliğini silmek istediğinize emin misiniz?"
+  deleted: Etkinlik silindi.
+  errorTitle: Lütfen bir başlık girin.
+  cancel: İptal
+  delete: Sil
+
+emergency:
+  title: Acil Durum Kartı
+  subtitle: Acil bir durumda çocuğunuzla karşılaşan kişilere gösterilecek bilgiler.
+  noChild: Acil durum kartı için önce bir çocuk ekleyin.
+  lastUpdated: Son güncelleme $date
+  notSaved: Bu kart henüz kaydedilmedi.
+  save: Kaydet
+  saved: Acil durum kartı kaydedildi.
+  call: Ara
+  sectionChild: Çocuk Bilgileri
+  sectionContacts: Acil İletişim
+  sectionMedical: Tıbbi Bilgiler
+  sectionBehavior: Davranışsal Bilgiler
+  childName: Ad Soyad
+  birthDate: Doğum Tarihi
+  diagnosis: Tanı
+  bloodType: Kan Grubu
+  communicationLevel: İletişim Seviyesi
+  languages: Konuşulan Dil(ler)
+  warningsLabel: Özel durum uyarıları
+  selfInjury: Öz-zarar davranışı olabilir
+  wandering: Kaçma / kaybolma riski var
+  nonVerbal: Sözel iletişim yoktur
+  contact1: Birinci Kişi
+  contact2: İkinci Kişi
+  doctor: Doktor / Hastane
+  name: Ad Soyad
+  phone: Telefon
+  relation: Yakınlık
+  doctorName: Doktor Adı
+  doctorPhone: Doktor Telefonu
+  hospital: Hastane
+  medications: Kullandığı İlaçlar
+  medicationsHint: İlaç adı - doz - saat (her satıra bir ilaç)
+  allergies: Alerjiler
+  allergiesHint: Gıda, ilaç, madde alerjileri
+  conditions: Diğer Tıbbi Durumlar
+  conditionsHint: Epilepsi, kalp hastalığı vb.
+  triggers: Tetikleyiciler (kaçınılması gerekenler)
+  triggersHint: "Neler kriz çıkarır? Örn: ani gürültü, kalabalık"
+  calming: Sakinleştirme Stratejileri
+  calmingHint: "Ne işe yarar? Örn: sevdiği müzik, sessiz oda"
+  avoid: Kesinlikle Yapılmaması Gerekenler
+  avoidHint: "Örn: bağırmayın, tutmayın, göz temasına zorlamayın"
+  special: Özel Talimatlar
+  specialHint: Acil servis veya bakıcı için ek notlar
+  select: Seçin...
+
+behavior:
+  title: Davranış Günlüğü
+  subtitle: ABC (Öncesi-Davranış-Sonuç) gözlem kayıtları
+  add: Kayıt Ekle
+  addTitle: Yeni ABC Kaydı
+  empty: Henüz davranış kaydı yok. İlk gözlemi ekleyin.
+  noChild: Davranış günlüğü için önce bir çocuk ekleyin.
+  date: Tarih
+  time: Saat
+  category: Kategori
+  location: Yer
+  antecedentLabel: A — Öncesi (Tetikleyici)
+  antecedentHint: Tetikleyiciyi açıklayın
+  behaviorLabel: B — Davranış (Ne oldu?)
+  behaviorHint: Davranışı ayrıntılı açıklayın
+  consequenceLabel: C — Sonuç (Ne yaptınız?)
+  consequenceHint: Uyguladığınız müdahaleyi açıklayın
+  other: Diğer...
+  intensityLabel: Şiddet Düzeyi
+  intensity1: Çok Hafif
+  intensity2: Hafif
+  intensity3: Orta
+  intensity4: Şiddetli
+  intensity5: Çok Şiddetli
+  notesLabel: Ek notlar (isteğe bağlı)
+  save: Kaydet
+  saved: ABC kaydı oluşturuldu.
+  deleteTitle: Kaydı Sil
+  deleteConfirm: $date tarihli ABC kaydını silmek istediğinize emin misiniz?
+  deleted: Kayıt silindi.
+  errorRequired: Lütfen zorunlu alanları doldurun (kategori, yer, A, B, C).
+
+analytics:
+  title: Gelişim Paneli
+  subtitle: Son 6 ayın gelişim eğilimleri.
+  milestones: Kilometre Taşları
+  milestonesUnit: aylık kazanım sayısı
+  mood: Ruh Hali Ortalaması
+  moodUnit: 1-5 arası aylık ortalama
+  sleep: Ortalama Uyku
+  sleepUnit: gecelik saat (aylık ortalama)
+  behavior: Davranış Kayıtları
+  behaviorUnit: aylık kayıt sayısı
+  noData: Bu aralıkta henüz veri yok.
+  noChild: Gelişim paneli için önce bir çocuk ekleyin.
+
+children:
+  title: Çocuklarım
+  addTitle: Çocuk Ekle
+  editTitle: Çocuğu Düzenle
+  empty: Henüz çocuk eklemediniz.
+  add: Çocuk Ekle
+  nameLabel: Ad Soyad
+  nameHint: Çocuğun adı
+  birthDateLabel: Doğum Tarihi (isteğe bağlı)
+  birthDateSelect: Tarih seçin
+  genderLabel: Cinsiyet (isteğe bağlı)
+  genderMale: Erkek
+  genderFemale: Kız
+  diagnosisLabel: Tanı Bilgisi (isteğe bağlı)
+  diagnosisHint: Varsa tanı bilgisi
+  educationLabel: Eğitim Programı (isteğe bağlı)
+  educationHint: Devam ettiği eğitim programı
+  therapiesLabel: Terapiler (isteğe bağlı)
+  therapiesHint: Aldığı terapiler
+  ageYears: $years yaş
+  save: Kaydet
+  cancel: İptal
+  delete: Sil
+  deleteTitle: Çocuğu Sil
+  deleteConfirm: $name profilini silmek istediğinize emin misiniz?
+  errorNameRequired: Lütfen çocuğun adını girin.
+  created: Çocuk profili oluşturuldu.
+  updated: Çocuk profili güncellendi.
+  deleted: Çocuk profili silindi.
+
+account:
+  title: Hesap Bilgileri
+  emailLabel: E-posta
+  fullNameLabel: Ad Soyad
+  phoneLabel: Telefon
+  phoneHint: '05XX XXX XX XX'
+  cityLabel: Şehir
+  expertTitleLabel: Uzmanlık Ünvanı
+  institutionLabel: Kurum
+  licenseNumberLabel: Lisans / Diploma No
+  bioLabel: Hakkında
+  bioHint: Deneyiminizi kısaca anlatın
+  save: Kaydet
+  saved: Profil güncellendi.
+  errorFullName: Ad soyad en az 2 karakter olmalıdır.
+
+help:
+  title: Yardım & Hakkında
+  aboutTitle: Otizm Destek Hakkında
+  aboutBody: Otizm Destek; çocuğunuzun gelişimini takip etmenize, uzmanlarla iletişim kurmanıza ve randevu almanıza yardımcı olan bir mobil uygulamadır.
+  tipsTitle: İpuçları
+  tip1: Çocuklarınızı "Çocuklarım"dan ekleyin; hedef ve gelişim notlarını "Gelişim" sekmesinden takip edin.
+  tip2: '"Uzmanlar"dan bir uzman seçip randevu alabilir veya mesaj gönderebilirsiniz.'
+  tip3: AI Asistan'a otizm ve çocuk gelişimi hakkında sorular sorabilirsiniz.
+  contactTitle: İletişim
+  contactBody: Soru ve önerileriniz için uygulama içinden bize ulaşabilirsiniz.
+  version: Sürüm $version
 
 profile:
   defaultUser: Kullanıcı

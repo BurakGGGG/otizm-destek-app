@@ -19,12 +19,15 @@ class ComingSoon extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, size: 56, color: AppColors.textTertiary),
+            Icon(icon, size: 56, color: context.colors.textTertiary),
             const SizedBox(height: 16),
             Text(title, style: text.titleMedium, textAlign: TextAlign.center),
             const SizedBox(height: 6),
-            Text(context.t.common.comingSoon,
-                style: text.bodySmall, textAlign: TextAlign.center),
+            Text(
+              context.t.common.comingSoon,
+              style: text.bodySmall,
+              textAlign: TextAlign.center,
+            ),
           ],
         ),
       ),

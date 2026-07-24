@@ -28,6 +28,12 @@ language:
   turkish: Türkçe
   english: English
 
+theme:
+  title: Theme
+  system: System
+  light: Light
+  dark: Dark
+
 roles:
   parent: Parent
   expert: Specialist
@@ -47,6 +53,30 @@ auth:
   registerExpert: Sign up as a specialist
   errorEmptyFields: Please enter your email and password.
   registerComingSoon: $role sign-up screen is coming soon.
+
+forgotPassword:
+  title: Forgot Password
+  subtitle: Enter your email and we'll send you a password reset link.
+  submit: Send Reset Link
+  sentTitle: Link sent
+  sentBody: If an account exists for this email, a password reset link will arrive in your inbox.
+  haveCode: I have a reset code
+  backToLogin: Back to login
+  errorEmailRequired: Please enter your email.
+  errorEmailInvalid: Please enter a valid email.
+
+resetPassword:
+  title: Reset Password
+  subtitle: Enter the reset code from your email and your new password.
+  tokenLabel: Reset Code
+  tokenHint: The code from the email link
+  newPasswordLabel: New Password
+  confirmLabel: Confirm New Password
+  submit: Update Password
+  success: Your password has been updated. You can sign in now.
+  errorTokenRequired: Please enter the reset code.
+  errorPasswordShort: Password must be at least 8 characters.
+  errorMismatch: Passwords do not match.
 
 register:
   titleParent: Create Parent Account
@@ -84,8 +114,23 @@ nav:
   progress: Progress
   profile: Profile
 
+chat:
+  title: AI Assistant
+  greeting: Hi! I'll try to answer your questions about autism and child development.
+  inputHint: Ask a question...
+  errorGeneric: Couldn't get a response, please try again.
+
+messages:
+  title: Messages
+  noConversations: You have no conversations yet.
+  noMessages: No messages yet. Send the first one.
+  inputHint: Type a message...
+  connecting: Connecting...
+
 home:
   notifications: Notifications
+  assistant: AI Assistant
+  messages: Messages
   greeting: Hello, $name
   greetingFallback: Parent
   subtitle: What can we do for development today?
@@ -111,26 +156,1061 @@ specialists:
   filterPsychologist: Psychologist
   filterSpecialEducation: Special Education
   filterSpeech: Speech & Language
+  noResults: No specialists match your search.
+  ratingNew: New
+  reviews: $count reviews
 
 progress:
   title: Progress Tracking
-  subtitle: Weekly activity and achievement log.
+  subtitle: Goals and development notes.
   addRecord: Add New Record
-  weeklyActivity: Weekly Activity
-  thisWeek: This Week
-  completedTasks: Completed Tasks
+  goalsTitle: Goals
+  recentNotes: Recent Development Notes
+  noGoals: No goals added yet.
+  noNotes: No development notes yet.
+  noChild: Add a child first to track development.
+  goalProgress: $done / $total
+  addGoal: Add Goal
+  addNote: Add Note
+  addToken: Add Token
+  tokenAdded: Token added 🎉
+  tokenRemoved: Token removed.
+  goalCompleted: Goal completed! 🎉
+  rewardLine: 'Reward: $title'
+
+goalForm:
+  title: Add Goal
+  nameLabel: Title
+  nameHint: e.g. Making eye contact
+  categoryLabel: Category
+  targetLabel: Target Count
+  descriptionLabel: Description (optional)
+  descriptionHint: Details about the goal
+  save: Save
+  errorTitle: Please enter a title.
+  created: Goal added.
+
+noteForm:
+  title: Add Note
+  editTitle: Edit Note
+  nameLabel: Title
+  nameHint: e.g. Today's progress
+  contentLabel: Content (optional)
+  contentHint: Write your observations
+  categoryLabel: Category (optional)
+  moodLabel: Mood (optional)
+  moodHappy: Happy
+  moodNeutral: Normal
+  moodSad: Hard Day
+  dateLabel: Date
+  save: Save
+  errorTitle: Please enter a title.
+  created: Note added.
+  updated: Note updated.
+
+notesPage:
+  title: My Notes
+  add: Add Note
+  searchHint: Search notes…
+  empty: No development notes yet. Start by adding the first note.
+  noResults: No results. Try changing the filter or search.
+  noChildren: Add a child profile first.
+  loadMore: Load More
+  edit: Edit
+  delete: Delete
+  cancel: Cancel
+  deleteTitle: Delete Note
+  deleteConfirm: Are you sure you want to delete this note?
+  deleted: Note deleted.
+
+notifications:
+  show: Show
+  title: Notifications
+  empty: You have no notifications yet.
+  markAllRead: Mark all as read
+  dateLine: $day $month · $time
+
+knowledge:
+  title: Knowledge Base
+  empty: No articles yet.
+  noResults: No content matches this filter.
+  filterAll: All
+  formatArticle: Article
+  formatVideo: Video
+  formatPodcast: Podcast
+  views: $count views
+  dateLine: $day $month $year
+  videoLink: Video link
+  podcastLink: Podcast link
+
+appointments:
+  title: Appointments
+  empty: You don't have any appointments yet.
+  upcoming: Upcoming
+  past: Past
+  statusPending: Pending
+  statusConfirmed: Confirmed
   statusCompleted: Completed
-  statusPartial: Partial
-  categoryCognitive: Cognitive
-  categoryCommunication: Communication
-  weekdays:
+  statusCancelled: Cancelled
+  typeOnline: Online session
+  typeFaceToFace: In person
+  withChild: 'Child: $name'
+  dateLine: $day $month $year · $time
+  cancel: Cancel
+  confirm: Confirm
+  complete: Complete
+  joinMeeting: Join meeting
+  cancelTitle: Cancel appointment
+  cancelConfirm: Are you sure you want to cancel this appointment?
+  cancelReasonLabel: Cancellation reason (optional)
+  cancelReasonShown: 'Cancellation reason: $reason'
+  keepIt: Keep
+  cancelled: Appointment cancelled.
+  confirmed: Appointment confirmed.
+  completed: Appointment marked as completed.
+  reschedule: Reschedule
+  rescheduleTitle: Reschedule Appointment
+  rescheduleConfirm: Confirm New Time
+  rescheduled: Appointment rescheduled.
+
+expertDetail:
+  bookAppointment: Book Appointment
+  sendMessage: Send Message
+  specializationsTitle: Specializations
+  articleCount: $count articles
+  notAcceptingPatients: This expert is not accepting appointments right now.
+
+booking:
+  title: Book Appointment
+  childLabel: Child
+  noChild: Add a child first to book an appointment.
+  typeLabel: Appointment Type
+  dateLabel: Date
+  selectDate: Select date
+  dateValue: $day $month $year
+  timeLabel: Time
+  selectDateFirst: Select a date to see available times.
+  noSlots: No available times for this day.
+  notesLabel: Note (optional)
+  notesHint: A note for the expert
+  confirm: Confirm Appointment
+  created: Appointment created.
+  errorSelectChild: Please select a child.
+  errorSelectTime: Please select a time.
+
+routines:
+  title: Routines
+  empty: No routines for this child yet.
+  noChild: Add a child first to create routines.
+  add: Add Routine
+  addItem: Add Step
+  noItems: No steps added yet.
+  deleteRoutineTitle: Delete Routine
+  deleteRoutineConfirm: Are you sure you want to delete the routine "$name"?
+  delete: Delete
+  cancel: Cancel
+  created: Routine added.
+  itemAdded: Step added.
+  deleted: Routine deleted.
+  itemTitleLabel: Step Title
+  itemTitleHint: e.g. Brush teeth
+  itemTimeLabel: Time (optional)
+  selectTime: Select time
+  itemIconLabel: Icon
+  itemSave: Add
+  errorItemTitle: Please enter a step title.
+
+routineForm:
+  title: Add Routine
+  nameLabel: Routine Name
+  nameHint: e.g. Morning Routine
+  descriptionLabel: Description (optional)
+  descriptionHint: What is this routine for?
+  save: Save
+  errorName: Please enter a routine name.
+
+dailyTracker:
+  title: Daily Tracker
+  tabMood: Mood
+  tabSleep: Sleep
+  tabMeds: Medication
+  todayTitle: How was today?
+  today: Today
+  mood1: Very Bad
+  mood2: Bad
+  mood3: Okay
+  mood4: Good
+  mood5: Great
+  triggersLabel: Possible triggers (optional)
+  notesLabel: Note (optional)
+  notesHint: Your observations about today
+  save: Save
+  update: Update
+  saved: Mood saved.
+  historyTitle: Past Entries
+  empty: No entries yet. Add the first one today.
+  noChild: Add a child first to use the daily tracker.
+  deleteTitle: Delete Entry
+  deleteConfirm: Are you sure you want to delete the entry dated $date?
+  delete: Delete
+  cancel: Cancel
+  deleted: Entry deleted.
+  errorSelectMood: Please select a mood.
+  dateLine: $day $month $year
+
+sleep:
+  todayTitle: Last Night / This Morning
+  bedtime: Bedtime
+  wakeTime: Wake Time
+  quality: Sleep Quality
+  nightWakings: Night wakings
+  factorsLabel: Sensory and environmental factors
+  factorWeighted: 🛏️ Weighted Blanket
+  factorSensory: 👕 Sensory Sensitivity
+  factorMelatonin: 💊 Melatonin Support
+  factorNoise: 🔊 Noise / Light
+  saved: Sleep saved.
+  empty: No sleep entries yet. Add the first one today.
+  deleteConfirm: Are you sure you want to delete the sleep entry dated $date?
+  deleted: Sleep entry deleted.
+  duration: $h h $m min
+  wakings: woke $count times
+
+meds:
+  safetyTitle: Medication safety
+  safetyBody: Medication reminders are for support only. Decisions about starting,
+    stopping, changing doses or side effects should be made only with your doctor.
+  add: Add Medication
+  addTitle: Add New Medication
+  editTitle: Edit Medication
+  empty: No medications yet. Add your child's medications and supplements here.
+  name: Medication / Supplement Name
+  nameHint: "E.g. Omega-3"
+  dosage: Dose
+  unit: Unit
+  frequency: Frequency
+  freqDaily: Once a day
+  freqTwiceDaily: Twice a day
+  freqThreeDaily: 3 times a day
+  freqAsNeeded: As needed
+  freqWeekly: Weekly
+  timesLabel: Dose times
+  addTime: Add Time
+  noTime: No time
+  added: Medication added.
+  updated: Medication updated.
+  deleteTitle: Delete Medication
+  deleteConfirm: $name and its dose logs will be permanently deleted. Are you sure?
+  deleted: Medication deleted.
+  errorName: Please enter the medication name.
+  logTitle: Dose Log
+  taken: Medication taken
+  sideEffectsLabel: Observed side effects
+  logNotesLabel: Observation notes (optional)
+  logNotesHint: Anything you want to share with your doctor?
+  logSaved: Dose log saved.
+
+wall:
+  title: Support Wall
+  subtitle: Share your feelings and support each other. Posts can be anonymous.
+  empty: No posts yet. Be the first to share.
+  add: Share
+  addTitle: Support Post
+  editTitle: Edit Post
+  titleLabel: Title (optional)
+  titleHint: A short title
+  contentLabel: How are you feeling?
+  contentHint: You can let it out; you're not alone here.
+  anonymous: Post anonymously
+  anonymousUser: Anonymous User
+  post: Share
+  posted: Your post was added to the wall.
+  updated: Post updated.
+  deleteTitle: Delete Post
+  deleteConfirm: Are you sure you want to delete this post?
+  deleted: Post deleted.
+  errorContent: Please write something.
+  supportCount: $count support
+  commentCount: $count comments
+  detailTitle: Post
+  commentsTitle: Support Messages
+  commentHint: Write a message of support…
+  commentSend: Send
+  commentSent: Support message sent.
+  commentEmpty: No support messages yet. Be the first.
+  commentDeleteTitle: Delete Comment
+  commentDeleteConfirm: Are you sure you want to delete this support message?
+  commentDeleted: Comment deleted.
+  edit: Edit
+  delete: Delete
+  cancel: Cancel
+  save: Save
+  justNow: just now
+  minsAgo: $count min ago
+  hoursAgo: $count h ago
+  daysAgo: $count d ago
+
+weekly:
+  title: Question of the Week
+  subtitle: This week's question for families. Share your experience and support
+    each other.
+  empty: No weekly question yet. It will appear here when a new one is published.
+  answersTitle: Family Answers
+  answerCount: $count answers
+  expertCount: $count expert
+  expertBadge: Expert
+  anonymousUser: Anonymous Family
+  yourAnswerTitle: Write Your Answer
+  answerHint: Even a short note helps. Share your experience…
+  anonymous: Post anonymously
+  tagsLabel: Tags (optional)
+  send: Share
+  sent: Your answer was shared, thank you!
+  errorEmpty: Please write an answer.
+  noAnswers: No answers yet. Be the first to share.
+  likeError: Could not save the like.
+  justNow: just now
+  minsAgo: $count m ago
+  hoursAgo: $count h ago
+  daysAgo: $count d ago
+
+meetup:
+  title: Local Meetups
+  subtitle: Meet families in your city and spend time together.
+  empty: No meetups in this city yet. Be the first to create one.
+  add: Create Meetup
+  addTitle: New Meetup
+  titleLabel: Meetup Name
+  titleHint: "e.g. Morning Meetup at the Park"
+  cityLabel: City
+  cityHint: Select a city
+  districtLabel: District
+  districtHint: "e.g. Kadıköy"
+  venueLabel: Venue
+  venueHint: "e.g. Moda Park or a cafe name"
+  dateLabel: Date
+  timeLabel: Time
+  descriptionLabel: Description
+  descriptionHint: Who can join, what will it be like?
+  create: Create
+  created: Your meetup was created. Other families can see it now.
+  errorRequired: Please fill in the title, city and date fields.
+  attendCount: $count attending
+  join: Join
+  joined: Attending
+  joinedMsg: You're attending the meetup!
+  leftMsg: Your attendance was cancelled.
+  today: Today
+  tomorrow: Tomorrow
+  inDays: in $count days
+  past: Past
+  organizerBy: Organized by $name
+
+similar:
+  title: Similar Families
+  subtitle: Meet families at a similar stage to your child and share experiences.
+  noChild: Add a child first, then discover similar families.
+  discoverable: You're discoverable in matching
+  hidden: You're hidden from matching
+  discoverableHint: If you turn this off, other families won't see you in
+    suggestions.
+  empty: No matching families right now. Updating your profile and tags can
+    improve your chances.
+  matchLabel: match
+  commonTagsTitle: Common areas
+  moreTags: +$count
+  reasonsTitle: Why you matched
+  ageRange: Age $range
+  message: Message
+  buddy: Buddy
+  mentor: Mentor
+  pendingLabel: Request pending
+  buddyLabel: Buddy connection
+  mentorLabel: Mentor connection
+  requestTitle: Connection request
+  mentorRequestTitle: Mentor request
+  requestHint: Write a short intro message (optional)
+  requestDefault: Hi, I noticed we've been through similar journeys. If you're
+    open to it, I'd like to start with a brief introduction here.
+  send: Send Request
+  sent: Connection request sent.
+  cancel: Cancel
+
+groups:
+  title: Support Groups
+  subtitle: Meet families on similar topics and join the group chat.
+  tabMy: My Groups
+  tabDiscover: Discover
+  searchHint: Search groups…
+  allCategories: All
+  emptyMy: You haven't joined any group yet. Browse groups in the Discover tab.
+  emptyDiscover: No groups match these criteria. You can create a new one.
+  memberCount: $count members
+  expertCount: $count experts
+  verified: Verified
+  join: Join
+  joined: Joined
+  leave: Leave
+  chat: Group Chat
+  joinedMsg: You joined the group.
+  leftMsg: You left the group.
+  leaveTitle: Leave Group
+  leaveConfirm: Are you sure you want to leave this group?
+  add: Create Group
+  addTitle: New Group
+  nameLabel: Group Name
+  nameHint: "e.g. Istanbul Early Intervention"
+  descriptionLabel: Description
+  descriptionHint: What is the group about, who can join?
+  categoryLabel: Category
+  create: Create
+  created: Group created.
+  errorName: Please enter a group name.
+
+treatment:
+  title: Treatment Panel
+  subtitle: Daily Support Plan
+  programActive: $name plan is active
+  selectChild: Select profile
+  noChildrenTitle: No child profile yet
+  noChildrenBody: Add a child profile first to build a treatment plan.
+  addChild: Add Child
+  saveError: Treatment data could not be saved; the change was rolled back.
+  tabToday: Today
+  tabGoals: Goals
+  tabGames: Games
+  tabTools: Tools
+  daysShort:
+    - Sun
     - Mon
     - Tue
     - Wed
     - Thu
     - Fri
     - Sat
-    - Sun
+  onboardTitle: Hello! Start in 3 steps 👋
+  onboardBody: This page helps you track the small supports you can do with
+    your child every day.
+  onboardStep1: "1. In the Goals tab, write one small thing to track today."
+  onboardStep2: "2. Try the 5-10 minute activities in the Games tab."
+  onboardStep3: "3. After playing, pick \"Easy / Struggled\" — the system
+    handles the rest."
+  todayTitle: Today's short plan
+  todaySubtitle: Pick an item, apply it, then mark it as done.
+  streakDays: $count day streak
+  doneOf: $done/$total done
+  stepCount: $count steps
+  emptyPlanTitle: No plan found for today.
+  emptyPlanBody: Short daily steps will appear here once you add goals.
+  planDone: Today's plan is complete.
+  planDoneSub: That's enough for today.
+  moodSaveTitle: Log today's mood
+  moodSaveSub: The plan adapts automatically to your child's state
+  moodTodayLabel: "Today's mood: $label"
+  moodPlanned: The plan was prepared for this state
+  moodLevel1: Struggling
+  moodLevel2: Sensitive
+  moodLevel3: Balanced
+  moodLevel4: Good
+  moodLevel5: Great
+  suggestionsTitle: Things to watch today
+  latestNoteTitle: Latest note
+  defaultExpert: Expert Therapist
+  noNoteAuthor: Platform Therapy Module
+  noNoteRole: Automatic daily plan
+  noNoteBody: No expert note yet. Today's plan was prepared from your
+    child's records.
+  noteEmptyContent: This note has no additional details.
+  weeklyTitle: Weekly summary
+  weeklySubtitle: This section only shows the overall picture.
+  legendGame: Games
+  legendGoal: Goals
+  chartGames: $count games
+  chartGoal: $percent% goals
+  weekGamesTitle: Games this week
+  weekGamesDetail: Mini exercises repeated this week
+  weekGamesEmpty: You can plan the first game today
+  weekGoalsTitle: Goals completed
+  weekGoalsDetail: Total progress across all active skill areas
+  weekGoalsEmpty: You can add goals from the Goals tab
+  weekSessionsTitle: Upcoming sessions
+  weekSessionsDetail: Planned appointments or events
+  weekSessionsEmpty: No appointments planned yet
+  microTitle: Development areas
+  microSubtitle: Check here when you need the details.
+  microLinkedGame: "Supporting game:"
+  addGoalTitle: Add a Daily Goal
+  addGoalSubtitle: Write one small thing you want to track for your child today.
+  goalHint: "e.g. Made eye contact twice"
+  focusLabel: Goal area
+  dueDateLabel: Due date (optional)
+  addGoal: Add Goal
+  saving: Saving…
+  yourGoals: Goals you added
+  edit: Edit
+  delete: Delete
+  save: Save
+  cancel: Cancel
+  goalAdded: New goal added.
+  goalUpdated: Goal updated.
+  goalEdited: Goal edited.
+  goalDeleted: Goal deleted.
+  groupsHeader: Therapy Goals — Progress by Area
+  groupDone: $done/$total completed
+  statusDone: Done
+  statusActive: Active
+  statusUpcoming: Queued
+  emptyGroupsTitle: No therapy goals yet
+  emptyGroupsBody: Goals are listed here automatically once a therapy type is
+    added to your child's profile.
+  milestoneTitle: Record a Big Win 🏅
+  milestoneSubtitle: An important moment you want to remember
+  milestoneHint: "e.g. Said their name for the first time"
+  milestoneSaved: Milestone saved 🎉
+  notesTitle: Recent Observation Notes
+  notesEmpty: No expert or parent notes for this child yet.
+  upcomingTitle: Upcoming Events
+  upcomingEmpty: No active sessions or events planned soon.
+  goAppointments: Appointments
+  goCalendar: Open Calendar
+  gamesTitle: Daily Activities
+  gamesSubtitle: Short activities suggested from your child's therapy goals.
+    Pick how it went after playing.
+  todayDone: $done/$total done today
+  filterAll: All
+  gameReady: Ready
+  gameDoneBadge: ✅ Done
+  methodLabel: "Method: $name"
+  whyGood: Why it helps
+  goalBadge: "Goal: $name"
+  toolBadge: "Tool: $name"
+  playToday: Play today
+  playedToday: Marked as done
+  feedbackQuestion: How did it go? (optional)
+  fbNone: No result selected yet
+  fbEasy: Very easy
+  fbAssisted: With help
+  fbIndependent: On their own
+  fbChallenging: Struggled
+  fbEasyLong: Found it easy
+  fbAssistedLong: Did it with help
+  fbIndependentLong: Did it independently
+  fbChallengingLong: Struggled
+  feedbackSaved: Game feedback saved.
+  allDoneTitle: 🎉 All of today's games are done. You're doing great!
+  allDoneBody: You completed today's support flow; you can add a short
+    observation to the notes if you like.
+  hintMastered: Mastered it! Try a harder variant.
+  hintEasy: Finding it very easy. Increase the difficulty.
+  hintChallenging: Struggling. Break the activity into smaller parts.
+  notifyExpert: Notify Expert
+  notifyBody: Send your expert a short note about the difficulty in $game.
+  notifyDefaultMsg: "\"$game\" aktivitesinde son zamanlarda zorlanıyor.
+    Önerisi olan var mı?"
+  notifyNoExpert: You haven't messaged an expert yet. Connect with an
+    expert first.
+  notifySeeExperts: View Experts
+  notifySend: Send
+  notifySent: Expert notified.
+  emptyGames: No activities suggested for this area yet. They appear once
+    therapy info is added to your child's profile.
+  historyTitle: Game History
+  historySubtitle: The history of played activities appears here.
+  historyCount: $count records
+  historyEmpty: No game records yet. History appears after the first record.
+  challengingSummary: 💪 "Struggled" was marked in $count activities. Consider
+    breaking them into smaller steps or notifying your expert when retrying.
+  storiesTitle: Social Stories & Visual Flow
+  storiesSubtitle: Short picture stories that answer "What will happen?"
+    before an activity — they ease transitions.
+  customBadge: Custom story
+  linkedGoalBadge: "Linked goal: $name"
+  addStoryTitle: Add a Custom Social Story
+  storyTitleHint: "Story title (e.g. Going Shopping)"
+  storyGoalHint: Linked goal (optional)
+  storyAdd: Add
+  storyAdded: Social story added.
+  storyDeleted: Story deleted.
+  deleteStoryTitle: Delete Story
+  deleteStoryConfirm: Are you sure you want to delete this story?
+  sensoryTitle: Comfort Settings
+  sensorySubtitle: Measurement Cards
+  sensorySaved: Sensory profile updated.
+  sliderHeader: Sensory Sensitivity Levels
+  sliderSound: 🔊 Sound Sensitivity
+  sliderTouch: 🖐️ Tactile Sensitivity
+  sliderVisual: 👁️ Visual Sensitivity
+  metricSound: Sound sensitivity
+  metricTouch: Tactile sensitivity
+  metricVisual: Visual stimulus tolerance
+  metricSoundNote: Monitored together with the sensory break game during
+    transitions.
+  metricTouchNote: Tactile stimuli are supported with turn-taking and
+    pressure activities.
+  metricVisualNote: Kept in balance with visual stories and the timeline.
+  triggerTitle: Trigger Log
+  tokenTitle: Digital Token Board
+  tokenSubtitle: Pick a goal with your child. Add a star for each success.
+    At 5 stars they earn the reward!
+  tokenRewardLabel: Target Reward
+  tokenRewardHint: "e.g. Riding the swing 🛝"
+  tokenSetReward: Set Reward
+  tokenActive: Active Reward
+  tokenCollect: Collect success stars ($count/5)
+  tokenAdd: ⭐ Add Star
+  tokenFullTitle: Congrats! The token card is full
+  tokenFullBody: Your child completed all the steps and earned $reward!
+  tokenReset: Reset Board
+  tokenDefaultReward: Going to the park 🛝
+  breathTitle: Breathing Exercise
+  breathBody: When your child feels overstimulated, use the breathing
+    regulator in the Crisis Guide together.
+  breathOpen: Open Breathing Exercise
+  aiStoryTitle: Social Story with AI
+  aiStoryBody: Ask the AI Assistant for a short custom social story draft
+    for a new situation.
+  aiStoryOpen: Open AI Assistant
+
+tasks:
+  title: My Assignments
+  subtitle: Tasks assigned by your expert appear here; submit them as you
+    complete each one.
+  pendingLabel: Pending
+  completedLabel: Completed
+  progressLabel: How much is done
+  overdueSummary: $count task(s) are past their due date
+  filterAll: All ($count)
+  filterPending: To Do ($count)
+  filterCompleted: Submitted ($count)
+  emptyAll: No tasks have been assigned by an expert yet. When your expert
+    sets new assignments you will see them here.
+  emptyPending: No pending tasks.
+  emptyCompleted: No completed tasks.
+  overdueBanner: 'Due date passed! Your expert is waiting for the submission.'
+  difficultyEasy: Easy
+  difficultyMedium: Medium
+  difficultyHard: Hard
+  dueLabel: 'Due: $date'
+  detailLabel: Task Details
+  openMaterial: Open Required Material
+  submitTask: Submit Task
+  submitted: Task submitted to your expert!
+  submissionsError: Could not load the submission record.
+  noSubmission: No submission record found for this task (it may be an old
+    task).
+  yourNote: Your Note
+  evidenceLink: Attached Evidence / Video
+  expertFeedback: Expert Review
+  expertApprovedNoNote: The expert approved but left no note.
+  awaitingReview: Awaiting expert review…
+  submitTitle: Submit Task
+  selectedTask: Selected Task
+  noteLabel: Note for Your Expert
+  noteHint: 'How did your child feel doing this task? (e.g. Completed it
+    very comfortably)'
+  evidenceLabel: Evidence / Attachment Link (Optional)
+  evidenceHint: You can add a cloud link to a video or photo of the practice
+    moment so your expert can see it.
+  submitConfirm: Submit and Close
+
+forum:
+  title: Community Forum
+  typeExperience: Experiences
+  typeQuestion: Q&A
+  typeAdvice: Advice
+  typeSuccess: Success Stories
+  catCommunication: Communication
+  catSocial: Social
+  catSensory: Sensory
+  catBehavior: Behavior
+  catMotor: Motor
+  catEducation: Education
+  justNow: just now
+  minsAgo: $count min ago
+  hoursAgo: $count h ago
+  daysAgo: $count d ago
+  searchHint: Search the forum…
+  tagFilter: Tag filter
+  sortNew: New
+  sortHot: Hot
+  sortUnanswered: Unanswered
+  sortExpert: Expert
+  empty: No posts yet. Start by sharing an experience with the community.
+  emptyQuestion: No questions yet. Ask the first question to start the
+    discussion.
+  add: Share
+  loadMore: Load More
+  posted: Post shared.
+  anonymousUser: Anonymous User
+  expertBadge: Expert
+  pinnedBadge: Pinned
+  answeredBadge: Answered
+  postTitle: Post
+  commentsHeader: Comments ($count)
+  commentsError: Could not load comments.
+  noComments: No comments yet. Be the first to write one.
+  commentHint: Write a comment…
+  replyHint: Write your reply…
+  replyingTo: 'Replying to $name'
+  reply: Reply
+  acceptAnswer: Best Answer
+  answerAccepted: Marked as best answer.
+  acceptedBadge: Best Answer
+  expertApproved: Expert Approved
+  editComment: Edit Comment
+  deleteCommentTitle: Delete Comment
+  deleteCommentConfirm: Are you sure you want to delete this comment?
+  deleteTitle: Delete Post
+  deleteConfirm: Are you sure you want to delete this post?
+  cancel: Cancel
+  delete: Delete
+  save: Save
+  reportTitle: Report
+  reportHint: Briefly describe the reason for your report
+  reportSend: Send
+  reportSent: Your report has been received.
+  newPost: New Post
+  editPost: Edit Post
+  titleLabel: Title
+  titleHintQuestion: Briefly summarize your question
+  titleHint: Title of your post
+  contentLabel: Content
+  tagsLabel: Symptom Tags
+  anonymousTitle: Share Anonymously
+  anonymousBody: Your profile details are hidden; you appear as "Anonymous
+    User".
+  privacyTitle: Privacy Settings
+  privacyRealName: Show my real name
+  privacyChildAge: Show my child's age range
+  privacySymptoms: Show symptom tags
+  privacyDiagnosis: Show diagnosis details
+  privacyMatching: Allow use in the matching algorithm
+  share: Share
+
+childDetail:
+  title: Child Profile
+  editProfile: Edit Profile
+  ageYears: $age yrs
+  genderBoy: Boy
+  genderGirl: Girl
+  photoUpdated: Profile photo updated.
+  infoTitle: Details
+  infoEmpty: No diagnosis/education info yet. You can edit the profile from
+    the top right.
+  diagnosis: Diagnosis Info
+  educationProgram: Education Program
+  therapies: Therapies
+  tagsTitle: Symptom Tags
+  tagsEmpty: No tags selected yet. Tags are used in similar-family matching
+    and the forum.
+  tagsEdit: Edit Tags
+  tagsError: Could not load tags.
+  edit: Edit
+  save: Save
+  cancel: Cancel
+  delete: Delete
+  milestonesTitle: Milestones
+  milestonesEmpty: No milestones yet. Record the first big achievement!
+  milestonesError: Could not load milestones.
+  milestoneAdd: Add
+  milestoneEdit: Edit Milestone
+  milestoneTitleLabel: Title
+  milestoneTitleHint: 'e.g. Made eye contact for the first time'
+  milestoneDescLabel: Description (optional)
+  milestoneSave: Add Milestone
+  milestoneDeleteTitle: Delete Milestone
+  milestoneDeleteConfirm: Are you sure you want to delete this record?
+  screeningTitle: Screening Results
+  screeningEmpty: No screening results yet.
+  scoreOf: $score/20
+  riskLow: Low risk
+  riskMedium: Medium risk
+  riskHigh: High risk
+  shortcutsTitle: Quick Access
+  shortcutTracker: Daily Tracker
+  shortcutBehavior: Behavior Journal
+  shortcutTreatment: Treatment Panel
+  shortcutAnalytics: Progress Panel
+
+crisis:
+  title: Crisis Guide
+  heroTitle: What To Do in Hard Moments?
+  heroSubtitle: A quick guide to help you stay calm and take the right steps when
+    your child is overwhelmed.
+  breathingTitle: Breathing Regulator
+  breathingSubtitle: Calm yourself first. Start and match your breathing to the
+    ring's expand-and-shrink pace.
+  breathingStart: Start Exercise
+  breathingStop: Stop
+  breathingReady: Ready
+  breathingReadyHint: Tap to start
+  breathingInhale: Breathe In
+  breathingExhale: Breathe Out
+  breathingSeconds: seconds
+  stepsLabel: What To Do?
+  avoidLabel: What To Avoid
+  emergencyLabel: Suggested Emergency Line
+  contactsTitle: Emergency Numbers
+  disclaimer: This guide is for general information; in emergencies or medical
+    situations always call your local emergency number.
+  contact112Label: Emergency Health and Safety
+  contact112Desc: Ambulance, Police, Fire
+  contact183Label: Social Support Line
+  contact183Desc: Family, Children and Social Services
+  cards:
+    meltdown:
+      title: Crisis / Meltdown
+      subtitle: Loss of control, crying, screaming, self-harm attempts
+      steps:
+        - Stay calm — your voice and body language transfer to the child.
+        - "Create a safe space: move away sharp or hard objects."
+        - Keep verbal input minimal; single words or short sentences.
+        - "Reduce sensory input: dim the lights, lower the sound."
+        - Stay nearby — don't leave, but don't touch.
+        - Once the crisis passes, reassure with a calm tone.
+      avoid:
+        - Don't speak loudly.
+        - Don't try to reason or explain.
+        - Don't punish or threaten.
+        - Don't leave them in a crowd.
+      emergency: 112 — Emergency Health Line
+    sensory:
+      title: Sensory Overload
+      subtitle: Covering ears, avoiding light/sound, freezing
+      steps:
+        - Move to a calmer, less stimulating environment right away.
+        - Offer favorite sensory objects (weighted blanket, squishy).
+        - Speak briefly in a predictable, calm tone.
+        - Deep pressure (firm hug) may help if the child consents.
+        - Give time — stay quiet for a few minutes.
+        - Note the trigger and take precautions going forward.
+      avoid:
+        - Don't keep giving verbal directions without changing the environment.
+        - Don't force them to hold anything.
+        - "Don't say \"Why are you overreacting?\""
+    aggression:
+      title: Aggression / Self-Harm
+      subtitle: Hitting, biting, head-banging, throwing objects
+      steps:
+        - Keep a safe distance; move others away if nearby.
+        - "Give low, short, calm directives (\"Stop\", \"Here\")."
+        - Remove provoking objects and people from the area.
+        - "Offer an alternative outlet: hitting a pillow, running."
+        - Once it passes, note the event; analyze the trigger.
+      avoid:
+        - Avoid using physical force (unless necessary).
+        - Don't fuel it by drawing attention or creating an audience.
+        - Don't reward during the behavior.
+      emergency: 112 — Emergency Call Center
+    anxiety:
+      title: Intense Anxiety / Panic
+      subtitle: Trembling, shortness of breath, crying, withdrawing
+      steps:
+        - "Say in a calm tone, \"I'm here, you're safe.\""
+        - "Do a deep breathing exercise: 4 seconds in, 6 seconds out."
+        - "Use the \"see 5 things, touch 4 things\" grounding exercise."
+        - Offer a safe person or object (favorite toy, headphones).
+        - Give time for it to pass; don't rush them.
+      avoid:
+        - "Don't belittle it by saying \"Calm down, it's fine.\""
+        - Don't keep asking and applying pressure.
+        - Don't add new demands during anxiety.
+
+calendar:
+  title: Calendar
+  subtitle: Child-specific therapy, doctor and activity schedule.
+  noChild: Add a child first to use the calendar.
+  empty: No events yet. Add the first one.
+  add: Add Event
+  addTitle: New Event
+  editTitle: Edit Event
+  eventType: Event Type
+  typeTerapi: Therapy
+  typeDoktor: Doctor
+  typeEgitim: Education
+  typeAktivite: Activity
+  typeAppointment: Appointment
+  typeDiger: Other
+  eventTitle: Title
+  titleHint: Event name
+  location: Location
+  locationHint: Clinic name, address
+  description: Description
+  start: Start
+  end: End (optional)
+  reminder: Reminder
+  reminderOff: Off
+  reminderMin: $count min before
+  reminderHour: $count h before
+  reminderDay: 1 day before
+  statusPlanned: Planned
+  statusCompleted: Completed
+  statusCancelled: Cancelled
+  markCompleted: Mark completed
+  markPlanned: Mark planned
+  markCancelled: Cancel event
+  today: Today
+  tomorrow: Tomorrow
+  save: Save
+  saved: Event saved.
+  deleteTitle: Delete Event
+  deleteConfirm: "Are you sure you want to delete \"$title\"?"
+  deleted: Event deleted.
+  errorTitle: Please enter a title.
+  cancel: Cancel
+  delete: Delete
+
+emergency:
+  title: Emergency Card
+  subtitle: Information to show to anyone who meets your child in an emergency.
+  noChild: Add a child first to create an emergency card.
+  lastUpdated: Last updated $date
+  notSaved: This card has not been saved yet.
+  save: Save
+  saved: Emergency card saved.
+  call: Call
+  sectionChild: Child Information
+  sectionContacts: Emergency Contacts
+  sectionMedical: Medical Information
+  sectionBehavior: Behavioral Information
+  childName: Full Name
+  birthDate: Date of Birth
+  diagnosis: Diagnosis
+  bloodType: Blood Type
+  communicationLevel: Communication Level
+  languages: Language(s) Spoken
+  warningsLabel: Special condition warnings
+  selfInjury: May exhibit self-injury
+  wandering: Risk of wandering / getting lost
+  nonVerbal: Non-verbal
+  contact1: First Contact
+  contact2: Second Contact
+  doctor: Doctor / Hospital
+  name: Full Name
+  phone: Phone
+  relation: Relationship
+  doctorName: Doctor Name
+  doctorPhone: Doctor Phone
+  hospital: Hospital
+  medications: Current Medications
+  medicationsHint: Name - dose - time (one medication per line)
+  allergies: Allergies
+  allergiesHint: Food, drug, substance allergies
+  conditions: Other Medical Conditions
+  conditionsHint: Epilepsy, heart condition, etc.
+  triggers: Triggers (to avoid)
+  triggersHint: What causes a crisis? E.g. sudden noise, crowds
+  calming: Calming Strategies
+  calmingHint: What helps? E.g. favorite music, quiet room
+  avoid: Things to Never Do
+  avoidHint: E.g. don't shout, don't restrain, don't force eye contact
+  special: Special Instructions
+  specialHint: Extra notes for emergency services or caregivers
+  select: Select...
+
+behavior:
+  title: Behavior Journal
+  subtitle: ABC (Antecedent-Behavior-Consequence) observation log
+  add: Add Entry
+  addTitle: New ABC Entry
+  empty: No behavior entries yet. Add the first observation.
+  noChild: Add a child first to use the behavior journal.
+  date: Date
+  time: Time
+  category: Category
+  location: Location
+  antecedentLabel: A — Antecedent (Trigger)
+  antecedentHint: Describe the trigger
+  behaviorLabel: B — Behavior (What happened?)
+  behaviorHint: Describe the behavior in detail
+  consequenceLabel: C — Consequence (What did you do?)
+  consequenceHint: Describe your intervention
+  other: Other...
+  intensityLabel: Intensity
+  intensity1: Very Mild
+  intensity2: Mild
+  intensity3: Moderate
+  intensity4: Severe
+  intensity5: Very Severe
+  notesLabel: Additional notes (optional)
+  save: Save
+  saved: ABC entry created.
+  deleteTitle: Delete Entry
+  deleteConfirm: Are you sure you want to delete the ABC entry dated $date?
+  deleted: Entry deleted.
+  errorRequired: Please fill the required fields (category, location, A, B, C).
+
+analytics:
+  title: Development Panel
+  subtitle: Development trends over the last 6 months.
+  milestones: Milestones
+  milestonesUnit: achievements per month
+  mood: Average Mood
+  moodUnit: monthly average (1-5)
+  sleep: Average Sleep
+  sleepUnit: hours per night (monthly average)
+  behavior: Behavior Logs
+  behaviorUnit: entries per month
+  noData: No data in this range yet.
+  noChild: Add a child first to see the development panel.
+
+children:
+  title: My Children
+  addTitle: Add Child
+  editTitle: Edit Child
+  empty: You haven't added any children yet.
+  add: Add Child
+  nameLabel: Full Name
+  nameHint: Child's name
+  birthDateLabel: Birth Date (optional)
+  birthDateSelect: Select date
+  genderLabel: Gender (optional)
+  genderMale: Boy
+  genderFemale: Girl
+  diagnosisLabel: Diagnosis Info (optional)
+  diagnosisHint: Diagnosis info, if any
+  educationLabel: Education Program (optional)
+  educationHint: Current education program
+  therapiesLabel: Therapies (optional)
+  therapiesHint: Therapies received
+  ageYears: $years yrs
+  save: Save
+  cancel: Cancel
+  delete: Delete
+  deleteTitle: Delete Child
+  deleteConfirm: Are you sure you want to delete $name's profile?
+  errorNameRequired: Please enter the child's name.
+  created: Child profile created.
+  updated: Child profile updated.
+  deleted: Child profile deleted.
+
+account:
+  title: Account Information
+  emailLabel: Email
+  fullNameLabel: Full Name
+  phoneLabel: Phone
+  phoneHint: '05XX XXX XX XX'
+  cityLabel: City
+  expertTitleLabel: Expert Title
+  institutionLabel: Institution
+  licenseNumberLabel: License Number
+  bioLabel: About
+  bioHint: Briefly describe your experience
+  save: Save
+  saved: Profile updated.
+  errorFullName: Full name must be at least 2 characters.
+
+help:
+  title: Help & About
+  aboutTitle: About Otizm Destek
+  aboutBody: Otizm Destek is a mobile app that helps you track your child's development, connect with experts, and book appointments.
+  tipsTitle: Tips
+  tip1: Add your children under "My Children"; track goals and notes in the "Progress" tab.
+  tip2: Pick an expert under "Experts" to book an appointment or send a message.
+  tip3: Ask the AI Assistant questions about autism and child development.
+  contactTitle: Contact
+  contactBody: Reach us from within the app for any questions or suggestions.
+  version: Version $version
 
 profile:
   defaultUser: User

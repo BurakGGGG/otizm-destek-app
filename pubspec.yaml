@@ -54,6 +54,8 @@ dependencies:
     sdk: flutter
   slang: ^4.16.0
   slang_flutter: ^4.16.0
+  url_launcher: ^6.3.1
+  image_picker: ^1.2.3
 
 dev_dependencies:
   flutter_test:

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../core/haptics.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../i18n/strings.g.dart';
+import '../../notifications/data/notification_repository.dart';
 import '../../profile/presentation/profile_tab.dart';
 import '../../progress/presentation/progress_tab.dart';
 import '../../specialists/presentation/specialists_tab.dart';
@@ -38,12 +41,15 @@ class _HomeShellState extends ConsumerState<HomeShell> {
             Container(
               width: 32,
               height: 32,
-              decoration: const BoxDecoration(
-                color: AppColors.primary,
+              decoration: BoxDecoration(
+                color: context.colors.primary,
                 shape: BoxShape.circle,
               ),
-              child: const Icon(Icons.volunteer_activism,
-                  color: Colors.white, size: 18),
+              child: const Icon(
+                Icons.volunteer_activism,
+                color: Colors.white,
+                size: 18,
+              ),
             ),
             const SizedBox(width: 8),
             Text(t.app.name),
@@ -51,25 +57,47 @@ class _HomeShellState extends ConsumerState<HomeShell> {
         ),
         actions: [
           IconButton(
-            tooltip: t.home.notifications,
-            onPressed: () {},
-            icon: const Icon(Icons.notifications_none),
+            tooltip: t.home.messages,
+            onPressed: () => context.push('/messages'),
+            icon: const Icon(Icons.chat_bubble_outline),
           ),
-          const SizedBox(width: 8),
+          IconButton(
+            tooltip: t.home.assistant,
+            onPressed: () => context.push('/chat'),
+            icon: const Icon(Icons.smart_toy_outlined),
+          ),
+          Consumer(
+            builder: (context, ref, _) {
+              final unread = ref.watch(unreadCountProvider).asData?.value ?? 0;
+              return IconButton(
+                tooltip: t.home.notifications,
+                onPressed: () => context.push('/notifications'),
+                icon: Badge.count(
+                  count: unread,
+                  isLabelVisible: unread > 0,
+                  child: const Icon(Icons.notifications_none),
+                ),
+              );
+            },
+          ),
+          const SizedBox(width: 4),
         ],
       ),
       body: IndexedStack(index: _index, children: _tabs),
       bottomNavigationBar: NavigationBarTheme(
         data: NavigationBarThemeData(
-          backgroundColor: AppColors.surface,
-          indicatorColor: AppColors.primary.withValues(alpha: 0.12),
+          backgroundColor: context.colors.surface,
+          indicatorColor: context.colors.primary.withValues(alpha: 0.12),
           labelTextStyle: WidgetStateProperty.all(
             const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
           ),
         ),
         child: NavigationBar(
           selectedIndex: _index,
-          onDestinationSelected: (i) => setState(() => _index = i),
+          onDestinationSelected: (i) {
+            if (i != _index) Haptics.selection();
+            setState(() => _index = i);
+          },
           destinations: [
             NavigationDestination(
               icon: const Icon(Icons.home_outlined),

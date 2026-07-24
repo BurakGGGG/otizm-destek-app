@@ -55,21 +55,29 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         child: Container(
                           width: 56,
                           height: 56,
-                          decoration: const BoxDecoration(
-                            color: AppColors.primary,
+                          decoration: BoxDecoration(
+                            color: context.colors.primary,
                             shape: BoxShape.circle,
                           ),
-                          child: const Icon(Icons.volunteer_activism,
-                              color: Colors.white, size: 28),
+                          child: const Icon(
+                            Icons.volunteer_activism,
+                            color: Colors.white,
+                            size: 28,
+                          ),
                         ),
                       ),
                       const SizedBox(height: 16),
-                      Text(t.app.name,
-                          textAlign: TextAlign.center,
-                          style: text.headlineSmall),
+                      Text(
+                        t.app.name,
+                        textAlign: TextAlign.center,
+                        style: text.headlineSmall,
+                      ),
                       const SizedBox(height: 6),
-                      Text(t.auth.subtitle,
-                          textAlign: TextAlign.center, style: text.bodySmall),
+                      Text(
+                        t.auth.subtitle,
+                        textAlign: TextAlign.center,
+                        style: text.bodySmall,
+                      ),
                       const SizedBox(height: 24),
                       _Field(
                         label: t.auth.emailLabel,
@@ -86,13 +94,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         icon: Icons.lock_outline,
                         obscure: _obscure,
                         trailing: IconButton(
-                          onPressed: () =>
-                              setState(() => _obscure = !_obscure),
+                          onPressed: () => setState(() => _obscure = !_obscure),
                           icon: Icon(
                             _obscure
                                 ? Icons.visibility_outlined
                                 : Icons.visibility_off_outlined,
-                            color: AppColors.textTertiary,
+                            color: context.colors.textTertiary,
                           ),
                         ),
                       ),
@@ -109,15 +116,18 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           ),
                           const SizedBox(width: 4),
                           Flexible(
-                            child: Text(t.auth.rememberMe,
-                                overflow: TextOverflow.ellipsis),
+                            child: Text(
+                              t.auth.rememberMe,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
                           const Spacer(),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () => context.push('/forgot-password'),
                             style: TextButton.styleFrom(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                              ),
                               minimumSize: const Size(0, 40),
                               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                             ),
@@ -132,8 +142,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             ? const SizedBox(
                                 height: 22,
                                 width: 22,
-                                child:
-                                    CircularProgressIndicator(strokeWidth: 2),
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                ),
                               )
                             : Text(t.auth.loginButton),
                       ),
@@ -142,10 +153,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         children: [
                           const Expanded(child: Divider()),
                           Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 12),
-                            child:
-                                Text(t.auth.noAccount, style: text.bodySmall),
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            child: Text(
+                              t.auth.noAccount,
+                              style: text.bodySmall,
+                            ),
                           ),
                           const Expanded(child: Divider()),
                         ],
@@ -184,8 +196,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       _showError(context.t.auth.errorEmptyFields);
       return;
     }
-    final error =
-        await ref.read(authControllerProvider.notifier).signIn(email, password);
+    final error = await ref
+        .read(authControllerProvider.notifier)
+        .signIn(email, password);
     if (error != null) _showError(error);
     // Başarılıysa router otomatik ana sayfaya yönlendirir.
   }
@@ -197,9 +210,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   void _showError(String message) {
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message)),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
   }
 }
 
@@ -236,9 +249,9 @@ class _Field extends StatelessWidget {
           keyboardType: keyboardType,
           decoration: InputDecoration(
             hintText: hint,
-            prefixIcon: Icon(icon, color: AppColors.textTertiary),
+            prefixIcon: Icon(icon, color: context.colors.textTertiary),
             suffixIcon: trailing,
-            fillColor: AppColors.surfaceVariant,
+            fillColor: context.colors.surfaceVariant,
           ),
         ),
       ],

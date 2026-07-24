@@ -102,6 +102,65 @@ class AuthRepository {
     }
   }
 
+  /// Profili günceller — `PUT /api/users/me`. Yalnız verilen (null olmayan)
+  /// alanlar değiştirilir; güncel kullanıcı döner.
+  Future<AppUser> updateProfile({
+    String? fullName,
+    String? phone,
+    String? city,
+    String? expertTitle,
+    String? institution,
+    String? licenseNumber,
+    String? bio,
+  }) async {
+    try {
+      final res = await _dio.put(
+        '/users/me',
+        data: {
+          'fullName': ?fullName,
+          'phone': ?phone,
+          'city': ?city,
+          'expertTitle': ?expertTitle,
+          'institution': ?institution,
+          'licenseNumber': ?licenseNumber,
+          'bio': ?bio,
+        },
+      );
+      return AppUser.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Şifre sıfırlama bağlantısı ister (`POST /auth/forgot-password`).
+  Future<void> forgotPassword(String email) async {
+    try {
+      await _dio.post(
+        '/auth/forgot-password',
+        data: {'email': email},
+        options: _noAuth,
+      );
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Token + yeni şifre ile sıfırlar (`POST /auth/reset-password`).
+  Future<void> resetPassword({
+    required String token,
+    required String password,
+  }) async {
+    try {
+      await _dio.post(
+        '/auth/reset-password',
+        data: {'token': token, 'password': password},
+        options: _noAuth,
+      );
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
   Future<void> logout(String refreshToken) async {
     try {
       await _dio.post('/auth/logout', data: {'refreshToken': refreshToken});
