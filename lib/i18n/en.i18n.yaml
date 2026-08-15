@@ -426,6 +426,21 @@ notifications:
   empty: You have no notifications yet.
   markAllRead: Mark all as read
   dateLine: $day $month · $time
+  noneInFilter: No notifications match this filter.
+  unreadOnly: Unread only
+  selectedCount: $count selected
+  deleteSelected: Delete selected
+  groupToday: Today
+  groupYesterday: Yesterday
+  groupThisWeek: This Week
+  groupOlder: Older
+  catAll: All
+  catAppointments: Appointments
+  catMessages: Messages
+  catForum: Forum
+  catTasks: Tasks
+  catSocial: Social
+  catSystem: System
 
 knowledge:
   title: Knowledge Base

@@ -427,6 +427,21 @@ notifications:
   empty: Henüz bildiriminiz yok.
   markAllRead: Tümünü okundu işaretle
   dateLine: $day $month · $time
+  noneInFilter: Bu filtreye uygun bildirim yok.
+  unreadOnly: Yalnızca okunmamış
+  selectedCount: $count seçildi
+  deleteSelected: Seçilenleri sil
+  groupToday: Bugün
+  groupYesterday: Dün
+  groupThisWeek: Bu Hafta
+  groupOlder: Daha Eski
+  catAll: Tümü
+  catAppointments: Randevular
+  catMessages: Mesajlar
+  catForum: Forum
+  catTasks: Görevler
+  catSocial: Sosyal
+  catSystem: Sistem
 
 knowledge:
   title: Bilgi Bankası

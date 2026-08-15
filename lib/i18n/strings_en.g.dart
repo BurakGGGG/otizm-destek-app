@@ -696,6 +696,21 @@ class _Translations$notifications$en extends Translations$notifications$tr {
 	@override String get empty => 'You have no notifications yet.';
 	@override String get markAllRead => 'Mark all as read';
 	@override String dateLine({required Object day, required Object month, required Object time}) => '${day} ${month} · ${time}';
+	@override String get noneInFilter => 'No notifications match this filter.';
+	@override String get unreadOnly => 'Unread only';
+	@override String selectedCount({required Object count}) => '${count} selected';
+	@override String get deleteSelected => 'Delete selected';
+	@override String get groupToday => 'Today';
+	@override String get groupYesterday => 'Yesterday';
+	@override String get groupThisWeek => 'This Week';
+	@override String get groupOlder => 'Older';
+	@override String get catAll => 'All';
+	@override String get catAppointments => 'Appointments';
+	@override String get catMessages => 'Messages';
+	@override String get catForum => 'Forum';
+	@override String get catTasks => 'Tasks';
+	@override String get catSocial => 'Social';
+	@override String get catSystem => 'System';
 }
 
 // Path: knowledge
@@ -2316,6 +2331,21 @@ extension on TranslationsEn {
 			'notifications.empty' => 'You have no notifications yet.',
 			'notifications.markAllRead' => 'Mark all as read',
 			'notifications.dateLine' => ({required Object day, required Object month, required Object time}) => '${day} ${month} · ${time}',
+			'notifications.noneInFilter' => 'No notifications match this filter.',
+			'notifications.unreadOnly' => 'Unread only',
+			'notifications.selectedCount' => ({required Object count}) => '${count} selected',
+			'notifications.deleteSelected' => 'Delete selected',
+			'notifications.groupToday' => 'Today',
+			'notifications.groupYesterday' => 'Yesterday',
+			'notifications.groupThisWeek' => 'This Week',
+			'notifications.groupOlder' => 'Older',
+			'notifications.catAll' => 'All',
+			'notifications.catAppointments' => 'Appointments',
+			'notifications.catMessages' => 'Messages',
+			'notifications.catForum' => 'Forum',
+			'notifications.catTasks' => 'Tasks',
+			'notifications.catSocial' => 'Social',
+			'notifications.catSystem' => 'System',
 			'knowledge.title' => 'Knowledge Base',
 			'knowledge.empty' => 'No articles yet.',
 			'knowledge.noResults' => 'No content matches this filter.',
@@ -2436,6 +2466,8 @@ extension on TranslationsEn {
 			'sleep.quality' => 'Sleep Quality',
 			'sleep.nightWakings' => 'Night wakings',
 			'sleep.factorsLabel' => 'Sensory and environmental factors',
+			_ => null,
+		} ?? switch (path) {
 			'sleep.factorWeighted' => '🛏️ Weighted Blanket',
 			'sleep.factorSensory' => '👕 Sensory Sensitivity',
 			'sleep.factorMelatonin' => '💊 Melatonin Support',
@@ -2451,8 +2483,6 @@ extension on TranslationsEn {
 			'meds.add' => 'Add Medication',
 			'meds.addTitle' => 'Add New Medication',
 			'meds.editTitle' => 'Edit Medication',
-			_ => null,
-		} ?? switch (path) {
 			'meds.empty' => 'No medications yet. Add your child\'s medications and supplements here.',
 			'meds.name' => 'Medication / Supplement Name',
 			'meds.nameHint' => 'E.g. Omega-3',
@@ -2950,6 +2980,8 @@ extension on TranslationsEn {
 			'childDetail.riskHigh' => 'High risk',
 			'childDetail.shortcutsTitle' => 'Quick Access',
 			'childDetail.shortcutTracker' => 'Daily Tracker',
+			_ => null,
+		} ?? switch (path) {
 			'childDetail.shortcutBehavior' => 'Behavior Journal',
 			'childDetail.shortcutTreatment' => 'Treatment Panel',
 			'childDetail.shortcutAnalytics' => 'Progress Panel',
@@ -2965,8 +2997,6 @@ extension on TranslationsEn {
 			'crisis.breathingInhale' => 'Breathe In',
 			'crisis.breathingExhale' => 'Breathe Out',
 			'crisis.breathingSeconds' => 'seconds',
-			_ => null,
-		} ?? switch (path) {
 			'crisis.stepsLabel' => 'What To Do?',
 			'crisis.avoidLabel' => 'What To Avoid',
 			'crisis.emergencyLabel' => 'Suggested Emergency Line',

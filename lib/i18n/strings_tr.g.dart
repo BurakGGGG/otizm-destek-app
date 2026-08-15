@@ -1428,6 +1428,51 @@ class Translations$notifications$tr {
 
 	/// tr: '$day $month · $time'
 	String dateLine({required Object day, required Object month, required Object time}) => '${day} ${month} · ${time}';
+
+	/// tr: 'Bu filtreye uygun bildirim yok.'
+	String get noneInFilter => 'Bu filtreye uygun bildirim yok.';
+
+	/// tr: 'Yalnızca okunmamış'
+	String get unreadOnly => 'Yalnızca okunmamış';
+
+	/// tr: '$count seçildi'
+	String selectedCount({required Object count}) => '${count} seçildi';
+
+	/// tr: 'Seçilenleri sil'
+	String get deleteSelected => 'Seçilenleri sil';
+
+	/// tr: 'Bugün'
+	String get groupToday => 'Bugün';
+
+	/// tr: 'Dün'
+	String get groupYesterday => 'Dün';
+
+	/// tr: 'Bu Hafta'
+	String get groupThisWeek => 'Bu Hafta';
+
+	/// tr: 'Daha Eski'
+	String get groupOlder => 'Daha Eski';
+
+	/// tr: 'Tümü'
+	String get catAll => 'Tümü';
+
+	/// tr: 'Randevular'
+	String get catAppointments => 'Randevular';
+
+	/// tr: 'Mesajlar'
+	String get catMessages => 'Mesajlar';
+
+	/// tr: 'Forum'
+	String get catForum => 'Forum';
+
+	/// tr: 'Görevler'
+	String get catTasks => 'Görevler';
+
+	/// tr: 'Sosyal'
+	String get catSocial => 'Sosyal';
+
+	/// tr: 'Sistem'
+	String get catSystem => 'Sistem';
 }
 
 // Path: knowledge
@@ -4796,6 +4841,21 @@ extension on Translations {
 			'notifications.empty' => 'Henüz bildiriminiz yok.',
 			'notifications.markAllRead' => 'Tümünü okundu işaretle',
 			'notifications.dateLine' => ({required Object day, required Object month, required Object time}) => '${day} ${month} · ${time}',
+			'notifications.noneInFilter' => 'Bu filtreye uygun bildirim yok.',
+			'notifications.unreadOnly' => 'Yalnızca okunmamış',
+			'notifications.selectedCount' => ({required Object count}) => '${count} seçildi',
+			'notifications.deleteSelected' => 'Seçilenleri sil',
+			'notifications.groupToday' => 'Bugün',
+			'notifications.groupYesterday' => 'Dün',
+			'notifications.groupThisWeek' => 'Bu Hafta',
+			'notifications.groupOlder' => 'Daha Eski',
+			'notifications.catAll' => 'Tümü',
+			'notifications.catAppointments' => 'Randevular',
+			'notifications.catMessages' => 'Mesajlar',
+			'notifications.catForum' => 'Forum',
+			'notifications.catTasks' => 'Görevler',
+			'notifications.catSocial' => 'Sosyal',
+			'notifications.catSystem' => 'Sistem',
 			'knowledge.title' => 'Bilgi Bankası',
 			'knowledge.empty' => 'Henüz makale eklenmemiş.',
 			'knowledge.noResults' => 'Bu filtreye uygun içerik yok.',
@@ -4916,6 +4976,8 @@ extension on Translations {
 			'sleep.quality' => 'Uyku Kalitesi',
 			'sleep.nightWakings' => 'Gece uyanma sayısı',
 			'sleep.factorsLabel' => 'Duyusal ve çevresel faktörler',
+			_ => null,
+		} ?? switch (path) {
 			'sleep.factorWeighted' => '🛏️ Ağır Battaniye',
 			'sleep.factorSensory' => '👕 Duyusal Hassasiyet',
 			'sleep.factorMelatonin' => '💊 Melatonin Desteği',
@@ -4931,8 +4993,6 @@ extension on Translations {
 			'meds.add' => 'İlaç Ekle',
 			'meds.addTitle' => 'Yeni İlaç Ekle',
 			'meds.editTitle' => 'İlacı Düzenle',
-			_ => null,
-		} ?? switch (path) {
 			'meds.empty' => 'Henüz ilaç kaydı yok. Çocuğunuzun ilaç ve takviyelerini buraya ekleyin.',
 			'meds.name' => 'İlaç / Takviye Adı',
 			'meds.nameHint' => 'Örn: Omega-3',
@@ -5430,6 +5490,8 @@ extension on Translations {
 			'childDetail.riskHigh' => 'Yüksek risk',
 			'childDetail.shortcutsTitle' => 'Hızlı Erişim',
 			'childDetail.shortcutTracker' => 'Günlük Takip',
+			_ => null,
+		} ?? switch (path) {
 			'childDetail.shortcutBehavior' => 'Davranış Günlüğü',
 			'childDetail.shortcutTreatment' => 'Tedavi Paneli',
 			'childDetail.shortcutAnalytics' => 'Gelişim Paneli',
@@ -5445,8 +5507,6 @@ extension on Translations {
 			'crisis.breathingInhale' => 'Nefes Al',
 			'crisis.breathingExhale' => 'Nefes Ver',
 			'crisis.breathingSeconds' => 'saniye',
-			_ => null,
-		} ?? switch (path) {
 			'crisis.stepsLabel' => 'Ne Yapmalı?',
 			'crisis.avoidLabel' => 'Kaçınılması Gerekenler',
 			'crisis.emergencyLabel' => 'Önerilen Acil Hat',
