@@ -50,6 +50,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$resetPassword$en resetPassword = _Translations$resetPassword$en._(_root);
 	@override late final _Translations$password$en password = _Translations$password$en._(_root);
 	@override late final _Translations$register$en register = _Translations$register$en._(_root);
+	@override late final _Translations$settings$en settings = _Translations$settings$en._(_root);
+	@override late final _Translations$kvkk$en kvkk = _Translations$kvkk$en._(_root);
 	@override late final _Translations$onboarding$en onboarding = _Translations$onboarding$en._(_root);
 	@override late final _Translations$nav$en nav = _Translations$nav$en._(_root);
 	@override late final _Translations$chat$en chat = _Translations$chat$en._(_root);
@@ -108,6 +110,7 @@ class _Translations$common$en extends Translations$common$tr {
 	final TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	@override String get cancel => 'Cancel';
 	@override String get loading => 'Loading';
 	@override String get comingSoon => 'This section is coming soon.';
 	@override String get seeAll => 'See All';
@@ -319,6 +322,108 @@ class _Translations$register$en extends Translations$register$tr {
 	@override String get emailTaken => 'This email address is already registered. Try signing in.';
 	@override String get emailAvailable => 'This email address is available.';
 	@override String get errorKvkkRequired => 'KVKK consent is required to continue.';
+}
+
+// Path: settings
+class _Translations$settings$en extends Translations$settings$tr {
+	_Translations$settings$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Settings';
+	@override String get notificationsTitle => 'Notifications';
+	@override String get notificationsSubtitle => 'Choose what you want to be notified about.';
+	@override String get notifMessages => 'New messages';
+	@override String get notifAppointment => 'Appointment confirmations and changes';
+	@override String get notifApptReminder => 'Remind me 24 hours before an appointment';
+	@override String get notifExpertNote => 'Specialist notes and feedback';
+	@override String get notifTaskAssigned => 'When a new assignment arrives';
+	@override String get notifForum => 'Forum and support wall replies';
+	@override String get notifMatching => 'Similar family matches';
+	@override String get notifCalendar => 'Calendar reminders';
+	@override String get privacyTitle => 'Privacy';
+	@override String get privacySubtitle => 'Decide how other people see you.';
+	@override String get privacyShowProfile => 'Show my profile to other families';
+	@override String get privacyAllowMessages => 'Allow people to message me';
+	@override String get privacyShareProgress => 'Share the progress summary with my specialist';
+	@override String get privacyApproximateLocation => 'Share my approximate location (city)';
+	@override String get privacyHidePresence => 'Hide my online status';
+	@override String get appearanceTitle => 'Appearance and language';
+	@override String get securityTitle => 'Security';
+	@override String get securitySubtitle => 'Protect access to your account.';
+	@override String get changePassword => 'Change password';
+	@override String get changePasswordSubmit => 'Update password';
+	@override String get currentPasswordLabel => 'Current password';
+	@override String get newPasswordLabel => 'New password';
+	@override String get passwordChanged => 'Your password has been updated.';
+	@override String get errorCurrentPasswordRequired => 'Please enter your current password.';
+	@override String get dataTitle => 'Your data and KVKK';
+	@override String get dataSubtitle => 'Exercise your rights over your personal data here.';
+	@override String get kvkkPanel => 'KVKK rights and consents';
+	@override String get kvkkPanelBody => 'Consent preferences, requests and the privacy notice.';
+	@override String get downloadData => 'Download my data';
+	@override String get downloadDataBody => 'Get everything in your account as a JSON file.';
+	@override String get downloadDataSubject => 'Otizm Destek — my account data';
+	@override String get deleteAccount => 'Delete my account';
+	@override String get deleteAccountBody => 'Your account and all records are permanently deleted.';
+	@override String get deleteAccountWarning => 'This cannot be undone. All your data — child profiles, notes, appointments and messages — is permanently deleted.';
+	@override String get deleteAccountSubmit => 'Permanently delete my account';
+	@override String get deleteKeyword => 'DELETE';
+	@override String deleteConfirmLabel({required Object keyword}) => 'Type "${keyword}" to confirm';
+	@override String get errorDeleteConfirm => 'The confirmation text does not match.';
+}
+
+// Path: kvkk
+class _Translations$kvkk$en extends Translations$kvkk$tr {
+	_Translations$kvkk$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Data rights and consents';
+	@override String get rightsTitle => 'Your rights under KVKK art. 11';
+	@override String get rightsBody => 'You may learn whether your data is processed, request correction or deletion, learn which third parties it was shared with, and object to automated analysis results. Requests are answered within 30 days at the latest.';
+	@override String get consentsTitle => 'Your consent preferences';
+	@override String get consentsSubtitle => 'Explicit consent must be purpose-specific; each item can be turned on or off separately.';
+	@override String get consentNotice => 'Privacy notice acceptance';
+	@override String get consentAi => 'AI analysis';
+	@override String get consentAiBody => 'Allows development data to be transferred to the AI provider (abroad).';
+	@override String get consentEmergency => 'Emergency card sharing';
+	@override String get consentEmergencyBody => 'Allows your emergency card to be shown to third parties via link/QR.';
+	@override String get consentMatching => 'Similar family matching';
+	@override String get consentMatchingBody => 'Allows your profile to be shown to other families in the matching engine.';
+	@override String get consentMarketing => 'Informational emails';
+	@override String get consentMarketingBody => 'Lets us send you optional announcements and informational emails.';
+	@override String get reconsentTitle => 'The privacy notice has been updated';
+	@override String reconsentTitleVersion({required Object version}) => 'The privacy notice has been updated (version ${version})';
+	@override String get reconsentBody => 'Review how your data is processed and accept the current notice.';
+	@override String get reconsentAccept => 'I have read and accept';
+	@override String get reconsentSaved => 'Your acceptance of the current notice has been recorded.';
+	@override String get historyTitle => 'My consent history';
+	@override String get requestsTitle => 'My requests';
+	@override String get requestsSubtitle => 'Submit requests about your personal data here.';
+	@override String get newRequest => 'Submit a KVKK request';
+	@override String get requestsEmpty => 'You have no requests yet.';
+	@override String get requestsError => 'Requests could not be loaded.';
+	@override String get requestCreated => 'Your request was received. It will be answered within 30 days at the latest.';
+	@override String get requestInfo => 'I want to learn whether my data is being processed';
+	@override String get requestCorrection => 'I want incomplete or incorrect data to be corrected';
+	@override String get requestDeletion => 'I want my data to be deleted / destroyed';
+	@override String get requestTransfer => 'I want to learn the third parties my data was shared with';
+	@override String get requestObjection => 'I object to a result produced against me by automated analysis';
+	@override String get requestDamages => 'I request compensation for the damage I suffered';
+	@override String get descriptionLabel => 'Your request';
+	@override String get descriptionHint => 'Briefly describe your request.';
+	@override String get responseTime => 'Requests are answered within 30 days at the latest.';
+	@override String get submitRequest => 'Send request';
+	@override String get errorDescriptionRequired => 'Please describe your request.';
+	@override String get statusOpen => 'Received';
+	@override String get statusReviewing => 'Under review';
+	@override String get statusDone => 'Completed';
+	@override String get statusRejected => 'Rejected';
+	@override String receivedOn({required Object date}) => 'received on ${date}';
+	@override String dueOn({required Object date}) => 'response due ${date}';
 }
 
 // Path: onboarding
@@ -1793,6 +1898,7 @@ extension on TranslationsEn {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
 			'app.name' => 'Autism Support',
+			'common.cancel' => 'Cancel',
 			'common.loading' => 'Loading',
 			'common.comingSoon' => 'This section is coming soon.',
 			'common.seeAll' => 'See All',
@@ -1921,6 +2027,90 @@ extension on TranslationsEn {
 			'register.emailTaken' => 'This email address is already registered. Try signing in.',
 			'register.emailAvailable' => 'This email address is available.',
 			'register.errorKvkkRequired' => 'KVKK consent is required to continue.',
+			'settings.title' => 'Settings',
+			'settings.notificationsTitle' => 'Notifications',
+			'settings.notificationsSubtitle' => 'Choose what you want to be notified about.',
+			'settings.notifMessages' => 'New messages',
+			'settings.notifAppointment' => 'Appointment confirmations and changes',
+			'settings.notifApptReminder' => 'Remind me 24 hours before an appointment',
+			'settings.notifExpertNote' => 'Specialist notes and feedback',
+			'settings.notifTaskAssigned' => 'When a new assignment arrives',
+			'settings.notifForum' => 'Forum and support wall replies',
+			'settings.notifMatching' => 'Similar family matches',
+			'settings.notifCalendar' => 'Calendar reminders',
+			'settings.privacyTitle' => 'Privacy',
+			'settings.privacySubtitle' => 'Decide how other people see you.',
+			'settings.privacyShowProfile' => 'Show my profile to other families',
+			'settings.privacyAllowMessages' => 'Allow people to message me',
+			'settings.privacyShareProgress' => 'Share the progress summary with my specialist',
+			'settings.privacyApproximateLocation' => 'Share my approximate location (city)',
+			'settings.privacyHidePresence' => 'Hide my online status',
+			'settings.appearanceTitle' => 'Appearance and language',
+			'settings.securityTitle' => 'Security',
+			'settings.securitySubtitle' => 'Protect access to your account.',
+			'settings.changePassword' => 'Change password',
+			'settings.changePasswordSubmit' => 'Update password',
+			'settings.currentPasswordLabel' => 'Current password',
+			'settings.newPasswordLabel' => 'New password',
+			'settings.passwordChanged' => 'Your password has been updated.',
+			'settings.errorCurrentPasswordRequired' => 'Please enter your current password.',
+			'settings.dataTitle' => 'Your data and KVKK',
+			'settings.dataSubtitle' => 'Exercise your rights over your personal data here.',
+			'settings.kvkkPanel' => 'KVKK rights and consents',
+			'settings.kvkkPanelBody' => 'Consent preferences, requests and the privacy notice.',
+			'settings.downloadData' => 'Download my data',
+			'settings.downloadDataBody' => 'Get everything in your account as a JSON file.',
+			'settings.downloadDataSubject' => 'Otizm Destek — my account data',
+			'settings.deleteAccount' => 'Delete my account',
+			'settings.deleteAccountBody' => 'Your account and all records are permanently deleted.',
+			'settings.deleteAccountWarning' => 'This cannot be undone. All your data — child profiles, notes, appointments and messages — is permanently deleted.',
+			'settings.deleteAccountSubmit' => 'Permanently delete my account',
+			'settings.deleteKeyword' => 'DELETE',
+			'settings.deleteConfirmLabel' => ({required Object keyword}) => 'Type "${keyword}" to confirm',
+			'settings.errorDeleteConfirm' => 'The confirmation text does not match.',
+			'kvkk.title' => 'Data rights and consents',
+			'kvkk.rightsTitle' => 'Your rights under KVKK art. 11',
+			'kvkk.rightsBody' => 'You may learn whether your data is processed, request correction or deletion, learn which third parties it was shared with, and object to automated analysis results. Requests are answered within 30 days at the latest.',
+			'kvkk.consentsTitle' => 'Your consent preferences',
+			'kvkk.consentsSubtitle' => 'Explicit consent must be purpose-specific; each item can be turned on or off separately.',
+			'kvkk.consentNotice' => 'Privacy notice acceptance',
+			'kvkk.consentAi' => 'AI analysis',
+			'kvkk.consentAiBody' => 'Allows development data to be transferred to the AI provider (abroad).',
+			'kvkk.consentEmergency' => 'Emergency card sharing',
+			'kvkk.consentEmergencyBody' => 'Allows your emergency card to be shown to third parties via link/QR.',
+			'kvkk.consentMatching' => 'Similar family matching',
+			'kvkk.consentMatchingBody' => 'Allows your profile to be shown to other families in the matching engine.',
+			'kvkk.consentMarketing' => 'Informational emails',
+			'kvkk.consentMarketingBody' => 'Lets us send you optional announcements and informational emails.',
+			'kvkk.reconsentTitle' => 'The privacy notice has been updated',
+			'kvkk.reconsentTitleVersion' => ({required Object version}) => 'The privacy notice has been updated (version ${version})',
+			'kvkk.reconsentBody' => 'Review how your data is processed and accept the current notice.',
+			'kvkk.reconsentAccept' => 'I have read and accept',
+			'kvkk.reconsentSaved' => 'Your acceptance of the current notice has been recorded.',
+			'kvkk.historyTitle' => 'My consent history',
+			'kvkk.requestsTitle' => 'My requests',
+			'kvkk.requestsSubtitle' => 'Submit requests about your personal data here.',
+			'kvkk.newRequest' => 'Submit a KVKK request',
+			'kvkk.requestsEmpty' => 'You have no requests yet.',
+			'kvkk.requestsError' => 'Requests could not be loaded.',
+			'kvkk.requestCreated' => 'Your request was received. It will be answered within 30 days at the latest.',
+			'kvkk.requestInfo' => 'I want to learn whether my data is being processed',
+			'kvkk.requestCorrection' => 'I want incomplete or incorrect data to be corrected',
+			'kvkk.requestDeletion' => 'I want my data to be deleted / destroyed',
+			'kvkk.requestTransfer' => 'I want to learn the third parties my data was shared with',
+			'kvkk.requestObjection' => 'I object to a result produced against me by automated analysis',
+			'kvkk.requestDamages' => 'I request compensation for the damage I suffered',
+			'kvkk.descriptionLabel' => 'Your request',
+			'kvkk.descriptionHint' => 'Briefly describe your request.',
+			'kvkk.responseTime' => 'Requests are answered within 30 days at the latest.',
+			'kvkk.submitRequest' => 'Send request',
+			'kvkk.errorDescriptionRequired' => 'Please describe your request.',
+			'kvkk.statusOpen' => 'Received',
+			'kvkk.statusReviewing' => 'Under review',
+			'kvkk.statusDone' => 'Completed',
+			'kvkk.statusRejected' => 'Rejected',
+			'kvkk.receivedOn' => ({required Object date}) => 'received on ${date}',
+			'kvkk.dueOn' => ({required Object date}) => 'response due ${date}',
 			'onboarding.title' => 'Getting started',
 			'onboarding.skip' => 'Skip',
 			'onboarding.start' => 'Let\'s begin',
@@ -2219,6 +2409,8 @@ extension on TranslationsEn {
 			'meds.noTime' => 'No time',
 			'meds.added' => 'Medication added.',
 			'meds.updated' => 'Medication updated.',
+			_ => null,
+		} ?? switch (path) {
 			'meds.deleteTitle' => 'Delete Medication',
 			'meds.deleteConfirm' => ({required Object name}) => '${name} and its dose logs will be permanently deleted. Are you sure?',
 			'meds.deleted' => 'Medication deleted.',
@@ -2304,8 +2496,6 @@ extension on TranslationsEn {
 			'meetup.dateLabel' => 'Date',
 			'meetup.timeLabel' => 'Time',
 			'meetup.descriptionLabel' => 'Description',
-			_ => null,
-		} ?? switch (path) {
 			'meetup.descriptionHint' => 'Who can join, what will it be like?',
 			'meetup.create' => 'Create',
 			'meetup.created' => 'Your meetup was created. Other families can see it now.',
@@ -2733,6 +2923,8 @@ extension on TranslationsEn {
 			'crisis.cards.meltdown.steps.2' => 'Keep verbal input minimal; single words or short sentences.',
 			'crisis.cards.meltdown.steps.3' => 'Reduce sensory input: dim the lights, lower the sound.',
 			'crisis.cards.meltdown.steps.4' => 'Stay nearby — don\'t leave, but don\'t touch.',
+			_ => null,
+		} ?? switch (path) {
 			'crisis.cards.meltdown.steps.5' => 'Once the crisis passes, reassure with a calm tone.',
 			'crisis.cards.meltdown.avoid.0' => 'Don\'t speak loudly.',
 			'crisis.cards.meltdown.avoid.1' => 'Don\'t try to reason or explain.',
@@ -2818,8 +3010,6 @@ extension on TranslationsEn {
 			'emergency.noChild' => 'Add a child first to create an emergency card.',
 			'emergency.lastUpdated' => ({required Object date}) => 'Last updated ${date}',
 			'emergency.notSaved' => 'This card has not been saved yet.',
-			_ => null,
-		} ?? switch (path) {
 			'emergency.save' => 'Save',
 			'emergency.saved' => 'Emergency card saved.',
 			'emergency.call' => 'Call',

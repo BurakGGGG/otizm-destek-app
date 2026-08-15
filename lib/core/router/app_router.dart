@@ -31,6 +31,8 @@ import '../../features/onboarding/presentation/onboarding_screen.dart';
 import '../../features/profile/presentation/account_screen.dart';
 import '../../features/profile/presentation/help_screen.dart';
 import '../../features/routines/presentation/routines_screen.dart';
+import '../../features/settings/presentation/kvkk_screen.dart';
+import '../../features/settings/presentation/settings_screen.dart';
 import '../../features/similar_families/presentation/similar_families_screen.dart';
 import '../../features/splash/splash_screen.dart';
 import '../../features/forum/presentation/forum_screen.dart';
@@ -131,6 +133,8 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/chat', builder: (_, _) => const ChatScreen()),
       GoRoute(path: '/children', builder: (_, _) => const ChildrenScreen()),
       GoRoute(path: '/account', builder: (_, _) => const AccountScreen()),
+      GoRoute(path: '/settings', builder: (_, _) => const SettingsScreen()),
+      GoRoute(path: '/kvkk', builder: (_, _) => const KvkkScreen()),
       GoRoute(path: '/help', builder: (_, _) => const HelpScreen()),
       GoRoute(
         path: '/notifications',

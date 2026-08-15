@@ -3,6 +3,7 @@ app:
   name: Otizm Destek
 
 common:
+  cancel: Vazgeç
   loading: Yükleniyor
   comingSoon: Bu bölüm yakında eklenecek.
   seeAll: Tümünü Gör
@@ -151,6 +152,94 @@ register:
   errorKvkkRequired: Devam etmek için KVKK onayı gereklidir.
   emailTaken: Bu e-posta adresi zaten kayıtlı. Giriş yapmayı deneyin.
   emailAvailable: Bu e-posta adresi kullanılabilir.
+
+settings:
+  title: Ayarlar
+  notificationsTitle: Bildirimler
+  notificationsSubtitle: Hangi konularda bildirim almak istediğinizi seçin.
+  notifMessages: Yeni mesajlar
+  notifAppointment: Randevu onay ve değişiklikleri
+  notifApptReminder: Randevudan 24 saat önce hatırlat
+  notifExpertNote: Uzman notları ve geri bildirimleri
+  notifTaskAssigned: Yeni ödev atandığında
+  notifForum: Forum ve dertleşme duvarı yanıtları
+  notifMatching: Benzer aile eşleşmeleri
+  notifCalendar: Takvim hatırlatmaları
+  privacyTitle: Gizlilik
+  privacySubtitle: Diğer kullanıcıların sizi nasıl göreceğini belirleyin.
+  privacyShowProfile: Profilim diğer ailelere görünsün
+  privacyAllowMessages: Bana mesaj gönderilebilsin
+  privacyShareProgress: Gelişim özetini bağlı uzmanla paylaş
+  privacyApproximateLocation: Yaklaşık konumum (şehir) paylaşılsın
+  privacyHidePresence: Çevrimiçi olduğumu gizle
+  appearanceTitle: Görünüm ve dil
+  securityTitle: Güvenlik
+  securitySubtitle: Hesabınıza erişimi koruyun.
+  changePassword: Şifre değiştir
+  changePasswordSubmit: Şifreyi güncelle
+  currentPasswordLabel: Mevcut şifre
+  newPasswordLabel: Yeni şifre
+  passwordChanged: Şifreniz güncellendi.
+  errorCurrentPasswordRequired: Lütfen mevcut şifrenizi girin.
+  dataTitle: Verileriniz ve KVKK
+  dataSubtitle: Verileriniz üzerindeki haklarınızı buradan kullanabilirsiniz.
+  kvkkPanel: KVKK hakları ve rızalar
+  kvkkPanelBody: Rıza tercihleri, başvurular ve aydınlatma metni.
+  downloadData: Verilerimi indir
+  downloadDataBody: Hesabınızdaki tüm veriyi JSON dosyası olarak alın.
+  downloadDataSubject: Otizm Destek — hesap verilerim
+  deleteAccount: Hesabımı sil
+  deleteAccountBody: Hesabınız ve tüm kayıtlarınız kalıcı olarak silinir.
+  deleteAccountWarning: Bu işlem geri alınamaz. Çocuk profilleri, notlar, randevular ve mesajlar dâhil tüm verileriniz kalıcı olarak silinir.
+  deleteAccountSubmit: Hesabımı kalıcı olarak sil
+  deleteKeyword: SİL
+  deleteConfirmLabel: Onaylamak için "$keyword" yazın
+  errorDeleteConfirm: Onay metni eşleşmiyor.
+
+kvkk:
+  title: KVKK ve rızalar
+  rightsTitle: KVKK md. 11 haklarınız
+  rightsBody: Verilerinizin işlenip işlenmediğini öğrenme, düzeltilmesini veya silinmesini isteme, aktarıldığı üçüncü kişileri bilme ve otomatik analiz sonuçlarına itiraz etme hakkınız var. Başvurularınız en geç 30 gün içinde yanıtlanır.
+  consentsTitle: Rıza tercihleriniz
+  consentsSubtitle: Açık rıza amaca özel olmalıdır; her başlığı ayrı ayrı açıp kapatabilirsiniz.
+  consentNotice: Aydınlatma metni onayı
+  consentAi: Yapay zekâ analizi
+  consentAiBody: Gelişim verisinin yapay zekâ sağlayıcısına (yurt dışına) aktarılmasına izin verir.
+  consentEmergency: Acil durum kartı paylaşımı
+  consentEmergencyBody: Acil durum kartınızın bağlantı/QR ile üçüncü kişilere gösterilmesine izin verir.
+  consentMatching: Benzer aile eşleştirmesi
+  consentMatchingBody: Profilinizin eşleştirme motorunda diğer ailelere gösterilmesine izin verir.
+  consentMarketing: Bilgilendirme e-postaları
+  consentMarketingBody: Zorunlu olmayan duyuru ve bilgilendirme e-postalarını almanızı sağlar.
+  reconsentTitle: Aydınlatma metni güncellendi
+  reconsentTitleVersion: Aydınlatma metni güncellendi (sürüm $version)
+  reconsentBody: Verilerinizin nasıl işlendiğini gözden geçirip güncel metni onaylayın.
+  reconsentAccept: Okudum, onaylıyorum
+  reconsentSaved: Güncel aydınlatma metni onayınız kaydedildi.
+  historyTitle: Rıza geçmişim
+  requestsTitle: Başvurularım
+  requestsSubtitle: Verileriniz hakkındaki taleplerinizi buradan iletebilirsiniz.
+  newRequest: KVKK başvurusu yap
+  requestsEmpty: Henüz bir başvurunuz yok.
+  requestsError: Başvurular yüklenemedi.
+  requestCreated: Başvurunuz alındı. En geç 30 gün içinde yanıtlanacaktır.
+  requestInfo: Verilerimin işlenip işlenmediğini öğrenmek istiyorum
+  requestCorrection: Eksik veya yanlış işlenen verimin düzeltilmesini istiyorum
+  requestDeletion: Verilerimin silinmesini / yok edilmesini istiyorum
+  requestTransfer: Verilerimin aktarıldığı üçüncü kişileri öğrenmek istiyorum
+  requestObjection: Otomatik analiz sonucu aleyhime çıkan sonuca itiraz ediyorum
+  requestDamages: Uğradığım zararın giderilmesini talep ediyorum
+  descriptionLabel: Talebiniz
+  descriptionHint: Talebinizi kısaca açıklayın.
+  responseTime: Başvurular en geç 30 gün içinde yanıtlanır.
+  submitRequest: Başvuruyu gönder
+  errorDescriptionRequired: Lütfen talebinizi açıklayın.
+  statusOpen: Alındı
+  statusReviewing: İnceleniyor
+  statusDone: Tamamlandı
+  statusRejected: Reddedildi
+  receivedOn: $date tarihinde alındı
+  dueOn: yanıt son tarihi $date
 
 onboarding:
   title: Başlangıç

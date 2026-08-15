@@ -3,6 +3,7 @@ app:
   name: Autism Support
 
 common:
+  cancel: Cancel
   loading: Loading
   comingSoon: This section is coming soon.
   seeAll: See All
@@ -150,6 +151,94 @@ register:
   emailTaken: This email address is already registered. Try signing in.
   emailAvailable: This email address is available.
   errorKvkkRequired: KVKK consent is required to continue.
+
+settings:
+  title: Settings
+  notificationsTitle: Notifications
+  notificationsSubtitle: Choose what you want to be notified about.
+  notifMessages: New messages
+  notifAppointment: Appointment confirmations and changes
+  notifApptReminder: Remind me 24 hours before an appointment
+  notifExpertNote: Specialist notes and feedback
+  notifTaskAssigned: When a new assignment arrives
+  notifForum: Forum and support wall replies
+  notifMatching: Similar family matches
+  notifCalendar: Calendar reminders
+  privacyTitle: Privacy
+  privacySubtitle: Decide how other people see you.
+  privacyShowProfile: Show my profile to other families
+  privacyAllowMessages: Allow people to message me
+  privacyShareProgress: Share the progress summary with my specialist
+  privacyApproximateLocation: Share my approximate location (city)
+  privacyHidePresence: Hide my online status
+  appearanceTitle: Appearance and language
+  securityTitle: Security
+  securitySubtitle: Protect access to your account.
+  changePassword: Change password
+  changePasswordSubmit: Update password
+  currentPasswordLabel: Current password
+  newPasswordLabel: New password
+  passwordChanged: Your password has been updated.
+  errorCurrentPasswordRequired: Please enter your current password.
+  dataTitle: Your data and KVKK
+  dataSubtitle: Exercise your rights over your personal data here.
+  kvkkPanel: KVKK rights and consents
+  kvkkPanelBody: Consent preferences, requests and the privacy notice.
+  downloadData: Download my data
+  downloadDataBody: Get everything in your account as a JSON file.
+  downloadDataSubject: Otizm Destek — my account data
+  deleteAccount: Delete my account
+  deleteAccountBody: Your account and all records are permanently deleted.
+  deleteAccountWarning: This cannot be undone. All your data — child profiles, notes, appointments and messages — is permanently deleted.
+  deleteAccountSubmit: Permanently delete my account
+  deleteKeyword: DELETE
+  deleteConfirmLabel: Type "$keyword" to confirm
+  errorDeleteConfirm: The confirmation text does not match.
+
+kvkk:
+  title: Data rights and consents
+  rightsTitle: Your rights under KVKK art. 11
+  rightsBody: You may learn whether your data is processed, request correction or deletion, learn which third parties it was shared with, and object to automated analysis results. Requests are answered within 30 days at the latest.
+  consentsTitle: Your consent preferences
+  consentsSubtitle: Explicit consent must be purpose-specific; each item can be turned on or off separately.
+  consentNotice: Privacy notice acceptance
+  consentAi: AI analysis
+  consentAiBody: Allows development data to be transferred to the AI provider (abroad).
+  consentEmergency: Emergency card sharing
+  consentEmergencyBody: Allows your emergency card to be shown to third parties via link/QR.
+  consentMatching: Similar family matching
+  consentMatchingBody: Allows your profile to be shown to other families in the matching engine.
+  consentMarketing: Informational emails
+  consentMarketingBody: Lets us send you optional announcements and informational emails.
+  reconsentTitle: The privacy notice has been updated
+  reconsentTitleVersion: The privacy notice has been updated (version $version)
+  reconsentBody: Review how your data is processed and accept the current notice.
+  reconsentAccept: I have read and accept
+  reconsentSaved: Your acceptance of the current notice has been recorded.
+  historyTitle: My consent history
+  requestsTitle: My requests
+  requestsSubtitle: Submit requests about your personal data here.
+  newRequest: Submit a KVKK request
+  requestsEmpty: You have no requests yet.
+  requestsError: Requests could not be loaded.
+  requestCreated: Your request was received. It will be answered within 30 days at the latest.
+  requestInfo: I want to learn whether my data is being processed
+  requestCorrection: I want incomplete or incorrect data to be corrected
+  requestDeletion: I want my data to be deleted / destroyed
+  requestTransfer: I want to learn the third parties my data was shared with
+  requestObjection: I object to a result produced against me by automated analysis
+  requestDamages: I request compensation for the damage I suffered
+  descriptionLabel: Your request
+  descriptionHint: Briefly describe your request.
+  responseTime: Requests are answered within 30 days at the latest.
+  submitRequest: Send request
+  errorDescriptionRequired: Please describe your request.
+  statusOpen: Received
+  statusReviewing: Under review
+  statusDone: Completed
+  statusRejected: Rejected
+  receivedOn: received on $date
+  dueOn: response due $date
 
 onboarding:
   title: Getting started

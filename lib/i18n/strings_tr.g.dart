@@ -51,6 +51,8 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$resetPassword$tr resetPassword = Translations$resetPassword$tr.internal(_root);
 	late final Translations$password$tr password = Translations$password$tr.internal(_root);
 	late final Translations$register$tr register = Translations$register$tr.internal(_root);
+	late final Translations$settings$tr settings = Translations$settings$tr.internal(_root);
+	late final Translations$kvkk$tr kvkk = Translations$kvkk$tr.internal(_root);
 	late final Translations$onboarding$tr onboarding = Translations$onboarding$tr.internal(_root);
 	late final Translations$nav$tr nav = Translations$nav$tr.internal(_root);
 	late final Translations$chat$tr chat = Translations$chat$tr.internal(_root);
@@ -111,6 +113,9 @@ class Translations$common$tr {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
+
+	/// tr: 'Vazgeç'
+	String get cancel => 'Vazgeç';
 
 	/// tr: 'Yükleniyor'
 	String get loading => 'Yükleniyor';
@@ -555,6 +560,276 @@ class Translations$register$tr {
 
 	/// tr: 'Bu e-posta adresi kullanılabilir.'
 	String get emailAvailable => 'Bu e-posta adresi kullanılabilir.';
+}
+
+// Path: settings
+class Translations$settings$tr {
+	Translations$settings$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Ayarlar'
+	String get title => 'Ayarlar';
+
+	/// tr: 'Bildirimler'
+	String get notificationsTitle => 'Bildirimler';
+
+	/// tr: 'Hangi konularda bildirim almak istediğinizi seçin.'
+	String get notificationsSubtitle => 'Hangi konularda bildirim almak istediğinizi seçin.';
+
+	/// tr: 'Yeni mesajlar'
+	String get notifMessages => 'Yeni mesajlar';
+
+	/// tr: 'Randevu onay ve değişiklikleri'
+	String get notifAppointment => 'Randevu onay ve değişiklikleri';
+
+	/// tr: 'Randevudan 24 saat önce hatırlat'
+	String get notifApptReminder => 'Randevudan 24 saat önce hatırlat';
+
+	/// tr: 'Uzman notları ve geri bildirimleri'
+	String get notifExpertNote => 'Uzman notları ve geri bildirimleri';
+
+	/// tr: 'Yeni ödev atandığında'
+	String get notifTaskAssigned => 'Yeni ödev atandığında';
+
+	/// tr: 'Forum ve dertleşme duvarı yanıtları'
+	String get notifForum => 'Forum ve dertleşme duvarı yanıtları';
+
+	/// tr: 'Benzer aile eşleşmeleri'
+	String get notifMatching => 'Benzer aile eşleşmeleri';
+
+	/// tr: 'Takvim hatırlatmaları'
+	String get notifCalendar => 'Takvim hatırlatmaları';
+
+	/// tr: 'Gizlilik'
+	String get privacyTitle => 'Gizlilik';
+
+	/// tr: 'Diğer kullanıcıların sizi nasıl göreceğini belirleyin.'
+	String get privacySubtitle => 'Diğer kullanıcıların sizi nasıl göreceğini belirleyin.';
+
+	/// tr: 'Profilim diğer ailelere görünsün'
+	String get privacyShowProfile => 'Profilim diğer ailelere görünsün';
+
+	/// tr: 'Bana mesaj gönderilebilsin'
+	String get privacyAllowMessages => 'Bana mesaj gönderilebilsin';
+
+	/// tr: 'Gelişim özetini bağlı uzmanla paylaş'
+	String get privacyShareProgress => 'Gelişim özetini bağlı uzmanla paylaş';
+
+	/// tr: 'Yaklaşık konumum (şehir) paylaşılsın'
+	String get privacyApproximateLocation => 'Yaklaşık konumum (şehir) paylaşılsın';
+
+	/// tr: 'Çevrimiçi olduğumu gizle'
+	String get privacyHidePresence => 'Çevrimiçi olduğumu gizle';
+
+	/// tr: 'Görünüm ve dil'
+	String get appearanceTitle => 'Görünüm ve dil';
+
+	/// tr: 'Güvenlik'
+	String get securityTitle => 'Güvenlik';
+
+	/// tr: 'Hesabınıza erişimi koruyun.'
+	String get securitySubtitle => 'Hesabınıza erişimi koruyun.';
+
+	/// tr: 'Şifre değiştir'
+	String get changePassword => 'Şifre değiştir';
+
+	/// tr: 'Şifreyi güncelle'
+	String get changePasswordSubmit => 'Şifreyi güncelle';
+
+	/// tr: 'Mevcut şifre'
+	String get currentPasswordLabel => 'Mevcut şifre';
+
+	/// tr: 'Yeni şifre'
+	String get newPasswordLabel => 'Yeni şifre';
+
+	/// tr: 'Şifreniz güncellendi.'
+	String get passwordChanged => 'Şifreniz güncellendi.';
+
+	/// tr: 'Lütfen mevcut şifrenizi girin.'
+	String get errorCurrentPasswordRequired => 'Lütfen mevcut şifrenizi girin.';
+
+	/// tr: 'Verileriniz ve KVKK'
+	String get dataTitle => 'Verileriniz ve KVKK';
+
+	/// tr: 'Verileriniz üzerindeki haklarınızı buradan kullanabilirsiniz.'
+	String get dataSubtitle => 'Verileriniz üzerindeki haklarınızı buradan kullanabilirsiniz.';
+
+	/// tr: 'KVKK hakları ve rızalar'
+	String get kvkkPanel => 'KVKK hakları ve rızalar';
+
+	/// tr: 'Rıza tercihleri, başvurular ve aydınlatma metni.'
+	String get kvkkPanelBody => 'Rıza tercihleri, başvurular ve aydınlatma metni.';
+
+	/// tr: 'Verilerimi indir'
+	String get downloadData => 'Verilerimi indir';
+
+	/// tr: 'Hesabınızdaki tüm veriyi JSON dosyası olarak alın.'
+	String get downloadDataBody => 'Hesabınızdaki tüm veriyi JSON dosyası olarak alın.';
+
+	/// tr: 'Otizm Destek — hesap verilerim'
+	String get downloadDataSubject => 'Otizm Destek — hesap verilerim';
+
+	/// tr: 'Hesabımı sil'
+	String get deleteAccount => 'Hesabımı sil';
+
+	/// tr: 'Hesabınız ve tüm kayıtlarınız kalıcı olarak silinir.'
+	String get deleteAccountBody => 'Hesabınız ve tüm kayıtlarınız kalıcı olarak silinir.';
+
+	/// tr: 'Bu işlem geri alınamaz. Çocuk profilleri, notlar, randevular ve mesajlar dâhil tüm verileriniz kalıcı olarak silinir.'
+	String get deleteAccountWarning => 'Bu işlem geri alınamaz. Çocuk profilleri, notlar, randevular ve mesajlar dâhil tüm verileriniz kalıcı olarak silinir.';
+
+	/// tr: 'Hesabımı kalıcı olarak sil'
+	String get deleteAccountSubmit => 'Hesabımı kalıcı olarak sil';
+
+	/// tr: 'SİL'
+	String get deleteKeyword => 'SİL';
+
+	/// tr: 'Onaylamak için "$keyword" yazın'
+	String deleteConfirmLabel({required Object keyword}) => 'Onaylamak için "${keyword}" yazın';
+
+	/// tr: 'Onay metni eşleşmiyor.'
+	String get errorDeleteConfirm => 'Onay metni eşleşmiyor.';
+}
+
+// Path: kvkk
+class Translations$kvkk$tr {
+	Translations$kvkk$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'KVKK ve rızalar'
+	String get title => 'KVKK ve rızalar';
+
+	/// tr: 'KVKK md. 11 haklarınız'
+	String get rightsTitle => 'KVKK md. 11 haklarınız';
+
+	/// tr: 'Verilerinizin işlenip işlenmediğini öğrenme, düzeltilmesini veya silinmesini isteme, aktarıldığı üçüncü kişileri bilme ve otomatik analiz sonuçlarına itiraz etme hakkınız var. Başvurularınız en geç 30 gün içinde yanıtlanır.'
+	String get rightsBody => 'Verilerinizin işlenip işlenmediğini öğrenme, düzeltilmesini veya silinmesini isteme, aktarıldığı üçüncü kişileri bilme ve otomatik analiz sonuçlarına itiraz etme hakkınız var. Başvurularınız en geç 30 gün içinde yanıtlanır.';
+
+	/// tr: 'Rıza tercihleriniz'
+	String get consentsTitle => 'Rıza tercihleriniz';
+
+	/// tr: 'Açık rıza amaca özel olmalıdır; her başlığı ayrı ayrı açıp kapatabilirsiniz.'
+	String get consentsSubtitle => 'Açık rıza amaca özel olmalıdır; her başlığı ayrı ayrı açıp kapatabilirsiniz.';
+
+	/// tr: 'Aydınlatma metni onayı'
+	String get consentNotice => 'Aydınlatma metni onayı';
+
+	/// tr: 'Yapay zekâ analizi'
+	String get consentAi => 'Yapay zekâ analizi';
+
+	/// tr: 'Gelişim verisinin yapay zekâ sağlayıcısına (yurt dışına) aktarılmasına izin verir.'
+	String get consentAiBody => 'Gelişim verisinin yapay zekâ sağlayıcısına (yurt dışına) aktarılmasına izin verir.';
+
+	/// tr: 'Acil durum kartı paylaşımı'
+	String get consentEmergency => 'Acil durum kartı paylaşımı';
+
+	/// tr: 'Acil durum kartınızın bağlantı/QR ile üçüncü kişilere gösterilmesine izin verir.'
+	String get consentEmergencyBody => 'Acil durum kartınızın bağlantı/QR ile üçüncü kişilere gösterilmesine izin verir.';
+
+	/// tr: 'Benzer aile eşleştirmesi'
+	String get consentMatching => 'Benzer aile eşleştirmesi';
+
+	/// tr: 'Profilinizin eşleştirme motorunda diğer ailelere gösterilmesine izin verir.'
+	String get consentMatchingBody => 'Profilinizin eşleştirme motorunda diğer ailelere gösterilmesine izin verir.';
+
+	/// tr: 'Bilgilendirme e-postaları'
+	String get consentMarketing => 'Bilgilendirme e-postaları';
+
+	/// tr: 'Zorunlu olmayan duyuru ve bilgilendirme e-postalarını almanızı sağlar.'
+	String get consentMarketingBody => 'Zorunlu olmayan duyuru ve bilgilendirme e-postalarını almanızı sağlar.';
+
+	/// tr: 'Aydınlatma metni güncellendi'
+	String get reconsentTitle => 'Aydınlatma metni güncellendi';
+
+	/// tr: 'Aydınlatma metni güncellendi (sürüm $version)'
+	String reconsentTitleVersion({required Object version}) => 'Aydınlatma metni güncellendi (sürüm ${version})';
+
+	/// tr: 'Verilerinizin nasıl işlendiğini gözden geçirip güncel metni onaylayın.'
+	String get reconsentBody => 'Verilerinizin nasıl işlendiğini gözden geçirip güncel metni onaylayın.';
+
+	/// tr: 'Okudum, onaylıyorum'
+	String get reconsentAccept => 'Okudum, onaylıyorum';
+
+	/// tr: 'Güncel aydınlatma metni onayınız kaydedildi.'
+	String get reconsentSaved => 'Güncel aydınlatma metni onayınız kaydedildi.';
+
+	/// tr: 'Rıza geçmişim'
+	String get historyTitle => 'Rıza geçmişim';
+
+	/// tr: 'Başvurularım'
+	String get requestsTitle => 'Başvurularım';
+
+	/// tr: 'Verileriniz hakkındaki taleplerinizi buradan iletebilirsiniz.'
+	String get requestsSubtitle => 'Verileriniz hakkındaki taleplerinizi buradan iletebilirsiniz.';
+
+	/// tr: 'KVKK başvurusu yap'
+	String get newRequest => 'KVKK başvurusu yap';
+
+	/// tr: 'Henüz bir başvurunuz yok.'
+	String get requestsEmpty => 'Henüz bir başvurunuz yok.';
+
+	/// tr: 'Başvurular yüklenemedi.'
+	String get requestsError => 'Başvurular yüklenemedi.';
+
+	/// tr: 'Başvurunuz alındı. En geç 30 gün içinde yanıtlanacaktır.'
+	String get requestCreated => 'Başvurunuz alındı. En geç 30 gün içinde yanıtlanacaktır.';
+
+	/// tr: 'Verilerimin işlenip işlenmediğini öğrenmek istiyorum'
+	String get requestInfo => 'Verilerimin işlenip işlenmediğini öğrenmek istiyorum';
+
+	/// tr: 'Eksik veya yanlış işlenen verimin düzeltilmesini istiyorum'
+	String get requestCorrection => 'Eksik veya yanlış işlenen verimin düzeltilmesini istiyorum';
+
+	/// tr: 'Verilerimin silinmesini / yok edilmesini istiyorum'
+	String get requestDeletion => 'Verilerimin silinmesini / yok edilmesini istiyorum';
+
+	/// tr: 'Verilerimin aktarıldığı üçüncü kişileri öğrenmek istiyorum'
+	String get requestTransfer => 'Verilerimin aktarıldığı üçüncü kişileri öğrenmek istiyorum';
+
+	/// tr: 'Otomatik analiz sonucu aleyhime çıkan sonuca itiraz ediyorum'
+	String get requestObjection => 'Otomatik analiz sonucu aleyhime çıkan sonuca itiraz ediyorum';
+
+	/// tr: 'Uğradığım zararın giderilmesini talep ediyorum'
+	String get requestDamages => 'Uğradığım zararın giderilmesini talep ediyorum';
+
+	/// tr: 'Talebiniz'
+	String get descriptionLabel => 'Talebiniz';
+
+	/// tr: 'Talebinizi kısaca açıklayın.'
+	String get descriptionHint => 'Talebinizi kısaca açıklayın.';
+
+	/// tr: 'Başvurular en geç 30 gün içinde yanıtlanır.'
+	String get responseTime => 'Başvurular en geç 30 gün içinde yanıtlanır.';
+
+	/// tr: 'Başvuruyu gönder'
+	String get submitRequest => 'Başvuruyu gönder';
+
+	/// tr: 'Lütfen talebinizi açıklayın.'
+	String get errorDescriptionRequired => 'Lütfen talebinizi açıklayın.';
+
+	/// tr: 'Alındı'
+	String get statusOpen => 'Alındı';
+
+	/// tr: 'İnceleniyor'
+	String get statusReviewing => 'İnceleniyor';
+
+	/// tr: 'Tamamlandı'
+	String get statusDone => 'Tamamlandı';
+
+	/// tr: 'Reddedildi'
+	String get statusRejected => 'Reddedildi';
+
+	/// tr: '$date tarihinde alındı'
+	String receivedOn({required Object date}) => '${date} tarihinde alındı';
+
+	/// tr: 'yanıt son tarihi $date'
+	String dueOn({required Object date}) => 'yanıt son tarihi ${date}';
 }
 
 // Path: onboarding
@@ -4039,6 +4314,7 @@ extension on Translations {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
 			'app.name' => 'Otizm Destek',
+			'common.cancel' => 'Vazgeç',
 			'common.loading' => 'Yükleniyor',
 			'common.comingSoon' => 'Bu bölüm yakında eklenecek.',
 			'common.seeAll' => 'Tümünü Gör',
@@ -4167,6 +4443,90 @@ extension on Translations {
 			'register.errorKvkkRequired' => 'Devam etmek için KVKK onayı gereklidir.',
 			'register.emailTaken' => 'Bu e-posta adresi zaten kayıtlı. Giriş yapmayı deneyin.',
 			'register.emailAvailable' => 'Bu e-posta adresi kullanılabilir.',
+			'settings.title' => 'Ayarlar',
+			'settings.notificationsTitle' => 'Bildirimler',
+			'settings.notificationsSubtitle' => 'Hangi konularda bildirim almak istediğinizi seçin.',
+			'settings.notifMessages' => 'Yeni mesajlar',
+			'settings.notifAppointment' => 'Randevu onay ve değişiklikleri',
+			'settings.notifApptReminder' => 'Randevudan 24 saat önce hatırlat',
+			'settings.notifExpertNote' => 'Uzman notları ve geri bildirimleri',
+			'settings.notifTaskAssigned' => 'Yeni ödev atandığında',
+			'settings.notifForum' => 'Forum ve dertleşme duvarı yanıtları',
+			'settings.notifMatching' => 'Benzer aile eşleşmeleri',
+			'settings.notifCalendar' => 'Takvim hatırlatmaları',
+			'settings.privacyTitle' => 'Gizlilik',
+			'settings.privacySubtitle' => 'Diğer kullanıcıların sizi nasıl göreceğini belirleyin.',
+			'settings.privacyShowProfile' => 'Profilim diğer ailelere görünsün',
+			'settings.privacyAllowMessages' => 'Bana mesaj gönderilebilsin',
+			'settings.privacyShareProgress' => 'Gelişim özetini bağlı uzmanla paylaş',
+			'settings.privacyApproximateLocation' => 'Yaklaşık konumum (şehir) paylaşılsın',
+			'settings.privacyHidePresence' => 'Çevrimiçi olduğumu gizle',
+			'settings.appearanceTitle' => 'Görünüm ve dil',
+			'settings.securityTitle' => 'Güvenlik',
+			'settings.securitySubtitle' => 'Hesabınıza erişimi koruyun.',
+			'settings.changePassword' => 'Şifre değiştir',
+			'settings.changePasswordSubmit' => 'Şifreyi güncelle',
+			'settings.currentPasswordLabel' => 'Mevcut şifre',
+			'settings.newPasswordLabel' => 'Yeni şifre',
+			'settings.passwordChanged' => 'Şifreniz güncellendi.',
+			'settings.errorCurrentPasswordRequired' => 'Lütfen mevcut şifrenizi girin.',
+			'settings.dataTitle' => 'Verileriniz ve KVKK',
+			'settings.dataSubtitle' => 'Verileriniz üzerindeki haklarınızı buradan kullanabilirsiniz.',
+			'settings.kvkkPanel' => 'KVKK hakları ve rızalar',
+			'settings.kvkkPanelBody' => 'Rıza tercihleri, başvurular ve aydınlatma metni.',
+			'settings.downloadData' => 'Verilerimi indir',
+			'settings.downloadDataBody' => 'Hesabınızdaki tüm veriyi JSON dosyası olarak alın.',
+			'settings.downloadDataSubject' => 'Otizm Destek — hesap verilerim',
+			'settings.deleteAccount' => 'Hesabımı sil',
+			'settings.deleteAccountBody' => 'Hesabınız ve tüm kayıtlarınız kalıcı olarak silinir.',
+			'settings.deleteAccountWarning' => 'Bu işlem geri alınamaz. Çocuk profilleri, notlar, randevular ve mesajlar dâhil tüm verileriniz kalıcı olarak silinir.',
+			'settings.deleteAccountSubmit' => 'Hesabımı kalıcı olarak sil',
+			'settings.deleteKeyword' => 'SİL',
+			'settings.deleteConfirmLabel' => ({required Object keyword}) => 'Onaylamak için "${keyword}" yazın',
+			'settings.errorDeleteConfirm' => 'Onay metni eşleşmiyor.',
+			'kvkk.title' => 'KVKK ve rızalar',
+			'kvkk.rightsTitle' => 'KVKK md. 11 haklarınız',
+			'kvkk.rightsBody' => 'Verilerinizin işlenip işlenmediğini öğrenme, düzeltilmesini veya silinmesini isteme, aktarıldığı üçüncü kişileri bilme ve otomatik analiz sonuçlarına itiraz etme hakkınız var. Başvurularınız en geç 30 gün içinde yanıtlanır.',
+			'kvkk.consentsTitle' => 'Rıza tercihleriniz',
+			'kvkk.consentsSubtitle' => 'Açık rıza amaca özel olmalıdır; her başlığı ayrı ayrı açıp kapatabilirsiniz.',
+			'kvkk.consentNotice' => 'Aydınlatma metni onayı',
+			'kvkk.consentAi' => 'Yapay zekâ analizi',
+			'kvkk.consentAiBody' => 'Gelişim verisinin yapay zekâ sağlayıcısına (yurt dışına) aktarılmasına izin verir.',
+			'kvkk.consentEmergency' => 'Acil durum kartı paylaşımı',
+			'kvkk.consentEmergencyBody' => 'Acil durum kartınızın bağlantı/QR ile üçüncü kişilere gösterilmesine izin verir.',
+			'kvkk.consentMatching' => 'Benzer aile eşleştirmesi',
+			'kvkk.consentMatchingBody' => 'Profilinizin eşleştirme motorunda diğer ailelere gösterilmesine izin verir.',
+			'kvkk.consentMarketing' => 'Bilgilendirme e-postaları',
+			'kvkk.consentMarketingBody' => 'Zorunlu olmayan duyuru ve bilgilendirme e-postalarını almanızı sağlar.',
+			'kvkk.reconsentTitle' => 'Aydınlatma metni güncellendi',
+			'kvkk.reconsentTitleVersion' => ({required Object version}) => 'Aydınlatma metni güncellendi (sürüm ${version})',
+			'kvkk.reconsentBody' => 'Verilerinizin nasıl işlendiğini gözden geçirip güncel metni onaylayın.',
+			'kvkk.reconsentAccept' => 'Okudum, onaylıyorum',
+			'kvkk.reconsentSaved' => 'Güncel aydınlatma metni onayınız kaydedildi.',
+			'kvkk.historyTitle' => 'Rıza geçmişim',
+			'kvkk.requestsTitle' => 'Başvurularım',
+			'kvkk.requestsSubtitle' => 'Verileriniz hakkındaki taleplerinizi buradan iletebilirsiniz.',
+			'kvkk.newRequest' => 'KVKK başvurusu yap',
+			'kvkk.requestsEmpty' => 'Henüz bir başvurunuz yok.',
+			'kvkk.requestsError' => 'Başvurular yüklenemedi.',
+			'kvkk.requestCreated' => 'Başvurunuz alındı. En geç 30 gün içinde yanıtlanacaktır.',
+			'kvkk.requestInfo' => 'Verilerimin işlenip işlenmediğini öğrenmek istiyorum',
+			'kvkk.requestCorrection' => 'Eksik veya yanlış işlenen verimin düzeltilmesini istiyorum',
+			'kvkk.requestDeletion' => 'Verilerimin silinmesini / yok edilmesini istiyorum',
+			'kvkk.requestTransfer' => 'Verilerimin aktarıldığı üçüncü kişileri öğrenmek istiyorum',
+			'kvkk.requestObjection' => 'Otomatik analiz sonucu aleyhime çıkan sonuca itiraz ediyorum',
+			'kvkk.requestDamages' => 'Uğradığım zararın giderilmesini talep ediyorum',
+			'kvkk.descriptionLabel' => 'Talebiniz',
+			'kvkk.descriptionHint' => 'Talebinizi kısaca açıklayın.',
+			'kvkk.responseTime' => 'Başvurular en geç 30 gün içinde yanıtlanır.',
+			'kvkk.submitRequest' => 'Başvuruyu gönder',
+			'kvkk.errorDescriptionRequired' => 'Lütfen talebinizi açıklayın.',
+			'kvkk.statusOpen' => 'Alındı',
+			'kvkk.statusReviewing' => 'İnceleniyor',
+			'kvkk.statusDone' => 'Tamamlandı',
+			'kvkk.statusRejected' => 'Reddedildi',
+			'kvkk.receivedOn' => ({required Object date}) => '${date} tarihinde alındı',
+			'kvkk.dueOn' => ({required Object date}) => 'yanıt son tarihi ${date}',
 			'onboarding.title' => 'Başlangıç',
 			'onboarding.skip' => 'Atla',
 			'onboarding.start' => 'Başlayalım',
@@ -4465,6 +4825,8 @@ extension on Translations {
 			'meds.noTime' => 'Saatsiz',
 			'meds.added' => 'İlaç eklendi.',
 			'meds.updated' => 'İlaç güncellendi.',
+			_ => null,
+		} ?? switch (path) {
 			'meds.deleteTitle' => 'İlacı Sil',
 			'meds.deleteConfirm' => ({required Object name}) => '${name} ve doz kayıtları kalıcı olarak silinecek. Emin misiniz?',
 			'meds.deleted' => 'İlaç silindi.',
@@ -4550,8 +4912,6 @@ extension on Translations {
 			'meetup.dateLabel' => 'Tarih',
 			'meetup.timeLabel' => 'Saat',
 			'meetup.descriptionLabel' => 'Açıklama',
-			_ => null,
-		} ?? switch (path) {
 			'meetup.descriptionHint' => 'Kimler katılabilir, ortam nasıl olacak?',
 			'meetup.create' => 'Oluştur',
 			'meetup.created' => 'Buluşman oluşturuldu. Diğer aileler görebilecek.',
@@ -4979,6 +5339,8 @@ extension on Translations {
 			'crisis.cards.meltdown.steps.2' => 'Sözel uyarıyı minimuma indirin; tek kelime veya kısa cümleler.',
 			'crisis.cards.meltdown.steps.3' => 'Duyusal uyaranları azaltın: ışıkları kısın, sesi düşürün.',
 			'crisis.cards.meltdown.steps.4' => 'Yanında olmaya devam edin — uzaklaşmayın ama dokunmayın.',
+			_ => null,
+		} ?? switch (path) {
 			'crisis.cards.meltdown.steps.5' => 'Kriz geçtikten sonra sakin ses tonuyla güvence verin.',
 			'crisis.cards.meltdown.avoid.0' => 'Yüksek sesle konuşmayın.',
 			'crisis.cards.meltdown.avoid.1' => 'Mantık yürütmeye ya da açıklamaya çalışmayın.',
@@ -5064,8 +5426,6 @@ extension on Translations {
 			'emergency.noChild' => 'Acil durum kartı için önce bir çocuk ekleyin.',
 			'emergency.lastUpdated' => ({required Object date}) => 'Son güncelleme ${date}',
 			'emergency.notSaved' => 'Bu kart henüz kaydedilmedi.',
-			_ => null,
-		} ?? switch (path) {
 			'emergency.save' => 'Kaydet',
 			'emergency.saved' => 'Acil durum kartı kaydedildi.',
 			'emergency.call' => 'Ara',

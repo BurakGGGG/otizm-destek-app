@@ -19,6 +19,13 @@ class SecureStorage {
   Future<void> saveThemeMode(String value) =>
       _storage.write(key: _kThemeMode, value: value);
 
+  /// Uygulama tercihleri (bildirim/gizlilik/erişilebilirlik). Oturum verisi
+  /// değildir; çıkışta silinmez.
+  Future<String?> readPreference(String key) =>
+      _storage.read(key: 'pref_$key');
+  Future<void> savePreference(String key, String value) =>
+      _storage.write(key: 'pref_$key', value: value);
+
   Future<void> saveTokens({
     required String accessToken,
     String? refreshToken,
