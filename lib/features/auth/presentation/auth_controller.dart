@@ -179,6 +179,26 @@ class AuthController extends Notifier<AuthState> {
     }
   }
 
+  /// İlk giriş sihirbazını tamamlar. Kalıcı kaynak sunucudur; eski backend
+  /// sürümlerinde uç nokta yoksa (404) kullanıcı akışta kilitlenmesin diye
+  /// yalnızca yerel durum güncellenir (web authStore ile aynı davranış).
+  Future<String?> completeOnboarding() async {
+    try {
+      final updated = await _repo.completeOnboarding();
+      state = state.copyWith(user: updated);
+      return null;
+    } on ApiException catch (e) {
+      if (e.statusCode == 404) {
+        final user = state.user;
+        if (user != null) {
+          state = state.copyWith(user: user.copyWith(onboardingCompleted: true));
+        }
+        return null;
+      }
+      return e.message;
+    }
+  }
+
   Future<void> signOut() async {
     final rt = await _storage.readRefreshToken();
     if (rt != null && rt.isNotEmpty) {

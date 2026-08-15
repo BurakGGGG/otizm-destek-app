@@ -41,6 +41,8 @@ class AppUser {
     this.bio,
     this.profileImageUrl,
     this.verified = false,
+    this.emailVerified = true,
+    this.onboardingCompleted = true,
     this.specializations = const [],
   });
 
@@ -55,11 +57,42 @@ class AppUser {
   final String? licenseNumber;
   final String? bio;
   final String? profileImageUrl;
+
+  /// Uzman hesabının yönetici onayı (veli hesaplarında anlamsız).
   final bool verified;
+
+  /// E-posta doğrulandı mı? Backend `REQUIRE_EMAIL_VERIFICATION` kapalıysa
+  /// kayıtta zaten `true` gelir; alan yoksa doğrulanmış sayılır.
+  final bool emailVerified;
+
+  /// İlk giriş sihirbazı tamamlandı mı? (`POST /users/me/onboarding-complete`)
+  /// Alan gelmeyen eski yanıtlarda sihirbazı tekrar açmamak için `true`.
+  final bool onboardingCompleted;
+
   final List<String> specializations;
 
   /// Görünen ad (UI selamlama vb.).
   String get displayName => fullName;
+
+  AppUser copyWith({bool? emailVerified, bool? onboardingCompleted}) {
+    return AppUser(
+      id: id,
+      email: email,
+      fullName: fullName,
+      role: role,
+      phone: phone,
+      city: city,
+      expertTitle: expertTitle,
+      institution: institution,
+      licenseNumber: licenseNumber,
+      bio: bio,
+      profileImageUrl: profileImageUrl,
+      verified: verified,
+      emailVerified: emailVerified ?? this.emailVerified,
+      onboardingCompleted: onboardingCompleted ?? this.onboardingCompleted,
+      specializations: specializations,
+    );
+  }
 
   factory AppUser.fromJson(Map<String, dynamic> json) {
     return AppUser(
@@ -75,6 +108,8 @@ class AppUser {
       bio: json['bio'] as String?,
       profileImageUrl: json['profileImageUrl'] as String?,
       verified: json['verified'] as bool? ?? false,
+      emailVerified: json['emailVerified'] as bool? ?? true,
+      onboardingCompleted: json['onboardingCompleted'] as bool? ?? true,
       specializations:
           (json['specializations'] as List<dynamic>?)
               ?.map((e) => e.toString())

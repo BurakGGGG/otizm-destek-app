@@ -185,6 +185,17 @@ class AuthRepository {
     }
   }
 
+  /// İlk giriş sihirbazını tamamlandı olarak işaretler
+  /// (`POST /users/me/onboarding-complete`) ve güncel kullanıcıyı döner.
+  Future<AppUser> completeOnboarding() async {
+    try {
+      final res = await _dio.post('/users/me/onboarding-complete');
+      return AppUser.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
   /// E-postadaki doğrulama kodunu onaylar (`POST /auth/verify-email`).
   Future<void> verifyEmail(String token) async {
     try {

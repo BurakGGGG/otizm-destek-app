@@ -151,6 +151,53 @@ register:
   emailAvailable: This email address is available.
   errorKvkkRequired: KVKK consent is required to continue.
 
+onboarding:
+  title: Getting started
+  skip: Skip
+  start: Let's begin
+  back: Back
+  continueButton: Continue
+  skipForNow: Skip for now
+  finish: Go to home
+  stepChild: Child Profile
+  stepTags: Support Areas
+  stepPlan: Starter Plan
+  welcomeTitle: Welcome
+  welcomeBody: Let's set the app up for your child in a few short steps. You can change everything later.
+  introChildTitle: Basic details
+  introChildBody: Name and a few optional notes
+  introTagsTitle: Support areas
+  introTagsBody: Pick the areas you observe
+  introPlanTitle: Starter suggestions
+  introPlanBody: See what you can do first
+  childTitle: Tell us about your child
+  childSubtitle: Only the name is required; you can fill in the rest later.
+  childNameLabel: Child's name
+  childNameHint: e.g. Elif
+  childBirthDateLabel: Date of birth (optional)
+  childBirthDateHint: Tap to choose
+  childDiagnosisLabel: Diagnosis details (optional)
+  childDiagnosisHint: Diagnosis and short notes, if any
+  focusTitle: Starting focus
+  communicationTitle: Communication style
+  supportTitle: Support that may help
+  tagsTitle: Which areas do you need support with?
+  tagsSubtitle: Pick what you observe; similar families and content suggestions follow these.
+  planTitle: Your starter plan is ready
+  planTitleNamed: Your starter plan for $name is ready
+  planSubtitle: You can try one of these as a first step.
+  planNote: These are only starting suggestions; every section stays reachable from the menu.
+  planTrackerTitle: Add a daily entry
+  planTrackerBody: Log sleep, mood or a short observation.
+  planExpertsTitle: Browse specialists
+  planExpertsBody: Look through specialists or request an appointment.
+  planKnowledgeTitle: Explore the knowledge base
+  planKnowledgeBody: Browse trusted content in the knowledge base.
+  expertTitle: Welcome $name
+  expertBody: Client tracking, appointments and messages are waiting on the home screen.
+  errorNameRequired: The child's name is required.
+  errorBirthDateFuture: The date of birth cannot be in the future.
+
 nav:
   home: Home
   specialists: Specialists

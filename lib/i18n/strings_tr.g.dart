@@ -51,6 +51,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$resetPassword$tr resetPassword = Translations$resetPassword$tr.internal(_root);
 	late final Translations$password$tr password = Translations$password$tr.internal(_root);
 	late final Translations$register$tr register = Translations$register$tr.internal(_root);
+	late final Translations$onboarding$tr onboarding = Translations$onboarding$tr.internal(_root);
 	late final Translations$nav$tr nav = Translations$nav$tr.internal(_root);
 	late final Translations$chat$tr chat = Translations$chat$tr.internal(_root);
 	late final Translations$messages$tr messages = Translations$messages$tr.internal(_root);
@@ -554,6 +555,150 @@ class Translations$register$tr {
 
 	/// tr: 'Bu e-posta adresi kullanılabilir.'
 	String get emailAvailable => 'Bu e-posta adresi kullanılabilir.';
+}
+
+// Path: onboarding
+class Translations$onboarding$tr {
+	Translations$onboarding$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Başlangıç'
+	String get title => 'Başlangıç';
+
+	/// tr: 'Atla'
+	String get skip => 'Atla';
+
+	/// tr: 'Başlayalım'
+	String get start => 'Başlayalım';
+
+	/// tr: 'Geri'
+	String get back => 'Geri';
+
+	/// tr: 'Devam et'
+	String get continueButton => 'Devam et';
+
+	/// tr: 'Şimdilik atla'
+	String get skipForNow => 'Şimdilik atla';
+
+	/// tr: 'Ana sayfaya geç'
+	String get finish => 'Ana sayfaya geç';
+
+	/// tr: 'Çocuk Profili'
+	String get stepChild => 'Çocuk Profili';
+
+	/// tr: 'Destek Alanları'
+	String get stepTags => 'Destek Alanları';
+
+	/// tr: 'Başlangıç Planı'
+	String get stepPlan => 'Başlangıç Planı';
+
+	/// tr: 'Hoş geldiniz'
+	String get welcomeTitle => 'Hoş geldiniz';
+
+	/// tr: 'Birkaç kısa adımda uygulamayı çocuğunuza göre hazırlayalım. Tüm bilgileri sonradan değiştirebilirsiniz.'
+	String get welcomeBody => 'Birkaç kısa adımda uygulamayı çocuğunuza göre hazırlayalım. Tüm bilgileri sonradan değiştirebilirsiniz.';
+
+	/// tr: 'Temel bilgiler'
+	String get introChildTitle => 'Temel bilgiler';
+
+	/// tr: 'Ad ve isteğe bağlı kısa bilgiler'
+	String get introChildBody => 'Ad ve isteğe bağlı kısa bilgiler';
+
+	/// tr: 'Destek alanları'
+	String get introTagsTitle => 'Destek alanları';
+
+	/// tr: 'Gözlemlediğiniz alanları seçin'
+	String get introTagsBody => 'Gözlemlediğiniz alanları seçin';
+
+	/// tr: 'Başlangıç önerisi'
+	String get introPlanTitle => 'Başlangıç önerisi';
+
+	/// tr: 'İlk yapabileceklerinizi görün'
+	String get introPlanBody => 'İlk yapabileceklerinizi görün';
+
+	/// tr: 'Çocuğunuzu tanıyalım'
+	String get childTitle => 'Çocuğunuzu tanıyalım';
+
+	/// tr: 'Yalnızca ad zorunlu; diğer alanları daha sonra da doldurabilirsiniz.'
+	String get childSubtitle => 'Yalnızca ad zorunlu; diğer alanları daha sonra da doldurabilirsiniz.';
+
+	/// tr: 'Çocuğun adı'
+	String get childNameLabel => 'Çocuğun adı';
+
+	/// tr: 'Örn. Elif'
+	String get childNameHint => 'Örn. Elif';
+
+	/// tr: 'Doğum tarihi (isteğe bağlı)'
+	String get childBirthDateLabel => 'Doğum tarihi (isteğe bağlı)';
+
+	/// tr: 'Seçmek için dokunun'
+	String get childBirthDateHint => 'Seçmek için dokunun';
+
+	/// tr: 'Tanı bilgisi (isteğe bağlı)'
+	String get childDiagnosisLabel => 'Tanı bilgisi (isteğe bağlı)';
+
+	/// tr: 'Varsa tanı ve kısa notlar'
+	String get childDiagnosisHint => 'Varsa tanı ve kısa notlar';
+
+	/// tr: 'Başlangıç odağı'
+	String get focusTitle => 'Başlangıç odağı';
+
+	/// tr: 'İletişim şekli'
+	String get communicationTitle => 'İletişim şekli';
+
+	/// tr: 'Yararlı olabilecek destek'
+	String get supportTitle => 'Yararlı olabilecek destek';
+
+	/// tr: 'Hangi alanlarda destek arıyorsunuz?'
+	String get tagsTitle => 'Hangi alanlarda destek arıyorsunuz?';
+
+	/// tr: 'Gözlemlediğiniz alanları seçin; benzer aileler ve içerik önerileri buna göre şekillenir.'
+	String get tagsSubtitle => 'Gözlemlediğiniz alanları seçin; benzer aileler ve içerik önerileri buna göre şekillenir.';
+
+	/// tr: 'Başlangıç planınız hazır'
+	String get planTitle => 'Başlangıç planınız hazır';
+
+	/// tr: '$name için başlangıç planınız hazır'
+	String planTitleNamed({required Object name}) => '${name} için başlangıç planınız hazır';
+
+	/// tr: 'İlk adım olarak şunlardan birini deneyebilirsiniz.'
+	String get planSubtitle => 'İlk adım olarak şunlardan birini deneyebilirsiniz.';
+
+	/// tr: 'Bu seçimler yalnızca başlangıç yönlendirmesidir; tüm bölümlere menüden ulaşabilirsiniz.'
+	String get planNote => 'Bu seçimler yalnızca başlangıç yönlendirmesidir; tüm bölümlere menüden ulaşabilirsiniz.';
+
+	/// tr: 'Günlük kayıt ekle'
+	String get planTrackerTitle => 'Günlük kayıt ekle';
+
+	/// tr: 'Uyku, duygu durumu veya kısa bir gözlem girin.'
+	String get planTrackerBody => 'Uyku, duygu durumu veya kısa bir gözlem girin.';
+
+	/// tr: 'Uzmanları incele'
+	String get planExpertsTitle => 'Uzmanları incele';
+
+	/// tr: 'Uzmanlara göz atın veya randevu talebi oluşturun.'
+	String get planExpertsBody => 'Uzmanlara göz atın veya randevu talebi oluşturun.';
+
+	/// tr: 'Bilgi ve kaynakları keşfet'
+	String get planKnowledgeTitle => 'Bilgi ve kaynakları keşfet';
+
+	/// tr: 'Bilgi bankasındaki güvenilir içeriklere göz atın.'
+	String get planKnowledgeBody => 'Bilgi bankasındaki güvenilir içeriklere göz atın.';
+
+	/// tr: 'Hoş geldiniz $name'
+	String expertTitle({required Object name}) => 'Hoş geldiniz ${name}';
+
+	/// tr: 'Danışan takibi, randevular ve mesajlaşma ana sayfada sizi bekliyor.'
+	String get expertBody => 'Danışan takibi, randevular ve mesajlaşma ana sayfada sizi bekliyor.';
+
+	/// tr: 'Çocuğun adı zorunludur.'
+	String get errorNameRequired => 'Çocuğun adı zorunludur.';
+
+	/// tr: 'Doğum tarihi gelecekte olamaz.'
+	String get errorBirthDateFuture => 'Doğum tarihi gelecekte olamaz.';
 }
 
 // Path: nav
@@ -4022,6 +4167,51 @@ extension on Translations {
 			'register.errorKvkkRequired' => 'Devam etmek için KVKK onayı gereklidir.',
 			'register.emailTaken' => 'Bu e-posta adresi zaten kayıtlı. Giriş yapmayı deneyin.',
 			'register.emailAvailable' => 'Bu e-posta adresi kullanılabilir.',
+			'onboarding.title' => 'Başlangıç',
+			'onboarding.skip' => 'Atla',
+			'onboarding.start' => 'Başlayalım',
+			'onboarding.back' => 'Geri',
+			'onboarding.continueButton' => 'Devam et',
+			'onboarding.skipForNow' => 'Şimdilik atla',
+			'onboarding.finish' => 'Ana sayfaya geç',
+			'onboarding.stepChild' => 'Çocuk Profili',
+			'onboarding.stepTags' => 'Destek Alanları',
+			'onboarding.stepPlan' => 'Başlangıç Planı',
+			'onboarding.welcomeTitle' => 'Hoş geldiniz',
+			'onboarding.welcomeBody' => 'Birkaç kısa adımda uygulamayı çocuğunuza göre hazırlayalım. Tüm bilgileri sonradan değiştirebilirsiniz.',
+			'onboarding.introChildTitle' => 'Temel bilgiler',
+			'onboarding.introChildBody' => 'Ad ve isteğe bağlı kısa bilgiler',
+			'onboarding.introTagsTitle' => 'Destek alanları',
+			'onboarding.introTagsBody' => 'Gözlemlediğiniz alanları seçin',
+			'onboarding.introPlanTitle' => 'Başlangıç önerisi',
+			'onboarding.introPlanBody' => 'İlk yapabileceklerinizi görün',
+			'onboarding.childTitle' => 'Çocuğunuzu tanıyalım',
+			'onboarding.childSubtitle' => 'Yalnızca ad zorunlu; diğer alanları daha sonra da doldurabilirsiniz.',
+			'onboarding.childNameLabel' => 'Çocuğun adı',
+			'onboarding.childNameHint' => 'Örn. Elif',
+			'onboarding.childBirthDateLabel' => 'Doğum tarihi (isteğe bağlı)',
+			'onboarding.childBirthDateHint' => 'Seçmek için dokunun',
+			'onboarding.childDiagnosisLabel' => 'Tanı bilgisi (isteğe bağlı)',
+			'onboarding.childDiagnosisHint' => 'Varsa tanı ve kısa notlar',
+			'onboarding.focusTitle' => 'Başlangıç odağı',
+			'onboarding.communicationTitle' => 'İletişim şekli',
+			'onboarding.supportTitle' => 'Yararlı olabilecek destek',
+			'onboarding.tagsTitle' => 'Hangi alanlarda destek arıyorsunuz?',
+			'onboarding.tagsSubtitle' => 'Gözlemlediğiniz alanları seçin; benzer aileler ve içerik önerileri buna göre şekillenir.',
+			'onboarding.planTitle' => 'Başlangıç planınız hazır',
+			'onboarding.planTitleNamed' => ({required Object name}) => '${name} için başlangıç planınız hazır',
+			'onboarding.planSubtitle' => 'İlk adım olarak şunlardan birini deneyebilirsiniz.',
+			'onboarding.planNote' => 'Bu seçimler yalnızca başlangıç yönlendirmesidir; tüm bölümlere menüden ulaşabilirsiniz.',
+			'onboarding.planTrackerTitle' => 'Günlük kayıt ekle',
+			'onboarding.planTrackerBody' => 'Uyku, duygu durumu veya kısa bir gözlem girin.',
+			'onboarding.planExpertsTitle' => 'Uzmanları incele',
+			'onboarding.planExpertsBody' => 'Uzmanlara göz atın veya randevu talebi oluşturun.',
+			'onboarding.planKnowledgeTitle' => 'Bilgi ve kaynakları keşfet',
+			'onboarding.planKnowledgeBody' => 'Bilgi bankasındaki güvenilir içeriklere göz atın.',
+			'onboarding.expertTitle' => ({required Object name}) => 'Hoş geldiniz ${name}',
+			'onboarding.expertBody' => 'Danışan takibi, randevular ve mesajlaşma ana sayfada sizi bekliyor.',
+			'onboarding.errorNameRequired' => 'Çocuğun adı zorunludur.',
+			'onboarding.errorBirthDateFuture' => 'Doğum tarihi gelecekte olamaz.',
 			'nav.home' => 'Ana Sayfa',
 			'nav.specialists' => 'Uzmanlar',
 			'nav.progress' => 'Gelişim',
@@ -4360,6 +4550,8 @@ extension on Translations {
 			'meetup.dateLabel' => 'Tarih',
 			'meetup.timeLabel' => 'Saat',
 			'meetup.descriptionLabel' => 'Açıklama',
+			_ => null,
+		} ?? switch (path) {
 			'meetup.descriptionHint' => 'Kimler katılabilir, ortam nasıl olacak?',
 			'meetup.create' => 'Oluştur',
 			'meetup.created' => 'Buluşman oluşturuldu. Diğer aileler görebilecek.',
@@ -4405,8 +4597,6 @@ extension on Translations {
 			'groups.tabDiscover' => 'Keşfet',
 			'groups.searchHint' => 'Grup ara…',
 			'groups.allCategories' => 'Tümü',
-			_ => null,
-		} ?? switch (path) {
 			'groups.emptyMy' => 'Henüz bir gruba katılmadın. Keşfet sekmesinden gruplara göz at.',
 			'groups.emptyDiscover' => 'Bu ölçütlerle grup bulunamadı. Yeni bir grup oluşturabilirsin.',
 			'groups.memberCount' => ({required Object count}) => '${count} üye',
@@ -4874,6 +5064,8 @@ extension on Translations {
 			'emergency.noChild' => 'Acil durum kartı için önce bir çocuk ekleyin.',
 			'emergency.lastUpdated' => ({required Object date}) => 'Son güncelleme ${date}',
 			'emergency.notSaved' => 'Bu kart henüz kaydedilmedi.',
+			_ => null,
+		} ?? switch (path) {
 			'emergency.save' => 'Kaydet',
 			'emergency.saved' => 'Acil durum kartı kaydedildi.',
 			'emergency.call' => 'Ara',
@@ -4919,8 +5111,6 @@ extension on Translations {
 			'behavior.subtitle' => 'ABC (Öncesi-Davranış-Sonuç) gözlem kayıtları',
 			'behavior.add' => 'Kayıt Ekle',
 			'behavior.addTitle' => 'Yeni ABC Kaydı',
-			_ => null,
-		} ?? switch (path) {
 			'behavior.empty' => 'Henüz davranış kaydı yok. İlk gözlemi ekleyin.',
 			'behavior.noChild' => 'Davranış günlüğü için önce bir çocuk ekleyin.',
 			'behavior.date' => 'Tarih',

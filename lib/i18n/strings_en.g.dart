@@ -50,6 +50,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$resetPassword$en resetPassword = _Translations$resetPassword$en._(_root);
 	@override late final _Translations$password$en password = _Translations$password$en._(_root);
 	@override late final _Translations$register$en register = _Translations$register$en._(_root);
+	@override late final _Translations$onboarding$en onboarding = _Translations$onboarding$en._(_root);
 	@override late final _Translations$nav$en nav = _Translations$nav$en._(_root);
 	@override late final _Translations$chat$en chat = _Translations$chat$en._(_root);
 	@override late final _Translations$messages$en messages = _Translations$messages$en._(_root);
@@ -318,6 +319,60 @@ class _Translations$register$en extends Translations$register$tr {
 	@override String get emailTaken => 'This email address is already registered. Try signing in.';
 	@override String get emailAvailable => 'This email address is available.';
 	@override String get errorKvkkRequired => 'KVKK consent is required to continue.';
+}
+
+// Path: onboarding
+class _Translations$onboarding$en extends Translations$onboarding$tr {
+	_Translations$onboarding$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Getting started';
+	@override String get skip => 'Skip';
+	@override String get start => 'Let\'s begin';
+	@override String get back => 'Back';
+	@override String get continueButton => 'Continue';
+	@override String get skipForNow => 'Skip for now';
+	@override String get finish => 'Go to home';
+	@override String get stepChild => 'Child Profile';
+	@override String get stepTags => 'Support Areas';
+	@override String get stepPlan => 'Starter Plan';
+	@override String get welcomeTitle => 'Welcome';
+	@override String get welcomeBody => 'Let\'s set the app up for your child in a few short steps. You can change everything later.';
+	@override String get introChildTitle => 'Basic details';
+	@override String get introChildBody => 'Name and a few optional notes';
+	@override String get introTagsTitle => 'Support areas';
+	@override String get introTagsBody => 'Pick the areas you observe';
+	@override String get introPlanTitle => 'Starter suggestions';
+	@override String get introPlanBody => 'See what you can do first';
+	@override String get childTitle => 'Tell us about your child';
+	@override String get childSubtitle => 'Only the name is required; you can fill in the rest later.';
+	@override String get childNameLabel => 'Child\'s name';
+	@override String get childNameHint => 'e.g. Elif';
+	@override String get childBirthDateLabel => 'Date of birth (optional)';
+	@override String get childBirthDateHint => 'Tap to choose';
+	@override String get childDiagnosisLabel => 'Diagnosis details (optional)';
+	@override String get childDiagnosisHint => 'Diagnosis and short notes, if any';
+	@override String get focusTitle => 'Starting focus';
+	@override String get communicationTitle => 'Communication style';
+	@override String get supportTitle => 'Support that may help';
+	@override String get tagsTitle => 'Which areas do you need support with?';
+	@override String get tagsSubtitle => 'Pick what you observe; similar families and content suggestions follow these.';
+	@override String get planTitle => 'Your starter plan is ready';
+	@override String planTitleNamed({required Object name}) => 'Your starter plan for ${name} is ready';
+	@override String get planSubtitle => 'You can try one of these as a first step.';
+	@override String get planNote => 'These are only starting suggestions; every section stays reachable from the menu.';
+	@override String get planTrackerTitle => 'Add a daily entry';
+	@override String get planTrackerBody => 'Log sleep, mood or a short observation.';
+	@override String get planExpertsTitle => 'Browse specialists';
+	@override String get planExpertsBody => 'Look through specialists or request an appointment.';
+	@override String get planKnowledgeTitle => 'Explore the knowledge base';
+	@override String get planKnowledgeBody => 'Browse trusted content in the knowledge base.';
+	@override String expertTitle({required Object name}) => 'Welcome ${name}';
+	@override String get expertBody => 'Client tracking, appointments and messages are waiting on the home screen.';
+	@override String get errorNameRequired => 'The child\'s name is required.';
+	@override String get errorBirthDateFuture => 'The date of birth cannot be in the future.';
 }
 
 // Path: nav
@@ -1866,6 +1921,51 @@ extension on TranslationsEn {
 			'register.emailTaken' => 'This email address is already registered. Try signing in.',
 			'register.emailAvailable' => 'This email address is available.',
 			'register.errorKvkkRequired' => 'KVKK consent is required to continue.',
+			'onboarding.title' => 'Getting started',
+			'onboarding.skip' => 'Skip',
+			'onboarding.start' => 'Let\'s begin',
+			'onboarding.back' => 'Back',
+			'onboarding.continueButton' => 'Continue',
+			'onboarding.skipForNow' => 'Skip for now',
+			'onboarding.finish' => 'Go to home',
+			'onboarding.stepChild' => 'Child Profile',
+			'onboarding.stepTags' => 'Support Areas',
+			'onboarding.stepPlan' => 'Starter Plan',
+			'onboarding.welcomeTitle' => 'Welcome',
+			'onboarding.welcomeBody' => 'Let\'s set the app up for your child in a few short steps. You can change everything later.',
+			'onboarding.introChildTitle' => 'Basic details',
+			'onboarding.introChildBody' => 'Name and a few optional notes',
+			'onboarding.introTagsTitle' => 'Support areas',
+			'onboarding.introTagsBody' => 'Pick the areas you observe',
+			'onboarding.introPlanTitle' => 'Starter suggestions',
+			'onboarding.introPlanBody' => 'See what you can do first',
+			'onboarding.childTitle' => 'Tell us about your child',
+			'onboarding.childSubtitle' => 'Only the name is required; you can fill in the rest later.',
+			'onboarding.childNameLabel' => 'Child\'s name',
+			'onboarding.childNameHint' => 'e.g. Elif',
+			'onboarding.childBirthDateLabel' => 'Date of birth (optional)',
+			'onboarding.childBirthDateHint' => 'Tap to choose',
+			'onboarding.childDiagnosisLabel' => 'Diagnosis details (optional)',
+			'onboarding.childDiagnosisHint' => 'Diagnosis and short notes, if any',
+			'onboarding.focusTitle' => 'Starting focus',
+			'onboarding.communicationTitle' => 'Communication style',
+			'onboarding.supportTitle' => 'Support that may help',
+			'onboarding.tagsTitle' => 'Which areas do you need support with?',
+			'onboarding.tagsSubtitle' => 'Pick what you observe; similar families and content suggestions follow these.',
+			'onboarding.planTitle' => 'Your starter plan is ready',
+			'onboarding.planTitleNamed' => ({required Object name}) => 'Your starter plan for ${name} is ready',
+			'onboarding.planSubtitle' => 'You can try one of these as a first step.',
+			'onboarding.planNote' => 'These are only starting suggestions; every section stays reachable from the menu.',
+			'onboarding.planTrackerTitle' => 'Add a daily entry',
+			'onboarding.planTrackerBody' => 'Log sleep, mood or a short observation.',
+			'onboarding.planExpertsTitle' => 'Browse specialists',
+			'onboarding.planExpertsBody' => 'Look through specialists or request an appointment.',
+			'onboarding.planKnowledgeTitle' => 'Explore the knowledge base',
+			'onboarding.planKnowledgeBody' => 'Browse trusted content in the knowledge base.',
+			'onboarding.expertTitle' => ({required Object name}) => 'Welcome ${name}',
+			'onboarding.expertBody' => 'Client tracking, appointments and messages are waiting on the home screen.',
+			'onboarding.errorNameRequired' => 'The child\'s name is required.',
+			'onboarding.errorBirthDateFuture' => 'The date of birth cannot be in the future.',
 			'nav.home' => 'Home',
 			'nav.specialists' => 'Specialists',
 			'nav.progress' => 'Progress',
@@ -2204,6 +2304,8 @@ extension on TranslationsEn {
 			'meetup.dateLabel' => 'Date',
 			'meetup.timeLabel' => 'Time',
 			'meetup.descriptionLabel' => 'Description',
+			_ => null,
+		} ?? switch (path) {
 			'meetup.descriptionHint' => 'Who can join, what will it be like?',
 			'meetup.create' => 'Create',
 			'meetup.created' => 'Your meetup was created. Other families can see it now.',
@@ -2249,8 +2351,6 @@ extension on TranslationsEn {
 			'groups.tabDiscover' => 'Discover',
 			'groups.searchHint' => 'Search groups…',
 			'groups.allCategories' => 'All',
-			_ => null,
-		} ?? switch (path) {
 			'groups.emptyMy' => 'You haven\'t joined any group yet. Browse groups in the Discover tab.',
 			'groups.emptyDiscover' => 'No groups match these criteria. You can create a new one.',
 			'groups.memberCount' => ({required Object count}) => '${count} members',
@@ -2718,6 +2818,8 @@ extension on TranslationsEn {
 			'emergency.noChild' => 'Add a child first to create an emergency card.',
 			'emergency.lastUpdated' => ({required Object date}) => 'Last updated ${date}',
 			'emergency.notSaved' => 'This card has not been saved yet.',
+			_ => null,
+		} ?? switch (path) {
 			'emergency.save' => 'Save',
 			'emergency.saved' => 'Emergency card saved.',
 			'emergency.call' => 'Call',
@@ -2763,8 +2865,6 @@ extension on TranslationsEn {
 			'behavior.subtitle' => 'ABC (Antecedent-Behavior-Consequence) observation log',
 			'behavior.add' => 'Add Entry',
 			'behavior.addTitle' => 'New ABC Entry',
-			_ => null,
-		} ?? switch (path) {
 			'behavior.empty' => 'No behavior entries yet. Add the first observation.',
 			'behavior.noChild' => 'Add a child first to use the behavior journal.',
 			'behavior.date' => 'Date',

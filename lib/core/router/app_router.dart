@@ -27,6 +27,7 @@ import '../../features/messaging/presentation/conversation_thread_screen.dart';
 import '../../features/messaging/presentation/conversations_screen.dart';
 import '../../features/mood/presentation/daily_tracker_screen.dart';
 import '../../features/notifications/presentation/notifications_screen.dart';
+import '../../features/onboarding/presentation/onboarding_screen.dart';
 import '../../features/profile/presentation/account_screen.dart';
 import '../../features/profile/presentation/help_screen.dart';
 import '../../features/routines/presentation/routines_screen.dart';
@@ -44,9 +45,16 @@ import '../providers.dart';
 final goRouterProvider = Provider<GoRouter>((ref) {
   // Oturum durumu değişince router'ı tazelemek için köprü.
   final refresh = ValueNotifier<int>(0);
-  ref.listen(authControllerProvider.select((s) => s.status), (_, _) {
-    refresh.value++;
-  });
+  // Oturum durumu VE onboarding bayrağı yönlendirmeyi etkilediği için ikisi de
+  // dinlenir (sihirbaz bitince kullanıcı ana sayfaya geçebilmeli).
+  ref.listen(
+    authControllerProvider.select(
+      (s) => (s.status, s.user?.onboardingCompleted ?? true),
+    ),
+    (_, _) {
+      refresh.value++;
+    },
+  );
   ref.onDispose(refresh.dispose);
 
   // Firebase hazırsa ekran geçişlerini Analytics'e bildiren observer ekle.
@@ -60,7 +68,8 @@ final goRouterProvider = Provider<GoRouter>((ref) {
     refreshListenable: refresh,
     observers: observers,
     redirect: (context, state) {
-      final status = ref.read(authControllerProvider).status;
+      final auth = ref.read(authControllerProvider);
+      final status = auth.status;
       final loc = state.matchedLocation;
 
       if (status == AuthStatus.unknown) {
@@ -75,6 +84,13 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         return onAuthScreen ? null : '/login';
       }
       // authenticated
+      // İlk giriş sihirbazı tamamlanmadıysa (backend `onboardingCompleted`)
+      // kullanıcı önce oraya alınır — web `/baslangic` ile aynı davranış.
+      final needsOnboarding = !(auth.user?.onboardingCompleted ?? true);
+      if (needsOnboarding) {
+        return loc == '/onboarding' ? null : '/onboarding';
+      }
+      if (loc == '/onboarding') return '/home';
       if (onAuthScreen || loc == '/splash') return '/home';
       return null;
     },
@@ -110,6 +126,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
           );
         },
       ),
+      GoRoute(path: '/onboarding', builder: (_, _) => const OnboardingScreen()),
       GoRoute(path: '/home', builder: (_, _) => const HomeShell()),
       GoRoute(path: '/chat', builder: (_, _) => const ChatScreen()),
       GoRoute(path: '/children', builder: (_, _) => const ChildrenScreen()),

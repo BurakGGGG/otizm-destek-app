@@ -152,6 +152,53 @@ register:
   emailTaken: Bu e-posta adresi zaten kayıtlı. Giriş yapmayı deneyin.
   emailAvailable: Bu e-posta adresi kullanılabilir.
 
+onboarding:
+  title: Başlangıç
+  skip: Atla
+  start: Başlayalım
+  back: Geri
+  continueButton: Devam et
+  skipForNow: Şimdilik atla
+  finish: Ana sayfaya geç
+  stepChild: Çocuk Profili
+  stepTags: Destek Alanları
+  stepPlan: Başlangıç Planı
+  welcomeTitle: Hoş geldiniz
+  welcomeBody: Birkaç kısa adımda uygulamayı çocuğunuza göre hazırlayalım. Tüm bilgileri sonradan değiştirebilirsiniz.
+  introChildTitle: Temel bilgiler
+  introChildBody: Ad ve isteğe bağlı kısa bilgiler
+  introTagsTitle: Destek alanları
+  introTagsBody: Gözlemlediğiniz alanları seçin
+  introPlanTitle: Başlangıç önerisi
+  introPlanBody: İlk yapabileceklerinizi görün
+  childTitle: Çocuğunuzu tanıyalım
+  childSubtitle: Yalnızca ad zorunlu; diğer alanları daha sonra da doldurabilirsiniz.
+  childNameLabel: Çocuğun adı
+  childNameHint: Örn. Elif
+  childBirthDateLabel: Doğum tarihi (isteğe bağlı)
+  childBirthDateHint: Seçmek için dokunun
+  childDiagnosisLabel: Tanı bilgisi (isteğe bağlı)
+  childDiagnosisHint: Varsa tanı ve kısa notlar
+  focusTitle: Başlangıç odağı
+  communicationTitle: İletişim şekli
+  supportTitle: Yararlı olabilecek destek
+  tagsTitle: Hangi alanlarda destek arıyorsunuz?
+  tagsSubtitle: Gözlemlediğiniz alanları seçin; benzer aileler ve içerik önerileri buna göre şekillenir.
+  planTitle: Başlangıç planınız hazır
+  planTitleNamed: $name için başlangıç planınız hazır
+  planSubtitle: İlk adım olarak şunlardan birini deneyebilirsiniz.
+  planNote: Bu seçimler yalnızca başlangıç yönlendirmesidir; tüm bölümlere menüden ulaşabilirsiniz.
+  planTrackerTitle: Günlük kayıt ekle
+  planTrackerBody: Uyku, duygu durumu veya kısa bir gözlem girin.
+  planExpertsTitle: Uzmanları incele
+  planExpertsBody: Uzmanlara göz atın veya randevu talebi oluşturun.
+  planKnowledgeTitle: Bilgi ve kaynakları keşfet
+  planKnowledgeBody: Bilgi bankasındaki güvenilir içeriklere göz atın.
+  expertTitle: Hoş geldiniz $name
+  expertBody: Danışan takibi, randevular ve mesajlaşma ana sayfada sizi bekliyor.
+  errorNameRequired: Çocuğun adı zorunludur.
+  errorBirthDateFuture: Doğum tarihi gelecekte olamaz.
+
 nav:
   home: Ana Sayfa
   specialists: Uzmanlar
