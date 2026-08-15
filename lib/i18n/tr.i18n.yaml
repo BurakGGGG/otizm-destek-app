@@ -1271,6 +1271,22 @@ emergency:
   notSaved: Bu kart henüz kaydedilmedi.
   save: Kaydet
   saved: Acil durum kartı kaydedildi.
+  shareTitle: QR kod ile paylaş
+  shareBody: Süreli bir bağlantı oluşturun; öğretmen veya sağlık görevlisi kartı bu bağlantıdan görüntüleyebilir. Bağlantıyı istediğiniz an kapatabilirsiniz.
+  shareConsentRequired: Paylaşım için "Acil durum kartı paylaşımı" rızasını vermeniz gerekiyor.
+  shareOpenConsents: Rıza ayarlarını aç
+  shareDuration: Geçerlilik süresi
+  share24h: 24 saat geçerli
+  share3d: 3 gün geçerli
+  share1w: 1 hafta geçerli
+  share30d: 30 gün geçerli
+  shareEnable: Paylaşım bağlantısı oluştur
+  shareDisable: Paylaşımı kapat
+  shareValidUntil: Bağlantı $date tarihine kadar geçerli.
+  shareCopy: Bağlantıyı kopyala
+  shareCopied: Bağlantı kopyalandı.
+  shareSend: Paylaş
+  shareMessage: 'Çocuğumun acil durum kartını buradan görüntüleyebilirsiniz:'
   call: Ara
   sectionChild: Çocuk Bilgileri
   sectionContacts: Acil İletişim

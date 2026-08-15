@@ -15,6 +15,7 @@ import '../../children/data/child_repository.dart';
 import '../../children/domain/child.dart';
 import '../data/emergency_repository.dart';
 import '../domain/emergency_card.dart';
+import 'emergency_share_card.dart';
 
 /// Acil Durum Kartı — çocuğun kritik bilgileri (`/api/emergency-card/{childId}`).
 class EmergencyScreen extends ConsumerStatefulWidget {
@@ -272,6 +273,12 @@ class _EmergencyFormState extends ConsumerState<_EmergencyForm> {
         const SizedBox(height: 8),
         _StatusLine(existed: widget.existed, updatedAt: widget.initial.updatedAt),
         const SizedBox(height: 16),
+
+        // Süreli paylaşım (QR + bağlantı) — kart kaydedildikten sonra anlamlı.
+        if (widget.existed) ...[
+          EmergencyShareCard(childId: widget.initial.childId),
+          const SizedBox(height: 16),
+        ],
 
         // Çocuk Bilgileri
         _Section(

@@ -3724,6 +3724,54 @@ class Translations$emergency$tr {
 	/// tr: 'Acil durum kartı kaydedildi.'
 	String get saved => 'Acil durum kartı kaydedildi.';
 
+	/// tr: 'QR kod ile paylaş'
+	String get shareTitle => 'QR kod ile paylaş';
+
+	/// tr: 'Süreli bir bağlantı oluşturun; öğretmen veya sağlık görevlisi kartı bu bağlantıdan görüntüleyebilir. Bağlantıyı istediğiniz an kapatabilirsiniz.'
+	String get shareBody => 'Süreli bir bağlantı oluşturun; öğretmen veya sağlık görevlisi kartı bu bağlantıdan görüntüleyebilir. Bağlantıyı istediğiniz an kapatabilirsiniz.';
+
+	/// tr: 'Paylaşım için "Acil durum kartı paylaşımı" rızasını vermeniz gerekiyor.'
+	String get shareConsentRequired => 'Paylaşım için "Acil durum kartı paylaşımı" rızasını vermeniz gerekiyor.';
+
+	/// tr: 'Rıza ayarlarını aç'
+	String get shareOpenConsents => 'Rıza ayarlarını aç';
+
+	/// tr: 'Geçerlilik süresi'
+	String get shareDuration => 'Geçerlilik süresi';
+
+	/// tr: '24 saat geçerli'
+	String get share24h => '24 saat geçerli';
+
+	/// tr: '3 gün geçerli'
+	String get share3d => '3 gün geçerli';
+
+	/// tr: '1 hafta geçerli'
+	String get share1w => '1 hafta geçerli';
+
+	/// tr: '30 gün geçerli'
+	String get share30d => '30 gün geçerli';
+
+	/// tr: 'Paylaşım bağlantısı oluştur'
+	String get shareEnable => 'Paylaşım bağlantısı oluştur';
+
+	/// tr: 'Paylaşımı kapat'
+	String get shareDisable => 'Paylaşımı kapat';
+
+	/// tr: 'Bağlantı $date tarihine kadar geçerli.'
+	String shareValidUntil({required Object date}) => 'Bağlantı ${date} tarihine kadar geçerli.';
+
+	/// tr: 'Bağlantıyı kopyala'
+	String get shareCopy => 'Bağlantıyı kopyala';
+
+	/// tr: 'Bağlantı kopyalandı.'
+	String get shareCopied => 'Bağlantı kopyalandı.';
+
+	/// tr: 'Paylaş'
+	String get shareSend => 'Paylaş';
+
+	/// tr: 'Çocuğumun acil durum kartını buradan görüntüleyebilirsiniz:'
+	String get shareMessage => 'Çocuğumun acil durum kartını buradan görüntüleyebilirsiniz:';
+
 	/// tr: 'Ara'
 	String get call => 'Ara';
 
@@ -5502,6 +5550,22 @@ extension on Translations {
 			'emergency.notSaved' => 'Bu kart henüz kaydedilmedi.',
 			'emergency.save' => 'Kaydet',
 			'emergency.saved' => 'Acil durum kartı kaydedildi.',
+			'emergency.shareTitle' => 'QR kod ile paylaş',
+			'emergency.shareBody' => 'Süreli bir bağlantı oluşturun; öğretmen veya sağlık görevlisi kartı bu bağlantıdan görüntüleyebilir. Bağlantıyı istediğiniz an kapatabilirsiniz.',
+			'emergency.shareConsentRequired' => 'Paylaşım için "Acil durum kartı paylaşımı" rızasını vermeniz gerekiyor.',
+			'emergency.shareOpenConsents' => 'Rıza ayarlarını aç',
+			'emergency.shareDuration' => 'Geçerlilik süresi',
+			'emergency.share24h' => '24 saat geçerli',
+			'emergency.share3d' => '3 gün geçerli',
+			'emergency.share1w' => '1 hafta geçerli',
+			'emergency.share30d' => '30 gün geçerli',
+			'emergency.shareEnable' => 'Paylaşım bağlantısı oluştur',
+			'emergency.shareDisable' => 'Paylaşımı kapat',
+			'emergency.shareValidUntil' => ({required Object date}) => 'Bağlantı ${date} tarihine kadar geçerli.',
+			'emergency.shareCopy' => 'Bağlantıyı kopyala',
+			'emergency.shareCopied' => 'Bağlantı kopyalandı.',
+			'emergency.shareSend' => 'Paylaş',
+			'emergency.shareMessage' => 'Çocuğumun acil durum kartını buradan görüntüleyebilirsiniz:',
 			'emergency.call' => 'Ara',
 			'emergency.sectionChild' => 'Çocuk Bilgileri',
 			'emergency.sectionContacts' => 'Acil İletişim',

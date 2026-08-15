@@ -172,3 +172,37 @@ class EmergencyCard {
     };
   }
 }
+
+/// Acil durum kartının süreli paylaşım durumu
+/// (`GET /emergency-card/{childId}/share`).
+///
+/// Paylaşım yalnızca `ACIL_DURUM_KARTI` rızası verildiyse açılabilir; rıza
+/// geri çekildiğinde backend mevcut bağlantıları da geçersiz kılar.
+class EmergencyShareStatus {
+  const EmergencyShareStatus({
+    required this.shareEnabled,
+    required this.consentGranted,
+    this.shareToken,
+    this.expiresAt,
+  });
+
+  final bool shareEnabled;
+  final bool consentGranted;
+  final String? shareToken;
+  final DateTime? expiresAt;
+
+  bool get isActive =>
+      shareEnabled && (shareToken?.isNotEmpty ?? false);
+
+  factory EmergencyShareStatus.fromJson(Map<String, dynamic> json) {
+    final expires = json['expiresAt']?.toString();
+    return EmergencyShareStatus(
+      shareEnabled: json['shareEnabled'] == true,
+      consentGranted: json['consentGranted'] == true,
+      shareToken: json['shareToken']?.toString(),
+      expiresAt: (expires == null || expires.isEmpty)
+          ? null
+          : DateTime.tryParse(expires),
+    );
+  }
+}

@@ -1265,6 +1265,22 @@ emergency:
   notSaved: This card has not been saved yet.
   save: Save
   saved: Emergency card saved.
+  shareTitle: Share with a QR code
+  shareBody: Create a time-limited link; a teacher or paramedic can open the card from it. You can revoke the link at any time.
+  shareConsentRequired: Sharing requires the "Emergency card sharing" consent.
+  shareOpenConsents: Open consent settings
+  shareDuration: Validity period
+  share24h: Valid for 24 hours
+  share3d: Valid for 3 days
+  share1w: Valid for 1 week
+  share30d: Valid for 30 days
+  shareEnable: Create share link
+  shareDisable: Turn sharing off
+  shareValidUntil: The link is valid until $date.
+  shareCopy: Copy link
+  shareCopied: Link copied.
+  shareSend: Share
+  shareMessage: "You can view my child's emergency card here:"
   call: Call
   sectionChild: Child Information
   sectionContacts: Emergency Contacts

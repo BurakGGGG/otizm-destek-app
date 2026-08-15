@@ -19,6 +19,13 @@ class Env {
     defaultValue: '/api',
   );
 
+  /// Web platformunun genel adresi. Paylaşılan bağlantılar (ör. acil durum
+  /// kartı) alıcının tarayıcısında bu adreste açılır.
+  static const String webBaseUrl = String.fromEnvironment(
+    'WEB_BASE_URL',
+    defaultValue: 'https://otizmdestek.com',
+  );
+
   /// STOMP/SockJS WebSocket yolu (gerçek zamanlı mesajlaşma).
   static const String wsPath = String.fromEnvironment(
     'WS_PATH',
