@@ -116,6 +116,40 @@ class SettingsScreen extends ConsumerWidget {
             const SizedBox(height: AppSpacing.md),
 
             _Section(
+              icon: Icons.accessibility_new_outlined,
+              title: t.settings.accessibilityTitle,
+              subtitle: t.settings.accessibilitySubtitle,
+              children: [
+                _PrefSwitch(
+                  pref: AppPreference.a11yLargeText,
+                  label: t.settings.a11yLargeText,
+                  description: t.settings.a11yLargeTextBody,
+                ),
+                _PrefSwitch(
+                  pref: AppPreference.a11yCalmMode,
+                  label: t.settings.a11yCalmMode,
+                  description: t.settings.a11yCalmModeBody,
+                ),
+                _PrefSwitch(
+                  pref: AppPreference.a11yHighContrast,
+                  label: t.settings.a11yHighContrast,
+                  description: t.settings.a11yHighContrastBody,
+                ),
+                _PrefSwitch(
+                  pref: AppPreference.a11yReduceMotion,
+                  label: t.settings.a11yReduceMotion,
+                  description: t.settings.a11yReduceMotionBody,
+                ),
+                _PrefSwitch(
+                  pref: AppPreference.a11ySimpleMode,
+                  label: t.settings.a11ySimpleMode,
+                  description: t.settings.a11ySimpleModeBody,
+                ),
+              ],
+            ),
+            const SizedBox(height: AppSpacing.md),
+
+            _Section(
               icon: Icons.lock_outline,
               title: t.settings.securityTitle,
               subtitle: t.settings.securitySubtitle,
@@ -249,10 +283,15 @@ class _Section extends StatelessWidget {
 
 /// Cihazda saklanan bir tercihi açıp kapatan anahtar.
 class _PrefSwitch extends ConsumerWidget {
-  const _PrefSwitch({required this.pref, required this.label});
+  const _PrefSwitch({
+    required this.pref,
+    required this.label,
+    this.description,
+  });
 
   final AppPreference pref;
   final String label;
+  final String? description;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -262,6 +301,9 @@ class _PrefSwitch extends ConsumerWidget {
       dense: true,
       value: preferenceOf(prefs, pref),
       title: Text(label, style: Theme.of(context).textTheme.bodyMedium),
+      subtitle: description == null
+          ? null
+          : Text(description!, style: Theme.of(context).textTheme.bodySmall),
       onChanged: (value) {
         Haptics.selection();
         ref.read(appPreferencesProvider.notifier).set(pref, value);

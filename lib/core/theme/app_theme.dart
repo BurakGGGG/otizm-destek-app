@@ -32,7 +32,23 @@ class AppTheme {
   static ThemeData get light => _build(AppPalette.light, Brightness.light);
   static ThemeData get dark => _build(AppPalette.dark, Brightness.dark);
 
-  static ThemeData _build(AppPalette p, Brightness brightness) {
+  /// Erişilebilirlik tercihlerine göre uyarlanmış tema.
+  ///
+  /// [reduceMotion] açıkken sayfa geçiş animasyonları kaldırılır (hareket
+  /// duyarlılığı otizmde yaygındır).
+  static ThemeData themeFor({
+    required AppPalette palette,
+    required Brightness brightness,
+    bool reduceMotion = false,
+  }) {
+    return _build(palette, brightness, reduceMotion: reduceMotion);
+  }
+
+  static ThemeData _build(
+    AppPalette p,
+    Brightness brightness, {
+    bool reduceMotion = false,
+  }) {
     final colorScheme =
         ColorScheme.fromSeed(
           seedColor: p.primary,
@@ -57,7 +73,17 @@ class AppTheme {
       scaffoldBackgroundColor: p.background,
       fontFamily: _fontFamily,
       visualDensity: VisualDensity.comfortable,
-      splashFactory: InkRipple.splashFactory,
+      splashFactory: reduceMotion
+          ? NoSplash.splashFactory
+          : InkRipple.splashFactory,
+      pageTransitionsTheme: reduceMotion
+          ? const PageTransitionsTheme(
+              builders: {
+                TargetPlatform.android: _NoTransitionsBuilder(),
+                TargetPlatform.iOS: _NoTransitionsBuilder(),
+              },
+            )
+          : const PageTransitionsTheme(),
       extensions: [p],
       dividerTheme: DividerThemeData(color: p.border, thickness: 1, space: 1),
       appBarTheme: AppBarTheme(
@@ -187,4 +213,18 @@ class AppTheme {
       ),
     );
   }
+}
+
+/// Hareket azaltma açıkken kullanılan geçişsiz sayfa animasyonu.
+class _NoTransitionsBuilder extends PageTransitionsBuilder {
+  const _NoTransitionsBuilder();
+
+  @override
+  Widget buildTransitions<T>(
+    PageRoute<T> route,
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child,
+  ) => child;
 }

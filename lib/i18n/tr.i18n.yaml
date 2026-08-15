@@ -173,6 +173,18 @@ settings:
   privacyApproximateLocation: Yaklaşık konumum (şehir) paylaşılsın
   privacyHidePresence: Çevrimiçi olduğumu gizle
   appearanceTitle: Görünüm ve dil
+  accessibilityTitle: Erişilebilirlik
+  accessibilitySubtitle: Görünümü ve etkileşimi size uygun hale getirin.
+  a11yLargeText: Büyük yazı modu
+  a11yLargeTextBody: Metinleri daha büyük gösterir.
+  a11yCalmMode: Sakin görünüm
+  a11yCalmModeBody: Göz yormayan yumuşak tonlar kullanır.
+  a11yHighContrast: Yüksek kontrast
+  a11yHighContrastBody: Yazıları en belirgin renkte tutar.
+  a11yReduceMotion: Hareketi azalt
+  a11yReduceMotionBody: Sayfa geçişlerini ve animasyonları kapatır.
+  a11ySimpleMode: Basit mod
+  a11ySimpleModeBody: Profil menüsünü temel bölümlere indirger.
   securityTitle: Güvenlik
   securitySubtitle: Hesabınıza erişimi koruyun.
   changePassword: Şifre değiştir
@@ -1401,7 +1413,7 @@ profile:
   defaultUser: Kullanıcı
   accountInfo: Hesap Bilgileri
   myChildren: Çocuklarım
-  notificationSettings: Bildirim Ayarları
+  showAllSections: Tüm bölümleri göster
   help: Yardım
   signOut: Çıkış Yap
 

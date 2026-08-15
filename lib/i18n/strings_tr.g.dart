@@ -627,6 +627,42 @@ class Translations$settings$tr {
 	/// tr: 'Görünüm ve dil'
 	String get appearanceTitle => 'Görünüm ve dil';
 
+	/// tr: 'Erişilebilirlik'
+	String get accessibilityTitle => 'Erişilebilirlik';
+
+	/// tr: 'Görünümü ve etkileşimi size uygun hale getirin.'
+	String get accessibilitySubtitle => 'Görünümü ve etkileşimi size uygun hale getirin.';
+
+	/// tr: 'Büyük yazı modu'
+	String get a11yLargeText => 'Büyük yazı modu';
+
+	/// tr: 'Metinleri daha büyük gösterir.'
+	String get a11yLargeTextBody => 'Metinleri daha büyük gösterir.';
+
+	/// tr: 'Sakin görünüm'
+	String get a11yCalmMode => 'Sakin görünüm';
+
+	/// tr: 'Göz yormayan yumuşak tonlar kullanır.'
+	String get a11yCalmModeBody => 'Göz yormayan yumuşak tonlar kullanır.';
+
+	/// tr: 'Yüksek kontrast'
+	String get a11yHighContrast => 'Yüksek kontrast';
+
+	/// tr: 'Yazıları en belirgin renkte tutar.'
+	String get a11yHighContrastBody => 'Yazıları en belirgin renkte tutar.';
+
+	/// tr: 'Hareketi azalt'
+	String get a11yReduceMotion => 'Hareketi azalt';
+
+	/// tr: 'Sayfa geçişlerini ve animasyonları kapatır.'
+	String get a11yReduceMotionBody => 'Sayfa geçişlerini ve animasyonları kapatır.';
+
+	/// tr: 'Basit mod'
+	String get a11ySimpleMode => 'Basit mod';
+
+	/// tr: 'Profil menüsünü temel bölümlere indirger.'
+	String get a11ySimpleModeBody => 'Profil menüsünü temel bölümlere indirger.';
+
 	/// tr: 'Güvenlik'
 	String get securityTitle => 'Güvenlik';
 
@@ -4128,8 +4164,8 @@ class Translations$profile$tr {
 	/// tr: 'Çocuklarım'
 	String get myChildren => 'Çocuklarım';
 
-	/// tr: 'Bildirim Ayarları'
-	String get notificationSettings => 'Bildirim Ayarları';
+	/// tr: 'Tüm bölümleri göster'
+	String get showAllSections => 'Tüm bölümleri göster';
 
 	/// tr: 'Yardım'
 	String get help => 'Yardım';
@@ -4462,6 +4498,18 @@ extension on Translations {
 			'settings.privacyApproximateLocation' => 'Yaklaşık konumum (şehir) paylaşılsın',
 			'settings.privacyHidePresence' => 'Çevrimiçi olduğumu gizle',
 			'settings.appearanceTitle' => 'Görünüm ve dil',
+			'settings.accessibilityTitle' => 'Erişilebilirlik',
+			'settings.accessibilitySubtitle' => 'Görünümü ve etkileşimi size uygun hale getirin.',
+			'settings.a11yLargeText' => 'Büyük yazı modu',
+			'settings.a11yLargeTextBody' => 'Metinleri daha büyük gösterir.',
+			'settings.a11yCalmMode' => 'Sakin görünüm',
+			'settings.a11yCalmModeBody' => 'Göz yormayan yumuşak tonlar kullanır.',
+			'settings.a11yHighContrast' => 'Yüksek kontrast',
+			'settings.a11yHighContrastBody' => 'Yazıları en belirgin renkte tutar.',
+			'settings.a11yReduceMotion' => 'Hareketi azalt',
+			'settings.a11yReduceMotionBody' => 'Sayfa geçişlerini ve animasyonları kapatır.',
+			'settings.a11ySimpleMode' => 'Basit mod',
+			'settings.a11ySimpleModeBody' => 'Profil menüsünü temel bölümlere indirger.',
 			'settings.securityTitle' => 'Güvenlik',
 			'settings.securitySubtitle' => 'Hesabınıza erişimi koruyun.',
 			'settings.changePassword' => 'Şifre değiştir',
@@ -4813,6 +4861,8 @@ extension on Translations {
 			'meds.name' => 'İlaç / Takviye Adı',
 			'meds.nameHint' => 'Örn: Omega-3',
 			'meds.dosage' => 'Doz',
+			_ => null,
+		} ?? switch (path) {
 			'meds.unit' => 'Birim',
 			'meds.frequency' => 'Sıklık',
 			'meds.freqDaily' => 'Günde 1',
@@ -4825,8 +4875,6 @@ extension on Translations {
 			'meds.noTime' => 'Saatsiz',
 			'meds.added' => 'İlaç eklendi.',
 			'meds.updated' => 'İlaç güncellendi.',
-			_ => null,
-		} ?? switch (path) {
 			'meds.deleteTitle' => 'İlacı Sil',
 			'meds.deleteConfirm' => ({required Object name}) => '${name} ve doz kayıtları kalıcı olarak silinecek. Emin misiniz?',
 			'meds.deleted' => 'İlaç silindi.',
@@ -5327,6 +5375,8 @@ extension on Translations {
 			'crisis.avoidLabel' => 'Kaçınılması Gerekenler',
 			'crisis.emergencyLabel' => 'Önerilen Acil Hat',
 			'crisis.contactsTitle' => 'Acil Numaralar',
+			_ => null,
+		} ?? switch (path) {
 			'crisis.disclaimer' => 'Bu rehber genel bilgilendirme amaçlıdır; acil ve tıbbi durumlarda mutlaka 112\'yi arayın.',
 			'crisis.contact112Label' => 'Acil Sağlık ve Güvenlik',
 			'crisis.contact112Desc' => 'Ambulans, Polis, İtfaiye',
@@ -5339,8 +5389,6 @@ extension on Translations {
 			'crisis.cards.meltdown.steps.2' => 'Sözel uyarıyı minimuma indirin; tek kelime veya kısa cümleler.',
 			'crisis.cards.meltdown.steps.3' => 'Duyusal uyaranları azaltın: ışıkları kısın, sesi düşürün.',
 			'crisis.cards.meltdown.steps.4' => 'Yanında olmaya devam edin — uzaklaşmayın ama dokunmayın.',
-			_ => null,
-		} ?? switch (path) {
 			'crisis.cards.meltdown.steps.5' => 'Kriz geçtikten sonra sakin ses tonuyla güvence verin.',
 			'crisis.cards.meltdown.avoid.0' => 'Yüksek sesle konuşmayın.',
 			'crisis.cards.meltdown.avoid.1' => 'Mantık yürütmeye ya da açıklamaya çalışmayın.',
@@ -5564,7 +5612,7 @@ extension on Translations {
 			'profile.defaultUser' => 'Kullanıcı',
 			'profile.accountInfo' => 'Hesap Bilgileri',
 			'profile.myChildren' => 'Çocuklarım',
-			'profile.notificationSettings' => 'Bildirim Ayarları',
+			'profile.showAllSections' => 'Tüm bölümleri göster',
 			'profile.help' => 'Yardım',
 			'profile.signOut' => 'Çıkış Yap',
 			'errors.timeout' => 'Sunucuya ulaşılamadı, lütfen tekrar deneyin.',

@@ -350,6 +350,18 @@ class _Translations$settings$en extends Translations$settings$tr {
 	@override String get privacyApproximateLocation => 'Share my approximate location (city)';
 	@override String get privacyHidePresence => 'Hide my online status';
 	@override String get appearanceTitle => 'Appearance and language';
+	@override String get accessibilityTitle => 'Accessibility';
+	@override String get accessibilitySubtitle => 'Adapt the look and interaction to your needs.';
+	@override String get a11yLargeText => 'Large text mode';
+	@override String get a11yLargeTextBody => 'Shows text at a larger size.';
+	@override String get a11yCalmMode => 'Calm appearance';
+	@override String get a11yCalmModeBody => 'Uses softer tones that are easier on the eyes.';
+	@override String get a11yHighContrast => 'High contrast';
+	@override String get a11yHighContrastBody => 'Keeps text in the most legible colours.';
+	@override String get a11yReduceMotion => 'Reduce motion';
+	@override String get a11yReduceMotionBody => 'Turns off page transitions and animations.';
+	@override String get a11ySimpleMode => 'Simple mode';
+	@override String get a11ySimpleModeBody => 'Reduces the profile menu to the essential sections.';
 	@override String get securityTitle => 'Security';
 	@override String get securitySubtitle => 'Protect access to your account.';
 	@override String get changePassword => 'Change password';
@@ -1757,7 +1769,7 @@ class _Translations$profile$en extends Translations$profile$tr {
 	@override String get defaultUser => 'User';
 	@override String get accountInfo => 'Account Information';
 	@override String get myChildren => 'My Children';
-	@override String get notificationSettings => 'Notification Settings';
+	@override String get showAllSections => 'Show all sections';
 	@override String get help => 'Help';
 	@override String get signOut => 'Sign Out';
 }
@@ -2046,6 +2058,18 @@ extension on TranslationsEn {
 			'settings.privacyApproximateLocation' => 'Share my approximate location (city)',
 			'settings.privacyHidePresence' => 'Hide my online status',
 			'settings.appearanceTitle' => 'Appearance and language',
+			'settings.accessibilityTitle' => 'Accessibility',
+			'settings.accessibilitySubtitle' => 'Adapt the look and interaction to your needs.',
+			'settings.a11yLargeText' => 'Large text mode',
+			'settings.a11yLargeTextBody' => 'Shows text at a larger size.',
+			'settings.a11yCalmMode' => 'Calm appearance',
+			'settings.a11yCalmModeBody' => 'Uses softer tones that are easier on the eyes.',
+			'settings.a11yHighContrast' => 'High contrast',
+			'settings.a11yHighContrastBody' => 'Keeps text in the most legible colours.',
+			'settings.a11yReduceMotion' => 'Reduce motion',
+			'settings.a11yReduceMotionBody' => 'Turns off page transitions and animations.',
+			'settings.a11ySimpleMode' => 'Simple mode',
+			'settings.a11ySimpleModeBody' => 'Reduces the profile menu to the essential sections.',
 			'settings.securityTitle' => 'Security',
 			'settings.securitySubtitle' => 'Protect access to your account.',
 			'settings.changePassword' => 'Change password',
@@ -2397,6 +2421,8 @@ extension on TranslationsEn {
 			'meds.name' => 'Medication / Supplement Name',
 			'meds.nameHint' => 'E.g. Omega-3',
 			'meds.dosage' => 'Dose',
+			_ => null,
+		} ?? switch (path) {
 			'meds.unit' => 'Unit',
 			'meds.frequency' => 'Frequency',
 			'meds.freqDaily' => 'Once a day',
@@ -2409,8 +2435,6 @@ extension on TranslationsEn {
 			'meds.noTime' => 'No time',
 			'meds.added' => 'Medication added.',
 			'meds.updated' => 'Medication updated.',
-			_ => null,
-		} ?? switch (path) {
 			'meds.deleteTitle' => 'Delete Medication',
 			'meds.deleteConfirm' => ({required Object name}) => '${name} and its dose logs will be permanently deleted. Are you sure?',
 			'meds.deleted' => 'Medication deleted.',
@@ -2911,6 +2935,8 @@ extension on TranslationsEn {
 			'crisis.avoidLabel' => 'What To Avoid',
 			'crisis.emergencyLabel' => 'Suggested Emergency Line',
 			'crisis.contactsTitle' => 'Emergency Numbers',
+			_ => null,
+		} ?? switch (path) {
 			'crisis.disclaimer' => 'This guide is for general information; in emergencies or medical situations always call your local emergency number.',
 			'crisis.contact112Label' => 'Emergency Health and Safety',
 			'crisis.contact112Desc' => 'Ambulance, Police, Fire',
@@ -2923,8 +2949,6 @@ extension on TranslationsEn {
 			'crisis.cards.meltdown.steps.2' => 'Keep verbal input minimal; single words or short sentences.',
 			'crisis.cards.meltdown.steps.3' => 'Reduce sensory input: dim the lights, lower the sound.',
 			'crisis.cards.meltdown.steps.4' => 'Stay nearby — don\'t leave, but don\'t touch.',
-			_ => null,
-		} ?? switch (path) {
 			'crisis.cards.meltdown.steps.5' => 'Once the crisis passes, reassure with a calm tone.',
 			'crisis.cards.meltdown.avoid.0' => 'Don\'t speak loudly.',
 			'crisis.cards.meltdown.avoid.1' => 'Don\'t try to reason or explain.',
@@ -3148,7 +3172,7 @@ extension on TranslationsEn {
 			'profile.defaultUser' => 'User',
 			'profile.accountInfo' => 'Account Information',
 			'profile.myChildren' => 'My Children',
-			'profile.notificationSettings' => 'Notification Settings',
+			'profile.showAllSections' => 'Show all sections',
 			'profile.help' => 'Help',
 			'profile.signOut' => 'Sign Out',
 			'errors.timeout' => 'Could not reach the server, please try again.',

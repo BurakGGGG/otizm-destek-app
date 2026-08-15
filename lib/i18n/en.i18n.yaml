@@ -172,6 +172,18 @@ settings:
   privacyApproximateLocation: Share my approximate location (city)
   privacyHidePresence: Hide my online status
   appearanceTitle: Appearance and language
+  accessibilityTitle: Accessibility
+  accessibilitySubtitle: Adapt the look and interaction to your needs.
+  a11yLargeText: Large text mode
+  a11yLargeTextBody: Shows text at a larger size.
+  a11yCalmMode: Calm appearance
+  a11yCalmModeBody: Uses softer tones that are easier on the eyes.
+  a11yHighContrast: High contrast
+  a11yHighContrastBody: Keeps text in the most legible colours.
+  a11yReduceMotion: Reduce motion
+  a11yReduceMotionBody: Turns off page transitions and animations.
+  a11ySimpleMode: Simple mode
+  a11ySimpleModeBody: Reduces the profile menu to the essential sections.
   securityTitle: Security
   securitySubtitle: Protect access to your account.
   changePassword: Change password
@@ -1395,7 +1407,7 @@ profile:
   defaultUser: User
   accountInfo: Account Information
   myChildren: My Children
-  notificationSettings: Notification Settings
+  showAllSections: Show all sections
   help: Help
   signOut: Sign Out
 

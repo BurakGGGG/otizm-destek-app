@@ -29,7 +29,8 @@ enum AppPreference {
   a11yLargeText('access-large-text', false),
   a11yReduceMotion('access-reduce-motion', false),
   a11yHighContrast('access-high-contrast', false),
-  a11yCalmMode('access-calm-mode', false);
+  a11yCalmMode('access-calm-mode', false),
+  a11ySimpleMode('access-simple-mode', false);
 
   const AppPreference(this.key, this.defaultValue);
 
@@ -81,3 +82,50 @@ final appPreferencesProvider =
 /// Tek bir tercihi izlemek için kısayol.
 bool preferenceOf(Map<AppPreference, bool> prefs, AppPreference pref) =>
     prefs[pref] ?? pref.defaultValue;
+
+/// Uygulama genelini etkileyen erişilebilirlik tercihleri
+/// (web `AccessibilityWidget` karşılığı).
+class AccessibilitySettings {
+  const AccessibilitySettings({
+    required this.largeText,
+    required this.reduceMotion,
+    required this.highContrast,
+    required this.calmMode,
+    required this.simpleMode,
+  });
+
+  final bool largeText;
+  final bool reduceMotion;
+  final bool highContrast;
+  final bool calmMode;
+
+  /// Menüleri temel eylemlere indirger.
+  final bool simpleMode;
+
+  /// Büyük yazı modunda metin ölçeği çarpanı (web: kök yazı %112,5).
+  double get textScaleFactor => largeText ? 1.125 : 1.0;
+
+  @override
+  bool operator ==(Object other) =>
+      other is AccessibilitySettings &&
+      other.largeText == largeText &&
+      other.reduceMotion == reduceMotion &&
+      other.highContrast == highContrast &&
+      other.calmMode == calmMode &&
+      other.simpleMode == simpleMode;
+
+  @override
+  int get hashCode =>
+      Object.hash(largeText, reduceMotion, highContrast, calmMode, simpleMode);
+}
+
+final accessibilityProvider = Provider<AccessibilitySettings>((ref) {
+  final prefs = ref.watch(appPreferencesProvider);
+  return AccessibilitySettings(
+    largeText: preferenceOf(prefs, AppPreference.a11yLargeText),
+    reduceMotion: preferenceOf(prefs, AppPreference.a11yReduceMotion),
+    highContrast: preferenceOf(prefs, AppPreference.a11yHighContrast),
+    calmMode: preferenceOf(prefs, AppPreference.a11yCalmMode),
+    simpleMode: preferenceOf(prefs, AppPreference.a11ySimpleMode),
+  );
+});

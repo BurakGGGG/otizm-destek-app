@@ -143,6 +143,46 @@ class AppPalette extends ThemeExtension<AppPalette> {
     );
   }
 
+  /// Sakin görünüm: doygunluğu düşürülmüş, göz yormayan tonlar
+  /// (web `.a11y-calm` sınıfının karşılığı). Duyusal hassasiyeti olan
+  /// kullanıcılar için parlak renkler yumuşatılır.
+  AppPalette get calm {
+    final isDark = background.computeLuminance() < 0.5;
+    return copyWith(
+      primary: isDark ? const Color(0xFF7F9EC5) : const Color(0xFF52739E),
+      primaryContainer: isDark
+          ? const Color(0xFF324258)
+          : const Color(0xFFE2EAF3),
+      secondary: isDark ? const Color(0xFF8FA7C4) : const Color(0xFF6486B3),
+      background: isDark ? const Color(0xFF141B25) : const Color(0xFFF5F6F8),
+      surfaceVariant: isDark
+          ? const Color(0xFF2A3441)
+          : const Color(0xFFEDEFF3),
+      success: isDark ? const Color(0xFF6EC7A8) : const Color(0xFF4B9B7E),
+      warning: isDark ? const Color(0xFFD9B26A) : const Color(0xFFB98B3E),
+      error: isDark ? const Color(0xFFD98C8C) : const Color(0xFFB4534F),
+    );
+  }
+
+  /// Yüksek kontrast: metinler en belirgin tonda, kenarlıklar daha güçlü
+  /// (web `.a11y-high-contrast` karşılığı).
+  AppPalette get highContrast {
+    final isDark = background.computeLuminance() < 0.5;
+    return copyWith(
+      background: isDark ? const Color(0xFF000000) : const Color(0xFFFFFFFF),
+      surface: isDark ? const Color(0xFF0B0B0B) : const Color(0xFFFFFFFF),
+      surfaceVariant: isDark
+          ? const Color(0xFF1A1A1A)
+          : const Color(0xFFEDEDED),
+      border: isDark ? const Color(0xFF8A8A8A) : const Color(0xFF4A4A4A),
+      textPrimary: isDark ? const Color(0xFFFFFFFF) : const Color(0xFF000000),
+      textSecondary: isDark ? const Color(0xFFE6E6E6) : const Color(0xFF1A1A1A),
+      textTertiary: isDark ? const Color(0xFFCCCCCC) : const Color(0xFF3D3D3D),
+      primary: isDark ? const Color(0xFF8FC2FF) : const Color(0xFF0B3FA8),
+      error: isDark ? const Color(0xFFFF9E9E) : const Color(0xFF9B0000),
+    );
+  }
+
   @override
   AppPalette lerp(ThemeExtension<AppPalette>? other, double t) {
     if (other is! AppPalette) return this;
