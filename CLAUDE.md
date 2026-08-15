@@ -239,13 +239,48 @@ flutter build apk --debug
   Profil'de Sistem/Açık/Koyu seçici, kalıcı).
 - ✅ Hedef ilerletme (+jeton geri alma) — `PUT /api/goals/{id}` (entries JSON dizisi;
   title+category zorunlu). Gelişim sekmesindeki hedef kartlarında.
-- ⏳ Sonraki adaylar: backend FCM deploy sonrası uçtan uca push testi (mobil
-  kod hazır). **Veli tarafı web pariteye ulaştı** — kalan web rotaları kapsam
-  dışı: BEP oluşturucu + danışanlar EXPERT_ONLY; tarama anketi web'de YOK
-  (yalnızca sonuç gösterimi, `/tarama` → `/cocuklarim` redirect); admin
-  paneli mobil hedefi değil. Not: sosyal hikayeler (`/api/social-stories`)
-  ve wellbeing backend'de var ama web'de tam bir CRUD arayüzü yok (mirror
-  edilecek UX yok) — düşük öncelik.
+- ✅ **Backend kayması düzeltmeleri (2026-08-16, web'in temmuz sürümü sonrası):**
+  - **Oturum:** `AuthResponse.refreshToken` artık `@JsonIgnore`; token yalnızca
+    httpOnly `refresh_token` çerezinde (Path=/api/auth) dönüyor ve her
+    yenilemede rotasyona giriyor. Mobil token'ı `Set-Cookie` başlığından okuyor
+    (`core/network/auth_cookies.dart`); yeni token okunamazsa eskisi saklanmaz
+    (kullanılmış token tüm oturumları iptal ettiriyor). `RefreshInterceptor`
+    artık `/auth/me` 401'ini de yeniliyor (açılışta oturum düşüyordu).
+  - **Medya:** `GET /api/upload/**` authenticated oldu ve göreli URL dönüyor;
+    `core/network/media.dart` (mutlaklaştırma + Dio üzerinden Bearer'lı
+    `AuthedNetworkImage`). Yükleme `visibility` + `scopeType/scopeId` gönderir.
+  - **Şifre:** `StrongPasswordValidator` (8-64, büyük harf, rakam, özel
+    karakter, yaygın şifre yasağı) `core/util/password_rules.dart` ile birebir.
+- ✅ **E-posta doğrulama:** kayıt yanıtı `pendingEmailVerification` /
+  `pendingApproval` dönebiliyor (token'sız). `/verify-email` ekranı: kod ile
+  doğrulama, yeniden gönderme, uzman onay bekleme; girişte doğrulama hatasında
+  kısayol. Kayıtta e-posta müsaitlik kontrolü + uzman kaydında lisans zorunlu.
+- ✅ **Onboarding** (`/onboarding`, web `/baslangic`): çocuk profili → destek
+  etiketleri → başlangıç planı; `POST /users/me/onboarding-complete`, router
+  `onboardingCompleted` bayrağına göre yönlendiriyor.
+- ✅ **Ayarlar** (`/settings`): bildirim/gizlilik/erişilebilirlik tercihleri
+  (cihazda, web localStorage anahtarlarıyla aynı adlar), tema+dil (Profil'den
+  taşındı), şifre değiştirme, verilerimi indir (JSON paylaşımı), hesap silme.
+- ✅ **KVKK** (`/kvkk`): amaç bazlı rızalar, yeniden rıza kartı, rıza geçmişi,
+  veri sahibi başvuruları (`/kvkk/requests`).
+- ✅ **Yasal metinler** (`/legal`, `/legal/:kind`): KVKK aydınlatma, gizlilik,
+  kullanım şartları, tıbbi uyarı, güven merkezi — web `PublicInfoPage` birebir
+  (bağlayıcı metin, çevrilmez); oturumsuz da açılır (kayıt ekranından).
+- ✅ **Erişilebilirlik:** büyük yazı (%112,5), sakin görünüm ve yüksek kontrast
+  paletleri, hareket azaltma (geçişsiz sayfa animasyonu), basit mod (profil
+  menüsü sadeleşir) — hepsi Ayarlar > Erişilebilirlik altında, kalıcı.
+- ✅ **Acil kart paylaşımı:** süreli jeton + QR (`.../share` uç noktaları),
+  kopyala/paylaş/kapat; `ACIL_DURUM_KARTI` rızası yoksa kapı kapalı.
+  Bağlantı web köküne gider (`Env.webBaseUrl`).
+- ⏳ Sonraki adaylar (web'in temmuz sürümünden kalan farklar): bildirimler
+  ekranı yenilemesi (gruplama/filtre/aksiyon), günlük egzersiz sihirbazı
+  (tedavi), kullanıcı rehberi + eğitim videoları, topluluk hub (`/topluluk`),
+  ilaç-davranış zaman çizelgesi (gelişim paneli), randevu geri sayımı,
+  uzmanlar/bilgi bankası/ana sayfa küçük farkları, kriz rehberi içerik
+  güncellemesi. Ayrıca backend FCM deploy sonrası uçtan uca push testi.
+  Kapsam dışı: BEP oluşturucu + danışanlar EXPERT_ONLY; tarama anketi web'de
+  YOK (`/tarama` → `/cocuklarim` redirect); admin paneli mobil hedefi değil.
+  Sosyal hikayeler/wellbeing backend'de var ama web'de mirror edilecek UX yok.
 - Modül kapsamı ve fazlar: bkz. plan `~/.claude/plans/bir-otizm-destek-mobil-compressed-fog.md`.
 
 ## Notlar
@@ -255,3 +290,9 @@ flutter build apk --debug
   (sabit, açık) kullanılır. Yeni ekranlarda `AppColors.*` yerine `context.colors.*`.
 - Backend mutasyonları (POST/PUT/DELETE) canlı paylaşılan DB'yi kirletmemek için sözleşme
   bazında kaynaktan doğrulandı; canlı deneme kullanıcıya bırakıldı.
+- **Web/backend kaynağı:** parite çalışmasında `github.com/EnesKotay/otizm-destek-platformu`
+  deposu (frontend/ + backend/) referans alınır; sözleşmeler tahmin edilmez,
+  ilgili controller/servis okunur.
+- **Paylaşılan veri vs. arayüz metni:** backend'e yazılan ya da web'in okuduğu
+  metinler (etiket adları, kategori değerleri, onboarding seçenekleri, yasal
+  metinler) çevrilmez — i18n yalnızca arayüz metinleri içindir.
