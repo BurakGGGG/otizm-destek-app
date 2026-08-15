@@ -48,6 +48,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$auth$tr auth = Translations$auth$tr.internal(_root);
 	late final Translations$forgotPassword$tr forgotPassword = Translations$forgotPassword$tr.internal(_root);
 	late final Translations$resetPassword$tr resetPassword = Translations$resetPassword$tr.internal(_root);
+	late final Translations$password$tr password = Translations$password$tr.internal(_root);
 	late final Translations$register$tr register = Translations$register$tr.internal(_root);
 	late final Translations$nav$tr nav = Translations$nav$tr.internal(_root);
 	late final Translations$chat$tr chat = Translations$chat$tr.internal(_root);
@@ -324,6 +325,63 @@ class Translations$resetPassword$tr {
 
 	/// tr: 'Şifreler eşleşmiyor.'
 	String get errorMismatch => 'Şifreler eşleşmiyor.';
+}
+
+// Path: password
+class Translations$password$tr {
+	Translations$password$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Şifre gücü'
+	String get strengthTitle => 'Şifre gücü';
+
+	/// tr: 'Çok zayıf'
+	String get strengthVeryWeak => 'Çok zayıf';
+
+	/// tr: 'Zayıf'
+	String get strengthWeak => 'Zayıf';
+
+	/// tr: 'Orta'
+	String get strengthMedium => 'Orta';
+
+	/// tr: 'Güçlü'
+	String get strengthStrong => 'Güçlü';
+
+	/// tr: 'Çok güçlü'
+	String get strengthVeryStrong => 'Çok güçlü';
+
+	/// tr: 'En az 8 karakter'
+	String get ruleMinLength => 'En az 8 karakter';
+
+	/// tr: 'Bir büyük harf'
+	String get ruleUppercase => 'Bir büyük harf';
+
+	/// tr: 'Bir rakam'
+	String get ruleDigit => 'Bir rakam';
+
+	/// tr: 'Bir özel karakter'
+	String get ruleSpecial => 'Bir özel karakter';
+
+	/// tr: 'Şifre en az 8 karakter olmalıdır.'
+	String get errorTooShort => 'Şifre en az 8 karakter olmalıdır.';
+
+	/// tr: 'Şifre en fazla 64 karakter olabilir.'
+	String get errorTooLong => 'Şifre en fazla 64 karakter olabilir.';
+
+	/// tr: 'Şifre en az bir büyük harf içermelidir.'
+	String get errorNoUppercase => 'Şifre en az bir büyük harf içermelidir.';
+
+	/// tr: 'Şifre en az bir rakam içermelidir.'
+	String get errorNoDigit => 'Şifre en az bir rakam içermelidir.';
+
+	/// tr: 'Şifre en az bir özel karakter (örn. ! ? * . -) içermelidir.'
+	String get errorNoSpecial => 'Şifre en az bir özel karakter (örn. ! ? * . -) içermelidir.';
+
+	/// tr: 'Bu şifre çok yaygın ve kolay tahmin edilebilir; lütfen farklı bir şifre seçin.'
+	String get errorCommon => 'Bu şifre çok yaygın ve kolay tahmin edilebilir; lütfen farklı bir şifre seçin.';
 }
 
 // Path: register
@@ -3818,6 +3876,22 @@ extension on Translations {
 			'resetPassword.errorTokenRequired' => 'Lütfen sıfırlama kodunu girin.',
 			'resetPassword.errorPasswordShort' => 'Şifre en az 8 karakter olmalıdır.',
 			'resetPassword.errorMismatch' => 'Şifreler eşleşmiyor.',
+			'password.strengthTitle' => 'Şifre gücü',
+			'password.strengthVeryWeak' => 'Çok zayıf',
+			'password.strengthWeak' => 'Zayıf',
+			'password.strengthMedium' => 'Orta',
+			'password.strengthStrong' => 'Güçlü',
+			'password.strengthVeryStrong' => 'Çok güçlü',
+			'password.ruleMinLength' => 'En az 8 karakter',
+			'password.ruleUppercase' => 'Bir büyük harf',
+			'password.ruleDigit' => 'Bir rakam',
+			'password.ruleSpecial' => 'Bir özel karakter',
+			'password.errorTooShort' => 'Şifre en az 8 karakter olmalıdır.',
+			'password.errorTooLong' => 'Şifre en fazla 64 karakter olabilir.',
+			'password.errorNoUppercase' => 'Şifre en az bir büyük harf içermelidir.',
+			'password.errorNoDigit' => 'Şifre en az bir rakam içermelidir.',
+			'password.errorNoSpecial' => 'Şifre en az bir özel karakter (örn. ! ? * . -) içermelidir.',
+			'password.errorCommon' => 'Bu şifre çok yaygın ve kolay tahmin edilebilir; lütfen farklı bir şifre seçin.',
 			'register.titleParent' => 'Veli Hesabı Oluştur',
 			'register.titleExpert' => 'Uzman Hesabı Oluştur',
 			'register.roleQuestion' => 'Nasıl kaydolmak istersiniz?',
@@ -4252,6 +4326,8 @@ extension on Translations {
 			'groups.create' => 'Oluştur',
 			'groups.created' => 'Grup oluşturuldu.',
 			'groups.errorName' => 'Lütfen bir grup adı girin.',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.title' => 'Tedavi Paneli',
 			'treatment.subtitle' => 'Günlük Destek Planı',
 			'treatment.programActive' => ({required Object name}) => '${name} planı aktif',
@@ -4268,8 +4344,6 @@ extension on Translations {
 			'treatment.daysShort.1' => 'Pzt',
 			'treatment.daysShort.2' => 'Sal',
 			'treatment.daysShort.3' => 'Çar',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.daysShort.4' => 'Per',
 			'treatment.daysShort.5' => 'Cum',
 			'treatment.daysShort.6' => 'Cmt',
@@ -4766,6 +4840,8 @@ extension on Translations {
 			'behavior.save' => 'Kaydet',
 			'behavior.saved' => 'ABC kaydı oluşturuldu.',
 			'behavior.deleteTitle' => 'Kaydı Sil',
+			_ => null,
+		} ?? switch (path) {
 			'behavior.deleteConfirm' => ({required Object date}) => '${date} tarihli ABC kaydını silmek istediğinize emin misiniz?',
 			'behavior.deleted' => 'Kayıt silindi.',
 			'behavior.errorRequired' => 'Lütfen zorunlu alanları doldurun (kategori, yer, A, B, C).',
@@ -4782,8 +4858,6 @@ extension on Translations {
 			'analytics.noData' => 'Bu aralıkta henüz veri yok.',
 			'analytics.noChild' => 'Gelişim paneli için önce bir çocuk ekleyin.',
 			'children.title' => 'Çocuklarım',
-			_ => null,
-		} ?? switch (path) {
 			'children.addTitle' => 'Çocuk Ekle',
 			'children.editTitle' => 'Çocuğu Düzenle',
 			'children.empty' => 'Henüz çocuk eklemediniz.',

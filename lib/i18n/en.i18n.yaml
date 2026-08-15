@@ -78,6 +78,24 @@ resetPassword:
   errorPasswordShort: Password must be at least 8 characters.
   errorMismatch: Passwords do not match.
 
+password:
+  strengthTitle: Password strength
+  strengthVeryWeak: Very weak
+  strengthWeak: Weak
+  strengthMedium: Medium
+  strengthStrong: Strong
+  strengthVeryStrong: Very strong
+  ruleMinLength: At least 8 characters
+  ruleUppercase: One uppercase letter
+  ruleDigit: One digit
+  ruleSpecial: One special character
+  errorTooShort: Password must be at least 8 characters.
+  errorTooLong: Password can be at most 64 characters.
+  errorNoUppercase: Password must contain at least one uppercase letter.
+  errorNoDigit: Password must contain at least one digit.
+  errorNoSpecial: 'Password must contain at least one special character (e.g. ! ? * . -).'
+  errorCommon: This password is too common and easy to guess; please choose a different one.
+
 register:
   titleParent: Create Parent Account
   titleExpert: Create Specialist Account

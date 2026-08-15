@@ -47,6 +47,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$auth$en auth = _Translations$auth$en._(_root);
 	@override late final _Translations$forgotPassword$en forgotPassword = _Translations$forgotPassword$en._(_root);
 	@override late final _Translations$resetPassword$en resetPassword = _Translations$resetPassword$en._(_root);
+	@override late final _Translations$password$en password = _Translations$password$en._(_root);
 	@override late final _Translations$register$en register = _Translations$register$en._(_root);
 	@override late final _Translations$nav$en nav = _Translations$nav$en._(_root);
 	@override late final _Translations$chat$en chat = _Translations$chat$en._(_root);
@@ -222,6 +223,31 @@ class _Translations$resetPassword$en extends Translations$resetPassword$tr {
 	@override String get errorTokenRequired => 'Please enter the reset code.';
 	@override String get errorPasswordShort => 'Password must be at least 8 characters.';
 	@override String get errorMismatch => 'Passwords do not match.';
+}
+
+// Path: password
+class _Translations$password$en extends Translations$password$tr {
+	_Translations$password$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get strengthTitle => 'Password strength';
+	@override String get strengthVeryWeak => 'Very weak';
+	@override String get strengthWeak => 'Weak';
+	@override String get strengthMedium => 'Medium';
+	@override String get strengthStrong => 'Strong';
+	@override String get strengthVeryStrong => 'Very strong';
+	@override String get ruleMinLength => 'At least 8 characters';
+	@override String get ruleUppercase => 'One uppercase letter';
+	@override String get ruleDigit => 'One digit';
+	@override String get ruleSpecial => 'One special character';
+	@override String get errorTooShort => 'Password must be at least 8 characters.';
+	@override String get errorTooLong => 'Password can be at most 64 characters.';
+	@override String get errorNoUppercase => 'Password must contain at least one uppercase letter.';
+	@override String get errorNoDigit => 'Password must contain at least one digit.';
+	@override String get errorNoSpecial => 'Password must contain at least one special character (e.g. ! ? * . -).';
+	@override String get errorCommon => 'This password is too common and easy to guess; please choose a different one.';
 }
 
 // Path: register
@@ -1740,6 +1766,22 @@ extension on TranslationsEn {
 			'resetPassword.errorTokenRequired' => 'Please enter the reset code.',
 			'resetPassword.errorPasswordShort' => 'Password must be at least 8 characters.',
 			'resetPassword.errorMismatch' => 'Passwords do not match.',
+			'password.strengthTitle' => 'Password strength',
+			'password.strengthVeryWeak' => 'Very weak',
+			'password.strengthWeak' => 'Weak',
+			'password.strengthMedium' => 'Medium',
+			'password.strengthStrong' => 'Strong',
+			'password.strengthVeryStrong' => 'Very strong',
+			'password.ruleMinLength' => 'At least 8 characters',
+			'password.ruleUppercase' => 'One uppercase letter',
+			'password.ruleDigit' => 'One digit',
+			'password.ruleSpecial' => 'One special character',
+			'password.errorTooShort' => 'Password must be at least 8 characters.',
+			'password.errorTooLong' => 'Password can be at most 64 characters.',
+			'password.errorNoUppercase' => 'Password must contain at least one uppercase letter.',
+			'password.errorNoDigit' => 'Password must contain at least one digit.',
+			'password.errorNoSpecial' => 'Password must contain at least one special character (e.g. ! ? * . -).',
+			'password.errorCommon' => 'This password is too common and easy to guess; please choose a different one.',
 			'register.titleParent' => 'Create Parent Account',
 			'register.titleExpert' => 'Create Specialist Account',
 			'register.roleQuestion' => 'How would you like to sign up?',
@@ -2174,6 +2216,8 @@ extension on TranslationsEn {
 			'groups.create' => 'Create',
 			'groups.created' => 'Group created.',
 			'groups.errorName' => 'Please enter a group name.',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.title' => 'Treatment Panel',
 			'treatment.subtitle' => 'Daily Support Plan',
 			'treatment.programActive' => ({required Object name}) => '${name} plan is active',
@@ -2190,8 +2234,6 @@ extension on TranslationsEn {
 			'treatment.daysShort.1' => 'Mon',
 			'treatment.daysShort.2' => 'Tue',
 			'treatment.daysShort.3' => 'Wed',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.daysShort.4' => 'Thu',
 			'treatment.daysShort.5' => 'Fri',
 			'treatment.daysShort.6' => 'Sat',
@@ -2688,6 +2730,8 @@ extension on TranslationsEn {
 			'behavior.save' => 'Save',
 			'behavior.saved' => 'ABC entry created.',
 			'behavior.deleteTitle' => 'Delete Entry',
+			_ => null,
+		} ?? switch (path) {
 			'behavior.deleteConfirm' => ({required Object date}) => 'Are you sure you want to delete the ABC entry dated ${date}?',
 			'behavior.deleted' => 'Entry deleted.',
 			'behavior.errorRequired' => 'Please fill the required fields (category, location, A, B, C).',
@@ -2704,8 +2748,6 @@ extension on TranslationsEn {
 			'analytics.noData' => 'No data in this range yet.',
 			'analytics.noChild' => 'Add a child first to see the development panel.',
 			'children.title' => 'My Children',
-			_ => null,
-		} ?? switch (path) {
 			'children.addTitle' => 'Add Child',
 			'children.editTitle' => 'Edit Child',
 			'children.empty' => 'You haven\'t added any children yet.',

@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/util/password_rules.dart';
+import '../../../core/widgets/password_strength_meter.dart';
 import '../../../i18n/strings.g.dart';
 import '../domain/app_user.dart';
 import 'auth_controller.dart';
@@ -114,6 +116,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
               controller: _password,
               icon: Icons.lock_outline,
               obscure: _obscure,
+              onChanged: (_) => setState(() {}),
               trailing: IconButton(
                 onPressed: () => setState(() => _obscure = !_obscure),
                 icon: Icon(
@@ -124,6 +127,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                 ),
               ),
             ),
+            PasswordStrengthMeter(password: _password.text),
             const SizedBox(height: 16),
             _Field(
               label: t.register.phoneLabel,
@@ -223,8 +227,8 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
     if (!email.contains('@') || !email.contains('.')) {
       return _showError(t.register.errorEmailInvalid);
     }
-    if (_password.text.length < 8) {
-      return _showError(t.register.errorPasswordShort);
+    if (validatePassword(_password.text) case final issue?) {
+      return _showError(passwordIssueMessage(context, issue));
     }
     if (_isExpert && _expertTitle.text.trim().isEmpty) {
       return _showError(t.register.errorExpertTitleRequired);
@@ -280,6 +284,7 @@ class _Field extends StatelessWidget {
     this.textCapitalization = TextCapitalization.none,
     this.maxLines = 1,
     this.trailing,
+    this.onChanged,
   });
 
   final String label;
@@ -291,6 +296,7 @@ class _Field extends StatelessWidget {
   final TextCapitalization textCapitalization;
   final int maxLines;
   final Widget? trailing;
+  final ValueChanged<String>? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -305,6 +311,7 @@ class _Field extends StatelessWidget {
           keyboardType: keyboardType,
           textCapitalization: textCapitalization,
           maxLines: obscure ? 1 : maxLines,
+          onChanged: onChanged,
           decoration: InputDecoration(
             hintText: hint,
             prefixIcon: Icon(icon, color: context.colors.textTertiary),

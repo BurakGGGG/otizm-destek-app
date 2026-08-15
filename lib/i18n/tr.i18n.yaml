@@ -78,6 +78,25 @@ resetPassword:
   errorPasswordShort: Şifre en az 8 karakter olmalıdır.
   errorMismatch: Şifreler eşleşmiyor.
 
+# Şifre kuralları — backend StrongPasswordValidator ile birebir.
+password:
+  strengthTitle: Şifre gücü
+  strengthVeryWeak: Çok zayıf
+  strengthWeak: Zayıf
+  strengthMedium: Orta
+  strengthStrong: Güçlü
+  strengthVeryStrong: Çok güçlü
+  ruleMinLength: En az 8 karakter
+  ruleUppercase: Bir büyük harf
+  ruleDigit: Bir rakam
+  ruleSpecial: Bir özel karakter
+  errorTooShort: Şifre en az 8 karakter olmalıdır.
+  errorTooLong: Şifre en fazla 64 karakter olabilir.
+  errorNoUppercase: Şifre en az bir büyük harf içermelidir.
+  errorNoDigit: Şifre en az bir rakam içermelidir.
+  errorNoSpecial: 'Şifre en az bir özel karakter (örn. ! ? * . -) içermelidir.'
+  errorCommon: Bu şifre çok yaygın ve kolay tahmin edilebilir; lütfen farklı bir şifre seçin.
+
 register:
   titleParent: Veli Hesabı Oluştur
   titleExpert: Uzman Hesabı Oluştur
