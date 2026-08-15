@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/network/api_exception.dart';
 import '../../../core/network/api_response.dart';
+import '../../../core/network/auth_cookies.dart';
 import '../../../core/providers.dart';
 import '../../../i18n/strings.g.dart';
 import '../domain/app_user.dart';
@@ -19,15 +20,21 @@ class AuthResult {
   final String accessToken;
   final String refreshToken;
 
-  factory AuthResult.fromData(Map<String, dynamic> data) {
+  /// Yanıtı çözer. Refresh token gövdede yoksa `Set-Cookie` başlığından
+  /// okunur (backend onu yalnızca httpOnly çerezle döndürüyor).
+  factory AuthResult.fromResponse(Response<dynamic> res) {
+    final data = ApiEnvelope.fromJson(res.data).requireMap();
     final userJson = data['user'];
     if (userJson is! Map<String, dynamic>) {
       throw ApiException(t.errors.noUserInResponse);
     }
+    final bodyRefresh = data['refreshToken'] as String?;
     return AuthResult(
       user: AppUser.fromJson(userJson),
       accessToken: data['accessToken'] as String? ?? '',
-      refreshToken: data['refreshToken'] as String? ?? '',
+      refreshToken: (bodyRefresh != null && bodyRefresh.isNotEmpty)
+          ? bodyRefresh
+          : refreshTokenFromHeaders(res.headers) ?? '',
     );
   }
 }
@@ -47,7 +54,7 @@ class AuthRepository {
         data: {'email': email, 'password': password},
         options: _noAuth,
       );
-      return AuthResult.fromData(ApiEnvelope.fromJson(res.data).requireMap());
+      return AuthResult.fromResponse(res);
     } on DioException catch (e) {
       throw ApiException.fromDio(e);
     }
@@ -86,7 +93,7 @@ class AuthRepository {
         },
         options: _noAuth,
       );
-      return AuthResult.fromData(ApiEnvelope.fromJson(res.data).requireMap());
+      return AuthResult.fromResponse(res);
     } on DioException catch (e) {
       throw ApiException.fromDio(e);
     }
