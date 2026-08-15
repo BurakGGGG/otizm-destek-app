@@ -8,17 +8,30 @@ import '../../../core/providers.dart';
 import '../../../i18n/strings.g.dart';
 import '../domain/app_user.dart';
 
-/// Başarılı kimlik doğrulama sonucu: kullanıcı + token çifti.
+/// Kimlik doğrulama yanıtı: kullanıcı + token çifti ya da bekleme durumu.
+///
+/// Backend her zaman oturum açmaz: e-posta doğrulaması istendiğinde ya da
+/// uzman hesabı yönetici onayı beklediğinde token'sız yanıt döner
+/// (`pendingEmailVerification` / `pendingApproval`).
 class AuthResult {
   const AuthResult({
     required this.user,
     required this.accessToken,
     required this.refreshToken,
+    this.pendingEmailVerification = false,
+    this.pendingApproval = false,
+    this.mfaRequired = false,
   });
 
   final AppUser user;
   final String accessToken;
   final String refreshToken;
+  final bool pendingEmailVerification;
+  final bool pendingApproval;
+  final bool mfaRequired;
+
+  /// Oturum açılabildi mi? (Token yoksa kullanıcı henüz giriş yapamaz.)
+  bool get hasSession => accessToken.isNotEmpty;
 
   /// Yanıtı çözer. Refresh token gövdede yoksa `Set-Cookie` başlığından
   /// okunur (backend onu yalnızca httpOnly çerezle döndürüyor).
@@ -35,6 +48,10 @@ class AuthResult {
       refreshToken: (bodyRefresh != null && bodyRefresh.isNotEmpty)
           ? bodyRefresh
           : refreshTokenFromHeaders(res.headers) ?? '',
+      pendingEmailVerification:
+          data['pendingEmailVerification'] as bool? ?? false,
+      pendingApproval: data['pendingApproval'] as bool? ?? false,
+      mfaRequired: data['mfaRequired'] as bool? ?? false,
     );
   }
 }
@@ -165,6 +182,48 @@ class AuthRepository {
       );
     } on DioException catch (e) {
       throw ApiException.fromDio(e);
+    }
+  }
+
+  /// E-postadaki doğrulama kodunu onaylar (`POST /auth/verify-email`).
+  Future<void> verifyEmail(String token) async {
+    try {
+      await _dio.post(
+        '/auth/verify-email',
+        data: {'token': token},
+        options: _noAuth,
+      );
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Doğrulama e-postasını yeniden gönderir (`POST /auth/resend-verification`).
+  /// Backend saatte 3 istekle sınırlar ve hesap yoksa da başarı döner.
+  Future<void> resendVerification(String email) async {
+    try {
+      await _dio.post(
+        '/auth/resend-verification',
+        data: {'email': email},
+        options: _noAuth,
+      );
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// E-posta adresi kayıt için uygun mu? (`GET /auth/check-email`)
+  /// Ağ hatasında kayıt akışını engellememek için `null` döner.
+  Future<bool?> isEmailAvailable(String email) async {
+    try {
+      final res = await _dio.get(
+        '/auth/check-email',
+        queryParameters: {'email': email},
+        options: _noAuth,
+      );
+      return ApiEnvelope.fromJson(res.data).requireMap()['available'] as bool?;
+    } on DioException catch (_) {
+      return null;
     }
   }
 

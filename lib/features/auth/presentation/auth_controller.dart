@@ -3,11 +3,28 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/network/api_exception.dart';
 import '../../../core/providers.dart';
 import '../../../core/storage/secure_storage.dart';
+import '../../../i18n/strings.g.dart';
 import '../data/auth_repository.dart';
 import '../domain/app_user.dart';
 
 /// Oturum durumu.
 enum AuthStatus { unknown, authenticated, unauthenticated }
+
+/// Kayıt sonucu. Backend her kayıtta oturum açmaz: e-posta doğrulaması
+/// istendiğinde ya da uzman hesabı yönetici onayı beklediğinde token dönmez.
+class RegisterOutcome {
+  const RegisterOutcome({
+    this.error,
+    this.signedIn = false,
+    this.pendingEmailVerification = false,
+    this.pendingApproval = false,
+  });
+
+  final String? error;
+  final bool signedIn;
+  final bool pendingEmailVerification;
+  final bool pendingApproval;
+}
 
 class AuthState {
   const AuthState({required this.status, this.user, this.isBusy = false});
@@ -61,6 +78,14 @@ class AuthController extends Notifier<AuthState> {
     state = state.copyWith(isBusy: true);
     try {
       final result = await _repo.login(email.trim(), password);
+      if (!result.hasSession) {
+        // Token'sız yanıt: iki adımlı doğrulama (mobilde henüz yok) ya da
+        // beklenmedik bir durum. Boş token'la "giriş yapıldı" sanılmamalı.
+        state = const AuthState(status: AuthStatus.unauthenticated);
+        return result.mfaRequired
+            ? t.auth.errorMfaRequired
+            : t.errors.unexpectedResponse;
+      }
       await _storage.saveTokens(
         accessToken: result.accessToken,
         refreshToken: result.refreshToken,
@@ -73,8 +98,9 @@ class AuthController extends Notifier<AuthState> {
     }
   }
 
-  /// Kayıt (Veli/Uzman). Başarılıysa `null`, hatadaysa mesaj döner.
-  Future<String?> register({
+  /// Kayıt (Veli/Uzman). Oturum açıldıysa `signedIn`, açılmadıysa hangi
+  /// beklemenin geçerli olduğunu ([RegisterOutcome]) döner.
+  Future<RegisterOutcome> register({
     required String email,
     required String password,
     required String fullName,
@@ -104,15 +130,25 @@ class AuthController extends Notifier<AuthState> {
         bio: bio,
         specializations: specializations,
       );
+      if (!result.hasSession) {
+        state = const AuthState(status: AuthStatus.unauthenticated);
+        return RegisterOutcome(
+          pendingEmailVerification: result.pendingEmailVerification,
+          pendingApproval: result.pendingApproval,
+          error: (result.pendingEmailVerification || result.pendingApproval)
+              ? null
+              : t.errors.unexpectedResponse,
+        );
+      }
       await _storage.saveTokens(
         accessToken: result.accessToken,
         refreshToken: result.refreshToken,
       );
       state = AuthState(status: AuthStatus.authenticated, user: result.user);
-      return null;
+      return const RegisterOutcome(signedIn: true);
     } on ApiException catch (e) {
       state = const AuthState(status: AuthStatus.unauthenticated);
-      return e.message;
+      return RegisterOutcome(error: e.message);
     }
   }
 

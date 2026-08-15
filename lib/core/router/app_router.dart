@@ -11,6 +11,7 @@ import '../../features/appointments/presentation/appointments_screen.dart';
 import '../../features/auth/presentation/register_screen.dart';
 import '../../features/analytics/presentation/analytics_screen.dart';
 import '../../features/auth/presentation/reset_password_screen.dart';
+import '../../features/auth/presentation/verify_email_screen.dart';
 import '../../features/behavior/presentation/behavior_screen.dart';
 import '../../features/calendar/presentation/calendar_screen.dart';
 import '../../features/chatbot/presentation/chat_screen.dart';
@@ -68,7 +69,8 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       final onAuthScreen = loc == '/login' ||
           loc == '/register' ||
           loc == '/forgot-password' ||
-          loc == '/reset-password';
+          loc == '/reset-password' ||
+          loc == '/verify-email';
       if (status == AuthStatus.unauthenticated) {
         return onAuthScreen ? null : '/login';
       }
@@ -96,6 +98,17 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         path: '/reset-password',
         builder: (_, state) =>
             ResetPasswordScreen(token: state.uri.queryParameters['token']),
+      ),
+      GoRoute(
+        path: '/verify-email',
+        builder: (_, state) {
+          final q = state.uri.queryParameters;
+          return VerifyEmailScreen(
+            email: q['email'],
+            token: q['token'],
+            pendingApproval: q['approval'] == '1',
+          );
+        },
       ),
       GoRoute(path: '/home', builder: (_, _) => const HomeShell()),
       GoRoute(path: '/chat', builder: (_, _) => const ChatScreen()),

@@ -53,6 +53,28 @@ auth:
   registerExpert: Sign up as a specialist
   errorEmptyFields: Please enter your email and password.
   registerComingSoon: $role sign-up screen is coming soon.
+  errorMfaRequired: This account uses two-step verification; please sign in on the web for now.
+  resendVerification: Resend verification email
+
+verifyEmail:
+  title: Email Verification
+  waitingTitle: Check your inbox
+  waitingBody: We sent you a verification link. Once you open it, come back here and sign in.
+  waitingBodyWithEmail: We sent a verification link to $email. Once you open it, come back here and sign in.
+  spamHint: If the email does not arrive within a few minutes, check your spam folder.
+  approvalTitle: Your professional account is awaiting approval
+  approvalBody: We received your application. You can sign in once an administrator verifies your license details.
+  tokenLabel: Verification Code
+  tokenHint: The code inside the email link
+  tokenHelp: If you cannot open the link, paste the code from it here.
+  verifyButton: Verify
+  verifying: Verifying your email address…
+  resendButton: Resend email
+  resent: A new verification link was sent. Check your inbox and spam folder.
+  success: Your email address is verified. You can sign in now.
+  errorTokenRequired: Please enter the verification code.
+  errorEmailRequired: An email address is required to resend.
+  backToLogin: Back to sign in
 
 forgotPassword:
   title: Forgot Password
@@ -124,6 +146,9 @@ register:
   errorEmailInvalid: Please enter a valid email.
   errorPasswordShort: Password must be at least 8 characters.
   errorExpertTitleRequired: Please enter your professional title.
+  errorLicenseRequired: A license / diploma number is required for professional sign-up.
+  emailTaken: This email address is already registered. Try signing in.
+  emailAvailable: This email address is available.
   errorKvkkRequired: KVKK consent is required to continue.
 
 nav:

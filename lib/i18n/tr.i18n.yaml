@@ -53,6 +53,28 @@ auth:
   registerExpert: Uzman hesabı ile kaydol
   errorEmptyFields: Lütfen e-posta ve şifrenizi girin.
   registerComingSoon: $role kayıt ekranı yakında eklenecek.
+  errorMfaRequired: Bu hesapta iki adımlı doğrulama açık; şimdilik web üzerinden giriş yapın.
+  resendVerification: Doğrulama e-postasını yeniden gönder
+
+verifyEmail:
+  title: E-posta Doğrulama
+  waitingTitle: Gelen kutunuzu kontrol edin
+  waitingBody: Doğrulama bağlantısını gönderdik. Bağlantıya dokunduktan sonra bu ekrana dönüp giriş yapabilirsiniz.
+  waitingBodyWithEmail: $email adresine doğrulama bağlantısı gönderdik. Bağlantıya dokunduktan sonra bu ekrana dönüp giriş yapabilirsiniz.
+  spamHint: E-posta birkaç dakika içinde gelmezse spam/gereksiz klasörünü kontrol edin.
+  approvalTitle: Uzman hesabınız onay bekliyor
+  approvalBody: Başvurunuz alındı. Lisans bilgileriniz yönetici tarafından doğrulandıktan sonra giriş yapabilirsiniz.
+  tokenLabel: Doğrulama Kodu
+  tokenHint: E-postadaki bağlantıda yer alan kod
+  tokenHelp: Bağlantıyı açamıyorsanız içindeki kodu buraya yapıştırın.
+  verifyButton: Doğrula
+  verifying: E-posta adresiniz doğrulanıyor…
+  resendButton: E-postayı yeniden gönder
+  resent: Yeni doğrulama bağlantısı gönderildi. Gelen kutunuzu ve spam klasörünü kontrol edin.
+  success: E-posta adresiniz doğrulandı. Artık giriş yapabilirsiniz.
+  errorTokenRequired: Lütfen doğrulama kodunu girin.
+  errorEmailRequired: Yeniden göndermek için e-posta adresi gerekli.
+  backToLogin: Giriş sayfasına dön
 
 forgotPassword:
   title: Şifremi Unuttum
@@ -125,7 +147,10 @@ register:
   errorEmailInvalid: Geçerli bir e-posta girin.
   errorPasswordShort: Şifre en az 8 karakter olmalıdır.
   errorExpertTitleRequired: Lütfen uzmanlık ünvanını girin.
+  errorLicenseRequired: Uzman kaydı için lisans / diploma numarası zorunludur.
   errorKvkkRequired: Devam etmek için KVKK onayı gereklidir.
+  emailTaken: Bu e-posta adresi zaten kayıtlı. Giriş yapmayı deneyin.
+  emailAvailable: Bu e-posta adresi kullanılabilir.
 
 nav:
   home: Ana Sayfa

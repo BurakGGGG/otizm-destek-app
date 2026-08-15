@@ -199,8 +199,33 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     final error = await ref
         .read(authControllerProvider.notifier)
         .signIn(email, password);
-    if (error != null) _showError(error);
-    // Başarılıysa router otomatik ana sayfaya yönlendirir.
+    if (error == null) return; // router otomatik ana sayfaya yönlendirir
+    if (!mounted) return;
+    // Backend doğrulanmamış e-postada girişi engelliyor ("Giriş yapmadan önce
+    // e-posta adresinizi doğrulayın"); kullanıcıyı çıkmaz sokakta bırakmamak
+    // için doğrulama ekranına kısayol sun.
+    if (_isEmailVerificationError(error)) {
+      _showError(
+        error,
+        action: SnackBarAction(
+          label: context.t.auth.resendVerification,
+          onPressed: () => context.go(
+            Uri(
+              path: '/verify-email',
+              queryParameters: {'email': email},
+            ).toString(),
+          ),
+        ),
+      );
+      return;
+    }
+    _showError(error);
+  }
+
+  /// Backend mesajları her zaman Türkçe döner (uygulama diline bakmaz).
+  bool _isEmailVerificationError(String message) {
+    final lower = message.toLowerCase();
+    return lower.contains('doğrula') && lower.contains('e-posta');
   }
 
   void _onRegister(UserRole role) {
@@ -208,11 +233,17 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     context.go('/register$query');
   }
 
-  void _showError(String message) {
+  void _showError(String message, {SnackBarAction? action}) {
     if (!mounted) return;
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text(message)));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        action: action,
+        duration: action == null
+            ? const Duration(seconds: 4)
+            : const Duration(seconds: 8),
+      ),
+    );
   }
 }
 

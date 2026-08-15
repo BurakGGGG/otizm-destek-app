@@ -46,6 +46,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$theme$tr theme = Translations$theme$tr.internal(_root);
 	late final Translations$roles$tr roles = Translations$roles$tr.internal(_root);
 	late final Translations$auth$tr auth = Translations$auth$tr.internal(_root);
+	late final Translations$verifyEmail$tr verifyEmail = Translations$verifyEmail$tr.internal(_root);
 	late final Translations$forgotPassword$tr forgotPassword = Translations$forgotPassword$tr.internal(_root);
 	late final Translations$resetPassword$tr resetPassword = Translations$resetPassword$tr.internal(_root);
 	late final Translations$password$tr password = Translations$password$tr.internal(_root);
@@ -247,6 +248,75 @@ class Translations$auth$tr {
 
 	/// tr: '$role kayıt ekranı yakında eklenecek.'
 	String registerComingSoon({required Object role}) => '${role} kayıt ekranı yakında eklenecek.';
+
+	/// tr: 'Bu hesapta iki adımlı doğrulama açık; şimdilik web üzerinden giriş yapın.'
+	String get errorMfaRequired => 'Bu hesapta iki adımlı doğrulama açık; şimdilik web üzerinden giriş yapın.';
+
+	/// tr: 'Doğrulama e-postasını yeniden gönder'
+	String get resendVerification => 'Doğrulama e-postasını yeniden gönder';
+}
+
+// Path: verifyEmail
+class Translations$verifyEmail$tr {
+	Translations$verifyEmail$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'E-posta Doğrulama'
+	String get title => 'E-posta Doğrulama';
+
+	/// tr: 'Gelen kutunuzu kontrol edin'
+	String get waitingTitle => 'Gelen kutunuzu kontrol edin';
+
+	/// tr: 'Doğrulama bağlantısını gönderdik. Bağlantıya dokunduktan sonra bu ekrana dönüp giriş yapabilirsiniz.'
+	String get waitingBody => 'Doğrulama bağlantısını gönderdik. Bağlantıya dokunduktan sonra bu ekrana dönüp giriş yapabilirsiniz.';
+
+	/// tr: '$email adresine doğrulama bağlantısı gönderdik. Bağlantıya dokunduktan sonra bu ekrana dönüp giriş yapabilirsiniz.'
+	String waitingBodyWithEmail({required Object email}) => '${email} adresine doğrulama bağlantısı gönderdik. Bağlantıya dokunduktan sonra bu ekrana dönüp giriş yapabilirsiniz.';
+
+	/// tr: 'E-posta birkaç dakika içinde gelmezse spam/gereksiz klasörünü kontrol edin.'
+	String get spamHint => 'E-posta birkaç dakika içinde gelmezse spam/gereksiz klasörünü kontrol edin.';
+
+	/// tr: 'Uzman hesabınız onay bekliyor'
+	String get approvalTitle => 'Uzman hesabınız onay bekliyor';
+
+	/// tr: 'Başvurunuz alındı. Lisans bilgileriniz yönetici tarafından doğrulandıktan sonra giriş yapabilirsiniz.'
+	String get approvalBody => 'Başvurunuz alındı. Lisans bilgileriniz yönetici tarafından doğrulandıktan sonra giriş yapabilirsiniz.';
+
+	/// tr: 'Doğrulama Kodu'
+	String get tokenLabel => 'Doğrulama Kodu';
+
+	/// tr: 'E-postadaki bağlantıda yer alan kod'
+	String get tokenHint => 'E-postadaki bağlantıda yer alan kod';
+
+	/// tr: 'Bağlantıyı açamıyorsanız içindeki kodu buraya yapıştırın.'
+	String get tokenHelp => 'Bağlantıyı açamıyorsanız içindeki kodu buraya yapıştırın.';
+
+	/// tr: 'Doğrula'
+	String get verifyButton => 'Doğrula';
+
+	/// tr: 'E-posta adresiniz doğrulanıyor…'
+	String get verifying => 'E-posta adresiniz doğrulanıyor…';
+
+	/// tr: 'E-postayı yeniden gönder'
+	String get resendButton => 'E-postayı yeniden gönder';
+
+	/// tr: 'Yeni doğrulama bağlantısı gönderildi. Gelen kutunuzu ve spam klasörünü kontrol edin.'
+	String get resent => 'Yeni doğrulama bağlantısı gönderildi. Gelen kutunuzu ve spam klasörünü kontrol edin.';
+
+	/// tr: 'E-posta adresiniz doğrulandı. Artık giriş yapabilirsiniz.'
+	String get success => 'E-posta adresiniz doğrulandı. Artık giriş yapabilirsiniz.';
+
+	/// tr: 'Lütfen doğrulama kodunu girin.'
+	String get errorTokenRequired => 'Lütfen doğrulama kodunu girin.';
+
+	/// tr: 'Yeniden göndermek için e-posta adresi gerekli.'
+	String get errorEmailRequired => 'Yeniden göndermek için e-posta adresi gerekli.';
+
+	/// tr: 'Giriş sayfasına dön'
+	String get backToLogin => 'Giriş sayfasına dön';
 }
 
 // Path: forgotPassword
@@ -473,8 +543,17 @@ class Translations$register$tr {
 	/// tr: 'Lütfen uzmanlık ünvanını girin.'
 	String get errorExpertTitleRequired => 'Lütfen uzmanlık ünvanını girin.';
 
+	/// tr: 'Uzman kaydı için lisans / diploma numarası zorunludur.'
+	String get errorLicenseRequired => 'Uzman kaydı için lisans / diploma numarası zorunludur.';
+
 	/// tr: 'Devam etmek için KVKK onayı gereklidir.'
 	String get errorKvkkRequired => 'Devam etmek için KVKK onayı gereklidir.';
+
+	/// tr: 'Bu e-posta adresi zaten kayıtlı. Giriş yapmayı deneyin.'
+	String get emailTaken => 'Bu e-posta adresi zaten kayıtlı. Giriş yapmayı deneyin.';
+
+	/// tr: 'Bu e-posta adresi kullanılabilir.'
+	String get emailAvailable => 'Bu e-posta adresi kullanılabilir.';
 }
 
 // Path: nav
@@ -3856,6 +3935,26 @@ extension on Translations {
 			'auth.registerExpert' => 'Uzman hesabı ile kaydol',
 			'auth.errorEmptyFields' => 'Lütfen e-posta ve şifrenizi girin.',
 			'auth.registerComingSoon' => ({required Object role}) => '${role} kayıt ekranı yakında eklenecek.',
+			'auth.errorMfaRequired' => 'Bu hesapta iki adımlı doğrulama açık; şimdilik web üzerinden giriş yapın.',
+			'auth.resendVerification' => 'Doğrulama e-postasını yeniden gönder',
+			'verifyEmail.title' => 'E-posta Doğrulama',
+			'verifyEmail.waitingTitle' => 'Gelen kutunuzu kontrol edin',
+			'verifyEmail.waitingBody' => 'Doğrulama bağlantısını gönderdik. Bağlantıya dokunduktan sonra bu ekrana dönüp giriş yapabilirsiniz.',
+			'verifyEmail.waitingBodyWithEmail' => ({required Object email}) => '${email} adresine doğrulama bağlantısı gönderdik. Bağlantıya dokunduktan sonra bu ekrana dönüp giriş yapabilirsiniz.',
+			'verifyEmail.spamHint' => 'E-posta birkaç dakika içinde gelmezse spam/gereksiz klasörünü kontrol edin.',
+			'verifyEmail.approvalTitle' => 'Uzman hesabınız onay bekliyor',
+			'verifyEmail.approvalBody' => 'Başvurunuz alındı. Lisans bilgileriniz yönetici tarafından doğrulandıktan sonra giriş yapabilirsiniz.',
+			'verifyEmail.tokenLabel' => 'Doğrulama Kodu',
+			'verifyEmail.tokenHint' => 'E-postadaki bağlantıda yer alan kod',
+			'verifyEmail.tokenHelp' => 'Bağlantıyı açamıyorsanız içindeki kodu buraya yapıştırın.',
+			'verifyEmail.verifyButton' => 'Doğrula',
+			'verifyEmail.verifying' => 'E-posta adresiniz doğrulanıyor…',
+			'verifyEmail.resendButton' => 'E-postayı yeniden gönder',
+			'verifyEmail.resent' => 'Yeni doğrulama bağlantısı gönderildi. Gelen kutunuzu ve spam klasörünü kontrol edin.',
+			'verifyEmail.success' => 'E-posta adresiniz doğrulandı. Artık giriş yapabilirsiniz.',
+			'verifyEmail.errorTokenRequired' => 'Lütfen doğrulama kodunu girin.',
+			'verifyEmail.errorEmailRequired' => 'Yeniden göndermek için e-posta adresi gerekli.',
+			'verifyEmail.backToLogin' => 'Giriş sayfasına dön',
 			'forgotPassword.title' => 'Şifremi Unuttum',
 			'forgotPassword.subtitle' => 'E-posta adresinizi girin; size bir şifre sıfırlama bağlantısı gönderelim.',
 			'forgotPassword.submit' => 'Sıfırlama Bağlantısı Gönder',
@@ -3919,7 +4018,10 @@ extension on Translations {
 			'register.errorEmailInvalid' => 'Geçerli bir e-posta girin.',
 			'register.errorPasswordShort' => 'Şifre en az 8 karakter olmalıdır.',
 			'register.errorExpertTitleRequired' => 'Lütfen uzmanlık ünvanını girin.',
+			'register.errorLicenseRequired' => 'Uzman kaydı için lisans / diploma numarası zorunludur.',
 			'register.errorKvkkRequired' => 'Devam etmek için KVKK onayı gereklidir.',
+			'register.emailTaken' => 'Bu e-posta adresi zaten kayıtlı. Giriş yapmayı deneyin.',
+			'register.emailAvailable' => 'Bu e-posta adresi kullanılabilir.',
 			'nav.home' => 'Ana Sayfa',
 			'nav.specialists' => 'Uzmanlar',
 			'nav.progress' => 'Gelişim',
@@ -4303,6 +4405,8 @@ extension on Translations {
 			'groups.tabDiscover' => 'Keşfet',
 			'groups.searchHint' => 'Grup ara…',
 			'groups.allCategories' => 'Tümü',
+			_ => null,
+		} ?? switch (path) {
 			'groups.emptyMy' => 'Henüz bir gruba katılmadın. Keşfet sekmesinden gruplara göz at.',
 			'groups.emptyDiscover' => 'Bu ölçütlerle grup bulunamadı. Yeni bir grup oluşturabilirsin.',
 			'groups.memberCount' => ({required Object count}) => '${count} üye',
@@ -4326,8 +4430,6 @@ extension on Translations {
 			'groups.create' => 'Oluştur',
 			'groups.created' => 'Grup oluşturuldu.',
 			'groups.errorName' => 'Lütfen bir grup adı girin.',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.title' => 'Tedavi Paneli',
 			'treatment.subtitle' => 'Günlük Destek Planı',
 			'treatment.programActive' => ({required Object name}) => '${name} planı aktif',
@@ -4817,6 +4919,8 @@ extension on Translations {
 			'behavior.subtitle' => 'ABC (Öncesi-Davranış-Sonuç) gözlem kayıtları',
 			'behavior.add' => 'Kayıt Ekle',
 			'behavior.addTitle' => 'Yeni ABC Kaydı',
+			_ => null,
+		} ?? switch (path) {
 			'behavior.empty' => 'Henüz davranış kaydı yok. İlk gözlemi ekleyin.',
 			'behavior.noChild' => 'Davranış günlüğü için önce bir çocuk ekleyin.',
 			'behavior.date' => 'Tarih',
@@ -4840,8 +4944,6 @@ extension on Translations {
 			'behavior.save' => 'Kaydet',
 			'behavior.saved' => 'ABC kaydı oluşturuldu.',
 			'behavior.deleteTitle' => 'Kaydı Sil',
-			_ => null,
-		} ?? switch (path) {
 			'behavior.deleteConfirm' => ({required Object date}) => '${date} tarihli ABC kaydını silmek istediğinize emin misiniz?',
 			'behavior.deleted' => 'Kayıt silindi.',
 			'behavior.errorRequired' => 'Lütfen zorunlu alanları doldurun (kategori, yer, A, B, C).',

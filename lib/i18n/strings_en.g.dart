@@ -45,6 +45,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$theme$en theme = _Translations$theme$en._(_root);
 	@override late final _Translations$roles$en roles = _Translations$roles$en._(_root);
 	@override late final _Translations$auth$en auth = _Translations$auth$en._(_root);
+	@override late final _Translations$verifyEmail$en verifyEmail = _Translations$verifyEmail$en._(_root);
 	@override late final _Translations$forgotPassword$en forgotPassword = _Translations$forgotPassword$en._(_root);
 	@override late final _Translations$resetPassword$en resetPassword = _Translations$resetPassword$en._(_root);
 	@override late final _Translations$password$en password = _Translations$password$en._(_root);
@@ -185,6 +186,35 @@ class _Translations$auth$en extends Translations$auth$tr {
 	@override String get registerExpert => 'Sign up as a specialist';
 	@override String get errorEmptyFields => 'Please enter your email and password.';
 	@override String registerComingSoon({required Object role}) => '${role} sign-up screen is coming soon.';
+	@override String get errorMfaRequired => 'This account uses two-step verification; please sign in on the web for now.';
+	@override String get resendVerification => 'Resend verification email';
+}
+
+// Path: verifyEmail
+class _Translations$verifyEmail$en extends Translations$verifyEmail$tr {
+	_Translations$verifyEmail$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Email Verification';
+	@override String get waitingTitle => 'Check your inbox';
+	@override String get waitingBody => 'We sent you a verification link. Once you open it, come back here and sign in.';
+	@override String waitingBodyWithEmail({required Object email}) => 'We sent a verification link to ${email}. Once you open it, come back here and sign in.';
+	@override String get spamHint => 'If the email does not arrive within a few minutes, check your spam folder.';
+	@override String get approvalTitle => 'Your professional account is awaiting approval';
+	@override String get approvalBody => 'We received your application. You can sign in once an administrator verifies your license details.';
+	@override String get tokenLabel => 'Verification Code';
+	@override String get tokenHint => 'The code inside the email link';
+	@override String get tokenHelp => 'If you cannot open the link, paste the code from it here.';
+	@override String get verifyButton => 'Verify';
+	@override String get verifying => 'Verifying your email address…';
+	@override String get resendButton => 'Resend email';
+	@override String get resent => 'A new verification link was sent. Check your inbox and spam folder.';
+	@override String get success => 'Your email address is verified. You can sign in now.';
+	@override String get errorTokenRequired => 'Please enter the verification code.';
+	@override String get errorEmailRequired => 'An email address is required to resend.';
+	@override String get backToLogin => 'Back to sign in';
 }
 
 // Path: forgotPassword
@@ -284,6 +314,9 @@ class _Translations$register$en extends Translations$register$tr {
 	@override String get errorEmailInvalid => 'Please enter a valid email.';
 	@override String get errorPasswordShort => 'Password must be at least 8 characters.';
 	@override String get errorExpertTitleRequired => 'Please enter your professional title.';
+	@override String get errorLicenseRequired => 'A license / diploma number is required for professional sign-up.';
+	@override String get emailTaken => 'This email address is already registered. Try signing in.';
+	@override String get emailAvailable => 'This email address is available.';
 	@override String get errorKvkkRequired => 'KVKK consent is required to continue.';
 }
 
@@ -1746,6 +1779,26 @@ extension on TranslationsEn {
 			'auth.registerExpert' => 'Sign up as a specialist',
 			'auth.errorEmptyFields' => 'Please enter your email and password.',
 			'auth.registerComingSoon' => ({required Object role}) => '${role} sign-up screen is coming soon.',
+			'auth.errorMfaRequired' => 'This account uses two-step verification; please sign in on the web for now.',
+			'auth.resendVerification' => 'Resend verification email',
+			'verifyEmail.title' => 'Email Verification',
+			'verifyEmail.waitingTitle' => 'Check your inbox',
+			'verifyEmail.waitingBody' => 'We sent you a verification link. Once you open it, come back here and sign in.',
+			'verifyEmail.waitingBodyWithEmail' => ({required Object email}) => 'We sent a verification link to ${email}. Once you open it, come back here and sign in.',
+			'verifyEmail.spamHint' => 'If the email does not arrive within a few minutes, check your spam folder.',
+			'verifyEmail.approvalTitle' => 'Your professional account is awaiting approval',
+			'verifyEmail.approvalBody' => 'We received your application. You can sign in once an administrator verifies your license details.',
+			'verifyEmail.tokenLabel' => 'Verification Code',
+			'verifyEmail.tokenHint' => 'The code inside the email link',
+			'verifyEmail.tokenHelp' => 'If you cannot open the link, paste the code from it here.',
+			'verifyEmail.verifyButton' => 'Verify',
+			'verifyEmail.verifying' => 'Verifying your email address…',
+			'verifyEmail.resendButton' => 'Resend email',
+			'verifyEmail.resent' => 'A new verification link was sent. Check your inbox and spam folder.',
+			'verifyEmail.success' => 'Your email address is verified. You can sign in now.',
+			'verifyEmail.errorTokenRequired' => 'Please enter the verification code.',
+			'verifyEmail.errorEmailRequired' => 'An email address is required to resend.',
+			'verifyEmail.backToLogin' => 'Back to sign in',
 			'forgotPassword.title' => 'Forgot Password',
 			'forgotPassword.subtitle' => 'Enter your email and we\'ll send you a password reset link.',
 			'forgotPassword.submit' => 'Send Reset Link',
@@ -1809,6 +1862,9 @@ extension on TranslationsEn {
 			'register.errorEmailInvalid' => 'Please enter a valid email.',
 			'register.errorPasswordShort' => 'Password must be at least 8 characters.',
 			'register.errorExpertTitleRequired' => 'Please enter your professional title.',
+			'register.errorLicenseRequired' => 'A license / diploma number is required for professional sign-up.',
+			'register.emailTaken' => 'This email address is already registered. Try signing in.',
+			'register.emailAvailable' => 'This email address is available.',
 			'register.errorKvkkRequired' => 'KVKK consent is required to continue.',
 			'nav.home' => 'Home',
 			'nav.specialists' => 'Specialists',
@@ -2193,6 +2249,8 @@ extension on TranslationsEn {
 			'groups.tabDiscover' => 'Discover',
 			'groups.searchHint' => 'Search groups…',
 			'groups.allCategories' => 'All',
+			_ => null,
+		} ?? switch (path) {
 			'groups.emptyMy' => 'You haven\'t joined any group yet. Browse groups in the Discover tab.',
 			'groups.emptyDiscover' => 'No groups match these criteria. You can create a new one.',
 			'groups.memberCount' => ({required Object count}) => '${count} members',
@@ -2216,8 +2274,6 @@ extension on TranslationsEn {
 			'groups.create' => 'Create',
 			'groups.created' => 'Group created.',
 			'groups.errorName' => 'Please enter a group name.',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.title' => 'Treatment Panel',
 			'treatment.subtitle' => 'Daily Support Plan',
 			'treatment.programActive' => ({required Object name}) => '${name} plan is active',
@@ -2707,6 +2763,8 @@ extension on TranslationsEn {
 			'behavior.subtitle' => 'ABC (Antecedent-Behavior-Consequence) observation log',
 			'behavior.add' => 'Add Entry',
 			'behavior.addTitle' => 'New ABC Entry',
+			_ => null,
+		} ?? switch (path) {
 			'behavior.empty' => 'No behavior entries yet. Add the first observation.',
 			'behavior.noChild' => 'Add a child first to use the behavior journal.',
 			'behavior.date' => 'Date',
@@ -2730,8 +2788,6 @@ extension on TranslationsEn {
 			'behavior.save' => 'Save',
 			'behavior.saved' => 'ABC entry created.',
 			'behavior.deleteTitle' => 'Delete Entry',
-			_ => null,
-		} ?? switch (path) {
 			'behavior.deleteConfirm' => ({required Object date}) => 'Are you sure you want to delete the ABC entry dated ${date}?',
 			'behavior.deleted' => 'Entry deleted.',
 			'behavior.errorRequired' => 'Please fill the required fields (category, location, A, B, C).',
