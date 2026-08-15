@@ -86,12 +86,30 @@ class ChildRepository {
   }
 
   /// Dosya yükler — `POST /upload` multipart, `{data:{url}}` döner.
-  Future<String> uploadImage(String filePath, String fileName) async {
+  ///
+  /// [scopeType]/[scopeId] web ile birebir: çocuk profil fotoğrafı
+  /// `CHILD_PROFILE` kapsamıyla yüklenir; aksi halde dosya yalnızca yükleyene
+  /// açık kalır ve klinik veri paylaşımı olan uzman göremez.
+  Future<String> uploadImage(
+    String filePath,
+    String fileName, {
+    String visibility = 'PRIVATE',
+    String? scopeType,
+    String? scopeId,
+  }) async {
     try {
       final form = FormData.fromMap({
         'file': await MultipartFile.fromFile(filePath, filename: fileName),
       });
-      final res = await _dio.post('/upload', data: form);
+      final res = await _dio.post(
+        '/upload',
+        data: form,
+        queryParameters: {
+          'visibility': visibility,
+          'scopeType': ?scopeType,
+          'scopeId': ?scopeId,
+        },
+      );
       final data = ApiEnvelope.fromJson(res.data).requireMap();
       final url = data['url']?.toString() ?? '';
       if (url.isEmpty) throw const ApiException('Yükleme yanıtı geçersiz');

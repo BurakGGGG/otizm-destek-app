@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../core/network/media.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/widgets/empty_state.dart';
@@ -349,7 +350,8 @@ class _TaskCardState extends ConsumerState<_TaskCard> {
   bool _expanded = false;
 
   Future<void> _openMaterial(String url) async {
-    final uri = Uri.tryParse(url);
+    // Backend'den gelen dosya adresleri göreli olabiliyor (`/api/upload/...`).
+    final uri = Uri.tryParse(absoluteMediaUrl(url) ?? url);
     if (uri == null) return;
     await launchUrl(uri, mode: LaunchMode.externalApplication);
   }
@@ -621,7 +623,9 @@ class _SubmissionSection extends ConsumerWidget {
                         const SizedBox(height: 6),
                         InkWell(
                           onTap: () async {
-                            final uri = Uri.tryParse(evidence);
+                            final uri = Uri.tryParse(
+                              absoluteMediaUrl(evidence) ?? evidence,
+                            );
                             if (uri != null) {
                               await launchUrl(uri,
                                   mode: LaunchMode.externalApplication);

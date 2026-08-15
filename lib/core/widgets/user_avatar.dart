@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../network/media.dart';
+import '../providers.dart';
 
 /// İsim baş harfli (veya görselli) yuvarlak avatar. Profil görseli varsa onu,
 /// yoksa isimden türetilen baş harfleri sabit bir renkle gösterir.
-class UserAvatar extends StatelessWidget {
+///
+/// Görsel yüklenemezse (ör. dosya silinmiş) sessizce baş harflere döner.
+class UserAvatar extends ConsumerStatefulWidget {
   const UserAvatar({
     super.key,
     required this.name,
@@ -17,6 +23,22 @@ class UserAvatar extends StatelessWidget {
 
   /// İsim boşsa kullanılacak ikon (varsayılan: kişi).
   final IconData? fallbackIcon;
+
+  @override
+  ConsumerState<UserAvatar> createState() => _UserAvatarState();
+}
+
+class _UserAvatarState extends ConsumerState<UserAvatar> {
+  bool _imageFailed = false;
+
+  @override
+  void didUpdateWidget(UserAvatar oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.imageUrl != widget.imageUrl) _imageFailed = false;
+  }
+
+  String get name => widget.name;
+  double get radius => widget.radius;
 
   // Sakin, düşük uyarımlı palet (tema ile uyumlu).
   static const _palette = [
@@ -55,12 +77,17 @@ class UserAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final hasImage = imageUrl != null && imageUrl!.isNotEmpty;
-    if (hasImage) {
+    final image = _imageFailed
+        ? null
+        : mediaImageProvider(widget.imageUrl, ref.watch(dioProvider));
+    if (image != null) {
       return CircleAvatar(
         radius: radius,
         backgroundColor: _color.withValues(alpha: 0.15),
-        backgroundImage: NetworkImage(imageUrl!),
+        backgroundImage: image,
+        onBackgroundImageError: (_, _) {
+          if (mounted) setState(() => _imageFailed = true);
+        },
       );
     }
     final initials = _initials;
@@ -77,7 +104,11 @@ class UserAvatar extends StatelessWidget {
                 fontSize: radius * 0.72,
               ),
             )
-          : Icon(fallbackIcon ?? Icons.person, color: color, size: radius),
+          : Icon(
+              widget.fallbackIcon ?? Icons.person,
+              color: color,
+              size: radius,
+            ),
     );
   }
 }

@@ -5,6 +5,8 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../core/haptics.dart';
 import '../../../core/network/api_exception.dart';
+import '../../../core/network/media.dart';
+import '../../../core/providers.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/widgets/skeleton.dart';
@@ -58,7 +60,12 @@ class _ChildDetailScreenState extends ConsumerState<ChildDetailScreen> {
     setState(() => _uploadingPhoto = true);
     try {
       final repo = ref.read(childRepositoryProvider);
-      final url = await repo.uploadImage(picked.path, picked.name);
+      final url = await repo.uploadImage(
+        picked.path,
+        picked.name,
+        scopeType: 'CHILD_PROFILE',
+        scopeId: child.id,
+      );
       await repo.updatePhoto(child, url);
       if (!mounted) return;
       setState(() => _uploadingPhoto = false);
@@ -214,7 +221,7 @@ class _ChildDetailScreenState extends ConsumerState<ChildDetailScreen> {
   }
 }
 
-class _Header extends StatelessWidget {
+class _Header extends ConsumerWidget {
   const _Header({
     required this.child,
     required this.uploading,
@@ -226,11 +233,14 @@ class _Header extends StatelessWidget {
   final VoidCallback onChangePhoto;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t;
     final colors = context.colors;
     final text = Theme.of(context).textTheme;
-    final imageUrl = child.profileImageUrl;
+    final photo = mediaImageProvider(
+      child.profileImageUrl,
+      ref.watch(dioProvider),
+    );
     final age = child.ageYears;
 
     return Row(
@@ -240,10 +250,8 @@ class _Header extends StatelessWidget {
             CircleAvatar(
               radius: 36,
               backgroundColor: colors.primary.withValues(alpha: .12),
-              backgroundImage: imageUrl != null && imageUrl.isNotEmpty
-                  ? NetworkImage(imageUrl)
-                  : null,
-              child: imageUrl == null || imageUrl.isEmpty
+              backgroundImage: photo,
+              child: photo == null
                   ? Text(
                       child.name.isNotEmpty
                           ? child.name.characters.first.toUpperCase()
