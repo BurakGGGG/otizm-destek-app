@@ -207,6 +207,12 @@ settings:
   deleteConfirmLabel: Type "$keyword" to confirm
   errorDeleteConfirm: The confirmation text does not match.
 
+legal:
+  title: Legal documents
+  subtitle: Privacy notice, privacy policy, terms of use and medical safety warnings. The binding version is Turkish, so the texts are shown in Turkish.
+  versionLine: Text version $version · Last updated $date
+  readNotice: Read the KVKK privacy notice
+
 kvkk:
   title: Data rights and consents
   rightsTitle: Your rights under KVKK art. 11

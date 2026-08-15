@@ -51,6 +51,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$password$en password = _Translations$password$en._(_root);
 	@override late final _Translations$register$en register = _Translations$register$en._(_root);
 	@override late final _Translations$settings$en settings = _Translations$settings$en._(_root);
+	@override late final _Translations$legal$en legal = _Translations$legal$en._(_root);
 	@override late final _Translations$kvkk$en kvkk = _Translations$kvkk$en._(_root);
 	@override late final _Translations$onboarding$en onboarding = _Translations$onboarding$en._(_root);
 	@override late final _Translations$nav$en nav = _Translations$nav$en._(_root);
@@ -384,6 +385,19 @@ class _Translations$settings$en extends Translations$settings$tr {
 	@override String get deleteKeyword => 'DELETE';
 	@override String deleteConfirmLabel({required Object keyword}) => 'Type "${keyword}" to confirm';
 	@override String get errorDeleteConfirm => 'The confirmation text does not match.';
+}
+
+// Path: legal
+class _Translations$legal$en extends Translations$legal$tr {
+	_Translations$legal$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Legal documents';
+	@override String get subtitle => 'Privacy notice, privacy policy, terms of use and medical safety warnings. The binding version is Turkish, so the texts are shown in Turkish.';
+	@override String versionLine({required Object version, required Object date}) => 'Text version ${version} · Last updated ${date}';
+	@override String get readNotice => 'Read the KVKK privacy notice';
 }
 
 // Path: kvkk
@@ -2092,6 +2106,10 @@ extension on TranslationsEn {
 			'settings.deleteKeyword' => 'DELETE',
 			'settings.deleteConfirmLabel' => ({required Object keyword}) => 'Type "${keyword}" to confirm',
 			'settings.errorDeleteConfirm' => 'The confirmation text does not match.',
+			'legal.title' => 'Legal documents',
+			'legal.subtitle' => 'Privacy notice, privacy policy, terms of use and medical safety warnings. The binding version is Turkish, so the texts are shown in Turkish.',
+			'legal.versionLine' => ({required Object version, required Object date}) => 'Text version ${version} · Last updated ${date}',
+			'legal.readNotice' => 'Read the KVKK privacy notice',
 			'kvkk.title' => 'Data rights and consents',
 			'kvkk.rightsTitle' => 'Your rights under KVKK art. 11',
 			'kvkk.rightsBody' => 'You may learn whether your data is processed, request correction or deletion, learn which third parties it was shared with, and object to automated analysis results. Requests are answered within 30 days at the latest.',
@@ -2417,12 +2435,12 @@ extension on TranslationsEn {
 			'meds.add' => 'Add Medication',
 			'meds.addTitle' => 'Add New Medication',
 			'meds.editTitle' => 'Edit Medication',
+			_ => null,
+		} ?? switch (path) {
 			'meds.empty' => 'No medications yet. Add your child\'s medications and supplements here.',
 			'meds.name' => 'Medication / Supplement Name',
 			'meds.nameHint' => 'E.g. Omega-3',
 			'meds.dosage' => 'Dose',
-			_ => null,
-		} ?? switch (path) {
 			'meds.unit' => 'Unit',
 			'meds.frequency' => 'Frequency',
 			'meds.freqDaily' => 'Once a day',
@@ -2931,12 +2949,12 @@ extension on TranslationsEn {
 			'crisis.breathingInhale' => 'Breathe In',
 			'crisis.breathingExhale' => 'Breathe Out',
 			'crisis.breathingSeconds' => 'seconds',
+			_ => null,
+		} ?? switch (path) {
 			'crisis.stepsLabel' => 'What To Do?',
 			'crisis.avoidLabel' => 'What To Avoid',
 			'crisis.emergencyLabel' => 'Suggested Emergency Line',
 			'crisis.contactsTitle' => 'Emergency Numbers',
-			_ => null,
-		} ?? switch (path) {
 			'crisis.disclaimer' => 'This guide is for general information; in emergencies or medical situations always call your local emergency number.',
 			'crisis.contact112Label' => 'Emergency Health and Safety',
 			'crisis.contact112Desc' => 'Ambulance, Police, Fire',

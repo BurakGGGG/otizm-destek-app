@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/haptics.dart';
 import '../../../core/network/api_exception.dart';
@@ -92,6 +93,15 @@ class _RightsCard extends StatelessWidget {
                   Text(t.kvkk.rightsTitle, style: text.titleSmall),
                   const SizedBox(height: 4),
                   Text(t.kvkk.rightsBody, style: text.bodySmall),
+                  const SizedBox(height: 4),
+                  Align(
+                    alignment: AlignmentDirectional.centerStart,
+                    child: TextButton.icon(
+                      onPressed: () => context.push('/legal/kvkk'),
+                      icon: const Icon(Icons.open_in_new, size: 16),
+                      label: Text(t.legal.readNotice),
+                    ),
+                  ),
                 ],
               ),
             ),

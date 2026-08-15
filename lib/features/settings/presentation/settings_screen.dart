@@ -182,6 +182,14 @@ class SettingsScreen extends ConsumerWidget {
                   trailing: const Icon(Icons.chevron_right),
                   onTap: () => context.push('/kvkk'),
                 ),
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  leading: const Icon(Icons.description_outlined),
+                  title: Text(t.legal.title),
+                  subtitle: Text(t.legal.subtitle, maxLines: 2),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () => context.push('/legal'),
+                ),
                 const _DownloadDataTile(),
                 ListTile(
                   contentPadding: EdgeInsets.zero,

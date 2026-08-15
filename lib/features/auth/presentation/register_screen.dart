@@ -229,6 +229,18 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
               controlAffinity: ListTileControlAffinity.leading,
               contentPadding: EdgeInsets.zero,
               title: Text(t.register.kvkkConsent, style: text.bodySmall),
+              subtitle: Align(
+                alignment: AlignmentDirectional.centerStart,
+                child: TextButton(
+                  onPressed: () => context.push('/legal/kvkk'),
+                  style: TextButton.styleFrom(
+                    padding: EdgeInsets.zero,
+                    minimumSize: Size.zero,
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  ),
+                  child: Text(t.legal.readNotice, style: text.labelSmall),
+                ),
+              ),
             ),
             const SizedBox(height: 8),
             FilledButton(

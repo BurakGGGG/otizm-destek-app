@@ -208,6 +208,12 @@ settings:
   deleteConfirmLabel: Onaylamak için "$keyword" yazın
   errorDeleteConfirm: Onay metni eşleşmiyor.
 
+legal:
+  title: Yasal metinler
+  subtitle: Aydınlatma metni, gizlilik politikası, kullanım şartları ve tıbbi uyarılar. Metinler bağlayıcı sürüm olduğu için Türkçe gösterilir.
+  versionLine: Metin sürümü $version · Son güncelleme $date
+  readNotice: KVKK aydınlatma metnini oku
+
 kvkk:
   title: KVKK ve rızalar
   rightsTitle: KVKK md. 11 haklarınız

@@ -52,6 +52,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$password$tr password = Translations$password$tr.internal(_root);
 	late final Translations$register$tr register = Translations$register$tr.internal(_root);
 	late final Translations$settings$tr settings = Translations$settings$tr.internal(_root);
+	late final Translations$legal$tr legal = Translations$legal$tr.internal(_root);
 	late final Translations$kvkk$tr kvkk = Translations$kvkk$tr.internal(_root);
 	late final Translations$onboarding$tr onboarding = Translations$onboarding$tr.internal(_root);
 	late final Translations$nav$tr nav = Translations$nav$tr.internal(_root);
@@ -728,6 +729,27 @@ class Translations$settings$tr {
 
 	/// tr: 'Onay metni eşleşmiyor.'
 	String get errorDeleteConfirm => 'Onay metni eşleşmiyor.';
+}
+
+// Path: legal
+class Translations$legal$tr {
+	Translations$legal$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Yasal metinler'
+	String get title => 'Yasal metinler';
+
+	/// tr: 'Aydınlatma metni, gizlilik politikası, kullanım şartları ve tıbbi uyarılar. Metinler bağlayıcı sürüm olduğu için Türkçe gösterilir.'
+	String get subtitle => 'Aydınlatma metni, gizlilik politikası, kullanım şartları ve tıbbi uyarılar. Metinler bağlayıcı sürüm olduğu için Türkçe gösterilir.';
+
+	/// tr: 'Metin sürümü $version · Son güncelleme $date'
+	String versionLine({required Object version, required Object date}) => 'Metin sürümü ${version} · Son güncelleme ${date}';
+
+	/// tr: 'KVKK aydınlatma metnini oku'
+	String get readNotice => 'KVKK aydınlatma metnini oku';
 }
 
 // Path: kvkk
@@ -4532,6 +4554,10 @@ extension on Translations {
 			'settings.deleteKeyword' => 'SİL',
 			'settings.deleteConfirmLabel' => ({required Object keyword}) => 'Onaylamak için "${keyword}" yazın',
 			'settings.errorDeleteConfirm' => 'Onay metni eşleşmiyor.',
+			'legal.title' => 'Yasal metinler',
+			'legal.subtitle' => 'Aydınlatma metni, gizlilik politikası, kullanım şartları ve tıbbi uyarılar. Metinler bağlayıcı sürüm olduğu için Türkçe gösterilir.',
+			'legal.versionLine' => ({required Object version, required Object date}) => 'Metin sürümü ${version} · Son güncelleme ${date}',
+			'legal.readNotice' => 'KVKK aydınlatma metnini oku',
 			'kvkk.title' => 'KVKK ve rızalar',
 			'kvkk.rightsTitle' => 'KVKK md. 11 haklarınız',
 			'kvkk.rightsBody' => 'Verilerinizin işlenip işlenmediğini öğrenme, düzeltilmesini veya silinmesini isteme, aktarıldığı üçüncü kişileri bilme ve otomatik analiz sonuçlarına itiraz etme hakkınız var. Başvurularınız en geç 30 gün içinde yanıtlanır.',
@@ -4857,12 +4883,12 @@ extension on Translations {
 			'meds.add' => 'İlaç Ekle',
 			'meds.addTitle' => 'Yeni İlaç Ekle',
 			'meds.editTitle' => 'İlacı Düzenle',
+			_ => null,
+		} ?? switch (path) {
 			'meds.empty' => 'Henüz ilaç kaydı yok. Çocuğunuzun ilaç ve takviyelerini buraya ekleyin.',
 			'meds.name' => 'İlaç / Takviye Adı',
 			'meds.nameHint' => 'Örn: Omega-3',
 			'meds.dosage' => 'Doz',
-			_ => null,
-		} ?? switch (path) {
 			'meds.unit' => 'Birim',
 			'meds.frequency' => 'Sıklık',
 			'meds.freqDaily' => 'Günde 1',
@@ -5371,12 +5397,12 @@ extension on Translations {
 			'crisis.breathingInhale' => 'Nefes Al',
 			'crisis.breathingExhale' => 'Nefes Ver',
 			'crisis.breathingSeconds' => 'saniye',
+			_ => null,
+		} ?? switch (path) {
 			'crisis.stepsLabel' => 'Ne Yapmalı?',
 			'crisis.avoidLabel' => 'Kaçınılması Gerekenler',
 			'crisis.emergencyLabel' => 'Önerilen Acil Hat',
 			'crisis.contactsTitle' => 'Acil Numaralar',
-			_ => null,
-		} ?? switch (path) {
 			'crisis.disclaimer' => 'Bu rehber genel bilgilendirme amaçlıdır; acil ve tıbbi durumlarda mutlaka 112\'yi arayın.',
 			'crisis.contact112Label' => 'Acil Sağlık ve Güvenlik',
 			'crisis.contact112Desc' => 'Ambulans, Polis, İtfaiye',

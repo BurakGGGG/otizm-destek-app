@@ -23,6 +23,7 @@ import '../../features/emergency/presentation/emergency_screen.dart';
 import '../../features/groups/presentation/groups_screen.dart';
 import '../../features/home/presentation/home_shell.dart';
 import '../../features/knowledge/presentation/knowledge_screen.dart';
+import '../../features/legal/presentation/legal_screen.dart';
 import '../../features/messaging/presentation/conversation_thread_screen.dart';
 import '../../features/messaging/presentation/conversations_screen.dart';
 import '../../features/mood/presentation/daily_tracker_screen.dart';
@@ -77,11 +78,15 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       if (status == AuthStatus.unknown) {
         return loc == '/splash' ? null : '/splash';
       }
+      // Yasal metinler oturum gerektirmez: kayıt ekranındaki KVKK onayından
+      // önce okunabilmeli (web'de de genel sayfalardır).
+      final isPublicPage = loc.startsWith('/legal');
       final onAuthScreen = loc == '/login' ||
           loc == '/register' ||
           loc == '/forgot-password' ||
           loc == '/reset-password' ||
-          loc == '/verify-email';
+          loc == '/verify-email' ||
+          isPublicPage;
       if (status == AuthStatus.unauthenticated) {
         return onAuthScreen ? null : '/login';
       }
@@ -89,11 +94,12 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       // İlk giriş sihirbazı tamamlanmadıysa (backend `onboardingCompleted`)
       // kullanıcı önce oraya alınır — web `/baslangic` ile aynı davranış.
       final needsOnboarding = !(auth.user?.onboardingCompleted ?? true);
-      if (needsOnboarding) {
+      if (needsOnboarding && !isPublicPage) {
         return loc == '/onboarding' ? null : '/onboarding';
       }
-      if (loc == '/onboarding') return '/home';
-      if (onAuthScreen || loc == '/splash') return '/home';
+      if (loc == '/onboarding' && !needsOnboarding) return '/home';
+      // Yasal metinler oturum açıkken de doğrudan açılabilir.
+      if ((onAuthScreen && !isPublicPage) || loc == '/splash') return '/home';
       return null;
     },
     routes: [
@@ -135,6 +141,13 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/account', builder: (_, _) => const AccountScreen()),
       GoRoute(path: '/settings', builder: (_, _) => const SettingsScreen()),
       GoRoute(path: '/kvkk', builder: (_, _) => const KvkkScreen()),
+      GoRoute(path: '/legal', builder: (_, _) => const LegalIndexScreen()),
+      GoRoute(
+        path: '/legal/:kind',
+        builder: (_, state) => LegalDocumentScreen(
+          kind: legalKindFromName(state.pathParameters['kind']),
+        ),
+      ),
       GoRoute(path: '/help', builder: (_, _) => const HelpScreen()),
       GoRoute(
         path: '/notifications',
