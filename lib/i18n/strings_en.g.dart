@@ -94,6 +94,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$errors$en errors = _Translations$errors$en._(_root);
 	@override late final _Translations$guide$en guide = _Translations$guide$en._(_root);
 	@override late final _Translations$community$en community = _Translations$community$en._(_root);
+	@override late final _Translations$reviews$en reviews = _Translations$reviews$en._(_root);
 }
 
 // Path: app
@@ -593,6 +594,16 @@ class _Translations$specialists$en extends Translations$specialists$tr {
 	@override String get noResults => 'No specialists match your search.';
 	@override String get ratingNew => 'New';
 	@override String reviews({required Object count}) => '${count} reviews';
+	@override String get filters => 'Filters';
+	@override String get cityLabel => 'City';
+	@override String get sortLabel => 'Sort';
+	@override String get sortDefault => 'Default';
+	@override String get sortRating => 'By rating';
+	@override String get sortName => 'By name';
+	@override String get onlyAccepting => 'Only experts accepting new clients';
+	@override String get onlyVerified => 'Only verified experts';
+	@override String get clearFilters => 'Clear';
+	@override String get applyFilters => 'Apply';
 }
 
 // Path: progress
@@ -2150,6 +2161,26 @@ class _Translations$community$en extends Translations$community$tr {
 	@override String get weeklyText => 'Join short experience threads around a single topic.';
 }
 
+// Path: reviews
+class _Translations$reviews$en extends Translations$reviews$tr {
+	_Translations$reviews$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String title({required Object count}) => 'Reviews (${count})';
+	@override String get empty => 'No reviews for this expert yet.';
+	@override String get write => 'Write a review';
+	@override String get edit => 'Edit my review';
+	@override String get ratingLabel => 'Your rating';
+	@override String get commentHint => 'Briefly describe your experience (optional)…';
+	@override String get save => 'Save';
+	@override String get delete => 'Delete';
+	@override String get deleteTitle => 'Delete review';
+	@override String get deleteConfirm => 'Are you sure you want to delete this review?';
+	@override String get someone => 'A parent';
+}
+
 // Path: crisis.cards
 class _Translations$crisis$cards$en extends Translations$crisis$cards$tr {
 	_Translations$crisis$cards$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -2585,6 +2616,16 @@ extension on TranslationsEn {
 			'specialists.noResults' => 'No specialists match your search.',
 			'specialists.ratingNew' => 'New',
 			'specialists.reviews' => ({required Object count}) => '${count} reviews',
+			'specialists.filters' => 'Filters',
+			'specialists.cityLabel' => 'City',
+			'specialists.sortLabel' => 'Sort',
+			'specialists.sortDefault' => 'Default',
+			'specialists.sortRating' => 'By rating',
+			'specialists.sortName' => 'By name',
+			'specialists.onlyAccepting' => 'Only experts accepting new clients',
+			'specialists.onlyVerified' => 'Only verified experts',
+			'specialists.clearFilters' => 'Clear',
+			'specialists.applyFilters' => 'Apply',
 			'progress.title' => 'Progress Tracking',
 			'progress.subtitle' => 'Goals and development notes.',
 			'progress.addRecord' => 'Add New Record',
@@ -2770,6 +2811,8 @@ extension on TranslationsEn {
 			'routineForm.nameLabel' => 'Routine Name',
 			'routineForm.nameHint' => 'e.g. Morning Routine',
 			'routineForm.descriptionLabel' => 'Description (optional)',
+			_ => null,
+		} ?? switch (path) {
 			'routineForm.descriptionHint' => 'What is this routine for?',
 			'routineForm.save' => 'Save',
 			'routineForm.errorName' => 'Please enter a routine name.',
@@ -2780,8 +2823,6 @@ extension on TranslationsEn {
 			'dailyTracker.todayTitle' => 'How was today?',
 			'dailyTracker.today' => 'Today',
 			'dailyTracker.mood1' => 'Very Bad',
-			_ => null,
-		} ?? switch (path) {
 			'dailyTracker.mood2' => 'Bad',
 			'dailyTracker.mood3' => 'Okay',
 			'dailyTracker.mood4' => 'Good',
@@ -3284,6 +3325,8 @@ extension on TranslationsEn {
 			'forum.add' => 'Share',
 			'forum.loadMore' => 'Load More',
 			'forum.posted' => 'Post shared.',
+			_ => null,
+		} ?? switch (path) {
 			'forum.anonymousUser' => 'Anonymous User',
 			'forum.expertBadge' => 'Expert',
 			'forum.pinnedBadge' => 'Pinned',
@@ -3294,8 +3337,6 @@ extension on TranslationsEn {
 			'forum.noComments' => 'No comments yet. Be the first to write one.',
 			'forum.commentHint' => 'Write a comment…',
 			'forum.replyHint' => 'Write your reply…',
-			_ => null,
-		} ?? switch (path) {
 			'forum.replyingTo' => ({required Object name}) => 'Replying to ${name}',
 			'forum.reply' => 'Reply',
 			'forum.acceptAnswer' => 'Best Answer',
@@ -3798,6 +3839,8 @@ extension on TranslationsEn {
 			'guide.pageWallPurpose' => 'A freer support space for feelings and experiences — you can stay anonymous.',
 			'guide.pageWallWhen' => 'When you would rather open up than ask a question.',
 			'guide.pageWallKeywords' => 'support wall, feeling, sharing, support, anonymous',
+			_ => null,
+		} ?? switch (path) {
 			'guide.pageMeetups' => 'Local Meetups',
 			'guide.pageMeetupsPurpose' => 'Lets you meet families in your city in real life.',
 			'guide.pageMeetupsWhen' => 'When you want to plan a face-to-face event nearby.',
@@ -3808,8 +3851,6 @@ extension on TranslationsEn {
 			'guide.pageWeeklyKeywords' => 'weekly question, community, experience, sharing',
 			'guide.pageSimilar' => 'Similar Families',
 			'guide.pageSimilarPurpose' => 'Introduces you to families going through a similar process in terms of age and needs.',
-			_ => null,
-		} ?? switch (path) {
 			'guide.pageSimilarWhen' => 'When you want to find the families you have most in common with.',
 			'guide.pageSimilarKeywords' => 'similar families, matching, peer, meeting',
 			'guide.pageGroups' => 'Support Groups',
@@ -3871,6 +3912,17 @@ extension on TranslationsEn {
 			'community.forumText' => 'Ask the community and read answers from families and experts.',
 			'community.wallText' => 'Share how you feel without judgement; stay anonymous if you like.',
 			'community.weeklyText' => 'Join short experience threads around a single topic.',
+			'reviews.title' => ({required Object count}) => 'Reviews (${count})',
+			'reviews.empty' => 'No reviews for this expert yet.',
+			'reviews.write' => 'Write a review',
+			'reviews.edit' => 'Edit my review',
+			'reviews.ratingLabel' => 'Your rating',
+			'reviews.commentHint' => 'Briefly describe your experience (optional)…',
+			'reviews.save' => 'Save',
+			'reviews.delete' => 'Delete',
+			'reviews.deleteTitle' => 'Delete review',
+			'reviews.deleteConfirm' => 'Are you sure you want to delete this review?',
+			'reviews.someone' => 'A parent',
 			_ => null,
 		};
 	}

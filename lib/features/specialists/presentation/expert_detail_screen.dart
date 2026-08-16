@@ -12,6 +12,7 @@ import '../../auth/presentation/auth_controller.dart';
 import '../../messaging/data/messaging_repository.dart';
 import '../../messaging/presentation/conversation_thread_screen.dart';
 import '../domain/expert.dart';
+import 'widgets/expert_reviews_section.dart';
 
 /// Uzman detay ekranı — liste öğesinden gelen [Expert] ile beslenir.
 class ExpertDetailScreen extends ConsumerWidget {
@@ -123,6 +124,8 @@ class ExpertDetailScreen extends ConsumerWidget {
               canMessage: !isSelf,
               showNotAccepting: isParent && !isSelf && !expert.verified,
             ),
+            const SizedBox(height: 28),
+            ExpertReviewsSection(expert: expert, canReview: isParent && !isSelf),
           ],
         ),
       ),

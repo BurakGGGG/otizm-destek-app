@@ -95,6 +95,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$errors$tr errors = Translations$errors$tr.internal(_root);
 	late final Translations$guide$tr guide = Translations$guide$tr.internal(_root);
 	late final Translations$community$tr community = Translations$community$tr.internal(_root);
+	late final Translations$reviews$tr reviews = Translations$reviews$tr.internal(_root);
 }
 
 // Path: app
@@ -1205,6 +1206,36 @@ class Translations$specialists$tr {
 
 	/// tr: '$count değerlendirme'
 	String reviews({required Object count}) => '${count} değerlendirme';
+
+	/// tr: 'Filtreler'
+	String get filters => 'Filtreler';
+
+	/// tr: 'Şehir'
+	String get cityLabel => 'Şehir';
+
+	/// tr: 'Sıralama'
+	String get sortLabel => 'Sıralama';
+
+	/// tr: 'Varsayılan'
+	String get sortDefault => 'Varsayılan';
+
+	/// tr: 'Puana göre'
+	String get sortRating => 'Puana göre';
+
+	/// tr: 'İsme göre'
+	String get sortName => 'İsme göre';
+
+	/// tr: 'Yalnızca randevu kabul edenler'
+	String get onlyAccepting => 'Yalnızca randevu kabul edenler';
+
+	/// tr: 'Yalnızca doğrulanmış uzmanlar'
+	String get onlyVerified => 'Yalnızca doğrulanmış uzmanlar';
+
+	/// tr: 'Temizle'
+	String get clearFilters => 'Temizle';
+
+	/// tr: 'Uygula'
+	String get applyFilters => 'Uygula';
 }
 
 // Path: progress
@@ -5210,6 +5241,48 @@ class Translations$community$tr {
 	String get weeklyText => 'Tek bir konu etrafında kısa deneyim paylaşımlarına katılın.';
 }
 
+// Path: reviews
+class Translations$reviews$tr {
+	Translations$reviews$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Değerlendirmeler ($count)'
+	String title({required Object count}) => 'Değerlendirmeler (${count})';
+
+	/// tr: 'Bu uzman için henüz değerlendirme yok.'
+	String get empty => 'Bu uzman için henüz değerlendirme yok.';
+
+	/// tr: 'Değerlendirme yaz'
+	String get write => 'Değerlendirme yaz';
+
+	/// tr: 'Değerlendirmemi düzenle'
+	String get edit => 'Değerlendirmemi düzenle';
+
+	/// tr: 'Puanınız'
+	String get ratingLabel => 'Puanınız';
+
+	/// tr: 'Deneyiminizi kısaca anlatın (isteğe bağlı)…'
+	String get commentHint => 'Deneyiminizi kısaca anlatın (isteğe bağlı)…';
+
+	/// tr: 'Kaydet'
+	String get save => 'Kaydet';
+
+	/// tr: 'Sil'
+	String get delete => 'Sil';
+
+	/// tr: 'Değerlendirmeyi sil'
+	String get deleteTitle => 'Değerlendirmeyi sil';
+
+	/// tr: 'Bu değerlendirmeyi silmek istediğinize emin misiniz?'
+	String get deleteConfirm => 'Bu değerlendirmeyi silmek istediğinize emin misiniz?';
+
+	/// tr: 'Bir veli'
+	String get someone => 'Bir veli';
+}
+
 // Path: crisis.cards
 class Translations$crisis$cards$tr {
 	Translations$crisis$cards$tr.internal(this._root);
@@ -5669,6 +5742,16 @@ extension on Translations {
 			'specialists.noResults' => 'Aramanıza uygun uzman bulunamadı.',
 			'specialists.ratingNew' => 'Yeni',
 			'specialists.reviews' => ({required Object count}) => '${count} değerlendirme',
+			'specialists.filters' => 'Filtreler',
+			'specialists.cityLabel' => 'Şehir',
+			'specialists.sortLabel' => 'Sıralama',
+			'specialists.sortDefault' => 'Varsayılan',
+			'specialists.sortRating' => 'Puana göre',
+			'specialists.sortName' => 'İsme göre',
+			'specialists.onlyAccepting' => 'Yalnızca randevu kabul edenler',
+			'specialists.onlyVerified' => 'Yalnızca doğrulanmış uzmanlar',
+			'specialists.clearFilters' => 'Temizle',
+			'specialists.applyFilters' => 'Uygula',
 			'progress.title' => 'Gelişim Takibi',
 			'progress.subtitle' => 'Hedefler ve gelişim notları.',
 			'progress.addRecord' => 'Yeni Kayıt Ekle',
@@ -5854,6 +5937,8 @@ extension on Translations {
 			'routineForm.nameLabel' => 'Rutin Adı',
 			'routineForm.nameHint' => 'Örn. Sabah Rutini',
 			'routineForm.descriptionLabel' => 'Açıklama (isteğe bağlı)',
+			_ => null,
+		} ?? switch (path) {
 			'routineForm.descriptionHint' => 'Bu rutin ne için?',
 			'routineForm.save' => 'Kaydet',
 			'routineForm.errorName' => 'Lütfen bir rutin adı girin.',
@@ -5864,8 +5949,6 @@ extension on Translations {
 			'dailyTracker.todayTitle' => 'Bugün nasıldı?',
 			'dailyTracker.today' => 'Bugün',
 			'dailyTracker.mood1' => 'Çok Kötü',
-			_ => null,
-		} ?? switch (path) {
 			'dailyTracker.mood2' => 'Kötü',
 			'dailyTracker.mood3' => 'Orta',
 			'dailyTracker.mood4' => 'İyi',
@@ -6368,6 +6451,8 @@ extension on Translations {
 			'forum.add' => 'Paylaş',
 			'forum.loadMore' => 'Daha Fazla Yükle',
 			'forum.posted' => 'Gönderi paylaşıldı.',
+			_ => null,
+		} ?? switch (path) {
 			'forum.anonymousUser' => 'Anonim Kullanıcı',
 			'forum.expertBadge' => 'Uzman',
 			'forum.pinnedBadge' => 'Sabitlenmiş',
@@ -6378,8 +6463,6 @@ extension on Translations {
 			'forum.noComments' => 'Henüz yorum yok. İlk yorumu siz yazın.',
 			'forum.commentHint' => 'Bir yorum yazın…',
 			'forum.replyHint' => 'Yanıtınızı yazın…',
-			_ => null,
-		} ?? switch (path) {
 			'forum.replyingTo' => ({required Object name}) => '${name} kişisine yanıt veriliyor',
 			'forum.reply' => 'Yanıtla',
 			'forum.acceptAnswer' => 'En İyi Cevap',
@@ -6882,6 +6965,8 @@ extension on Translations {
 			'guide.pageWallPurpose' => 'Duygu ve deneyim paylaşımı için daha serbest bir destek alanıdır; istersen anonim kalırsın.',
 			'guide.pageWallWhen' => 'Soru sormaktan çok içinizi dökmek veya destek görmek istediğinizde.',
 			'guide.pageWallKeywords' => 'dertleşme, duygu, paylaşım, destek, anonim',
+			_ => null,
+		} ?? switch (path) {
 			'guide.pageMeetups' => 'Yerel Buluşmalar',
 			'guide.pageMeetupsPurpose' => 'Aynı şehirdeki ailelerle gerçek hayatta tanışıp bir araya gelmenizi sağlar.',
 			'guide.pageMeetupsWhen' => 'Çevrenizdeki ailelerle yüz yüze etkinlik planlamak istediğinizde.',
@@ -6892,8 +6977,6 @@ extension on Translations {
 			'guide.pageWeeklyKeywords' => 'haftanın sorusu, topluluk, deneyim, paylaşım',
 			'guide.pageSimilar' => 'Benzer Aileler',
 			'guide.pageSimilarPurpose' => 'Çocuğunuzun yaşı ve ihtiyaçları açısından benzer süreçler yaşayan ailelerle tanıştırır.',
-			_ => null,
-		} ?? switch (path) {
 			'guide.pageSimilarWhen' => 'Sizinle en çok ortak noktası olan aileleri bulmak istediğinizde.',
 			'guide.pageSimilarKeywords' => 'benzer aileler, eşleşme, akran, tanışma',
 			'guide.pageGroups' => 'Destek Grupları',
@@ -6955,6 +7038,17 @@ extension on Translations {
 			'community.forumText' => 'Topluluğa soru sorun, ailelerin ve uzmanların yanıtlarını okuyun.',
 			'community.wallText' => 'Yargılanmadan duygunuzu paylaşın; isterseniz anonim kalın.',
 			'community.weeklyText' => 'Tek bir konu etrafında kısa deneyim paylaşımlarına katılın.',
+			'reviews.title' => ({required Object count}) => 'Değerlendirmeler (${count})',
+			'reviews.empty' => 'Bu uzman için henüz değerlendirme yok.',
+			'reviews.write' => 'Değerlendirme yaz',
+			'reviews.edit' => 'Değerlendirmemi düzenle',
+			'reviews.ratingLabel' => 'Puanınız',
+			'reviews.commentHint' => 'Deneyiminizi kısaca anlatın (isteğe bağlı)…',
+			'reviews.save' => 'Kaydet',
+			'reviews.delete' => 'Sil',
+			'reviews.deleteTitle' => 'Değerlendirmeyi sil',
+			'reviews.deleteConfirm' => 'Bu değerlendirmeyi silmek istediğinize emin misiniz?',
+			'reviews.someone' => 'Bir veli',
 			_ => null,
 		};
 	}

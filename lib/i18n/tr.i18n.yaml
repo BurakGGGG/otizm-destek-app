@@ -357,6 +357,16 @@ specialists:
   noResults: Aramanıza uygun uzman bulunamadı.
   ratingNew: Yeni
   reviews: $count değerlendirme
+  filters: Filtreler
+  cityLabel: Şehir
+  sortLabel: Sıralama
+  sortDefault: Varsayılan
+  sortRating: Puana göre
+  sortName: İsme göre
+  onlyAccepting: Yalnızca randevu kabul edenler
+  onlyVerified: Yalnızca doğrulanmış uzmanlar
+  clearFilters: Temizle
+  applyFilters: Uygula
 
 progress:
   title: Gelişim Takibi
@@ -1846,3 +1856,16 @@ community:
   forumText: Topluluğa soru sorun, ailelerin ve uzmanların yanıtlarını okuyun.
   wallText: Yargılanmadan duygunuzu paylaşın; isterseniz anonim kalın.
   weeklyText: Tek bir konu etrafında kısa deneyim paylaşımlarına katılın.
+
+reviews:
+  title: Değerlendirmeler ($count)
+  empty: Bu uzman için henüz değerlendirme yok.
+  write: Değerlendirme yaz
+  edit: Değerlendirmemi düzenle
+  ratingLabel: Puanınız
+  commentHint: Deneyiminizi kısaca anlatın (isteğe bağlı)…
+  save: Kaydet
+  delete: Sil
+  deleteTitle: Değerlendirmeyi sil
+  deleteConfirm: Bu değerlendirmeyi silmek istediğinize emin misiniz?
+  someone: Bir veli

@@ -356,6 +356,16 @@ specialists:
   noResults: No specialists match your search.
   ratingNew: New
   reviews: $count reviews
+  filters: Filters
+  cityLabel: City
+  sortLabel: Sort
+  sortDefault: Default
+  sortRating: By rating
+  sortName: By name
+  onlyAccepting: Only experts accepting new clients
+  onlyVerified: Only verified experts
+  clearFilters: Clear
+  applyFilters: Apply
 
 progress:
   title: Progress Tracking
@@ -1835,3 +1845,16 @@ community:
   forumText: Ask the community and read answers from families and experts.
   wallText: Share how you feel without judgement; stay anonymous if you like.
   weeklyText: Join short experience threads around a single topic.
+
+reviews:
+  title: Reviews ($count)
+  empty: No reviews for this expert yet.
+  write: Write a review
+  edit: Edit my review
+  ratingLabel: Your rating
+  commentHint: Briefly describe your experience (optional)…
+  save: Save
+  delete: Delete
+  deleteTitle: Delete review
+  deleteConfirm: Are you sure you want to delete this review?
+  someone: A parent
