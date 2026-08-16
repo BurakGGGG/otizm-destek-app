@@ -1030,6 +1030,59 @@ tasks:
   evidenceHint: Uzmanınızın görebilmesi için ilgili çalışma anının videosunu
     veya fotoğrafını bulut bağlantısı olarak ekleyebilirsiniz.
   submitConfirm: Teslim Et ve Kapat
+  viewWizard: Sihirbaz
+  viewList: Liste
+  wizardBadge: Günlük Gelişim Akışı
+  wizardTitle: Bugünün Egzersiz Rehberi
+  wizardIntro: Çocuğunuzla adımları takip ederek pratik yapın. Tamamlayınca
+    aşağıdaki seçeneklerden birine dokunmanız yeterli.
+  wizardStageLevel: $label seviyesi
+  wizardStageCount: $done / $total egzersiz tamamlandı
+  wizardAllDoneTitle: 'Harika iş! Bugünün tüm egzersizleri tamam'
+  wizardAllDoneBody: Çocuğunuzla geçirdiğiniz her nitelikli dakika onun
+    gelişimine büyük katkı sağlıyor. Yeni görevler atandığında burada
+    görünecek.
+  wizardStepCounter: $index / $total
+  wizardDefaultCategory: Gelişim Egzersizi
+  wizardHowTo: Nasıl uygulanır? (adım adım)
+  wizardDefaultDescription: Çocuğunuzla sakin bir ortamda bu çalışmayı 5-10
+    dakika deneyin.
+  wizardFrequency: 'Sıklık: $value'
+  wizardOutcomeQuestion: Bugün bu egzersiz nasıl geçti?
+  outcomeEasyTitle: Kolayca yaptık
+  outcomeEasyDesc: Çocuğum rahatça başardı
+  outcomeSupportedTitle: Destekle yaptık
+  outcomeSupportedDesc: Biraz ipucuyla tamamladık
+  outcomeHardTitle: Bugün zorlandık
+  outcomeHardDesc: Henüz tam hazır değildik
+  wizardTipTitle: AutiBot ipucu
+  wizardTipBody: 'Hiç sorun değil! Otizm spektrumundaki çocukların bazı
+    günlerde motivasyonu değişebilir. Egzersizi küçük parçalara bölüp yarın 2
+    dakikalık daha kısa bir süreyle tekrar deneyebilirsiniz. Uzmanınıza not
+    bırakabilirsiniz.'
+  wizardNoteLabel: Uzmanınıza bırakmak istediğiniz not (opsiyonel)
+  wizardNoteHint: 'Örn: Çalışırken çok keyif aldı veya dikkati çabuk dağıldı…'
+  wizardAddPhoto: Fotoğraf / çalışma anı ekle
+  wizardChangePhoto: Fotoğrafı değiştir
+  wizardPhotoAdded: Fotoğraf eklendi
+  wizardRemovePhoto: Kaldır
+  wizardSourceGallery: Galeriden seç
+  wizardSourceCamera: Fotoğraf çek
+  wizardSubmit: Egzersizi kaydet ve tamamla
+  wizardSubmitted: 'Tebrikler! Günlük egzersiz tamamlandı 🎉'
+  wizardDone: Bu egzersiz teslim edildi
+  wizardDoneHint: Uzmanınıza iletildi; sonraki egzersize geçebilirsiniz.
+  wizardPrev: Önceki egzersiz
+  wizardNext: Sonraki egzersiz
+  wizardTreeTitle: Çocuğunuzun ilerleme ağacı
+  stageSeed: Tohum
+  stageSeedDesc: Yeni bir yolculuk başlıyor
+  stageSprout: Filiz
+  stageSproutDesc: Farkındalık ve alışma evresi
+  stageFlower: Çiçek
+  stageFlowerDesc: Birlikte düzenli pratik yapılıyor
+  stageTree: Ağaç
+  stageTreeDesc: 'Harika! Beceri tam bağımsızlaştı'
 
 forum:
   title: Topluluk Forumu

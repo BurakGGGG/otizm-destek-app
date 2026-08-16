@@ -10,12 +10,15 @@ import '../../../core/widgets/skeleton.dart';
 import '../../../i18n/strings.g.dart';
 import '../../auth/presentation/auth_controller.dart';
 import '../data/tasks_repository.dart';
+import '../domain/exercise_outcome.dart';
 import '../domain/expert_task.dart';
+import 'widgets/daily_exercise_wizard.dart';
 import 'widgets/task_submit_sheet.dart';
 
 /// Ödevlerim — uzmanın veliye atadığı görevler (web `/gorevler` birebir).
-/// Bekleyen/tamamlanan filtreleri, son tarih uyarısı, teslim (not + kanıt
-/// bağlantısı) ve uzman geri bildirimi görünümü.
+/// İki görünüm: **Günlük Egzersiz Sihirbazı** (varsayılan; görevleri tek tek
+/// gezdirip sonuç + fotoğrafla teslim eder) ve **liste** (bekleyen/tamamlanan
+/// filtreleri, son tarih uyarısı, teslim ve uzman geri bildirimi).
 class TasksScreen extends ConsumerStatefulWidget {
   const TasksScreen({super.key});
 
@@ -25,8 +28,19 @@ class TasksScreen extends ConsumerStatefulWidget {
 
 enum _TaskFilter { all, pending, completed }
 
+enum _TaskView { wizard, list }
+
 class _TasksScreenState extends ConsumerState<TasksScreen> {
   _TaskFilter _filter = _TaskFilter.all;
+  _TaskView _view = _TaskView.wizard;
+
+  void _onWizardSubmitted(ExpertTask task) {
+    final t = context.t;
+    ref.invalidate(myTasksProvider);
+    ref.invalidate(taskSubmissionsProvider(task.id));
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(t.tasks.wizardSubmitted)));
+  }
 
   Future<void> _openSubmitSheet(ExpertTask task) async {
     final t = context.t;
@@ -58,6 +72,7 @@ class _TasksScreenState extends ConsumerState<TasksScreen> {
           error: (e, _) =>
               ErrorRetry(onRetry: () => ref.invalidate(myTasksProvider)),
           data: (tasks) {
+            final parentId = ref.watch(authControllerProvider).user?.id;
             final sorted = sortTasksForDisplay(tasks);
             final pending = sorted.where((x) => x.isPending).length;
             final completed = sorted.where((x) => x.isCompleted).length;
@@ -87,35 +102,48 @@ class _TasksScreenState extends ConsumerState<TasksScreen> {
                     total: sorted.length,
                   ),
                   const SizedBox(height: AppSpacing.md),
-                  _FilterChips(
-                    filter: _filter,
-                    all: sorted.length,
-                    pending: pending,
-                    completed: completed,
-                    onChanged: (f) => setState(() => _filter = f),
+                  _ViewSwitcher(
+                    view: _view,
+                    onChanged: (v) => setState(() => _view = v),
                   ),
                   const SizedBox(height: AppSpacing.md),
-                  if (displayed.isEmpty)
-                    SizedBox(
-                      height: 300,
-                      child: EmptyState(
-                        icon: Icons.assignment_outlined,
-                        message: switch (_filter) {
-                          _TaskFilter.all => t.tasks.emptyAll,
-                          _TaskFilter.pending => t.tasks.emptyPending,
-                          _TaskFilter.completed => t.tasks.emptyCompleted,
-                        },
-                      ),
+                  if (_view == _TaskView.wizard && parentId != null)
+                    DailyExerciseWizard(
+                      tasks: wizardTasks(sorted),
+                      parentId: parentId,
+                      onSubmitted: _onWizardSubmitted,
                     )
-                  else
-                    for (final task in displayed) ...[
-                      _TaskCard(
-                        key: ValueKey(task.id),
-                        task: task,
-                        onSubmit: () => _openSubmitSheet(task),
-                      ),
-                      const SizedBox(height: 12),
-                    ],
+                  else ...[
+                    _FilterChips(
+                      filter: _filter,
+                      all: sorted.length,
+                      pending: pending,
+                      completed: completed,
+                      onChanged: (f) => setState(() => _filter = f),
+                    ),
+                    const SizedBox(height: AppSpacing.md),
+                    if (displayed.isEmpty)
+                      SizedBox(
+                        height: 300,
+                        child: EmptyState(
+                          icon: Icons.assignment_outlined,
+                          message: switch (_filter) {
+                            _TaskFilter.all => t.tasks.emptyAll,
+                            _TaskFilter.pending => t.tasks.emptyPending,
+                            _TaskFilter.completed => t.tasks.emptyCompleted,
+                          },
+                        ),
+                      )
+                    else
+                      for (final task in displayed) ...[
+                        _TaskCard(
+                          key: ValueKey(task.id),
+                          task: task,
+                          onSubmit: () => _openSubmitSheet(task),
+                        ),
+                        const SizedBox(height: 12),
+                      ],
+                  ],
                 ],
               ),
             );
@@ -287,6 +315,37 @@ class _StatBox extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+/// Sihirbaz / liste görünüm anahtarı (web'in "Günlük Egzersiz Sihirbazı" ↔
+/// "Tüm Görevler Listesi" düğmeleri).
+class _ViewSwitcher extends StatelessWidget {
+  const _ViewSwitcher({required this.view, required this.onChanged});
+
+  final _TaskView view;
+  final ValueChanged<_TaskView> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    return SegmentedButton<_TaskView>(
+      segments: [
+        ButtonSegment(
+          value: _TaskView.wizard,
+          icon: const Icon(Icons.auto_awesome, size: 16),
+          label: Text(t.tasks.viewWizard),
+        ),
+        ButtonSegment(
+          value: _TaskView.list,
+          icon: const Icon(Icons.list_alt, size: 16),
+          label: Text(t.tasks.viewList),
+        ),
+      ],
+      selected: {view},
+      showSelectedIcon: false,
+      onSelectionChanged: (values) => onChanged(values.first),
     );
   }
 }

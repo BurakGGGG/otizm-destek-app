@@ -1381,6 +1381,52 @@ class _Translations$tasks$en extends Translations$tasks$tr {
 	@override String get evidenceLabel => 'Evidence / Attachment Link (Optional)';
 	@override String get evidenceHint => 'You can add a cloud link to a video or photo of the practice moment so your expert can see it.';
 	@override String get submitConfirm => 'Submit and Close';
+	@override String get viewWizard => 'Wizard';
+	@override String get viewList => 'List';
+	@override String get wizardBadge => 'Daily Progress Flow';
+	@override String get wizardTitle => 'Today\'s Exercise Guide';
+	@override String get wizardIntro => 'Practise with your child by following the steps. When you are done, just tap one of the options below.';
+	@override String wizardStageLevel({required Object label}) => '${label} level';
+	@override String wizardStageCount({required Object done, required Object total}) => '${done} / ${total} exercises completed';
+	@override String get wizardAllDoneTitle => 'Great work! Today\'s exercises are all done';
+	@override String get wizardAllDoneBody => 'Every quality minute you spend with your child makes a big difference. New tasks will appear here when they are assigned.';
+	@override String wizardStepCounter({required Object index, required Object total}) => '${index} / ${total}';
+	@override String get wizardDefaultCategory => 'Development Exercise';
+	@override String get wizardHowTo => 'How to do it (step by step)';
+	@override String get wizardDefaultDescription => 'Try this activity with your child for 5-10 minutes in a calm setting.';
+	@override String wizardFrequency({required Object value}) => 'Frequency: ${value}';
+	@override String get wizardOutcomeQuestion => 'How did this exercise go today?';
+	@override String get outcomeEasyTitle => 'We did it easily';
+	@override String get outcomeEasyDesc => 'My child managed it comfortably';
+	@override String get outcomeSupportedTitle => 'We did it with support';
+	@override String get outcomeSupportedDesc => 'We finished it with a few prompts';
+	@override String get outcomeHardTitle => 'Today was hard';
+	@override String get outcomeHardDesc => 'We were not quite ready yet';
+	@override String get wizardTipTitle => 'AutiBot tip';
+	@override String get wizardTipBody => 'No problem at all. Motivation can change day to day for children on the autism spectrum. Try breaking the exercise into smaller parts and repeating it tomorrow in a shorter, 2-minute session. You can also leave a note for your expert.';
+	@override String get wizardNoteLabel => 'A note for your expert (optional)';
+	@override String get wizardNoteHint => 'e.g. Really enjoyed it, or got distracted quickly…';
+	@override String get wizardAddPhoto => 'Add a photo of the moment';
+	@override String get wizardChangePhoto => 'Change photo';
+	@override String get wizardPhotoAdded => 'Photo added';
+	@override String get wizardRemovePhoto => 'Remove';
+	@override String get wizardSourceGallery => 'Choose from gallery';
+	@override String get wizardSourceCamera => 'Take a photo';
+	@override String get wizardSubmit => 'Save and complete exercise';
+	@override String get wizardSubmitted => 'Congratulations! Today\'s exercise is complete 🎉';
+	@override String get wizardDone => 'This exercise has been submitted';
+	@override String get wizardDoneHint => 'It reached your expert; you can move on to the next exercise.';
+	@override String get wizardPrev => 'Previous exercise';
+	@override String get wizardNext => 'Next exercise';
+	@override String get wizardTreeTitle => 'Your child\'s progress tree';
+	@override String get stageSeed => 'Seed';
+	@override String get stageSeedDesc => 'A new journey is beginning';
+	@override String get stageSprout => 'Sprout';
+	@override String get stageSproutDesc => 'Awareness and settling-in phase';
+	@override String get stageFlower => 'Flower';
+	@override String get stageFlowerDesc => 'Regular practice together';
+	@override String get stageTree => 'Tree';
+	@override String get stageTreeDesc => 'Wonderful! The skill is fully independent';
 }
 
 // Path: forum
@@ -2872,6 +2918,52 @@ extension on TranslationsEn {
 			'tasks.evidenceLabel' => 'Evidence / Attachment Link (Optional)',
 			'tasks.evidenceHint' => 'You can add a cloud link to a video or photo of the practice moment so your expert can see it.',
 			'tasks.submitConfirm' => 'Submit and Close',
+			'tasks.viewWizard' => 'Wizard',
+			'tasks.viewList' => 'List',
+			'tasks.wizardBadge' => 'Daily Progress Flow',
+			'tasks.wizardTitle' => 'Today\'s Exercise Guide',
+			'tasks.wizardIntro' => 'Practise with your child by following the steps. When you are done, just tap one of the options below.',
+			'tasks.wizardStageLevel' => ({required Object label}) => '${label} level',
+			'tasks.wizardStageCount' => ({required Object done, required Object total}) => '${done} / ${total} exercises completed',
+			'tasks.wizardAllDoneTitle' => 'Great work! Today\'s exercises are all done',
+			'tasks.wizardAllDoneBody' => 'Every quality minute you spend with your child makes a big difference. New tasks will appear here when they are assigned.',
+			'tasks.wizardStepCounter' => ({required Object index, required Object total}) => '${index} / ${total}',
+			'tasks.wizardDefaultCategory' => 'Development Exercise',
+			'tasks.wizardHowTo' => 'How to do it (step by step)',
+			'tasks.wizardDefaultDescription' => 'Try this activity with your child for 5-10 minutes in a calm setting.',
+			'tasks.wizardFrequency' => ({required Object value}) => 'Frequency: ${value}',
+			'tasks.wizardOutcomeQuestion' => 'How did this exercise go today?',
+			'tasks.outcomeEasyTitle' => 'We did it easily',
+			'tasks.outcomeEasyDesc' => 'My child managed it comfortably',
+			'tasks.outcomeSupportedTitle' => 'We did it with support',
+			'tasks.outcomeSupportedDesc' => 'We finished it with a few prompts',
+			'tasks.outcomeHardTitle' => 'Today was hard',
+			'tasks.outcomeHardDesc' => 'We were not quite ready yet',
+			'tasks.wizardTipTitle' => 'AutiBot tip',
+			'tasks.wizardTipBody' => 'No problem at all. Motivation can change day to day for children on the autism spectrum. Try breaking the exercise into smaller parts and repeating it tomorrow in a shorter, 2-minute session. You can also leave a note for your expert.',
+			'tasks.wizardNoteLabel' => 'A note for your expert (optional)',
+			'tasks.wizardNoteHint' => 'e.g. Really enjoyed it, or got distracted quickly…',
+			'tasks.wizardAddPhoto' => 'Add a photo of the moment',
+			'tasks.wizardChangePhoto' => 'Change photo',
+			'tasks.wizardPhotoAdded' => 'Photo added',
+			'tasks.wizardRemovePhoto' => 'Remove',
+			'tasks.wizardSourceGallery' => 'Choose from gallery',
+			'tasks.wizardSourceCamera' => 'Take a photo',
+			'tasks.wizardSubmit' => 'Save and complete exercise',
+			'tasks.wizardSubmitted' => 'Congratulations! Today\'s exercise is complete 🎉',
+			'tasks.wizardDone' => 'This exercise has been submitted',
+			'tasks.wizardDoneHint' => 'It reached your expert; you can move on to the next exercise.',
+			'tasks.wizardPrev' => 'Previous exercise',
+			'tasks.wizardNext' => 'Next exercise',
+			'tasks.wizardTreeTitle' => 'Your child\'s progress tree',
+			'tasks.stageSeed' => 'Seed',
+			'tasks.stageSeedDesc' => 'A new journey is beginning',
+			'tasks.stageSprout' => 'Sprout',
+			'tasks.stageSproutDesc' => 'Awareness and settling-in phase',
+			'tasks.stageFlower' => 'Flower',
+			'tasks.stageFlowerDesc' => 'Regular practice together',
+			'tasks.stageTree' => 'Tree',
+			'tasks.stageTreeDesc' => 'Wonderful! The skill is fully independent',
 			'forum.title' => 'Community Forum',
 			'forum.typeExperience' => 'Experiences',
 			'forum.typeQuestion' => 'Q&A',
@@ -2934,6 +3026,8 @@ extension on TranslationsEn {
 			'forum.contentLabel' => 'Content',
 			'forum.tagsLabel' => 'Symptom Tags',
 			'forum.anonymousTitle' => 'Share Anonymously',
+			_ => null,
+		} ?? switch (path) {
 			'forum.anonymousBody' => 'Your profile details are hidden; you appear as "Anonymous User".',
 			'forum.privacyTitle' => 'Privacy Settings',
 			'forum.privacyRealName' => 'Show my real name',
@@ -2980,8 +3074,6 @@ extension on TranslationsEn {
 			'childDetail.riskHigh' => 'High risk',
 			'childDetail.shortcutsTitle' => 'Quick Access',
 			'childDetail.shortcutTracker' => 'Daily Tracker',
-			_ => null,
-		} ?? switch (path) {
 			'childDetail.shortcutBehavior' => 'Behavior Journal',
 			'childDetail.shortcutTreatment' => 'Treatment Panel',
 			'childDetail.shortcutAnalytics' => 'Progress Panel',

@@ -1024,6 +1024,58 @@ tasks:
   evidenceHint: You can add a cloud link to a video or photo of the practice
     moment so your expert can see it.
   submitConfirm: Submit and Close
+  viewWizard: Wizard
+  viewList: List
+  wizardBadge: Daily Progress Flow
+  wizardTitle: Today's Exercise Guide
+  wizardIntro: Practise with your child by following the steps. When you are
+    done, just tap one of the options below.
+  wizardStageLevel: $label level
+  wizardStageCount: $done / $total exercises completed
+  wizardAllDoneTitle: 'Great work! Today''s exercises are all done'
+  wizardAllDoneBody: Every quality minute you spend with your child makes a
+    big difference. New tasks will appear here when they are assigned.
+  wizardStepCounter: $index / $total
+  wizardDefaultCategory: Development Exercise
+  wizardHowTo: How to do it (step by step)
+  wizardDefaultDescription: Try this activity with your child for 5-10 minutes
+    in a calm setting.
+  wizardFrequency: 'Frequency: $value'
+  wizardOutcomeQuestion: How did this exercise go today?
+  outcomeEasyTitle: We did it easily
+  outcomeEasyDesc: My child managed it comfortably
+  outcomeSupportedTitle: We did it with support
+  outcomeSupportedDesc: We finished it with a few prompts
+  outcomeHardTitle: Today was hard
+  outcomeHardDesc: We were not quite ready yet
+  wizardTipTitle: AutiBot tip
+  wizardTipBody: 'No problem at all. Motivation can change day to day for
+    children on the autism spectrum. Try breaking the exercise into smaller
+    parts and repeating it tomorrow in a shorter, 2-minute session. You can
+    also leave a note for your expert.'
+  wizardNoteLabel: A note for your expert (optional)
+  wizardNoteHint: 'e.g. Really enjoyed it, or got distracted quickly…'
+  wizardAddPhoto: Add a photo of the moment
+  wizardChangePhoto: Change photo
+  wizardPhotoAdded: Photo added
+  wizardRemovePhoto: Remove
+  wizardSourceGallery: Choose from gallery
+  wizardSourceCamera: Take a photo
+  wizardSubmit: Save and complete exercise
+  wizardSubmitted: 'Congratulations! Today''s exercise is complete 🎉'
+  wizardDone: This exercise has been submitted
+  wizardDoneHint: It reached your expert; you can move on to the next exercise.
+  wizardPrev: Previous exercise
+  wizardNext: Next exercise
+  wizardTreeTitle: Your child's progress tree
+  stageSeed: Seed
+  stageSeedDesc: A new journey is beginning
+  stageSprout: Sprout
+  stageSproutDesc: Awareness and settling-in phase
+  stageFlower: Flower
+  stageFlowerDesc: Regular practice together
+  stageTree: Tree
+  stageTreeDesc: 'Wonderful! The skill is fully independent'
 
 forum:
   title: Community Forum

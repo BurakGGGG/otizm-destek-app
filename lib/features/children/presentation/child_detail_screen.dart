@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import '../../../core/haptics.dart';
 import '../../../core/network/api_exception.dart';
 import '../../../core/network/media.dart';
+import '../../../core/network/upload_repository.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
@@ -59,14 +60,12 @@ class _ChildDetailScreenState extends ConsumerState<ChildDetailScreen> {
     if (picked == null || !mounted) return;
     setState(() => _uploadingPhoto = true);
     try {
-      final repo = ref.read(childRepositoryProvider);
-      final url = await repo.uploadImage(
-        picked.path,
-        picked.name,
-        scopeType: 'CHILD_PROFILE',
-        scopeId: child.id,
-      );
-      await repo.updatePhoto(child, url);
+      final url = await ref.read(uploadRepositoryProvider).upload(
+            picked.path,
+            picked.name,
+            scope: UploadScope(type: 'CHILD_PROFILE', id: child.id),
+          );
+      await ref.read(childRepositoryProvider).updatePhoto(child, url);
       if (!mounted) return;
       setState(() => _uploadingPhoto = false);
       ref.invalidate(childProvider(widget.childId));

@@ -3178,6 +3178,144 @@ class Translations$tasks$tr {
 
 	/// tr: 'Teslim Et ve Kapat'
 	String get submitConfirm => 'Teslim Et ve Kapat';
+
+	/// tr: 'Sihirbaz'
+	String get viewWizard => 'Sihirbaz';
+
+	/// tr: 'Liste'
+	String get viewList => 'Liste';
+
+	/// tr: 'Günlük Gelişim Akışı'
+	String get wizardBadge => 'Günlük Gelişim Akışı';
+
+	/// tr: 'Bugünün Egzersiz Rehberi'
+	String get wizardTitle => 'Bugünün Egzersiz Rehberi';
+
+	/// tr: 'Çocuğunuzla adımları takip ederek pratik yapın. Tamamlayınca aşağıdaki seçeneklerden birine dokunmanız yeterli.'
+	String get wizardIntro => 'Çocuğunuzla adımları takip ederek pratik yapın. Tamamlayınca aşağıdaki seçeneklerden birine dokunmanız yeterli.';
+
+	/// tr: '$label seviyesi'
+	String wizardStageLevel({required Object label}) => '${label} seviyesi';
+
+	/// tr: '$done / $total egzersiz tamamlandı'
+	String wizardStageCount({required Object done, required Object total}) => '${done} / ${total} egzersiz tamamlandı';
+
+	/// tr: 'Harika iş! Bugünün tüm egzersizleri tamam'
+	String get wizardAllDoneTitle => 'Harika iş! Bugünün tüm egzersizleri tamam';
+
+	/// tr: 'Çocuğunuzla geçirdiğiniz her nitelikli dakika onun gelişimine büyük katkı sağlıyor. Yeni görevler atandığında burada görünecek.'
+	String get wizardAllDoneBody => 'Çocuğunuzla geçirdiğiniz her nitelikli dakika onun gelişimine büyük katkı sağlıyor. Yeni görevler atandığında burada görünecek.';
+
+	/// tr: '$index / $total'
+	String wizardStepCounter({required Object index, required Object total}) => '${index} / ${total}';
+
+	/// tr: 'Gelişim Egzersizi'
+	String get wizardDefaultCategory => 'Gelişim Egzersizi';
+
+	/// tr: 'Nasıl uygulanır? (adım adım)'
+	String get wizardHowTo => 'Nasıl uygulanır? (adım adım)';
+
+	/// tr: 'Çocuğunuzla sakin bir ortamda bu çalışmayı 5-10 dakika deneyin.'
+	String get wizardDefaultDescription => 'Çocuğunuzla sakin bir ortamda bu çalışmayı 5-10 dakika deneyin.';
+
+	/// tr: 'Sıklık: $value'
+	String wizardFrequency({required Object value}) => 'Sıklık: ${value}';
+
+	/// tr: 'Bugün bu egzersiz nasıl geçti?'
+	String get wizardOutcomeQuestion => 'Bugün bu egzersiz nasıl geçti?';
+
+	/// tr: 'Kolayca yaptık'
+	String get outcomeEasyTitle => 'Kolayca yaptık';
+
+	/// tr: 'Çocuğum rahatça başardı'
+	String get outcomeEasyDesc => 'Çocuğum rahatça başardı';
+
+	/// tr: 'Destekle yaptık'
+	String get outcomeSupportedTitle => 'Destekle yaptık';
+
+	/// tr: 'Biraz ipucuyla tamamladık'
+	String get outcomeSupportedDesc => 'Biraz ipucuyla tamamladık';
+
+	/// tr: 'Bugün zorlandık'
+	String get outcomeHardTitle => 'Bugün zorlandık';
+
+	/// tr: 'Henüz tam hazır değildik'
+	String get outcomeHardDesc => 'Henüz tam hazır değildik';
+
+	/// tr: 'AutiBot ipucu'
+	String get wizardTipTitle => 'AutiBot ipucu';
+
+	/// tr: 'Hiç sorun değil! Otizm spektrumundaki çocukların bazı günlerde motivasyonu değişebilir. Egzersizi küçük parçalara bölüp yarın 2 dakikalık daha kısa bir süreyle tekrar deneyebilirsiniz. Uzmanınıza not bırakabilirsiniz.'
+	String get wizardTipBody => 'Hiç sorun değil! Otizm spektrumundaki çocukların bazı günlerde motivasyonu değişebilir. Egzersizi küçük parçalara bölüp yarın 2 dakikalık daha kısa bir süreyle tekrar deneyebilirsiniz. Uzmanınıza not bırakabilirsiniz.';
+
+	/// tr: 'Uzmanınıza bırakmak istediğiniz not (opsiyonel)'
+	String get wizardNoteLabel => 'Uzmanınıza bırakmak istediğiniz not (opsiyonel)';
+
+	/// tr: 'Örn: Çalışırken çok keyif aldı veya dikkati çabuk dağıldı…'
+	String get wizardNoteHint => 'Örn: Çalışırken çok keyif aldı veya dikkati çabuk dağıldı…';
+
+	/// tr: 'Fotoğraf / çalışma anı ekle'
+	String get wizardAddPhoto => 'Fotoğraf / çalışma anı ekle';
+
+	/// tr: 'Fotoğrafı değiştir'
+	String get wizardChangePhoto => 'Fotoğrafı değiştir';
+
+	/// tr: 'Fotoğraf eklendi'
+	String get wizardPhotoAdded => 'Fotoğraf eklendi';
+
+	/// tr: 'Kaldır'
+	String get wizardRemovePhoto => 'Kaldır';
+
+	/// tr: 'Galeriden seç'
+	String get wizardSourceGallery => 'Galeriden seç';
+
+	/// tr: 'Fotoğraf çek'
+	String get wizardSourceCamera => 'Fotoğraf çek';
+
+	/// tr: 'Egzersizi kaydet ve tamamla'
+	String get wizardSubmit => 'Egzersizi kaydet ve tamamla';
+
+	/// tr: 'Tebrikler! Günlük egzersiz tamamlandı 🎉'
+	String get wizardSubmitted => 'Tebrikler! Günlük egzersiz tamamlandı 🎉';
+
+	/// tr: 'Bu egzersiz teslim edildi'
+	String get wizardDone => 'Bu egzersiz teslim edildi';
+
+	/// tr: 'Uzmanınıza iletildi; sonraki egzersize geçebilirsiniz.'
+	String get wizardDoneHint => 'Uzmanınıza iletildi; sonraki egzersize geçebilirsiniz.';
+
+	/// tr: 'Önceki egzersiz'
+	String get wizardPrev => 'Önceki egzersiz';
+
+	/// tr: 'Sonraki egzersiz'
+	String get wizardNext => 'Sonraki egzersiz';
+
+	/// tr: 'Çocuğunuzun ilerleme ağacı'
+	String get wizardTreeTitle => 'Çocuğunuzun ilerleme ağacı';
+
+	/// tr: 'Tohum'
+	String get stageSeed => 'Tohum';
+
+	/// tr: 'Yeni bir yolculuk başlıyor'
+	String get stageSeedDesc => 'Yeni bir yolculuk başlıyor';
+
+	/// tr: 'Filiz'
+	String get stageSprout => 'Filiz';
+
+	/// tr: 'Farkındalık ve alışma evresi'
+	String get stageSproutDesc => 'Farkındalık ve alışma evresi';
+
+	/// tr: 'Çiçek'
+	String get stageFlower => 'Çiçek';
+
+	/// tr: 'Birlikte düzenli pratik yapılıyor'
+	String get stageFlowerDesc => 'Birlikte düzenli pratik yapılıyor';
+
+	/// tr: 'Ağaç'
+	String get stageTree => 'Ağaç';
+
+	/// tr: 'Harika! Beceri tam bağımsızlaştı'
+	String get stageTreeDesc => 'Harika! Beceri tam bağımsızlaştı';
 }
 
 // Path: forum
@@ -5382,6 +5520,52 @@ extension on Translations {
 			'tasks.evidenceLabel' => 'Kanıt / Eklenti Bağlantısı (İsteğe Bağlı)',
 			'tasks.evidenceHint' => 'Uzmanınızın görebilmesi için ilgili çalışma anının videosunu veya fotoğrafını bulut bağlantısı olarak ekleyebilirsiniz.',
 			'tasks.submitConfirm' => 'Teslim Et ve Kapat',
+			'tasks.viewWizard' => 'Sihirbaz',
+			'tasks.viewList' => 'Liste',
+			'tasks.wizardBadge' => 'Günlük Gelişim Akışı',
+			'tasks.wizardTitle' => 'Bugünün Egzersiz Rehberi',
+			'tasks.wizardIntro' => 'Çocuğunuzla adımları takip ederek pratik yapın. Tamamlayınca aşağıdaki seçeneklerden birine dokunmanız yeterli.',
+			'tasks.wizardStageLevel' => ({required Object label}) => '${label} seviyesi',
+			'tasks.wizardStageCount' => ({required Object done, required Object total}) => '${done} / ${total} egzersiz tamamlandı',
+			'tasks.wizardAllDoneTitle' => 'Harika iş! Bugünün tüm egzersizleri tamam',
+			'tasks.wizardAllDoneBody' => 'Çocuğunuzla geçirdiğiniz her nitelikli dakika onun gelişimine büyük katkı sağlıyor. Yeni görevler atandığında burada görünecek.',
+			'tasks.wizardStepCounter' => ({required Object index, required Object total}) => '${index} / ${total}',
+			'tasks.wizardDefaultCategory' => 'Gelişim Egzersizi',
+			'tasks.wizardHowTo' => 'Nasıl uygulanır? (adım adım)',
+			'tasks.wizardDefaultDescription' => 'Çocuğunuzla sakin bir ortamda bu çalışmayı 5-10 dakika deneyin.',
+			'tasks.wizardFrequency' => ({required Object value}) => 'Sıklık: ${value}',
+			'tasks.wizardOutcomeQuestion' => 'Bugün bu egzersiz nasıl geçti?',
+			'tasks.outcomeEasyTitle' => 'Kolayca yaptık',
+			'tasks.outcomeEasyDesc' => 'Çocuğum rahatça başardı',
+			'tasks.outcomeSupportedTitle' => 'Destekle yaptık',
+			'tasks.outcomeSupportedDesc' => 'Biraz ipucuyla tamamladık',
+			'tasks.outcomeHardTitle' => 'Bugün zorlandık',
+			'tasks.outcomeHardDesc' => 'Henüz tam hazır değildik',
+			'tasks.wizardTipTitle' => 'AutiBot ipucu',
+			'tasks.wizardTipBody' => 'Hiç sorun değil! Otizm spektrumundaki çocukların bazı günlerde motivasyonu değişebilir. Egzersizi küçük parçalara bölüp yarın 2 dakikalık daha kısa bir süreyle tekrar deneyebilirsiniz. Uzmanınıza not bırakabilirsiniz.',
+			'tasks.wizardNoteLabel' => 'Uzmanınıza bırakmak istediğiniz not (opsiyonel)',
+			'tasks.wizardNoteHint' => 'Örn: Çalışırken çok keyif aldı veya dikkati çabuk dağıldı…',
+			'tasks.wizardAddPhoto' => 'Fotoğraf / çalışma anı ekle',
+			'tasks.wizardChangePhoto' => 'Fotoğrafı değiştir',
+			'tasks.wizardPhotoAdded' => 'Fotoğraf eklendi',
+			'tasks.wizardRemovePhoto' => 'Kaldır',
+			'tasks.wizardSourceGallery' => 'Galeriden seç',
+			'tasks.wizardSourceCamera' => 'Fotoğraf çek',
+			'tasks.wizardSubmit' => 'Egzersizi kaydet ve tamamla',
+			'tasks.wizardSubmitted' => 'Tebrikler! Günlük egzersiz tamamlandı 🎉',
+			'tasks.wizardDone' => 'Bu egzersiz teslim edildi',
+			'tasks.wizardDoneHint' => 'Uzmanınıza iletildi; sonraki egzersize geçebilirsiniz.',
+			'tasks.wizardPrev' => 'Önceki egzersiz',
+			'tasks.wizardNext' => 'Sonraki egzersiz',
+			'tasks.wizardTreeTitle' => 'Çocuğunuzun ilerleme ağacı',
+			'tasks.stageSeed' => 'Tohum',
+			'tasks.stageSeedDesc' => 'Yeni bir yolculuk başlıyor',
+			'tasks.stageSprout' => 'Filiz',
+			'tasks.stageSproutDesc' => 'Farkındalık ve alışma evresi',
+			'tasks.stageFlower' => 'Çiçek',
+			'tasks.stageFlowerDesc' => 'Birlikte düzenli pratik yapılıyor',
+			'tasks.stageTree' => 'Ağaç',
+			'tasks.stageTreeDesc' => 'Harika! Beceri tam bağımsızlaştı',
 			'forum.title' => 'Topluluk Forumu',
 			'forum.typeExperience' => 'Deneyimler',
 			'forum.typeQuestion' => 'Soru-Cevap',
@@ -5444,6 +5628,8 @@ extension on Translations {
 			'forum.contentLabel' => 'İçerik',
 			'forum.tagsLabel' => 'Semptom Etiketleri',
 			'forum.anonymousTitle' => 'Anonim Olarak Paylaş',
+			_ => null,
+		} ?? switch (path) {
 			'forum.anonymousBody' => 'Profil bilgileriniz gizlenir, "Anonim Kullanıcı" olarak görünürsünüz.',
 			'forum.privacyTitle' => 'Gizlilik Ayarları',
 			'forum.privacyRealName' => 'Gerçek adımı göster',
@@ -5490,8 +5676,6 @@ extension on Translations {
 			'childDetail.riskHigh' => 'Yüksek risk',
 			'childDetail.shortcutsTitle' => 'Hızlı Erişim',
 			'childDetail.shortcutTracker' => 'Günlük Takip',
-			_ => null,
-		} ?? switch (path) {
 			'childDetail.shortcutBehavior' => 'Davranış Günlüğü',
 			'childDetail.shortcutTreatment' => 'Tedavi Paneli',
 			'childDetail.shortcutAnalytics' => 'Gelişim Paneli',
