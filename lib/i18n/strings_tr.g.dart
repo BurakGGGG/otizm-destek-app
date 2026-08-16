@@ -1171,6 +1171,30 @@ class Translations$home$tr {
 
 	/// tr: 'Gösterilecek makale yok.'
 	String get noArticles => 'Gösterilecek makale yok.';
+
+	/// tr: 'Bugünün kaydı'
+	String get quickTracker => 'Bugünün kaydı';
+
+	/// tr: 'Duygu, uyku, ilaç'
+	String get quickTrackerDetail => 'Duygu, uyku, ilaç';
+
+	/// tr: 'Davranış notu'
+	String get quickBehavior => 'Davranış notu';
+
+	/// tr: 'Öncesi-davranış-sonrası kaydı'
+	String get quickBehaviorDetail => 'Öncesi-davranış-sonrası kaydı';
+
+	/// tr: 'Gözlem notu'
+	String get quickNote => 'Gözlem notu';
+
+	/// tr: 'Kısa not ekle'
+	String get quickNoteDetail => 'Kısa not ekle';
+
+	/// tr: 'Plan ekle'
+	String get quickPlan => 'Plan ekle';
+
+	/// tr: 'Randevu, okul, etkinlik'
+	String get quickPlanDetail => 'Randevu, okul, etkinlik';
 }
 
 // Path: specialists
@@ -5800,6 +5824,14 @@ extension on Translations {
 			'home.ageYears' => ({required Object years}) => '${years} yaş',
 			'home.noAppointments' => 'Yaklaşan randevunuz yok.',
 			'home.noArticles' => 'Gösterilecek makale yok.',
+			'home.quickTracker' => 'Bugünün kaydı',
+			'home.quickTrackerDetail' => 'Duygu, uyku, ilaç',
+			'home.quickBehavior' => 'Davranış notu',
+			'home.quickBehaviorDetail' => 'Öncesi-davranış-sonrası kaydı',
+			'home.quickNote' => 'Gözlem notu',
+			'home.quickNoteDetail' => 'Kısa not ekle',
+			'home.quickPlan' => 'Plan ekle',
+			'home.quickPlanDetail' => 'Randevu, okul, etkinlik',
 			'specialists.title' => 'Uzman Bulun',
 			'specialists.searchHint' => 'İsim veya uzmanlık arayın...',
 			'specialists.filterAll' => 'Tümü',
@@ -5996,6 +6028,8 @@ extension on Translations {
 			'routines.itemTitleLabel' => 'Adım Başlığı',
 			'routines.itemTitleHint' => 'Örn. Dişleri fırçala',
 			'routines.itemTimeLabel' => 'Saat (isteğe bağlı)',
+			_ => null,
+		} ?? switch (path) {
 			'routines.selectTime' => 'Saat seç',
 			'routines.itemIconLabel' => 'İkon',
 			'routines.itemSave' => 'Ekle',
@@ -6004,8 +6038,6 @@ extension on Translations {
 			'routineForm.nameLabel' => 'Rutin Adı',
 			'routineForm.nameHint' => 'Örn. Sabah Rutini',
 			'routineForm.descriptionLabel' => 'Açıklama (isteğe bağlı)',
-			_ => null,
-		} ?? switch (path) {
 			'routineForm.descriptionHint' => 'Bu rutin ne için?',
 			'routineForm.save' => 'Kaydet',
 			'routineForm.errorName' => 'Lütfen bir rutin adı girin.',
@@ -6510,6 +6542,8 @@ extension on Translations {
 			'forum.searchHint' => 'Forumda ara…',
 			'forum.tagFilter' => 'Etiket filtresi',
 			'forum.sortNew' => 'Yeni',
+			_ => null,
+		} ?? switch (path) {
 			'forum.sortHot' => 'Sıcak',
 			'forum.sortUnanswered' => 'Cevapsız',
 			'forum.sortExpert' => 'Uzmanlı',
@@ -6518,8 +6552,6 @@ extension on Translations {
 			'forum.add' => 'Paylaş',
 			'forum.loadMore' => 'Daha Fazla Yükle',
 			'forum.posted' => 'Gönderi paylaşıldı.',
-			_ => null,
-		} ?? switch (path) {
 			'forum.anonymousUser' => 'Anonim Kullanıcı',
 			'forum.expertBadge' => 'Uzman',
 			'forum.pinnedBadge' => 'Sabitlenmiş',
@@ -7024,6 +7056,8 @@ extension on Translations {
 			'guide.pageRoutinesPurpose' => 'Günlük rutinleri adım adım, görsel olarak takip etmeye yardımcı olur.',
 			'guide.pageRoutinesWhen' => 'Sabah, okul, uyku veya geçiş rutinini görselleştirmek istediğinizde.',
 			'guide.pageRoutinesKeywords' => 'rutin, program, adım, görsel, geçiş',
+			_ => null,
+		} ?? switch (path) {
 			'guide.pageForum' => 'Topluluk Forumu',
 			'guide.pageForumPurpose' => 'Ebeveynlerin ve uzmanların soru sorup deneyimlerini paylaştığı ortak tartışma alanıdır.',
 			'guide.pageForumWhen' => 'Kafanıza takılan bir soruyu topluluğa danışmak istediğinizde.',
@@ -7032,8 +7066,6 @@ extension on Translations {
 			'guide.pageWallPurpose' => 'Duygu ve deneyim paylaşımı için daha serbest bir destek alanıdır; istersen anonim kalırsın.',
 			'guide.pageWallWhen' => 'Soru sormaktan çok içinizi dökmek veya destek görmek istediğinizde.',
 			'guide.pageWallKeywords' => 'dertleşme, duygu, paylaşım, destek, anonim',
-			_ => null,
-		} ?? switch (path) {
 			'guide.pageMeetups' => 'Yerel Buluşmalar',
 			'guide.pageMeetupsPurpose' => 'Aynı şehirdeki ailelerle gerçek hayatta tanışıp bir araya gelmenizi sağlar.',
 			'guide.pageMeetupsWhen' => 'Çevrenizdeki ailelerle yüz yüze etkinlik planlamak istediğinizde.',

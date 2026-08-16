@@ -50,6 +50,8 @@ class HomeTab extends ConsumerWidget {
             Text(t.home.subtitle, style: text.bodySmall),
             const SizedBox(height: AppSpacing.md),
             const _ExpertAccessBanner(),
+            const _QuickActions(),
+            const SizedBox(height: AppSpacing.lg),
 
             SectionHeader(
               title: t.home.childrenTitle,
@@ -74,6 +76,119 @@ class HomeTab extends ConsumerWidget {
             ),
             const SizedBox(height: 12),
             const _ArticlesSection(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Hızlı eylemler — web gösterge panelindeki dört kayıt kısayolu.
+class _QuickActions extends StatelessWidget {
+  const _QuickActions();
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    final actions = <({IconData icon, String label, String detail, String route})>[
+      (
+        icon: Icons.favorite_outline,
+        label: t.home.quickTracker,
+        detail: t.home.quickTrackerDetail,
+        route: '/daily-tracker',
+      ),
+      (
+        icon: Icons.psychology_outlined,
+        label: t.home.quickBehavior,
+        detail: t.home.quickBehaviorDetail,
+        route: '/behavior',
+      ),
+      (
+        icon: Icons.sticky_note_2_outlined,
+        label: t.home.quickNote,
+        detail: t.home.quickNoteDetail,
+        route: '/notes',
+      ),
+      (
+        icon: Icons.event_outlined,
+        label: t.home.quickPlan,
+        detail: t.home.quickPlanDetail,
+        route: '/calendar',
+      ),
+    ];
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final width = (constraints.maxWidth - 12) / 2;
+        return Wrap(
+          spacing: 12,
+          runSpacing: 12,
+          children: [
+            for (final action in actions)
+              SizedBox(
+                width: width,
+                child: _QuickActionCard(
+                  icon: action.icon,
+                  label: action.label,
+                  detail: action.detail,
+                  onTap: () => context.push(action.route),
+                ),
+              ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _QuickActionCard extends StatelessWidget {
+  const _QuickActionCard({
+    required this.icon,
+    required this.label,
+    required this.detail,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final String label;
+  final String detail;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    final text = Theme.of(context).textTheme;
+    return InkWell(
+      borderRadius: BorderRadius.circular(AppRadius.lg),
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: colors.surface,
+          borderRadius: BorderRadius.circular(AppRadius.lg),
+          border: Border.all(color: colors.border),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: 36,
+              height: 36,
+              decoration: BoxDecoration(
+                color: colors.primary.withValues(alpha: .08),
+                borderRadius: BorderRadius.circular(AppRadius.md),
+              ),
+              child: Icon(icon, size: 18, color: colors.primary),
+            ),
+            const SizedBox(height: 10),
+            Text(label, style: text.labelLarge),
+            const SizedBox(height: 2),
+            Text(
+              detail,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: text.labelSmall?.copyWith(color: colors.textSecondary),
+            ),
           ],
         ),
       ),

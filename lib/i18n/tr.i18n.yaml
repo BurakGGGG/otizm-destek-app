@@ -346,6 +346,14 @@ home:
   ageYears: $years yaş
   noAppointments: Yaklaşan randevunuz yok.
   noArticles: Gösterilecek makale yok.
+  quickTracker: Bugünün kaydı
+  quickTrackerDetail: Duygu, uyku, ilaç
+  quickBehavior: Davranış notu
+  quickBehaviorDetail: Öncesi-davranış-sonrası kaydı
+  quickNote: Gözlem notu
+  quickNoteDetail: Kısa not ekle
+  quickPlan: Plan ekle
+  quickPlanDetail: Randevu, okul, etkinlik
 
 specialists:
   title: Uzman Bulun

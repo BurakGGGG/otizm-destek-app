@@ -577,6 +577,14 @@ class _Translations$home$en extends Translations$home$tr {
 	@override String ageYears({required Object years}) => '${years} yrs';
 	@override String get noAppointments => 'You have no upcoming appointments.';
 	@override String get noArticles => 'No articles to show.';
+	@override String get quickTracker => 'Today\'s log';
+	@override String get quickTrackerDetail => 'Mood, sleep, medication';
+	@override String get quickBehavior => 'Behaviour note';
+	@override String get quickBehaviorDetail => 'Antecedent-behaviour-consequence';
+	@override String get quickNote => 'Observation note';
+	@override String get quickNoteDetail => 'Add a short note';
+	@override String get quickPlan => 'Add a plan';
+	@override String get quickPlanDetail => 'Appointment, school, event';
 }
 
 // Path: specialists
@@ -2636,6 +2644,14 @@ extension on TranslationsEn {
 			'home.ageYears' => ({required Object years}) => '${years} yrs',
 			'home.noAppointments' => 'You have no upcoming appointments.',
 			'home.noArticles' => 'No articles to show.',
+			'home.quickTracker' => 'Today\'s log',
+			'home.quickTrackerDetail' => 'Mood, sleep, medication',
+			'home.quickBehavior' => 'Behaviour note',
+			'home.quickBehaviorDetail' => 'Antecedent-behaviour-consequence',
+			'home.quickNote' => 'Observation note',
+			'home.quickNoteDetail' => 'Add a short note',
+			'home.quickPlan' => 'Add a plan',
+			'home.quickPlanDetail' => 'Appointment, school, event',
 			'specialists.title' => 'Find a Specialist',
 			'specialists.searchHint' => 'Search by name or expertise...',
 			'specialists.filterAll' => 'All',
@@ -2832,6 +2848,8 @@ extension on TranslationsEn {
 			'routines.itemTitleLabel' => 'Step Title',
 			'routines.itemTitleHint' => 'e.g. Brush teeth',
 			'routines.itemTimeLabel' => 'Time (optional)',
+			_ => null,
+		} ?? switch (path) {
 			'routines.selectTime' => 'Select time',
 			'routines.itemIconLabel' => 'Icon',
 			'routines.itemSave' => 'Add',
@@ -2840,8 +2858,6 @@ extension on TranslationsEn {
 			'routineForm.nameLabel' => 'Routine Name',
 			'routineForm.nameHint' => 'e.g. Morning Routine',
 			'routineForm.descriptionLabel' => 'Description (optional)',
-			_ => null,
-		} ?? switch (path) {
 			'routineForm.descriptionHint' => 'What is this routine for?',
 			'routineForm.save' => 'Save',
 			'routineForm.errorName' => 'Please enter a routine name.',
@@ -3346,6 +3362,8 @@ extension on TranslationsEn {
 			'forum.searchHint' => 'Search the forum…',
 			'forum.tagFilter' => 'Tag filter',
 			'forum.sortNew' => 'New',
+			_ => null,
+		} ?? switch (path) {
 			'forum.sortHot' => 'Hot',
 			'forum.sortUnanswered' => 'Unanswered',
 			'forum.sortExpert' => 'Expert',
@@ -3354,8 +3372,6 @@ extension on TranslationsEn {
 			'forum.add' => 'Share',
 			'forum.loadMore' => 'Load More',
 			'forum.posted' => 'Post shared.',
-			_ => null,
-		} ?? switch (path) {
 			'forum.anonymousUser' => 'Anonymous User',
 			'forum.expertBadge' => 'Expert',
 			'forum.pinnedBadge' => 'Pinned',
@@ -3860,6 +3876,8 @@ extension on TranslationsEn {
 			'guide.pageRoutinesPurpose' => 'Helps you follow daily routines step by step, visually.',
 			'guide.pageRoutinesWhen' => 'When you want to picture the morning, school, sleep or transition routine.',
 			'guide.pageRoutinesKeywords' => 'routine, schedule, step, visual, transition',
+			_ => null,
+		} ?? switch (path) {
 			'guide.pageForum' => 'Community Forum',
 			'guide.pageForumPurpose' => 'A shared discussion space where parents and experts ask questions and share experience.',
 			'guide.pageForumWhen' => 'When you want to ask the community about something.',
@@ -3868,8 +3886,6 @@ extension on TranslationsEn {
 			'guide.pageWallPurpose' => 'A freer support space for feelings and experiences — you can stay anonymous.',
 			'guide.pageWallWhen' => 'When you would rather open up than ask a question.',
 			'guide.pageWallKeywords' => 'support wall, feeling, sharing, support, anonymous',
-			_ => null,
-		} ?? switch (path) {
 			'guide.pageMeetups' => 'Local Meetups',
 			'guide.pageMeetupsPurpose' => 'Lets you meet families in your city in real life.',
 			'guide.pageMeetupsWhen' => 'When you want to plan a face-to-face event nearby.',

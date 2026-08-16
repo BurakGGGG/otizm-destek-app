@@ -345,6 +345,14 @@ home:
   ageYears: $years yrs
   noAppointments: You have no upcoming appointments.
   noArticles: No articles to show.
+  quickTracker: Today's log
+  quickTrackerDetail: Mood, sleep, medication
+  quickBehavior: Behaviour note
+  quickBehaviorDetail: Antecedent-behaviour-consequence
+  quickNote: Observation note
+  quickNoteDetail: Add a short note
+  quickPlan: Add a plan
+  quickPlanDetail: Appointment, school, event
 
 specialists:
   title: Find a Specialist
