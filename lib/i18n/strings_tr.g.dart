@@ -94,6 +94,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$profile$tr profile = Translations$profile$tr.internal(_root);
 	late final Translations$errors$tr errors = Translations$errors$tr.internal(_root);
 	late final Translations$guide$tr guide = Translations$guide$tr.internal(_root);
+	late final Translations$community$tr community = Translations$community$tr.internal(_root);
 }
 
 // Path: app
@@ -5043,6 +5044,57 @@ class Translations$guide$tr {
 	String get video15Desc => 'Güvenilir içerikleri bulun, zor anlar için kriz adımlarına ulaşın ve yardım kanallarını kullanın.';
 }
 
+// Path: community
+class Translations$community$tr {
+	Translations$community$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Topluluk'
+	String get title => 'Topluluk';
+
+	/// tr: 'Kontrollü ve güvenli iletişim'
+	String get badge => 'Kontrollü ve güvenli iletişim';
+
+	/// tr: 'Aynı süreci yaşayan aileleri bulun, önce mesajlaşın, hazır olduğunuzda grup ve buluşmalara katılın.'
+	String get intro => 'Aynı süreci yaşayan aileleri bulun, önce mesajlaşın, hazır olduğunuzda grup ve buluşmalara katılın.';
+
+	/// tr: 'Ne yapmak istersiniz?'
+	String get areasTitle => 'Ne yapmak istersiniz?';
+
+	/// tr: 'Bütün topluluk alanları bu merkezde.'
+	String get areasSubtitle => 'Bütün topluluk alanları bu merkezde.';
+
+	/// tr: 'Güvenli tanışma önerisi'
+	String get safetyTitle => 'Güvenli tanışma önerisi';
+
+	/// tr: 'İlk görüşmede uygulama içinde yazışın. Telefon, açık adres ve çocuğun özel bilgilerini paylaşmak zorunda değilsiniz. Rahatsız olduğunuz kişiyi engelleyebilir veya bildirebilirsiniz.'
+	String get safetyBody => 'İlk görüşmede uygulama içinde yazışın. Telefon, açık adres ve çocuğun özel bilgilerini paylaşmak zorunda değilsiniz. Rahatsız olduğunuz kişiyi engelleyebilir veya bildirebilirsiniz.';
+
+	/// tr: 'Ortak deneyimleri ve eşleşme nedenlerini görün, güvenli bir tanışma başlatın.'
+	String get similarText => 'Ortak deneyimleri ve eşleşme nedenlerini görün, güvenli bir tanışma başlatın.';
+
+	/// tr: 'Aileler ve uzmanlarla yaptığınız görüşmelere tek yerden devam edin.'
+	String get messagesText => 'Aileler ve uzmanlarla yaptığınız görüşmelere tek yerden devam edin.';
+
+	/// tr: 'Benzer ihtiyaç ve yaş gruplarına odaklanan topluluklara katılın.'
+	String get groupsText => 'Benzer ihtiyaç ve yaş gruplarına odaklanan topluluklara katılın.';
+
+	/// tr: 'Şehrinizdeki güvenli buluşmaları keşfedin.'
+	String get meetupsText => 'Şehrinizdeki güvenli buluşmaları keşfedin.';
+
+	/// tr: 'Topluluğa soru sorun, ailelerin ve uzmanların yanıtlarını okuyun.'
+	String get forumText => 'Topluluğa soru sorun, ailelerin ve uzmanların yanıtlarını okuyun.';
+
+	/// tr: 'Yargılanmadan duygunuzu paylaşın; isterseniz anonim kalın.'
+	String get wallText => 'Yargılanmadan duygunuzu paylaşın; isterseniz anonim kalın.';
+
+	/// tr: 'Tek bir konu etrafında kısa deneyim paylaşımlarına katılın.'
+	String get weeklyText => 'Tek bir konu etrafında kısa deneyim paylaşımlarına katılın.';
+}
+
 // Path: crisis.cards
 class Translations$crisis$cards$tr {
 	Translations$crisis$cards$tr.internal(this._root);
@@ -6733,6 +6785,20 @@ extension on Translations {
 			'guide.video14Desc' => 'Forumda soru sorun, aile deneyimlerini inceleyin ve güvenli topluluk buluşmalarını keşfedin.',
 			'guide.video15' => 'Bilgi Bankası, Kriz ve Yardım',
 			'guide.video15Desc' => 'Güvenilir içerikleri bulun, zor anlar için kriz adımlarına ulaşın ve yardım kanallarını kullanın.',
+			'community.title' => 'Topluluk',
+			'community.badge' => 'Kontrollü ve güvenli iletişim',
+			'community.intro' => 'Aynı süreci yaşayan aileleri bulun, önce mesajlaşın, hazır olduğunuzda grup ve buluşmalara katılın.',
+			'community.areasTitle' => 'Ne yapmak istersiniz?',
+			'community.areasSubtitle' => 'Bütün topluluk alanları bu merkezde.',
+			'community.safetyTitle' => 'Güvenli tanışma önerisi',
+			'community.safetyBody' => 'İlk görüşmede uygulama içinde yazışın. Telefon, açık adres ve çocuğun özel bilgilerini paylaşmak zorunda değilsiniz. Rahatsız olduğunuz kişiyi engelleyebilir veya bildirebilirsiniz.',
+			'community.similarText' => 'Ortak deneyimleri ve eşleşme nedenlerini görün, güvenli bir tanışma başlatın.',
+			'community.messagesText' => 'Aileler ve uzmanlarla yaptığınız görüşmelere tek yerden devam edin.',
+			'community.groupsText' => 'Benzer ihtiyaç ve yaş gruplarına odaklanan topluluklara katılın.',
+			'community.meetupsText' => 'Şehrinizdeki güvenli buluşmaları keşfedin.',
+			'community.forumText' => 'Topluluğa soru sorun, ailelerin ve uzmanların yanıtlarını okuyun.',
+			'community.wallText' => 'Yargılanmadan duygunuzu paylaşın; isterseniz anonim kalın.',
+			'community.weeklyText' => 'Tek bir konu etrafında kısa deneyim paylaşımlarına katılın.',
 			_ => null,
 		};
 	}

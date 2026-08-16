@@ -1769,3 +1769,24 @@ guide:
   video15: Knowledge Base, Crisis and Help
   video15Desc: Find trustworthy content, reach the crisis steps for hard
     moments and use the help channels.
+
+community:
+  title: Community
+  badge: Moderated, safe contact
+  intro: Find families going through the same process, message them first and
+    join groups and meetups when you are ready.
+  areasTitle: What would you like to do?
+  areasSubtitle: Every community space lives in this hub.
+  safetyTitle: Meeting safely
+  safetyBody: Keep the first conversation inside the app. You do not have to
+    share your phone number, home address or your child's private details. You
+    can block or report anyone who makes you uncomfortable.
+  similarText: See shared experiences and match reasons, then start a safe
+    introduction.
+  messagesText: Continue your conversations with families and experts in one
+    place.
+  groupsText: Join communities focused on similar needs and age groups.
+  meetupsText: Discover safe meetups in your city.
+  forumText: Ask the community and read answers from families and experts.
+  wallText: Share how you feel without judgement; stay anonymous if you like.
+  weeklyText: Join short experience threads around a single topic.

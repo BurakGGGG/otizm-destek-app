@@ -93,6 +93,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$profile$en profile = _Translations$profile$en._(_root);
 	@override late final _Translations$errors$en errors = _Translations$errors$en._(_root);
 	@override late final _Translations$guide$en guide = _Translations$guide$en._(_root);
+	@override late final _Translations$community$en community = _Translations$community$en._(_root);
 }
 
 // Path: app
@@ -2083,6 +2084,29 @@ class _Translations$guide$en extends Translations$guide$tr {
 	@override String get video15Desc => 'Find trustworthy content, reach the crisis steps for hard moments and use the help channels.';
 }
 
+// Path: community
+class _Translations$community$en extends Translations$community$tr {
+	_Translations$community$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Community';
+	@override String get badge => 'Moderated, safe contact';
+	@override String get intro => 'Find families going through the same process, message them first and join groups and meetups when you are ready.';
+	@override String get areasTitle => 'What would you like to do?';
+	@override String get areasSubtitle => 'Every community space lives in this hub.';
+	@override String get safetyTitle => 'Meeting safely';
+	@override String get safetyBody => 'Keep the first conversation inside the app. You do not have to share your phone number, home address or your child\'s private details. You can block or report anyone who makes you uncomfortable.';
+	@override String get similarText => 'See shared experiences and match reasons, then start a safe introduction.';
+	@override String get messagesText => 'Continue your conversations with families and experts in one place.';
+	@override String get groupsText => 'Join communities focused on similar needs and age groups.';
+	@override String get meetupsText => 'Discover safe meetups in your city.';
+	@override String get forumText => 'Ask the community and read answers from families and experts.';
+	@override String get wallText => 'Share how you feel without judgement; stay anonymous if you like.';
+	@override String get weeklyText => 'Join short experience threads around a single topic.';
+}
+
 // Path: crisis.cards
 class _Translations$crisis$cards$en extends Translations$crisis$cards$tr {
 	_Translations$crisis$cards$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -3749,6 +3773,20 @@ extension on TranslationsEn {
 			'guide.video14Desc' => 'Ask questions on the forum, read family experiences and discover safe community meetups.',
 			'guide.video15' => 'Knowledge Base, Crisis and Help',
 			'guide.video15Desc' => 'Find trustworthy content, reach the crisis steps for hard moments and use the help channels.',
+			'community.title' => 'Community',
+			'community.badge' => 'Moderated, safe contact',
+			'community.intro' => 'Find families going through the same process, message them first and join groups and meetups when you are ready.',
+			'community.areasTitle' => 'What would you like to do?',
+			'community.areasSubtitle' => 'Every community space lives in this hub.',
+			'community.safetyTitle' => 'Meeting safely',
+			'community.safetyBody' => 'Keep the first conversation inside the app. You do not have to share your phone number, home address or your child\'s private details. You can block or report anyone who makes you uncomfortable.',
+			'community.similarText' => 'See shared experiences and match reasons, then start a safe introduction.',
+			'community.messagesText' => 'Continue your conversations with families and experts in one place.',
+			'community.groupsText' => 'Join communities focused on similar needs and age groups.',
+			'community.meetupsText' => 'Discover safe meetups in your city.',
+			'community.forumText' => 'Ask the community and read answers from families and experts.',
+			'community.wallText' => 'Share how you feel without judgement; stay anonymous if you like.',
+			'community.weeklyText' => 'Join short experience threads around a single topic.',
 			_ => null,
 		};
 	}

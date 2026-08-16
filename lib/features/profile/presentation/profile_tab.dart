@@ -96,27 +96,13 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
         label: t.emergency.title,
         route: '/emergency',
       ),
-      (icon: Icons.forum_outlined, label: t.wall.title, route: '/support-wall'),
-      (icon: Icons.groups_2_outlined, label: t.forum.title, route: '/forum'),
-      (
-        icon: Icons.local_fire_department_outlined,
-        label: t.weekly.title,
-        route: '/weekly-question',
-      ),
-      (
-        icon: Icons.groups_outlined,
-        label: t.meetup.title,
-        route: '/meetups',
-      ),
-      (
-        icon: Icons.diversity_3_outlined,
-        label: t.similar.title,
-        route: '/similar-families',
-      ),
+      // Topluluk bölümleri tek merkezde toplandı (web `/topluluk` gibi):
+      // forum, dertleşme duvarı, buluşmalar, haftanın sorusu, benzer aileler
+      // ve gruplar oradan açılır.
       (
         icon: Icons.groups_2_outlined,
-        label: t.groups.title,
-        route: '/groups',
+        label: t.community.title,
+        route: '/community',
       ),
     ];
 

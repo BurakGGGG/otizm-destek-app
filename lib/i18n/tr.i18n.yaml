@@ -1780,3 +1780,24 @@ guide:
   video15: Bilgi Bankası, Kriz ve Yardım
   video15Desc: Güvenilir içerikleri bulun, zor anlar için kriz adımlarına
     ulaşın ve yardım kanallarını kullanın.
+
+community:
+  title: Topluluk
+  badge: Kontrollü ve güvenli iletişim
+  intro: Aynı süreci yaşayan aileleri bulun, önce mesajlaşın, hazır olduğunuzda
+    grup ve buluşmalara katılın.
+  areasTitle: Ne yapmak istersiniz?
+  areasSubtitle: Bütün topluluk alanları bu merkezde.
+  safetyTitle: Güvenli tanışma önerisi
+  safetyBody: İlk görüşmede uygulama içinde yazışın. Telefon, açık adres ve
+    çocuğun özel bilgilerini paylaşmak zorunda değilsiniz. Rahatsız olduğunuz
+    kişiyi engelleyebilir veya bildirebilirsiniz.
+  similarText: Ortak deneyimleri ve eşleşme nedenlerini görün, güvenli bir
+    tanışma başlatın.
+  messagesText: Aileler ve uzmanlarla yaptığınız görüşmelere tek yerden devam
+    edin.
+  groupsText: Benzer ihtiyaç ve yaş gruplarına odaklanan topluluklara katılın.
+  meetupsText: Şehrinizdeki güvenli buluşmaları keşfedin.
+  forumText: Topluluğa soru sorun, ailelerin ve uzmanların yanıtlarını okuyun.
+  wallText: Yargılanmadan duygunuzu paylaşın; isterseniz anonim kalın.
+  weeklyText: Tek bir konu etrafında kısa deneyim paylaşımlarına katılın.

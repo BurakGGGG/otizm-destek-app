@@ -461,25 +461,32 @@ class _VideoCard extends StatelessWidget {
             style: text.bodySmall?.copyWith(color: colors.textSecondary),
           ),
           const SizedBox(height: 6),
+          // Dolgulu butonların asgari genişliği temada sonsuz (tam genişlik
+          // tasarımı) — bu yüzden satırda Expanded ile sınırlanır.
           Row(
             children: [
-              TextButton.icon(
-                onPressed: onToggleWatched,
-                icon: Icon(
-                  watched
-                      ? Icons.check_box_outlined
-                      : Icons.check_box_outline_blank,
-                  size: 16,
-                ),
-                label: Text(
-                  watched ? t.guide.videoWatched : t.guide.videoMarkWatched,
+              Expanded(
+                child: TextButton.icon(
+                  onPressed: onToggleWatched,
+                  icon: Icon(
+                    watched
+                        ? Icons.check_box_outlined
+                        : Icons.check_box_outline_blank,
+                    size: 16,
+                  ),
+                  label: Text(
+                    watched ? t.guide.videoWatched : t.guide.videoMarkWatched,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ),
-              const Spacer(),
-              FilledButton.tonalIcon(
-                onPressed: onOpen,
-                icon: const Icon(Icons.open_in_new, size: 16),
-                label: Text(t.guide.videoWatch),
+              const SizedBox(width: 8),
+              Expanded(
+                child: FilledButton.tonalIcon(
+                  onPressed: onOpen,
+                  icon: const Icon(Icons.open_in_new, size: 16),
+                  label: Text(t.guide.videoWatch),
+                ),
               ),
             ],
           ),

@@ -18,6 +18,7 @@ import '../../features/chatbot/presentation/chat_screen.dart';
 import '../../features/community/presentation/meetups_screen.dart';
 import '../../features/community/presentation/weekly_question_screen.dart';
 import '../../features/children/presentation/children_screen.dart';
+import '../../features/community/presentation/community_screen.dart';
 import '../../features/crisis/presentation/crisis_screen.dart';
 import '../../features/emergency/presentation/emergency_screen.dart';
 import '../../features/groups/presentation/groups_screen.dart';
@@ -151,6 +152,10 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(path: '/help', builder: (_, _) => const HelpScreen()),
       GoRoute(path: '/guide', builder: (_, _) => const GuideScreen()),
+      GoRoute(
+        path: '/community',
+        builder: (_, _) => const CommunityScreen(),
+      ),
       GoRoute(
         path: '/notifications',
         builder: (_, _) => const NotificationsScreen(),
