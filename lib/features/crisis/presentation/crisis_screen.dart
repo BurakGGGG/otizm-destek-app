@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/haptics.dart';
+import '../../../core/tts/speech_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../i18n/strings.g.dart';
@@ -64,8 +66,12 @@ class CrisisScreen extends ConsumerWidget {
               AppSpacing.margin, 12, AppSpacing.margin, 32),
           children: [
             _Hero(),
+            const SizedBox(height: 12),
+            const _QuickTip(),
             const SizedBox(height: 16),
             const _BreathingCard(),
+            const SizedBox(height: 16),
+            const _MedicalWarning(),
             const SizedBox(height: 16),
             for (final card in data) ...[
               _CrisisCard(
@@ -80,6 +86,8 @@ class CrisisScreen extends ConsumerWidget {
               const SizedBox(height: 12),
             ],
             const SizedBox(height: 8),
+            const _AfterCrisis(),
+            const SizedBox(height: 16),
             const _EmergencyContacts(),
             const SizedBox(height: 12),
             _Disclaimer(),
@@ -341,7 +349,7 @@ class _BreathingCardState extends State<_BreathingCard> {
   }
 }
 
-class _CrisisCard extends StatefulWidget {
+class _CrisisCard extends ConsumerStatefulWidget {
   const _CrisisCard({
     required this.icon,
     required this.accent,
@@ -361,11 +369,47 @@ class _CrisisCard extends StatefulWidget {
   final String? emergency;
 
   @override
-  State<_CrisisCard> createState() => _CrisisCardState();
+  ConsumerState<_CrisisCard> createState() => _CrisisCardState();
 }
 
-class _CrisisCardState extends State<_CrisisCard> {
+class _CrisisCardState extends ConsumerState<_CrisisCard> {
   bool _open = false;
+  bool _speaking = false;
+
+  @override
+  void dispose() {
+    if (_speaking) ref.read(speechServiceProvider).stop();
+    super.dispose();
+  }
+
+  /// Kartı sesli okur (web "Sesli Dinle" birebir): başlık + "neler yapılmalı"
+  /// ve adımlar. Kriz anında ekrana bakamayan bakım verici için.
+  Future<void> _toggleSpeech() async {
+    final t = context.t;
+    final speech = ref.read(speechServiceProvider);
+    if (_speaking) {
+      await speech.stop();
+      if (mounted) setState(() => _speaking = false);
+      return;
+    }
+    final text = '${widget.title}. ${t.crisis.listenIntro}: '
+        '${widget.steps.join('. ')}';
+    speech.onDone = () {
+      if (mounted) setState(() => _speaking = false);
+    };
+    setState(() => _speaking = true);
+    final started = await speech.speak(
+      text,
+      languageCode: LocaleSettings.currentLocale.languageCode,
+    );
+    if (!mounted) return;
+    if (!started) {
+      setState(() => _speaking = false);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(t.crisis.listenUnavailable)),
+      );
+    }
+  }
 
   Future<void> _callEmergency() async {
     // "112 — ..." metninden numarayı çıkar.
@@ -418,6 +462,15 @@ class _CrisisCardState extends State<_CrisisCard> {
                               ?.copyWith(color: colors.textTertiary),
                         ),
                       ],
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: _toggleSpeech,
+                    tooltip:
+                        _speaking ? t.crisis.listenStop : t.crisis.listen,
+                    icon: Icon(
+                      _speaking ? Icons.stop_circle_outlined : Icons.volume_up,
+                      color: _speaking ? widget.accent : colors.textTertiary,
                     ),
                   ),
                   AnimatedRotation(
@@ -711,6 +764,141 @@ class _Disclaimer extends StatelessWidget {
         fontSize: 11,
         height: 1.4,
         color: colors.textTertiary,
+      ),
+    );
+  }
+}
+
+/// "İlk kural: siz sakin olun" hatırlatma şeridi (web quick tip banner).
+class _QuickTip extends StatelessWidget {
+  const _QuickTip();
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    final colors = context.colors;
+    final text = Theme.of(context).textTheme;
+    return Container(
+      padding: const EdgeInsets.all(AppSpacing.md),
+      decoration: BoxDecoration(
+        color: colors.primary.withValues(alpha: 0.06),
+        borderRadius: BorderRadius.circular(AppRadius.lg),
+        border: Border(
+          left: BorderSide(color: colors.primary, width: 3),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            t.crisis.quickTipTitle,
+            style: text.labelMedium?.copyWith(
+              color: colors.primary,
+              fontWeight: FontWeight.w800,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(t.crisis.quickTipBody, style: text.bodySmall),
+        ],
+      ),
+    );
+  }
+}
+
+/// Tıbbi uyarı şeridi — ayrıntısı yasal metinlerdeki tıbbi uyarı sayfasında.
+class _MedicalWarning extends StatelessWidget {
+  const _MedicalWarning();
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    final colors = context.colors;
+    final text = Theme.of(context).textTheme;
+    return Container(
+      padding: const EdgeInsets.all(AppSpacing.md),
+      decoration: BoxDecoration(
+        color: colors.warning.withValues(alpha: 0.10),
+        borderRadius: BorderRadius.circular(AppRadius.lg),
+        border: Border.all(color: colors.warning.withValues(alpha: 0.35)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(Icons.medical_information_outlined,
+                  size: 18, color: colors.warning),
+              const SizedBox(width: 6),
+              Expanded(
+                child: Text(
+                  t.crisis.medicalTitle,
+                  style: text.labelMedium?.copyWith(
+                    color: colors.warning,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 6),
+          Text(t.crisis.medicalBody, style: text.bodySmall),
+          const SizedBox(height: 6),
+          Align(
+            alignment: AlignmentDirectional.centerEnd,
+            child: TextButton.icon(
+              onPressed: () => context.push('/legal/medical'),
+              icon: const Icon(Icons.arrow_forward, size: 16),
+              label: Text(t.crisis.medicalMore),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Kriz sonrası toparlanma listesi (web "Kriz Sonrası — İyileşme Zamanı").
+class _AfterCrisis extends StatelessWidget {
+  const _AfterCrisis();
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    final colors = context.colors;
+    final text = Theme.of(context).textTheme;
+    return Container(
+      padding: const EdgeInsets.all(AppSpacing.md),
+      decoration: BoxDecoration(
+        color: colors.surface,
+        borderRadius: BorderRadius.circular(AppRadius.lg),
+        border: Border.all(color: colors.border),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(Icons.favorite_outline, size: 18, color: colors.success),
+              const SizedBox(width: 6),
+              Expanded(
+                child: Text(t.crisis.afterTitle, style: text.titleSmall),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          for (final item in t.crisis.afterItems)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Icon(Icons.check, size: 16, color: colors.success),
+                  const SizedBox(width: 8),
+                  Expanded(child: Text(item, style: text.bodySmall)),
+                ],
+              ),
+            ),
+        ],
       ),
     );
   }

@@ -1241,6 +1241,25 @@ crisis:
   contact112Desc: Ambulans, Polis, İtfaiye
   contact183Label: Sosyal Destek Hattı
   contact183Desc: Kadın, Çocuk ve Sosyal Hizmetler
+  listen: Sesli dinle
+  listenStop: Durdur
+  listenIntro: 'Neler yapılmalı'
+  listenUnavailable: Sesli okuma bu cihazda kullanılamıyor.
+  medicalTitle: Önemli tıbbi uyarı
+  medicalBody: Bu rehber profesyonel tıbbi veya psikiyatrik müdahalenin yerine
+    geçmez. Bilinç kaybı, şiddetli nöbet, solunum güçlüğü veya ciddi zarar
+    verme durumlarında vakit kaybetmeden 112 Acil Yardım Hattı'nı arayın.
+  medicalMore: Detaylı bilgi
+  quickTipTitle: 'İlk kural'
+  quickTipBody: Siz sakin olun. Çocuk sizin duygusal durumunuzu ayna gibi
+    yansıtır. Derin nefes alın, yavaş hareket edin.
+  afterTitle: Kriz sonrası — iyileşme zamanı
+  afterItems:
+    - Çocuğa sakin ortamda sessizce eşlik edin, konuşmaya zorlamayın.
+    - Sevildiğini ve güvende olduğunu hissettirin.
+    - Kriz tetikleyicilerini not edin (tarih, saat, ortam, önceki olay).
+    - Uzman ekibinizi kriz hakkında bilgilendirin.
+    - Kendinize de zaman ayırın — bakım verici de yorulur.
   cards:
     meltdown:
       title: Kriz / Meltdown

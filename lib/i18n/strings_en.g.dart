@@ -1601,6 +1601,23 @@ class _Translations$crisis$en extends Translations$crisis$tr {
 	@override String get contact112Desc => 'Ambulance, Police, Fire';
 	@override String get contact183Label => 'Social Support Line';
 	@override String get contact183Desc => 'Family, Children and Social Services';
+	@override String get listen => 'Listen';
+	@override String get listenStop => 'Stop';
+	@override String get listenIntro => 'What to do';
+	@override String get listenUnavailable => 'Speech playback is not available on this device.';
+	@override String get medicalTitle => 'Important medical warning';
+	@override String get medicalBody => 'This guide does not replace professional medical or psychiatric care. In case of loss of consciousness, a severe seizure, breathing difficulty or serious harm, call your local emergency number immediately.';
+	@override String get medicalMore => 'More details';
+	@override String get quickTipTitle => 'First rule';
+	@override String get quickTipBody => 'Stay calm yourself. Your child mirrors your emotional state. Take a deep breath and move slowly.';
+	@override String get afterTitle => 'After the crisis — recovery time';
+	@override List<String> get afterItems => [
+		'Stay quietly with your child in a calm setting; do not push them to talk.',
+		'Let them feel loved and safe.',
+		'Note the triggers (date, time, setting, what happened before).',
+		'Tell your expert team about the crisis.',
+		'Make time for yourself too — caregivers get tired as well.',
+	];
 	@override late final _Translations$crisis$cards$en cards = _Translations$crisis$cards$en._(_root);
 }
 
@@ -3349,6 +3366,21 @@ extension on TranslationsEn {
 			'crisis.contact112Desc' => 'Ambulance, Police, Fire',
 			'crisis.contact183Label' => 'Social Support Line',
 			'crisis.contact183Desc' => 'Family, Children and Social Services',
+			'crisis.listen' => 'Listen',
+			'crisis.listenStop' => 'Stop',
+			'crisis.listenIntro' => 'What to do',
+			'crisis.listenUnavailable' => 'Speech playback is not available on this device.',
+			'crisis.medicalTitle' => 'Important medical warning',
+			'crisis.medicalBody' => 'This guide does not replace professional medical or psychiatric care. In case of loss of consciousness, a severe seizure, breathing difficulty or serious harm, call your local emergency number immediately.',
+			'crisis.medicalMore' => 'More details',
+			'crisis.quickTipTitle' => 'First rule',
+			'crisis.quickTipBody' => 'Stay calm yourself. Your child mirrors your emotional state. Take a deep breath and move slowly.',
+			'crisis.afterTitle' => 'After the crisis — recovery time',
+			'crisis.afterItems.0' => 'Stay quietly with your child in a calm setting; do not push them to talk.',
+			'crisis.afterItems.1' => 'Let them feel loved and safe.',
+			'crisis.afterItems.2' => 'Note the triggers (date, time, setting, what happened before).',
+			'crisis.afterItems.3' => 'Tell your expert team about the crisis.',
+			'crisis.afterItems.4' => 'Make time for yourself too — caregivers get tired as well.',
 			'crisis.cards.meltdown.title' => 'Crisis / Meltdown',
 			'crisis.cards.meltdown.subtitle' => 'Loss of control, crying, screaming, self-harm attempts',
 			'crisis.cards.meltdown.steps.0' => 'Stay calm — your voice and body language transfer to the child.',
@@ -3763,6 +3795,8 @@ extension on TranslationsEn {
 			'guide.pageExpertAppointments' => 'My Appointments',
 			'guide.pageExpertAppointmentsPurpose' => 'Approve incoming requests, complete sessions and handle reschedule requests.',
 			'guide.pageExpertAppointmentsWhen' => 'While planning your day and closing records after a session.',
+			_ => null,
+		} ?? switch (path) {
 			'guide.pageExpertMessagesPurpose' => 'A secure space to write to families; task feedback also goes through here.',
 			'guide.pageExpertMessagesWhen' => 'When you want to get back to a family or ask a follow-up question.',
 			'guide.pageExpertForumPurpose' => 'As an expert you can answer questions and share verified information.',
@@ -3778,8 +3812,6 @@ extension on TranslationsEn {
 			'guide.video05' => 'Child Profile',
 			'guide.video05Desc' => 'Create a child profile and keep the basics, diagnosis notes, needs and access details up to date.',
 			'guide.video06' => 'Daily Mood and Sleep Tracking',
-			_ => null,
-		} ?? switch (path) {
 			'guide.video06Desc' => 'Add mood, sleep and behaviour records in a few steps and review the history.',
 			'guide.video07' => 'Medication Tracking',
 			'guide.video07Desc' => 'Save the medication plan, follow doses and times, and check past records safely.',

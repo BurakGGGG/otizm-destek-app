@@ -3781,6 +3781,43 @@ class Translations$crisis$tr {
 	/// tr: 'Kadın, Çocuk ve Sosyal Hizmetler'
 	String get contact183Desc => 'Kadın, Çocuk ve Sosyal Hizmetler';
 
+	/// tr: 'Sesli dinle'
+	String get listen => 'Sesli dinle';
+
+	/// tr: 'Durdur'
+	String get listenStop => 'Durdur';
+
+	/// tr: 'Neler yapılmalı'
+	String get listenIntro => 'Neler yapılmalı';
+
+	/// tr: 'Sesli okuma bu cihazda kullanılamıyor.'
+	String get listenUnavailable => 'Sesli okuma bu cihazda kullanılamıyor.';
+
+	/// tr: 'Önemli tıbbi uyarı'
+	String get medicalTitle => 'Önemli tıbbi uyarı';
+
+	/// tr: 'Bu rehber profesyonel tıbbi veya psikiyatrik müdahalenin yerine geçmez. Bilinç kaybı, şiddetli nöbet, solunum güçlüğü veya ciddi zarar verme durumlarında vakit kaybetmeden 112 Acil Yardım Hattı'nı arayın.'
+	String get medicalBody => 'Bu rehber profesyonel tıbbi veya psikiyatrik müdahalenin yerine geçmez. Bilinç kaybı, şiddetli nöbet, solunum güçlüğü veya ciddi zarar verme durumlarında vakit kaybetmeden 112 Acil Yardım Hattı\'nı arayın.';
+
+	/// tr: 'Detaylı bilgi'
+	String get medicalMore => 'Detaylı bilgi';
+
+	/// tr: 'İlk kural'
+	String get quickTipTitle => 'İlk kural';
+
+	/// tr: 'Siz sakin olun. Çocuk sizin duygusal durumunuzu ayna gibi yansıtır. Derin nefes alın, yavaş hareket edin.'
+	String get quickTipBody => 'Siz sakin olun. Çocuk sizin duygusal durumunuzu ayna gibi yansıtır. Derin nefes alın, yavaş hareket edin.';
+
+	/// tr: 'Kriz sonrası — iyileşme zamanı'
+	String get afterTitle => 'Kriz sonrası — iyileşme zamanı';
+
+	List<String> get afterItems => [
+		'Çocuğa sakin ortamda sessizce eşlik edin, konuşmaya zorlamayın.',
+		'Sevildiğini ve güvende olduğunu hissettirin.',
+		'Kriz tetikleyicilerini not edin (tarih, saat, ortam, önceki olay).',
+		'Uzman ekibinizi kriz hakkında bilgilendirin.',
+		'Kendinize de zaman ayırın — bakım verici de yorulur.',
+	];
 	late final Translations$crisis$cards$tr cards = Translations$crisis$cards$tr.internal(_root);
 }
 
@@ -6387,6 +6424,21 @@ extension on Translations {
 			'crisis.contact112Desc' => 'Ambulans, Polis, İtfaiye',
 			'crisis.contact183Label' => 'Sosyal Destek Hattı',
 			'crisis.contact183Desc' => 'Kadın, Çocuk ve Sosyal Hizmetler',
+			'crisis.listen' => 'Sesli dinle',
+			'crisis.listenStop' => 'Durdur',
+			'crisis.listenIntro' => 'Neler yapılmalı',
+			'crisis.listenUnavailable' => 'Sesli okuma bu cihazda kullanılamıyor.',
+			'crisis.medicalTitle' => 'Önemli tıbbi uyarı',
+			'crisis.medicalBody' => 'Bu rehber profesyonel tıbbi veya psikiyatrik müdahalenin yerine geçmez. Bilinç kaybı, şiddetli nöbet, solunum güçlüğü veya ciddi zarar verme durumlarında vakit kaybetmeden 112 Acil Yardım Hattı\'nı arayın.',
+			'crisis.medicalMore' => 'Detaylı bilgi',
+			'crisis.quickTipTitle' => 'İlk kural',
+			'crisis.quickTipBody' => 'Siz sakin olun. Çocuk sizin duygusal durumunuzu ayna gibi yansıtır. Derin nefes alın, yavaş hareket edin.',
+			'crisis.afterTitle' => 'Kriz sonrası — iyileşme zamanı',
+			'crisis.afterItems.0' => 'Çocuğa sakin ortamda sessizce eşlik edin, konuşmaya zorlamayın.',
+			'crisis.afterItems.1' => 'Sevildiğini ve güvende olduğunu hissettirin.',
+			'crisis.afterItems.2' => 'Kriz tetikleyicilerini not edin (tarih, saat, ortam, önceki olay).',
+			'crisis.afterItems.3' => 'Uzman ekibinizi kriz hakkında bilgilendirin.',
+			'crisis.afterItems.4' => 'Kendinize de zaman ayırın — bakım verici de yorulur.',
 			'crisis.cards.meltdown.title' => 'Kriz / Meltdown',
 			'crisis.cards.meltdown.subtitle' => 'Kontrol kaybı, ağlama, bağırma, kendine zarar verme girişimi',
 			'crisis.cards.meltdown.steps.0' => 'Sakin kalın — sesiniz ve beden diliniz çocuğa geçer.',
@@ -6801,6 +6853,8 @@ extension on Translations {
 			'guide.pageExpertAppointments' => 'Randevularım',
 			'guide.pageExpertAppointmentsPurpose' => 'Gelen randevu taleplerini onaylar, seansları tamamlar ve erteleme taleplerini yönetir.',
 			'guide.pageExpertAppointmentsWhen' => 'Gününüzü planlarken ve seans sonrası kayıt kapatırken.',
+			_ => null,
+		} ?? switch (path) {
 			'guide.pageExpertMessagesPurpose' => 'Ailelerle güvenli yazışma alanıdır; görev geri bildirimleri de buradan iletilir.',
 			'guide.pageExpertMessagesWhen' => 'Aileye dönüş yapmak veya takip sorusu sormak istediğinizde.',
 			'guide.pageExpertForumPurpose' => 'Uzman olarak soruları yanıtlayabilir, doğrulanmış bilgi paylaşabilirsiniz.',
@@ -6816,8 +6870,6 @@ extension on Translations {
 			'guide.video05' => 'Çocuk Profili',
 			'guide.video05Desc' => 'Çocuk profili oluşturun; temel bilgileri, tanı notlarını, ihtiyaçları ve erişim ayrıntılarını güncelleyin.',
 			'guide.video06' => 'Günlük Duygu ve Uyku Takibi',
-			_ => null,
-		} ?? switch (path) {
 			'guide.video06Desc' => 'Ruh hali, uyku ve davranış kayıtlarını birkaç adımda ekleyip geçmişi inceleyin.',
 			'guide.video07' => 'İlaç Takibi',
 			'guide.video07Desc' => 'İlaç planını kaydedin, doz ve saat bilgilerini takip edin, geçmiş kayıtları güvenle kontrol edin.',
