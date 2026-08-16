@@ -1509,3 +1509,263 @@ errors:
   unexpectedResponse: Unexpected server response.
   operationFailed: Operation failed.
   noUserInResponse: No user information in the server response.
+
+guide:
+  title: User Guide
+  subtitle: See your first steps, what each section does and the support
+    channels — all in one place.
+  searchHint: Search for a section, topic or action…
+  countLabel: $visible / $total sections
+  searchEmpty: No section matches your search.
+  startTitle: Where to start?
+  startSubtitle: Work through them in order; each step opens the related
+    section.
+  sectionsTitle: What is each section for?
+  sectionsSubtitle: Pick a category to see the sections it contains.
+  purposeLabel: What is it for?
+  whenLabel: When to use it
+  openPage: Open
+  videosTitle: Tutorial videos
+  videosSubtitle: Short walkthroughs. Videos play in the web version; tapping
+    one opens it in your browser.
+  videoWatch: Watch
+  videoWatched: Watched
+  videoMarkWatched: Mark as watched
+  videoProgress: $done / $total videos watched
+  videoOpenError: The video link could not be opened.
+  videoCategoryStart: Getting started
+  videoCategoryChild: Child and development
+  videoCategoryTracking: Daily tracking
+  videoCategoryPlan: Plans and appointments
+  videoCategoryCommunity: Communication and community
+  videoCategorySupport: Safety and support
+  badgeDaily: Every day
+  badgeQuickLog: Quick log
+  badgeQuickHelp: Quick help
+  badgeFirstStep: First step
+  badgeSetup: First setup
+  badgeRoutine: Daily routine
+  badgeClinical: Clinical support
+  badgePrivacy: Privacy
+  badgeCalendar: Calendar
+  badgeCommunication: Communication
+  badgeProfile: Profile
+  groupDaily: Daily
+  groupDailyDesc: The home, tracking and quick-support sections you will use
+    every day.
+  groupChild: My child
+  groupChildDesc: Your child's development, profile details, exercises and
+    special-situation records.
+  groupCommunity: Community
+  groupCommunityDesc: Sharing experiences, the forum, local meetups and
+    contact with other families.
+  groupExpertWork: Workspace
+  groupExpertWorkDesc: Appointment, communication and professional resource
+    sections.
+  startChild: Create your child's profile
+  startChildDesc: Enter the basics, diagnosis notes and needs so there is a
+    child to track.
+  startTracker: Add your first daily record
+  startTrackerDesc: Keep sleep, mood, medication and observations organised
+    with short entries.
+  startAppointment: Book an appointment with an expert
+  startAppointmentDesc: Pick a suitable expert, request an appointment and
+    follow the session flow.
+  startPrivacy: Review your sharing consents
+  startPrivacyDesc: Manage which data is processed for which purpose from the
+    consent screen.
+  startExpertCalendar: Manage appointments
+  startExpertCalendarDesc: Approve requests, complete sessions and keep
+    families informed.
+  startExpertMessages: Reach out to families
+  startExpertMessagesDesc: Answer questions through secure messaging and keep
+    the follow-up going.
+  startExpertProfile: Complete your expert profile
+  startExpertProfileDesc: Keep your title, specialisations and contact details
+    up to date.
+  pageHome: Home
+  pageHomePurpose: Shows today's to-dos, reminders and the short daily plan in
+    one place.
+  pageHomeWhen: Every time you open the app and want to know what today holds.
+  pageHomeKeywords: home, start, task, today, dashboard
+  pageTracker: Daily Tracking
+  pageTrackerPurpose: Used to record mood, sleep, medication and short daily
+    observations.
+  pageTrackerWhen: At the end of the day or when something notable changes.
+  pageTrackerKeywords: daily, mood, sleep, medication, record
+  pageMessages: Messages
+  pageMessagesPurpose: A secure space to write to experts and other people on
+    the platform.
+  pageMessagesWhen: When you want to message about an appointment, a question
+    or a follow-up.
+  pageMessagesKeywords: message, chat, contact, expert
+  pageAppointments: Appointments
+  pageAppointmentsPurpose: Manages appointment requests, session times and the
+    meeting flow.
+  pageAppointmentsWhen: When planning a session or checking upcoming
+    appointments.
+  pageAppointmentsKeywords: appointment, calendar, session, doctor, therapy
+  pageCrisis: What to do in hard moments
+  pageCrisisPurpose: Quickly shows calming and intervention steps for
+    difficult moments.
+  pageCrisisWhen: During a crisis, intense stress or when you need fast
+    guidance.
+  pageCrisisKeywords: crisis, hard moment, calming, emergency, breathing
+  pageAssistant: AI Assistant
+  pageAssistantPurpose: A chat assistant that answers instantly; it does not
+    give medical advice, it points you in the right direction.
+  pageAssistantWhen: When you want a quick answer to something on your mind.
+  pageAssistantKeywords: assistant, chat, ai, question, bot
+  pageSettings: Settings
+  pageSettingsPurpose: Manages notification, privacy and accessibility
+    preferences, theme and language, your password and your account.
+  pageSettingsWhen: When you want to tailor the app or manage your data.
+  pageSettingsKeywords: settings, notification, privacy, password, theme,
+    language, accessibility
+  pageHelp: Help
+  pageHelpPurpose: Short information about the app, usage tips and contact
+    channels.
+  pageHelpWhen: When you cannot work out how a feature behaves.
+  pageHelpKeywords: help, support, faq, contact
+  pageChildren: My Children
+  pageChildrenPurpose: Keeps your child's basics, diagnosis notes, therapy and
+    needs.
+  pageChildrenWhen: During first setup or when child details change.
+  pageChildrenKeywords: child, profile, diagnosis, therapy, milestone
+  pageAnalytics: Progress Dashboard
+  pageAnalyticsPurpose: Turns daily records into charts and monthly trends.
+  pageAnalyticsWhen: When you want the bigger picture rather than single
+    entries.
+  pageAnalyticsKeywords: progress, chart, analysis, trend, development
+  pageTreatment: Support Plan
+  pageTreatmentPurpose: Collects small goals, home practice, games and the
+    daily support flow.
+  pageTreatmentWhen: When looking for a short activity or goal to try at home
+    today.
+  pageTreatmentKeywords: treatment, plan, goal, activity, game, home practice
+  pageTasks: My Tasks
+  pageTasksPurpose: Shows the tasks your expert assigned, the daily exercise
+    wizard and submission status.
+  pageTasksWhen: When following up on work given after a session.
+  pageTasksKeywords: task, homework, exercise, expert, submission
+  pageNotes: My Notes
+  pageNotesPurpose: Stores behaviour, development, meeting or noteworthy
+    events as free-form notes.
+  pageNotesWhen: For short observations you want to share with your expert or
+    remember later.
+  pageNotesKeywords: note, observation, development, behaviour, reminder
+  pageBehavior: Behaviour Log
+  pageBehaviorPurpose: Records what happened before, during and after a
+    behaviour (ABC) so patterns become visible.
+  pageBehaviorWhen: When you want to understand why a behaviour repeats.
+  pageBehaviorKeywords: behaviour, abc, antecedent, consequence, pattern,
+    trigger
+  pageEmergency: Emergency Card
+  pageEmergencyPurpose: Keeps the essential child information ready to share,
+    via a time-limited link and QR code.
+  pageEmergencyWhen: When you may need to share key information quickly
+    outside, at school or in an emergency.
+  pageEmergencyKeywords: emergency, card, safety, qr, sharing
+  pageCalendar: Calendar
+  pageCalendarPurpose: Keeps appointments, school, events and reminders on a
+    dated agenda.
+  pageCalendarWhen: When you do not want to forget upcoming plans.
+  pageCalendarKeywords: calendar, event, reminder, plan
+  pageRoutines: Routines
+  pageRoutinesPurpose: Helps you follow daily routines step by step, visually.
+  pageRoutinesWhen: When you want to picture the morning, school, sleep or
+    transition routine.
+  pageRoutinesKeywords: routine, schedule, step, visual, transition
+  pageForum: Community Forum
+  pageForumPurpose: A shared discussion space where parents and experts ask
+    questions and share experience.
+  pageForumWhen: When you want to ask the community about something.
+  pageForumKeywords: forum, question, answer, community, experience
+  pageWall: Support Wall
+  pageWallPurpose: A freer support space for feelings and experiences — you
+    can stay anonymous.
+  pageWallWhen: When you would rather open up than ask a question.
+  pageWallKeywords: support wall, feeling, sharing, support, anonymous
+  pageMeetups: Local Meetups
+  pageMeetupsPurpose: Lets you meet families in your city in real life.
+  pageMeetupsWhen: When you want to plan a face-to-face event nearby.
+  pageMeetupsKeywords: meetup, event, city, meeting, local
+  pageWeekly: Question of the Week
+  pageWeeklyPurpose: Lists families' answers to one shared topic each week.
+  pageWeeklyWhen: When you want to see what other families think or share your
+    own experience.
+  pageWeeklyKeywords: weekly question, community, experience, sharing
+  pageSimilar: Similar Families
+  pageSimilarPurpose: Introduces you to families going through a similar
+    process in terms of age and needs.
+  pageSimilarWhen: When you want to find the families you have most in common
+    with.
+  pageSimilarKeywords: similar families, matching, peer, meeting
+  pageGroups: Support Groups
+  pageGroupsPurpose: Lets you join category-based family and expert
+    communities and their group chats.
+  pageGroupsWhen: When you are looking for a community focused on similar
+    needs or age groups.
+  pageGroupsKeywords: group, community, chat, join
+  pageKnowledge: Knowledge Base
+  pageKnowledgePurpose: Collects trustworthy articles and resources.
+  pageKnowledgeWhen: When you want to read or learn about a topic calmly.
+  pageKnowledgeKeywords: knowledge, article, guide, resource, learning
+  pageExpertAppointments: My Appointments
+  pageExpertAppointmentsPurpose: Approve incoming requests, complete sessions
+    and handle reschedule requests.
+  pageExpertAppointmentsWhen: While planning your day and closing records
+    after a session.
+  pageExpertMessagesPurpose: A secure space to write to families; task
+    feedback also goes through here.
+  pageExpertMessagesWhen: When you want to get back to a family or ask a
+    follow-up question.
+  pageExpertForumPurpose: As an expert you can answer questions and share
+    verified information.
+  pageExpertForumWhen: When you want to contribute professionally to the
+    community.
+  video01: Platform Overview
+  video01Desc: A short tour of the main sections, the role-based menu and the
+    safe-use tools.
+  video02: Parent Quick Start
+  video02Desc: Follow the basic flow from signing in to creating a child
+    profile and the first daily record.
+  video03: Using the User Guide
+  video03Desc: Learn how to find the feature you need through search,
+    categories and role-based guidance.
+  video04: Home and Navigation
+  video04Desc: Read the daily summaries and reach any section through the menu
+    and quick links.
+  video05: Child Profile
+  video05Desc: Create a child profile and keep the basics, diagnosis notes,
+    needs and access details up to date.
+  video06: Daily Mood and Sleep Tracking
+  video06Desc: Add mood, sleep and behaviour records in a few steps and review
+    the history.
+  video07: Medication Tracking
+  video07Desc: Save the medication plan, follow doses and times, and check
+    past records safely.
+  video08: Progress Dashboard
+  video08Desc: See how daily records turn into charts and interpret trends and
+    development summaries.
+  video09: Goals and Exercises
+  video09Desc: View goals suited to your child, run the home exercises and
+    track completion.
+  video10: Tasks and Routines
+  video10Desc: Follow the tasks your expert assigned and plan morning, school
+    or sleep routines step by step.
+  video11: Notes, Calendar and Emergency Card
+  video11Desc: Write down observations, plan important dates and keep the
+    emergency card ready to share.
+  video12: Finding an Expert and Booking
+  video12Desc: Filter experts, compare profiles, choose the right person and
+    manage the appointment flow.
+  video13: Messages, Privacy and Settings
+  video13Desc: Use secure messaging and manage profile, notification, password
+    and data-sharing preferences.
+  video14: Community, Forum and Meetups
+  video14Desc: Ask questions on the forum, read family experiences and
+    discover safe community meetups.
+  video15: Knowledge Base, Crisis and Help
+  video15Desc: Find trustworthy content, reach the crisis steps for hard
+    moments and use the help channels.

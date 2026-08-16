@@ -21,6 +21,7 @@ import '../../features/children/presentation/children_screen.dart';
 import '../../features/crisis/presentation/crisis_screen.dart';
 import '../../features/emergency/presentation/emergency_screen.dart';
 import '../../features/groups/presentation/groups_screen.dart';
+import '../../features/guide/presentation/guide_screen.dart';
 import '../../features/home/presentation/home_shell.dart';
 import '../../features/knowledge/presentation/knowledge_screen.dart';
 import '../../features/legal/presentation/legal_screen.dart';
@@ -149,6 +150,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         ),
       ),
       GoRoute(path: '/help', builder: (_, _) => const HelpScreen()),
+      GoRoute(path: '/guide', builder: (_, _) => const GuideScreen()),
       GoRoute(
         path: '/notifications',
         builder: (_, _) => const NotificationsScreen(),

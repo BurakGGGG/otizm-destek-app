@@ -62,6 +62,11 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
         label: t.settings.title,
         route: '/settings',
       ),
+      (
+        icon: Icons.menu_book_outlined,
+        label: t.guide.title,
+        route: '/guide',
+      ),
       (icon: Icons.help_outline, label: t.profile.help, route: '/help'),
     ];
 

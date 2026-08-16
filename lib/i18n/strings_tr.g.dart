@@ -93,6 +93,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$help$tr help = Translations$help$tr.internal(_root);
 	late final Translations$profile$tr profile = Translations$profile$tr.internal(_root);
 	late final Translations$errors$tr errors = Translations$errors$tr.internal(_root);
+	late final Translations$guide$tr guide = Translations$guide$tr.internal(_root);
 }
 
 // Path: app
@@ -4460,6 +4461,588 @@ class Translations$errors$tr {
 	String get noUserInResponse => 'Sunucu yanıtında kullanıcı bilgisi yok.';
 }
 
+// Path: guide
+class Translations$guide$tr {
+	Translations$guide$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Kullanıcı Rehberi'
+	String get title => 'Kullanıcı Rehberi';
+
+	/// tr: 'Rolünüze göre ilk adımları, sayfaların ne işe yaradığını ve destek kanallarını tek yerde görün.'
+	String get subtitle => 'Rolünüze göre ilk adımları, sayfaların ne işe yaradığını ve destek kanallarını tek yerde görün.';
+
+	/// tr: 'Sayfa, konu veya işlem ara…'
+	String get searchHint => 'Sayfa, konu veya işlem ara…';
+
+	/// tr: '$visible / $total sayfa'
+	String countLabel({required Object visible, required Object total}) => '${visible} / ${total} sayfa';
+
+	/// tr: 'Aramanıza uyan bölüm bulunamadı.'
+	String get searchEmpty => 'Aramanıza uyan bölüm bulunamadı.';
+
+	/// tr: 'Nereden başlamalı?'
+	String get startTitle => 'Nereden başlamalı?';
+
+	/// tr: 'Sırayla ilerleyin; her adım ilgili bölümü açar.'
+	String get startSubtitle => 'Sırayla ilerleyin; her adım ilgili bölümü açar.';
+
+	/// tr: 'Bölümler ne işe yarar?'
+	String get sectionsTitle => 'Bölümler ne işe yarar?';
+
+	/// tr: 'Bir kategori seçin, o bölümün sayfalarını görün.'
+	String get sectionsSubtitle => 'Bir kategori seçin, o bölümün sayfalarını görün.';
+
+	/// tr: 'Ne işe yarar?'
+	String get purposeLabel => 'Ne işe yarar?';
+
+	/// tr: 'Ne zaman kullanılır?'
+	String get whenLabel => 'Ne zaman kullanılır?';
+
+	/// tr: 'Aç'
+	String get openPage => 'Aç';
+
+	/// tr: 'Eğitim videoları'
+	String get videosTitle => 'Eğitim videoları';
+
+	/// tr: 'Kısa anlatımlar. Videolar web sürümünde oynatılır; dokununca tarayıcıda açılır.'
+	String get videosSubtitle => 'Kısa anlatımlar. Videolar web sürümünde oynatılır; dokununca tarayıcıda açılır.';
+
+	/// tr: 'İzle'
+	String get videoWatch => 'İzle';
+
+	/// tr: 'İzlendi'
+	String get videoWatched => 'İzlendi';
+
+	/// tr: 'İzlendi olarak işaretle'
+	String get videoMarkWatched => 'İzlendi olarak işaretle';
+
+	/// tr: '$done / $total video izlendi'
+	String videoProgress({required Object done, required Object total}) => '${done} / ${total} video izlendi';
+
+	/// tr: 'Video bağlantısı açılamadı.'
+	String get videoOpenError => 'Video bağlantısı açılamadı.';
+
+	/// tr: 'Başlangıç'
+	String get videoCategoryStart => 'Başlangıç';
+
+	/// tr: 'Çocuk ve Gelişim'
+	String get videoCategoryChild => 'Çocuk ve Gelişim';
+
+	/// tr: 'Günlük Takip'
+	String get videoCategoryTracking => 'Günlük Takip';
+
+	/// tr: 'Plan ve Randevu'
+	String get videoCategoryPlan => 'Plan ve Randevu';
+
+	/// tr: 'İletişim ve Topluluk'
+	String get videoCategoryCommunity => 'İletişim ve Topluluk';
+
+	/// tr: 'Güven ve Destek'
+	String get videoCategorySupport => 'Güven ve Destek';
+
+	/// tr: 'Her gün'
+	String get badgeDaily => 'Her gün';
+
+	/// tr: 'Kısa kayıt'
+	String get badgeQuickLog => 'Kısa kayıt';
+
+	/// tr: 'Hızlı destek'
+	String get badgeQuickHelp => 'Hızlı destek';
+
+	/// tr: 'İlk adım'
+	String get badgeFirstStep => 'İlk adım';
+
+	/// tr: 'İlk kurulum'
+	String get badgeSetup => 'İlk kurulum';
+
+	/// tr: 'Günlük rutin'
+	String get badgeRoutine => 'Günlük rutin';
+
+	/// tr: 'Klinik destek'
+	String get badgeClinical => 'Klinik destek';
+
+	/// tr: 'Gizlilik'
+	String get badgePrivacy => 'Gizlilik';
+
+	/// tr: 'Takvim'
+	String get badgeCalendar => 'Takvim';
+
+	/// tr: 'İletişim'
+	String get badgeCommunication => 'İletişim';
+
+	/// tr: 'Profil'
+	String get badgeProfile => 'Profil';
+
+	/// tr: 'Günlük'
+	String get groupDaily => 'Günlük';
+
+	/// tr: 'Her gün kullanacağınız ana sayfa, takip ve hızlı destek bölümleri.'
+	String get groupDailyDesc => 'Her gün kullanacağınız ana sayfa, takip ve hızlı destek bölümleri.';
+
+	/// tr: 'Çocuğum'
+	String get groupChild => 'Çocuğum';
+
+	/// tr: 'Çocuğunuzun gelişimi, profil bilgileri, egzersizleri ve özel durum kayıtları.'
+	String get groupChildDesc => 'Çocuğunuzun gelişimi, profil bilgileri, egzersizleri ve özel durum kayıtları.';
+
+	/// tr: 'Topluluk'
+	String get groupCommunity => 'Topluluk';
+
+	/// tr: 'Deneyim paylaşımı, forum, yerel buluşmalar ve diğer ailelerle iletişim.'
+	String get groupCommunityDesc => 'Deneyim paylaşımı, forum, yerel buluşmalar ve diğer ailelerle iletişim.';
+
+	/// tr: 'Çalışma alanı'
+	String get groupExpertWork => 'Çalışma alanı';
+
+	/// tr: 'Randevu, iletişim ve mesleki kaynak bölümleri.'
+	String get groupExpertWorkDesc => 'Randevu, iletişim ve mesleki kaynak bölümleri.';
+
+	/// tr: 'Çocuk profilini oluştur'
+	String get startChild => 'Çocuk profilini oluştur';
+
+	/// tr: 'Temel bilgiler, tanı notları ve ihtiyaçları girerek takip edilecek çocuğu hazırlayın.'
+	String get startChildDesc => 'Temel bilgiler, tanı notları ve ihtiyaçları girerek takip edilecek çocuğu hazırlayın.';
+
+	/// tr: 'İlk günlük kaydı ekle'
+	String get startTracker => 'İlk günlük kaydı ekle';
+
+	/// tr: 'Uyku, ruh hali, ilaç ve gözlemleri kısa kayıtlarla düzenli hale getirin.'
+	String get startTrackerDesc => 'Uyku, ruh hali, ilaç ve gözlemleri kısa kayıtlarla düzenli hale getirin.';
+
+	/// tr: 'Uzmanla randevu planla'
+	String get startAppointment => 'Uzmanla randevu planla';
+
+	/// tr: 'Uygun uzmanı seçin, randevu talebi oluşturun ve görüşme akışını takip edin.'
+	String get startAppointmentDesc => 'Uygun uzmanı seçin, randevu talebi oluşturun ve görüşme akışını takip edin.';
+
+	/// tr: 'Paylaşım izinlerini kontrol et'
+	String get startPrivacy => 'Paylaşım izinlerini kontrol et';
+
+	/// tr: 'Hangi verinin hangi amaçla işleneceğini KVKK rızalarından yönetin.'
+	String get startPrivacyDesc => 'Hangi verinin hangi amaçla işleneceğini KVKK rızalarından yönetin.';
+
+	/// tr: 'Randevuları yönet'
+	String get startExpertCalendar => 'Randevuları yönet';
+
+	/// tr: 'Randevu taleplerini onaylayın, seansları tamamlayın ve aileleri bilgilendirin.'
+	String get startExpertCalendarDesc => 'Randevu taleplerini onaylayın, seansları tamamlayın ve aileleri bilgilendirin.';
+
+	/// tr: 'Ailelerle iletişime geç'
+	String get startExpertMessages => 'Ailelerle iletişime geç';
+
+	/// tr: 'Güvenli mesajlaşmayla soruları yanıtlayın ve takibi sürdürün.'
+	String get startExpertMessagesDesc => 'Güvenli mesajlaşmayla soruları yanıtlayın ve takibi sürdürün.';
+
+	/// tr: 'Uzman profilini tamamla'
+	String get startExpertProfile => 'Uzman profilini tamamla';
+
+	/// tr: 'Unvan, uzmanlık alanları ve iletişim bilgilerinizi güncel tutun.'
+	String get startExpertProfileDesc => 'Unvan, uzmanlık alanları ve iletişim bilgilerinizi güncel tutun.';
+
+	/// tr: 'Ana Sayfa'
+	String get pageHome => 'Ana Sayfa';
+
+	/// tr: 'Bugün yapılacakları, hatırlatmaları ve kısa günlük planı tek yerde gösterir.'
+	String get pageHomePurpose => 'Bugün yapılacakları, hatırlatmaları ve kısa günlük planı tek yerde gösterir.';
+
+	/// tr: 'Uygulamaya her girişte "bugün ne yapacağım?" diye bakmak istediğinizde.'
+	String get pageHomeWhen => 'Uygulamaya her girişte "bugün ne yapacağım?" diye bakmak istediğinizde.';
+
+	/// tr: 'ana sayfa, başlangıç, görev, bugün, panel'
+	String get pageHomeKeywords => 'ana sayfa, başlangıç, görev, bugün, panel';
+
+	/// tr: 'Günlük Takip'
+	String get pageTracker => 'Günlük Takip';
+
+	/// tr: 'Ruh hali, uyku, ilaç ve kısa günlük gözlemleri kaydetmek için kullanılır.'
+	String get pageTrackerPurpose => 'Ruh hali, uyku, ilaç ve kısa günlük gözlemleri kaydetmek için kullanılır.';
+
+	/// tr: 'Günün sonunda veya önemli bir değişiklik olduğunda kısa kayıt girmek istediğinizde.'
+	String get pageTrackerWhen => 'Günün sonunda veya önemli bir değişiklik olduğunda kısa kayıt girmek istediğinizde.';
+
+	/// tr: 'günlük, ruh hali, uyku, ilaç, kayıt, duygu'
+	String get pageTrackerKeywords => 'günlük, ruh hali, uyku, ilaç, kayıt, duygu';
+
+	/// tr: 'Mesajlar'
+	String get pageMessages => 'Mesajlar';
+
+	/// tr: 'Uzmanlar ve platformdaki kişilerle güvenli yazışma alanıdır.'
+	String get pageMessagesPurpose => 'Uzmanlar ve platformdaki kişilerle güvenli yazışma alanıdır.';
+
+	/// tr: 'Randevu, soru veya takip için mesajlaşmak istediğinizde.'
+	String get pageMessagesWhen => 'Randevu, soru veya takip için mesajlaşmak istediğinizde.';
+
+	/// tr: 'mesaj, sohbet, iletişim, uzman'
+	String get pageMessagesKeywords => 'mesaj, sohbet, iletişim, uzman';
+
+	/// tr: 'Randevular'
+	String get pageAppointments => 'Randevular';
+
+	/// tr: 'Randevu talepleri, seans zamanı ve görüşme akışını yönetir.'
+	String get pageAppointmentsPurpose => 'Randevu talepleri, seans zamanı ve görüşme akışını yönetir.';
+
+	/// tr: 'Uzmanla görüşme planlamak veya yaklaşan randevuları görmek istediğinizde.'
+	String get pageAppointmentsWhen => 'Uzmanla görüşme planlamak veya yaklaşan randevuları görmek istediğinizde.';
+
+	/// tr: 'randevu, takvim, seans, görüşme, doktor, terapi'
+	String get pageAppointmentsKeywords => 'randevu, takvim, seans, görüşme, doktor, terapi';
+
+	/// tr: 'Zor Anlarda Ne Yapmalı?'
+	String get pageCrisis => 'Zor Anlarda Ne Yapmalı?';
+
+	/// tr: 'Zorlayıcı anlarda sakinleşme ve müdahale adımlarını hızlı gösterir.'
+	String get pageCrisisPurpose => 'Zorlayıcı anlarda sakinleşme ve müdahale adımlarını hızlı gösterir.';
+
+	/// tr: 'Kriz, yoğun stres veya hızlı yönlendirme gereken bir durum olduğunda.'
+	String get pageCrisisWhen => 'Kriz, yoğun stres veya hızlı yönlendirme gereken bir durum olduğunda.';
+
+	/// tr: 'kriz, zor an, sakinleşme, acil, destek, nefes'
+	String get pageCrisisKeywords => 'kriz, zor an, sakinleşme, acil, destek, nefes';
+
+	/// tr: 'AI Asistan'
+	String get pageAssistant => 'AI Asistan';
+
+	/// tr: 'Sorularınıza anında yanıt veren sohbet asistanıdır; tıbbi tavsiye vermez, yönlendirir.'
+	String get pageAssistantPurpose => 'Sorularınıza anında yanıt veren sohbet asistanıdır; tıbbi tavsiye vermez, yönlendirir.';
+
+	/// tr: 'Aklınıza takılan bir konuyu hızlıca sormak istediğinizde.'
+	String get pageAssistantWhen => 'Aklınıza takılan bir konuyu hızlıca sormak istediğinizde.';
+
+	/// tr: 'asistan, sohbet, yapay zeka, soru, bot'
+	String get pageAssistantKeywords => 'asistan, sohbet, yapay zeka, soru, bot';
+
+	/// tr: 'Ayarlar'
+	String get pageSettings => 'Ayarlar';
+
+	/// tr: 'Bildirim, gizlilik ve erişilebilirlik tercihlerinizi, tema ve dili, şifrenizi ve hesabınızı yönetir.'
+	String get pageSettingsPurpose => 'Bildirim, gizlilik ve erişilebilirlik tercihlerinizi, tema ve dili, şifrenizi ve hesabınızı yönetir.';
+
+	/// tr: 'Uygulamayı kendinize göre ayarlamak veya verilerinizi yönetmek istediğinizde.'
+	String get pageSettingsWhen => 'Uygulamayı kendinize göre ayarlamak veya verilerinizi yönetmek istediğinizde.';
+
+	/// tr: 'ayarlar, bildirim, gizlilik, şifre, tema, dil, erişilebilirlik'
+	String get pageSettingsKeywords => 'ayarlar, bildirim, gizlilik, şifre, tema, dil, erişilebilirlik';
+
+	/// tr: 'Yardım'
+	String get pageHelp => 'Yardım';
+
+	/// tr: 'Uygulama hakkında kısa bilgi, kullanım ipuçları ve iletişim kanallarını içerir.'
+	String get pageHelpPurpose => 'Uygulama hakkında kısa bilgi, kullanım ipuçları ve iletişim kanallarını içerir.';
+
+	/// tr: 'Bir özelliğin nasıl çalıştığını bulamadığınızda.'
+	String get pageHelpWhen => 'Bir özelliğin nasıl çalıştığını bulamadığınızda.';
+
+	/// tr: 'yardım, destek, sss, iletişim'
+	String get pageHelpKeywords => 'yardım, destek, sss, iletişim';
+
+	/// tr: 'Çocuklarım'
+	String get pageChildren => 'Çocuklarım';
+
+	/// tr: 'Çocuğun temel bilgilerini, tanı notlarını, terapi ve ihtiyaç bilgilerini tutar.'
+	String get pageChildrenPurpose => 'Çocuğun temel bilgilerini, tanı notlarını, terapi ve ihtiyaç bilgilerini tutar.';
+
+	/// tr: 'İlk kurulumda veya çocukla ilgili bilgileri güncellemek istediğinizde.'
+	String get pageChildrenWhen => 'İlk kurulumda veya çocukla ilgili bilgileri güncellemek istediğinizde.';
+
+	/// tr: 'çocuk, profil, tanı, terapi, bilgi, kilometre taşı'
+	String get pageChildrenKeywords => 'çocuk, profil, tanı, terapi, bilgi, kilometre taşı';
+
+	/// tr: 'Gelişim Paneli'
+	String get pageAnalytics => 'Gelişim Paneli';
+
+	/// tr: 'Günlük kayıtları grafiklere ve aylık eğilimlere dönüştürür.'
+	String get pageAnalyticsPurpose => 'Günlük kayıtları grafiklere ve aylık eğilimlere dönüştürür.';
+
+	/// tr: 'Tek tek kayıtlardan daha büyük resmi görmek istediğinizde.'
+	String get pageAnalyticsWhen => 'Tek tek kayıtlardan daha büyük resmi görmek istediğinizde.';
+
+	/// tr: 'ilerleme, grafik, analiz, trend, gelişim'
+	String get pageAnalyticsKeywords => 'ilerleme, grafik, analiz, trend, gelişim';
+
+	/// tr: 'Tedavi Paneli'
+	String get pageTreatment => 'Tedavi Paneli';
+
+	/// tr: 'Küçük hedefler, ev çalışmaları, oyunlar ve günlük destek akışını toplar.'
+	String get pageTreatmentPurpose => 'Küçük hedefler, ev çalışmaları, oyunlar ve günlük destek akışını toplar.';
+
+	/// tr: 'Bugün evde uygulanabilecek kısa etkinlik veya hedef aradığınızda.'
+	String get pageTreatmentWhen => 'Bugün evde uygulanabilecek kısa etkinlik veya hedef aradığınızda.';
+
+	/// tr: 'tedavi, plan, hedef, aktivite, oyun, ev çalışması'
+	String get pageTreatmentKeywords => 'tedavi, plan, hedef, aktivite, oyun, ev çalışması';
+
+	/// tr: 'Ödevlerim'
+	String get pageTasks => 'Ödevlerim';
+
+	/// tr: 'Uzmanın verdiği görevleri, günlük egzersiz sihirbazını ve teslim durumunu gösterir.'
+	String get pageTasksPurpose => 'Uzmanın verdiği görevleri, günlük egzersiz sihirbazını ve teslim durumunu gösterir.';
+
+	/// tr: 'Seans sonrası verilen çalışmaları takip etmek istediğinizde.'
+	String get pageTasksWhen => 'Seans sonrası verilen çalışmaları takip etmek istediğinizde.';
+
+	/// tr: 'görev, ödev, egzersiz, uzman, teslim'
+	String get pageTasksKeywords => 'görev, ödev, egzersiz, uzman, teslim';
+
+	/// tr: 'Notlarım'
+	String get pageNotes => 'Notlarım';
+
+	/// tr: 'Davranış, gelişim, görüşme veya dikkat çeken olayları serbest not olarak saklar.'
+	String get pageNotesPurpose => 'Davranış, gelişim, görüşme veya dikkat çeken olayları serbest not olarak saklar.';
+
+	/// tr: 'Uzmanla paylaşmak veya sonra hatırlamak istediğiniz kısa gözlemler olduğunda.'
+	String get pageNotesWhen => 'Uzmanla paylaşmak veya sonra hatırlamak istediğiniz kısa gözlemler olduğunda.';
+
+	/// tr: 'not, gözlem, gelişim, davranış, hatırlatma'
+	String get pageNotesKeywords => 'not, gözlem, gelişim, davranış, hatırlatma';
+
+	/// tr: 'Davranış Günlüğü'
+	String get pageBehavior => 'Davranış Günlüğü';
+
+	/// tr: 'Davranışın öncesini, kendisini ve sonrasını (ABC) kayıt altına alarak örüntüleri görünür kılar.'
+	String get pageBehaviorPurpose => 'Davranışın öncesini, kendisini ve sonrasını (ABC) kayıt altına alarak örüntüleri görünür kılar.';
+
+	/// tr: 'Tekrarlayan bir davranışın nedenini anlamak istediğinizde.'
+	String get pageBehaviorWhen => 'Tekrarlayan bir davranışın nedenini anlamak istediğinizde.';
+
+	/// tr: 'davranış, abc, öncesi, sonrası, örüntü, tetikleyici'
+	String get pageBehaviorKeywords => 'davranış, abc, öncesi, sonrası, örüntü, tetikleyici';
+
+	/// tr: 'Acil Durum Kartı'
+	String get pageEmergency => 'Acil Durum Kartı';
+
+	/// tr: 'Acil durumda paylaşılacak temel çocuk bilgilerini hazır tutar; süreli bağlantı ve QR ile paylaşılır.'
+	String get pageEmergencyPurpose => 'Acil durumda paylaşılacak temel çocuk bilgilerini hazır tutar; süreli bağlantı ve QR ile paylaşılır.';
+
+	/// tr: 'Dışarıda, okulda veya acil durumda hızlı bilgi paylaşımı gerekebileceğinde.'
+	String get pageEmergencyWhen => 'Dışarıda, okulda veya acil durumda hızlı bilgi paylaşımı gerekebileceğinde.';
+
+	/// tr: 'acil, kart, güvenlik, qr, paylaşım'
+	String get pageEmergencyKeywords => 'acil, kart, güvenlik, qr, paylaşım';
+
+	/// tr: 'Takvim'
+	String get pageCalendar => 'Takvim';
+
+	/// tr: 'Randevu, okul, etkinlik ve hatırlatmaları tarihli şekilde tutar.'
+	String get pageCalendarPurpose => 'Randevu, okul, etkinlik ve hatırlatmaları tarihli şekilde tutar.';
+
+	/// tr: 'Yaklaşan planları unutmak istemediğinizde.'
+	String get pageCalendarWhen => 'Yaklaşan planları unutmak istemediğinizde.';
+
+	/// tr: 'takvim, etkinlik, hatırlatma, plan'
+	String get pageCalendarKeywords => 'takvim, etkinlik, hatırlatma, plan';
+
+	/// tr: 'Rutinler'
+	String get pageRoutines => 'Rutinler';
+
+	/// tr: 'Günlük rutinleri adım adım, görsel olarak takip etmeye yardımcı olur.'
+	String get pageRoutinesPurpose => 'Günlük rutinleri adım adım, görsel olarak takip etmeye yardımcı olur.';
+
+	/// tr: 'Sabah, okul, uyku veya geçiş rutinini görselleştirmek istediğinizde.'
+	String get pageRoutinesWhen => 'Sabah, okul, uyku veya geçiş rutinini görselleştirmek istediğinizde.';
+
+	/// tr: 'rutin, program, adım, görsel, geçiş'
+	String get pageRoutinesKeywords => 'rutin, program, adım, görsel, geçiş';
+
+	/// tr: 'Topluluk Forumu'
+	String get pageForum => 'Topluluk Forumu';
+
+	/// tr: 'Ebeveynlerin ve uzmanların soru sorup deneyimlerini paylaştığı ortak tartışma alanıdır.'
+	String get pageForumPurpose => 'Ebeveynlerin ve uzmanların soru sorup deneyimlerini paylaştığı ortak tartışma alanıdır.';
+
+	/// tr: 'Kafanıza takılan bir soruyu topluluğa danışmak istediğinizde.'
+	String get pageForumWhen => 'Kafanıza takılan bir soruyu topluluğa danışmak istediğinizde.';
+
+	/// tr: 'forum, soru, cevap, topluluk, deneyim'
+	String get pageForumKeywords => 'forum, soru, cevap, topluluk, deneyim';
+
+	/// tr: 'Dertleşme Duvarı'
+	String get pageWall => 'Dertleşme Duvarı';
+
+	/// tr: 'Duygu ve deneyim paylaşımı için daha serbest bir destek alanıdır; istersen anonim kalırsın.'
+	String get pageWallPurpose => 'Duygu ve deneyim paylaşımı için daha serbest bir destek alanıdır; istersen anonim kalırsın.';
+
+	/// tr: 'Soru sormaktan çok içinizi dökmek veya destek görmek istediğinizde.'
+	String get pageWallWhen => 'Soru sormaktan çok içinizi dökmek veya destek görmek istediğinizde.';
+
+	/// tr: 'dertleşme, duygu, paylaşım, destek, anonim'
+	String get pageWallKeywords => 'dertleşme, duygu, paylaşım, destek, anonim';
+
+	/// tr: 'Yerel Buluşmalar'
+	String get pageMeetups => 'Yerel Buluşmalar';
+
+	/// tr: 'Aynı şehirdeki ailelerle gerçek hayatta tanışıp bir araya gelmenizi sağlar.'
+	String get pageMeetupsPurpose => 'Aynı şehirdeki ailelerle gerçek hayatta tanışıp bir araya gelmenizi sağlar.';
+
+	/// tr: 'Çevrenizdeki ailelerle yüz yüze etkinlik planlamak istediğinizde.'
+	String get pageMeetupsWhen => 'Çevrenizdeki ailelerle yüz yüze etkinlik planlamak istediğinizde.';
+
+	/// tr: 'buluşma, etkinlik, şehir, tanışma, yerel'
+	String get pageMeetupsKeywords => 'buluşma, etkinlik, şehir, tanışma, yerel';
+
+	/// tr: 'Haftanın Sorusu'
+	String get pageWeekly => 'Haftanın Sorusu';
+
+	/// tr: 'Her hafta belirlenen ortak bir konu hakkında ailelerin yanıtlarını listeler.'
+	String get pageWeeklyPurpose => 'Her hafta belirlenen ortak bir konu hakkında ailelerin yanıtlarını listeler.';
+
+	/// tr: 'Diğer ailelerin ne düşündüğünü görmek veya deneyiminizi yazmak istediğinizde.'
+	String get pageWeeklyWhen => 'Diğer ailelerin ne düşündüğünü görmek veya deneyiminizi yazmak istediğinizde.';
+
+	/// tr: 'haftanın sorusu, topluluk, deneyim, paylaşım'
+	String get pageWeeklyKeywords => 'haftanın sorusu, topluluk, deneyim, paylaşım';
+
+	/// tr: 'Benzer Aileler'
+	String get pageSimilar => 'Benzer Aileler';
+
+	/// tr: 'Çocuğunuzun yaşı ve ihtiyaçları açısından benzer süreçler yaşayan ailelerle tanıştırır.'
+	String get pageSimilarPurpose => 'Çocuğunuzun yaşı ve ihtiyaçları açısından benzer süreçler yaşayan ailelerle tanıştırır.';
+
+	/// tr: 'Sizinle en çok ortak noktası olan aileleri bulmak istediğinizde.'
+	String get pageSimilarWhen => 'Sizinle en çok ortak noktası olan aileleri bulmak istediğinizde.';
+
+	/// tr: 'benzer aileler, eşleşme, akran, tanışma'
+	String get pageSimilarKeywords => 'benzer aileler, eşleşme, akran, tanışma';
+
+	/// tr: 'Destek Grupları'
+	String get pageGroups => 'Destek Grupları';
+
+	/// tr: 'Kategori bazlı aile ve uzman topluluklarına katılmanızı, grup sohbetine girmenizi sağlar.'
+	String get pageGroupsPurpose => 'Kategori bazlı aile ve uzman topluluklarına katılmanızı, grup sohbetine girmenizi sağlar.';
+
+	/// tr: 'Benzer ihtiyaç ve yaş gruplarına odaklanan bir topluluk aradığınızda.'
+	String get pageGroupsWhen => 'Benzer ihtiyaç ve yaş gruplarına odaklanan bir topluluk aradığınızda.';
+
+	/// tr: 'grup, topluluk, sohbet, katıl'
+	String get pageGroupsKeywords => 'grup, topluluk, sohbet, katıl';
+
+	/// tr: 'Bilgi Bankası'
+	String get pageKnowledge => 'Bilgi Bankası';
+
+	/// tr: 'Güvenilir yazıları ve kaynak içerikleri toplar.'
+	String get pageKnowledgePurpose => 'Güvenilir yazıları ve kaynak içerikleri toplar.';
+
+	/// tr: 'Bir konuyu sakin sakin okumak veya öğrenmek istediğinizde.'
+	String get pageKnowledgeWhen => 'Bir konuyu sakin sakin okumak veya öğrenmek istediğinizde.';
+
+	/// tr: 'bilgi, makale, rehber, kaynak, öğrenme'
+	String get pageKnowledgeKeywords => 'bilgi, makale, rehber, kaynak, öğrenme';
+
+	/// tr: 'Randevularım'
+	String get pageExpertAppointments => 'Randevularım';
+
+	/// tr: 'Gelen randevu taleplerini onaylar, seansları tamamlar ve erteleme taleplerini yönetir.'
+	String get pageExpertAppointmentsPurpose => 'Gelen randevu taleplerini onaylar, seansları tamamlar ve erteleme taleplerini yönetir.';
+
+	/// tr: 'Gününüzü planlarken ve seans sonrası kayıt kapatırken.'
+	String get pageExpertAppointmentsWhen => 'Gününüzü planlarken ve seans sonrası kayıt kapatırken.';
+
+	/// tr: 'Ailelerle güvenli yazışma alanıdır; görev geri bildirimleri de buradan iletilir.'
+	String get pageExpertMessagesPurpose => 'Ailelerle güvenli yazışma alanıdır; görev geri bildirimleri de buradan iletilir.';
+
+	/// tr: 'Aileye dönüş yapmak veya takip sorusu sormak istediğinizde.'
+	String get pageExpertMessagesWhen => 'Aileye dönüş yapmak veya takip sorusu sormak istediğinizde.';
+
+	/// tr: 'Uzman olarak soruları yanıtlayabilir, doğrulanmış bilgi paylaşabilirsiniz.'
+	String get pageExpertForumPurpose => 'Uzman olarak soruları yanıtlayabilir, doğrulanmış bilgi paylaşabilirsiniz.';
+
+	/// tr: 'Topluluğa mesleki katkı sunmak istediğinizde.'
+	String get pageExpertForumWhen => 'Topluluğa mesleki katkı sunmak istediğinizde.';
+
+	/// tr: 'Platforma Genel Bakış'
+	String get video01 => 'Platforma Genel Bakış';
+
+	/// tr: 'Ana bölümleri, rolünüze göre değişen menüyü ve güvenli kullanım araçlarını kısa bir turla tanıyın.'
+	String get video01Desc => 'Ana bölümleri, rolünüze göre değişen menüyü ve güvenli kullanım araçlarını kısa bir turla tanıyın.';
+
+	/// tr: 'Ebeveyn Hızlı Başlangıç'
+	String get video02 => 'Ebeveyn Hızlı Başlangıç';
+
+	/// tr: 'Aile hesabına girişten çocuk profiline ve ilk günlük kayda uzanan temel başlangıç akışını izleyin.'
+	String get video02Desc => 'Aile hesabına girişten çocuk profiline ve ilk günlük kayda uzanan temel başlangıç akışını izleyin.';
+
+	/// tr: 'Kullanıcı Rehberini Kullanma'
+	String get video03 => 'Kullanıcı Rehberini Kullanma';
+
+	/// tr: 'Arama, kategori ve rol odaklı yönlendirmelerle ihtiyacınız olan özelliği nasıl bulacağınızı öğrenin.'
+	String get video03Desc => 'Arama, kategori ve rol odaklı yönlendirmelerle ihtiyacınız olan özelliği nasıl bulacağınızı öğrenin.';
+
+	/// tr: 'Ana Sayfa ve Navigasyon'
+	String get video04 => 'Ana Sayfa ve Navigasyon';
+
+	/// tr: 'Günlük özetleri okuyun; menü ve hızlı erişimlerle istediğiniz bölüme ulaşın.'
+	String get video04Desc => 'Günlük özetleri okuyun; menü ve hızlı erişimlerle istediğiniz bölüme ulaşın.';
+
+	/// tr: 'Çocuk Profili'
+	String get video05 => 'Çocuk Profili';
+
+	/// tr: 'Çocuk profili oluşturun; temel bilgileri, tanı notlarını, ihtiyaçları ve erişim ayrıntılarını güncelleyin.'
+	String get video05Desc => 'Çocuk profili oluşturun; temel bilgileri, tanı notlarını, ihtiyaçları ve erişim ayrıntılarını güncelleyin.';
+
+	/// tr: 'Günlük Duygu ve Uyku Takibi'
+	String get video06 => 'Günlük Duygu ve Uyku Takibi';
+
+	/// tr: 'Ruh hali, uyku ve davranış kayıtlarını birkaç adımda ekleyip geçmişi inceleyin.'
+	String get video06Desc => 'Ruh hali, uyku ve davranış kayıtlarını birkaç adımda ekleyip geçmişi inceleyin.';
+
+	/// tr: 'İlaç Takibi'
+	String get video07 => 'İlaç Takibi';
+
+	/// tr: 'İlaç planını kaydedin, doz ve saat bilgilerini takip edin, geçmiş kayıtları güvenle kontrol edin.'
+	String get video07Desc => 'İlaç planını kaydedin, doz ve saat bilgilerini takip edin, geçmiş kayıtları güvenle kontrol edin.';
+
+	/// tr: 'Gelişim Paneli'
+	String get video08 => 'Gelişim Paneli';
+
+	/// tr: 'Günlük kayıtların grafiklere nasıl dönüştüğünü görün; eğilimleri ve gelişim özetlerini yorumlayın.'
+	String get video08Desc => 'Günlük kayıtların grafiklere nasıl dönüştüğünü görün; eğilimleri ve gelişim özetlerini yorumlayın.';
+
+	/// tr: 'Hedefler ve Egzersizler'
+	String get video09 => 'Hedefler ve Egzersizler';
+
+	/// tr: 'Çocuğunuza uygun hedefleri görüntüleyin, ev egzersizlerini uygulayın ve tamamlanma durumunu takip edin.'
+	String get video09Desc => 'Çocuğunuza uygun hedefleri görüntüleyin, ev egzersizlerini uygulayın ve tamamlanma durumunu takip edin.';
+
+	/// tr: 'Ödevler ve Rutinler'
+	String get video10 => 'Ödevler ve Rutinler';
+
+	/// tr: 'Uzmanın verdiği ödevleri takip edin ve sabah, okul ya da uyku rutinlerini adım adım planlayın.'
+	String get video10Desc => 'Uzmanın verdiği ödevleri takip edin ve sabah, okul ya da uyku rutinlerini adım adım planlayın.';
+
+	/// tr: 'Notlar, Takvim ve Acil Kart'
+	String get video11 => 'Notlar, Takvim ve Acil Kart';
+
+	/// tr: 'Gözlemlerinizi not alın, önemli tarihleri planlayın ve acil durumda paylaşılacak kartı hazır tutun.'
+	String get video11Desc => 'Gözlemlerinizi not alın, önemli tarihleri planlayın ve acil durumda paylaşılacak kartı hazır tutun.';
+
+	/// tr: 'Uzman Bulma ve Randevu'
+	String get video12 => 'Uzman Bulma ve Randevu';
+
+	/// tr: 'Uzmanları filtreleyip profillerini karşılaştırın, uygun kişiyi seçin ve randevu akışını yönetin.'
+	String get video12Desc => 'Uzmanları filtreleyip profillerini karşılaştırın, uygun kişiyi seçin ve randevu akışını yönetin.';
+
+	/// tr: 'Mesajlar, Gizlilik ve Ayarlar'
+	String get video13 => 'Mesajlar, Gizlilik ve Ayarlar';
+
+	/// tr: 'Güvenli mesajlaşmayı kullanın; profil, bildirim, şifre ve veri paylaşımı tercihlerini yönetin.'
+	String get video13Desc => 'Güvenli mesajlaşmayı kullanın; profil, bildirim, şifre ve veri paylaşımı tercihlerini yönetin.';
+
+	/// tr: 'Topluluk, Forum ve Buluşmalar'
+	String get video14 => 'Topluluk, Forum ve Buluşmalar';
+
+	/// tr: 'Forumda soru sorun, aile deneyimlerini inceleyin ve güvenli topluluk buluşmalarını keşfedin.'
+	String get video14Desc => 'Forumda soru sorun, aile deneyimlerini inceleyin ve güvenli topluluk buluşmalarını keşfedin.';
+
+	/// tr: 'Bilgi Bankası, Kriz ve Yardım'
+	String get video15 => 'Bilgi Bankası, Kriz ve Yardım';
+
+	/// tr: 'Güvenilir içerikleri bulun, zor anlar için kriz adımlarına ulaşın ve yardım kanallarını kullanın.'
+	String get video15Desc => 'Güvenilir içerikleri bulun, zor anlar için kriz adımlarına ulaşın ve yardım kanallarını kullanın.';
+}
+
 // Path: crisis.cards
 class Translations$crisis$cards$tr {
 	Translations$crisis$cards$tr.internal(this._root);
@@ -5957,6 +6540,199 @@ extension on Translations {
 			'errors.unexpectedResponse' => 'Beklenmeyen sunucu yanıtı.',
 			'errors.operationFailed' => 'İşlem başarısız.',
 			'errors.noUserInResponse' => 'Sunucu yanıtında kullanıcı bilgisi yok.',
+			'guide.title' => 'Kullanıcı Rehberi',
+			'guide.subtitle' => 'Rolünüze göre ilk adımları, sayfaların ne işe yaradığını ve destek kanallarını tek yerde görün.',
+			'guide.searchHint' => 'Sayfa, konu veya işlem ara…',
+			'guide.countLabel' => ({required Object visible, required Object total}) => '${visible} / ${total} sayfa',
+			'guide.searchEmpty' => 'Aramanıza uyan bölüm bulunamadı.',
+			'guide.startTitle' => 'Nereden başlamalı?',
+			'guide.startSubtitle' => 'Sırayla ilerleyin; her adım ilgili bölümü açar.',
+			'guide.sectionsTitle' => 'Bölümler ne işe yarar?',
+			'guide.sectionsSubtitle' => 'Bir kategori seçin, o bölümün sayfalarını görün.',
+			'guide.purposeLabel' => 'Ne işe yarar?',
+			'guide.whenLabel' => 'Ne zaman kullanılır?',
+			'guide.openPage' => 'Aç',
+			'guide.videosTitle' => 'Eğitim videoları',
+			'guide.videosSubtitle' => 'Kısa anlatımlar. Videolar web sürümünde oynatılır; dokununca tarayıcıda açılır.',
+			'guide.videoWatch' => 'İzle',
+			'guide.videoWatched' => 'İzlendi',
+			'guide.videoMarkWatched' => 'İzlendi olarak işaretle',
+			'guide.videoProgress' => ({required Object done, required Object total}) => '${done} / ${total} video izlendi',
+			'guide.videoOpenError' => 'Video bağlantısı açılamadı.',
+			'guide.videoCategoryStart' => 'Başlangıç',
+			'guide.videoCategoryChild' => 'Çocuk ve Gelişim',
+			'guide.videoCategoryTracking' => 'Günlük Takip',
+			'guide.videoCategoryPlan' => 'Plan ve Randevu',
+			'guide.videoCategoryCommunity' => 'İletişim ve Topluluk',
+			'guide.videoCategorySupport' => 'Güven ve Destek',
+			'guide.badgeDaily' => 'Her gün',
+			'guide.badgeQuickLog' => 'Kısa kayıt',
+			'guide.badgeQuickHelp' => 'Hızlı destek',
+			'guide.badgeFirstStep' => 'İlk adım',
+			'guide.badgeSetup' => 'İlk kurulum',
+			'guide.badgeRoutine' => 'Günlük rutin',
+			'guide.badgeClinical' => 'Klinik destek',
+			'guide.badgePrivacy' => 'Gizlilik',
+			'guide.badgeCalendar' => 'Takvim',
+			'guide.badgeCommunication' => 'İletişim',
+			'guide.badgeProfile' => 'Profil',
+			'guide.groupDaily' => 'Günlük',
+			'guide.groupDailyDesc' => 'Her gün kullanacağınız ana sayfa, takip ve hızlı destek bölümleri.',
+			'guide.groupChild' => 'Çocuğum',
+			'guide.groupChildDesc' => 'Çocuğunuzun gelişimi, profil bilgileri, egzersizleri ve özel durum kayıtları.',
+			'guide.groupCommunity' => 'Topluluk',
+			'guide.groupCommunityDesc' => 'Deneyim paylaşımı, forum, yerel buluşmalar ve diğer ailelerle iletişim.',
+			'guide.groupExpertWork' => 'Çalışma alanı',
+			'guide.groupExpertWorkDesc' => 'Randevu, iletişim ve mesleki kaynak bölümleri.',
+			'guide.startChild' => 'Çocuk profilini oluştur',
+			'guide.startChildDesc' => 'Temel bilgiler, tanı notları ve ihtiyaçları girerek takip edilecek çocuğu hazırlayın.',
+			'guide.startTracker' => 'İlk günlük kaydı ekle',
+			'guide.startTrackerDesc' => 'Uyku, ruh hali, ilaç ve gözlemleri kısa kayıtlarla düzenli hale getirin.',
+			'guide.startAppointment' => 'Uzmanla randevu planla',
+			'guide.startAppointmentDesc' => 'Uygun uzmanı seçin, randevu talebi oluşturun ve görüşme akışını takip edin.',
+			'guide.startPrivacy' => 'Paylaşım izinlerini kontrol et',
+			'guide.startPrivacyDesc' => 'Hangi verinin hangi amaçla işleneceğini KVKK rızalarından yönetin.',
+			'guide.startExpertCalendar' => 'Randevuları yönet',
+			'guide.startExpertCalendarDesc' => 'Randevu taleplerini onaylayın, seansları tamamlayın ve aileleri bilgilendirin.',
+			'guide.startExpertMessages' => 'Ailelerle iletişime geç',
+			'guide.startExpertMessagesDesc' => 'Güvenli mesajlaşmayla soruları yanıtlayın ve takibi sürdürün.',
+			'guide.startExpertProfile' => 'Uzman profilini tamamla',
+			'guide.startExpertProfileDesc' => 'Unvan, uzmanlık alanları ve iletişim bilgilerinizi güncel tutun.',
+			'guide.pageHome' => 'Ana Sayfa',
+			'guide.pageHomePurpose' => 'Bugün yapılacakları, hatırlatmaları ve kısa günlük planı tek yerde gösterir.',
+			'guide.pageHomeWhen' => 'Uygulamaya her girişte "bugün ne yapacağım?" diye bakmak istediğinizde.',
+			'guide.pageHomeKeywords' => 'ana sayfa, başlangıç, görev, bugün, panel',
+			'guide.pageTracker' => 'Günlük Takip',
+			'guide.pageTrackerPurpose' => 'Ruh hali, uyku, ilaç ve kısa günlük gözlemleri kaydetmek için kullanılır.',
+			'guide.pageTrackerWhen' => 'Günün sonunda veya önemli bir değişiklik olduğunda kısa kayıt girmek istediğinizde.',
+			'guide.pageTrackerKeywords' => 'günlük, ruh hali, uyku, ilaç, kayıt, duygu',
+			'guide.pageMessages' => 'Mesajlar',
+			'guide.pageMessagesPurpose' => 'Uzmanlar ve platformdaki kişilerle güvenli yazışma alanıdır.',
+			'guide.pageMessagesWhen' => 'Randevu, soru veya takip için mesajlaşmak istediğinizde.',
+			'guide.pageMessagesKeywords' => 'mesaj, sohbet, iletişim, uzman',
+			'guide.pageAppointments' => 'Randevular',
+			'guide.pageAppointmentsPurpose' => 'Randevu talepleri, seans zamanı ve görüşme akışını yönetir.',
+			'guide.pageAppointmentsWhen' => 'Uzmanla görüşme planlamak veya yaklaşan randevuları görmek istediğinizde.',
+			'guide.pageAppointmentsKeywords' => 'randevu, takvim, seans, görüşme, doktor, terapi',
+			'guide.pageCrisis' => 'Zor Anlarda Ne Yapmalı?',
+			'guide.pageCrisisPurpose' => 'Zorlayıcı anlarda sakinleşme ve müdahale adımlarını hızlı gösterir.',
+			'guide.pageCrisisWhen' => 'Kriz, yoğun stres veya hızlı yönlendirme gereken bir durum olduğunda.',
+			'guide.pageCrisisKeywords' => 'kriz, zor an, sakinleşme, acil, destek, nefes',
+			'guide.pageAssistant' => 'AI Asistan',
+			'guide.pageAssistantPurpose' => 'Sorularınıza anında yanıt veren sohbet asistanıdır; tıbbi tavsiye vermez, yönlendirir.',
+			'guide.pageAssistantWhen' => 'Aklınıza takılan bir konuyu hızlıca sormak istediğinizde.',
+			'guide.pageAssistantKeywords' => 'asistan, sohbet, yapay zeka, soru, bot',
+			'guide.pageSettings' => 'Ayarlar',
+			'guide.pageSettingsPurpose' => 'Bildirim, gizlilik ve erişilebilirlik tercihlerinizi, tema ve dili, şifrenizi ve hesabınızı yönetir.',
+			'guide.pageSettingsWhen' => 'Uygulamayı kendinize göre ayarlamak veya verilerinizi yönetmek istediğinizde.',
+			'guide.pageSettingsKeywords' => 'ayarlar, bildirim, gizlilik, şifre, tema, dil, erişilebilirlik',
+			'guide.pageHelp' => 'Yardım',
+			'guide.pageHelpPurpose' => 'Uygulama hakkında kısa bilgi, kullanım ipuçları ve iletişim kanallarını içerir.',
+			'guide.pageHelpWhen' => 'Bir özelliğin nasıl çalıştığını bulamadığınızda.',
+			'guide.pageHelpKeywords' => 'yardım, destek, sss, iletişim',
+			'guide.pageChildren' => 'Çocuklarım',
+			'guide.pageChildrenPurpose' => 'Çocuğun temel bilgilerini, tanı notlarını, terapi ve ihtiyaç bilgilerini tutar.',
+			'guide.pageChildrenWhen' => 'İlk kurulumda veya çocukla ilgili bilgileri güncellemek istediğinizde.',
+			'guide.pageChildrenKeywords' => 'çocuk, profil, tanı, terapi, bilgi, kilometre taşı',
+			'guide.pageAnalytics' => 'Gelişim Paneli',
+			'guide.pageAnalyticsPurpose' => 'Günlük kayıtları grafiklere ve aylık eğilimlere dönüştürür.',
+			'guide.pageAnalyticsWhen' => 'Tek tek kayıtlardan daha büyük resmi görmek istediğinizde.',
+			'guide.pageAnalyticsKeywords' => 'ilerleme, grafik, analiz, trend, gelişim',
+			'guide.pageTreatment' => 'Tedavi Paneli',
+			'guide.pageTreatmentPurpose' => 'Küçük hedefler, ev çalışmaları, oyunlar ve günlük destek akışını toplar.',
+			'guide.pageTreatmentWhen' => 'Bugün evde uygulanabilecek kısa etkinlik veya hedef aradığınızda.',
+			'guide.pageTreatmentKeywords' => 'tedavi, plan, hedef, aktivite, oyun, ev çalışması',
+			'guide.pageTasks' => 'Ödevlerim',
+			'guide.pageTasksPurpose' => 'Uzmanın verdiği görevleri, günlük egzersiz sihirbazını ve teslim durumunu gösterir.',
+			'guide.pageTasksWhen' => 'Seans sonrası verilen çalışmaları takip etmek istediğinizde.',
+			'guide.pageTasksKeywords' => 'görev, ödev, egzersiz, uzman, teslim',
+			'guide.pageNotes' => 'Notlarım',
+			'guide.pageNotesPurpose' => 'Davranış, gelişim, görüşme veya dikkat çeken olayları serbest not olarak saklar.',
+			'guide.pageNotesWhen' => 'Uzmanla paylaşmak veya sonra hatırlamak istediğiniz kısa gözlemler olduğunda.',
+			'guide.pageNotesKeywords' => 'not, gözlem, gelişim, davranış, hatırlatma',
+			'guide.pageBehavior' => 'Davranış Günlüğü',
+			'guide.pageBehaviorPurpose' => 'Davranışın öncesini, kendisini ve sonrasını (ABC) kayıt altına alarak örüntüleri görünür kılar.',
+			'guide.pageBehaviorWhen' => 'Tekrarlayan bir davranışın nedenini anlamak istediğinizde.',
+			'guide.pageBehaviorKeywords' => 'davranış, abc, öncesi, sonrası, örüntü, tetikleyici',
+			'guide.pageEmergency' => 'Acil Durum Kartı',
+			'guide.pageEmergencyPurpose' => 'Acil durumda paylaşılacak temel çocuk bilgilerini hazır tutar; süreli bağlantı ve QR ile paylaşılır.',
+			'guide.pageEmergencyWhen' => 'Dışarıda, okulda veya acil durumda hızlı bilgi paylaşımı gerekebileceğinde.',
+			'guide.pageEmergencyKeywords' => 'acil, kart, güvenlik, qr, paylaşım',
+			'guide.pageCalendar' => 'Takvim',
+			'guide.pageCalendarPurpose' => 'Randevu, okul, etkinlik ve hatırlatmaları tarihli şekilde tutar.',
+			'guide.pageCalendarWhen' => 'Yaklaşan planları unutmak istemediğinizde.',
+			'guide.pageCalendarKeywords' => 'takvim, etkinlik, hatırlatma, plan',
+			'guide.pageRoutines' => 'Rutinler',
+			'guide.pageRoutinesPurpose' => 'Günlük rutinleri adım adım, görsel olarak takip etmeye yardımcı olur.',
+			'guide.pageRoutinesWhen' => 'Sabah, okul, uyku veya geçiş rutinini görselleştirmek istediğinizde.',
+			'guide.pageRoutinesKeywords' => 'rutin, program, adım, görsel, geçiş',
+			'guide.pageForum' => 'Topluluk Forumu',
+			'guide.pageForumPurpose' => 'Ebeveynlerin ve uzmanların soru sorup deneyimlerini paylaştığı ortak tartışma alanıdır.',
+			'guide.pageForumWhen' => 'Kafanıza takılan bir soruyu topluluğa danışmak istediğinizde.',
+			'guide.pageForumKeywords' => 'forum, soru, cevap, topluluk, deneyim',
+			'guide.pageWall' => 'Dertleşme Duvarı',
+			'guide.pageWallPurpose' => 'Duygu ve deneyim paylaşımı için daha serbest bir destek alanıdır; istersen anonim kalırsın.',
+			'guide.pageWallWhen' => 'Soru sormaktan çok içinizi dökmek veya destek görmek istediğinizde.',
+			'guide.pageWallKeywords' => 'dertleşme, duygu, paylaşım, destek, anonim',
+			'guide.pageMeetups' => 'Yerel Buluşmalar',
+			'guide.pageMeetupsPurpose' => 'Aynı şehirdeki ailelerle gerçek hayatta tanışıp bir araya gelmenizi sağlar.',
+			'guide.pageMeetupsWhen' => 'Çevrenizdeki ailelerle yüz yüze etkinlik planlamak istediğinizde.',
+			'guide.pageMeetupsKeywords' => 'buluşma, etkinlik, şehir, tanışma, yerel',
+			'guide.pageWeekly' => 'Haftanın Sorusu',
+			'guide.pageWeeklyPurpose' => 'Her hafta belirlenen ortak bir konu hakkında ailelerin yanıtlarını listeler.',
+			'guide.pageWeeklyWhen' => 'Diğer ailelerin ne düşündüğünü görmek veya deneyiminizi yazmak istediğinizde.',
+			'guide.pageWeeklyKeywords' => 'haftanın sorusu, topluluk, deneyim, paylaşım',
+			'guide.pageSimilar' => 'Benzer Aileler',
+			'guide.pageSimilarPurpose' => 'Çocuğunuzun yaşı ve ihtiyaçları açısından benzer süreçler yaşayan ailelerle tanıştırır.',
+			'guide.pageSimilarWhen' => 'Sizinle en çok ortak noktası olan aileleri bulmak istediğinizde.',
+			'guide.pageSimilarKeywords' => 'benzer aileler, eşleşme, akran, tanışma',
+			'guide.pageGroups' => 'Destek Grupları',
+			'guide.pageGroupsPurpose' => 'Kategori bazlı aile ve uzman topluluklarına katılmanızı, grup sohbetine girmenizi sağlar.',
+			'guide.pageGroupsWhen' => 'Benzer ihtiyaç ve yaş gruplarına odaklanan bir topluluk aradığınızda.',
+			'guide.pageGroupsKeywords' => 'grup, topluluk, sohbet, katıl',
+			'guide.pageKnowledge' => 'Bilgi Bankası',
+			'guide.pageKnowledgePurpose' => 'Güvenilir yazıları ve kaynak içerikleri toplar.',
+			'guide.pageKnowledgeWhen' => 'Bir konuyu sakin sakin okumak veya öğrenmek istediğinizde.',
+			'guide.pageKnowledgeKeywords' => 'bilgi, makale, rehber, kaynak, öğrenme',
+			'guide.pageExpertAppointments' => 'Randevularım',
+			'guide.pageExpertAppointmentsPurpose' => 'Gelen randevu taleplerini onaylar, seansları tamamlar ve erteleme taleplerini yönetir.',
+			'guide.pageExpertAppointmentsWhen' => 'Gününüzü planlarken ve seans sonrası kayıt kapatırken.',
+			'guide.pageExpertMessagesPurpose' => 'Ailelerle güvenli yazışma alanıdır; görev geri bildirimleri de buradan iletilir.',
+			'guide.pageExpertMessagesWhen' => 'Aileye dönüş yapmak veya takip sorusu sormak istediğinizde.',
+			'guide.pageExpertForumPurpose' => 'Uzman olarak soruları yanıtlayabilir, doğrulanmış bilgi paylaşabilirsiniz.',
+			'guide.pageExpertForumWhen' => 'Topluluğa mesleki katkı sunmak istediğinizde.',
+			'guide.video01' => 'Platforma Genel Bakış',
+			'guide.video01Desc' => 'Ana bölümleri, rolünüze göre değişen menüyü ve güvenli kullanım araçlarını kısa bir turla tanıyın.',
+			'guide.video02' => 'Ebeveyn Hızlı Başlangıç',
+			'guide.video02Desc' => 'Aile hesabına girişten çocuk profiline ve ilk günlük kayda uzanan temel başlangıç akışını izleyin.',
+			'guide.video03' => 'Kullanıcı Rehberini Kullanma',
+			'guide.video03Desc' => 'Arama, kategori ve rol odaklı yönlendirmelerle ihtiyacınız olan özelliği nasıl bulacağınızı öğrenin.',
+			'guide.video04' => 'Ana Sayfa ve Navigasyon',
+			'guide.video04Desc' => 'Günlük özetleri okuyun; menü ve hızlı erişimlerle istediğiniz bölüme ulaşın.',
+			'guide.video05' => 'Çocuk Profili',
+			'guide.video05Desc' => 'Çocuk profili oluşturun; temel bilgileri, tanı notlarını, ihtiyaçları ve erişim ayrıntılarını güncelleyin.',
+			'guide.video06' => 'Günlük Duygu ve Uyku Takibi',
+			'guide.video06Desc' => 'Ruh hali, uyku ve davranış kayıtlarını birkaç adımda ekleyip geçmişi inceleyin.',
+			'guide.video07' => 'İlaç Takibi',
+			'guide.video07Desc' => 'İlaç planını kaydedin, doz ve saat bilgilerini takip edin, geçmiş kayıtları güvenle kontrol edin.',
+			'guide.video08' => 'Gelişim Paneli',
+			'guide.video08Desc' => 'Günlük kayıtların grafiklere nasıl dönüştüğünü görün; eğilimleri ve gelişim özetlerini yorumlayın.',
+			'guide.video09' => 'Hedefler ve Egzersizler',
+			'guide.video09Desc' => 'Çocuğunuza uygun hedefleri görüntüleyin, ev egzersizlerini uygulayın ve tamamlanma durumunu takip edin.',
+			'guide.video10' => 'Ödevler ve Rutinler',
+			'guide.video10Desc' => 'Uzmanın verdiği ödevleri takip edin ve sabah, okul ya da uyku rutinlerini adım adım planlayın.',
+			'guide.video11' => 'Notlar, Takvim ve Acil Kart',
+			'guide.video11Desc' => 'Gözlemlerinizi not alın, önemli tarihleri planlayın ve acil durumda paylaşılacak kartı hazır tutun.',
+			'guide.video12' => 'Uzman Bulma ve Randevu',
+			'guide.video12Desc' => 'Uzmanları filtreleyip profillerini karşılaştırın, uygun kişiyi seçin ve randevu akışını yönetin.',
+			_ => null,
+		} ?? switch (path) {
+			'guide.video13' => 'Mesajlar, Gizlilik ve Ayarlar',
+			'guide.video13Desc' => 'Güvenli mesajlaşmayı kullanın; profil, bildirim, şifre ve veri paylaşımı tercihlerini yönetin.',
+			'guide.video14' => 'Topluluk, Forum ve Buluşmalar',
+			'guide.video14Desc' => 'Forumda soru sorun, aile deneyimlerini inceleyin ve güvenli topluluk buluşmalarını keşfedin.',
+			'guide.video15' => 'Bilgi Bankası, Kriz ve Yardım',
+			'guide.video15Desc' => 'Güvenilir içerikleri bulun, zor anlar için kriz adımlarına ulaşın ve yardım kanallarını kullanın.',
 			_ => null,
 		};
 	}

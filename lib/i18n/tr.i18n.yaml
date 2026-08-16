@@ -1516,3 +1516,267 @@ errors:
   unexpectedResponse: Beklenmeyen sunucu yanıtı.
   operationFailed: İşlem başarısız.
   noUserInResponse: Sunucu yanıtında kullanıcı bilgisi yok.
+
+guide:
+  title: Kullanıcı Rehberi
+  subtitle: Rolünüze göre ilk adımları, sayfaların ne işe yaradığını ve destek
+    kanallarını tek yerde görün.
+  searchHint: Sayfa, konu veya işlem ara…
+  countLabel: $visible / $total sayfa
+  searchEmpty: Aramanıza uyan bölüm bulunamadı.
+  startTitle: Nereden başlamalı?
+  startSubtitle: Sırayla ilerleyin; her adım ilgili bölümü açar.
+  sectionsTitle: Bölümler ne işe yarar?
+  sectionsSubtitle: Bir kategori seçin, o bölümün sayfalarını görün.
+  purposeLabel: Ne işe yarar?
+  whenLabel: Ne zaman kullanılır?
+  openPage: Aç
+  videosTitle: Eğitim videoları
+  videosSubtitle: Kısa anlatımlar. Videolar web sürümünde oynatılır; dokununca
+    tarayıcıda açılır.
+  videoWatch: İzle
+  videoWatched: İzlendi
+  videoMarkWatched: İzlendi olarak işaretle
+  videoProgress: $done / $total video izlendi
+  videoOpenError: Video bağlantısı açılamadı.
+  videoCategoryStart: Başlangıç
+  videoCategoryChild: Çocuk ve Gelişim
+  videoCategoryTracking: Günlük Takip
+  videoCategoryPlan: Plan ve Randevu
+  videoCategoryCommunity: İletişim ve Topluluk
+  videoCategorySupport: Güven ve Destek
+  badgeDaily: Her gün
+  badgeQuickLog: Kısa kayıt
+  badgeQuickHelp: Hızlı destek
+  badgeFirstStep: İlk adım
+  badgeSetup: İlk kurulum
+  badgeRoutine: Günlük rutin
+  badgeClinical: Klinik destek
+  badgePrivacy: Gizlilik
+  badgeCalendar: Takvim
+  badgeCommunication: İletişim
+  badgeProfile: Profil
+  groupDaily: Günlük
+  groupDailyDesc: Her gün kullanacağınız ana sayfa, takip ve hızlı destek
+    bölümleri.
+  groupChild: Çocuğum
+  groupChildDesc: Çocuğunuzun gelişimi, profil bilgileri, egzersizleri ve özel
+    durum kayıtları.
+  groupCommunity: Topluluk
+  groupCommunityDesc: Deneyim paylaşımı, forum, yerel buluşmalar ve diğer
+    ailelerle iletişim.
+  groupExpertWork: Çalışma alanı
+  groupExpertWorkDesc: Randevu, iletişim ve mesleki kaynak bölümleri.
+  startChild: Çocuk profilini oluştur
+  startChildDesc: Temel bilgiler, tanı notları ve ihtiyaçları girerek takip
+    edilecek çocuğu hazırlayın.
+  startTracker: İlk günlük kaydı ekle
+  startTrackerDesc: Uyku, ruh hali, ilaç ve gözlemleri kısa kayıtlarla düzenli
+    hale getirin.
+  startAppointment: Uzmanla randevu planla
+  startAppointmentDesc: Uygun uzmanı seçin, randevu talebi oluşturun ve görüşme
+    akışını takip edin.
+  startPrivacy: Paylaşım izinlerini kontrol et
+  startPrivacyDesc: Hangi verinin hangi amaçla işleneceğini KVKK rızalarından
+    yönetin.
+  startExpertCalendar: Randevuları yönet
+  startExpertCalendarDesc: Randevu taleplerini onaylayın, seansları tamamlayın
+    ve aileleri bilgilendirin.
+  startExpertMessages: Ailelerle iletişime geç
+  startExpertMessagesDesc: Güvenli mesajlaşmayla soruları yanıtlayın ve takibi
+    sürdürün.
+  startExpertProfile: Uzman profilini tamamla
+  startExpertProfileDesc: Unvan, uzmanlık alanları ve iletişim bilgilerinizi
+    güncel tutun.
+  pageHome: Ana Sayfa
+  pageHomePurpose: Bugün yapılacakları, hatırlatmaları ve kısa günlük planı tek
+    yerde gösterir.
+  pageHomeWhen: Uygulamaya her girişte "bugün ne yapacağım?" diye bakmak
+    istediğinizde.
+  pageHomeKeywords: ana sayfa, başlangıç, görev, bugün, panel
+  pageTracker: Günlük Takip
+  pageTrackerPurpose: Ruh hali, uyku, ilaç ve kısa günlük gözlemleri kaydetmek
+    için kullanılır.
+  pageTrackerWhen: Günün sonunda veya önemli bir değişiklik olduğunda kısa
+    kayıt girmek istediğinizde.
+  pageTrackerKeywords: günlük, ruh hali, uyku, ilaç, kayıt, duygu
+  pageMessages: Mesajlar
+  pageMessagesPurpose: Uzmanlar ve platformdaki kişilerle güvenli yazışma
+    alanıdır.
+  pageMessagesWhen: Randevu, soru veya takip için mesajlaşmak istediğinizde.
+  pageMessagesKeywords: mesaj, sohbet, iletişim, uzman
+  pageAppointments: Randevular
+  pageAppointmentsPurpose: Randevu talepleri, seans zamanı ve görüşme akışını
+    yönetir.
+  pageAppointmentsWhen: Uzmanla görüşme planlamak veya yaklaşan randevuları
+    görmek istediğinizde.
+  pageAppointmentsKeywords: randevu, takvim, seans, görüşme, doktor, terapi
+  pageCrisis: Zor Anlarda Ne Yapmalı?
+  pageCrisisPurpose: Zorlayıcı anlarda sakinleşme ve müdahale adımlarını hızlı
+    gösterir.
+  pageCrisisWhen: Kriz, yoğun stres veya hızlı yönlendirme gereken bir durum
+    olduğunda.
+  pageCrisisKeywords: kriz, zor an, sakinleşme, acil, destek, nefes
+  pageAssistant: AI Asistan
+  pageAssistantPurpose: Sorularınıza anında yanıt veren sohbet asistanıdır;
+    tıbbi tavsiye vermez, yönlendirir.
+  pageAssistantWhen: Aklınıza takılan bir konuyu hızlıca sormak istediğinizde.
+  pageAssistantKeywords: asistan, sohbet, yapay zeka, soru, bot
+  pageSettings: Ayarlar
+  pageSettingsPurpose: Bildirim, gizlilik ve erişilebilirlik tercihlerinizi,
+    tema ve dili, şifrenizi ve hesabınızı yönetir.
+  pageSettingsWhen: Uygulamayı kendinize göre ayarlamak veya verilerinizi
+    yönetmek istediğinizde.
+  pageSettingsKeywords: ayarlar, bildirim, gizlilik, şifre, tema, dil,
+    erişilebilirlik
+  pageHelp: Yardım
+  pageHelpPurpose: Uygulama hakkında kısa bilgi, kullanım ipuçları ve iletişim
+    kanallarını içerir.
+  pageHelpWhen: Bir özelliğin nasıl çalıştığını bulamadığınızda.
+  pageHelpKeywords: yardım, destek, sss, iletişim
+  pageChildren: Çocuklarım
+  pageChildrenPurpose: Çocuğun temel bilgilerini, tanı notlarını, terapi ve
+    ihtiyaç bilgilerini tutar.
+  pageChildrenWhen: İlk kurulumda veya çocukla ilgili bilgileri güncellemek
+    istediğinizde.
+  pageChildrenKeywords: çocuk, profil, tanı, terapi, bilgi, kilometre taşı
+  pageAnalytics: Gelişim Paneli
+  pageAnalyticsPurpose: Günlük kayıtları grafiklere ve aylık eğilimlere
+    dönüştürür.
+  pageAnalyticsWhen: Tek tek kayıtlardan daha büyük resmi görmek istediğinizde.
+  pageAnalyticsKeywords: ilerleme, grafik, analiz, trend, gelişim
+  pageTreatment: Tedavi Paneli
+  pageTreatmentPurpose: Küçük hedefler, ev çalışmaları, oyunlar ve günlük
+    destek akışını toplar.
+  pageTreatmentWhen: Bugün evde uygulanabilecek kısa etkinlik veya hedef
+    aradığınızda.
+  pageTreatmentKeywords: tedavi, plan, hedef, aktivite, oyun, ev çalışması
+  pageTasks: Ödevlerim
+  pageTasksPurpose: Uzmanın verdiği görevleri, günlük egzersiz sihirbazını ve
+    teslim durumunu gösterir.
+  pageTasksWhen: Seans sonrası verilen çalışmaları takip etmek istediğinizde.
+  pageTasksKeywords: görev, ödev, egzersiz, uzman, teslim
+  pageNotes: Notlarım
+  pageNotesPurpose: Davranış, gelişim, görüşme veya dikkat çeken olayları
+    serbest not olarak saklar.
+  pageNotesWhen: Uzmanla paylaşmak veya sonra hatırlamak istediğiniz kısa
+    gözlemler olduğunda.
+  pageNotesKeywords: not, gözlem, gelişim, davranış, hatırlatma
+  pageBehavior: Davranış Günlüğü
+  pageBehaviorPurpose: Davranışın öncesini, kendisini ve sonrasını (ABC) kayıt
+    altına alarak örüntüleri görünür kılar.
+  pageBehaviorWhen: Tekrarlayan bir davranışın nedenini anlamak istediğinizde.
+  pageBehaviorKeywords: davranış, abc, öncesi, sonrası, örüntü, tetikleyici
+  pageEmergency: Acil Durum Kartı
+  pageEmergencyPurpose: Acil durumda paylaşılacak temel çocuk bilgilerini hazır
+    tutar; süreli bağlantı ve QR ile paylaşılır.
+  pageEmergencyWhen: Dışarıda, okulda veya acil durumda hızlı bilgi paylaşımı
+    gerekebileceğinde.
+  pageEmergencyKeywords: acil, kart, güvenlik, qr, paylaşım
+  pageCalendar: Takvim
+  pageCalendarPurpose: Randevu, okul, etkinlik ve hatırlatmaları tarihli
+    şekilde tutar.
+  pageCalendarWhen: Yaklaşan planları unutmak istemediğinizde.
+  pageCalendarKeywords: takvim, etkinlik, hatırlatma, plan
+  pageRoutines: Rutinler
+  pageRoutinesPurpose: Günlük rutinleri adım adım, görsel olarak takip etmeye
+    yardımcı olur.
+  pageRoutinesWhen: Sabah, okul, uyku veya geçiş rutinini görselleştirmek
+    istediğinizde.
+  pageRoutinesKeywords: rutin, program, adım, görsel, geçiş
+  pageForum: Topluluk Forumu
+  pageForumPurpose: Ebeveynlerin ve uzmanların soru sorup deneyimlerini
+    paylaştığı ortak tartışma alanıdır.
+  pageForumWhen: Kafanıza takılan bir soruyu topluluğa danışmak istediğinizde.
+  pageForumKeywords: forum, soru, cevap, topluluk, deneyim
+  pageWall: Dertleşme Duvarı
+  pageWallPurpose: Duygu ve deneyim paylaşımı için daha serbest bir destek
+    alanıdır; istersen anonim kalırsın.
+  pageWallWhen: Soru sormaktan çok içinizi dökmek veya destek görmek
+    istediğinizde.
+  pageWallKeywords: dertleşme, duygu, paylaşım, destek, anonim
+  pageMeetups: Yerel Buluşmalar
+  pageMeetupsPurpose: Aynı şehirdeki ailelerle gerçek hayatta tanışıp bir araya
+    gelmenizi sağlar.
+  pageMeetupsWhen: Çevrenizdeki ailelerle yüz yüze etkinlik planlamak
+    istediğinizde.
+  pageMeetupsKeywords: buluşma, etkinlik, şehir, tanışma, yerel
+  pageWeekly: Haftanın Sorusu
+  pageWeeklyPurpose: Her hafta belirlenen ortak bir konu hakkında ailelerin
+    yanıtlarını listeler.
+  pageWeeklyWhen: Diğer ailelerin ne düşündüğünü görmek veya deneyiminizi
+    yazmak istediğinizde.
+  pageWeeklyKeywords: haftanın sorusu, topluluk, deneyim, paylaşım
+  pageSimilar: Benzer Aileler
+  pageSimilarPurpose: Çocuğunuzun yaşı ve ihtiyaçları açısından benzer süreçler
+    yaşayan ailelerle tanıştırır.
+  pageSimilarWhen: Sizinle en çok ortak noktası olan aileleri bulmak
+    istediğinizde.
+  pageSimilarKeywords: benzer aileler, eşleşme, akran, tanışma
+  pageGroups: Destek Grupları
+  pageGroupsPurpose: Kategori bazlı aile ve uzman topluluklarına katılmanızı,
+    grup sohbetine girmenizi sağlar.
+  pageGroupsWhen: Benzer ihtiyaç ve yaş gruplarına odaklanan bir topluluk
+    aradığınızda.
+  pageGroupsKeywords: grup, topluluk, sohbet, katıl
+  pageKnowledge: Bilgi Bankası
+  pageKnowledgePurpose: Güvenilir yazıları ve kaynak içerikleri toplar.
+  pageKnowledgeWhen: Bir konuyu sakin sakin okumak veya öğrenmek istediğinizde.
+  pageKnowledgeKeywords: bilgi, makale, rehber, kaynak, öğrenme
+  pageExpertAppointments: Randevularım
+  pageExpertAppointmentsPurpose: Gelen randevu taleplerini onaylar, seansları
+    tamamlar ve erteleme taleplerini yönetir.
+  pageExpertAppointmentsWhen: Gününüzü planlarken ve seans sonrası kayıt
+    kapatırken.
+  pageExpertMessagesPurpose: Ailelerle güvenli yazışma alanıdır; görev geri
+    bildirimleri de buradan iletilir.
+  pageExpertMessagesWhen: Aileye dönüş yapmak veya takip sorusu sormak
+    istediğinizde.
+  pageExpertForumPurpose: Uzman olarak soruları yanıtlayabilir, doğrulanmış
+    bilgi paylaşabilirsiniz.
+  pageExpertForumWhen: Topluluğa mesleki katkı sunmak istediğinizde.
+  video01: Platforma Genel Bakış
+  video01Desc: Ana bölümleri, rolünüze göre değişen menüyü ve güvenli kullanım
+    araçlarını kısa bir turla tanıyın.
+  video02: Ebeveyn Hızlı Başlangıç
+  video02Desc: Aile hesabına girişten çocuk profiline ve ilk günlük kayda
+    uzanan temel başlangıç akışını izleyin.
+  video03: Kullanıcı Rehberini Kullanma
+  video03Desc: Arama, kategori ve rol odaklı yönlendirmelerle ihtiyacınız olan
+    özelliği nasıl bulacağınızı öğrenin.
+  video04: Ana Sayfa ve Navigasyon
+  video04Desc: Günlük özetleri okuyun; menü ve hızlı erişimlerle istediğiniz
+    bölüme ulaşın.
+  video05: Çocuk Profili
+  video05Desc: Çocuk profili oluşturun; temel bilgileri, tanı notlarını,
+    ihtiyaçları ve erişim ayrıntılarını güncelleyin.
+  video06: Günlük Duygu ve Uyku Takibi
+  video06Desc: Ruh hali, uyku ve davranış kayıtlarını birkaç adımda ekleyip
+    geçmişi inceleyin.
+  video07: İlaç Takibi
+  video07Desc: İlaç planını kaydedin, doz ve saat bilgilerini takip edin,
+    geçmiş kayıtları güvenle kontrol edin.
+  video08: Gelişim Paneli
+  video08Desc: Günlük kayıtların grafiklere nasıl dönüştüğünü görün;
+    eğilimleri ve gelişim özetlerini yorumlayın.
+  video09: Hedefler ve Egzersizler
+  video09Desc: Çocuğunuza uygun hedefleri görüntüleyin, ev egzersizlerini
+    uygulayın ve tamamlanma durumunu takip edin.
+  video10: Ödevler ve Rutinler
+  video10Desc: Uzmanın verdiği ödevleri takip edin ve sabah, okul ya da uyku
+    rutinlerini adım adım planlayın.
+  video11: Notlar, Takvim ve Acil Kart
+  video11Desc: Gözlemlerinizi not alın, önemli tarihleri planlayın ve acil
+    durumda paylaşılacak kartı hazır tutun.
+  video12: Uzman Bulma ve Randevu
+  video12Desc: Uzmanları filtreleyip profillerini karşılaştırın, uygun kişiyi
+    seçin ve randevu akışını yönetin.
+  video13: Mesajlar, Gizlilik ve Ayarlar
+  video13Desc: Güvenli mesajlaşmayı kullanın; profil, bildirim, şifre ve veri
+    paylaşımı tercihlerini yönetin.
+  video14: Topluluk, Forum ve Buluşmalar
+  video14Desc: Forumda soru sorun, aile deneyimlerini inceleyin ve güvenli
+    topluluk buluşmalarını keşfedin.
+  video15: Bilgi Bankası, Kriz ve Yardım
+  video15Desc: Güvenilir içerikleri bulun, zor anlar için kriz adımlarına
+    ulaşın ve yardım kanallarını kullanın.
