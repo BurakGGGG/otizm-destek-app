@@ -272,15 +272,57 @@ flutter build apk --debug
 - ✅ **Acil kart paylaşımı:** süreli jeton + QR (`.../share` uç noktaları),
   kopyala/paylaş/kapat; `ACIL_DURUM_KARTI` rızası yoksa kapı kapalı.
   Bağlantı web köküne gider (`Env.webBaseUrl`).
-- ⏳ Sonraki adaylar (web'in temmuz sürümünden kalan farklar): bildirimler
-  ekranı yenilemesi (gruplama/filtre/aksiyon), günlük egzersiz sihirbazı
-  (tedavi), kullanıcı rehberi + eğitim videoları, topluluk hub (`/topluluk`),
-  ilaç-davranış zaman çizelgesi (gelişim paneli), randevu geri sayımı,
-  uzmanlar/bilgi bankası/ana sayfa küçük farkları, kriz rehberi içerik
-  güncellemesi. Ayrıca backend FCM deploy sonrası uçtan uca push testi.
+- ✅ **Bildirimler ekranı:** kategori sekmeleri (web `notificationUtils`
+  eşlemesi), tarih gruplama, kaydırarak/seçerek silme, sayfalama.
+- ✅ **Günlük Egzersiz Sihirbazı** (Ödevlerim > Sihirbaz sekmesi, web
+  `DailyExerciseWizard`): görevler tek tek gezilir, sonuç seçimi velinin
+  notunun başına **paylaşılan işaret** olarak eklenir (`[🎉 Kolayca Yaptık]`,
+  `[🙂 Destekle Yaptık]`, `[💬 Bugün Zorlandık]` — çevrilmez), zorlanmada
+  AutiBot ipucu, kanıt fotoğrafı `AUTHENTICATED` görünürlükle yüklenir
+  (`core/network/upload_repository.dart` ortak sarmalayıcı), ilerleme ağacı
+  (Tohum/Filiz/Çiçek/Ağaç, %25/50/75 eşikleri). Web'den ayrım: tamamlanmış
+  görev tekrar teslim edilemez (web ikinci kayıt + ikinci bildirim üretiyor).
+- ✅ **Kullanıcı Rehberi** (`/guide`, web `/kullanici-rehberi`): role göre
+  başlangıç adımları, kategori bazlı bölüm kataloğu ("ne işe yarar / ne zaman
+  kullanılır" + bölüme git), Türkçe uyumlu arama (`core/util/search_text.dart`),
+  eğitim videoları listesi. Videolar web sunucusunda (webm, iOS oynatmıyor)
+  kaldığı için kart `Env.webBaseUrl/kullanici-rehberi?video=NN` adresini
+  tarayıcıda açar; izlendi işareti cihazda saklanır.
+- ✅ **Topluluk merkezi** (`/community`, web `/topluluk`): yedi topluluk alanı
+  tek girişte; Profil menüsündeki altı ayrı satırın yerine geçti.
+- ✅ **Randevu başlığı:** canlı geri sayımlı "sıradaki randevu" kartı + altı
+  sayaç; boş durumda Uzmanlar sekmesine götüren CTA (`/home?tab=` ile sekme
+  açılabiliyor). "Bu hafta" sayacı web'den farklı olarak yalnızca bu haftayı
+  sayar.
+- ✅ **Kriz rehberi:** kriz kartını sesli dinleme (`flutter_tts`,
+  `core/tts/speech_service.dart` — web `speechSynthesis` karşılığı), tıbbi
+  uyarı şeridi (+ `/legal/medical`), "ilk kural" hatırlatması, kriz sonrası
+  kontrol listesi.
+- ✅ **Bilgi bankası:** `/knowledge/search` ile arama + kategori
+  (`kKnowledgeCategories`, veri) + içerik türü filtresi, sayfalama, yer imleri
+  (`/bookmarks`, `POST /{id}/bookmark`), ilgili içerikler, yorumlar (okuma +
+  yazma), makaleyi sesli dinleme. Yorumun "deneyim" alanları gönderilmiyor:
+  backend DTO'sunda `isExperience` Jackson'a `experience` adıyla açıldığı için
+  web'in gönderdiği bayrak sunucuda karşılık bulmuyor (gelen kayıtta iki
+  anahtar da okunur).
+- ✅ **Uzmanlar:** değerlendirmeler (`/api/experts/{id}/reviews` — ortalama,
+  liste, kendi değerlendirmeni yaz/güncelle/sil) ve filtre sayfası (şehir,
+  yalnızca randevu kabul edenler, yalnızca doğrulanmış, sıralama).
+- ✅ **Uzman erişimi** (`/expert-access`, `/api/patients/connections/**`):
+  veli, uzmanın çocuk verisine erişimini onaylar/reddeder, verdiği erişimi
+  geri alır. Ana sayfada bekleyen istek şeridi, Çocuklarım başlığında ve
+  Ayarlar > Gizlilik altında kısayol. Uç noktalar PARENT'a kısıtlı.
+- ✅ **Ana sayfa:** dört hızlı eylem kısayolu (günlük kayıt, davranış notu,
+  gözlem notu, plan ekle).
+- ⏳ Sonraki adaylar: backend FCM deploy sonrası uçtan uca push testi;
+  gösterge panelindeki kural tabanlı "günlük koç notu" ve yeni kullanıcı
+  kontrol listesi; bilgi bankasında etiket (tag) filtresi.
   Kapsam dışı: BEP oluşturucu + danışanlar EXPERT_ONLY; tarama anketi web'de
-  YOK (`/tarama` → `/cocuklarim` redirect); admin paneli mobil hedefi değil.
-  Sosyal hikayeler/wellbeing backend'de var ama web'de mirror edilecek UX yok.
+  YOK (`/tarama` → `/cocuklarim` redirect); admin paneli mobil hedefi değil;
+  ilaç-davranış zaman çizelgesi (web'de yalnızca EXPERT_ONLY danışanlar
+  sayfasında ve **sabit sahte veriyle** çiziliyor); uzman içerik yazarlığı
+  (makale oluştur/AI taslak/analitik) web'de kalıyor. Sosyal hikayeler ve
+  wellbeing backend'de var ama web'de mirror edilecek UX yok.
 - Modül kapsamı ve fazlar: bkz. plan `~/.claude/plans/bir-otizm-destek-mobil-compressed-fog.md`.
 
 ## Notlar
@@ -296,3 +338,13 @@ flutter build apk --debug
 - **Paylaşılan veri vs. arayüz metni:** backend'e yazılan ya da web'in okuduğu
   metinler (etiket adları, kategori değerleri, onboarding seçenekleri, yasal
   metinler) çevrilmez — i18n yalnızca arayüz metinleri içindir.
+- **Dolgulu butonlar tam genişlik tasarlandı:** temada `FilledButton` ve
+  `OutlinedButton` için `minimumSize: Size.fromHeight(...)` verilir, yani
+  asgari genişlik **sonsuzdur**. Bu butonları `Row` içine koyarken `Expanded`
+  (ya da `SizedBox(width:)`) ile sınırlayın; aksi halde "BoxConstraints forces
+  an infinite width" hatası alınır. `TextButton`'da bu kısıt yok.
+- **Ekran duman testleri:** `test/screen_smoke_test.dart` yeni ekranları
+  gerçekten kurar (yukarıdaki düzen hatası oradan yakalandı). Uzun listeler
+  için test yüzeyi büyütülür (`tester.view.physicalSize`).
+- `dart format` bu depoda **kullanılmıyor** (mevcut dosyaların çoğu farklı
+  sarmalanmış); elle 80 sütun hedeflenir.
