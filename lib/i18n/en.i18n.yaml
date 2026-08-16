@@ -454,6 +454,19 @@ knowledge:
   dateLine: $day $month $year
   videoLink: Video link
   podcastLink: Podcast link
+  searchHint: Search articles, topics or keywords…
+  bookmarks: My bookmarks
+  bookmark: Bookmark
+  noBookmarks: You have not bookmarked anything yet.
+  relatedTitle: Related content
+  commentsTitle: Comments ($count)
+  noComments: Be the first to comment.
+  commentHint: Share your experience or ask a question…
+  commentSend: Post comment
+  someone: A family
+  expertBadge: Expert
+  triedFor: 'Tried for: $duration'
+  effectiveness: 'Effectiveness: $rating/5'
 
 appointments:
   title: Appointments

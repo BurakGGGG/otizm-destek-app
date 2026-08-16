@@ -733,6 +733,19 @@ class _Translations$knowledge$en extends Translations$knowledge$tr {
 	@override String dateLine({required Object day, required Object month, required Object year}) => '${day} ${month} ${year}';
 	@override String get videoLink => 'Video link';
 	@override String get podcastLink => 'Podcast link';
+	@override String get searchHint => 'Search articles, topics or keywords…';
+	@override String get bookmarks => 'My bookmarks';
+	@override String get bookmark => 'Bookmark';
+	@override String get noBookmarks => 'You have not bookmarked anything yet.';
+	@override String get relatedTitle => 'Related content';
+	@override String commentsTitle({required Object count}) => 'Comments (${count})';
+	@override String get noComments => 'Be the first to comment.';
+	@override String get commentHint => 'Share your experience or ask a question…';
+	@override String get commentSend => 'Post comment';
+	@override String get someone => 'A family';
+	@override String get expertBadge => 'Expert';
+	@override String triedFor({required Object duration}) => 'Tried for: ${duration}';
+	@override String effectiveness({required Object rating}) => 'Effectiveness: ${rating}/5';
 }
 
 // Path: appointments
@@ -2658,6 +2671,19 @@ extension on TranslationsEn {
 			'knowledge.dateLine' => ({required Object day, required Object month, required Object year}) => '${day} ${month} ${year}',
 			'knowledge.videoLink' => 'Video link',
 			'knowledge.podcastLink' => 'Podcast link',
+			'knowledge.searchHint' => 'Search articles, topics or keywords…',
+			'knowledge.bookmarks' => 'My bookmarks',
+			'knowledge.bookmark' => 'Bookmark',
+			'knowledge.noBookmarks' => 'You have not bookmarked anything yet.',
+			'knowledge.relatedTitle' => 'Related content',
+			'knowledge.commentsTitle' => ({required Object count}) => 'Comments (${count})',
+			'knowledge.noComments' => 'Be the first to comment.',
+			'knowledge.commentHint' => 'Share your experience or ask a question…',
+			'knowledge.commentSend' => 'Post comment',
+			'knowledge.someone' => 'A family',
+			'knowledge.expertBadge' => 'Expert',
+			'knowledge.triedFor' => ({required Object duration}) => 'Tried for: ${duration}',
+			'knowledge.effectiveness' => ({required Object rating}) => 'Effectiveness: ${rating}/5',
 			'appointments.title' => 'Appointments',
 			'appointments.empty' => 'You don\'t have any appointments yet.',
 			'appointments.upcoming' => 'Upcoming',
@@ -2754,6 +2780,8 @@ extension on TranslationsEn {
 			'dailyTracker.todayTitle' => 'How was today?',
 			'dailyTracker.today' => 'Today',
 			'dailyTracker.mood1' => 'Very Bad',
+			_ => null,
+		} ?? switch (path) {
 			'dailyTracker.mood2' => 'Bad',
 			'dailyTracker.mood3' => 'Okay',
 			'dailyTracker.mood4' => 'Good',
@@ -2767,8 +2795,6 @@ extension on TranslationsEn {
 			'dailyTracker.historyTitle' => 'Past Entries',
 			'dailyTracker.empty' => 'No entries yet. Add the first one today.',
 			'dailyTracker.noChild' => 'Add a child first to use the daily tracker.',
-			_ => null,
-		} ?? switch (path) {
 			'dailyTracker.deleteTitle' => 'Delete Entry',
 			'dailyTracker.deleteConfirm' => ({required Object date}) => 'Are you sure you want to delete the entry dated ${date}?',
 			'dailyTracker.delete' => 'Delete',
@@ -3268,6 +3294,8 @@ extension on TranslationsEn {
 			'forum.noComments' => 'No comments yet. Be the first to write one.',
 			'forum.commentHint' => 'Write a comment…',
 			'forum.replyHint' => 'Write your reply…',
+			_ => null,
+		} ?? switch (path) {
 			'forum.replyingTo' => ({required Object name}) => 'Replying to ${name}',
 			'forum.reply' => 'Reply',
 			'forum.acceptAnswer' => 'Best Answer',
@@ -3281,8 +3309,6 @@ extension on TranslationsEn {
 			'forum.deleteConfirm' => 'Are you sure you want to delete this post?',
 			'forum.cancel' => 'Cancel',
 			'forum.delete' => 'Delete',
-			_ => null,
-		} ?? switch (path) {
 			'forum.save' => 'Save',
 			'forum.reportTitle' => 'Report',
 			'forum.reportHint' => 'Briefly describe the reason for your report',
@@ -3782,6 +3808,8 @@ extension on TranslationsEn {
 			'guide.pageWeeklyKeywords' => 'weekly question, community, experience, sharing',
 			'guide.pageSimilar' => 'Similar Families',
 			'guide.pageSimilarPurpose' => 'Introduces you to families going through a similar process in terms of age and needs.',
+			_ => null,
+		} ?? switch (path) {
 			'guide.pageSimilarWhen' => 'When you want to find the families you have most in common with.',
 			'guide.pageSimilarKeywords' => 'similar families, matching, peer, meeting',
 			'guide.pageGroups' => 'Support Groups',
@@ -3795,8 +3823,6 @@ extension on TranslationsEn {
 			'guide.pageExpertAppointments' => 'My Appointments',
 			'guide.pageExpertAppointmentsPurpose' => 'Approve incoming requests, complete sessions and handle reschedule requests.',
 			'guide.pageExpertAppointmentsWhen' => 'While planning your day and closing records after a session.',
-			_ => null,
-		} ?? switch (path) {
 			'guide.pageExpertMessagesPurpose' => 'A secure space to write to families; task feedback also goes through here.',
 			'guide.pageExpertMessagesWhen' => 'When you want to get back to a family or ask a follow-up question.',
 			'guide.pageExpertForumPurpose' => 'As an expert you can answer questions and share verified information.',

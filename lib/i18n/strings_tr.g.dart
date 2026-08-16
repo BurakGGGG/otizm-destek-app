@@ -1517,6 +1517,45 @@ class Translations$knowledge$tr {
 
 	/// tr: 'Podcast bağlantısı'
 	String get podcastLink => 'Podcast bağlantısı';
+
+	/// tr: 'Makale, konu veya anahtar kelime ara…'
+	String get searchHint => 'Makale, konu veya anahtar kelime ara…';
+
+	/// tr: 'Yer imlerim'
+	String get bookmarks => 'Yer imlerim';
+
+	/// tr: 'Yer imi'
+	String get bookmark => 'Yer imi';
+
+	/// tr: 'Henüz yer imine eklediğiniz içerik yok.'
+	String get noBookmarks => 'Henüz yer imine eklediğiniz içerik yok.';
+
+	/// tr: 'İlgili içerikler'
+	String get relatedTitle => 'İlgili içerikler';
+
+	/// tr: 'Yorumlar ($count)'
+	String commentsTitle({required Object count}) => 'Yorumlar (${count})';
+
+	/// tr: 'İlk yorumu siz yazın.'
+	String get noComments => 'İlk yorumu siz yazın.';
+
+	/// tr: 'Deneyiminizi veya sorunuzu yazın…'
+	String get commentHint => 'Deneyiminizi veya sorunuzu yazın…';
+
+	/// tr: 'Yorumu gönder'
+	String get commentSend => 'Yorumu gönder';
+
+	/// tr: 'Bir aile'
+	String get someone => 'Bir aile';
+
+	/// tr: 'Uzman'
+	String get expertBadge => 'Uzman';
+
+	/// tr: 'Deneme süresi: $duration'
+	String triedFor({required Object duration}) => 'Deneme süresi: ${duration}';
+
+	/// tr: 'Etkililik: $rating/5'
+	String effectiveness({required Object rating}) => 'Etkililik: ${rating}/5';
 }
 
 // Path: appointments
@@ -5716,6 +5755,19 @@ extension on Translations {
 			'knowledge.dateLine' => ({required Object day, required Object month, required Object year}) => '${day} ${month} ${year}',
 			'knowledge.videoLink' => 'Video bağlantısı',
 			'knowledge.podcastLink' => 'Podcast bağlantısı',
+			'knowledge.searchHint' => 'Makale, konu veya anahtar kelime ara…',
+			'knowledge.bookmarks' => 'Yer imlerim',
+			'knowledge.bookmark' => 'Yer imi',
+			'knowledge.noBookmarks' => 'Henüz yer imine eklediğiniz içerik yok.',
+			'knowledge.relatedTitle' => 'İlgili içerikler',
+			'knowledge.commentsTitle' => ({required Object count}) => 'Yorumlar (${count})',
+			'knowledge.noComments' => 'İlk yorumu siz yazın.',
+			'knowledge.commentHint' => 'Deneyiminizi veya sorunuzu yazın…',
+			'knowledge.commentSend' => 'Yorumu gönder',
+			'knowledge.someone' => 'Bir aile',
+			'knowledge.expertBadge' => 'Uzman',
+			'knowledge.triedFor' => ({required Object duration}) => 'Deneme süresi: ${duration}',
+			'knowledge.effectiveness' => ({required Object rating}) => 'Etkililik: ${rating}/5',
 			'appointments.title' => 'Randevular',
 			'appointments.empty' => 'Henüz randevunuz yok.',
 			'appointments.upcoming' => 'Yaklaşan',
@@ -5812,6 +5864,8 @@ extension on Translations {
 			'dailyTracker.todayTitle' => 'Bugün nasıldı?',
 			'dailyTracker.today' => 'Bugün',
 			'dailyTracker.mood1' => 'Çok Kötü',
+			_ => null,
+		} ?? switch (path) {
 			'dailyTracker.mood2' => 'Kötü',
 			'dailyTracker.mood3' => 'Orta',
 			'dailyTracker.mood4' => 'İyi',
@@ -5825,8 +5879,6 @@ extension on Translations {
 			'dailyTracker.historyTitle' => 'Geçmiş Kayıtlar',
 			'dailyTracker.empty' => 'Henüz kayıt yok. İlk kaydı bugün ekleyin.',
 			'dailyTracker.noChild' => 'Günlük takip için önce bir çocuk ekleyin.',
-			_ => null,
-		} ?? switch (path) {
 			'dailyTracker.deleteTitle' => 'Kaydı Sil',
 			'dailyTracker.deleteConfirm' => ({required Object date}) => '${date} tarihli kaydı silmek istediğinize emin misiniz?',
 			'dailyTracker.delete' => 'Sil',
@@ -6326,6 +6378,8 @@ extension on Translations {
 			'forum.noComments' => 'Henüz yorum yok. İlk yorumu siz yazın.',
 			'forum.commentHint' => 'Bir yorum yazın…',
 			'forum.replyHint' => 'Yanıtınızı yazın…',
+			_ => null,
+		} ?? switch (path) {
 			'forum.replyingTo' => ({required Object name}) => '${name} kişisine yanıt veriliyor',
 			'forum.reply' => 'Yanıtla',
 			'forum.acceptAnswer' => 'En İyi Cevap',
@@ -6339,8 +6393,6 @@ extension on Translations {
 			'forum.deleteConfirm' => 'Bu gönderiyi silmek istediğinize emin misiniz?',
 			'forum.cancel' => 'Vazgeç',
 			'forum.delete' => 'Sil',
-			_ => null,
-		} ?? switch (path) {
 			'forum.save' => 'Kaydet',
 			'forum.reportTitle' => 'Şikayet Et',
 			'forum.reportHint' => 'Şikayet nedeninizi kısaca yazın',
@@ -6840,6 +6892,8 @@ extension on Translations {
 			'guide.pageWeeklyKeywords' => 'haftanın sorusu, topluluk, deneyim, paylaşım',
 			'guide.pageSimilar' => 'Benzer Aileler',
 			'guide.pageSimilarPurpose' => 'Çocuğunuzun yaşı ve ihtiyaçları açısından benzer süreçler yaşayan ailelerle tanıştırır.',
+			_ => null,
+		} ?? switch (path) {
 			'guide.pageSimilarWhen' => 'Sizinle en çok ortak noktası olan aileleri bulmak istediğinizde.',
 			'guide.pageSimilarKeywords' => 'benzer aileler, eşleşme, akran, tanışma',
 			'guide.pageGroups' => 'Destek Grupları',
@@ -6853,8 +6907,6 @@ extension on Translations {
 			'guide.pageExpertAppointments' => 'Randevularım',
 			'guide.pageExpertAppointmentsPurpose' => 'Gelen randevu taleplerini onaylar, seansları tamamlar ve erteleme taleplerini yönetir.',
 			'guide.pageExpertAppointmentsWhen' => 'Gününüzü planlarken ve seans sonrası kayıt kapatırken.',
-			_ => null,
-		} ?? switch (path) {
 			'guide.pageExpertMessagesPurpose' => 'Ailelerle güvenli yazışma alanıdır; görev geri bildirimleri de buradan iletilir.',
 			'guide.pageExpertMessagesWhen' => 'Aileye dönüş yapmak veya takip sorusu sormak istediğinizde.',
 			'guide.pageExpertForumPurpose' => 'Uzman olarak soruları yanıtlayabilir, doğrulanmış bilgi paylaşabilirsiniz.',

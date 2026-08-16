@@ -28,6 +28,7 @@ class Article {
     this.authorName,
     this.viewCount,
     this.createdAt,
+    this.bookmarked = false,
   });
 
   final String id;
@@ -40,6 +41,23 @@ class Article {
   final String? authorName;
   final int? viewCount;
   final DateTime? createdAt;
+
+  /// Oturum sahibinin yer imlerinde mi (DTO `bookmarked`).
+  final bool bookmarked;
+
+  Article copyWith({bool? bookmarked}) => Article(
+        id: id,
+        title: title,
+        category: category,
+        summary: summary,
+        format: format,
+        mediaUrl: mediaUrl,
+        content: content,
+        authorName: authorName,
+        viewCount: viewCount,
+        createdAt: createdAt,
+        bookmarked: bookmarked ?? this.bookmarked,
+      );
 
   static final _mediaPrefix = RegExp(
     r'^\[MEDIA:(video|podcast):([^\]]+)\]\s*([\s\S]*)$',
@@ -87,6 +105,7 @@ class Article {
           : null,
       viewCount: (json['viewCount'] as num?)?.toInt(),
       createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? ''),
+      bookmarked: json['bookmarked'] == true,
     );
   }
 }

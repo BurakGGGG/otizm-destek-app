@@ -455,6 +455,19 @@ knowledge:
   dateLine: $day $month $year
   videoLink: Video bağlantısı
   podcastLink: Podcast bağlantısı
+  searchHint: Makale, konu veya anahtar kelime ara…
+  bookmarks: Yer imlerim
+  bookmark: Yer imi
+  noBookmarks: Henüz yer imine eklediğiniz içerik yok.
+  relatedTitle: İlgili içerikler
+  commentsTitle: Yorumlar ($count)
+  noComments: İlk yorumu siz yazın.
+  commentHint: Deneyiminizi veya sorunuzu yazın…
+  commentSend: Yorumu gönder
+  someone: Bir aile
+  expertBadge: Uzman
+  triedFor: 'Deneme süresi: $duration'
+  effectiveness: 'Etkililik: $rating/5'
 
 appointments:
   title: Randevular

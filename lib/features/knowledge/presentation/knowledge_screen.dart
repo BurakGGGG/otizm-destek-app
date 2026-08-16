@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -8,10 +10,13 @@ import '../../../core/widgets/skeleton.dart';
 import '../../../i18n/strings.g.dart';
 import '../data/knowledge_repository.dart';
 import '../domain/article.dart';
+import '../domain/knowledge_categories.dart';
 import 'article_detail_screen.dart';
+import 'article_list_controller.dart';
 import 'widgets/article_format_badge.dart';
 
-/// Bilgi Bankası — yayınlanmış makale listesi (`/api/knowledge`) + format filtresi.
+/// Bilgi Bankası — arama, kategori ve içerik türü filtreleri, yer imleri ve
+/// sayfalı liste (web KnowledgePage'in aile tarafındaki akışı).
 class KnowledgeScreen extends ConsumerStatefulWidget {
   const KnowledgeScreen({super.key});
 
@@ -20,84 +25,171 @@ class KnowledgeScreen extends ConsumerStatefulWidget {
 }
 
 class _KnowledgeScreenState extends ConsumerState<KnowledgeScreen> {
-  // null = Tümü; aksi halde içerik türüne göre süzülür.
-  ArticleMedia? _filter;
+  final _search = TextEditingController();
+  Timer? _debounce;
+
+  @override
+  void dispose() {
+    _debounce?.cancel();
+    _search.dispose();
+    super.dispose();
+  }
+
+  /// Web'deki gibi yazarken beklenir, her tuşta istek atılmaz.
+  void _onSearchChanged(String value) {
+    _debounce?.cancel();
+    _debounce = Timer(const Duration(milliseconds: 400), () {
+      final state = ref.read(articleListProvider).asData?.value;
+      final query = (state?.query ?? const ArticleQuery()).copyWith(
+        text: value,
+      );
+      ref.read(articleListProvider.notifier).setQuery(query);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final t = context.t;
-    final async = ref.watch(articlesProvider);
+    final async = ref.watch(articleListProvider);
+    final controller = ref.read(articleListProvider.notifier);
+    final state = async.asData?.value;
+    final query = state?.query ?? const ArticleQuery();
 
     return Scaffold(
-      appBar: AppBar(title: Text(t.knowledge.title)),
-      body: async.when(
-        loading: () => const SkeletonList(count: 5),
-        error: (e, _) =>
-            ErrorRetry(onRetry: () => ref.invalidate(articlesProvider)),
-        data: (articles) {
-          if (articles.isEmpty) {
-            return EmptyState(
-              icon: Icons.menu_book_outlined,
-              message: t.knowledge.empty,
-            );
-          }
-          final filtered = _filter == null
-              ? articles
-              : articles
-                    .where((a) => a.parsedContent.media == _filter)
-                    .toList();
-          return Column(
-            children: [
-              _FilterBar(
-                selected: _filter,
-                onSelect: (f) => setState(() => _filter = f),
+      appBar: AppBar(
+        title: Text(t.knowledge.title),
+        actions: [
+          IconButton(
+            tooltip: t.knowledge.bookmarks,
+            onPressed: () =>
+                controller.setBookmarksOnly(!(state?.bookmarksOnly ?? false)),
+            icon: Icon(
+              (state?.bookmarksOnly ?? false)
+                  ? Icons.bookmark
+                  : Icons.bookmark_border,
+            ),
+          ),
+        ],
+      ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(
+                AppSpacing.margin,
+                8,
+                AppSpacing.margin,
+                0,
               ),
-              Expanded(
-                child: filtered.isEmpty
-                    ? EmptyState(
-                        icon: Icons.filter_list_off,
-                        message: t.knowledge.noResults,
-                      )
-                    : RefreshIndicator(
-                        onRefresh: () async =>
-                            ref.invalidate(articlesProvider),
-                        child: ListView.separated(
-                          padding: const EdgeInsets.fromLTRB(
-                            AppSpacing.margin,
-                            4,
-                            AppSpacing.margin,
-                            24,
-                          ),
-                          itemCount: filtered.length,
-                          separatorBuilder: (_, _) => const SizedBox(height: 12),
-                          itemBuilder: (_, i) =>
-                              _ArticleTile(article: filtered[i]),
+              child: TextField(
+                controller: _search,
+                onChanged: _onSearchChanged,
+                textInputAction: TextInputAction.search,
+                decoration: InputDecoration(
+                  hintText: t.knowledge.searchHint,
+                  prefixIcon: const Icon(Icons.search, size: 20),
+                  suffixIcon: _search.text.isEmpty
+                      ? null
+                      : IconButton(
+                          icon: const Icon(Icons.close, size: 18),
+                          onPressed: () {
+                            _search.clear();
+                            controller.setQuery(query.copyWith(text: ''));
+                            setState(() {});
+                          },
                         ),
-                      ),
+                ),
               ),
-            ],
-          );
-        },
+            ),
+            _FormatBar(
+              selected: query.format,
+              onSelect: (format) => controller.setQuery(
+                format == null
+                    ? query.copyWith(clearFormat: true)
+                    : query.copyWith(format: format),
+              ),
+            ),
+            _CategoryBar(
+              selected: query.category,
+              onSelect: (category) => controller.setQuery(
+                category == null
+                    ? query.copyWith(clearCategory: true)
+                    : query.copyWith(category: category),
+              ),
+            ),
+            Expanded(
+              child: async.when(
+                loading: () => const SkeletonList(count: 5),
+                error: (e, _) => ErrorRetry(onRetry: controller.refresh),
+                data: (data) {
+                  if (data.items.isEmpty) {
+                    return EmptyState(
+                      icon: data.bookmarksOnly
+                          ? Icons.bookmark_border
+                          : Icons.menu_book_outlined,
+                      message: data.bookmarksOnly
+                          ? t.knowledge.noBookmarks
+                          : query.isEmpty
+                              ? t.knowledge.empty
+                              : t.knowledge.noResults,
+                    );
+                  }
+                  return RefreshIndicator(
+                    onRefresh: controller.refresh,
+                    child: ListView.separated(
+                      padding: const EdgeInsets.fromLTRB(
+                        AppSpacing.margin,
+                        8,
+                        AppSpacing.margin,
+                        24,
+                      ),
+                      itemCount: data.items.length + (data.hasMore ? 1 : 0),
+                      separatorBuilder: (_, _) => const SizedBox(height: 12),
+                      itemBuilder: (_, i) {
+                        if (i >= data.items.length) {
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 8),
+                            child: OutlinedButton(
+                              onPressed: data.loadingMore
+                                  ? null
+                                  : controller.loadMore,
+                              child: Text(
+                                data.loadingMore
+                                    ? t.common.loading
+                                    : t.common.more,
+                              ),
+                            ),
+                          );
+                        }
+                        return _ArticleTile(article: data.items[i]);
+                      },
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
 
-/// Format filtre çubuğu: Tümü / Makale / Video / Podcast.
-class _FilterBar extends StatelessWidget {
-  const _FilterBar({required this.selected, required this.onSelect});
+/// İçerik türü çubuğu: Tümü / Makale / Video / Podcast (sunucu tarafı filtre).
+class _FormatBar extends StatelessWidget {
+  const _FormatBar({required this.selected, required this.onSelect});
 
-  final ArticleMedia? selected;
-  final ValueChanged<ArticleMedia?> onSelect;
+  final String? selected;
+  final ValueChanged<String?> onSelect;
 
   @override
   Widget build(BuildContext context) {
     final t = context.t;
-    final items = <({ArticleMedia? value, String label})>[
+    final items = <({String? value, String label})>[
       (value: null, label: t.knowledge.filterAll),
-      (value: ArticleMedia.none, label: t.knowledge.formatArticle),
-      (value: ArticleMedia.video, label: t.knowledge.formatVideo),
-      (value: ArticleMedia.podcast, label: t.knowledge.formatPodcast),
+      (value: kFormatText, label: t.knowledge.formatArticle),
+      (value: kFormatVideo, label: t.knowledge.formatVideo),
+      (value: kFormatPodcast, label: t.knowledge.formatPodcast),
     ];
     return SizedBox(
       height: 48,
@@ -110,21 +202,54 @@ class _FilterBar extends StatelessWidget {
         itemCount: items.length,
         separatorBuilder: (_, _) => const SizedBox(width: 8),
         itemBuilder: (_, i) {
-          final it = items[i];
-          final isSel = selected == it.value;
+          final item = items[i];
+          final isSelected = selected == item.value;
           return ChoiceChip(
-            label: Text(it.label),
-            selected: isSel,
+            label: Text(item.label),
+            selected: isSelected,
             showCheckmark: false,
             selectedColor: context.colors.primary,
             backgroundColor: context.colors.surface,
             side: BorderSide(color: context.colors.border),
             labelStyle: TextStyle(
-              color: isSel ? Colors.white : context.colors.textSecondary,
+              color: isSelected ? Colors.white : context.colors.textSecondary,
               fontWeight: FontWeight.w600,
               fontSize: 13,
             ),
-            onSelected: (_) => onSelect(it.value),
+            onSelected: (_) => onSelect(item.value),
+          );
+        },
+      ),
+    );
+  }
+}
+
+/// Kategori çubuğu — değerler makale kaydındaki paylaşılan veridir.
+class _CategoryBar extends StatelessWidget {
+  const _CategoryBar({required this.selected, required this.onSelect});
+
+  final String? selected;
+  final ValueChanged<String?> onSelect;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    return SizedBox(
+      height: 44,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.margin),
+        itemCount: kKnowledgeCategories.length + 1,
+        separatorBuilder: (_, _) => const SizedBox(width: 8),
+        itemBuilder: (_, i) {
+          final category = i == 0 ? null : kKnowledgeCategories[i - 1];
+          final label = category?.label ?? t.knowledge.filterAll;
+          final isSelected = selected == category?.key;
+          return FilterChip(
+            label: Text(label),
+            selected: isSelected,
+            showCheckmark: false,
+            onSelected: (_) => onSelect(category?.key),
           );
         },
       ),
@@ -172,6 +297,14 @@ class _ArticleTile extends StatelessWidget {
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
+                    ),
+                  ],
+                  if (article.bookmarked) ...[
+                    const SizedBox(width: 6),
+                    Icon(
+                      Icons.bookmark,
+                      size: 14,
+                      color: context.colors.primary,
                     ),
                   ],
                 ],
