@@ -96,6 +96,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$guide$tr guide = Translations$guide$tr.internal(_root);
 	late final Translations$community$tr community = Translations$community$tr.internal(_root);
 	late final Translations$reviews$tr reviews = Translations$reviews$tr.internal(_root);
+	late final Translations$expertAccess$tr expertAccess = Translations$expertAccess$tr.internal(_root);
 }
 
 // Path: app
@@ -5283,6 +5284,72 @@ class Translations$reviews$tr {
 	String get someone => 'Bir veli';
 }
 
+// Path: expertAccess
+class Translations$expertAccess$tr {
+	Translations$expertAccess$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Uzman Erişimi'
+	String get title => 'Uzman Erişimi';
+
+	/// tr: 'Uzmanlar çocuğunuzun gelişim verilerine ancak siz onayladığınızda erişebilir. Verdiğiniz erişimi istediğiniz zaman geri alabilirsiniz.'
+	String get intro => 'Uzmanlar çocuğunuzun gelişim verilerine ancak siz onayladığınızda erişebilir. Verdiğiniz erişimi istediğiniz zaman geri alabilirsiniz.';
+
+	/// tr: 'Bekleyen istekler'
+	String get pendingTitle => 'Bekleyen istekler';
+
+	/// tr: 'Şu an bekleyen uzman erişim isteği yok.'
+	String get noPending => 'Şu an bekleyen uzman erişim isteği yok.';
+
+	/// tr: 'Erişimi olan uzmanlar'
+	String get activeTitle => 'Erişimi olan uzmanlar';
+
+	/// tr: 'Henüz hiçbir uzmana erişim vermediniz.'
+	String get noActive => 'Henüz hiçbir uzmana erişim vermediniz.';
+
+	/// tr: '$child adlı çocuğunuzun profiline erişim istiyor.'
+	String requestLine({required Object child}) => '${child} adlı çocuğunuzun profiline erişim istiyor.';
+
+	/// tr: '$child adlı çocuğunuzun profiline erişebiliyor.'
+	String activeLine({required Object child}) => '${child} adlı çocuğunuzun profiline erişebiliyor.';
+
+	/// tr: 'İstek tarihi: $date'
+	String requestedAt({required Object date}) => 'İstek tarihi: ${date}';
+
+	/// tr: 'Uzman'
+	String get unknownExpert => 'Uzman';
+
+	/// tr: 'Onayla'
+	String get approve => 'Onayla';
+
+	/// tr: 'Reddet'
+	String get reject => 'Reddet';
+
+	/// tr: 'Erişimi kaldır'
+	String get revoke => 'Erişimi kaldır';
+
+	/// tr: 'Uzman erişim isteği onaylandı.'
+	String get approved => 'Uzman erişim isteği onaylandı.';
+
+	/// tr: 'Uzman erişim isteği reddedildi.'
+	String get rejected => 'Uzman erişim isteği reddedildi.';
+
+	/// tr: 'Uzmanın erişimi kaldırıldı.'
+	String get revoked => 'Uzmanın erişimi kaldırıldı.';
+
+	/// tr: 'Erişimi kaldır'
+	String get revokeTitle => 'Erişimi kaldır';
+
+	/// tr: 'Bu uzmanın çocuğunuzun verilerine erişimini kaldırmak istediğinize emin misiniz?'
+	String get revokeConfirm => 'Bu uzmanın çocuğunuzun verilerine erişimini kaldırmak istediğinize emin misiniz?';
+
+	/// tr: '$count uzman erişim isteğiniz onay bekliyor'
+	String pendingBanner({required Object count}) => '${count} uzman erişim isteğiniz onay bekliyor';
+}
+
 // Path: crisis.cards
 class Translations$crisis$cards$tr {
 	Translations$crisis$cards$tr.internal(this._root);
@@ -7049,6 +7116,25 @@ extension on Translations {
 			'reviews.deleteTitle' => 'Değerlendirmeyi sil',
 			'reviews.deleteConfirm' => 'Bu değerlendirmeyi silmek istediğinize emin misiniz?',
 			'reviews.someone' => 'Bir veli',
+			'expertAccess.title' => 'Uzman Erişimi',
+			'expertAccess.intro' => 'Uzmanlar çocuğunuzun gelişim verilerine ancak siz onayladığınızda erişebilir. Verdiğiniz erişimi istediğiniz zaman geri alabilirsiniz.',
+			'expertAccess.pendingTitle' => 'Bekleyen istekler',
+			'expertAccess.noPending' => 'Şu an bekleyen uzman erişim isteği yok.',
+			'expertAccess.activeTitle' => 'Erişimi olan uzmanlar',
+			'expertAccess.noActive' => 'Henüz hiçbir uzmana erişim vermediniz.',
+			'expertAccess.requestLine' => ({required Object child}) => '${child} adlı çocuğunuzun profiline erişim istiyor.',
+			'expertAccess.activeLine' => ({required Object child}) => '${child} adlı çocuğunuzun profiline erişebiliyor.',
+			'expertAccess.requestedAt' => ({required Object date}) => 'İstek tarihi: ${date}',
+			'expertAccess.unknownExpert' => 'Uzman',
+			'expertAccess.approve' => 'Onayla',
+			'expertAccess.reject' => 'Reddet',
+			'expertAccess.revoke' => 'Erişimi kaldır',
+			'expertAccess.approved' => 'Uzman erişim isteği onaylandı.',
+			'expertAccess.rejected' => 'Uzman erişim isteği reddedildi.',
+			'expertAccess.revoked' => 'Uzmanın erişimi kaldırıldı.',
+			'expertAccess.revokeTitle' => 'Erişimi kaldır',
+			'expertAccess.revokeConfirm' => 'Bu uzmanın çocuğunuzun verilerine erişimini kaldırmak istediğinize emin misiniz?',
+			'expertAccess.pendingBanner' => ({required Object count}) => '${count} uzman erişim isteğiniz onay bekliyor',
 			_ => null,
 		};
 	}

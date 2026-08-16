@@ -11,6 +11,7 @@ import '../../appointments/data/appointment_repository.dart';
 import '../../appointments/domain/appointment.dart';
 import '../../auth/presentation/auth_controller.dart';
 import '../../children/data/child_repository.dart';
+import '../../children/data/connection_repository.dart';
 import '../../children/domain/child.dart';
 import '../../knowledge/data/knowledge_repository.dart';
 import '../../knowledge/domain/article.dart';
@@ -34,6 +35,7 @@ class HomeTab extends ConsumerWidget {
           ref.invalidate(childrenProvider);
           ref.invalidate(appointmentsProvider);
           ref.invalidate(recommendedArticlesProvider);
+          ref.invalidate(connectionRequestsProvider);
         },
         child: ListView(
           padding: const EdgeInsets.fromLTRB(
@@ -46,7 +48,8 @@ class HomeTab extends ConsumerWidget {
             Text(t.home.greeting(name: name), style: text.headlineLarge),
             const SizedBox(height: 4),
             Text(t.home.subtitle, style: text.bodySmall),
-            const SizedBox(height: AppSpacing.lg),
+            const SizedBox(height: AppSpacing.md),
+            const _ExpertAccessBanner(),
 
             SectionHeader(
               title: t.home.childrenTitle,
@@ -72,6 +75,67 @@ class HomeTab extends ConsumerWidget {
             const SizedBox(height: 12),
             const _ArticlesSection(),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Bekleyen uzman erişim isteği varsa gösterilen uyarı şeridi (web gösterge
+/// panelindeki "uzman erişim isteği" kartı). İstek yoksa yer kaplamaz.
+class _ExpertAccessBanner extends ConsumerWidget {
+  const _ExpertAccessBanner();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.t;
+    final colors = context.colors;
+    final text = Theme.of(context).textTheme;
+    final requests =
+        ref.watch(connectionRequestsProvider).asData?.value ?? const [];
+    if (requests.isEmpty) return const SizedBox(height: AppSpacing.sm);
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: AppSpacing.md),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(AppRadius.lg),
+        onTap: () => context.push('/expert-access'),
+        child: Container(
+          padding: const EdgeInsets.all(AppSpacing.md),
+          decoration: BoxDecoration(
+            color: colors.warning.withValues(alpha: .10),
+            borderRadius: BorderRadius.circular(AppRadius.lg),
+            border: Border.all(color: colors.warning.withValues(alpha: .35)),
+          ),
+          child: Row(
+            children: [
+              Icon(Icons.notifications_active_outlined,
+                  size: 20, color: colors.warning),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      t.expertAccess.pendingBanner(count: requests.length),
+                      style: text.labelLarge,
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      requests
+                          .map((r) => r.expertName ?? t.expertAccess.unknownExpert)
+                          .join(', '),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: text.labelSmall
+                          ?.copyWith(color: colors.textSecondary),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(Icons.chevron_right, size: 20, color: colors.textTertiary),
+            ],
+          ),
         ),
       ),
     );

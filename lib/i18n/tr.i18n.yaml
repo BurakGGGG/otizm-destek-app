@@ -1869,3 +1869,26 @@ reviews:
   deleteTitle: Değerlendirmeyi sil
   deleteConfirm: Bu değerlendirmeyi silmek istediğinize emin misiniz?
   someone: Bir veli
+
+expertAccess:
+  title: Uzman Erişimi
+  intro: Uzmanlar çocuğunuzun gelişim verilerine ancak siz onayladığınızda
+    erişebilir. Verdiğiniz erişimi istediğiniz zaman geri alabilirsiniz.
+  pendingTitle: Bekleyen istekler
+  noPending: Şu an bekleyen uzman erişim isteği yok.
+  activeTitle: Erişimi olan uzmanlar
+  noActive: Henüz hiçbir uzmana erişim vermediniz.
+  requestLine: $child adlı çocuğunuzun profiline erişim istiyor.
+  activeLine: $child adlı çocuğunuzun profiline erişebiliyor.
+  requestedAt: 'İstek tarihi: $date'
+  unknownExpert: Uzman
+  approve: Onayla
+  reject: Reddet
+  revoke: Erişimi kaldır
+  approved: Uzman erişim isteği onaylandı.
+  rejected: Uzman erişim isteği reddedildi.
+  revoked: Uzmanın erişimi kaldırıldı.
+  revokeTitle: Erişimi kaldır
+  revokeConfirm: Bu uzmanın çocuğunuzun verilerine erişimini kaldırmak
+    istediğinize emin misiniz?
+  pendingBanner: $count uzman erişim isteğiniz onay bekliyor

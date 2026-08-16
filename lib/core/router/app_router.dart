@@ -18,6 +18,7 @@ import '../../features/chatbot/presentation/chat_screen.dart';
 import '../../features/community/presentation/meetups_screen.dart';
 import '../../features/community/presentation/weekly_question_screen.dart';
 import '../../features/children/presentation/children_screen.dart';
+import '../../features/children/presentation/expert_access_screen.dart';
 import '../../features/community/presentation/community_screen.dart';
 import '../../features/crisis/presentation/crisis_screen.dart';
 import '../../features/emergency/presentation/emergency_screen.dart';
@@ -146,6 +147,10 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(path: '/chat', builder: (_, _) => const ChatScreen()),
       GoRoute(path: '/children', builder: (_, _) => const ChildrenScreen()),
+      GoRoute(
+        path: '/expert-access',
+        builder: (_, _) => const ExpertAccessScreen(),
+      ),
       GoRoute(path: '/account', builder: (_, _) => const AccountScreen()),
       GoRoute(path: '/settings', builder: (_, _) => const SettingsScreen()),
       GoRoute(path: '/kvkk', builder: (_, _) => const KvkkScreen()),

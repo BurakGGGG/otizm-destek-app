@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/haptics.dart';
 import '../../../core/network/api_exception.dart';
@@ -24,7 +25,16 @@ class ChildrenScreen extends ConsumerWidget {
     final async = ref.watch(childrenProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text(t.children.title)),
+      appBar: AppBar(
+        title: Text(t.children.title),
+        actions: [
+          IconButton(
+            tooltip: t.expertAccess.title,
+            onPressed: () => context.push('/expert-access'),
+            icon: const Icon(Icons.verified_user_outlined),
+          ),
+        ],
+      ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _openForm(context),
         icon: const Icon(Icons.add),

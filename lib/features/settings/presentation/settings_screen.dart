@@ -108,6 +108,16 @@ class SettingsScreen extends ConsumerWidget {
                   pref: AppPreference.privacyHidePresence,
                   label: t.settings.privacyHidePresence,
                 ),
+                // Uzmanların çocuk verisine erişimi cihaz tercihi değil,
+                // sunucudaki onaylardır — ayrı ekrana götürülür.
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  leading: const Icon(Icons.verified_user_outlined),
+                  title: Text(t.expertAccess.title),
+                  subtitle: Text(t.expertAccess.intro),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () => context.push('/expert-access'),
+                ),
               ],
             ),
             const SizedBox(height: AppSpacing.md),

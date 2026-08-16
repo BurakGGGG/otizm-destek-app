@@ -95,6 +95,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$guide$en guide = _Translations$guide$en._(_root);
 	@override late final _Translations$community$en community = _Translations$community$en._(_root);
 	@override late final _Translations$reviews$en reviews = _Translations$reviews$en._(_root);
+	@override late final _Translations$expertAccess$en expertAccess = _Translations$expertAccess$en._(_root);
 }
 
 // Path: app
@@ -2181,6 +2182,34 @@ class _Translations$reviews$en extends Translations$reviews$tr {
 	@override String get someone => 'A parent';
 }
 
+// Path: expertAccess
+class _Translations$expertAccess$en extends Translations$expertAccess$tr {
+	_Translations$expertAccess$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Expert Access';
+	@override String get intro => 'Experts can only see your child\'s development data once you approve them. You can withdraw access at any time.';
+	@override String get pendingTitle => 'Pending requests';
+	@override String get noPending => 'There are no pending expert access requests.';
+	@override String get activeTitle => 'Experts with access';
+	@override String get noActive => 'You have not granted access to any expert yet.';
+	@override String requestLine({required Object child}) => 'Requests access to your child ${child}\'s profile.';
+	@override String activeLine({required Object child}) => 'Can access your child ${child}\'s profile.';
+	@override String requestedAt({required Object date}) => 'Requested on: ${date}';
+	@override String get unknownExpert => 'Expert';
+	@override String get approve => 'Approve';
+	@override String get reject => 'Reject';
+	@override String get revoke => 'Remove access';
+	@override String get approved => 'Expert access request approved.';
+	@override String get rejected => 'Expert access request rejected.';
+	@override String get revoked => 'The expert\'s access has been removed.';
+	@override String get revokeTitle => 'Remove access';
+	@override String get revokeConfirm => 'Are you sure you want to remove this expert\'s access to your child\'s data?';
+	@override String pendingBanner({required Object count}) => '${count} expert access request(s) waiting for your approval';
+}
+
 // Path: crisis.cards
 class _Translations$crisis$cards$en extends Translations$crisis$cards$tr {
 	_Translations$crisis$cards$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -3923,6 +3952,25 @@ extension on TranslationsEn {
 			'reviews.deleteTitle' => 'Delete review',
 			'reviews.deleteConfirm' => 'Are you sure you want to delete this review?',
 			'reviews.someone' => 'A parent',
+			'expertAccess.title' => 'Expert Access',
+			'expertAccess.intro' => 'Experts can only see your child\'s development data once you approve them. You can withdraw access at any time.',
+			'expertAccess.pendingTitle' => 'Pending requests',
+			'expertAccess.noPending' => 'There are no pending expert access requests.',
+			'expertAccess.activeTitle' => 'Experts with access',
+			'expertAccess.noActive' => 'You have not granted access to any expert yet.',
+			'expertAccess.requestLine' => ({required Object child}) => 'Requests access to your child ${child}\'s profile.',
+			'expertAccess.activeLine' => ({required Object child}) => 'Can access your child ${child}\'s profile.',
+			'expertAccess.requestedAt' => ({required Object date}) => 'Requested on: ${date}',
+			'expertAccess.unknownExpert' => 'Expert',
+			'expertAccess.approve' => 'Approve',
+			'expertAccess.reject' => 'Reject',
+			'expertAccess.revoke' => 'Remove access',
+			'expertAccess.approved' => 'Expert access request approved.',
+			'expertAccess.rejected' => 'Expert access request rejected.',
+			'expertAccess.revoked' => 'The expert\'s access has been removed.',
+			'expertAccess.revokeTitle' => 'Remove access',
+			'expertAccess.revokeConfirm' => 'Are you sure you want to remove this expert\'s access to your child\'s data?',
+			'expertAccess.pendingBanner' => ({required Object count}) => '${count} expert access request(s) waiting for your approval',
 			_ => null,
 		};
 	}
