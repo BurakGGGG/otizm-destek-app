@@ -485,6 +485,19 @@ appointments:
   rescheduleTitle: Randevuyu Ertele
   rescheduleConfirm: Yeni Zamanı Onayla
   rescheduled: Randevu yeniden planlandı.
+  nextTitle: Sıradaki randevu
+  countdownDays: $days gün $hours sa $minutes dk kaldı
+  countdownToday: $hours sa $minutes dk $seconds sn kaldı
+  countdownNow: Görüşme zamanı
+  statToday: Bugün
+  statWeek: Bu hafta
+  statMonth: Bu ay
+  statPending: Bekleyen
+  statCompleted: Tamamlanan
+  statCancelled: İptal
+  findExpert: Uzman bul
+  today: Bugün
+  tomorrow: Yarın
 
 expertDetail:
   bookAppointment: Randevu Al

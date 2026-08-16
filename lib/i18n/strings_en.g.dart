@@ -770,6 +770,19 @@ class _Translations$appointments$en extends Translations$appointments$tr {
 	@override String get rescheduleTitle => 'Reschedule Appointment';
 	@override String get rescheduleConfirm => 'Confirm New Time';
 	@override String get rescheduled => 'Appointment rescheduled.';
+	@override String get nextTitle => 'Next appointment';
+	@override String countdownDays({required Object days, required Object hours, required Object minutes}) => '${days} d ${hours} h ${minutes} m left';
+	@override String countdownToday({required Object hours, required Object minutes, required Object seconds}) => '${hours} h ${minutes} m ${seconds} s left';
+	@override String get countdownNow => 'Session time';
+	@override String get statToday => 'Today';
+	@override String get statWeek => 'This week';
+	@override String get statMonth => 'This month';
+	@override String get statPending => 'Pending';
+	@override String get statCompleted => 'Completed';
+	@override String get statCancelled => 'Cancelled';
+	@override String get findExpert => 'Find an expert';
+	@override String get today => 'Today';
+	@override String get tomorrow => 'Tomorrow';
 }
 
 // Path: expertDetail
@@ -2656,6 +2669,19 @@ extension on TranslationsEn {
 			'appointments.rescheduleTitle' => 'Reschedule Appointment',
 			'appointments.rescheduleConfirm' => 'Confirm New Time',
 			'appointments.rescheduled' => 'Appointment rescheduled.',
+			'appointments.nextTitle' => 'Next appointment',
+			'appointments.countdownDays' => ({required Object days, required Object hours, required Object minutes}) => '${days} d ${hours} h ${minutes} m left',
+			'appointments.countdownToday' => ({required Object hours, required Object minutes, required Object seconds}) => '${hours} h ${minutes} m ${seconds} s left',
+			'appointments.countdownNow' => 'Session time',
+			'appointments.statToday' => 'Today',
+			'appointments.statWeek' => 'This week',
+			'appointments.statMonth' => 'This month',
+			'appointments.statPending' => 'Pending',
+			'appointments.statCompleted' => 'Completed',
+			'appointments.statCancelled' => 'Cancelled',
+			'appointments.findExpert' => 'Find an expert',
+			'appointments.today' => 'Today',
+			'appointments.tomorrow' => 'Tomorrow',
 			'expertDetail.bookAppointment' => 'Book Appointment',
 			'expertDetail.sendMessage' => 'Send Message',
 			'expertDetail.specializationsTitle' => 'Specializations',
@@ -2724,6 +2750,8 @@ extension on TranslationsEn {
 			'dailyTracker.historyTitle' => 'Past Entries',
 			'dailyTracker.empty' => 'No entries yet. Add the first one today.',
 			'dailyTracker.noChild' => 'Add a child first to use the daily tracker.',
+			_ => null,
+		} ?? switch (path) {
 			'dailyTracker.deleteTitle' => 'Delete Entry',
 			'dailyTracker.deleteConfirm' => ({required Object date}) => 'Are you sure you want to delete the entry dated ${date}?',
 			'dailyTracker.delete' => 'Delete',
@@ -2737,8 +2765,6 @@ extension on TranslationsEn {
 			'sleep.quality' => 'Sleep Quality',
 			'sleep.nightWakings' => 'Night wakings',
 			'sleep.factorsLabel' => 'Sensory and environmental factors',
-			_ => null,
-		} ?? switch (path) {
 			'sleep.factorWeighted' => '🛏️ Weighted Blanket',
 			'sleep.factorSensory' => '👕 Sensory Sensitivity',
 			'sleep.factorMelatonin' => '💊 Melatonin Support',
@@ -3238,6 +3264,8 @@ extension on TranslationsEn {
 			'forum.deleteConfirm' => 'Are you sure you want to delete this post?',
 			'forum.cancel' => 'Cancel',
 			'forum.delete' => 'Delete',
+			_ => null,
+		} ?? switch (path) {
 			'forum.save' => 'Save',
 			'forum.reportTitle' => 'Report',
 			'forum.reportHint' => 'Briefly describe the reason for your report',
@@ -3251,8 +3279,6 @@ extension on TranslationsEn {
 			'forum.contentLabel' => 'Content',
 			'forum.tagsLabel' => 'Symptom Tags',
 			'forum.anonymousTitle' => 'Share Anonymously',
-			_ => null,
-		} ?? switch (path) {
 			'forum.anonymousBody' => 'Your profile details are hidden; you appear as "Anonymous User".',
 			'forum.privacyTitle' => 'Privacy Settings',
 			'forum.privacyRealName' => 'Show my real name',
@@ -3752,6 +3778,8 @@ extension on TranslationsEn {
 			'guide.video05' => 'Child Profile',
 			'guide.video05Desc' => 'Create a child profile and keep the basics, diagnosis notes, needs and access details up to date.',
 			'guide.video06' => 'Daily Mood and Sleep Tracking',
+			_ => null,
+		} ?? switch (path) {
 			'guide.video06Desc' => 'Add mood, sleep and behaviour records in a few steps and review the history.',
 			'guide.video07' => 'Medication Tracking',
 			'guide.video07Desc' => 'Save the medication plan, follow doses and times, and check past records safely.',
@@ -3765,8 +3793,6 @@ extension on TranslationsEn {
 			'guide.video11Desc' => 'Write down observations, plan important dates and keep the emergency card ready to share.',
 			'guide.video12' => 'Finding an Expert and Booking',
 			'guide.video12Desc' => 'Filter experts, compare profiles, choose the right person and manage the appointment flow.',
-			_ => null,
-		} ?? switch (path) {
 			'guide.video13' => 'Messages, Privacy and Settings',
 			'guide.video13Desc' => 'Use secure messaging and manage profile, notification, password and data-sharing preferences.',
 			'guide.video14' => 'Community, Forum and Meetups',

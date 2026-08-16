@@ -1610,6 +1610,45 @@ class Translations$appointments$tr {
 
 	/// tr: 'Randevu yeniden planlandı.'
 	String get rescheduled => 'Randevu yeniden planlandı.';
+
+	/// tr: 'Sıradaki randevu'
+	String get nextTitle => 'Sıradaki randevu';
+
+	/// tr: '$days gün $hours sa $minutes dk kaldı'
+	String countdownDays({required Object days, required Object hours, required Object minutes}) => '${days} gün ${hours} sa ${minutes} dk kaldı';
+
+	/// tr: '$hours sa $minutes dk $seconds sn kaldı'
+	String countdownToday({required Object hours, required Object minutes, required Object seconds}) => '${hours} sa ${minutes} dk ${seconds} sn kaldı';
+
+	/// tr: 'Görüşme zamanı'
+	String get countdownNow => 'Görüşme zamanı';
+
+	/// tr: 'Bugün'
+	String get statToday => 'Bugün';
+
+	/// tr: 'Bu hafta'
+	String get statWeek => 'Bu hafta';
+
+	/// tr: 'Bu ay'
+	String get statMonth => 'Bu ay';
+
+	/// tr: 'Bekleyen'
+	String get statPending => 'Bekleyen';
+
+	/// tr: 'Tamamlanan'
+	String get statCompleted => 'Tamamlanan';
+
+	/// tr: 'İptal'
+	String get statCancelled => 'İptal';
+
+	/// tr: 'Uzman bul'
+	String get findExpert => 'Uzman bul';
+
+	/// tr: 'Bugün'
+	String get today => 'Bugün';
+
+	/// tr: 'Yarın'
+	String get tomorrow => 'Yarın';
 }
 
 // Path: expertDetail
@@ -5668,6 +5707,19 @@ extension on Translations {
 			'appointments.rescheduleTitle' => 'Randevuyu Ertele',
 			'appointments.rescheduleConfirm' => 'Yeni Zamanı Onayla',
 			'appointments.rescheduled' => 'Randevu yeniden planlandı.',
+			'appointments.nextTitle' => 'Sıradaki randevu',
+			'appointments.countdownDays' => ({required Object days, required Object hours, required Object minutes}) => '${days} gün ${hours} sa ${minutes} dk kaldı',
+			'appointments.countdownToday' => ({required Object hours, required Object minutes, required Object seconds}) => '${hours} sa ${minutes} dk ${seconds} sn kaldı',
+			'appointments.countdownNow' => 'Görüşme zamanı',
+			'appointments.statToday' => 'Bugün',
+			'appointments.statWeek' => 'Bu hafta',
+			'appointments.statMonth' => 'Bu ay',
+			'appointments.statPending' => 'Bekleyen',
+			'appointments.statCompleted' => 'Tamamlanan',
+			'appointments.statCancelled' => 'İptal',
+			'appointments.findExpert' => 'Uzman bul',
+			'appointments.today' => 'Bugün',
+			'appointments.tomorrow' => 'Yarın',
 			'expertDetail.bookAppointment' => 'Randevu Al',
 			'expertDetail.sendMessage' => 'Mesaj Gönder',
 			'expertDetail.specializationsTitle' => 'Uzmanlık Alanları',
@@ -5736,6 +5788,8 @@ extension on Translations {
 			'dailyTracker.historyTitle' => 'Geçmiş Kayıtlar',
 			'dailyTracker.empty' => 'Henüz kayıt yok. İlk kaydı bugün ekleyin.',
 			'dailyTracker.noChild' => 'Günlük takip için önce bir çocuk ekleyin.',
+			_ => null,
+		} ?? switch (path) {
 			'dailyTracker.deleteTitle' => 'Kaydı Sil',
 			'dailyTracker.deleteConfirm' => ({required Object date}) => '${date} tarihli kaydı silmek istediğinize emin misiniz?',
 			'dailyTracker.delete' => 'Sil',
@@ -5749,8 +5803,6 @@ extension on Translations {
 			'sleep.quality' => 'Uyku Kalitesi',
 			'sleep.nightWakings' => 'Gece uyanma sayısı',
 			'sleep.factorsLabel' => 'Duyusal ve çevresel faktörler',
-			_ => null,
-		} ?? switch (path) {
 			'sleep.factorWeighted' => '🛏️ Ağır Battaniye',
 			'sleep.factorSensory' => '👕 Duyusal Hassasiyet',
 			'sleep.factorMelatonin' => '💊 Melatonin Desteği',
@@ -6250,6 +6302,8 @@ extension on Translations {
 			'forum.deleteConfirm' => 'Bu gönderiyi silmek istediğinize emin misiniz?',
 			'forum.cancel' => 'Vazgeç',
 			'forum.delete' => 'Sil',
+			_ => null,
+		} ?? switch (path) {
 			'forum.save' => 'Kaydet',
 			'forum.reportTitle' => 'Şikayet Et',
 			'forum.reportHint' => 'Şikayet nedeninizi kısaca yazın',
@@ -6263,8 +6317,6 @@ extension on Translations {
 			'forum.contentLabel' => 'İçerik',
 			'forum.tagsLabel' => 'Semptom Etiketleri',
 			'forum.anonymousTitle' => 'Anonim Olarak Paylaş',
-			_ => null,
-		} ?? switch (path) {
 			'forum.anonymousBody' => 'Profil bilgileriniz gizlenir, "Anonim Kullanıcı" olarak görünürsünüz.',
 			'forum.privacyTitle' => 'Gizlilik Ayarları',
 			'forum.privacyRealName' => 'Gerçek adımı göster',
@@ -6764,6 +6816,8 @@ extension on Translations {
 			'guide.video05' => 'Çocuk Profili',
 			'guide.video05Desc' => 'Çocuk profili oluşturun; temel bilgileri, tanı notlarını, ihtiyaçları ve erişim ayrıntılarını güncelleyin.',
 			'guide.video06' => 'Günlük Duygu ve Uyku Takibi',
+			_ => null,
+		} ?? switch (path) {
 			'guide.video06Desc' => 'Ruh hali, uyku ve davranış kayıtlarını birkaç adımda ekleyip geçmişi inceleyin.',
 			'guide.video07' => 'İlaç Takibi',
 			'guide.video07Desc' => 'İlaç planını kaydedin, doz ve saat bilgilerini takip edin, geçmiş kayıtları güvenle kontrol edin.',
@@ -6777,8 +6831,6 @@ extension on Translations {
 			'guide.video11Desc' => 'Gözlemlerinizi not alın, önemli tarihleri planlayın ve acil durumda paylaşılacak kartı hazır tutun.',
 			'guide.video12' => 'Uzman Bulma ve Randevu',
 			'guide.video12Desc' => 'Uzmanları filtreleyip profillerini karşılaştırın, uygun kişiyi seçin ve randevu akışını yönetin.',
-			_ => null,
-		} ?? switch (path) {
 			'guide.video13' => 'Mesajlar, Gizlilik ve Ayarlar',
 			'guide.video13Desc' => 'Güvenli mesajlaşmayı kullanın; profil, bildirim, şifre ve veri paylaşımı tercihlerini yönetin.',
 			'guide.video14' => 'Topluluk, Forum ve Buluşmalar',

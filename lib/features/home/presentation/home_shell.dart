@@ -14,14 +14,18 @@ import 'home_tab.dart';
 /// Yetişkin (veli/uzman/eğitimci) için alt navigasyonlu uygulama kabuğu.
 /// Sekmeler: Ana Sayfa, Uzmanlar, Gelişim, Profil.
 class HomeShell extends ConsumerStatefulWidget {
-  const HomeShell({super.key});
+  const HomeShell({super.key, this.initialTab = 0});
+
+  /// Açılacak sekme (0 ana sayfa, 1 uzmanlar, 2 gelişim, 3 profil) —
+  /// `/home?tab=1` gibi bağlantılar doğrudan ilgili sekmeyi açsın diye.
+  final int initialTab;
 
   @override
   ConsumerState<HomeShell> createState() => _HomeShellState();
 }
 
 class _HomeShellState extends ConsumerState<HomeShell> {
-  int _index = 0;
+  late int _index = widget.initialTab.clamp(0, _tabs.length - 1);
 
   static const _tabs = [
     HomeTab(),

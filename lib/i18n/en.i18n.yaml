@@ -484,6 +484,19 @@ appointments:
   rescheduleTitle: Reschedule Appointment
   rescheduleConfirm: Confirm New Time
   rescheduled: Appointment rescheduled.
+  nextTitle: Next appointment
+  countdownDays: $days d $hours h $minutes m left
+  countdownToday: $hours h $minutes m $seconds s left
+  countdownNow: Session time
+  statToday: Today
+  statWeek: This week
+  statMonth: This month
+  statPending: Pending
+  statCompleted: Completed
+  statCancelled: Cancelled
+  findExpert: Find an expert
+  today: Today
+  tomorrow: Tomorrow
 
 expertDetail:
   bookAppointment: Book Appointment

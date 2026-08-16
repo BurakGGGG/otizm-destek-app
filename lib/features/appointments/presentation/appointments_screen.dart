@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/haptics.dart';
 import '../../../core/network/api_exception.dart';
@@ -13,6 +14,7 @@ import '../../auth/presentation/auth_controller.dart';
 import '../data/appointment_repository.dart';
 import '../domain/appointment.dart';
 import '../domain/expert_availability.dart';
+import 'widgets/next_appointment_card.dart';
 
 /// Randevular — liste + rol bazlı aksiyonlar (`/api/appointments`).
 class AppointmentsScreen extends ConsumerWidget {
@@ -35,8 +37,20 @@ class AppointmentsScreen extends ConsumerWidget {
             return EmptyState(
               icon: Icons.event_busy_outlined,
               message: t.appointments.empty,
+              // Web'deki "Uzman bul" adımı: randevu yoksa doğrudan uzman
+              // listesine (ana kabuktaki Uzmanlar sekmesi) götürür.
+              actionLabel: role == UserRole.expert
+                  ? null
+                  : t.appointments.findExpert,
+              actionIcon: Icons.search,
+              onAction: role == UserRole.expert
+                  ? null
+                  : () => context.go('/home?tab=1'),
             );
           }
+          final isExpert = role == UserRole.expert;
+          final stats = appointmentStats(all);
+          final next = nextAppointment(all);
 
           final upcoming = all.where((a) => a.isUpcoming).toList()
             ..sort((a, b) {
@@ -59,6 +73,15 @@ class AppointmentsScreen extends ConsumerWidget {
                 24,
               ),
               children: [
+                if (next != null) ...[
+                  const SizedBox(height: 4),
+                  NextAppointmentCard(
+                    appointment: next,
+                    isExpert: isExpert,
+                  ),
+                ],
+                const SizedBox(height: AppSpacing.md),
+                _StatsGrid(stats: stats),
                 if (upcoming.isNotEmpty) ...[
                   _SectionLabel(t.appointments.upcoming),
                   for (final a in upcoming)
@@ -74,6 +97,103 @@ class AppointmentsScreen extends ConsumerWidget {
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+/// Randevu sayaçları (web başlığındaki altı kutu).
+class _StatsGrid extends StatelessWidget {
+  const _StatsGrid({required this.stats});
+
+  final AppointmentStats stats;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    final colors = context.colors;
+    final items = <({String label, int value, Color color})>[
+      (label: t.appointments.statToday, value: stats.today, color: colors.primary),
+      (label: t.appointments.statWeek, value: stats.week, color: colors.primary),
+      (label: t.appointments.statMonth, value: stats.month, color: colors.primary),
+      (
+        label: t.appointments.statPending,
+        value: stats.pending,
+        color: colors.warning
+      ),
+      (
+        label: t.appointments.statCompleted,
+        value: stats.completed,
+        color: colors.success
+      ),
+      (
+        label: t.appointments.statCancelled,
+        value: stats.cancelled,
+        color: colors.error
+      ),
+    ];
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        // Üç sütun; dar ekranlarda kutular kendiliğinden daralır.
+        final width = (constraints.maxWidth - 2 * 8) / 3;
+        return Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            for (final item in items)
+              SizedBox(
+                width: width,
+                child: _StatBox(
+                  label: item.label,
+                  value: item.value,
+                  color: item.color,
+                ),
+              ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _StatBox extends StatelessWidget {
+  const _StatBox({
+    required this.label,
+    required this.value,
+    required this.color,
+  });
+
+  final String label;
+  final int value;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    final text = Theme.of(context).textTheme;
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: .06),
+        borderRadius: BorderRadius.circular(AppRadius.md),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '$value',
+            style: text.titleMedium
+                ?.copyWith(color: color, fontWeight: FontWeight.w800),
+          ),
+          const SizedBox(height: 2),
+          Text(
+            label,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: text.labelSmall?.copyWith(color: colors.textSecondary),
+          ),
+        ],
       ),
     );
   }

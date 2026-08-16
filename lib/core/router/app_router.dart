@@ -137,7 +137,13 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         },
       ),
       GoRoute(path: '/onboarding', builder: (_, _) => const OnboardingScreen()),
-      GoRoute(path: '/home', builder: (_, _) => const HomeShell()),
+      GoRoute(
+        path: '/home',
+        builder: (_, state) => HomeShell(
+          initialTab:
+              int.tryParse(state.uri.queryParameters['tab'] ?? '') ?? 0,
+        ),
+      ),
       GoRoute(path: '/chat', builder: (_, _) => const ChatScreen()),
       GoRoute(path: '/children', builder: (_, _) => const ChildrenScreen()),
       GoRoute(path: '/account', builder: (_, _) => const AccountScreen()),

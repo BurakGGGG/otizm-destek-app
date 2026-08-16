@@ -57,6 +57,15 @@ class Appointment {
   bool get isCancelled => statusKind == AppointmentStatusKind.cancelled;
   bool get isOnline => (type ?? '').toUpperCase() == 'ONLINE';
 
+  /// Randevunun başlangıç anı — `date` + `time` ("HH:mm" ya da "HH:mm:ss").
+  /// Saat okunamazsa günün başlangıcı kullanılır.
+  DateTime get startsAt {
+    final parts = time.split(':');
+    final hour = parts.isNotEmpty ? int.tryParse(parts[0]) ?? 0 : 0;
+    final minute = parts.length > 1 ? int.tryParse(parts[1]) ?? 0 : 0;
+    return DateTime(date.year, date.month, date.day, hour, minute);
+  }
+
   /// Bugün veya gelecekteki, iptal/tamamlanmamış randevu.
   bool get isUpcoming {
     if (isCancelled || statusKind == AppointmentStatusKind.completed) {
@@ -87,4 +96,68 @@ class Appointment {
       rating: (json['rating'] as num?)?.toInt(),
     );
   }
+}
+
+/// Randevu özeti (web AppointmentPage başlığındaki sayaçlar).
+class AppointmentStats {
+  const AppointmentStats({
+    required this.today,
+    required this.week,
+    required this.month,
+    required this.pending,
+    required this.completed,
+    required this.cancelled,
+  });
+
+  final int today;
+  final int week;
+  final int month;
+  final int pending;
+  final int completed;
+  final int cancelled;
+}
+
+/// Sayaçlar — iptal edilenler "bugün/bu hafta/bu ay" sayımına girmez.
+/// Web'den ayrım: "bu hafta" yalnızca içinde bulunulan haftayı sayar
+/// (web `date >= pazartesi` diyip sonraki haftaları da katıyor).
+AppointmentStats appointmentStats(List<Appointment> all, {DateTime? now}) {
+  final current = now ?? DateTime.now();
+  final today = DateTime(current.year, current.month, current.day);
+  final weekStart = today.subtract(Duration(days: today.weekday - 1));
+  final weekEnd = weekStart.add(const Duration(days: 7));
+  bool sameDay(DateTime d) =>
+      d.year == today.year && d.month == today.month && d.day == today.day;
+
+  final active = all.where((a) => !a.isCancelled).toList();
+  return AppointmentStats(
+    today: active.where((a) => sameDay(a.date)).length,
+    week: active
+        .where((a) => !a.date.isBefore(weekStart) && a.date.isBefore(weekEnd))
+        .length,
+    month: active
+        .where((a) =>
+            a.date.year == today.year && a.date.month == today.month)
+        .length,
+    pending: all
+        .where((a) => a.statusKind == AppointmentStatusKind.pending)
+        .length,
+    completed: all
+        .where((a) => a.statusKind == AppointmentStatusKind.completed)
+        .length,
+    cancelled: all.where((a) => a.isCancelled).length,
+  );
+}
+
+/// Sıradaki randevu — bugünden itibaren, iptal edilmemiş, tarih+saate göre
+/// en yakın olan (web `nextAppointment` birebir; tamamlananlar da dışlanır).
+Appointment? nextAppointment(List<Appointment> all, {DateTime? now}) {
+  final current = now ?? DateTime.now();
+  final today = DateTime(current.year, current.month, current.day);
+  final upcoming = all
+      .where((a) => !a.isCancelled)
+      .where((a) => a.statusKind != AppointmentStatusKind.completed)
+      .where((a) => !a.date.isBefore(today))
+      .toList()
+    ..sort((a, b) => a.startsAt.compareTo(b.startsAt));
+  return upcoming.isEmpty ? null : upcoming.first;
 }
