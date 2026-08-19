@@ -72,6 +72,18 @@ import 'package:otizm_destek_app/features/sleep/domain/sleep_entry.dart';
 import 'package:otizm_destek_app/features/tasks/data/tasks_repository.dart';
 import 'package:otizm_destek_app/features/tasks/domain/expert_task.dart';
 import 'package:otizm_destek_app/features/tasks/presentation/tasks_screen.dart';
+import 'package:otizm_destek_app/features/forum/data/forum_repository.dart';
+import 'package:otizm_destek_app/features/forum/domain/forum_post.dart';
+import 'package:otizm_destek_app/features/forum/presentation/forum_screen.dart';
+import 'package:otizm_destek_app/features/groups/data/group_repository.dart';
+import 'package:otizm_destek_app/features/groups/domain/group.dart';
+import 'package:otizm_destek_app/features/groups/presentation/groups_screen.dart';
+import 'package:otizm_destek_app/features/notifications/data/notification_repository.dart';
+import 'package:otizm_destek_app/features/notifications/domain/app_notification.dart';
+import 'package:otizm_destek_app/features/notifications/presentation/notifications_screen.dart';
+import 'package:otizm_destek_app/features/support_wall/data/wall_repository.dart';
+import 'package:otizm_destek_app/features/support_wall/domain/wall_post.dart';
+import 'package:otizm_destek_app/features/support_wall/presentation/support_wall_screen.dart';
 import 'package:otizm_destek_app/i18n/strings.g.dart';
 
 // ---------------------------------------------------------------------------
@@ -663,6 +675,157 @@ class _FakeTasksRepository extends TasksRepository {
   Future<List<TaskSubmission>> getSubmissions(String taskId) async => const [];
 }
 
+
+class _FakeForumRepository extends ForumRepository {
+  _FakeForumRepository() : super(Dio());
+
+  @override
+  Future<ForumPageResult> getPosts({
+    String? type,
+    List<String> tagIds = const [],
+    String? query,
+    String sort = 'new',
+    int page = 0,
+    int size = 20,
+  }) async =>
+      ForumPageResult(
+        totalPages: 1,
+        posts: [
+          ForumPost(
+            id: 'f1',
+            title: 'Okula uyum sürecinde ne işe yaradı?',
+            content:
+                'İlk hafta yarım gün gittik, öğretmenle görsel program '
+                'paylaştık. Üçüncü haftada tam güne geçtik.',
+            postType: 'DENEYIM',
+            likeCount: 12,
+            commentCount: 5,
+            authorName: 'Zeynep A.',
+            createdAt: DateTime(2026, 8, 16),
+            tags: const [
+              SymptomTag(id: 't5', name: 'Okula uyum', category: 'EGITIM'),
+            ],
+          ),
+          ForumPost(
+            id: 'f2',
+            title: 'Uyku öncesi rutini nasıl kısalttınız?',
+            content: 'Bizde rutin 1 saati buluyor, önerisi olan var mı?',
+            postType: 'QUESTION',
+            likeCount: 3,
+            commentCount: 8,
+            answered: true,
+            authorName: 'Emre K.',
+            createdAt: DateTime(2026, 8, 14),
+          ),
+        ],
+      );
+}
+
+class _FakeGroupRepository extends GroupRepository {
+  _FakeGroupRepository() : super(Dio());
+
+  static const _groups = [
+    Group(
+      id: 'gr1',
+      name: 'Okul Öncesi Aileler',
+      description: 'Anaokulu ve kreş sürecindeki aileler için destek grubu.',
+      category: 'Yaş Grubu',
+      memberCount: 128,
+      expertCount: 3,
+      isMember: true,
+      conversationId: 'cv2',
+    ),
+    Group(
+      id: 'gr2',
+      name: 'Duyusal Destek',
+      description: 'Duyusal profil ve regülasyon deneyimleri.',
+      category: 'Konu',
+      memberCount: 64,
+      expertCount: 1,
+    ),
+  ];
+
+  @override
+  Future<List<Group>> getMyGroups() async =>
+      _groups.where((g) => g.isMember).toList();
+
+  @override
+  Future<List<Group>> search(String query) async => _groups;
+
+  @override
+  Future<List<Group>> getByCategory(String category) async => _groups;
+}
+
+class _FakeWallRepository extends WallRepository {
+  _FakeWallRepository() : super(Dio());
+
+  @override
+  Future<List<WallPost>> getPosts({int page = 0}) async => [
+        WallPost(
+          id: 'w1',
+          title: 'Bugün zor bir gündü',
+          content:
+              'Markette kriz yaşadık, çevrenin bakışları çok yordu. '
+              'Yalnız olmadığımı bilmek iyi geliyor.',
+          likeCount: 24,
+          commentCount: 6,
+          createdAt: DateTime(2026, 8, 18),
+        ),
+        WallPost(
+          id: 'w2',
+          title: 'Küçük bir zafer',
+          content: 'Ada ilk kez "su ver" dedi. Bir saat ağladım.',
+          likeCount: 57,
+          commentCount: 12,
+          anonymous: false,
+          authorName: 'Elif Y.',
+          createdAt: DateTime(2026, 8, 12),
+        ),
+      ];
+}
+
+class _FakeNotificationRepository extends NotificationRepository {
+  _FakeNotificationRepository() : super(Dio());
+
+  @override
+  Future<int> getUnreadCount() async => 2;
+
+  @override
+  Future<({List<AppNotification> items, bool hasMore})> getPage(
+    int page, {
+    int size = 20,
+  }) async =>
+      (
+        hasMore: false,
+        items: [
+          AppNotification(
+            id: 'nt1',
+            title: 'Randevunuz onaylandı',
+            body: 'Uzm. Psk. Selin Aksoy yarın 14:30 randevusunu onayladı.',
+            type: 'APPOINTMENT_CONFIRMED',
+            link: '/randevular',
+            createdAt: DateTime.now().subtract(const Duration(hours: 2)),
+          ),
+          AppNotification(
+            id: 'nt2',
+            title: 'Yeni mesaj',
+            body: 'Uzm. Psk. Selin Aksoy: Bu hafta ortak dikkat çalışalım.',
+            type: 'MESSAGE',
+            link: '/mesajlar',
+            createdAt: DateTime.now().subtract(const Duration(days: 1)),
+          ),
+          AppNotification(
+            id: 'nt3',
+            title: 'Görev teslimi değerlendirildi',
+            body: 'Uzmanınız "isim çağırma" görevine geri bildirim yazdı.',
+            type: 'TASK_REVIEWED',
+            read: true,
+            createdAt: DateTime.now().subtract(const Duration(days: 3)),
+          ),
+        ],
+      );
+}
+
 // ---------------------------------------------------------------------------
 // Yardımcılar
 // ---------------------------------------------------------------------------
@@ -730,6 +893,11 @@ Widget _app(Widget home, {List<dynamic> overrides = const []}) {
         calendarRepositoryProvider.overrideWithValue(_FakeCalendarRepository()),
         abcRepositoryProvider.overrideWithValue(_FakeAbcRepository()),
         tasksRepositoryProvider.overrideWithValue(_FakeTasksRepository()),
+        forumRepositoryProvider.overrideWithValue(_FakeForumRepository()),
+        groupRepositoryProvider.overrideWithValue(_FakeGroupRepository()),
+        wallRepositoryProvider.overrideWithValue(_FakeWallRepository()),
+        notificationRepositoryProvider
+            .overrideWithValue(_FakeNotificationRepository()),
         connectionRequestsProvider.overrideWith((ref) async => const []),
         ...overrides.cast(),
       ],
@@ -903,6 +1071,22 @@ void main() {
 
   testWidgets('19 gelişim', (tester) async {
     await shoot(tester, '19-gelisim', const Scaffold(body: ProgressTab()));
+  });
+
+  testWidgets('20 forum', (tester) async {
+    await shoot(tester, '20-forum', const ForumScreen());
+  });
+
+  testWidgets('21 destek grupları', (tester) async {
+    await shoot(tester, '21-gruplar', const GroupsScreen());
+  });
+
+  testWidgets('22 dertleşme duvarı', (tester) async {
+    await shoot(tester, '22-dertlesme-duvari', const SupportWallScreen());
+  });
+
+  testWidgets('23 bildirimler', (tester) async {
+    await shoot(tester, '23-bildirimler', const NotificationsScreen());
   });
 
   testWidgets('10 kriz rehberi', (tester) async {
