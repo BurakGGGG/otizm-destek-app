@@ -958,6 +958,21 @@ similar:
   send: İsteği Gönder
   sent: Bağlantı isteği gönderildi.
   cancel: İptal
+  meetup: Buluşma
+  meetupTitle: Buluşma isteği gönder
+  meetupOnline: Online
+  meetupInPerson: Yüz yüze
+  meetupPickDate: Tarih seç
+  meetupPickTime: Saat seç
+  meetupLocation: Buluşma yeri
+  meetupMessage: Mesaj (isteğe bağlı)
+  meetupMessageHint: Neden buluşmak istediğinizi kısaca yazın
+  meetupSent: Buluşma isteği gönderildi.
+  meetupRequestsTitle: Buluşma istekleri
+  meetupAccept: Kabul et
+  meetupDecline: Reddet
+  meetupCancel: İsteği geri çek
+  unknownFamily: Aile
 
 groups:
   title: Destek Grupları

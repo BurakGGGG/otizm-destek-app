@@ -3054,6 +3054,51 @@ class Translations$similar$tr {
 
 	/// tr: 'İptal'
 	String get cancel => 'İptal';
+
+	/// tr: 'Buluşma'
+	String get meetup => 'Buluşma';
+
+	/// tr: 'Buluşma isteği gönder'
+	String get meetupTitle => 'Buluşma isteği gönder';
+
+	/// tr: 'Online'
+	String get meetupOnline => 'Online';
+
+	/// tr: 'Yüz yüze'
+	String get meetupInPerson => 'Yüz yüze';
+
+	/// tr: 'Tarih seç'
+	String get meetupPickDate => 'Tarih seç';
+
+	/// tr: 'Saat seç'
+	String get meetupPickTime => 'Saat seç';
+
+	/// tr: 'Buluşma yeri'
+	String get meetupLocation => 'Buluşma yeri';
+
+	/// tr: 'Mesaj (isteğe bağlı)'
+	String get meetupMessage => 'Mesaj (isteğe bağlı)';
+
+	/// tr: 'Neden buluşmak istediğinizi kısaca yazın'
+	String get meetupMessageHint => 'Neden buluşmak istediğinizi kısaca yazın';
+
+	/// tr: 'Buluşma isteği gönderildi.'
+	String get meetupSent => 'Buluşma isteği gönderildi.';
+
+	/// tr: 'Buluşma istekleri'
+	String get meetupRequestsTitle => 'Buluşma istekleri';
+
+	/// tr: 'Kabul et'
+	String get meetupAccept => 'Kabul et';
+
+	/// tr: 'Reddet'
+	String get meetupDecline => 'Reddet';
+
+	/// tr: 'İsteği geri çek'
+	String get meetupCancel => 'İsteği geri çek';
+
+	/// tr: 'Aile'
+	String get unknownFamily => 'Aile';
 }
 
 // Path: groups
@@ -6932,6 +6977,21 @@ extension on Translations {
 			'similar.send' => 'İsteği Gönder',
 			'similar.sent' => 'Bağlantı isteği gönderildi.',
 			'similar.cancel' => 'İptal',
+			'similar.meetup' => 'Buluşma',
+			'similar.meetupTitle' => 'Buluşma isteği gönder',
+			'similar.meetupOnline' => 'Online',
+			'similar.meetupInPerson' => 'Yüz yüze',
+			'similar.meetupPickDate' => 'Tarih seç',
+			'similar.meetupPickTime' => 'Saat seç',
+			'similar.meetupLocation' => 'Buluşma yeri',
+			'similar.meetupMessage' => 'Mesaj (isteğe bağlı)',
+			'similar.meetupMessageHint' => 'Neden buluşmak istediğinizi kısaca yazın',
+			'similar.meetupSent' => 'Buluşma isteği gönderildi.',
+			'similar.meetupRequestsTitle' => 'Buluşma istekleri',
+			'similar.meetupAccept' => 'Kabul et',
+			'similar.meetupDecline' => 'Reddet',
+			'similar.meetupCancel' => 'İsteği geri çek',
+			'similar.unknownFamily' => 'Aile',
 			'groups.title' => 'Destek Grupları',
 			'groups.subtitle' => 'Benzer konularda ailelerle bir araya gel, grup sohbetine katıl.',
 			'groups.tabMy' => 'Gruplarım',
@@ -7069,6 +7129,8 @@ extension on Translations {
 			'treatment.gameDoneBadge' => '✅ Yapıldı',
 			'treatment.methodLabel' => ({required Object name}) => 'Yöntem: ${name}',
 			'treatment.whyGood' => 'Neden iyi gelir?',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.goalBadge' => ({required Object name}) => 'Hedef: ${name}',
 			'treatment.toolBadge' => ({required Object name}) => 'Araç: ${name}',
 			'treatment.playToday' => 'Bugün oynat',
@@ -7084,8 +7146,6 @@ extension on Translations {
 			'treatment.fbIndependentLong' => 'Tek başına yaptı',
 			'treatment.fbChallengingLong' => 'Zorlandı',
 			'treatment.feedbackSaved' => 'Oyun geri bildirimi kaydedildi.',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.allDoneTitle' => '🎉 Bugünün tüm oyunları tamamlandı. Harika gidiyorsunuz!',
 			'treatment.allDoneBody' => 'Bugünkü destek akışını tamamladınız; isterseniz notlar bölümüne kısa bir gözlem ekleyebilirsiniz.',
 			'treatment.hintMastered' => 'Ustalık kazandı! Daha zor varyant deneyin.',
@@ -7583,6 +7643,8 @@ extension on Translations {
 			'children.title' => 'Çocuklarım',
 			'children.addTitle' => 'Çocuk Ekle',
 			'children.editTitle' => 'Çocuğu Düzenle',
+			_ => null,
+		} ?? switch (path) {
 			'children.empty' => 'Henüz çocuk eklemediniz.',
 			'children.add' => 'Çocuk Ekle',
 			'children.nameLabel' => 'Ad Soyad',
@@ -7598,8 +7660,6 @@ extension on Translations {
 			'children.educationHint' => 'Devam ettiği eğitim programı',
 			'children.therapiesLabel' => 'Terapiler (isteğe bağlı)',
 			'children.therapiesHint' => 'Aldığı terapiler',
-			_ => null,
-		} ?? switch (path) {
 			'children.ageYears' => ({required Object years}) => '${years} yaş',
 			'children.save' => 'Kaydet',
 			'children.cancel' => 'İptal',

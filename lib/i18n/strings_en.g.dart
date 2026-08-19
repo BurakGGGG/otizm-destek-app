@@ -1332,6 +1332,21 @@ class _Translations$similar$en extends Translations$similar$tr {
 	@override String get send => 'Send Request';
 	@override String get sent => 'Connection request sent.';
 	@override String get cancel => 'Cancel';
+	@override String get meetup => 'Meet up';
+	@override String get meetupTitle => 'Send a meet-up request';
+	@override String get meetupOnline => 'Online';
+	@override String get meetupInPerson => 'In person';
+	@override String get meetupPickDate => 'Pick a date';
+	@override String get meetupPickTime => 'Pick a time';
+	@override String get meetupLocation => 'Meeting place';
+	@override String get meetupMessage => 'Message (optional)';
+	@override String get meetupMessageHint => 'Briefly say why you would like to meet';
+	@override String get meetupSent => 'Meet-up request sent.';
+	@override String get meetupRequestsTitle => 'Meet-up requests';
+	@override String get meetupAccept => 'Accept';
+	@override String get meetupDecline => 'Decline';
+	@override String get meetupCancel => 'Withdraw request';
+	@override String get unknownFamily => 'Family';
 }
 
 // Path: groups
@@ -3404,6 +3419,21 @@ extension on TranslationsEn {
 			'similar.send' => 'Send Request',
 			'similar.sent' => 'Connection request sent.',
 			'similar.cancel' => 'Cancel',
+			'similar.meetup' => 'Meet up',
+			'similar.meetupTitle' => 'Send a meet-up request',
+			'similar.meetupOnline' => 'Online',
+			'similar.meetupInPerson' => 'In person',
+			'similar.meetupPickDate' => 'Pick a date',
+			'similar.meetupPickTime' => 'Pick a time',
+			'similar.meetupLocation' => 'Meeting place',
+			'similar.meetupMessage' => 'Message (optional)',
+			'similar.meetupMessageHint' => 'Briefly say why you would like to meet',
+			'similar.meetupSent' => 'Meet-up request sent.',
+			'similar.meetupRequestsTitle' => 'Meet-up requests',
+			'similar.meetupAccept' => 'Accept',
+			'similar.meetupDecline' => 'Decline',
+			'similar.meetupCancel' => 'Withdraw request',
+			'similar.unknownFamily' => 'Family',
 			'groups.title' => 'Support Groups',
 			'groups.subtitle' => 'Meet families on similar topics and join the group chat.',
 			'groups.tabMy' => 'My Groups',
@@ -3541,6 +3571,8 @@ extension on TranslationsEn {
 			'treatment.gameDoneBadge' => '✅ Done',
 			'treatment.methodLabel' => ({required Object name}) => 'Method: ${name}',
 			'treatment.whyGood' => 'Why it helps',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.goalBadge' => ({required Object name}) => 'Goal: ${name}',
 			'treatment.toolBadge' => ({required Object name}) => 'Tool: ${name}',
 			'treatment.playToday' => 'Play today',
@@ -3556,8 +3588,6 @@ extension on TranslationsEn {
 			'treatment.fbIndependentLong' => 'Did it independently',
 			'treatment.fbChallengingLong' => 'Struggled',
 			'treatment.feedbackSaved' => 'Game feedback saved.',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.allDoneTitle' => '🎉 All of today\'s games are done. You\'re doing great!',
 			'treatment.allDoneBody' => 'You completed today\'s support flow; you can add a short observation to the notes if you like.',
 			'treatment.hintMastered' => 'Mastered it! Try a harder variant.',
@@ -4055,6 +4085,8 @@ extension on TranslationsEn {
 			'children.title' => 'My Children',
 			'children.addTitle' => 'Add Child',
 			'children.editTitle' => 'Edit Child',
+			_ => null,
+		} ?? switch (path) {
 			'children.empty' => 'You haven\'t added any children yet.',
 			'children.add' => 'Add Child',
 			'children.nameLabel' => 'Full Name',
@@ -4070,8 +4102,6 @@ extension on TranslationsEn {
 			'children.educationHint' => 'Current education program',
 			'children.therapiesLabel' => 'Therapies (optional)',
 			'children.therapiesHint' => 'Therapies received',
-			_ => null,
-		} ?? switch (path) {
 			'children.ageYears' => ({required Object years}) => '${years} yrs',
 			'children.save' => 'Save',
 			'children.cancel' => 'Cancel',

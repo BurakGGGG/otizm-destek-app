@@ -956,6 +956,21 @@ similar:
   send: Send Request
   sent: Connection request sent.
   cancel: Cancel
+  meetup: Meet up
+  meetupTitle: Send a meet-up request
+  meetupOnline: Online
+  meetupInPerson: In person
+  meetupPickDate: Pick a date
+  meetupPickTime: Pick a time
+  meetupLocation: Meeting place
+  meetupMessage: Message (optional)
+  meetupMessageHint: Briefly say why you would like to meet
+  meetupSent: Meet-up request sent.
+  meetupRequestsTitle: Meet-up requests
+  meetupAccept: Accept
+  meetupDecline: Decline
+  meetupCancel: Withdraw request
+  unknownFamily: Family
 
 groups:
   title: Support Groups

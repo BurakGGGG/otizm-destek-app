@@ -13,7 +13,11 @@ import '../../children/data/child_repository.dart';
 import '../../children/domain/child.dart';
 import '../../messaging/data/messaging_repository.dart';
 import '../../messaging/presentation/conversation_thread_screen.dart';
+import '../../../core/util/date_key.dart';
+import '../../auth/presentation/auth_controller.dart';
 import '../data/buddy_repository.dart';
+import '../data/meetup_request_repository.dart';
+import '../domain/meetup_request.dart';
 import '../data/matching_repository.dart';
 import '../domain/similar_family.dart';
 
@@ -143,6 +147,21 @@ class _SimilarFamiliesScreenState
     }
   }
 
+  /// Buluşma isteği formu — tür, tarih, saat, (yüz yüzeyse) yer ve not.
+  Future<void> _requestMeetup(SimilarFamily family) async {
+    final t = context.t;
+    final sent = await showModalBottomSheet<bool>(
+      context: context,
+      isScrollControlled: true,
+      builder: (_) => _MeetupRequestSheet(family: family),
+    );
+    if (sent != true || !mounted) return;
+    Haptics.success();
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(t.similar.meetupSent)));
+  }
+
   @override
   Widget build(BuildContext context) {
     final t = context.t;
@@ -178,6 +197,7 @@ class _SimilarFamiliesScreenState
                     selectedId: childId,
                     onSelect: (id) => setState(() => _selectedChildId = id),
                   ),
+                const _MeetupRequestsSection(),
                 Expanded(
                   child: _FamiliesBody(
                     childId: childId,
@@ -185,11 +205,328 @@ class _SimilarFamiliesScreenState
                     onMessage: _message,
                     onBuddy: (f) => _requestBuddy(f, mentor: false),
                     onMentor: (f) => _requestBuddy(f, mentor: true),
+                    onMeetup: _requestMeetup,
                   ),
                 ),
               ],
             );
           },
+        ),
+      ),
+    );
+  }
+}
+
+
+/// Bekleyen buluşma istekleri şeridi — gelen isteklerde onay/ret, giden
+/// isteklerde iptal. İstek yoksa yer kaplamaz.
+class _MeetupRequestsSection extends ConsumerWidget {
+  const _MeetupRequestsSection();
+
+  Future<void> _update(
+    BuildContext context,
+    WidgetRef ref,
+    MeetupRequest request,
+    String status,
+  ) async {
+    final messenger = ScaffoldMessenger.of(context);
+    try {
+      await ref
+          .read(meetupRequestRepositoryProvider)
+          .updateStatus(request.id, status);
+      ref.invalidate(meetupRequestsProvider);
+      Haptics.selection();
+    } on ApiException catch (e) {
+      messenger.showSnackBar(SnackBar(content: Text(e.message)));
+    }
+  }
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.t;
+    final colors = context.colors;
+    final text = Theme.of(context).textTheme;
+    final userId = ref.watch(authControllerProvider).user?.id;
+    final requests = ref.watch(meetupRequestsProvider).asData?.value ?? const [];
+    final pending = [for (final r in requests) if (r.isPending) r];
+    if (pending.isEmpty) return const SizedBox.shrink();
+
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(
+        AppSpacing.margin,
+        0,
+        AppSpacing.margin,
+        8,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(t.similar.meetupRequestsTitle, style: text.titleSmall),
+          const SizedBox(height: 8),
+          for (final request in pending)
+            Container(
+              margin: const EdgeInsets.only(bottom: 8),
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: colors.surface,
+                borderRadius: BorderRadius.circular(AppRadius.md),
+                border: Border.all(color: colors.border),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    request.otherName(userId) ?? t.similar.unknownFamily,
+                    style: text.labelLarge,
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    '${meetupTypeLabel(t, request.type)} · '
+                    '${request.proposedDate} ${request.proposedTime}',
+                    style: text.labelSmall
+                        ?.copyWith(color: colors.textSecondary),
+                  ),
+                  if (request.location?.trim().isNotEmpty ?? false)
+                    Text(
+                      request.location!.trim(),
+                      style: text.labelSmall
+                          ?.copyWith(color: colors.textSecondary),
+                    ),
+                  if (request.message?.trim().isNotEmpty ?? false) ...[
+                    const SizedBox(height: 4),
+                    Text(request.message!.trim(), style: text.bodySmall),
+                  ],
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      if (request.sentByMe(userId))
+                        Expanded(
+                          child: OutlinedButton(
+                            onPressed: () => _update(
+                              context,
+                              ref,
+                              request,
+                              kMeetupRequestCancelled,
+                            ),
+                            child: Text(t.similar.meetupCancel),
+                          ),
+                        )
+                      else ...[
+                        Expanded(
+                          child: FilledButton.tonal(
+                            onPressed: () => _update(
+                              context,
+                              ref,
+                              request,
+                              kMeetupRequestAccepted,
+                            ),
+                            child: Text(t.similar.meetupAccept),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: OutlinedButton(
+                            onPressed: () => _update(
+                              context,
+                              ref,
+                              request,
+                              kMeetupRequestDeclined,
+                            ),
+                            child: Text(t.similar.meetupDecline),
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
+                ],
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+String meetupTypeLabel(Translations t, String type) =>
+    type == kMeetupRequestInPerson
+        ? t.similar.meetupInPerson
+        : t.similar.meetupOnline;
+
+/// Buluşma isteği formu.
+class _MeetupRequestSheet extends ConsumerStatefulWidget {
+  const _MeetupRequestSheet({required this.family});
+
+  final SimilarFamily family;
+
+  @override
+  ConsumerState<_MeetupRequestSheet> createState() =>
+      _MeetupRequestSheetState();
+}
+
+class _MeetupRequestSheetState extends ConsumerState<_MeetupRequestSheet> {
+  String _type = kMeetupRequestOnline;
+  DateTime? _date;
+  TimeOfDay? _time;
+  final _location = TextEditingController();
+  final _message = TextEditingController();
+  bool _sending = false;
+
+  @override
+  void dispose() {
+    _location.dispose();
+    _message.dispose();
+    super.dispose();
+  }
+
+  Future<void> _pickDate() async {
+    final now = DateTime.now();
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: _date ?? now.add(const Duration(days: 1)),
+      firstDate: now,
+      lastDate: now.add(const Duration(days: 180)),
+    );
+    if (picked != null) setState(() => _date = picked);
+  }
+
+  Future<void> _pickTime() async {
+    final picked = await showTimePicker(
+      context: context,
+      initialTime: _time ?? const TimeOfDay(hour: 15, minute: 0),
+    );
+    if (picked != null) setState(() => _time = picked);
+  }
+
+  Future<void> _send() async {
+    final date = _date;
+    final time = _time;
+    if (date == null || time == null || _sending) return;
+    setState(() => _sending = true);
+    final navigator = Navigator.of(context);
+    final messenger = ScaffoldMessenger.of(context);
+    try {
+      final hh = time.hour.toString().padLeft(2, '0');
+      final mm = time.minute.toString().padLeft(2, '0');
+      await ref.read(meetupRequestRepositoryProvider).create(
+            recipientId: widget.family.parentId,
+            type: _type,
+            proposedDate: localDateKey(date),
+            proposedTime: '$hh:$mm',
+            location: _type == kMeetupRequestInPerson ? _location.text : null,
+            message: _message.text,
+          );
+      ref.invalidate(meetupRequestsProvider);
+      navigator.pop(true);
+    } on ApiException catch (e) {
+      messenger.showSnackBar(SnackBar(content: Text(e.message)));
+      if (mounted) setState(() => _sending = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    final text = Theme.of(context).textTheme;
+    final date = _date;
+    final time = _time;
+
+    return SafeArea(
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: AppSpacing.margin,
+          right: AppSpacing.margin,
+          top: AppSpacing.md,
+          bottom: MediaQuery.viewInsetsOf(context).bottom + AppSpacing.md,
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(t.similar.meetupTitle, style: text.titleMedium),
+              const SizedBox(height: 4),
+              Text(
+                widget.family.parentName,
+                style: text.bodySmall
+                    ?.copyWith(color: context.colors.textSecondary),
+              ),
+              const SizedBox(height: 12),
+              Wrap(
+                spacing: 8,
+                children: [
+                  for (final type in [
+                    kMeetupRequestOnline,
+                    kMeetupRequestInPerson,
+                  ])
+                    ChoiceChip(
+                      label: Text(meetupTypeLabel(t, type)),
+                      selected: _type == type,
+                      showCheckmark: false,
+                      onSelected: (_) => setState(() => _type = type),
+                    ),
+                ],
+              ),
+              const SizedBox(height: 12),
+              Row(
+                children: [
+                  Expanded(
+                    child: OutlinedButton.icon(
+                      onPressed: _pickDate,
+                      icon: const Icon(Icons.event_outlined, size: 18),
+                      label: Text(
+                        date == null
+                            ? t.similar.meetupPickDate
+                            : localDateKey(date),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: OutlinedButton.icon(
+                      onPressed: _pickTime,
+                      icon: const Icon(Icons.schedule_outlined, size: 18),
+                      label: Text(
+                        time == null
+                            ? t.similar.meetupPickTime
+                            : time.format(context),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              if (_type == kMeetupRequestInPerson) ...[
+                const SizedBox(height: 12),
+                TextField(
+                  controller: _location,
+                  textCapitalization: TextCapitalization.sentences,
+                  decoration: InputDecoration(
+                    labelText: t.similar.meetupLocation,
+                  ),
+                ),
+              ],
+              const SizedBox(height: 12),
+              TextField(
+                controller: _message,
+                minLines: 2,
+                maxLines: 4,
+                textCapitalization: TextCapitalization.sentences,
+                decoration: InputDecoration(
+                  labelText: t.similar.meetupMessage,
+                  hintText: t.similar.meetupMessageHint,
+                ),
+              ),
+              const SizedBox(height: 16),
+              SizedBox(
+                width: double.infinity,
+                child: FilledButton.icon(
+                  onPressed:
+                      (_date == null || _time == null || _sending) ? null : _send,
+                  icon: const Icon(Icons.send_outlined, size: 18),
+                  label: Text(t.similar.send),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -237,6 +574,7 @@ class _FamiliesBody extends ConsumerWidget {
     required this.childId,
     required this.statusOf,
     required this.onMessage,
+    required this.onMeetup,
     required this.onBuddy,
     required this.onMentor,
   });
@@ -244,6 +582,7 @@ class _FamiliesBody extends ConsumerWidget {
   final String childId;
   final String? Function(SimilarFamily) statusOf;
   final ValueChanged<SimilarFamily> onMessage;
+  final ValueChanged<SimilarFamily> onMeetup;
   final ValueChanged<SimilarFamily> onBuddy;
   final ValueChanged<SimilarFamily> onMentor;
 
@@ -295,6 +634,7 @@ class _FamiliesBody extends ConsumerWidget {
               return _FamilyCard(
                 family: family,
                 onMessage: () => onMessage(family),
+                onMeetup: () => onMeetup(family),
                 onBuddy: () => onBuddy(family),
                 onMentor: () => onMentor(family),
               );
@@ -310,12 +650,14 @@ class _FamilyCard extends StatelessWidget {
   const _FamilyCard({
     required this.family,
     required this.onMessage,
+    required this.onMeetup,
     required this.onBuddy,
     required this.onMentor,
   });
 
   final SimilarFamily family;
   final VoidCallback onMessage;
+  final VoidCallback onMeetup;
   final VoidCallback onBuddy;
   final VoidCallback onMentor;
 
@@ -456,26 +798,32 @@ class _FamilyCard extends StatelessWidget {
                 ),
             ],
             const Divider(height: 20),
-            Row(
+            // Dört aksiyon telefon genişliğine sığmadığı için satır yerine
+            // Wrap: dar ekranda ikinci satıra iner.
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
               children: [
-                Expanded(
-                  child: OutlinedButton.icon(
-                    onPressed: onMessage,
-                    icon: const Icon(Icons.chat_bubble_outline, size: 16),
-                    label: Text(t.similar.message),
-                  ),
+                OutlinedButton.icon(
+                  style: AppButtonStyles.inlineOutlined,
+                  onPressed: onMessage,
+                  icon: const Icon(Icons.chat_bubble_outline, size: 16),
+                  label: Text(t.similar.message),
                 ),
-                const SizedBox(width: 8),
                 _ConnectButton(
                   icon: Icons.handshake_outlined,
                   label: t.similar.buddy,
                   onTap: locked ? null : onBuddy,
                 ),
-                const SizedBox(width: 8),
                 _ConnectButton(
                   icon: Icons.school_outlined,
                   label: t.similar.mentor,
                   onTap: locked ? null : onMentor,
+                ),
+                _ConnectButton(
+                  icon: Icons.event_outlined,
+                  label: t.similar.meetup,
+                  onTap: onMeetup,
                 ),
               ],
             ),
@@ -560,7 +908,10 @@ class _ConnectButton extends StatelessWidget {
       onPressed: onTap,
       icon: Icon(icon, size: 16),
       label: Text(label),
+      // Satır içinde kullanılıyor: temanın sonsuz asgari genişliği burada
+      // sıfırlanmazsa "BoxConstraints forces an infinite width" ile çöker.
       style: FilledButton.styleFrom(
+        minimumSize: const Size(0, AppTheme.minTapTarget),
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
         visualDensity: VisualDensity.compact,
       ),

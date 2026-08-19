@@ -88,6 +88,11 @@ import 'package:otizm_destek_app/features/search/data/search_repository.dart';
 import 'package:otizm_destek_app/features/search/domain/search_result.dart';
 import 'package:otizm_destek_app/features/search/presentation/search_screen.dart';
 import 'package:otizm_destek_app/features/settings/data/kvkk_repository.dart';
+import 'package:otizm_destek_app/features/similar_families/data/matching_repository.dart';
+import 'package:otizm_destek_app/features/similar_families/data/meetup_request_repository.dart';
+import 'package:otizm_destek_app/features/similar_families/domain/meetup_request.dart';
+import 'package:otizm_destek_app/features/similar_families/domain/similar_family.dart';
+import 'package:otizm_destek_app/features/similar_families/presentation/similar_families_screen.dart';
 import 'package:otizm_destek_app/features/settings/domain/kvkk.dart';
 import 'package:otizm_destek_app/features/support_wall/data/wall_repository.dart';
 import 'package:otizm_destek_app/features/support_wall/domain/wall_post.dart';
@@ -893,6 +898,63 @@ class _FakeSearchRepository extends SearchRepository {
       ];
 }
 
+
+class _FakeMatchingRepository extends MatchingRepository {
+  _FakeMatchingRepository() : super(Dio());
+
+  @override
+  Future<List<SimilarFamily>> findSimilarFamilies(String childId) async => [
+        const SimilarFamily(
+          parentId: 'p2',
+          parentName: 'Zeynep A.',
+          childAgeRange: '4-6 yaş',
+          parentCity: 'İstanbul',
+          childName: 'Kaan',
+          similarityScore: 0.82,
+          totalCommonTags: 3,
+          commonTags: [
+            FamilyTag(id: 't1', name: 'Uyku düzeni', category: 'DAVRANIS'),
+            FamilyTag(id: 't2', name: 'Ortak dikkat', category: 'SOSYAL'),
+          ],
+          matchReasons: [
+            'Aynı yaş aralığında çocuk',
+            'Üç ortak destek etiketi',
+          ],
+        ),
+        const SimilarFamily(
+          parentId: 'p3',
+          parentName: 'Emre K.',
+          childAgeRange: '4-6 yaş',
+          parentCity: 'Ankara',
+          similarityScore: 0.74,
+          relationshipStatus: 'PENDING',
+        ),
+      ];
+
+  @override
+  Future<bool> getMatchingStatus() async => true;
+}
+
+class _FakeMeetupRequestRepository extends MeetupRequestRepository {
+  _FakeMeetupRequestRepository() : super(Dio());
+
+  @override
+  Future<List<MeetupRequest>> getMyRequests() async => const [
+        MeetupRequest(
+          id: 'mr1',
+          requesterId: 'p2',
+          requesterName: 'Zeynep A.',
+          recipientId: 'u1',
+          recipientName: 'Elif Yılmaz',
+          type: kMeetupRequestInPerson,
+          proposedDate: '2026-09-02',
+          proposedTime: '15:00',
+          location: 'Kadıköy Parkı',
+          message: 'Çocuklar birlikte oynayabilir.',
+        ),
+      ];
+}
+
 // ---------------------------------------------------------------------------
 // Yardımcılar
 // ---------------------------------------------------------------------------
@@ -969,6 +1031,9 @@ Widget _app(Widget home, {List<dynamic> overrides = const []}) {
             .overrideWithValue(_FakeAnalyticsRepository()),
         kvkkRepositoryProvider.overrideWithValue(_FakeKvkkRepository()),
         searchRepositoryProvider.overrideWithValue(_FakeSearchRepository()),
+        matchingRepositoryProvider.overrideWithValue(_FakeMatchingRepository()),
+        meetupRequestRepositoryProvider
+            .overrideWithValue(_FakeMeetupRequestRepository()),
         connectionRequestsProvider.overrideWith((ref) async => const []),
         ...overrides.cast(),
       ],
@@ -1142,6 +1207,14 @@ void main() {
 
   testWidgets('19 gelişim', (tester) async {
     await shoot(tester, '19-gelisim', const Scaffold(body: ProgressTab()));
+  });
+
+  testWidgets('26 benzer aileler', (tester) async {
+    await shoot(
+      tester,
+      '26-benzer-aileler',
+      const SimilarFamiliesScreen(),
+    );
   });
 
   testWidgets('25 genel arama', (tester) async {

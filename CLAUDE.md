@@ -187,9 +187,11 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
     thread), **Arkadaş** ve **Mentor** (`POST /buddies/request`
     `{receiverId, isMentorRequest, message}`, iyimser → PENDING).
     `relationshipStatus` PENDING/ACCEPTED ise buddy/mentor kilitli, rozet
-    gösterilir. `/similar-families`, Profil menüsü kısayolu. (Not: web'deki
-    per-aile "Buluşma" isteği akışı kapsam dışı — topluluk buluşmaları ayrı
-    `/meetups` özelliğinde.)
+    gösterilir. **Buluşma isteği** (`/api/meetup-requests`, PARENT'a kısıtlı):
+    tür (ONLINE/YUZEYUZE — veri), tarih (`yyyy-MM-dd`), saat (`HH:mm`), yer ve
+    not; gelen isteklerde kabul/ret, giden isteklerde geri çekme şeridi.
+    (Topluluk buluşmaları ayrı `/meetups` özelliğidir.)
+    `/similar-families`, Topluluk merkezi kısayolu.
   - **Destek Grupları:** `/api/groups` — kategori bazlı aile/uzman toplulukları
     + grup sohbeti. İki sekme: **Gruplarım** (`/groups/my`) ve **Keşfet** (arama
     `/groups/search?query=` + kategori `/groups/category/{cat}`). Katıl
@@ -423,7 +425,9 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
   `TextButton`'da bu kısıt yok. Kural `test/button_layout_rule_test.dart` ile
   korunur: hem davranışı doğrular hem de `lib/` kaynağını tarayıp sarmalanmamış
   satır butonu kalmadığını denetler (bu tarama randevu kartı dahil 14 gerçek
-  çökme noktası buldu).
+  çökme noktası buldu). Kaynak taraması **dolaylı** durumları görmez (buton
+  başka bir widget sınıfının içindeyse); onları ekran görüntüsü üreteci
+  yakalar — Benzer Aileler ekranındaki `_ConnectButton` böyle bulundu.
 - **Ekran duman testleri:** `test/screen_smoke_test.dart` yeni ekranları
   gerçekten kurar (yukarıdaki düzen hatası oradan yakalandı). Uzun listeler
   için test yüzeyi büyütülür (`tester.view.physicalSize`).
