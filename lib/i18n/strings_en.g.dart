@@ -58,6 +58,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$chat$en chat = _Translations$chat$en._(_root);
 	@override late final _Translations$messages$en messages = _Translations$messages$en._(_root);
 	@override late final _Translations$home$en home = _Translations$home$en._(_root);
+	@override late final _Translations$dailyPlan$en dailyPlan = _Translations$dailyPlan$en._(_root);
 	@override late final _Translations$specialists$en specialists = _Translations$specialists$en._(_root);
 	@override late final _Translations$progress$en progress = _Translations$progress$en._(_root);
 	@override late final _Translations$goalForm$en goalForm = _Translations$goalForm$en._(_root);
@@ -585,6 +586,81 @@ class _Translations$home$en extends Translations$home$tr {
 	@override String get quickNoteDetail => 'Add a short note';
 	@override String get quickPlan => 'Add a plan';
 	@override String get quickPlanDetail => 'Appointment, school, event';
+}
+
+// Path: dailyPlan
+class _Translations$dailyPlan$en extends Translations$dailyPlan$tr {
+	_Translations$dailyPlan$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'What to do today?';
+	@override String subtitle({required Object count, required Object minutes}) => '${count} left · about ${minutes} min';
+	@override String get subtitleDone => 'Today\'s tasks are done';
+	@override String get coachLabel => 'Daily coach tip';
+	@override String durationMinutes({required Object count}) => '${count} min';
+	@override String get badgeNow => 'Do this now';
+	@override String get badgeNext => 'Next';
+	@override String get badgeSafety => 'Safety';
+	@override String get badgeOptional => 'Optional';
+	@override String get badgeDone => 'Done';
+	@override String get allDoneTitle => 'Today\'s tasks are complete';
+	@override String get allDoneDetail => 'The core records are in. With the time left you can look at the plan, the community or the knowledge base.';
+	@override String get partMorning => 'this morning';
+	@override String get partAfternoon => 'this afternoon';
+	@override String get partEvening => 'this evening';
+	@override String get coachNoChild => 'Today it is enough to create the child profile. The other sections make sense once the profile exists.';
+	@override String coachAllDone({required Object name}) => 'Everything for ${name} is done today! You can move on to the plan or the knowledge base.';
+	@override String coachMedication({required Object name, required Object part, required Object count}) => 'For ${name} it is best to finish the medication check ${part}; the remaining ${count} tasks are quicker.';
+	@override String coachNoMood({required Object name, required Object part}) => 'Start with a short daily log for ${name} — it makes ${part} feel complete.';
+	@override String coachEvent({required Object name, required Object count}) => 'There is a planned event for ${name} today; the remaining ${count} tasks can stay short.';
+	@override String coachProgress({required Object done, required Object name, required Object count}) => '${done} done for ${name}, ${count} left. You are doing well!';
+	@override String coachPlan({required Object name, required Object part, required Object minutes}) => 'Plan for ${name} ${part} - a short log, a calendar check and one note. About ${minutes} min in total.';
+	@override String get taskDailyLog => 'Add today\'s short log';
+	@override String get taskDailyLogDone => 'Update today\'s log';
+	@override String get taskDailyLogDetail => 'Mark mood, sleep and medication in about a minute.';
+	@override String get taskDailyLogDoneDetail => 'Mood is in; you can still add sleep, medication or a short note.';
+	@override String get taskMedication => 'Finish the medication check';
+	@override String taskMedicationDetail({required Object count}) => '${count} doses are not marked yet.';
+	@override String get taskMessages => 'Reply to messages';
+	@override String taskMessagesDetail({required Object count}) => 'You have ${count} unread messages.';
+	@override String get taskExpertRequest => 'Answer the expert access request';
+	@override String taskExpertRequestDetail({required Object count}) => '${count} experts are waiting for access to your child\'s data.';
+	@override String taskEventDetail({required Object time}) => 'Today at ${time}';
+	@override String taskEventTomorrowDetail({required Object time}) => 'Tomorrow at ${time}';
+	@override String get taskCalendar => 'Plan the calendar';
+	@override String get taskCalendarDetail => 'Add appointments, school or activities if you have any.';
+	@override String get taskCalendarUpcoming => 'See the upcoming event';
+	@override String get taskNotes => 'Add a short observation note';
+	@override String get taskNotesDetail => 'Note something you noticed today.';
+	@override String get taskNotesDone => 'Review your observation notes';
+	@override String taskNotesDoneDetail({required Object count}) => '${count} notes so far — you can add a new one.';
+	@override String get taskCommunity => 'Discover the community';
+	@override String get taskCommunityDetail => 'See what families going through similar things are sharing.';
+	@override String get taskCommunityDone => 'Follow the community areas';
+	@override String get taskCommunityDoneDetail => 'There may be new posts in the weekly question, forum and meetups.';
+	@override String get taskEmergency => 'Create the emergency card';
+	@override String get taskEmergencyDetail => 'Keep critical medical details and emergency contacts on one card.';
+	@override String get taskFirstChild => 'Create the first child profile';
+	@override String get taskFirstChildDetail => 'Once the profile exists, the plan and tips adapt to your child.';
+	@override String get taskGuide => 'See how the app is laid out';
+	@override String get taskGuideDetail => 'Learn quickly what each section is for.';
+	@override String get taskExperts => 'Discover expert support';
+	@override String get taskExpertsDetail => 'You can browse expert profiles before booking anything.';
+	@override String get startTitle => 'Quick start';
+	@override String get startIntro => 'You do not have to finish everything on day one. The profile, a short log and the crisis guide are enough.';
+	@override String startProgress({required Object done, required Object total}) => '${done}/${total} steps';
+	@override String startReady({required Object percent}) => '${percent}% ready';
+	@override String get startDismiss => 'Dismiss the guide';
+	@override String get checkTodo => 'To do';
+	@override String get checkDone => 'Completed';
+	@override String get checkChildProfile => '1. Child profile';
+	@override String get checkChildProfileDetail => 'The plan, tracking and expert sharing adapt to the profile.';
+	@override String get checkDailyLog => '2. First short log';
+	@override String get checkDailyLogDetail => 'Data comes first; the daily plan makes sense after that log.';
+	@override String get checkCrisis => '3. Crisis guide';
+	@override String get checkCrisisDetail => 'Read the calming and intervention steps before a hard moment.';
 }
 
 // Path: specialists
@@ -2652,6 +2728,72 @@ extension on TranslationsEn {
 			'home.quickNoteDetail' => 'Add a short note',
 			'home.quickPlan' => 'Add a plan',
 			'home.quickPlanDetail' => 'Appointment, school, event',
+			'dailyPlan.title' => 'What to do today?',
+			'dailyPlan.subtitle' => ({required Object count, required Object minutes}) => '${count} left · about ${minutes} min',
+			'dailyPlan.subtitleDone' => 'Today\'s tasks are done',
+			'dailyPlan.coachLabel' => 'Daily coach tip',
+			'dailyPlan.durationMinutes' => ({required Object count}) => '${count} min',
+			'dailyPlan.badgeNow' => 'Do this now',
+			'dailyPlan.badgeNext' => 'Next',
+			'dailyPlan.badgeSafety' => 'Safety',
+			'dailyPlan.badgeOptional' => 'Optional',
+			'dailyPlan.badgeDone' => 'Done',
+			'dailyPlan.allDoneTitle' => 'Today\'s tasks are complete',
+			'dailyPlan.allDoneDetail' => 'The core records are in. With the time left you can look at the plan, the community or the knowledge base.',
+			'dailyPlan.partMorning' => 'this morning',
+			'dailyPlan.partAfternoon' => 'this afternoon',
+			'dailyPlan.partEvening' => 'this evening',
+			'dailyPlan.coachNoChild' => 'Today it is enough to create the child profile. The other sections make sense once the profile exists.',
+			'dailyPlan.coachAllDone' => ({required Object name}) => 'Everything for ${name} is done today! You can move on to the plan or the knowledge base.',
+			'dailyPlan.coachMedication' => ({required Object name, required Object part, required Object count}) => 'For ${name} it is best to finish the medication check ${part}; the remaining ${count} tasks are quicker.',
+			'dailyPlan.coachNoMood' => ({required Object name, required Object part}) => 'Start with a short daily log for ${name} — it makes ${part} feel complete.',
+			'dailyPlan.coachEvent' => ({required Object name, required Object count}) => 'There is a planned event for ${name} today; the remaining ${count} tasks can stay short.',
+			'dailyPlan.coachProgress' => ({required Object done, required Object name, required Object count}) => '${done} done for ${name}, ${count} left. You are doing well!',
+			'dailyPlan.coachPlan' => ({required Object name, required Object part, required Object minutes}) => 'Plan for ${name} ${part} - a short log, a calendar check and one note. About ${minutes} min in total.',
+			'dailyPlan.taskDailyLog' => 'Add today\'s short log',
+			'dailyPlan.taskDailyLogDone' => 'Update today\'s log',
+			'dailyPlan.taskDailyLogDetail' => 'Mark mood, sleep and medication in about a minute.',
+			'dailyPlan.taskDailyLogDoneDetail' => 'Mood is in; you can still add sleep, medication or a short note.',
+			'dailyPlan.taskMedication' => 'Finish the medication check',
+			'dailyPlan.taskMedicationDetail' => ({required Object count}) => '${count} doses are not marked yet.',
+			'dailyPlan.taskMessages' => 'Reply to messages',
+			'dailyPlan.taskMessagesDetail' => ({required Object count}) => 'You have ${count} unread messages.',
+			'dailyPlan.taskExpertRequest' => 'Answer the expert access request',
+			'dailyPlan.taskExpertRequestDetail' => ({required Object count}) => '${count} experts are waiting for access to your child\'s data.',
+			'dailyPlan.taskEventDetail' => ({required Object time}) => 'Today at ${time}',
+			'dailyPlan.taskEventTomorrowDetail' => ({required Object time}) => 'Tomorrow at ${time}',
+			'dailyPlan.taskCalendar' => 'Plan the calendar',
+			'dailyPlan.taskCalendarDetail' => 'Add appointments, school or activities if you have any.',
+			'dailyPlan.taskCalendarUpcoming' => 'See the upcoming event',
+			'dailyPlan.taskNotes' => 'Add a short observation note',
+			'dailyPlan.taskNotesDetail' => 'Note something you noticed today.',
+			'dailyPlan.taskNotesDone' => 'Review your observation notes',
+			'dailyPlan.taskNotesDoneDetail' => ({required Object count}) => '${count} notes so far — you can add a new one.',
+			'dailyPlan.taskCommunity' => 'Discover the community',
+			'dailyPlan.taskCommunityDetail' => 'See what families going through similar things are sharing.',
+			'dailyPlan.taskCommunityDone' => 'Follow the community areas',
+			'dailyPlan.taskCommunityDoneDetail' => 'There may be new posts in the weekly question, forum and meetups.',
+			'dailyPlan.taskEmergency' => 'Create the emergency card',
+			'dailyPlan.taskEmergencyDetail' => 'Keep critical medical details and emergency contacts on one card.',
+			'dailyPlan.taskFirstChild' => 'Create the first child profile',
+			'dailyPlan.taskFirstChildDetail' => 'Once the profile exists, the plan and tips adapt to your child.',
+			'dailyPlan.taskGuide' => 'See how the app is laid out',
+			'dailyPlan.taskGuideDetail' => 'Learn quickly what each section is for.',
+			'dailyPlan.taskExperts' => 'Discover expert support',
+			'dailyPlan.taskExpertsDetail' => 'You can browse expert profiles before booking anything.',
+			'dailyPlan.startTitle' => 'Quick start',
+			'dailyPlan.startIntro' => 'You do not have to finish everything on day one. The profile, a short log and the crisis guide are enough.',
+			'dailyPlan.startProgress' => ({required Object done, required Object total}) => '${done}/${total} steps',
+			'dailyPlan.startReady' => ({required Object percent}) => '${percent}% ready',
+			'dailyPlan.startDismiss' => 'Dismiss the guide',
+			'dailyPlan.checkTodo' => 'To do',
+			'dailyPlan.checkDone' => 'Completed',
+			'dailyPlan.checkChildProfile' => '1. Child profile',
+			'dailyPlan.checkChildProfileDetail' => 'The plan, tracking and expert sharing adapt to the profile.',
+			'dailyPlan.checkDailyLog' => '2. First short log',
+			'dailyPlan.checkDailyLogDetail' => 'Data comes first; the daily plan makes sense after that log.',
+			'dailyPlan.checkCrisis' => '3. Crisis guide',
+			'dailyPlan.checkCrisisDetail' => 'Read the calming and intervention steps before a hard moment.',
 			'specialists.title' => 'Find a Specialist',
 			'specialists.searchHint' => 'Search by name or expertise...',
 			'specialists.filterAll' => 'All',
@@ -2782,6 +2924,8 @@ extension on TranslationsEn {
 			'appointments.typeFaceToFace' => 'In person',
 			'appointments.withChild' => ({required Object name}) => 'Child: ${name}',
 			'appointments.dateLine' => ({required Object day, required Object month, required Object year, required Object time}) => '${day} ${month} ${year} · ${time}',
+			_ => null,
+		} ?? switch (path) {
 			'appointments.cancel' => 'Cancel',
 			'appointments.confirm' => 'Confirm',
 			'appointments.complete' => 'Complete',
@@ -2848,8 +2992,6 @@ extension on TranslationsEn {
 			'routines.itemTitleLabel' => 'Step Title',
 			'routines.itemTitleHint' => 'e.g. Brush teeth',
 			'routines.itemTimeLabel' => 'Time (optional)',
-			_ => null,
-		} ?? switch (path) {
 			'routines.selectTime' => 'Select time',
 			'routines.itemIconLabel' => 'Icon',
 			'routines.itemSave' => 'Add',
@@ -3296,6 +3438,8 @@ extension on TranslationsEn {
 			'tasks.noteLabel' => 'Note for Your Expert',
 			'tasks.noteHint' => 'How did your child feel doing this task? (e.g. Completed it very comfortably)',
 			'tasks.evidenceLabel' => 'Evidence / Attachment Link (Optional)',
+			_ => null,
+		} ?? switch (path) {
 			'tasks.evidenceHint' => 'You can add a cloud link to a video or photo of the practice moment so your expert can see it.',
 			'tasks.submitConfirm' => 'Submit and Close',
 			'tasks.viewWizard' => 'Wizard',
@@ -3362,8 +3506,6 @@ extension on TranslationsEn {
 			'forum.searchHint' => 'Search the forum…',
 			'forum.tagFilter' => 'Tag filter',
 			'forum.sortNew' => 'New',
-			_ => null,
-		} ?? switch (path) {
 			'forum.sortHot' => 'Hot',
 			'forum.sortUnanswered' => 'Unanswered',
 			'forum.sortExpert' => 'Expert',
@@ -3810,6 +3952,8 @@ extension on TranslationsEn {
 			'guide.startExpertProfileDesc' => 'Keep your title, specialisations and contact details up to date.',
 			'guide.pageHome' => 'Home',
 			'guide.pageHomePurpose' => 'Shows today\'s to-dos, reminders and the short daily plan in one place.',
+			_ => null,
+		} ?? switch (path) {
 			'guide.pageHomeWhen' => 'Every time you open the app and want to know what today holds.',
 			'guide.pageHomeKeywords' => 'home, start, task, today, dashboard',
 			'guide.pageTracker' => 'Daily Tracking',
@@ -3876,8 +4020,6 @@ extension on TranslationsEn {
 			'guide.pageRoutinesPurpose' => 'Helps you follow daily routines step by step, visually.',
 			'guide.pageRoutinesWhen' => 'When you want to picture the morning, school, sleep or transition routine.',
 			'guide.pageRoutinesKeywords' => 'routine, schedule, step, visual, transition',
-			_ => null,
-		} ?? switch (path) {
 			'guide.pageForum' => 'Community Forum',
 			'guide.pageForumPurpose' => 'A shared discussion space where parents and experts ask questions and share experience.',
 			'guide.pageForumWhen' => 'When you want to ask the community about something.',

@@ -6,6 +6,10 @@ import 'package:otizm_destek_app/core/storage/secure_storage.dart';
 import 'package:otizm_destek_app/core/theme/app_theme.dart';
 import 'package:otizm_destek_app/features/community/presentation/community_screen.dart';
 import 'package:otizm_destek_app/features/guide/presentation/guide_screen.dart';
+import 'package:otizm_destek_app/features/home/data/daily_plan_provider.dart';
+import 'package:otizm_destek_app/features/home/domain/daily_plan.dart';
+import 'package:otizm_destek_app/features/home/presentation/widgets/daily_plan_card.dart';
+import 'package:otizm_destek_app/features/home/presentation/widgets/start_checklist.dart';
 import 'package:otizm_destek_app/features/tasks/domain/exercise_outcome.dart';
 import 'package:otizm_destek_app/features/tasks/domain/expert_task.dart';
 import 'package:otizm_destek_app/features/tasks/presentation/widgets/daily_exercise_wizard.dart';
@@ -40,6 +44,19 @@ Widget _host(Widget child) {
         theme: AppTheme.light,
         home: child,
       ),
+    ),
+  );
+}
+
+/// Günlük plan girdisi sabitlenmiş yüzey (ağ çağrısı yapılmaz).
+Widget _hostWithPlan(Widget child, DailyPlanInput input) {
+  return TranslationProvider(
+    child: ProviderScope(
+      overrides: [
+        secureStorageProvider.overrideWithValue(_FakeSecureStorage()),
+        dailyPlanInputProvider.overrideWith((ref) async => input),
+      ],
+      child: MaterialApp(theme: AppTheme.light, home: child),
     ),
   );
 }
@@ -119,5 +136,62 @@ void main() {
     expect(find.text(t.guide.startTitle), findsNothing);
     expect(find.text(t.guide.pageTracker), findsOneWidget);
     expect(find.text(t.guide.pageHome), findsNothing);
+  });
+
+  testWidgets('Günlük plan kartı koç notunu ve sıradaki işi gösterir',
+      (tester) async {
+    useTallSurface(tester);
+    final input = DailyPlanInput(
+      now: DateTime(2026, 8, 19, 9),
+      hasChild: true,
+      childName: 'Ada',
+      pendingMedicationSlots: 2,
+      recentNotes: 1,
+    );
+    await tester.pumpWidget(
+      _hostWithPlan(
+        const Scaffold(body: SingleChildScrollView(child: DailyPlanCard())),
+        input,
+      ),
+    );
+    await tester.pump();
+
+    final t = AppLocale.tr.buildSync();
+    expect(find.text(t.dailyPlan.title), findsOneWidget);
+    // Bekleyen doz en acil iş: ilk satır ve "şimdi bunu yap" rozeti onda.
+    expect(find.text(t.dailyPlan.taskMedication), findsOneWidget);
+    expect(find.text(t.dailyPlan.badgeNow), findsOneWidget);
+    expect(
+      find.text(t.dailyPlan.coachMedication(
+        name: 'Ada',
+        part: t.dailyPlan.partMorning,
+        count: planProgress(buildDailyPlan(input)).pending - 1,
+      )),
+      findsOneWidget,
+    );
+  });
+
+  testWidgets('Başlangıç listesi eksik adımları gösterir, kapatılınca kalkar',
+      (tester) async {
+    useTallSurface(tester);
+    await tester.pumpWidget(
+      _hostWithPlan(
+        const Scaffold(body: SingleChildScrollView(child: StartChecklist())),
+        DailyPlanInput(
+          now: DateTime(2026, 8, 19, 9),
+          hasChild: true,
+          childName: 'Ada',
+        ),
+      ),
+    );
+    await tester.pump();
+
+    final t = AppLocale.tr.buildSync();
+    expect(find.text(t.dailyPlan.startTitle), findsOneWidget);
+    expect(find.text(t.dailyPlan.checkCrisis), findsOneWidget);
+
+    await tester.tap(find.byIcon(Icons.close));
+    await tester.pump();
+    expect(find.text(t.dailyPlan.startTitle), findsNothing);
   });
 }

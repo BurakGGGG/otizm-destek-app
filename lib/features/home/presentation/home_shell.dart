@@ -27,6 +27,18 @@ class HomeShell extends ConsumerStatefulWidget {
 class _HomeShellState extends ConsumerState<HomeShell> {
   late int _index = widget.initialTab.clamp(0, _tabs.length - 1);
 
+  @override
+  void didUpdateWidget(covariant HomeShell oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // `/home?tab=1` kabuk zaten açıkken de gelebilir (ör. ana sayfadaki
+    // plan kartından uzmanlara geçiş) — sekme o zaman da değişmeli.
+    if (widget.initialTab != oldWidget.initialTab) {
+      setState(() {
+        _index = widget.initialTab.clamp(0, _tabs.length - 1);
+      });
+    }
+  }
+
   static const _tabs = [
     HomeTab(),
     SpecialistsTab(),

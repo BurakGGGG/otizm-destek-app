@@ -45,6 +45,7 @@ import '../../features/notes/presentation/notes_screen.dart';
 import '../../features/tasks/presentation/tasks_screen.dart';
 import '../../features/treatment/presentation/treatment_screen.dart';
 import '../providers.dart';
+import '../storage/visited_routes.dart';
 
 /// Uygulama rotaları. Oturum durumuna göre yönlendirir (role duyarlı kabuk
 /// Faz 3'te genişletilecek).
@@ -69,7 +70,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       FirebaseAnalyticsObserver(analytics: ref.watch(analyticsProvider)),
   ];
 
-  return GoRouter(
+  final router = GoRouter(
     initialLocation: '/splash',
     refreshListenable: refresh,
     observers: observers,
@@ -220,4 +221,21 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       ),
     ],
   );
+
+  // Açılan ekranları cihazda işaretle: ana sayfadaki başlangıç kontrol
+  // listesi ve "topluluğu keşfet" adımı bu kayda bakar. Gezinme sırasında
+  // sağlayıcı güncellemek yapı (build) aşamasına denk gelebildiği için
+  // işaretleme bir sonraki mikro göreve bırakılır.
+  void recordVisit() {
+    final path = router.routeInformationProvider.value.uri.path;
+    Future.microtask(
+      () => ref.read(visitedRoutesProvider.notifier).mark(path),
+    );
+  }
+
+  router.routeInformationProvider.addListener(recordVisit);
+  ref.onDispose(
+    () => router.routeInformationProvider.removeListener(recordVisit),
+  );
+  return router;
 });

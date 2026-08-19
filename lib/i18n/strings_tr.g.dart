@@ -59,6 +59,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$chat$tr chat = Translations$chat$tr.internal(_root);
 	late final Translations$messages$tr messages = Translations$messages$tr.internal(_root);
 	late final Translations$home$tr home = Translations$home$tr.internal(_root);
+	late final Translations$dailyPlan$tr dailyPlan = Translations$dailyPlan$tr.internal(_root);
 	late final Translations$specialists$tr specialists = Translations$specialists$tr.internal(_root);
 	late final Translations$progress$tr progress = Translations$progress$tr.internal(_root);
 	late final Translations$goalForm$tr goalForm = Translations$goalForm$tr.internal(_root);
@@ -1195,6 +1196,213 @@ class Translations$home$tr {
 
 	/// tr: 'Randevu, okul, etkinlik'
 	String get quickPlanDetail => 'Randevu, okul, etkinlik';
+}
+
+// Path: dailyPlan
+class Translations$dailyPlan$tr {
+	Translations$dailyPlan$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Bugün ne yapalım?'
+	String get title => 'Bugün ne yapalım?';
+
+	/// tr: 'Kalan $count iş · yaklaşık $minutes dk'
+	String subtitle({required Object count, required Object minutes}) => 'Kalan ${count} iş · yaklaşık ${minutes} dk';
+
+	/// tr: 'Bugünün işleri tamam'
+	String get subtitleDone => 'Bugünün işleri tamam';
+
+	/// tr: 'Günlük koç önerisi'
+	String get coachLabel => 'Günlük koç önerisi';
+
+	/// tr: '$count dk'
+	String durationMinutes({required Object count}) => '${count} dk';
+
+	/// tr: 'Şimdi bunu yap'
+	String get badgeNow => 'Şimdi bunu yap';
+
+	/// tr: 'Sonra'
+	String get badgeNext => 'Sonra';
+
+	/// tr: 'Güvenlik'
+	String get badgeSafety => 'Güvenlik';
+
+	/// tr: 'İsteğe bağlı'
+	String get badgeOptional => 'İsteğe bağlı';
+
+	/// tr: 'Tamam'
+	String get badgeDone => 'Tamam';
+
+	/// tr: 'Bugünün işleri tamamlandı'
+	String get allDoneTitle => 'Bugünün işleri tamamlandı';
+
+	/// tr: 'Temel kayıtlar hazır. Kalan zamanda gelişim planına, topluluğa ya da bilgi bankasına göz atabilirsiniz.'
+	String get allDoneDetail => 'Temel kayıtlar hazır. Kalan zamanda gelişim planına, topluluğa ya da bilgi bankasına göz atabilirsiniz.';
+
+	/// tr: 'sabah'
+	String get partMorning => 'sabah';
+
+	/// tr: 'öğleden sonra'
+	String get partAfternoon => 'öğleden sonra';
+
+	/// tr: 'akşam'
+	String get partEvening => 'akşam';
+
+	/// tr: 'Bugün yalnızca çocuk profilini oluşturmanız yeterli. Diğer bölümler profil sonrası anlam kazanır.'
+	String get coachNoChild => 'Bugün yalnızca çocuk profilini oluşturmanız yeterli. Diğer bölümler profil sonrası anlam kazanır.';
+
+	/// tr: '$name için bugünkü tüm işler tamam! İsterseniz gelişim planına ya da bilgi bankasına geçebilirsiniz.'
+	String coachAllDone({required Object name}) => '${name} için bugünkü tüm işler tamam! İsterseniz gelişim planına ya da bilgi bankasına geçebilirsiniz.';
+
+	/// tr: '$name için $part önce ilaç kontrolünü bitirmek iyi olur; kalan $count iş daha kısa sürer.'
+	String coachMedication({required Object name, required Object part, required Object count}) => '${name} için ${part} önce ilaç kontrolünü bitirmek iyi olur; kalan ${count} iş daha kısa sürer.';
+
+	/// tr: '$name için önce kısa günlük kaydı girin — $part rutini tamamlanmış hissettiriyor.'
+	String coachNoMood({required Object name, required Object part}) => '${name} için önce kısa günlük kaydı girin — ${part} rutini tamamlanmış hissettiriyor.';
+
+	/// tr: '$name için bugün planlı bir etkinlik var; kalan $count iş kısa tutulabilir.'
+	String coachEvent({required Object name, required Object count}) => '${name} için bugün planlı bir etkinlik var; kalan ${count} iş kısa tutulabilir.';
+
+	/// tr: '$name için $done iş tamam, $count iş kaldı. İyi gidiyorsunuz!'
+	String coachProgress({required Object name, required Object done, required Object count}) => '${name} için ${done} iş tamam, ${count} iş kaldı. İyi gidiyorsunuz!';
+
+	/// tr: '$name için $part planı: kısa kayıt, takvim kontrolü ve bir not. Hepsi yaklaşık $minutes dk.'
+	String coachPlan({required Object name, required Object part, required Object minutes}) => '${name} için ${part} planı: kısa kayıt, takvim kontrolü ve bir not. Hepsi yaklaşık ${minutes} dk.';
+
+	/// tr: 'Bugünün kısa kaydını gir'
+	String get taskDailyLog => 'Bugünün kısa kaydını gir';
+
+	/// tr: 'Bugünün kaydını güncelle'
+	String get taskDailyLogDone => 'Bugünün kaydını güncelle';
+
+	/// tr: 'Ruh hali, uyku ve ilaç bilgisini bir dakikada işaretleyin.'
+	String get taskDailyLogDetail => 'Ruh hali, uyku ve ilaç bilgisini bir dakikada işaretleyin.';
+
+	/// tr: 'Ruh hali girildi; uyku, ilaç veya kısa not ekleyebilirsiniz.'
+	String get taskDailyLogDoneDetail => 'Ruh hali girildi; uyku, ilaç veya kısa not ekleyebilirsiniz.';
+
+	/// tr: 'İlaç kontrolünü tamamla'
+	String get taskMedication => 'İlaç kontrolünü tamamla';
+
+	/// tr: '$count doz henüz işaretlenmedi.'
+	String taskMedicationDetail({required Object count}) => '${count} doz henüz işaretlenmedi.';
+
+	/// tr: 'Mesajları yanıtla'
+	String get taskMessages => 'Mesajları yanıtla';
+
+	/// tr: '$count okunmamış mesajınız var.'
+	String taskMessagesDetail({required Object count}) => '${count} okunmamış mesajınız var.';
+
+	/// tr: 'Uzman erişim isteğini yanıtla'
+	String get taskExpertRequest => 'Uzman erişim isteğini yanıtla';
+
+	/// tr: '$count uzman çocuk verinize erişmek için onay bekliyor.'
+	String taskExpertRequestDetail({required Object count}) => '${count} uzman çocuk verinize erişmek için onay bekliyor.';
+
+	/// tr: 'Bugün saat $time'
+	String taskEventDetail({required Object time}) => 'Bugün saat ${time}';
+
+	/// tr: 'Yarın saat $time'
+	String taskEventTomorrowDetail({required Object time}) => 'Yarın saat ${time}';
+
+	/// tr: 'Takvimi planla'
+	String get taskCalendar => 'Takvimi planla';
+
+	/// tr: 'Randevu, okul veya etkinlik varsa ekleyin.'
+	String get taskCalendarDetail => 'Randevu, okul veya etkinlik varsa ekleyin.';
+
+	/// tr: 'Yaklaşan etkinliği gör'
+	String get taskCalendarUpcoming => 'Yaklaşan etkinliği gör';
+
+	/// tr: 'Kısa gözlem notu ekle'
+	String get taskNotes => 'Kısa gözlem notu ekle';
+
+	/// tr: 'Bugün fark ettiğiniz bir şeyi not edin.'
+	String get taskNotesDetail => 'Bugün fark ettiğiniz bir şeyi not edin.';
+
+	/// tr: 'Gözlem notlarını gözden geçir'
+	String get taskNotesDone => 'Gözlem notlarını gözden geçir';
+
+	/// tr: '$count not mevcut — yenisini ekleyebilirsiniz.'
+	String taskNotesDoneDetail({required Object count}) => '${count} not mevcut — yenisini ekleyebilirsiniz.';
+
+	/// tr: 'Topluluğu keşfet'
+	String get taskCommunity => 'Topluluğu keşfet';
+
+	/// tr: 'Benzer süreçlerden geçen ailelerin paylaşımlarına bakın.'
+	String get taskCommunityDetail => 'Benzer süreçlerden geçen ailelerin paylaşımlarına bakın.';
+
+	/// tr: 'Topluluk alanlarını takip et'
+	String get taskCommunityDone => 'Topluluk alanlarını takip et';
+
+	/// tr: 'Haftanın sorusu, forum ve buluşmalarda yeni paylaşımlar olabilir.'
+	String get taskCommunityDoneDetail => 'Haftanın sorusu, forum ve buluşmalarda yeni paylaşımlar olabilir.';
+
+	/// tr: 'Acil Durum Kartı oluştur'
+	String get taskEmergency => 'Acil Durum Kartı oluştur';
+
+	/// tr: 'Kritik tıbbi bilgileri ve acil kişileri tek kartta hazır tutun.'
+	String get taskEmergencyDetail => 'Kritik tıbbi bilgileri ve acil kişileri tek kartta hazır tutun.';
+
+	/// tr: 'İlk çocuk profilini oluştur'
+	String get taskFirstChild => 'İlk çocuk profilini oluştur';
+
+	/// tr: 'Profil eklenince plan ve öneriler çocuğunuza göre kişileşir.'
+	String get taskFirstChildDetail => 'Profil eklenince plan ve öneriler çocuğunuza göre kişileşir.';
+
+	/// tr: 'Uygulamanın kısa yolunu görün'
+	String get taskGuide => 'Uygulamanın kısa yolunu görün';
+
+	/// tr: 'Hangi bölümün ne işe yaradığını hızlıca öğrenin.'
+	String get taskGuideDetail => 'Hangi bölümün ne işe yaradığını hızlıca öğrenin.';
+
+	/// tr: 'Uzman desteğini keşfet'
+	String get taskExperts => 'Uzman desteğini keşfet';
+
+	/// tr: 'Randevu almadan önce uzman profillerini inceleyebilirsiniz.'
+	String get taskExpertsDetail => 'Randevu almadan önce uzman profillerini inceleyebilirsiniz.';
+
+	/// tr: 'Hızlı başlangıç'
+	String get startTitle => 'Hızlı başlangıç';
+
+	/// tr: 'İlk gün her şeyi tamamlamanız gerekmiyor. Önce profil, kısa kayıt ve zor an rehberi yeterli.'
+	String get startIntro => 'İlk gün her şeyi tamamlamanız gerekmiyor. Önce profil, kısa kayıt ve zor an rehberi yeterli.';
+
+	/// tr: '$done/$total adım'
+	String startProgress({required Object done, required Object total}) => '${done}/${total} adım';
+
+	/// tr: '%$percent hazır'
+	String startReady({required Object percent}) => '%${percent} hazır';
+
+	/// tr: 'Rehberi kapat'
+	String get startDismiss => 'Rehberi kapat';
+
+	/// tr: 'Yapılacak'
+	String get checkTodo => 'Yapılacak';
+
+	/// tr: 'Tamamlandı'
+	String get checkDone => 'Tamamlandı';
+
+	/// tr: '1. Çocuk profili'
+	String get checkChildProfile => '1. Çocuk profili';
+
+	/// tr: 'Plan, takip ve uzman paylaşımı profil bilgisine göre kişileşir.'
+	String get checkChildProfileDetail => 'Plan, takip ve uzman paylaşımı profil bilgisine göre kişileşir.';
+
+	/// tr: '2. İlk kısa kayıt'
+	String get checkDailyLog => '2. İlk kısa kayıt';
+
+	/// tr: 'Önce veri girilir; günlük plan bu kayıttan sonra anlam kazanır.'
+	String get checkDailyLogDetail => 'Önce veri girilir; günlük plan bu kayıttan sonra anlam kazanır.';
+
+	/// tr: '3. Kriz rehberi'
+	String get checkCrisis => '3. Kriz rehberi';
+
+	/// tr: 'Zor anlarda sakinleştirme ve müdahale adımlarını önceden okuyun.'
+	String get checkCrisisDetail => 'Zor anlarda sakinleştirme ve müdahale adımlarını önceden okuyun.';
 }
 
 // Path: specialists
@@ -5832,6 +6040,72 @@ extension on Translations {
 			'home.quickNoteDetail' => 'Kısa not ekle',
 			'home.quickPlan' => 'Plan ekle',
 			'home.quickPlanDetail' => 'Randevu, okul, etkinlik',
+			'dailyPlan.title' => 'Bugün ne yapalım?',
+			'dailyPlan.subtitle' => ({required Object count, required Object minutes}) => 'Kalan ${count} iş · yaklaşık ${minutes} dk',
+			'dailyPlan.subtitleDone' => 'Bugünün işleri tamam',
+			'dailyPlan.coachLabel' => 'Günlük koç önerisi',
+			'dailyPlan.durationMinutes' => ({required Object count}) => '${count} dk',
+			'dailyPlan.badgeNow' => 'Şimdi bunu yap',
+			'dailyPlan.badgeNext' => 'Sonra',
+			'dailyPlan.badgeSafety' => 'Güvenlik',
+			'dailyPlan.badgeOptional' => 'İsteğe bağlı',
+			'dailyPlan.badgeDone' => 'Tamam',
+			'dailyPlan.allDoneTitle' => 'Bugünün işleri tamamlandı',
+			'dailyPlan.allDoneDetail' => 'Temel kayıtlar hazır. Kalan zamanda gelişim planına, topluluğa ya da bilgi bankasına göz atabilirsiniz.',
+			'dailyPlan.partMorning' => 'sabah',
+			'dailyPlan.partAfternoon' => 'öğleden sonra',
+			'dailyPlan.partEvening' => 'akşam',
+			'dailyPlan.coachNoChild' => 'Bugün yalnızca çocuk profilini oluşturmanız yeterli. Diğer bölümler profil sonrası anlam kazanır.',
+			'dailyPlan.coachAllDone' => ({required Object name}) => '${name} için bugünkü tüm işler tamam! İsterseniz gelişim planına ya da bilgi bankasına geçebilirsiniz.',
+			'dailyPlan.coachMedication' => ({required Object name, required Object part, required Object count}) => '${name} için ${part} önce ilaç kontrolünü bitirmek iyi olur; kalan ${count} iş daha kısa sürer.',
+			'dailyPlan.coachNoMood' => ({required Object name, required Object part}) => '${name} için önce kısa günlük kaydı girin — ${part} rutini tamamlanmış hissettiriyor.',
+			'dailyPlan.coachEvent' => ({required Object name, required Object count}) => '${name} için bugün planlı bir etkinlik var; kalan ${count} iş kısa tutulabilir.',
+			'dailyPlan.coachProgress' => ({required Object name, required Object done, required Object count}) => '${name} için ${done} iş tamam, ${count} iş kaldı. İyi gidiyorsunuz!',
+			'dailyPlan.coachPlan' => ({required Object name, required Object part, required Object minutes}) => '${name} için ${part} planı: kısa kayıt, takvim kontrolü ve bir not. Hepsi yaklaşık ${minutes} dk.',
+			'dailyPlan.taskDailyLog' => 'Bugünün kısa kaydını gir',
+			'dailyPlan.taskDailyLogDone' => 'Bugünün kaydını güncelle',
+			'dailyPlan.taskDailyLogDetail' => 'Ruh hali, uyku ve ilaç bilgisini bir dakikada işaretleyin.',
+			'dailyPlan.taskDailyLogDoneDetail' => 'Ruh hali girildi; uyku, ilaç veya kısa not ekleyebilirsiniz.',
+			'dailyPlan.taskMedication' => 'İlaç kontrolünü tamamla',
+			'dailyPlan.taskMedicationDetail' => ({required Object count}) => '${count} doz henüz işaretlenmedi.',
+			'dailyPlan.taskMessages' => 'Mesajları yanıtla',
+			'dailyPlan.taskMessagesDetail' => ({required Object count}) => '${count} okunmamış mesajınız var.',
+			'dailyPlan.taskExpertRequest' => 'Uzman erişim isteğini yanıtla',
+			'dailyPlan.taskExpertRequestDetail' => ({required Object count}) => '${count} uzman çocuk verinize erişmek için onay bekliyor.',
+			'dailyPlan.taskEventDetail' => ({required Object time}) => 'Bugün saat ${time}',
+			'dailyPlan.taskEventTomorrowDetail' => ({required Object time}) => 'Yarın saat ${time}',
+			'dailyPlan.taskCalendar' => 'Takvimi planla',
+			'dailyPlan.taskCalendarDetail' => 'Randevu, okul veya etkinlik varsa ekleyin.',
+			'dailyPlan.taskCalendarUpcoming' => 'Yaklaşan etkinliği gör',
+			'dailyPlan.taskNotes' => 'Kısa gözlem notu ekle',
+			'dailyPlan.taskNotesDetail' => 'Bugün fark ettiğiniz bir şeyi not edin.',
+			'dailyPlan.taskNotesDone' => 'Gözlem notlarını gözden geçir',
+			'dailyPlan.taskNotesDoneDetail' => ({required Object count}) => '${count} not mevcut — yenisini ekleyebilirsiniz.',
+			'dailyPlan.taskCommunity' => 'Topluluğu keşfet',
+			'dailyPlan.taskCommunityDetail' => 'Benzer süreçlerden geçen ailelerin paylaşımlarına bakın.',
+			'dailyPlan.taskCommunityDone' => 'Topluluk alanlarını takip et',
+			'dailyPlan.taskCommunityDoneDetail' => 'Haftanın sorusu, forum ve buluşmalarda yeni paylaşımlar olabilir.',
+			'dailyPlan.taskEmergency' => 'Acil Durum Kartı oluştur',
+			'dailyPlan.taskEmergencyDetail' => 'Kritik tıbbi bilgileri ve acil kişileri tek kartta hazır tutun.',
+			'dailyPlan.taskFirstChild' => 'İlk çocuk profilini oluştur',
+			'dailyPlan.taskFirstChildDetail' => 'Profil eklenince plan ve öneriler çocuğunuza göre kişileşir.',
+			'dailyPlan.taskGuide' => 'Uygulamanın kısa yolunu görün',
+			'dailyPlan.taskGuideDetail' => 'Hangi bölümün ne işe yaradığını hızlıca öğrenin.',
+			'dailyPlan.taskExperts' => 'Uzman desteğini keşfet',
+			'dailyPlan.taskExpertsDetail' => 'Randevu almadan önce uzman profillerini inceleyebilirsiniz.',
+			'dailyPlan.startTitle' => 'Hızlı başlangıç',
+			'dailyPlan.startIntro' => 'İlk gün her şeyi tamamlamanız gerekmiyor. Önce profil, kısa kayıt ve zor an rehberi yeterli.',
+			'dailyPlan.startProgress' => ({required Object done, required Object total}) => '${done}/${total} adım',
+			'dailyPlan.startReady' => ({required Object percent}) => '%${percent} hazır',
+			'dailyPlan.startDismiss' => 'Rehberi kapat',
+			'dailyPlan.checkTodo' => 'Yapılacak',
+			'dailyPlan.checkDone' => 'Tamamlandı',
+			'dailyPlan.checkChildProfile' => '1. Çocuk profili',
+			'dailyPlan.checkChildProfileDetail' => 'Plan, takip ve uzman paylaşımı profil bilgisine göre kişileşir.',
+			'dailyPlan.checkDailyLog' => '2. İlk kısa kayıt',
+			'dailyPlan.checkDailyLogDetail' => 'Önce veri girilir; günlük plan bu kayıttan sonra anlam kazanır.',
+			'dailyPlan.checkCrisis' => '3. Kriz rehberi',
+			'dailyPlan.checkCrisisDetail' => 'Zor anlarda sakinleştirme ve müdahale adımlarını önceden okuyun.',
 			'specialists.title' => 'Uzman Bulun',
 			'specialists.searchHint' => 'İsim veya uzmanlık arayın...',
 			'specialists.filterAll' => 'Tümü',
@@ -5962,6 +6236,8 @@ extension on Translations {
 			'appointments.typeFaceToFace' => 'Yüz Yüze',
 			'appointments.withChild' => ({required Object name}) => 'Çocuk: ${name}',
 			'appointments.dateLine' => ({required Object day, required Object month, required Object year, required Object time}) => '${day} ${month} ${year} · ${time}',
+			_ => null,
+		} ?? switch (path) {
 			'appointments.cancel' => 'İptal Et',
 			'appointments.confirm' => 'Onayla',
 			'appointments.complete' => 'Tamamla',
@@ -6028,8 +6304,6 @@ extension on Translations {
 			'routines.itemTitleLabel' => 'Adım Başlığı',
 			'routines.itemTitleHint' => 'Örn. Dişleri fırçala',
 			'routines.itemTimeLabel' => 'Saat (isteğe bağlı)',
-			_ => null,
-		} ?? switch (path) {
 			'routines.selectTime' => 'Saat seç',
 			'routines.itemIconLabel' => 'İkon',
 			'routines.itemSave' => 'Ekle',
@@ -6476,6 +6750,8 @@ extension on Translations {
 			'tasks.noteLabel' => 'Uzmana İletilecek Not',
 			'tasks.noteHint' => 'Çocuğunuz bu görevi yaparken nasıl hissetti? (Örn: Çok rahat tamamladı)',
 			'tasks.evidenceLabel' => 'Kanıt / Eklenti Bağlantısı (İsteğe Bağlı)',
+			_ => null,
+		} ?? switch (path) {
 			'tasks.evidenceHint' => 'Uzmanınızın görebilmesi için ilgili çalışma anının videosunu veya fotoğrafını bulut bağlantısı olarak ekleyebilirsiniz.',
 			'tasks.submitConfirm' => 'Teslim Et ve Kapat',
 			'tasks.viewWizard' => 'Sihirbaz',
@@ -6542,8 +6818,6 @@ extension on Translations {
 			'forum.searchHint' => 'Forumda ara…',
 			'forum.tagFilter' => 'Etiket filtresi',
 			'forum.sortNew' => 'Yeni',
-			_ => null,
-		} ?? switch (path) {
 			'forum.sortHot' => 'Sıcak',
 			'forum.sortUnanswered' => 'Cevapsız',
 			'forum.sortExpert' => 'Uzmanlı',
@@ -6990,6 +7264,8 @@ extension on Translations {
 			'guide.startExpertProfileDesc' => 'Unvan, uzmanlık alanları ve iletişim bilgilerinizi güncel tutun.',
 			'guide.pageHome' => 'Ana Sayfa',
 			'guide.pageHomePurpose' => 'Bugün yapılacakları, hatırlatmaları ve kısa günlük planı tek yerde gösterir.',
+			_ => null,
+		} ?? switch (path) {
 			'guide.pageHomeWhen' => 'Uygulamaya her girişte "bugün ne yapacağım?" diye bakmak istediğinizde.',
 			'guide.pageHomeKeywords' => 'ana sayfa, başlangıç, görev, bugün, panel',
 			'guide.pageTracker' => 'Günlük Takip',
@@ -7056,8 +7332,6 @@ extension on Translations {
 			'guide.pageRoutinesPurpose' => 'Günlük rutinleri adım adım, görsel olarak takip etmeye yardımcı olur.',
 			'guide.pageRoutinesWhen' => 'Sabah, okul, uyku veya geçiş rutinini görselleştirmek istediğinizde.',
 			'guide.pageRoutinesKeywords' => 'rutin, program, adım, görsel, geçiş',
-			_ => null,
-		} ?? switch (path) {
 			'guide.pageForum' => 'Topluluk Forumu',
 			'guide.pageForumPurpose' => 'Ebeveynlerin ve uzmanların soru sorup deneyimlerini paylaştığı ortak tartışma alanıdır.',
 			'guide.pageForumWhen' => 'Kafanıza takılan bir soruyu topluluğa danışmak istediğinizde.',

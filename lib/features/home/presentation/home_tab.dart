@@ -9,6 +9,7 @@ import '../../../core/widgets/user_avatar.dart';
 import '../../../i18n/strings.g.dart';
 import '../../appointments/data/appointment_repository.dart';
 import '../../appointments/domain/appointment.dart';
+import '../../auth/domain/app_user.dart';
 import '../../auth/presentation/auth_controller.dart';
 import '../../children/data/child_repository.dart';
 import '../../children/data/connection_repository.dart';
@@ -16,7 +17,10 @@ import '../../children/domain/child.dart';
 import '../../knowledge/data/knowledge_repository.dart';
 import '../../knowledge/domain/article.dart';
 import '../../knowledge/presentation/article_detail_screen.dart';
+import '../data/daily_plan_provider.dart';
+import 'widgets/daily_plan_card.dart';
 import 'widgets/section_header.dart';
+import 'widgets/start_checklist.dart';
 
 /// Ana Sayfa sekmesi — backend'den gerçek veri (çocuklar, randevular, makaleler).
 class HomeTab extends ConsumerWidget {
@@ -28,6 +32,8 @@ class HomeTab extends ConsumerWidget {
     final t = context.t;
     final text = Theme.of(context).textTheme;
     final name = user?.displayName ?? t.home.greetingFallback;
+    // Günlük plan ve başlangıç listesi veli akışıdır (web'de de rol bazlı).
+    final isParent = user?.role == UserRole.parent;
 
     return SafeArea(
       child: RefreshIndicator(
@@ -36,6 +42,7 @@ class HomeTab extends ConsumerWidget {
           ref.invalidate(appointmentsProvider);
           ref.invalidate(recommendedArticlesProvider);
           ref.invalidate(connectionRequestsProvider);
+          ref.invalidate(dailyPlanInputProvider);
         },
         child: ListView(
           padding: const EdgeInsets.fromLTRB(
@@ -50,6 +57,10 @@ class HomeTab extends ConsumerWidget {
             Text(t.home.subtitle, style: text.bodySmall),
             const SizedBox(height: AppSpacing.md),
             const _ExpertAccessBanner(),
+            if (isParent) ...[
+              const StartChecklist(),
+              const DailyPlanCard(),
+            ],
             const _QuickActions(),
             const SizedBox(height: AppSpacing.lg),
 

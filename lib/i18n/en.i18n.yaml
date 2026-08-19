@@ -354,6 +354,74 @@ home:
   quickPlan: Add a plan
   quickPlanDetail: Appointment, school, event
 
+dailyPlan:
+  title: What to do today?
+  subtitle: $count left · about $minutes min
+  subtitleDone: Today's tasks are done
+  coachLabel: Daily coach tip
+  durationMinutes: $count min
+  badgeNow: Do this now
+  badgeNext: Next
+  badgeSafety: Safety
+  badgeOptional: Optional
+  badgeDone: Done
+  allDoneTitle: Today's tasks are complete
+  allDoneDetail: The core records are in. With the time left you can look at the plan, the community or the knowledge base.
+  partMorning: this morning
+  partAfternoon: this afternoon
+  partEvening: this evening
+  coachNoChild: Today it is enough to create the child profile. The other sections make sense once the profile exists.
+  coachAllDone: Everything for $name is done today! You can move on to the plan or the knowledge base.
+  coachMedication: For $name it is best to finish the medication check $part; the remaining $count tasks are quicker.
+  coachNoMood: Start with a short daily log for $name — it makes $part feel complete.
+  coachEvent: There is a planned event for $name today; the remaining $count tasks can stay short.
+  coachProgress: $done done for $name, $count left. You are doing well!
+  coachPlan: Plan for $name $part - a short log, a calendar check and one note. About $minutes min in total.
+  taskDailyLog: Add today's short log
+  taskDailyLogDone: Update today's log
+  taskDailyLogDetail: Mark mood, sleep and medication in about a minute.
+  taskDailyLogDoneDetail: Mood is in; you can still add sleep, medication or a short note.
+  taskMedication: Finish the medication check
+  taskMedicationDetail: $count doses are not marked yet.
+  taskMessages: Reply to messages
+  taskMessagesDetail: You have $count unread messages.
+  taskExpertRequest: Answer the expert access request
+  taskExpertRequestDetail: $count experts are waiting for access to your child's data.
+  taskEventDetail: Today at $time
+  taskEventTomorrowDetail: Tomorrow at $time
+  taskCalendar: Plan the calendar
+  taskCalendarDetail: Add appointments, school or activities if you have any.
+  taskCalendarUpcoming: See the upcoming event
+  taskNotes: Add a short observation note
+  taskNotesDetail: Note something you noticed today.
+  taskNotesDone: Review your observation notes
+  taskNotesDoneDetail: $count notes so far — you can add a new one.
+  taskCommunity: Discover the community
+  taskCommunityDetail: See what families going through similar things are sharing.
+  taskCommunityDone: Follow the community areas
+  taskCommunityDoneDetail: There may be new posts in the weekly question, forum and meetups.
+  taskEmergency: Create the emergency card
+  taskEmergencyDetail: Keep critical medical details and emergency contacts on one card.
+  taskFirstChild: Create the first child profile
+  taskFirstChildDetail: Once the profile exists, the plan and tips adapt to your child.
+  taskGuide: See how the app is laid out
+  taskGuideDetail: Learn quickly what each section is for.
+  taskExperts: Discover expert support
+  taskExpertsDetail: You can browse expert profiles before booking anything.
+  startTitle: Quick start
+  startIntro: You do not have to finish everything on day one. The profile, a short log and the crisis guide are enough.
+  startProgress: $done/$total steps
+  startReady: $percent% ready
+  startDismiss: Dismiss the guide
+  checkTodo: To do
+  checkDone: Completed
+  checkChildProfile: 1. Child profile
+  checkChildProfileDetail: The plan, tracking and expert sharing adapt to the profile.
+  checkDailyLog: 2. First short log
+  checkDailyLogDetail: Data comes first; the daily plan makes sense after that log.
+  checkCrisis: 3. Crisis guide
+  checkCrisisDetail: Read the calming and intervention steps before a hard moment.
+
 specialists:
   title: Find a Specialist
   searchHint: Search by name or expertise...

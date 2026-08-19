@@ -355,6 +355,74 @@ home:
   quickPlan: Plan ekle
   quickPlanDetail: Randevu, okul, etkinlik
 
+dailyPlan:
+  title: Bugün ne yapalım?
+  subtitle: Kalan $count iş · yaklaşık $minutes dk
+  subtitleDone: Bugünün işleri tamam
+  coachLabel: Günlük koç önerisi
+  durationMinutes: $count dk
+  badgeNow: Şimdi bunu yap
+  badgeNext: Sonra
+  badgeSafety: Güvenlik
+  badgeOptional: İsteğe bağlı
+  badgeDone: Tamam
+  allDoneTitle: Bugünün işleri tamamlandı
+  allDoneDetail: Temel kayıtlar hazır. Kalan zamanda gelişim planına, topluluğa ya da bilgi bankasına göz atabilirsiniz.
+  partMorning: sabah
+  partAfternoon: öğleden sonra
+  partEvening: akşam
+  coachNoChild: Bugün yalnızca çocuk profilini oluşturmanız yeterli. Diğer bölümler profil sonrası anlam kazanır.
+  coachAllDone: $name için bugünkü tüm işler tamam! İsterseniz gelişim planına ya da bilgi bankasına geçebilirsiniz.
+  coachMedication: $name için $part önce ilaç kontrolünü bitirmek iyi olur; kalan $count iş daha kısa sürer.
+  coachNoMood: $name için önce kısa günlük kaydı girin — $part rutini tamamlanmış hissettiriyor.
+  coachEvent: $name için bugün planlı bir etkinlik var; kalan $count iş kısa tutulabilir.
+  coachProgress: $name için $done iş tamam, $count iş kaldı. İyi gidiyorsunuz!
+  coachPlan: '$name için $part planı: kısa kayıt, takvim kontrolü ve bir not. Hepsi yaklaşık $minutes dk.'
+  taskDailyLog: Bugünün kısa kaydını gir
+  taskDailyLogDone: Bugünün kaydını güncelle
+  taskDailyLogDetail: Ruh hali, uyku ve ilaç bilgisini bir dakikada işaretleyin.
+  taskDailyLogDoneDetail: Ruh hali girildi; uyku, ilaç veya kısa not ekleyebilirsiniz.
+  taskMedication: İlaç kontrolünü tamamla
+  taskMedicationDetail: $count doz henüz işaretlenmedi.
+  taskMessages: Mesajları yanıtla
+  taskMessagesDetail: $count okunmamış mesajınız var.
+  taskExpertRequest: Uzman erişim isteğini yanıtla
+  taskExpertRequestDetail: $count uzman çocuk verinize erişmek için onay bekliyor.
+  taskEventDetail: Bugün saat $time
+  taskEventTomorrowDetail: Yarın saat $time
+  taskCalendar: Takvimi planla
+  taskCalendarDetail: Randevu, okul veya etkinlik varsa ekleyin.
+  taskCalendarUpcoming: Yaklaşan etkinliği gör
+  taskNotes: Kısa gözlem notu ekle
+  taskNotesDetail: Bugün fark ettiğiniz bir şeyi not edin.
+  taskNotesDone: Gözlem notlarını gözden geçir
+  taskNotesDoneDetail: $count not mevcut — yenisini ekleyebilirsiniz.
+  taskCommunity: Topluluğu keşfet
+  taskCommunityDetail: Benzer süreçlerden geçen ailelerin paylaşımlarına bakın.
+  taskCommunityDone: Topluluk alanlarını takip et
+  taskCommunityDoneDetail: Haftanın sorusu, forum ve buluşmalarda yeni paylaşımlar olabilir.
+  taskEmergency: Acil Durum Kartı oluştur
+  taskEmergencyDetail: Kritik tıbbi bilgileri ve acil kişileri tek kartta hazır tutun.
+  taskFirstChild: İlk çocuk profilini oluştur
+  taskFirstChildDetail: Profil eklenince plan ve öneriler çocuğunuza göre kişileşir.
+  taskGuide: Uygulamanın kısa yolunu görün
+  taskGuideDetail: Hangi bölümün ne işe yaradığını hızlıca öğrenin.
+  taskExperts: Uzman desteğini keşfet
+  taskExpertsDetail: Randevu almadan önce uzman profillerini inceleyebilirsiniz.
+  startTitle: Hızlı başlangıç
+  startIntro: İlk gün her şeyi tamamlamanız gerekmiyor. Önce profil, kısa kayıt ve zor an rehberi yeterli.
+  startProgress: $done/$total adım
+  startReady: '%$percent hazır'
+  startDismiss: Rehberi kapat
+  checkTodo: Yapılacak
+  checkDone: Tamamlandı
+  checkChildProfile: 1. Çocuk profili
+  checkChildProfileDetail: Plan, takip ve uzman paylaşımı profil bilgisine göre kişileşir.
+  checkDailyLog: 2. İlk kısa kayıt
+  checkDailyLogDetail: Önce veri girilir; günlük plan bu kayıttan sonra anlam kazanır.
+  checkCrisis: 3. Kriz rehberi
+  checkCrisisDetail: Zor anlarda sakinleştirme ve müdahale adımlarını önceden okuyun.
+
 specialists:
   title: Uzman Bulun
   searchHint: İsim veya uzmanlık arayın...

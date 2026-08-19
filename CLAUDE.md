@@ -319,9 +319,23 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
   Ayarlar > Gizlilik altında kısayol. Uç noktalar PARENT'a kısıtlı.
 - ✅ **Ana sayfa:** dört hızlı eylem kısayolu (günlük kayıt, davranış notu,
   gözlem notu, plan ekle).
+- ✅ **Günlük plan + koç notu** (ana sayfa, web `todayTasks`/`dailyCoachNote`):
+  kural tabanlı "bugün ne yapalım" listesi — bekleyen doz ve bugün/yarın
+  etkinliği en acil, tamamlananlar sona; ilerleme yüzdesi, sıra rozetleri
+  (Şimdi bunu yap/Sonra/Güvenlik) ve yedi varyantlı koç notu. Girdiler
+  `data/daily_plan_provider.dart` içinde paralel toplanır (ruh hali,
+  ilaç dozları, takvim, notlar, okunmamış mesaj, uzman isteği, acil kart);
+  alt istekler tek tek yakalanır, biri düşerse plan yine çıkar. Kurallar saf
+  (`domain/daily_plan.dart`) ve `test/daily_plan_test.dart` ile korunur.
+  **Yeni kullanıcı kontrol listesi**: profil → ilk kısa kayıt → kriz rehberi;
+  kapatma cihazda saklanır (web `dashboard-onboarding-dismissed`). "Görüldü"
+  bilgisi için gerçek ziyaretler işaretlenir
+  (`core/storage/visited_routes.dart`, router dinleyicisi) — web yalnızca
+  rehberden tıklananları sayıyor. Web'den ayrım: bekleyen süre toplamı
+  gerçek dakikaları toplar (web "30 sn"yi 30 dakika sayıyor), duyusal profil
+  adımı yok (mobilde Tedavi Paneli > Araçlar altında).
 - ⏳ Sonraki adaylar: backend FCM deploy sonrası uçtan uca push testi;
-  gösterge panelindeki kural tabanlı "günlük koç notu" ve yeni kullanıcı
-  kontrol listesi; bilgi bankasında etiket (tag) filtresi.
+  bilgi bankasında etiket (tag) filtresi.
   Kapsam dışı: BEP oluşturucu + danışanlar EXPERT_ONLY; tarama anketi web'de
   YOK (`/tarama` → `/cocuklarim` redirect); admin paneli mobil hedefi değil;
   ilaç-davranış zaman çizelgesi (web'de yalnızca EXPERT_ONLY danışanlar
