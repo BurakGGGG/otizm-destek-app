@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 /// Ortam (environment) yapılandırması.
 ///
 /// Değerler derleme sırasında `--dart-define` (ya da hazır profillerle
@@ -40,10 +42,12 @@ class Env {
     defaultValue: '/ws',
   );
 
-  /// `true` ise ağ istekleri/cevapları loglanır (yalnızca geliştirme).
+  /// Ağ günlüğü. **Varsayılan yalnızca debug**: sürüm derlemesinde istek
+  /// gövdeleri (çocuk sağlık kaydı, şifre, acil kart) cihaz günlüğüne
+  /// düşmemeli. Gerekirse `--dart-define=ENABLE_NETWORK_LOGS=true` ile açılır.
   static const bool enableNetworkLogs = bool.fromEnvironment(
     'ENABLE_NETWORK_LOGS',
-    defaultValue: true,
+    defaultValue: kDebugMode,
   );
 
   /// Render ücretsiz katmanı soğuk başlatma yapabildiği için cömert timeout.

@@ -412,6 +412,10 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
 - **Renkler:** widget'lar `context.colors.X` (AppPalette) kullanır; sabit palet
   `lib/core/theme/app_colors.dart` (`AppPalette.light`/`dark`). Tema kurarken `AppColors`
   (sabit, açık) kullanılır. Yeni ekranlarda `AppColors.*` yerine `context.colors.*`.
+- **Ağ günlüğü:** `Env.enableNetworkLogs` varsayılanı **debug**'dır ve
+  günlükçü yalnızca yöntem + yol + durum kodu yazar. İstek gövdeleri (çocuk
+  sağlık kaydı, acil durum kartı, şifre) ve `Authorization` başlığı hiçbir
+  derlemede günlüğe düşmez (`test/network_logging_test.dart`).
 - Backend mutasyonları (POST/PUT/DELETE) canlı paylaşılan DB'yi kirletmemek için sözleşme
   bazında kaynaktan doğrulandı; canlı deneme kullanıcıya bırakıldı.
 - **Web/backend kaynağı:** parite çalışmasında `github.com/EnesKotay/otizm-destek-platformu`

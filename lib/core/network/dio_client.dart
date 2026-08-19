@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
 import '../config/env.dart';
 import '../storage/secure_storage.dart';
@@ -29,20 +30,42 @@ Dio buildDioClient({
   );
 
   if (Env.enableNetworkLogs) {
-    dio.interceptors.add(
-      LogInterceptor(
-        requestHeader: false,
-        requestBody: true,
-        responseBody: false,
-        logPrint: (o) => _log(o.toString()),
-      ),
-    );
+    // Gövde ve başlık loglanmaz: istek gövdeleri kişisel sağlık verisi ve
+    // şifre taşıyor, başlıklar Bearer token taşıyor. Yöntem + yol + durum
+    // kodu hata ayıklamak için yeterli.
+    dio.interceptors.add(_MinimalLogInterceptor());
   }
 
   return dio;
 }
 
+/// Yalnızca yöntem, yol ve sonuç bilgisini yazar (gövde/başlık yok).
+class _MinimalLogInterceptor extends Interceptor {
+  @override
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    _log('→ ${options.method} ${options.path}');
+    handler.next(options);
+  }
+
+  @override
+  void onResponse(Response<dynamic> response, ResponseInterceptorHandler handler) {
+    _log(
+      '← ${response.statusCode} '
+      '${response.requestOptions.method} ${response.requestOptions.path}',
+    );
+    handler.next(response);
+  }
+
+  @override
+  void onError(DioException err, ErrorInterceptorHandler handler) {
+    _log(
+      '✖ ${err.response?.statusCode ?? err.type.name} '
+      '${err.requestOptions.method} ${err.requestOptions.path}',
+    );
+    handler.next(err);
+  }
+}
+
 void _log(String message) {
-  // ignore: avoid_print
-  print('[DIO] $message');
+  debugPrint('[DIO] $message');
 }
