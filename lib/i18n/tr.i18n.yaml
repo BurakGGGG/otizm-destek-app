@@ -604,6 +604,30 @@ appointments:
   findExpert: Uzman bul
   today: Bugün
   tomorrow: Yarın
+  detailTitle: Randevu detayı
+  detailDuration: Süre
+  detailDurationValue: $count dk
+  detailExpert: Uzman
+  detailParent: Veli
+  detailChild: Çocuk
+  detailStatus: Durum
+  detailType: Tür
+  detailNote: Randevu notu
+  detailTopic: Görüşme konusu
+  detailPreSession: Görüşme öncesi paylaşılan not
+  detailSessionNote: Seans notu
+  detailSessionSummary: Görüşme özeti
+  detailFollowUp: Uzman önerileri
+  detailFollowUpTask: Takip görevi
+  detailRating: Değerlendirme
+  detailRatingValue: $rating / 5
+  detailCancelledBy: 'İptal eden: $who'
+  detailLateCancellation: Geç iptal
+  historyTitle: Durum geçmişi
+  historyEmpty: Henüz durum değişikliği kaydı yok.
+  historyChange: $from → $to
+  historyMeta: $name · $date
+  detailOpen: Detay
 
 expertDetail:
   bookAppointment: Randevu Al

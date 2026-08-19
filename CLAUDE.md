@@ -82,7 +82,12 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
   - **Çocuklarım:** `/api/children` CRUD (ekle/düzenle/sil).
   - **Randevular:** `/api/appointments` liste + iptal (veli) / onayla·tamamla (uzman);
     **randevu alma akışı** (müsaitlik slotları + `POST /appointments`);
-    **erteleme** (`PATCH /{id}/reschedule`, veli+uzman, müsaitlik slotlu).
+    **erteleme** (`PATCH /{id}/reschedule`, veli+uzman, müsaitlik slotlu);
+    **detay sayfası** (web "Randevu Detayı" penceresi birebir: süre, taraflar,
+    görüşme konusu/öncesi not/seans notu/özet/öneriler/takip görevi,
+    değerlendirme, görüşmeye katıl) + **durum geçmişi** zaman çizelgesi
+    (`GET /appointments/{id}/history`; kayıt yoksa ya da uç nokta hata verirse
+    web gibi sessizce boş gösterilir).
   - **Bilgi Bankası:** `/api/knowledge` liste + makale detayı (HTML→düz metin).
   - **Mesajlaşma:** REST geçmiş + **STOMP /ws** canlı; konuşma başlatma
     (`/messages/conversations/direct/{userId}`).

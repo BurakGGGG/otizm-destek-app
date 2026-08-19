@@ -899,6 +899,30 @@ class _Translations$appointments$en extends Translations$appointments$tr {
 	@override String get findExpert => 'Find an expert';
 	@override String get today => 'Today';
 	@override String get tomorrow => 'Tomorrow';
+	@override String get detailTitle => 'Appointment details';
+	@override String get detailDuration => 'Duration';
+	@override String detailDurationValue({required Object count}) => '${count} min';
+	@override String get detailExpert => 'Expert';
+	@override String get detailParent => 'Parent';
+	@override String get detailChild => 'Child';
+	@override String get detailStatus => 'Status';
+	@override String get detailType => 'Format';
+	@override String get detailNote => 'Appointment note';
+	@override String get detailTopic => 'Session topic';
+	@override String get detailPreSession => 'Note shared before the session';
+	@override String get detailSessionNote => 'Session note';
+	@override String get detailSessionSummary => 'Session summary';
+	@override String get detailFollowUp => 'Expert recommendations';
+	@override String get detailFollowUpTask => 'Follow-up task';
+	@override String get detailRating => 'Rating';
+	@override String detailRatingValue({required Object rating}) => '${rating} / 5';
+	@override String detailCancelledBy({required Object who}) => 'Cancelled by: ${who}';
+	@override String get detailLateCancellation => 'Late cancellation';
+	@override String get historyTitle => 'Status history';
+	@override String get historyEmpty => 'No status changes recorded yet.';
+	@override String historyChange({required Object from, required Object to}) => '${from} → ${to}';
+	@override String historyMeta({required Object name, required Object date}) => '${name} · ${date}';
+	@override String get detailOpen => 'Details';
 }
 
 // Path: expertDetail
@@ -2998,6 +3022,30 @@ extension on TranslationsEn {
 			'appointments.findExpert' => 'Find an expert',
 			'appointments.today' => 'Today',
 			'appointments.tomorrow' => 'Tomorrow',
+			'appointments.detailTitle' => 'Appointment details',
+			'appointments.detailDuration' => 'Duration',
+			'appointments.detailDurationValue' => ({required Object count}) => '${count} min',
+			'appointments.detailExpert' => 'Expert',
+			'appointments.detailParent' => 'Parent',
+			'appointments.detailChild' => 'Child',
+			'appointments.detailStatus' => 'Status',
+			'appointments.detailType' => 'Format',
+			'appointments.detailNote' => 'Appointment note',
+			'appointments.detailTopic' => 'Session topic',
+			'appointments.detailPreSession' => 'Note shared before the session',
+			'appointments.detailSessionNote' => 'Session note',
+			'appointments.detailSessionSummary' => 'Session summary',
+			'appointments.detailFollowUp' => 'Expert recommendations',
+			'appointments.detailFollowUpTask' => 'Follow-up task',
+			'appointments.detailRating' => 'Rating',
+			'appointments.detailRatingValue' => ({required Object rating}) => '${rating} / 5',
+			'appointments.detailCancelledBy' => ({required Object who}) => 'Cancelled by: ${who}',
+			'appointments.detailLateCancellation' => 'Late cancellation',
+			'appointments.historyTitle' => 'Status history',
+			'appointments.historyEmpty' => 'No status changes recorded yet.',
+			'appointments.historyChange' => ({required Object from, required Object to}) => '${from} → ${to}',
+			'appointments.historyMeta' => ({required Object name, required Object date}) => '${name} · ${date}',
+			'appointments.detailOpen' => 'Details',
 			'expertDetail.bookAppointment' => 'Book Appointment',
 			'expertDetail.sendMessage' => 'Send Message',
 			'expertDetail.specializationsTitle' => 'Specializations',
@@ -3450,6 +3498,8 @@ extension on TranslationsEn {
 			'treatment.sensorySaved' => 'Sensory profile updated.',
 			'treatment.sliderHeader' => 'Sensory Sensitivity Levels',
 			'treatment.sliderSound' => '🔊 Sound Sensitivity',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.sliderTouch' => '🖐️ Tactile Sensitivity',
 			'treatment.sliderVisual' => '👁️ Visual Sensitivity',
 			'treatment.metricSound' => 'Sound sensitivity',
@@ -3474,8 +3524,6 @@ extension on TranslationsEn {
 			'treatment.breathTitle' => 'Breathing Exercise',
 			'treatment.breathBody' => 'When your child feels overstimulated, use the breathing regulator in the Crisis Guide together.',
 			'treatment.breathOpen' => 'Open Breathing Exercise',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.aiStoryTitle' => 'Social Story with AI',
 			'treatment.aiStoryBody' => 'Ask the AI Assistant for a short custom social story draft for a new situation.',
 			'treatment.aiStoryOpen' => 'Open AI Assistant',
@@ -3964,6 +4012,8 @@ extension on TranslationsEn {
 			'errors.unexpectedResponse' => 'Unexpected server response.',
 			'errors.operationFailed' => 'Operation failed.',
 			'errors.noUserInResponse' => 'No user information in the server response.',
+			_ => null,
+		} ?? switch (path) {
 			'guide.title' => 'User Guide',
 			'guide.subtitle' => 'See your first steps, what each section does and the support channels — all in one place.',
 			'guide.searchHint' => 'Search for a section, topic or action…',
@@ -3988,8 +4038,6 @@ extension on TranslationsEn {
 			'guide.videoCategoryTracking' => 'Daily tracking',
 			'guide.videoCategoryPlan' => 'Plans and appointments',
 			'guide.videoCategoryCommunity' => 'Communication and community',
-			_ => null,
-		} ?? switch (path) {
 			'guide.videoCategorySupport' => 'Safety and support',
 			'guide.badgeDaily' => 'Every day',
 			'guide.badgeQuickLog' => 'Quick log',

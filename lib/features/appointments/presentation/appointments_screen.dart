@@ -14,6 +14,7 @@ import '../../auth/presentation/auth_controller.dart';
 import '../data/appointment_repository.dart';
 import '../domain/appointment.dart';
 import '../domain/expert_availability.dart';
+import 'widgets/appointment_detail_sheet.dart';
 import 'widgets/next_appointment_card.dart';
 
 /// Randevular — liste + rol bazlı aksiyonlar (`/api/appointments`).
@@ -422,7 +423,17 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
   }
 
   List<Widget> _actions(Translations t) {
-    final buttons = <Widget>[];
+    final buttons = <Widget>[
+      OutlinedButton.icon(
+        onPressed: () => showModalBottomSheet<void>(
+          context: context,
+          isScrollControlled: true,
+          builder: (_) => AppointmentDetailSheet(appointment: a),
+        ),
+        icon: const Icon(Icons.info_outline, size: 18),
+        label: Text(t.appointments.detailOpen),
+      ),
+    ];
     final kind = a.statusKind;
 
     // Ertele — veli ve uzman için, yaklaşan bekleyen/onaylı randevularda.
@@ -487,7 +498,6 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
       }
     }
 
-    if (buttons.isEmpty) return const [];
     // Temada dolgulu/çerçeveli butonların asgari genişliği sonsuz olduğu için
     // satır içindeki her buton Expanded ile sınırlanmalı (bkz. CLAUDE.md).
     return [

@@ -1973,6 +1973,78 @@ class Translations$appointments$tr {
 
 	/// tr: 'Yarın'
 	String get tomorrow => 'Yarın';
+
+	/// tr: 'Randevu detayı'
+	String get detailTitle => 'Randevu detayı';
+
+	/// tr: 'Süre'
+	String get detailDuration => 'Süre';
+
+	/// tr: '$count dk'
+	String detailDurationValue({required Object count}) => '${count} dk';
+
+	/// tr: 'Uzman'
+	String get detailExpert => 'Uzman';
+
+	/// tr: 'Veli'
+	String get detailParent => 'Veli';
+
+	/// tr: 'Çocuk'
+	String get detailChild => 'Çocuk';
+
+	/// tr: 'Durum'
+	String get detailStatus => 'Durum';
+
+	/// tr: 'Tür'
+	String get detailType => 'Tür';
+
+	/// tr: 'Randevu notu'
+	String get detailNote => 'Randevu notu';
+
+	/// tr: 'Görüşme konusu'
+	String get detailTopic => 'Görüşme konusu';
+
+	/// tr: 'Görüşme öncesi paylaşılan not'
+	String get detailPreSession => 'Görüşme öncesi paylaşılan not';
+
+	/// tr: 'Seans notu'
+	String get detailSessionNote => 'Seans notu';
+
+	/// tr: 'Görüşme özeti'
+	String get detailSessionSummary => 'Görüşme özeti';
+
+	/// tr: 'Uzman önerileri'
+	String get detailFollowUp => 'Uzman önerileri';
+
+	/// tr: 'Takip görevi'
+	String get detailFollowUpTask => 'Takip görevi';
+
+	/// tr: 'Değerlendirme'
+	String get detailRating => 'Değerlendirme';
+
+	/// tr: '$rating / 5'
+	String detailRatingValue({required Object rating}) => '${rating} / 5';
+
+	/// tr: 'İptal eden: $who'
+	String detailCancelledBy({required Object who}) => 'İptal eden: ${who}';
+
+	/// tr: 'Geç iptal'
+	String get detailLateCancellation => 'Geç iptal';
+
+	/// tr: 'Durum geçmişi'
+	String get historyTitle => 'Durum geçmişi';
+
+	/// tr: 'Henüz durum değişikliği kaydı yok.'
+	String get historyEmpty => 'Henüz durum değişikliği kaydı yok.';
+
+	/// tr: '$from → $to'
+	String historyChange({required Object from, required Object to}) => '${from} → ${to}';
+
+	/// tr: '$name · $date'
+	String historyMeta({required Object name, required Object date}) => '${name} · ${date}';
+
+	/// tr: 'Detay'
+	String get detailOpen => 'Detay';
 }
 
 // Path: expertDetail
@@ -6382,6 +6454,30 @@ extension on Translations {
 			'appointments.findExpert' => 'Uzman bul',
 			'appointments.today' => 'Bugün',
 			'appointments.tomorrow' => 'Yarın',
+			'appointments.detailTitle' => 'Randevu detayı',
+			'appointments.detailDuration' => 'Süre',
+			'appointments.detailDurationValue' => ({required Object count}) => '${count} dk',
+			'appointments.detailExpert' => 'Uzman',
+			'appointments.detailParent' => 'Veli',
+			'appointments.detailChild' => 'Çocuk',
+			'appointments.detailStatus' => 'Durum',
+			'appointments.detailType' => 'Tür',
+			'appointments.detailNote' => 'Randevu notu',
+			'appointments.detailTopic' => 'Görüşme konusu',
+			'appointments.detailPreSession' => 'Görüşme öncesi paylaşılan not',
+			'appointments.detailSessionNote' => 'Seans notu',
+			'appointments.detailSessionSummary' => 'Görüşme özeti',
+			'appointments.detailFollowUp' => 'Uzman önerileri',
+			'appointments.detailFollowUpTask' => 'Takip görevi',
+			'appointments.detailRating' => 'Değerlendirme',
+			'appointments.detailRatingValue' => ({required Object rating}) => '${rating} / 5',
+			'appointments.detailCancelledBy' => ({required Object who}) => 'İptal eden: ${who}',
+			'appointments.detailLateCancellation' => 'Geç iptal',
+			'appointments.historyTitle' => 'Durum geçmişi',
+			'appointments.historyEmpty' => 'Henüz durum değişikliği kaydı yok.',
+			'appointments.historyChange' => ({required Object from, required Object to}) => '${from} → ${to}',
+			'appointments.historyMeta' => ({required Object name, required Object date}) => '${name} · ${date}',
+			'appointments.detailOpen' => 'Detay',
 			'expertDetail.bookAppointment' => 'Randevu Al',
 			'expertDetail.sendMessage' => 'Mesaj Gönder',
 			'expertDetail.specializationsTitle' => 'Uzmanlık Alanları',
@@ -6834,6 +6930,8 @@ extension on Translations {
 			'treatment.sensorySaved' => 'Duyusal profil güncellendi.',
 			'treatment.sliderHeader' => 'Duyusal Hassasiyet Seviyeleri',
 			'treatment.sliderSound' => '🔊 Ses Hassasiyeti',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.sliderTouch' => '🖐️ Dokunsal Hassasiyet',
 			'treatment.sliderVisual' => '👁️ Görsel Hassasiyet',
 			'treatment.metricSound' => 'Ses hassasiyeti',
@@ -6858,8 +6956,6 @@ extension on Translations {
 			'treatment.breathTitle' => 'Nefes Alıştırması',
 			'treatment.breathBody' => 'Çocuğunuz aşırı uyarılmış hissettiğinde Kriz Rehberi\'ndeki nefes regülatörünü birlikte kullanın.',
 			'treatment.breathOpen' => 'Nefes Egzersizini Aç',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.aiStoryTitle' => 'AI ile Sosyal Hikâye',
 			'treatment.aiStoryBody' => 'Yeni bir durum için AI Asistan\'dan çocuğunuza özel kısa bir sosyal hikâye taslağı isteyin.',
 			'treatment.aiStoryOpen' => 'AI Asistan\'ı Aç',
@@ -7348,6 +7444,8 @@ extension on Translations {
 			'errors.unexpectedResponse' => 'Beklenmeyen sunucu yanıtı.',
 			'errors.operationFailed' => 'İşlem başarısız.',
 			'errors.noUserInResponse' => 'Sunucu yanıtında kullanıcı bilgisi yok.',
+			_ => null,
+		} ?? switch (path) {
 			'guide.title' => 'Kullanıcı Rehberi',
 			'guide.subtitle' => 'Rolünüze göre ilk adımları, sayfaların ne işe yaradığını ve destek kanallarını tek yerde görün.',
 			'guide.searchHint' => 'Sayfa, konu veya işlem ara…',
@@ -7372,8 +7470,6 @@ extension on Translations {
 			'guide.videoCategoryTracking' => 'Günlük Takip',
 			'guide.videoCategoryPlan' => 'Plan ve Randevu',
 			'guide.videoCategoryCommunity' => 'İletişim ve Topluluk',
-			_ => null,
-		} ?? switch (path) {
 			'guide.videoCategorySupport' => 'Güven ve Destek',
 			'guide.badgeDaily' => 'Her gün',
 			'guide.badgeQuickLog' => 'Kısa kayıt',

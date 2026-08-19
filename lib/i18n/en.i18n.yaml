@@ -603,6 +603,30 @@ appointments:
   findExpert: Find an expert
   today: Today
   tomorrow: Tomorrow
+  detailTitle: Appointment details
+  detailDuration: Duration
+  detailDurationValue: $count min
+  detailExpert: Expert
+  detailParent: Parent
+  detailChild: Child
+  detailStatus: Status
+  detailType: Format
+  detailNote: Appointment note
+  detailTopic: Session topic
+  detailPreSession: Note shared before the session
+  detailSessionNote: Session note
+  detailSessionSummary: Session summary
+  detailFollowUp: Expert recommendations
+  detailFollowUpTask: Follow-up task
+  detailRating: Rating
+  detailRatingValue: $rating / 5
+  detailCancelledBy: 'Cancelled by: $who'
+  detailLateCancellation: Late cancellation
+  historyTitle: Status history
+  historyEmpty: No status changes recorded yet.
+  historyChange: $from → $to
+  historyMeta: $name · $date
+  detailOpen: Details
 
 expertDetail:
   bookAppointment: Book Appointment
