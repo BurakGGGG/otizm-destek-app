@@ -13,6 +13,7 @@ import '../../../i18n/strings.g.dart';
 import '../../auth/presentation/auth_controller.dart';
 import '../data/messaging_repository.dart';
 import '../domain/message.dart';
+import '../domain/pecs_cards.dart';
 
 /// Sohbet thread ekranı — REST geçmiş + STOMP canlı mesajlar + REST gönderim.
 class ConversationThreadScreen extends ConsumerStatefulWidget {
@@ -40,6 +41,7 @@ class _ConversationThreadScreenState
   bool _loading = true;
   bool _error = false;
   bool _sending = false;
+  bool _showPecs = false;
   void Function()? _unsub;
 
   @override
@@ -67,6 +69,7 @@ class _ConversationThreadScreenState
       if (!mounted) return;
       setState(() => _loading = false);
       _scrollToBottom();
+      _markRead();
 
       // Canlı mesajlar için STOMP aboneliği.
       _unsub = await ref
@@ -78,6 +81,19 @@ class _ConversationThreadScreenState
         _loading = false;
         _error = true;
       });
+    }
+  }
+
+  /// Konuşmayı okundu işaretler ve listedeki rozeti tazeler. Hata kullanıcıya
+  /// gösterilmez: okuma bildirimi başarısız olsa da sohbet çalışmalı.
+  Future<void> _markRead() async {
+    try {
+      await ref
+          .read(messagingRepositoryProvider)
+          .markAsRead(widget.conversationId);
+      ref.invalidate(conversationsProvider);
+    } catch (_) {
+      // yok say
     }
   }
 
@@ -99,6 +115,13 @@ class _ConversationThreadScreenState
     if (!mounted) return;
     setState(() => _messages.add(m));
     _scrollToBottom();
+  }
+
+  /// PECS kartı: etiket metni mesaj olarak gönderilir (paylaşılan veri).
+  Future<void> _sendPecs(PecsCard card) async {
+    setState(() => _showPecs = false);
+    _input.text = card.label;
+    await _send();
   }
 
   void _scrollToBottom() {
@@ -145,11 +168,18 @@ class _ConversationThreadScreenState
       body: Column(
         children: [
           Expanded(child: _body(t, currentUserId)),
+          if (_showPecs)
+            _PecsPanel(
+              onSelect: _sendPecs,
+              onClose: () => setState(() => _showPecs = false),
+            ),
           _InputBar(
             controller: _input,
             enabled: !_sending,
             onSend: _send,
             hint: t.messages.inputHint,
+            pecsOpen: _showPecs,
+            onTogglePecs: () => setState(() => _showPecs = !_showPecs),
           ),
         ],
       ),
@@ -192,6 +222,8 @@ class _Bubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // İçerik bir PECS kartıysa emojisiyle birlikte gösterilir (web birebir).
+    final card = pecsCardForContent(message.content);
     final bg = mine ? context.colors.primary : context.colors.surfaceVariant;
     final fg = mine ? Colors.white : context.colors.textPrimary;
     return Align(
@@ -211,7 +243,19 @@ class _Bubble extends StatelessWidget {
             bottomRight: Radius.circular(mine ? 4 : AppRadius.lg),
           ),
         ),
-        child: Text(message.content, style: TextStyle(color: fg, height: 1.35)),
+        child: card == null
+            ? Text(message.content, style: TextStyle(color: fg, height: 1.35))
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(card.emoji, style: const TextStyle(fontSize: 34)),
+                  const SizedBox(height: 2),
+                  Text(
+                    card.label,
+                    style: TextStyle(color: fg, fontWeight: FontWeight.w600),
+                  ),
+                ],
+              ),
       ),
     );
   }
@@ -223,12 +267,16 @@ class _InputBar extends StatelessWidget {
     required this.enabled,
     required this.onSend,
     required this.hint,
+    required this.pecsOpen,
+    required this.onTogglePecs,
   });
 
   final TextEditingController controller;
   final bool enabled;
   final VoidCallback onSend;
   final String hint;
+  final bool pecsOpen;
+  final VoidCallback onTogglePecs;
 
   @override
   Widget build(BuildContext context) {
@@ -238,6 +286,17 @@ class _InputBar extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
         child: Row(
           children: [
+            IconButton(
+              tooltip: context.t.messages.pecsTitle,
+              onPressed: onTogglePecs,
+              icon: Text(
+                '🧸',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: pecsOpen ? context.colors.primary : null,
+                ),
+              ),
+            ),
             Expanded(
               child: TextField(
                 controller: controller,
@@ -264,6 +323,95 @@ class _InputBar extends StatelessWidget {
                 disabledBackgroundColor: context.colors.border,
               ),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// PECS kart galerisi — kategori başlıkları ve etiketler paylaşılan veridir.
+class _PecsPanel extends StatelessWidget {
+  const _PecsPanel({required this.onSelect, required this.onClose});
+
+  final ValueChanged<PecsCard> onSelect;
+  final VoidCallback onClose;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    final colors = context.colors;
+    final text = Theme.of(context).textTheme;
+
+    return Container(
+      constraints: const BoxConstraints(maxHeight: 260),
+      decoration: BoxDecoration(
+        color: colors.surface,
+        border: Border(top: BorderSide(color: colors.border)),
+      ),
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: Text(t.messages.pecsTitle, style: text.labelLarge),
+                ),
+                IconButton(
+                  onPressed: onClose,
+                  icon: const Icon(Icons.close, size: 18),
+                  visualDensity: VisualDensity.compact,
+                ),
+              ],
+            ),
+            for (final category in kPecsCategories) ...[
+              Text(
+                category,
+                style: text.labelSmall?.copyWith(color: colors.textSecondary),
+              ),
+              const SizedBox(height: 6),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  for (final card in pecsCardsOf(category))
+                    InkWell(
+                      borderRadius: BorderRadius.circular(AppRadius.md),
+                      onTap: () {
+                        Haptics.selection();
+                        onSelect(card);
+                      },
+                      child: Container(
+                        width: 78,
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        decoration: BoxDecoration(
+                          color: colors.surfaceVariant,
+                          borderRadius: BorderRadius.circular(AppRadius.md),
+                          border: Border.all(color: colors.border),
+                        ),
+                        child: Column(
+                          children: [
+                            Text(
+                              card.emoji,
+                              style: const TextStyle(fontSize: 24),
+                            ),
+                            const SizedBox(height: 2),
+                            Text(
+                              card.label,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: text.labelSmall,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+              const SizedBox(height: 10),
+            ],
           ],
         ),
       ),

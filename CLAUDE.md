@@ -90,7 +90,14 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
     web gibi sessizce boş gösterilir).
   - **Bilgi Bankası:** `/api/knowledge` liste + makale detayı (HTML→düz metin).
   - **Mesajlaşma:** REST geçmiş + **STOMP /ws** canlı; konuşma başlatma
-    (`/messages/conversations/direct/{userId}`).
+    (`/messages/conversations/direct/{userId}`); thread açılınca **okundu**
+    işaretleme (`POST /conversations/{id}/read` — okunmamış rozeti yalnızca
+    bununla sıfırlanıyordu, mobilde eksikti), **arşiv/sessize alma**
+    (`/archive`, `/mute`) ve liste süzgeçleri (Tümü/Okunmamış/Uzmanlar/
+    Gruplar/Arşiv — web `ConvFilter` birebir). **PECS görsel iletişim
+    kartları**: 12 kart, 3 kategori; kart gönderilince web'deki gibi
+    **etiket metni** mesaj olarak gider (paylaşılan veri, çevrilmez) ve
+    içerik eşleşen mesajlar emojisiyle çizilir.
   - **AI Asistan:** `/api/chatbot/stream` (SSE) streaming.
   - **Hesap:** `PUT /api/users/me` ile profil düzenleme.
   - **Bildirimler:** `/api/notifications` liste + okundu işaretleme; Ana Sayfa'da

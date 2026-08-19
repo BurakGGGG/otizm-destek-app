@@ -549,6 +549,20 @@ class _Translations$messages$en extends Translations$messages$tr {
 	@override String get noMessages => 'No messages yet. Send the first one.';
 	@override String get inputHint => 'Type a message...';
 	@override String get connecting => 'Connecting...';
+	@override String get pecsTitle => 'PECS picture cards';
+	@override String get filterAll => 'All';
+	@override String get filterUnread => 'Unread';
+	@override String get filterExperts => 'Experts';
+	@override String get filterGroups => 'Groups';
+	@override String get filterArchived => 'Archive';
+	@override String get emptyUnread => 'No unread messages.';
+	@override String get emptyExperts => 'No messages with experts yet.';
+	@override String get emptyGroups => 'You are not in a group yet.';
+	@override String get emptyArchived => 'The archive is empty. Archived chats appear here.';
+	@override String get archive => 'Archive';
+	@override String get unarchive => 'Unarchive';
+	@override String get mute => 'Mute';
+	@override String get unmute => 'Unmute';
 }
 
 // Path: home
@@ -2760,6 +2774,20 @@ extension on TranslationsEn {
 			'messages.noMessages' => 'No messages yet. Send the first one.',
 			'messages.inputHint' => 'Type a message...',
 			'messages.connecting' => 'Connecting...',
+			'messages.pecsTitle' => 'PECS picture cards',
+			'messages.filterAll' => 'All',
+			'messages.filterUnread' => 'Unread',
+			'messages.filterExperts' => 'Experts',
+			'messages.filterGroups' => 'Groups',
+			'messages.filterArchived' => 'Archive',
+			'messages.emptyUnread' => 'No unread messages.',
+			'messages.emptyExperts' => 'No messages with experts yet.',
+			'messages.emptyGroups' => 'You are not in a group yet.',
+			'messages.emptyArchived' => 'The archive is empty. Archived chats appear here.',
+			'messages.archive' => 'Archive',
+			'messages.unarchive' => 'Unarchive',
+			'messages.mute' => 'Mute',
+			'messages.unmute' => 'Unmute',
 			'home.notifications' => 'Notifications',
 			'home.assistant' => 'AI Assistant',
 			'home.messages' => 'Messages',
@@ -2970,6 +2998,8 @@ extension on TranslationsEn {
 			'knowledge.relatedTitle' => 'Related content',
 			'knowledge.commentsTitle' => ({required Object count}) => 'Comments (${count})',
 			'knowledge.noComments' => 'Be the first to comment.',
+			_ => null,
+		} ?? switch (path) {
 			'knowledge.commentHint' => 'Share your experience or ask a question…',
 			'knowledge.commentSend' => 'Post comment',
 			'knowledge.someone' => 'A family',
@@ -2984,8 +3014,6 @@ extension on TranslationsEn {
 			'appointments.upcoming' => 'Upcoming',
 			'appointments.past' => 'Past',
 			'appointments.statusPending' => 'Pending',
-			_ => null,
-		} ?? switch (path) {
 			'appointments.statusConfirmed' => 'Confirmed',
 			'appointments.statusCompleted' => 'Completed',
 			'appointments.statusCancelled' => 'Cancelled',
@@ -3484,6 +3512,8 @@ extension on TranslationsEn {
 			'treatment.storiesTitle' => 'Social Stories & Visual Flow',
 			'treatment.storiesSubtitle' => 'Short picture stories that answer "What will happen?" before an activity — they ease transitions.',
 			'treatment.customBadge' => 'Custom story',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.linkedGoalBadge' => ({required Object name}) => 'Linked goal: ${name}',
 			'treatment.addStoryTitle' => 'Add a Custom Social Story',
 			'treatment.storyTitleHint' => 'Story title (e.g. Going Shopping)',
@@ -3498,8 +3528,6 @@ extension on TranslationsEn {
 			'treatment.sensorySaved' => 'Sensory profile updated.',
 			'treatment.sliderHeader' => 'Sensory Sensitivity Levels',
 			'treatment.sliderSound' => '🔊 Sound Sensitivity',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.sliderTouch' => '🖐️ Tactile Sensitivity',
 			'treatment.sliderVisual' => '👁️ Visual Sensitivity',
 			'treatment.metricSound' => 'Sound sensitivity',
@@ -3998,6 +4026,8 @@ extension on TranslationsEn {
 			'help.contactTitle' => 'Contact',
 			'help.contactBody' => 'Reach us from within the app for any questions or suggestions.',
 			'help.version' => ({required Object version}) => 'Version ${version}',
+			_ => null,
+		} ?? switch (path) {
 			'profile.defaultUser' => 'User',
 			'profile.accountInfo' => 'Account Information',
 			'profile.myChildren' => 'My Children',
@@ -4012,8 +4042,6 @@ extension on TranslationsEn {
 			'errors.unexpectedResponse' => 'Unexpected server response.',
 			'errors.operationFailed' => 'Operation failed.',
 			'errors.noUserInResponse' => 'No user information in the server response.',
-			_ => null,
-		} ?? switch (path) {
 			'guide.title' => 'User Guide',
 			'guide.subtitle' => 'See your first steps, what each section does and the support channels — all in one place.',
 			'guide.searchHint' => 'Search for a section, topic or action…',

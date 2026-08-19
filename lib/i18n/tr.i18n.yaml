@@ -324,6 +324,20 @@ messages:
   noMessages: Henüz mesaj yok. İlk mesajı gönderin.
   inputHint: Mesaj yazın...
   connecting: Bağlanıyor...
+  pecsTitle: PECS görsel iletişim kartları
+  filterAll: Tümü
+  filterUnread: Okunmamış
+  filterExperts: Uzmanlar
+  filterGroups: Gruplar
+  filterArchived: Arşiv
+  emptyUnread: Okunmamış mesaj yok.
+  emptyExperts: Uzmanlarla mesajınız yok.
+  emptyGroups: Henüz bir gruba dahil değilsiniz.
+  emptyArchived: Arşiv boş. Arşivlenen konuşmalar burada görünür.
+  archive: Arşivle
+  unarchive: Arşivden çıkar
+  mute: Sessize al
+  unmute: Sesi aç
 
 home:
   notifications: Bildirimler

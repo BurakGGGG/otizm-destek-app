@@ -1103,6 +1103,48 @@ class Translations$messages$tr {
 
 	/// tr: 'Bağlanıyor...'
 	String get connecting => 'Bağlanıyor...';
+
+	/// tr: 'PECS görsel iletişim kartları'
+	String get pecsTitle => 'PECS görsel iletişim kartları';
+
+	/// tr: 'Tümü'
+	String get filterAll => 'Tümü';
+
+	/// tr: 'Okunmamış'
+	String get filterUnread => 'Okunmamış';
+
+	/// tr: 'Uzmanlar'
+	String get filterExperts => 'Uzmanlar';
+
+	/// tr: 'Gruplar'
+	String get filterGroups => 'Gruplar';
+
+	/// tr: 'Arşiv'
+	String get filterArchived => 'Arşiv';
+
+	/// tr: 'Okunmamış mesaj yok.'
+	String get emptyUnread => 'Okunmamış mesaj yok.';
+
+	/// tr: 'Uzmanlarla mesajınız yok.'
+	String get emptyExperts => 'Uzmanlarla mesajınız yok.';
+
+	/// tr: 'Henüz bir gruba dahil değilsiniz.'
+	String get emptyGroups => 'Henüz bir gruba dahil değilsiniz.';
+
+	/// tr: 'Arşiv boş. Arşivlenen konuşmalar burada görünür.'
+	String get emptyArchived => 'Arşiv boş. Arşivlenen konuşmalar burada görünür.';
+
+	/// tr: 'Arşivle'
+	String get archive => 'Arşivle';
+
+	/// tr: 'Arşivden çıkar'
+	String get unarchive => 'Arşivden çıkar';
+
+	/// tr: 'Sessize al'
+	String get mute => 'Sessize al';
+
+	/// tr: 'Sesi aç'
+	String get unmute => 'Sesi aç';
 }
 
 // Path: home
@@ -6192,6 +6234,20 @@ extension on Translations {
 			'messages.noMessages' => 'Henüz mesaj yok. İlk mesajı gönderin.',
 			'messages.inputHint' => 'Mesaj yazın...',
 			'messages.connecting' => 'Bağlanıyor...',
+			'messages.pecsTitle' => 'PECS görsel iletişim kartları',
+			'messages.filterAll' => 'Tümü',
+			'messages.filterUnread' => 'Okunmamış',
+			'messages.filterExperts' => 'Uzmanlar',
+			'messages.filterGroups' => 'Gruplar',
+			'messages.filterArchived' => 'Arşiv',
+			'messages.emptyUnread' => 'Okunmamış mesaj yok.',
+			'messages.emptyExperts' => 'Uzmanlarla mesajınız yok.',
+			'messages.emptyGroups' => 'Henüz bir gruba dahil değilsiniz.',
+			'messages.emptyArchived' => 'Arşiv boş. Arşivlenen konuşmalar burada görünür.',
+			'messages.archive' => 'Arşivle',
+			'messages.unarchive' => 'Arşivden çıkar',
+			'messages.mute' => 'Sessize al',
+			'messages.unmute' => 'Sesi aç',
 			'home.notifications' => 'Bildirimler',
 			'home.assistant' => 'AI Asistan',
 			'home.messages' => 'Mesajlar',
@@ -6402,6 +6458,8 @@ extension on Translations {
 			'knowledge.relatedTitle' => 'İlgili içerikler',
 			'knowledge.commentsTitle' => ({required Object count}) => 'Yorumlar (${count})',
 			'knowledge.noComments' => 'İlk yorumu siz yazın.',
+			_ => null,
+		} ?? switch (path) {
 			'knowledge.commentHint' => 'Deneyiminizi veya sorunuzu yazın…',
 			'knowledge.commentSend' => 'Yorumu gönder',
 			'knowledge.someone' => 'Bir aile',
@@ -6416,8 +6474,6 @@ extension on Translations {
 			'appointments.upcoming' => 'Yaklaşan',
 			'appointments.past' => 'Geçmiş',
 			'appointments.statusPending' => 'Onay Bekliyor',
-			_ => null,
-		} ?? switch (path) {
 			'appointments.statusConfirmed' => 'Onaylandı',
 			'appointments.statusCompleted' => 'Tamamlandı',
 			'appointments.statusCancelled' => 'İptal Edildi',
@@ -6916,6 +6972,8 @@ extension on Translations {
 			'treatment.storiesTitle' => 'Sosyal Hikâyeler ve Görsel Akış',
 			'treatment.storiesSubtitle' => 'Bir etkinliğe başlamadan önce çocuğunuza "Ne olacak?" sorusunu yanıtlayan kısa resimli hikâyeler — geçişleri kolaylaştırır.',
 			'treatment.customBadge' => 'Özel hikâye',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.linkedGoalBadge' => ({required Object name}) => 'Bağlı hedef: ${name}',
 			'treatment.addStoryTitle' => 'Özel Sosyal Hikâye Ekle',
 			'treatment.storyTitleHint' => 'Hikâye başlığı (örn: Alışverişe Gidiyorum)',
@@ -6930,8 +6988,6 @@ extension on Translations {
 			'treatment.sensorySaved' => 'Duyusal profil güncellendi.',
 			'treatment.sliderHeader' => 'Duyusal Hassasiyet Seviyeleri',
 			'treatment.sliderSound' => '🔊 Ses Hassasiyeti',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.sliderTouch' => '🖐️ Dokunsal Hassasiyet',
 			'treatment.sliderVisual' => '👁️ Görsel Hassasiyet',
 			'treatment.metricSound' => 'Ses hassasiyeti',
@@ -7430,6 +7486,8 @@ extension on Translations {
 			'help.contactTitle' => 'İletişim',
 			'help.contactBody' => 'Soru ve önerileriniz için uygulama içinden bize ulaşabilirsiniz.',
 			'help.version' => ({required Object version}) => 'Sürüm ${version}',
+			_ => null,
+		} ?? switch (path) {
 			'profile.defaultUser' => 'Kullanıcı',
 			'profile.accountInfo' => 'Hesap Bilgileri',
 			'profile.myChildren' => 'Çocuklarım',
@@ -7444,8 +7502,6 @@ extension on Translations {
 			'errors.unexpectedResponse' => 'Beklenmeyen sunucu yanıtı.',
 			'errors.operationFailed' => 'İşlem başarısız.',
 			'errors.noUserInResponse' => 'Sunucu yanıtında kullanıcı bilgisi yok.',
-			_ => null,
-		} ?? switch (path) {
 			'guide.title' => 'Kullanıcı Rehberi',
 			'guide.subtitle' => 'Rolünüze göre ilk adımları, sayfaların ne işe yaradığını ve destek kanallarını tek yerde görün.',
 			'guide.searchHint' => 'Sayfa, konu veya işlem ara…',

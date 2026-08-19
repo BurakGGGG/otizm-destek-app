@@ -323,6 +323,20 @@ messages:
   noMessages: No messages yet. Send the first one.
   inputHint: Type a message...
   connecting: Connecting...
+  pecsTitle: PECS picture cards
+  filterAll: All
+  filterUnread: Unread
+  filterExperts: Experts
+  filterGroups: Groups
+  filterArchived: Archive
+  emptyUnread: No unread messages.
+  emptyExperts: No messages with experts yet.
+  emptyGroups: You are not in a group yet.
+  emptyArchived: The archive is empty. Archived chats appear here.
+  archive: Archive
+  unarchive: Unarchive
+  mute: Mute
+  unmute: Unmute
 
 home:
   notifications: Notifications

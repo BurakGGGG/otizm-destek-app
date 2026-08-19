@@ -74,6 +74,41 @@ class MessagingRepository {
     }
   }
 
+  /// Konuşmayı okundu işaretle — `POST /conversations/{id}/read`.
+  /// Okunmamış sayacı yalnızca bu çağrıyla sıfırlanır (web de thread açılınca
+  /// çağırıyor).
+  Future<void> markAsRead(String conversationId) async {
+    try {
+      await _dio.post('/messages/conversations/$conversationId/read');
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Bildirimleri sessize al / aç — `POST /conversations/{id}/mute`.
+  Future<void> setMuted(String conversationId, bool muted) async {
+    try {
+      await _dio.post(
+        '/messages/conversations/$conversationId/mute',
+        data: {'muted': muted},
+      );
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Arşivle / arşivden çıkar — `POST /conversations/{id}/archive`.
+  Future<void> setArchived(String conversationId, bool archived) async {
+    try {
+      await _dio.post(
+        '/messages/conversations/$conversationId/archive',
+        data: {'archived': archived},
+      );
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
   Future<Message> sendMessage(String conversationId, String content) async {
     try {
       final res = await _dio.post(
