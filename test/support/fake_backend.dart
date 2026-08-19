@@ -1797,6 +1797,60 @@ List<ScreenShot> screenCatalog() => [
     '12-topluluk',
     () => const CommunityScreen(),
   ),
+  // --- Boş durumlar: veri yokken ekranların ne gösterdiği --------------
+  ScreenShot(
+    '63-ana-sayfa-bos',
+    () => const Scaffold(body: HomeTab()),
+    overrides: [
+      childrenProvider.overrideWith((ref) async => const <Child>[]),
+      appointmentsProvider.overrideWith((ref) async => const <Appointment>[]),
+      dailyPlanInputProvider.overrideWith(
+        (ref) async => DailyPlanInput(now: DateTime.now()),
+      ),
+    ],
+  ),
+  ScreenShot(
+    '64-notlarim-bos',
+    () => const NotesScreen(),
+    overrides: [
+      childrenProvider.overrideWith((ref) async => const <Child>[]),
+    ],
+  ),
+  ScreenShot(
+    '65-randevular-bos',
+    () => const AppointmentsScreen(),
+    overrides: [
+      appointmentsProvider.overrideWith((ref) async => const <Appointment>[]),
+    ],
+  ),
+  ScreenShot(
+    '66-mesajlar-bos',
+    () => const ConversationsScreen(),
+    overrides: [
+      conversationsProvider.overrideWith((ref) async => const <Conversation>[]),
+    ],
+  ),
+  ScreenShot(
+    '67-odevlerim-bos',
+    () => const TasksScreen(),
+    overrides: [
+      myTasksProvider.overrideWith((ref) async => const <ExpertTask>[]),
+    ],
+  ),
+  ScreenShot(
+    '68-uzmanlar-bos',
+    () => const Scaffold(body: SpecialistsTab()),
+    overrides: [
+      expertsProvider.overrideWith((ref) async => const <Expert>[]),
+    ],
+  ),
+  ScreenShot(
+    '69-gelisim-paneli-bos',
+    () => const AnalyticsScreen(),
+    overrides: [
+      childrenProvider.overrideWith((ref) async => const <Child>[]),
+    ],
+  ),
 ];
 
 
