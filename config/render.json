@@ -1,0 +1,5 @@
+{
+  "API_BASE_URL": "https://otizm-backend.onrender.com",
+  "WEB_BASE_URL": "https://otizm-destek-platformu.vercel.app",
+  "ENABLE_NETWORK_LOGS": true
+}

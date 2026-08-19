@@ -1,9 +1,14 @@
 /// Ortam (environment) yapılandırması.
 ///
-/// Değerler derleme sırasında `--dart-define` ile override edilebilir, ör:
-///   flutter run --dart-define=API_BASE_URL=https://otizm-backend.onrender.com
+/// Değerler derleme sırasında `--dart-define` (ya da hazır profillerle
+/// `--dart-define-from-file`) ile override edilebilir:
+///   flutter run --dart-define-from-file=config/render.json
+///   flutter run --dart-define-from-file=config/otizmdestek.json
 ///
-/// Varsayılanlar mevcut canlı backend'e işaret eder.
+/// Varsayılanlar bugün **canlı olan** dağıtıma işaret eder: API Render'daki
+/// instance (web PWA'nın da konuştuğu adres), paylaşılan bağlantılar ise
+/// Vercel'deki web dağıtımı. Özel alan adı (`otizmdestek.com`) DNS'te
+/// yayına girdiğinde `config/otizmdestek.json` profiliyle geçilir.
 class Env {
   const Env._();
 
@@ -19,11 +24,14 @@ class Env {
     defaultValue: '/api',
   );
 
-  /// Web platformunun genel adresi. Paylaşılan bağlantılar (ör. acil durum
-  /// kartı) alıcının tarayıcısında bu adreste açılır.
+  /// Web platformunun genel adresi. Paylaşılan bağlantılar (acil durum kartı)
+  /// ve rehber videoları alıcının tarayıcısında bu adreste açılır.
+  ///
+  /// Varsayılan, `apiBaseUrl` ile **aynı backend'e** bağlı olan canlı web
+  /// dağıtımıdır; böylece mobilden paylaşılan bağlantı aynı veriyi gösterir.
   static const String webBaseUrl = String.fromEnvironment(
     'WEB_BASE_URL',
-    defaultValue: 'https://otizmdestek.com',
+    defaultValue: 'https://otizm-destek-platformu.vercel.app',
   );
 
   /// STOMP/SockJS WebSocket yolu (gerçek zamanlı mesajlaşma).

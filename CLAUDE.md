@@ -47,6 +47,11 @@ flutter build apk --debug
 `flutterfire` CLI: `~/.pub-cache/bin` PATH'te olmalı. Yeniden yapılandırma:
 `flutterfire configure --project=otizm-destek-app --platforms=android,ios`.
 
+**Ortam profilleri** (`config/`, bkz. `config/README.md`):
+`flutter run --dart-define-from-file=config/render.json` (varsayılanla aynı:
+API Render, paylaşılan bağlantılar Vercel — web PWA de aynı backend'i kullanıyor)
+ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
+
 ## Durum / sonraki adımlar
 
 - ✅ Faz 1: iskelet, core katman, tema (Stitch "Serene Path"), router, Firebase yapılandırma
