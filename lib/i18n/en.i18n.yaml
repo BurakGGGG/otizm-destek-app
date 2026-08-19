@@ -342,6 +342,12 @@ messages:
   someone: Message
   attachPhoto: Attach a photo
   photoSent: Photo sent.
+  newChat: New chat
+  searchUserHint: Search by name…
+  searchUserHelp: Type at least two letters to start a chat.
+  searchUserEmpty: No matching users found.
+  searchInChat: Search in chat
+  searchNoResults: No messages match this search.
 
 home:
   notifications: Notifications

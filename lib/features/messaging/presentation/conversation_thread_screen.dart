@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -339,7 +340,21 @@ class _ConversationThreadScreenState
     final currentUserId = ref.watch(authControllerProvider).user?.id;
 
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title)),
+      appBar: AppBar(
+        title: Text(widget.title),
+        actions: [
+          IconButton(
+            tooltip: t.messages.searchInChat,
+            onPressed: () => showModalBottomSheet<void>(
+              context: context,
+              isScrollControlled: true,
+              builder: (_) =>
+                  _MessageSearchSheet(conversationId: widget.conversationId),
+            ),
+            icon: const Icon(Icons.search),
+          ),
+        ],
+      ),
       body: Column(
         children: [
           Expanded(child: _body(t, currentUserId)),
@@ -789,6 +804,151 @@ class _PecsPanel extends StatelessWidget {
               ),
               const SizedBox(height: 10),
             ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Sohbet içinde mesaj arama — `GET /conversations/{id}/search?q=`.
+/// Sonuca dokunmak listede o mesaja atlamaz (mesaj sayfalı geldiği için
+/// konum garanti edilemiyor); sonuç metni sayfada okunur.
+class _MessageSearchSheet extends ConsumerStatefulWidget {
+  const _MessageSearchSheet({required this.conversationId});
+
+  final String conversationId;
+
+  @override
+  ConsumerState<_MessageSearchSheet> createState() =>
+      _MessageSearchSheetState();
+}
+
+class _MessageSearchSheetState extends ConsumerState<_MessageSearchSheet> {
+  final _controller = TextEditingController();
+  Timer? _debounce;
+  List<Message> _results = const [];
+  bool _searching = false;
+  bool _searched = false;
+
+  @override
+  void dispose() {
+    _debounce?.cancel();
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _onChanged(String value) {
+    _debounce?.cancel();
+    _debounce = Timer(const Duration(milliseconds: 350), () => _search(value));
+  }
+
+  Future<void> _search(String value) async {
+    if (value.trim().isEmpty) {
+      setState(() {
+        _results = const [];
+        _searched = false;
+      });
+      return;
+    }
+    setState(() => _searching = true);
+    try {
+      final results = await ref
+          .read(messagingRepositoryProvider)
+          .searchMessages(widget.conversationId, value);
+      if (mounted) {
+        setState(() {
+          _results = results;
+          _searched = true;
+        });
+      }
+    } on ApiException catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(e.message)));
+      }
+    } finally {
+      if (mounted) setState(() => _searching = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    final text = Theme.of(context).textTheme;
+    return SafeArea(
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: AppSpacing.margin,
+          right: AppSpacing.margin,
+          top: AppSpacing.md,
+          bottom: MediaQuery.of(context).viewInsets.bottom + AppSpacing.md,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(t.messages.searchInChat, style: text.titleMedium),
+            const SizedBox(height: 12),
+            TextField(
+              controller: _controller,
+              autofocus: true,
+              onChanged: _onChanged,
+              decoration: InputDecoration(
+                hintText: t.messages.searchInChat,
+                prefixIcon: const Icon(Icons.search, size: 20),
+              ),
+            ),
+            const SizedBox(height: 12),
+            if (_searching)
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 16),
+                child: SizedBox(
+                  height: 20,
+                  width: 20,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                ),
+              )
+            else if (_results.isEmpty && _searched)
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: Text(
+                  t.messages.searchNoResults,
+                  style: text.labelSmall
+                      ?.copyWith(color: context.colors.textSecondary),
+                ),
+              )
+            else if (_results.isNotEmpty)
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxHeight: 340),
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  itemCount: _results.length,
+                  separatorBuilder: (_, _) => const Divider(height: 1),
+                  itemBuilder: (_, i) {
+                    final message = _results[i];
+                    final sent = message.sentAt?.toLocal();
+                    return ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(
+                        message.content,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      subtitle: Text(
+                        [
+                          if (message.senderName?.isNotEmpty ?? false)
+                            message.senderName!,
+                          if (sent != null)
+                            '${sent.day} ${t.common.monthsShort[sent.month - 1]}',
+                        ].join(' · '),
+                        style: text.labelSmall,
+                      ),
+                    );
+                  },
+                ),
+              ),
           ],
         ),
       ),

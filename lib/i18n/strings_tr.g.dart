@@ -1160,6 +1160,24 @@ class Translations$messages$tr {
 
 	/// tr: 'Fotoğraf gönderildi.'
 	String get photoSent => 'Fotoğraf gönderildi.';
+
+	/// tr: 'Yeni sohbet'
+	String get newChat => 'Yeni sohbet';
+
+	/// tr: 'İsimle arayın…'
+	String get searchUserHint => 'İsimle arayın…';
+
+	/// tr: 'Sohbet başlatmak için en az iki harf yazın.'
+	String get searchUserHelp => 'Sohbet başlatmak için en az iki harf yazın.';
+
+	/// tr: 'Eşleşen kullanıcı bulunamadı.'
+	String get searchUserEmpty => 'Eşleşen kullanıcı bulunamadı.';
+
+	/// tr: 'Sohbette ara'
+	String get searchInChat => 'Sohbette ara';
+
+	/// tr: 'Bu aramaya uyan mesaj yok.'
+	String get searchNoResults => 'Bu aramaya uyan mesaj yok.';
 }
 
 // Path: home
@@ -6268,6 +6286,12 @@ extension on Translations {
 			'messages.someone' => 'Mesaj',
 			'messages.attachPhoto' => 'Fotoğraf ekle',
 			'messages.photoSent' => 'Fotoğraf gönderildi.',
+			'messages.newChat' => 'Yeni sohbet',
+			'messages.searchUserHint' => 'İsimle arayın…',
+			'messages.searchUserHelp' => 'Sohbet başlatmak için en az iki harf yazın.',
+			'messages.searchUserEmpty' => 'Eşleşen kullanıcı bulunamadı.',
+			'messages.searchInChat' => 'Sohbette ara',
+			'messages.searchNoResults' => 'Bu aramaya uyan mesaj yok.',
 			'home.notifications' => 'Bildirimler',
 			'home.assistant' => 'AI Asistan',
 			'home.messages' => 'Mesajlar',
@@ -6467,14 +6491,14 @@ extension on Translations {
 			'knowledge.formatArticle' => 'Makale',
 			'knowledge.formatVideo' => 'Video',
 			'knowledge.formatPodcast' => 'Podcast',
+			_ => null,
+		} ?? switch (path) {
 			'knowledge.views' => ({required Object count}) => '${count} görüntülenme',
 			'knowledge.dateLine' => ({required Object day, required Object month, required Object year}) => '${day} ${month} ${year}',
 			'knowledge.videoLink' => 'Video bağlantısı',
 			'knowledge.podcastLink' => 'Podcast bağlantısı',
 			'knowledge.searchHint' => 'Makale, konu veya anahtar kelime ara…',
 			'knowledge.bookmarks' => 'Yer imlerim',
-			_ => null,
-		} ?? switch (path) {
 			'knowledge.bookmark' => 'Yer imi',
 			'knowledge.noBookmarks' => 'Henüz yer imine eklediğiniz içerik yok.',
 			'knowledge.relatedTitle' => 'İlgili içerikler',
@@ -6981,14 +7005,14 @@ extension on Translations {
 			'treatment.notifyDefaultMsg' => ({required Object game}) => '"${game}" aktivitesinde son zamanlarda zorlanıyor. Önerisi olan var mı?',
 			'treatment.notifyNoExpert' => 'Henüz mesajlaştığınız bir uzman yok. Önce bir uzmanla bağlantı kurmanız gerekiyor.',
 			'treatment.notifySeeExperts' => 'Uzmanları Görüntüle',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.notifySend' => 'Gönder',
 			'treatment.notifySent' => 'Uzmana bildirildi.',
 			'treatment.emptyGames' => 'Bu alanda henüz etkinlik önerilmiyor. Çocuğunuzun profil sayfasına terapi bilgisi eklediğinizde etkinlikler burada görünür.',
 			'treatment.historyTitle' => 'Oyun Geçmişi',
 			'treatment.historySubtitle' => 'Oynadığınız etkinliklerin geçmişi burada görünür.',
 			'treatment.historyCount' => ({required Object count}) => '${count} kayıt',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.historyEmpty' => 'Henüz oyun kaydı yok. İlk kayıt oluşturulduğunda geçmiş burada görünür.',
 			'treatment.challengingSummary' => ({required Object count}) => '💪 ${count} etkinlikte "Zorlandı" işaretlenmiş. Zorlanılan etkinlikleri tekrar denerken daha küçük adımlara bölmeyi ya da uzmanınıza bildirmeyi düşünebilirsiniz.',
 			'treatment.storiesTitle' => 'Sosyal Hikâyeler ve Görsel Akış',
@@ -7495,14 +7519,14 @@ extension on Translations {
 			'account.bioHint' => 'Deneyiminizi kısaca anlatın',
 			'account.save' => 'Kaydet',
 			'account.saved' => 'Profil güncellendi.',
+			_ => null,
+		} ?? switch (path) {
 			'account.errorFullName' => 'Ad soyad en az 2 karakter olmalıdır.',
 			'help.title' => 'Yardım & Hakkında',
 			'help.aboutTitle' => 'Otizm Destek Hakkında',
 			'help.aboutBody' => 'Otizm Destek; çocuğunuzun gelişimini takip etmenize, uzmanlarla iletişim kurmanıza ve randevu almanıza yardımcı olan bir mobil uygulamadır.',
 			'help.tipsTitle' => 'İpuçları',
 			'help.tip1' => 'Çocuklarınızı "Çocuklarım"dan ekleyin; hedef ve gelişim notlarını "Gelişim" sekmesinden takip edin.',
-			_ => null,
-		} ?? switch (path) {
 			'help.tip2' => '"Uzmanlar"dan bir uzman seçip randevu alabilir veya mesaj gönderebilirsiniz.',
 			'help.tip3' => 'AI Asistan\'a otizm ve çocuk gelişimi hakkında sorular sorabilirsiniz.',
 			'help.contactTitle' => 'İletişim',

@@ -568,6 +568,12 @@ class _Translations$messages$en extends Translations$messages$tr {
 	@override String get someone => 'Message';
 	@override String get attachPhoto => 'Attach a photo';
 	@override String get photoSent => 'Photo sent.';
+	@override String get newChat => 'New chat';
+	@override String get searchUserHint => 'Search by name…';
+	@override String get searchUserHelp => 'Type at least two letters to start a chat.';
+	@override String get searchUserEmpty => 'No matching users found.';
+	@override String get searchInChat => 'Search in chat';
+	@override String get searchNoResults => 'No messages match this search.';
 }
 
 // Path: home
@@ -2798,6 +2804,12 @@ extension on TranslationsEn {
 			'messages.someone' => 'Message',
 			'messages.attachPhoto' => 'Attach a photo',
 			'messages.photoSent' => 'Photo sent.',
+			'messages.newChat' => 'New chat',
+			'messages.searchUserHint' => 'Search by name…',
+			'messages.searchUserHelp' => 'Type at least two letters to start a chat.',
+			'messages.searchUserEmpty' => 'No matching users found.',
+			'messages.searchInChat' => 'Search in chat',
+			'messages.searchNoResults' => 'No messages match this search.',
 			'home.notifications' => 'Notifications',
 			'home.assistant' => 'AI Assistant',
 			'home.messages' => 'Messages',
@@ -2997,14 +3009,14 @@ extension on TranslationsEn {
 			'knowledge.formatArticle' => 'Article',
 			'knowledge.formatVideo' => 'Video',
 			'knowledge.formatPodcast' => 'Podcast',
+			_ => null,
+		} ?? switch (path) {
 			'knowledge.views' => ({required Object count}) => '${count} views',
 			'knowledge.dateLine' => ({required Object day, required Object month, required Object year}) => '${day} ${month} ${year}',
 			'knowledge.videoLink' => 'Video link',
 			'knowledge.podcastLink' => 'Podcast link',
 			'knowledge.searchHint' => 'Search articles, topics or keywords…',
 			'knowledge.bookmarks' => 'My bookmarks',
-			_ => null,
-		} ?? switch (path) {
 			'knowledge.bookmark' => 'Bookmark',
 			'knowledge.noBookmarks' => 'You have not bookmarked anything yet.',
 			'knowledge.relatedTitle' => 'Related content',
@@ -3511,14 +3523,14 @@ extension on TranslationsEn {
 			'treatment.notifyDefaultMsg' => ({required Object game}) => '"${game}" aktivitesinde son zamanlarda zorlanıyor. Önerisi olan var mı?',
 			'treatment.notifyNoExpert' => 'You haven\'t messaged an expert yet. Connect with an expert first.',
 			'treatment.notifySeeExperts' => 'View Experts',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.notifySend' => 'Send',
 			'treatment.notifySent' => 'Expert notified.',
 			'treatment.emptyGames' => 'No activities suggested for this area yet. They appear once therapy info is added to your child\'s profile.',
 			'treatment.historyTitle' => 'Game History',
 			'treatment.historySubtitle' => 'The history of played activities appears here.',
 			'treatment.historyCount' => ({required Object count}) => '${count} records',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.historyEmpty' => 'No game records yet. History appears after the first record.',
 			'treatment.challengingSummary' => ({required Object count}) => '💪 "Struggled" was marked in ${count} activities. Consider breaking them into smaller steps or notifying your expert when retrying.',
 			'treatment.storiesTitle' => 'Social Stories & Visual Flow',
@@ -4025,14 +4037,14 @@ extension on TranslationsEn {
 			'account.bioHint' => 'Briefly describe your experience',
 			'account.save' => 'Save',
 			'account.saved' => 'Profile updated.',
+			_ => null,
+		} ?? switch (path) {
 			'account.errorFullName' => 'Full name must be at least 2 characters.',
 			'help.title' => 'Help & About',
 			'help.aboutTitle' => 'About Otizm Destek',
 			'help.aboutBody' => 'Otizm Destek is a mobile app that helps you track your child\'s development, connect with experts, and book appointments.',
 			'help.tipsTitle' => 'Tips',
 			'help.tip1' => 'Add your children under "My Children"; track goals and notes in the "Progress" tab.',
-			_ => null,
-		} ?? switch (path) {
 			'help.tip2' => 'Pick an expert under "Experts" to book an appointment or send a message.',
 			'help.tip3' => 'Ask the AI Assistant questions about autism and child development.',
 			'help.contactTitle' => 'Contact',

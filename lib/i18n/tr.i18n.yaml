@@ -343,6 +343,12 @@ messages:
   someone: Mesaj
   attachPhoto: Fotoğraf ekle
   photoSent: Fotoğraf gönderildi.
+  newChat: Yeni sohbet
+  searchUserHint: İsimle arayın…
+  searchUserHelp: Sohbet başlatmak için en az iki harf yazın.
+  searchUserEmpty: Eşleşen kullanıcı bulunamadı.
+  searchInChat: Sohbette ara
+  searchNoResults: Bu aramaya uyan mesaj yok.
 
 home:
   notifications: Bildirimler

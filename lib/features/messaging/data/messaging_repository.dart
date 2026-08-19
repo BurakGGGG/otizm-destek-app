@@ -74,6 +74,47 @@ class MessagingRepository {
     }
   }
 
+  /// Konuşma içinde mesaj arar — `GET /conversations/{id}/search?q=`.
+  Future<List<Message>> searchMessages(
+    String conversationId,
+    String query, {
+    int page = 0,
+    int size = 50,
+  }) async {
+    try {
+      final res = await _dio.get(
+        '/messages/conversations/$conversationId/search',
+        queryParameters: {'q': query.trim(), 'page': page, 'size': size},
+      );
+      final data = ApiEnvelope.fromJson(res.data).requireMap();
+      final content = data['content'];
+      if (content is! List) return const [];
+      return content
+          .whereType<Map<String, dynamic>>()
+          .map(Message.fromJson)
+          .toList();
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Sohbet başlatmak için kullanıcı arar — `GET /users/search?q=`.
+  /// Backend iki karakterden kısa sorgularda boş liste döner.
+  Future<List<Participant>> searchUsers(String query) async {
+    final q = query.trim();
+    if (q.length < 2) return const [];
+    try {
+      final res = await _dio.get('/users/search', queryParameters: {'q': q});
+      return ApiEnvelope.fromJson(res.data)
+          .requireList()
+          .whereType<Map<String, dynamic>>()
+          .map(Participant.fromJson)
+          .toList();
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
   /// Konuşmayı okundu işaretle — `POST /conversations/{id}/read`.
   /// Okunmamış sayacı yalnızca bu çağrıyla sıfırlanır (web de thread açılınca
   /// çağırıyor).

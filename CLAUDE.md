@@ -105,6 +105,9 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
     `IMAGE` mesajı). Ek dosyalar `GET /api/upload/**` kimlik doğrulaması
     istediği için tarayıcıda açılamıyor: dosya Bearer'lı indirilip paylaşım
     sayfasına veriliyor (web same-origin çerezle doğrudan açıyor).
+    **Yeni sohbet** (`GET /users/search?q=`, en az iki harf) ve **sohbet içi
+    arama** (`GET /conversations/{id}/search`). Arama sonucuna dokunmak
+    mesaja atlamıyor (geçmiş sayfalı geldiği için konum garanti edilemiyor).
   - **AI Asistan:** `/api/chatbot/stream` (SSE) streaming.
   - **Hesap:** `PUT /api/users/me` ile profil düzenleme.
   - **Bildirimler:** `/api/notifications` liste + okundu işaretleme; Ana Sayfa'da

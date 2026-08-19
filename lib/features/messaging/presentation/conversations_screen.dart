@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -57,6 +59,11 @@ class _ConversationsScreenState extends ConsumerState<ConversationsScreen> {
 
     return Scaffold(
       appBar: AppBar(title: Text(t.messages.title)),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => _openNewChat(context, ref),
+        icon: const Icon(Icons.edit_outlined),
+        label: Text(t.messages.newChat),
+      ),
       body: async.when(
         loading: () => const SkeletonList(count: 7),
         error: (e, _) =>
@@ -263,6 +270,165 @@ class _ConversationTile extends ConsumerWidget {
       ),
       onTap: () =>
           context.push('/messages/thread', extra: {'id': c.id, 'title': title}),
+    );
+  }
+}
+
+/// Yeni sohbet: kullanıcı ara (`GET /users/search`) → doğrudan konuşma aç.
+Future<void> _openNewChat(BuildContext context, WidgetRef ref) async {
+  await showModalBottomSheet<void>(
+    context: context,
+    isScrollControlled: true,
+    builder: (_) => const _NewChatSheet(),
+  );
+}
+
+class _NewChatSheet extends ConsumerStatefulWidget {
+  const _NewChatSheet();
+
+  @override
+  ConsumerState<_NewChatSheet> createState() => _NewChatSheetState();
+}
+
+class _NewChatSheetState extends ConsumerState<_NewChatSheet> {
+  final _controller = TextEditingController();
+  Timer? _debounce;
+  List<Participant> _results = const [];
+  bool _searching = false;
+  bool _opening = false;
+
+  @override
+  void dispose() {
+    _debounce?.cancel();
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _onChanged(String value) {
+    _debounce?.cancel();
+    _debounce = Timer(const Duration(milliseconds: 350), () => _search(value));
+  }
+
+  Future<void> _search(String value) async {
+    if (value.trim().length < 2) {
+      setState(() => _results = const []);
+      return;
+    }
+    setState(() => _searching = true);
+    try {
+      final users =
+          await ref.read(messagingRepositoryProvider).searchUsers(value);
+      if (mounted) setState(() => _results = users);
+    } on ApiException catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(e.message)));
+      }
+    } finally {
+      if (mounted) setState(() => _searching = false);
+    }
+  }
+
+  Future<void> _open(Participant user) async {
+    if (_opening) return;
+    setState(() => _opening = true);
+    final navigator = Navigator.of(context);
+    final router = GoRouter.of(context);
+    final messenger = ScaffoldMessenger.of(context);
+    try {
+      final conversation = await ref
+          .read(messagingRepositoryProvider)
+          .getOrCreateDirect(user.id);
+      ref.invalidate(conversationsProvider);
+      navigator.pop();
+      router.push(
+        '/messages/thread',
+        extra: {'id': conversation.id, 'title': user.fullName},
+      );
+    } on ApiException catch (e) {
+      messenger.showSnackBar(SnackBar(content: Text(e.message)));
+    } finally {
+      if (mounted) setState(() => _opening = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    final text = Theme.of(context).textTheme;
+    return SafeArea(
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: AppSpacing.margin,
+          right: AppSpacing.margin,
+          top: AppSpacing.md,
+          bottom: MediaQuery.of(context).viewInsets.bottom + AppSpacing.md,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(t.messages.newChat, style: text.titleMedium),
+            const SizedBox(height: 12),
+            TextField(
+              controller: _controller,
+              autofocus: true,
+              onChanged: _onChanged,
+              decoration: InputDecoration(
+                hintText: t.messages.searchUserHint,
+                prefixIcon: const Icon(Icons.search, size: 20),
+              ),
+            ),
+            const SizedBox(height: 12),
+            if (_searching)
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 16),
+                child: SizedBox(
+                  height: 20,
+                  width: 20,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                ),
+              )
+            else if (_results.isEmpty)
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: Text(
+                  _controller.text.trim().length < 2
+                      ? t.messages.searchUserHelp
+                      : t.messages.searchUserEmpty,
+                  style: text.labelSmall
+                      ?.copyWith(color: context.colors.textSecondary),
+                ),
+              )
+            else
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxHeight: 320),
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  itemCount: _results.length,
+                  separatorBuilder: (_, _) => const Divider(height: 1),
+                  itemBuilder: (_, i) {
+                    final user = _results[i];
+                    return ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      leading: UserAvatar(
+                        name: user.fullName,
+                        imageUrl: user.profileImageUrl,
+                        radius: 20,
+                      ),
+                      title: Text(user.fullName),
+                      subtitle: user.role == 'EXPERT'
+                          ? Text(t.knowledge.expertBadge)
+                          : null,
+                      onTap: _opening ? null : () => _open(user),
+                    );
+                  },
+                ),
+              ),
+          ],
+        ),
+      ),
     );
   }
 }
