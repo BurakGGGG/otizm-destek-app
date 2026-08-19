@@ -304,9 +304,11 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
   uyarı şeridi (+ `/legal/medical`), "ilk kural" hatırlatması, kriz sonrası
   kontrol listesi.
 - ✅ **Bilgi bankası:** `/knowledge/search` ile arama + kategori
-  (`kKnowledgeCategories`, veri) + içerik türü filtresi, sayfalama, yer imleri
-  (`/bookmarks`, `POST /{id}/bookmark`), ilgili içerikler, yorumlar (okuma +
-  yazma), makaleyi sesli dinleme. Yorumun "deneyim" alanları gönderilmiyor:
+  (`kKnowledgeCategories`, veri) + içerik türü + **semptom etiketi** filtresi
+  (çoklu seçim; `tagIds` web gibi virgülle birleşik tek parametre gider),
+  sayfalama, yer imleri (`/bookmarks`, `POST /{id}/bookmark`), ilgili
+  içerikler, yorumlar (okuma + yazma), makaleyi sesli dinleme. Makale
+  kartlarında etiket rozetleri. Yorumun "deneyim" alanları gönderilmiyor:
   backend DTO'sunda `isExperience` Jackson'a `experience` adıyla açıldığı için
   web'in gönderdiği bayrak sunucuda karşılık bulmuyor (gelen kayıtta iki
   anahtar da okunur).
@@ -334,8 +336,7 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
   rehberden tıklananları sayıyor. Web'den ayrım: bekleyen süre toplamı
   gerçek dakikaları toplar (web "30 sn"yi 30 dakika sayıyor), duyusal profil
   adımı yok (mobilde Tedavi Paneli > Araçlar altında).
-- ⏳ Sonraki adaylar: backend FCM deploy sonrası uçtan uca push testi;
-  bilgi bankasında etiket (tag) filtresi.
+- ⏳ Sonraki adaylar: backend FCM deploy sonrası uçtan uca push testi.
   Kapsam dışı: BEP oluşturucu + danışanlar EXPERT_ONLY; tarama anketi web'de
   YOK (`/tarama` → `/cocuklarim` redirect); admin paneli mobil hedefi değil;
   ilaç-davranış zaman çizelgesi (web'de yalnızca EXPERT_ONLY danışanlar
@@ -354,6 +355,11 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
 - **Web/backend kaynağı:** parite çalışmasında `github.com/EnesKotay/otizm-destek-platformu`
   deposu (frontend/ + backend/) referans alınır; sözleşmeler tahmin edilmez,
   ilgili controller/servis okunur.
+- **Semptom etiketleri** (`/api/tags`) forum, çocuk profili, ilk kurulum ve
+  bilgi bankasında ortaktır: model `features/tags/domain/symptom_tag.dart`,
+  sağlayıcılar `symptomTagsGroupedProvider` / `symptomTagsProvider` (düz liste
+  gruplu yanıttan türetilir — web'in ayrıca yaptığı `GET /tags` çağrısı
+  mobilde yok).
 - **Paylaşılan veri vs. arayüz metni:** backend'e yazılan ya da web'in okuduğu
   metinler (etiket adları, kategori değerleri, onboarding seçenekleri, yasal
   metinler) çevrilmez — i18n yalnızca arayüz metinleri içindir.

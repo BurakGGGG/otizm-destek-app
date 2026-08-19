@@ -12,7 +12,6 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/widgets/skeleton.dart';
 import '../../../i18n/strings.g.dart';
-import '../../forum/data/forum_repository.dart';
 import '../data/child_repository.dart';
 import '../data/milestone_repository.dart';
 import '../data/screening_repository.dart';
@@ -20,6 +19,7 @@ import '../domain/child.dart';
 import '../domain/milestone.dart';
 import 'child_form_screen.dart';
 import 'widgets/milestone_sheet.dart';
+import '../../tags/data/tag_repository.dart';
 
 /// Tarama risk kodunun i18n etiketi + rengi.
 ({String label, Color color}) screeningRisk(
@@ -686,7 +686,7 @@ class _TagEditSheetState extends ConsumerState<_TagEditSheet> {
     final t = context.t;
     final colors = context.colors;
     final text = Theme.of(context).textTheme;
-    final tagsAsync = ref.watch(forumTagsProvider);
+    final tagsAsync = ref.watch(symptomTagsGroupedProvider);
 
     return Padding(
       padding: EdgeInsets.only(

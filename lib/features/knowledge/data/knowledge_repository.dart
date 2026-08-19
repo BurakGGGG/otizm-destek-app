@@ -12,7 +12,12 @@ typedef ArticlePage = ({List<Article> items, bool hasMore});
 
 /// Bilgi bankası araması — web `knowledgeService.search` parametreleri birebir.
 class ArticleQuery {
-  const ArticleQuery({this.text = '', this.category, this.format});
+  const ArticleQuery({
+    this.text = '',
+    this.category,
+    this.format,
+    this.tagIds = const [],
+  });
 
   /// Serbest arama (`q`).
   final String text;
@@ -23,14 +28,22 @@ class ArticleQuery {
   /// TEXT | VIDEO | PODCAST (web `TYPE_TO_FORMAT`).
   final String? format;
 
+  /// Seçili semptom etiketleri (`/api/tags`). Sunucuya web ile birebir
+  /// virgülle birleştirilmiş tek parametre olarak gider.
+  final List<String> tagIds;
+
   bool get isEmpty =>
-      text.trim().isEmpty && category == null && format == null;
+      text.trim().isEmpty &&
+      category == null &&
+      format == null &&
+      tagIds.isEmpty;
 
   Map<String, dynamic> toQueryParameters({required int page, int size = 12}) {
     return {
       if (text.trim().isNotEmpty) 'q': text.trim(),
       if (category != null) 'category': category,
       if (format != null) 'format': format,
+      if (tagIds.isNotEmpty) 'tagIds': tagIds.join(','),
       'page': page,
       'size': size,
     };
@@ -40,6 +53,7 @@ class ArticleQuery {
     String? text,
     String? category,
     String? format,
+    List<String>? tagIds,
     bool clearCategory = false,
     bool clearFormat = false,
   }) {
@@ -47,6 +61,16 @@ class ArticleQuery {
       text: text ?? this.text,
       category: clearCategory ? null : (category ?? this.category),
       format: clearFormat ? null : (format ?? this.format),
+      tagIds: tagIds ?? this.tagIds,
+    );
+  }
+
+  /// Etiketi seçer/kaldırır (web'deki çoklu seçim davranışı).
+  ArticleQuery toggleTag(String tagId) {
+    return copyWith(
+      tagIds: tagIds.contains(tagId)
+          ? [for (final id in tagIds) if (id != tagId) id]
+          : [...tagIds, tagId],
     );
   }
 
@@ -55,10 +79,13 @@ class ArticleQuery {
       other is ArticleQuery &&
       other.text == text &&
       other.category == category &&
-      other.format == format;
+      other.format == format &&
+      other.tagIds.length == tagIds.length &&
+      other.tagIds.every(tagIds.contains);
 
   @override
-  int get hashCode => Object.hash(text, category, format);
+  int get hashCode =>
+      Object.hash(text, category, format, Object.hashAllUnordered(tagIds));
 }
 
 /// `/api/knowledge` uç noktalarını saran depo: yayınlanmış makaleler, arama,

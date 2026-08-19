@@ -554,6 +554,9 @@ knowledge:
   expertBadge: Uzman
   triedFor: 'Deneme süresi: $duration'
   effectiveness: 'Etkililik: $rating/5'
+  tagFilterTitle: Etiketlere göre daralt
+  tagFilterClear: Etiketleri temizle
+  tagFilterCount: $count etiket seçili
 
 appointments:
   title: Randevular

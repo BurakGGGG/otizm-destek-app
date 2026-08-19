@@ -10,6 +10,7 @@ import '../../../core/widgets/skeleton.dart';
 import '../../../i18n/strings.g.dart';
 import '../data/knowledge_repository.dart';
 import '../domain/article.dart';
+import '../../tags/data/tag_repository.dart';
 import '../domain/knowledge_categories.dart';
 import 'article_detail_screen.dart';
 import 'article_list_controller.dart';
@@ -115,6 +116,14 @@ class _KnowledgeScreenState extends ConsumerState<KnowledgeScreen> {
                 category == null
                     ? query.copyWith(clearCategory: true)
                     : query.copyWith(category: category),
+              ),
+            ),
+            _TagBar(
+              selected: query.tagIds,
+              onToggle: (tagId) =>
+                  controller.setQuery(query.toggleTag(tagId)),
+              onClear: () => controller.setQuery(
+                query.copyWith(tagIds: const []),
               ),
             ),
             Expanded(
@@ -257,6 +266,82 @@ class _CategoryBar extends StatelessWidget {
   }
 }
 
+/// Semptom etiketi çubuğu — `/api/tags` (web KnowledgePage'deki
+/// "Etiketlere Göre Daralt" satırı). Etiket adları paylaşılan veri,
+/// çevrilmez. Etiketler yüklenemezse çubuk hiç görünmez.
+class _TagBar extends ConsumerWidget {
+  const _TagBar({
+    required this.selected,
+    required this.onToggle,
+    required this.onClear,
+  });
+
+  final List<String> selected;
+  final ValueChanged<String> onToggle;
+  final VoidCallback onClear;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.t;
+    final tags = ref.watch(symptomTagsProvider).asData?.value ?? const [];
+    if (tags.isEmpty) return const SizedBox.shrink();
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppSpacing.margin,
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    selected.isEmpty
+                        ? t.knowledge.tagFilterTitle
+                        : t.knowledge.tagFilterCount(count: selected.length),
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelSmall
+                        ?.copyWith(color: context.colors.textSecondary),
+                  ),
+                ),
+                if (selected.isNotEmpty)
+                  TextButton(
+                    onPressed: onClear,
+                    child: Text(t.knowledge.tagFilterClear),
+                  ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 44,
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.margin,
+              ),
+              itemCount: tags.length,
+              separatorBuilder: (_, _) => const SizedBox(width: 8),
+              itemBuilder: (_, i) {
+                final tag = tags[i];
+                return FilterChip(
+                  label: Text(tag.name),
+                  selected: selected.contains(tag.id),
+                  showCheckmark: false,
+                  onSelected: (_) => onToggle(tag.id),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class _ArticleTile extends StatelessWidget {
   const _ArticleTile({required this.article});
   final Article article;
@@ -325,6 +410,34 @@ class _ArticleTile extends StatelessWidget {
                   ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
+                ),
+              ],
+              // Etiket adları paylaşılan veridir (çevrilmez); kart taşmasın
+              // diye ilk üçü gösterilir.
+              if (article.tags.isNotEmpty) ...[
+                const SizedBox(height: 8),
+                Wrap(
+                  spacing: 6,
+                  runSpacing: 6,
+                  children: [
+                    for (final tag in article.tags.take(3))
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 3,
+                        ),
+                        decoration: BoxDecoration(
+                          color: context.colors.primary.withValues(alpha: .08),
+                          borderRadius:
+                              BorderRadius.circular(AppRadius.full),
+                        ),
+                        child: Text(
+                          tag.name,
+                          style: text.labelSmall
+                              ?.copyWith(color: context.colors.primary),
+                        ),
+                      ),
+                  ],
                 ),
               ],
             ],

@@ -842,6 +842,9 @@ class _Translations$knowledge$en extends Translations$knowledge$tr {
 	@override String get expertBadge => 'Expert';
 	@override String triedFor({required Object duration}) => 'Tried for: ${duration}';
 	@override String effectiveness({required Object rating}) => 'Effectiveness: ${rating}/5';
+	@override String get tagFilterTitle => 'Narrow down by tag';
+	@override String get tagFilterClear => 'Clear tags';
+	@override String tagFilterCount({required Object count}) => '${count} tags selected';
 }
 
 // Path: appointments
@@ -2912,6 +2915,9 @@ extension on TranslationsEn {
 			'knowledge.expertBadge' => 'Expert',
 			'knowledge.triedFor' => ({required Object duration}) => 'Tried for: ${duration}',
 			'knowledge.effectiveness' => ({required Object rating}) => 'Effectiveness: ${rating}/5',
+			'knowledge.tagFilterTitle' => 'Narrow down by tag',
+			'knowledge.tagFilterClear' => 'Clear tags',
+			'knowledge.tagFilterCount' => ({required Object count}) => '${count} tags selected',
 			'appointments.title' => 'Appointments',
 			'appointments.empty' => 'You don\'t have any appointments yet.',
 			'appointments.upcoming' => 'Upcoming',
@@ -2921,11 +2927,11 @@ extension on TranslationsEn {
 			'appointments.statusCompleted' => 'Completed',
 			'appointments.statusCancelled' => 'Cancelled',
 			'appointments.typeOnline' => 'Online session',
+			_ => null,
+		} ?? switch (path) {
 			'appointments.typeFaceToFace' => 'In person',
 			'appointments.withChild' => ({required Object name}) => 'Child: ${name}',
 			'appointments.dateLine' => ({required Object day, required Object month, required Object year, required Object time}) => '${day} ${month} ${year} · ${time}',
-			_ => null,
-		} ?? switch (path) {
 			'appointments.cancel' => 'Cancel',
 			'appointments.confirm' => 'Confirm',
 			'appointments.complete' => 'Complete',
@@ -3435,11 +3441,11 @@ extension on TranslationsEn {
 			'tasks.awaitingReview' => 'Awaiting expert review…',
 			'tasks.submitTitle' => 'Submit Task',
 			'tasks.selectedTask' => 'Selected Task',
+			_ => null,
+		} ?? switch (path) {
 			'tasks.noteLabel' => 'Note for Your Expert',
 			'tasks.noteHint' => 'How did your child feel doing this task? (e.g. Completed it very comfortably)',
 			'tasks.evidenceLabel' => 'Evidence / Attachment Link (Optional)',
-			_ => null,
-		} ?? switch (path) {
 			'tasks.evidenceHint' => 'You can add a cloud link to a video or photo of the practice moment so your expert can see it.',
 			'tasks.submitConfirm' => 'Submit and Close',
 			'tasks.viewWizard' => 'Wizard',
@@ -3949,11 +3955,11 @@ extension on TranslationsEn {
 			'guide.startExpertMessages' => 'Reach out to families',
 			'guide.startExpertMessagesDesc' => 'Answer questions through secure messaging and keep the follow-up going.',
 			'guide.startExpertProfile' => 'Complete your expert profile',
+			_ => null,
+		} ?? switch (path) {
 			'guide.startExpertProfileDesc' => 'Keep your title, specialisations and contact details up to date.',
 			'guide.pageHome' => 'Home',
 			'guide.pageHomePurpose' => 'Shows today\'s to-dos, reminders and the short daily plan in one place.',
-			_ => null,
-		} ?? switch (path) {
 			'guide.pageHomeWhen' => 'Every time you open the app and want to know what today holds.',
 			'guide.pageHomeKeywords' => 'home, start, task, today, dashboard',
 			'guide.pageTracker' => 'Daily Tracking',

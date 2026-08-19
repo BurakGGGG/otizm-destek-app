@@ -11,8 +11,8 @@ import '../../auth/domain/app_user.dart';
 import '../../auth/presentation/auth_controller.dart';
 import '../../children/data/child_repository.dart';
 import '../../children/domain/child.dart';
-import '../../forum/data/forum_repository.dart';
 import '../domain/onboarding_options.dart';
+import '../../tags/data/tag_repository.dart';
 
 /// İlk giriş sihirbazı (web `/baslangic` karşılığı).
 ///
@@ -558,7 +558,7 @@ class _TagsStep extends ConsumerWidget {
     final t = context.t;
     final colors = context.colors;
     final text = Theme.of(context).textTheme;
-    final tagsAsync = ref.watch(forumTagsProvider);
+    final tagsAsync = ref.watch(symptomTagsGroupedProvider);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,

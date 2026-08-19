@@ -27,6 +27,35 @@ void main() {
       });
     });
 
+    test('etiketler web gibi virgülle birleştirilmiş tek parametre', () {
+      const query = ArticleQuery(tagIds: ['t1', 't2']);
+      expect(query.isEmpty, isFalse);
+      expect(query.toQueryParameters(page: 0)['tagIds'], 't1,t2');
+      // Etiket yoksa parametre hiç gönderilmez.
+      expect(
+        const ArticleQuery().toQueryParameters(page: 0).containsKey('tagIds'),
+        isFalse,
+      );
+    });
+
+    test('toggleTag seçimi ekler ve kaldırır', () {
+      const query = ArticleQuery(tagIds: ['t1']);
+      expect(query.toggleTag('t2').tagIds, ['t1', 't2']);
+      expect(query.toggleTag('t1').tagIds, isEmpty);
+      // Diğer filtreler korunur.
+      const full = ArticleQuery(text: 'uyku', category: 'Sağlık');
+      expect(full.toggleTag('t9').text, 'uyku');
+      expect(full.toggleTag('t9').category, 'Sağlık');
+    });
+
+    test('eşitlik etiket sırasından etkilenmez (gereksiz istek atılmaz)', () {
+      const a = ArticleQuery(tagIds: ['t1', 't2']);
+      const b = ArticleQuery(tagIds: ['t2', 't1']);
+      expect(a, b);
+      expect(a.hashCode, b.hashCode);
+      expect(a == const ArticleQuery(tagIds: ['t1']), isFalse);
+    });
+
     test('filtre temizleme copyWith ile ayrı bayraklarla yapılır', () {
       const query = ArticleQuery(text: 'a', category: 'Aile', format: 'TEXT');
       expect(query.copyWith(clearCategory: true).category, isNull);
@@ -64,6 +93,22 @@ void main() {
       expect(article.bookmarked, isTrue);
       expect(article.copyWith(bookmarked: false).bookmarked, isFalse);
       expect(article.copyWith(bookmarked: false).title, 'Uyku');
+    });
+
+    test('makale etiketleri okunur (paylaşılan veri)', () {
+      final article = Article.fromJson({
+        'id': '1',
+        'title': 'Uyku',
+        'tags': [
+          {'id': 't1', 'name': 'Uyku sorunu', 'category': 'DAVRANIS'},
+          {'id': 't2', 'name': 'Rutin'},
+        ],
+      });
+      expect(article.tags.map((t) => t.name).toList(),
+          ['Uyku sorunu', 'Rutin']);
+      expect(article.tags.first.category, 'DAVRANIS');
+      // Kopyalamada etiketler korunur.
+      expect(article.copyWith(bookmarked: true).tags.length, 2);
     });
 
     test('deneyim bayrağı iki anahtardan da okunur', () {

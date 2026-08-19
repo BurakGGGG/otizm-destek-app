@@ -1820,6 +1820,15 @@ class Translations$knowledge$tr {
 
 	/// tr: 'Etkililik: $rating/5'
 	String effectiveness({required Object rating}) => 'Etkililik: ${rating}/5';
+
+	/// tr: 'Etiketlere göre daralt'
+	String get tagFilterTitle => 'Etiketlere göre daralt';
+
+	/// tr: 'Etiketleri temizle'
+	String get tagFilterClear => 'Etiketleri temizle';
+
+	/// tr: '$count etiket seçili'
+	String tagFilterCount({required Object count}) => '${count} etiket seçili';
 }
 
 // Path: appointments
@@ -6224,6 +6233,9 @@ extension on Translations {
 			'knowledge.expertBadge' => 'Uzman',
 			'knowledge.triedFor' => ({required Object duration}) => 'Deneme süresi: ${duration}',
 			'knowledge.effectiveness' => ({required Object rating}) => 'Etkililik: ${rating}/5',
+			'knowledge.tagFilterTitle' => 'Etiketlere göre daralt',
+			'knowledge.tagFilterClear' => 'Etiketleri temizle',
+			'knowledge.tagFilterCount' => ({required Object count}) => '${count} etiket seçili',
 			'appointments.title' => 'Randevular',
 			'appointments.empty' => 'Henüz randevunuz yok.',
 			'appointments.upcoming' => 'Yaklaşan',
@@ -6233,11 +6245,11 @@ extension on Translations {
 			'appointments.statusCompleted' => 'Tamamlandı',
 			'appointments.statusCancelled' => 'İptal Edildi',
 			'appointments.typeOnline' => 'Online Görüşme',
+			_ => null,
+		} ?? switch (path) {
 			'appointments.typeFaceToFace' => 'Yüz Yüze',
 			'appointments.withChild' => ({required Object name}) => 'Çocuk: ${name}',
 			'appointments.dateLine' => ({required Object day, required Object month, required Object year, required Object time}) => '${day} ${month} ${year} · ${time}',
-			_ => null,
-		} ?? switch (path) {
 			'appointments.cancel' => 'İptal Et',
 			'appointments.confirm' => 'Onayla',
 			'appointments.complete' => 'Tamamla',
@@ -6747,11 +6759,11 @@ extension on Translations {
 			'tasks.awaitingReview' => 'Uzman değerlendirmesi bekleniyor…',
 			'tasks.submitTitle' => 'Görevi Teslim Et',
 			'tasks.selectedTask' => 'Seçili Görev',
+			_ => null,
+		} ?? switch (path) {
 			'tasks.noteLabel' => 'Uzmana İletilecek Not',
 			'tasks.noteHint' => 'Çocuğunuz bu görevi yaparken nasıl hissetti? (Örn: Çok rahat tamamladı)',
 			'tasks.evidenceLabel' => 'Kanıt / Eklenti Bağlantısı (İsteğe Bağlı)',
-			_ => null,
-		} ?? switch (path) {
 			'tasks.evidenceHint' => 'Uzmanınızın görebilmesi için ilgili çalışma anının videosunu veya fotoğrafını bulut bağlantısı olarak ekleyebilirsiniz.',
 			'tasks.submitConfirm' => 'Teslim Et ve Kapat',
 			'tasks.viewWizard' => 'Sihirbaz',
@@ -7261,11 +7273,11 @@ extension on Translations {
 			'guide.startExpertMessages' => 'Ailelerle iletişime geç',
 			'guide.startExpertMessagesDesc' => 'Güvenli mesajlaşmayla soruları yanıtlayın ve takibi sürdürün.',
 			'guide.startExpertProfile' => 'Uzman profilini tamamla',
+			_ => null,
+		} ?? switch (path) {
 			'guide.startExpertProfileDesc' => 'Unvan, uzmanlık alanları ve iletişim bilgilerinizi güncel tutun.',
 			'guide.pageHome' => 'Ana Sayfa',
 			'guide.pageHomePurpose' => 'Bugün yapılacakları, hatırlatmaları ve kısa günlük planı tek yerde gösterir.',
-			_ => null,
-		} ?? switch (path) {
 			'guide.pageHomeWhen' => 'Uygulamaya her girişte "bugün ne yapacağım?" diye bakmak istediğinizde.',
 			'guide.pageHomeKeywords' => 'ana sayfa, başlangıç, görev, bugün, panel',
 			'guide.pageTracker' => 'Günlük Takip',

@@ -13,6 +13,8 @@ import '../data/forum_repository.dart';
 import '../domain/forum_post.dart';
 import 'forum_post_detail_screen.dart';
 import 'widgets/forum_post_sheet.dart';
+import '../../tags/data/tag_repository.dart';
+import '../../tags/domain/symptom_tag.dart';
 
 /// Gönderi tipi kodunun i18n etiketi.
 String forumTypeLabel(Translations t, String type) {
@@ -195,7 +197,7 @@ class _ForumScreenState extends ConsumerState<ForumScreen> {
   Widget build(BuildContext context) {
     final t = context.t;
     final colors = context.colors;
-    final tagsAsync = ref.watch(forumTagsProvider);
+    final tagsAsync = ref.watch(symptomTagsGroupedProvider);
 
     return Scaffold(
       appBar: AppBar(title: Text(t.forum.title)),
@@ -401,7 +403,7 @@ class _TagFilterPanel extends StatelessWidget {
     required this.onToggle,
   });
 
-  final Map<String, List<ForumTag>> grouped;
+  final Map<String, List<SymptomTag>> grouped;
   final Set<String> selected;
   final ValueChanged<String> onToggle;
 

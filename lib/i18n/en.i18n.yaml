@@ -553,6 +553,9 @@ knowledge:
   expertBadge: Expert
   triedFor: 'Tried for: $duration'
   effectiveness: 'Effectiveness: $rating/5'
+  tagFilterTitle: Narrow down by tag
+  tagFilterClear: Clear tags
+  tagFilterCount: $count tags selected
 
 appointments:
   title: Appointments
