@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_colors.dart';
+import '../../../core/util/person_name.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/user_avatar.dart';
@@ -31,7 +32,10 @@ class HomeTab extends ConsumerWidget {
     final user = ref.watch(authControllerProvider).user;
     final t = context.t;
     final text = Theme.of(context).textTheme;
-    final name = user?.displayName ?? t.home.greetingFallback;
+    // Selamlamada web gibi unvansız ilk ad kullanılır.
+    final name = user == null
+        ? t.home.greetingFallback
+        : personFirstName(user.displayName);
     // Günlük plan ve başlangıç listesi veli akışıdır (web'de de rol bazlı).
     final isParent = user?.role == UserRole.parent;
 

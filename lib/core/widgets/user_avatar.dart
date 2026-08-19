@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../network/media.dart';
+import '../util/person_name.dart';
 import '../providers.dart';
 
 /// İsim baş harfli (veya görselli) yuvarlak avatar. Profil görseli varsa onu,
@@ -52,19 +53,7 @@ class _UserAvatarState extends ConsumerState<UserAvatar> {
     Color(0xFF14B8A6), // teal
   ];
 
-  String get _initials {
-    final parts = name
-        .trim()
-        .split(RegExp(r'\s+'))
-        .where((p) => p.isNotEmpty)
-        .toList();
-    if (parts.isEmpty) return '';
-    if (parts.length == 1) return _first(parts.first);
-    return _first(parts.first) + _first(parts.last);
-  }
-
-  static String _first(String s) =>
-      s.isEmpty ? '' : s.substring(0, 1).toUpperCase();
+  String get _initials => personInitials(name);
 
   Color get _color {
     if (name.isEmpty) return _palette.first;

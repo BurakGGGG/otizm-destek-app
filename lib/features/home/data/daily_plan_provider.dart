@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/storage/visited_routes.dart';
 import '../../../core/util/date_key.dart';
+import '../../../core/util/person_name.dart';
 import '../../calendar/data/calendar_repository.dart';
 import '../../calendar/domain/calendar_event.dart';
 import '../../children/data/child_repository.dart';
@@ -60,8 +61,8 @@ final dailyPlanInputProvider = FutureProvider<DailyPlanInput>((ref) async {
 
   final child = children.first;
   final childId = child.id;
-  // Koç notu web gibi yalnızca ilk adı kullanır.
-  final childName = child.name.trim().split(' ').first;
+  // Koç notu web gibi yalnızca ilk adı kullanır (unvanlar atlanır).
+  final childName = personFirstName(child.name);
   final todayKey = localDateKey(now);
 
   final moodEntries = _safe(
