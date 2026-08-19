@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../i18n/strings.g.dart';
 import '../../data/appointment_repository.dart';
 import '../../domain/appointment.dart';
+import '../../../../core/util/external_link.dart';
 
 /// Randevu detay sayfası — web AppointmentPage'deki "Randevu Detayı"
 /// penceresi: tüm alanlar + durum geçmişi zaman çizelgesi.
@@ -130,10 +130,8 @@ class AppointmentDetailSheet extends ConsumerWidget {
                   (a.meetingLink?.isNotEmpty ?? false)) ...[
                 const SizedBox(height: 4),
                 FilledButton.tonalIcon(
-                  onPressed: () => launchUrl(
-                    Uri.parse(a.meetingLink!),
-                    mode: LaunchMode.externalApplication,
-                  ),
+                  // Görüşme bağlantısını uzman giriyor: yalnızca http/https.
+                  onPressed: () => openExternalLink(a.meetingLink),
                   icon: const Icon(Icons.videocam_outlined, size: 18),
                   label: Text(t.appointments.joinMeeting),
                 ),

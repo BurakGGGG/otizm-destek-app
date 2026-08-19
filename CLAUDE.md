@@ -412,6 +412,11 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
 - **Renkler:** widget'lar `context.colors.X` (AppPalette) kullanır; sabit palet
   `lib/core/theme/app_colors.dart` (`AppPalette.light`/`dark`). Tema kurarken `AppColors`
   (sabit, açık) kullanılır. Yeni ekranlarda `AppColors.*` yerine `context.colors.*`.
+- **Dış bağlantılar:** uzmanın/velinin girdiği adresler (görüşme linki, ödev
+  materyali, kanıt dosyası, makale medyası) `core/util/external_link.dart`
+  üzerinden açılır; yalnızca `http`/`https` kabul edilir (`intent://`,
+  `file://`, `market://` gibi şemalar cihazda başka uygulama tetikleyebilir).
+  Uygulamanın kendi ürettiği `tel:` bağlantıları doğrudan açılmaya devam eder.
 - **Ağ günlüğü:** `Env.enableNetworkLogs` varsayılanı **debug**'dır ve
   günlükçü yalnızca yöntem + yol + durum kodu yazar. İstek gövdeleri (çocuk
   sağlık kaydı, acil durum kartı, şifre) ve `Authorization` başlığı hiçbir

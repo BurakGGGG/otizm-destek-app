@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/haptics.dart';
 import '../../../core/network/api_exception.dart';
@@ -13,6 +12,7 @@ import '../domain/article.dart';
 import '../domain/article_comment.dart';
 import 'article_list_controller.dart';
 import 'widgets/article_format_badge.dart';
+import '../../../core/util/external_link.dart';
 
 /// Makale detayı — `/api/knowledge/{id}`: tam içerik, yer imi, sesli dinleme,
 /// ilgili içerikler ve aile yorumları.
@@ -472,11 +472,9 @@ class _MediaLink extends StatelessWidget {
           ),
           const SizedBox(height: 6),
           InkWell(
-            onTap: () async {
-              final uri = Uri.tryParse(url);
-              if (uri == null) return;
-              await launchUrl(uri, mode: LaunchMode.externalApplication);
-            },
+            // Medya adresi makaleyi yazan uzmandan geliyor: yalnızca
+            // http/https açılır.
+            onTap: () => openExternalLink(url),
             child: Text(
               url,
               style: TextStyle(

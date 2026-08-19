@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/network/media.dart';
+import '../../../core/util/external_link.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/widgets/empty_state.dart';
@@ -410,9 +410,14 @@ class _TaskCardState extends ConsumerState<_TaskCard> {
 
   Future<void> _openMaterial(String url) async {
     // Backend'den gelen dosya adresleri göreli olabiliyor (`/api/upload/...`).
-    final uri = Uri.tryParse(absoluteMediaUrl(url) ?? url);
-    if (uri == null) return;
-    await launchUrl(uri, mode: LaunchMode.externalApplication);
+    // Adres uzmanın girdiği serbest metin olduğu için yalnızca http/https
+    // açılır (bkz. `core/util/external_link.dart`).
+    final opened = await openExternalLink(absoluteMediaUrl(url) ?? url);
+    if (!opened && mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(context.t.errors.operationFailed)),
+      );
+    }
   }
 
   String _difficultyLabel(Translations t, String code) {
@@ -681,15 +686,9 @@ class _SubmissionSection extends ConsumerWidget {
                           when evidence.isNotEmpty) ...[
                         const SizedBox(height: 6),
                         InkWell(
-                          onTap: () async {
-                            final uri = Uri.tryParse(
-                              absoluteMediaUrl(evidence) ?? evidence,
-                            );
-                            if (uri != null) {
-                              await launchUrl(uri,
-                                  mode: LaunchMode.externalApplication);
-                            }
-                          },
+                          // Kanıt adresi veliden geliyor: yalnızca http/https.
+                          onTap: () =>
+                              openExternalLink(absoluteMediaUrl(evidence)),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
