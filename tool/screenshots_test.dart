@@ -18,6 +18,9 @@ import 'package:otizm_destek_app/core/providers.dart';
 import 'package:otizm_destek_app/core/realtime/stomp_service.dart';
 import 'package:otizm_destek_app/core/storage/secure_storage.dart';
 import 'package:otizm_destek_app/core/theme/app_theme.dart';
+import 'package:otizm_destek_app/features/analytics/data/analytics_repository.dart';
+import 'package:otizm_destek_app/features/analytics/domain/analytics_trends.dart';
+import 'package:otizm_destek_app/features/analytics/presentation/analytics_screen.dart';
 import 'package:otizm_destek_app/features/appointments/data/appointment_repository.dart';
 import 'package:otizm_destek_app/features/appointments/domain/appointment.dart';
 import 'package:otizm_destek_app/features/appointments/presentation/appointments_screen.dart';
@@ -81,6 +84,8 @@ import 'package:otizm_destek_app/features/groups/presentation/groups_screen.dart
 import 'package:otizm_destek_app/features/notifications/data/notification_repository.dart';
 import 'package:otizm_destek_app/features/notifications/domain/app_notification.dart';
 import 'package:otizm_destek_app/features/notifications/presentation/notifications_screen.dart';
+import 'package:otizm_destek_app/features/settings/data/kvkk_repository.dart';
+import 'package:otizm_destek_app/features/settings/domain/kvkk.dart';
 import 'package:otizm_destek_app/features/support_wall/data/wall_repository.dart';
 import 'package:otizm_destek_app/features/support_wall/domain/wall_post.dart';
 import 'package:otizm_destek_app/features/support_wall/presentation/support_wall_screen.dart';
@@ -826,6 +831,36 @@ class _FakeNotificationRepository extends NotificationRepository {
       );
 }
 
+
+class _FakeAnalyticsRepository extends AnalyticsRepository {
+  _FakeAnalyticsRepository() : super(Dio());
+
+  static List<TrendPoint> _series(List<double> values) => [
+        for (var i = 0; i < values.length; i++)
+          TrendPoint(month: '2026-0${i + 3}', value: values[i]),
+      ];
+
+  @override
+  Future<AnalyticsTrends> getTrends(String childId, {int months = 6}) async =>
+      AnalyticsTrends(
+        milestones: _series([1, 0, 2, 1, 3, 2]),
+        moods: _series([3.2, 3.6, 3.4, 4.0, 4.2, 4.1]),
+        sleeps: _series([520, 545, 530, 560, 575, 585]),
+        behaviors: _series([6, 5, 7, 4, 3, 2]),
+      );
+}
+
+class _FakeKvkkRepository extends KvkkRepository {
+  _FakeKvkkRepository() : super(Dio());
+
+  @override
+  Future<ConsentOverview> getConsents() async => ConsentOverview(
+        current: const {'AI_ANALIZ': true},
+        policyVersion: '2026-01',
+        acceptedPolicyVersion: '2026-01',
+      );
+}
+
 // ---------------------------------------------------------------------------
 // Yardımcılar
 // ---------------------------------------------------------------------------
@@ -898,6 +933,9 @@ Widget _app(Widget home, {List<dynamic> overrides = const []}) {
         wallRepositoryProvider.overrideWithValue(_FakeWallRepository()),
         notificationRepositoryProvider
             .overrideWithValue(_FakeNotificationRepository()),
+        analyticsRepositoryProvider
+            .overrideWithValue(_FakeAnalyticsRepository()),
+        kvkkRepositoryProvider.overrideWithValue(_FakeKvkkRepository()),
         connectionRequestsProvider.overrideWith((ref) async => const []),
         ...overrides.cast(),
       ],
@@ -1071,6 +1109,10 @@ void main() {
 
   testWidgets('19 gelişim', (tester) async {
     await shoot(tester, '19-gelisim', const Scaffold(body: ProgressTab()));
+  });
+
+  testWidgets('24 gelişim paneli', (tester) async {
+    await shoot(tester, '24-gelisim-paneli', const AnalyticsScreen());
   });
 
   testWidgets('20 forum', (tester) async {

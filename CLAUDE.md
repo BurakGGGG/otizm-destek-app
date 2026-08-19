@@ -124,6 +124,15 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
     metinleri web ile birebir aynı düz metin (çevrilmez!).
   - **Gelişim Paneli:** `/api/analytics/child/{id}/trends` — 4 aylık trend
     çubuk grafiği (kilometre taşı, ruh hali, uyku, davranış). `/analytics`.
+    **Yapay zekâ analizi** (`/api/ai-insights/{childId}`): dört tür
+    (GENERAL/BEHAVIORAL/PROGRESS/WEEKLY — web `ANALYSIS_TYPES` birebir),
+    SSE akışı (`/stream`) sohbet botundaki ayrıştırıcıyla, akış kurulamazsa
+    web gibi tek seferlik uç noktaya düşülür. Backend veli `AI_ANALIZ` açık
+    rızası istediği için kart rıza yoksa KVKK sayfasına yönlendirir; çıktı
+    hafif markdown (başlık/madde/kalın) olarak çizilir ve tıbbi uyarı
+    şeridiyle birlikte gösterilir. Web'in mood/uyku/ABC ham veri grafikleri
+    (üç sekmeli chart paneli) mobile alınmadı — mobilde aynı veriler kendi
+    ekranlarında ve trend grafiğinde zaten var.
   - **Davranış Günlüğü:** `/api/abc-entries` — ABC (Öncesi-Davranış-Sonuç)
     kayıtları; kategori/yer/tetikleyici/sonuç sabitleri web ile birebir düz
     metin (çevrilmez!), şiddet 1-5. category+location DB'de NOT NULL. `/behavior`,

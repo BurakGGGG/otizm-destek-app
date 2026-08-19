@@ -1996,6 +1996,19 @@ class _Translations$analytics$en extends Translations$analytics$tr {
 	@override String get behaviorUnit => 'entries per month';
 	@override String get noData => 'No data in this range yet.';
 	@override String get noChild => 'Add a child first to see the development panel.';
+	@override String get aiTitle => 'AI analysis';
+	@override String get aiSubtitle => 'Summarises patterns in your child\'s records; it does not diagnose.';
+	@override String get aiTypeGeneral => 'General';
+	@override String get aiTypeBehavioral => 'Behaviour';
+	@override String get aiTypeProgress => 'Progress';
+	@override String get aiTypeWeekly => 'Weekly';
+	@override String aiStart({required Object type}) => 'Start the ${type} analysis';
+	@override String get aiRunning => 'Preparing the analysis…';
+	@override String get aiError => 'The analysis could not be fetched. Please try again.';
+	@override String get aiDisclaimer => 'This summary is informational; it is not a medical diagnosis or treatment advice.';
+	@override String get aiConsentTitle => 'AI analysis needs your consent';
+	@override String get aiConsentBody => 'Analysing your child\'s records requires explicit consent. You can grant it on the privacy and consents page.';
+	@override String get aiConsentAction => 'Manage consents';
 }
 
 // Path: children
@@ -3998,6 +4011,19 @@ extension on TranslationsEn {
 			'analytics.behaviorUnit' => 'entries per month',
 			'analytics.noData' => 'No data in this range yet.',
 			'analytics.noChild' => 'Add a child first to see the development panel.',
+			'analytics.aiTitle' => 'AI analysis',
+			'analytics.aiSubtitle' => 'Summarises patterns in your child\'s records; it does not diagnose.',
+			'analytics.aiTypeGeneral' => 'General',
+			'analytics.aiTypeBehavioral' => 'Behaviour',
+			'analytics.aiTypeProgress' => 'Progress',
+			'analytics.aiTypeWeekly' => 'Weekly',
+			'analytics.aiStart' => ({required Object type}) => 'Start the ${type} analysis',
+			'analytics.aiRunning' => 'Preparing the analysis…',
+			'analytics.aiError' => 'The analysis could not be fetched. Please try again.',
+			'analytics.aiDisclaimer' => 'This summary is informational; it is not a medical diagnosis or treatment advice.',
+			'analytics.aiConsentTitle' => 'AI analysis needs your consent',
+			'analytics.aiConsentBody' => 'Analysing your child\'s records requires explicit consent. You can grant it on the privacy and consents page.',
+			'analytics.aiConsentAction' => 'Manage consents',
 			'children.title' => 'My Children',
 			'children.addTitle' => 'Add Child',
 			'children.editTitle' => 'Edit Child',
@@ -4025,6 +4051,8 @@ extension on TranslationsEn {
 			'children.errorNameRequired' => 'Please enter the child\'s name.',
 			'children.created' => 'Child profile created.',
 			'children.updated' => 'Child profile updated.',
+			_ => null,
+		} ?? switch (path) {
 			'children.deleted' => 'Child profile deleted.',
 			'account.title' => 'Account Information',
 			'account.emailLabel' => 'Email',
@@ -4038,8 +4066,6 @@ extension on TranslationsEn {
 			'account.bioLabel' => 'About',
 			'account.bioHint' => 'Briefly describe your experience',
 			'account.save' => 'Save',
-			_ => null,
-		} ?? switch (path) {
 			'account.saved' => 'Profile updated.',
 			'account.errorFullName' => 'Full name must be at least 2 characters.',
 			'help.title' => 'Help & About',

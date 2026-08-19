@@ -4854,6 +4854,45 @@ class Translations$analytics$tr {
 
 	/// tr: 'Gelişim paneli için önce bir çocuk ekleyin.'
 	String get noChild => 'Gelişim paneli için önce bir çocuk ekleyin.';
+
+	/// tr: 'Yapay zekâ analizi'
+	String get aiTitle => 'Yapay zekâ analizi';
+
+	/// tr: 'Çocuğunuzun kayıtlarındaki örüntüleri özetler; tanı koymaz.'
+	String get aiSubtitle => 'Çocuğunuzun kayıtlarındaki örüntüleri özetler; tanı koymaz.';
+
+	/// tr: 'Genel'
+	String get aiTypeGeneral => 'Genel';
+
+	/// tr: 'Davranış'
+	String get aiTypeBehavioral => 'Davranış';
+
+	/// tr: 'İlerleme'
+	String get aiTypeProgress => 'İlerleme';
+
+	/// tr: 'Haftalık'
+	String get aiTypeWeekly => 'Haftalık';
+
+	/// tr: '$type analizini başlat'
+	String aiStart({required Object type}) => '${type} analizini başlat';
+
+	/// tr: 'Analiz hazırlanıyor…'
+	String get aiRunning => 'Analiz hazırlanıyor…';
+
+	/// tr: 'Analiz alınamadı. Lütfen tekrar deneyin.'
+	String get aiError => 'Analiz alınamadı. Lütfen tekrar deneyin.';
+
+	/// tr: 'Bu özet bilgilendirme amaçlıdır; tıbbi tanı ya da tedavi önerisi değildir.'
+	String get aiDisclaimer => 'Bu özet bilgilendirme amaçlıdır; tıbbi tanı ya da tedavi önerisi değildir.';
+
+	/// tr: 'Yapay zekâ analizi için rızanız gerekiyor'
+	String get aiConsentTitle => 'Yapay zekâ analizi için rızanız gerekiyor';
+
+	/// tr: 'Çocuğunuzun kayıtlarının analiz edilmesi açık rızaya bağlıdır. Rızayı KVKK ve rızalar sayfasından verebilirsiniz.'
+	String get aiConsentBody => 'Çocuğunuzun kayıtlarının analiz edilmesi açık rızaya bağlıdır. Rızayı KVKK ve rızalar sayfasından verebilirsiniz.';
+
+	/// tr: 'Rızaları yönet'
+	String get aiConsentAction => 'Rızaları yönet';
 }
 
 // Path: children
@@ -7482,6 +7521,19 @@ extension on Translations {
 			'analytics.behaviorUnit' => 'aylık kayıt sayısı',
 			'analytics.noData' => 'Bu aralıkta henüz veri yok.',
 			'analytics.noChild' => 'Gelişim paneli için önce bir çocuk ekleyin.',
+			'analytics.aiTitle' => 'Yapay zekâ analizi',
+			'analytics.aiSubtitle' => 'Çocuğunuzun kayıtlarındaki örüntüleri özetler; tanı koymaz.',
+			'analytics.aiTypeGeneral' => 'Genel',
+			'analytics.aiTypeBehavioral' => 'Davranış',
+			'analytics.aiTypeProgress' => 'İlerleme',
+			'analytics.aiTypeWeekly' => 'Haftalık',
+			'analytics.aiStart' => ({required Object type}) => '${type} analizini başlat',
+			'analytics.aiRunning' => 'Analiz hazırlanıyor…',
+			'analytics.aiError' => 'Analiz alınamadı. Lütfen tekrar deneyin.',
+			'analytics.aiDisclaimer' => 'Bu özet bilgilendirme amaçlıdır; tıbbi tanı ya da tedavi önerisi değildir.',
+			'analytics.aiConsentTitle' => 'Yapay zekâ analizi için rızanız gerekiyor',
+			'analytics.aiConsentBody' => 'Çocuğunuzun kayıtlarının analiz edilmesi açık rızaya bağlıdır. Rızayı KVKK ve rızalar sayfasından verebilirsiniz.',
+			'analytics.aiConsentAction' => 'Rızaları yönet',
 			'children.title' => 'Çocuklarım',
 			'children.addTitle' => 'Çocuk Ekle',
 			'children.editTitle' => 'Çocuğu Düzenle',
@@ -7509,6 +7561,8 @@ extension on Translations {
 			'children.errorNameRequired' => 'Lütfen çocuğun adını girin.',
 			'children.created' => 'Çocuk profili oluşturuldu.',
 			'children.updated' => 'Çocuk profili güncellendi.',
+			_ => null,
+		} ?? switch (path) {
 			'children.deleted' => 'Çocuk profili silindi.',
 			'account.title' => 'Hesap Bilgileri',
 			'account.emailLabel' => 'E-posta',
@@ -7522,8 +7576,6 @@ extension on Translations {
 			'account.bioLabel' => 'Hakkında',
 			'account.bioHint' => 'Deneyiminizi kısaca anlatın',
 			'account.save' => 'Kaydet',
-			_ => null,
-		} ?? switch (path) {
 			'account.saved' => 'Profil güncellendi.',
 			'account.errorFullName' => 'Ad soyad en az 2 karakter olmalıdır.',
 			'help.title' => 'Yardım & Hakkında',

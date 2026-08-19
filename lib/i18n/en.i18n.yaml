@@ -1650,6 +1650,19 @@ analytics:
   behaviorUnit: entries per month
   noData: No data in this range yet.
   noChild: Add a child first to see the development panel.
+  aiTitle: AI analysis
+  aiSubtitle: Summarises patterns in your child's records; it does not diagnose.
+  aiTypeGeneral: General
+  aiTypeBehavioral: Behaviour
+  aiTypeProgress: Progress
+  aiTypeWeekly: Weekly
+  aiStart: Start the $type analysis
+  aiRunning: Preparing the analysis…
+  aiError: The analysis could not be fetched. Please try again.
+  aiDisclaimer: This summary is informational; it is not a medical diagnosis or treatment advice.
+  aiConsentTitle: AI analysis needs your consent
+  aiConsentBody: Analysing your child's records requires explicit consent. You can grant it on the privacy and consents page.
+  aiConsentAction: Manage consents
 
 children:
   title: My Children

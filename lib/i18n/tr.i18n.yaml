@@ -1657,6 +1657,19 @@ analytics:
   behaviorUnit: aylık kayıt sayısı
   noData: Bu aralıkta henüz veri yok.
   noChild: Gelişim paneli için önce bir çocuk ekleyin.
+  aiTitle: Yapay zekâ analizi
+  aiSubtitle: Çocuğunuzun kayıtlarındaki örüntüleri özetler; tanı koymaz.
+  aiTypeGeneral: Genel
+  aiTypeBehavioral: Davranış
+  aiTypeProgress: İlerleme
+  aiTypeWeekly: Haftalık
+  aiStart: $type analizini başlat
+  aiRunning: Analiz hazırlanıyor…
+  aiError: Analiz alınamadı. Lütfen tekrar deneyin.
+  aiDisclaimer: Bu özet bilgilendirme amaçlıdır; tıbbi tanı ya da tedavi önerisi değildir.
+  aiConsentTitle: Yapay zekâ analizi için rızanız gerekiyor
+  aiConsentBody: Çocuğunuzun kayıtlarının analiz edilmesi açık rızaya bağlıdır. Rızayı KVKK ve rızalar sayfasından verebilirsiniz.
+  aiConsentAction: Rızaları yönet
 
 children:
   title: Çocuklarım

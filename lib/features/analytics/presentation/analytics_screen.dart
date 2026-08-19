@@ -11,6 +11,7 @@ import '../../children/data/child_repository.dart';
 import '../../children/domain/child.dart';
 import '../data/analytics_repository.dart';
 import '../domain/analytics_trends.dart';
+import 'widgets/ai_insights_card.dart';
 
 /// Gelişim Paneli — seçili çocuğun son 6 aylık trend grafikleri
 /// (`/api/analytics`).
@@ -133,6 +134,8 @@ class _TrendsBody extends ConsumerWidget {
             children: [
               Text(t.analytics.subtitle,
                   style: Theme.of(context).textTheme.bodySmall),
+              const SizedBox(height: 16),
+              AiInsightsCard(childId: childId),
               const SizedBox(height: 16),
               _ChartCard(
                 icon: Icons.emoji_events_outlined,
