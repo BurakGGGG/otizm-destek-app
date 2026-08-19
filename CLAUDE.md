@@ -412,6 +412,11 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
 - **Renkler:** widget'lar `context.colors.X` (AppPalette) kullanır; sabit palet
   `lib/core/theme/app_colors.dart` (`AppPalette.light`/`dark`). Tema kurarken `AppColors`
   (sabit, açık) kullanılır. Yeni ekranlarda `AppColors.*` yerine `context.colors.*`.
+- **Android manifest:** uygulama adı "Otizm Destek" (paket adı değil),
+  `allowBackup=false` (sağlık verisi otomatik yedeklemeye girmesin) ve
+  `url_launcher` için `VIEW` + `http(s)` paket görünürlük sorguları — Android
+  11+ bu sorgu olmadan tarayıcıyı açamıyor (rehber videoları, görüşme linki,
+  ödev materyali bu yüzden sessizce açılmıyordu).
 - **Dış bağlantılar:** uzmanın/velinin girdiği adresler (görüşme linki, ödev
   materyali, kanıt dosyası, makale medyası) `core/util/external_link.dart`
   üzerinden açılır; yalnızca `http`/`https` kabul edilir (`intent://`,
