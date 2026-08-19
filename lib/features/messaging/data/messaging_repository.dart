@@ -179,6 +179,15 @@ class MessagingRepository {
     }
   }
 
+  /// Kendi mesajını siler — `DELETE /messages/{id}`.
+  Future<void> deleteMessage(String messageId) async {
+    try {
+      await _dio.delete('/messages/$messageId');
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
   /// Ekli dosyayı indirir (uç nokta kimlik doğrulaması istediği için
   /// tarayıcıda açılamıyor; Dio ile Bearer'lı indirilip paylaşılır).
   Future<List<int>> downloadAttachment(String url) async {

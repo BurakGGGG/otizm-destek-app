@@ -574,6 +574,7 @@ class _Translations$messages$en extends Translations$messages$tr {
 	@override String get searchUserEmpty => 'No matching users found.';
 	@override String get searchInChat => 'Search in chat';
 	@override String get searchNoResults => 'No messages match this search.';
+	@override String get deleteMessage => 'Delete message';
 }
 
 // Path: home
@@ -2810,6 +2811,7 @@ extension on TranslationsEn {
 			'messages.searchUserEmpty' => 'No matching users found.',
 			'messages.searchInChat' => 'Search in chat',
 			'messages.searchNoResults' => 'No messages match this search.',
+			'messages.deleteMessage' => 'Delete message',
 			'home.notifications' => 'Notifications',
 			'home.assistant' => 'AI Assistant',
 			'home.messages' => 'Messages',
@@ -3008,9 +3010,9 @@ extension on TranslationsEn {
 			'knowledge.filterAll' => 'All',
 			'knowledge.formatArticle' => 'Article',
 			'knowledge.formatVideo' => 'Video',
-			'knowledge.formatPodcast' => 'Podcast',
 			_ => null,
 		} ?? switch (path) {
+			'knowledge.formatPodcast' => 'Podcast',
 			'knowledge.views' => ({required Object count}) => '${count} views',
 			'knowledge.dateLine' => ({required Object day, required Object month, required Object year}) => '${day} ${month} ${year}',
 			'knowledge.videoLink' => 'Video link',
@@ -3522,9 +3524,9 @@ extension on TranslationsEn {
 			'treatment.notifyBody' => ({required Object game}) => 'Send your expert a short note about the difficulty in ${game}.',
 			'treatment.notifyDefaultMsg' => ({required Object game}) => '"${game}" aktivitesinde son zamanlarda zorlanıyor. Önerisi olan var mı?',
 			'treatment.notifyNoExpert' => 'You haven\'t messaged an expert yet. Connect with an expert first.',
-			'treatment.notifySeeExperts' => 'View Experts',
 			_ => null,
 		} ?? switch (path) {
+			'treatment.notifySeeExperts' => 'View Experts',
 			'treatment.notifySend' => 'Send',
 			'treatment.notifySent' => 'Expert notified.',
 			'treatment.emptyGames' => 'No activities suggested for this area yet. They appear once therapy info is added to your child\'s profile.',
@@ -4036,9 +4038,9 @@ extension on TranslationsEn {
 			'account.bioLabel' => 'About',
 			'account.bioHint' => 'Briefly describe your experience',
 			'account.save' => 'Save',
-			'account.saved' => 'Profile updated.',
 			_ => null,
 		} ?? switch (path) {
+			'account.saved' => 'Profile updated.',
 			'account.errorFullName' => 'Full name must be at least 2 characters.',
 			'help.title' => 'Help & About',
 			'help.aboutTitle' => 'About Otizm Destek',

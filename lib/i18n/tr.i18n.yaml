@@ -349,6 +349,7 @@ messages:
   searchUserEmpty: Eşleşen kullanıcı bulunamadı.
   searchInChat: Sohbette ara
   searchNoResults: Bu aramaya uyan mesaj yok.
+  deleteMessage: Mesajı sil
 
 home:
   notifications: Bildirimler

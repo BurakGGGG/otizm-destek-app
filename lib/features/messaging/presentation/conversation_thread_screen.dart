@@ -206,6 +206,22 @@ class _ConversationThreadScreenState
                 setState(() => _replyTo = message);
               },
             ),
+            // Silme yalnızca kendi mesajında; sunucu da sahipliği doğruluyor.
+            if (message.isMine(ref.read(authControllerProvider).user?.id))
+              ListTile(
+                leading: Icon(
+                  Icons.delete_outline,
+                  color: context.colors.error,
+                ),
+                title: Text(
+                  t.messages.deleteMessage,
+                  style: TextStyle(color: context.colors.error),
+                ),
+                onTap: () {
+                  Navigator.of(sheetContext).pop();
+                  _deleteMessage(message);
+                },
+              ),
           ],
         ),
       ),
@@ -224,6 +240,21 @@ class _ConversationThreadScreenState
     setState(() => _showPecs = false);
     _input.text = card.label;
     await _send(messageType: kMessageTypePecs);
+  }
+
+  Future<void> _deleteMessage(Message message) async {
+    final messenger = ScaffoldMessenger.of(context);
+    try {
+      await ref.read(messagingRepositoryProvider).deleteMessage(message.id);
+      if (!mounted) return;
+      setState(() {
+        _messages.removeWhere((m) => m.id == message.id);
+        _ids.remove(message.id);
+      });
+      ref.invalidate(conversationsProvider);
+    } on ApiException catch (e) {
+      messenger.showSnackBar(SnackBar(content: Text(e.message)));
+    }
   }
 
   /// Ekli dosyayı açar: uç nokta kimlik doğrulaması istediği için dosya

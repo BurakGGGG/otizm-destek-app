@@ -348,6 +348,7 @@ messages:
   searchUserEmpty: No matching users found.
   searchInChat: Search in chat
   searchNoResults: No messages match this search.
+  deleteMessage: Delete message
 
 home:
   notifications: Notifications

@@ -1178,6 +1178,9 @@ class Translations$messages$tr {
 
 	/// tr: 'Bu aramaya uyan mesaj yok.'
 	String get searchNoResults => 'Bu aramaya uyan mesaj yok.';
+
+	/// tr: 'Mesajı sil'
+	String get deleteMessage => 'Mesajı sil';
 }
 
 // Path: home
@@ -6292,6 +6295,7 @@ extension on Translations {
 			'messages.searchUserEmpty' => 'Eşleşen kullanıcı bulunamadı.',
 			'messages.searchInChat' => 'Sohbette ara',
 			'messages.searchNoResults' => 'Bu aramaya uyan mesaj yok.',
+			'messages.deleteMessage' => 'Mesajı sil',
 			'home.notifications' => 'Bildirimler',
 			'home.assistant' => 'AI Asistan',
 			'home.messages' => 'Mesajlar',
@@ -6490,9 +6494,9 @@ extension on Translations {
 			'knowledge.filterAll' => 'Tümü',
 			'knowledge.formatArticle' => 'Makale',
 			'knowledge.formatVideo' => 'Video',
-			'knowledge.formatPodcast' => 'Podcast',
 			_ => null,
 		} ?? switch (path) {
+			'knowledge.formatPodcast' => 'Podcast',
 			'knowledge.views' => ({required Object count}) => '${count} görüntülenme',
 			'knowledge.dateLine' => ({required Object day, required Object month, required Object year}) => '${day} ${month} ${year}',
 			'knowledge.videoLink' => 'Video bağlantısı',
@@ -7004,9 +7008,9 @@ extension on Translations {
 			'treatment.notifyBody' => ({required Object game}) => '${game} aktivitesindeki zorlanma hakkında uzmanınıza kısa bir not gönderin.',
 			'treatment.notifyDefaultMsg' => ({required Object game}) => '"${game}" aktivitesinde son zamanlarda zorlanıyor. Önerisi olan var mı?',
 			'treatment.notifyNoExpert' => 'Henüz mesajlaştığınız bir uzman yok. Önce bir uzmanla bağlantı kurmanız gerekiyor.',
-			'treatment.notifySeeExperts' => 'Uzmanları Görüntüle',
 			_ => null,
 		} ?? switch (path) {
+			'treatment.notifySeeExperts' => 'Uzmanları Görüntüle',
 			'treatment.notifySend' => 'Gönder',
 			'treatment.notifySent' => 'Uzmana bildirildi.',
 			'treatment.emptyGames' => 'Bu alanda henüz etkinlik önerilmiyor. Çocuğunuzun profil sayfasına terapi bilgisi eklediğinizde etkinlikler burada görünür.',
@@ -7518,9 +7522,9 @@ extension on Translations {
 			'account.bioLabel' => 'Hakkında',
 			'account.bioHint' => 'Deneyiminizi kısaca anlatın',
 			'account.save' => 'Kaydet',
-			'account.saved' => 'Profil güncellendi.',
 			_ => null,
 		} ?? switch (path) {
+			'account.saved' => 'Profil güncellendi.',
 			'account.errorFullName' => 'Ad soyad en az 2 karakter olmalıdır.',
 			'help.title' => 'Yardım & Hakkında',
 			'help.aboutTitle' => 'Otizm Destek Hakkında',
