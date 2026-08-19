@@ -440,6 +440,7 @@ specialists:
   sortName: By name
   onlyAccepting: Only experts accepting new clients
   onlyVerified: Only verified experts
+  onlyOnline: Online sessions only
   clearFilters: Clear
   applyFilters: Apply
 
@@ -606,6 +607,35 @@ expertDetail:
   specializationsTitle: Specializations
   articleCount: $count articles
   notAcceptingPatients: This expert is not accepting appointments right now.
+  aboutTitle: About
+  professionalTitle: Profile details
+  factNextSlot: First available slot
+  factNextSlotEmpty: Check the calendar
+  factSession: Session length
+  factSessionValue: $count minutes
+  factAgeGroups: Age groups
+  factAgeGroupsEmpty: Ask the expert
+  factLanguages: Languages
+  factSupportTopics: Support topics
+  factSupportTopicsEmpty: Not stated on the profile
+  factCancellation: Cancellation policy
+  factCancellationEmpty: Confirm with the expert before the appointment
+  factReschedule: Reschedule policy
+  factService: Session format
+  factServiceEmpty: Not stated
+  serviceOnline: Online
+  serviceFaceToFace: In person
+  factFee: Session fee
+  factFeeEmpty: Ask the expert
+  badgeVerified: Verified expert
+  badgePending: Awaiting approval
+  badgeLicenseVerified: License verified
+  report: Report this profile
+  reportReasonLabel: Reason
+  reportNoteLabel: Extra details (optional)
+  reportNoteHint: Describe the situation in a few sentences
+  reportSend: Send report
+  reportSent: Your report has been sent. The moderation team will review it.
 
 booking:
   title: Book Appointment

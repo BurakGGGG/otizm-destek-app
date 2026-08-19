@@ -12,6 +12,7 @@ import '../data/forum_repository.dart';
 import '../domain/forum_post.dart';
 import 'forum_screen.dart';
 import 'widgets/forum_post_sheet.dart';
+import '../../reports/data/report_repository.dart';
 
 /// Forum gönderi detayı: tam metin, beğeni, etiketler; yorumlar (uzman onaylı
 /// önce) + tek seviye yanıtlar + yorum oyları; soru sahibiyse "en iyi cevap"
@@ -299,7 +300,7 @@ class _ForumPostDetailScreenState
     controller.dispose();
     if (reason == null || reason.isEmpty || !mounted) return;
     try {
-      await ref.read(forumRepositoryProvider).report(
+      await ref.read(reportRepositoryProvider).create(
             targetType: targetType,
             targetId: targetId,
             reason: reason,

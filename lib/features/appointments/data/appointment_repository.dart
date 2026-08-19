@@ -100,6 +100,29 @@ class AppointmentRepository {
     }
   }
 
+  /// Uzmanın ilk uygun randevu saati — `GET
+  /// /appointments/experts/{id}/next-available`. Backend 60 güne kadar
+  /// bakar; müsaitlik yoksa boş harita döner (burada null).
+  Future<({String date, String time})?> getNextAvailable(
+    String expertId, {
+    int? duration,
+  }) async {
+    try {
+      final res = await _dio.get(
+        '/appointments/experts/$expertId/next-available',
+        queryParameters: {'duration': ?duration},
+      );
+      final data = ApiEnvelope.fromJson(res.data).data;
+      if (data is! Map) return null;
+      final date = data['date']?.toString();
+      final time = data['time']?.toString();
+      if (date == null || time == null) return null;
+      return (date: date, time: time);
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
   /// Yeni randevu oluştur (PARENT).
   Future<Appointment> create({
     required String expertId,
@@ -151,3 +174,14 @@ final upcomingAppointmentsProvider = FutureProvider<List<Appointment>>((
     });
   return upcoming;
 });
+
+/// Uzman profilinde gösterilen ilk uygun randevu. Web listedeki her uzman
+/// için çağırıyor; mobil yalnızca uzman detayında sorar.
+final nextAvailableSlotProvider = FutureProvider.family<
+    ({String date, String time})?, ({String expertId, int? duration})>(
+  (ref, key) {
+    return ref
+        .watch(appointmentRepositoryProvider)
+        .getNextAvailable(key.expertId, duration: key.duration);
+  },
+);

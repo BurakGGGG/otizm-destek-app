@@ -13,6 +13,18 @@ class Expert {
     this.articleCount = 0,
     this.verified = false,
     this.acceptingPatients = true,
+    this.bio,
+    this.licenseVerified = false,
+    this.ageGroups = const [],
+    this.supportTopics = const [],
+    this.spokenLanguages = const [],
+    this.sessionDurationMinutes,
+    this.cancellationPolicy,
+    this.reschedulePolicy,
+    this.sessionFeeMin,
+    this.sessionFeeMax,
+    this.offersOnline = true,
+    this.offersFaceToFace = true,
   });
 
   final String id;
@@ -27,6 +39,28 @@ class Expert {
   final int articleCount;
   final bool verified;
   final bool acceptingPatients;
+
+  /// Uzmanın kendi yazdığı tanıtım metni (veri).
+  final String? bio;
+  final bool licenseVerified;
+
+  /// Profil bilgileri — hepsi uzmanın girdiği serbest metinlerdir (veri,
+  /// çevrilmez); yalnızca etiketleri i18n'den gelir.
+  final List<String> ageGroups;
+  final List<String> supportTopics;
+  final List<String> spokenLanguages;
+  final int? sessionDurationMinutes;
+  final String? cancellationPolicy;
+  final String? reschedulePolicy;
+
+  /// Seans ücreti aralığı (TL) ve hizmet biçimi. Web kartlarında da görünür;
+  /// bayraklar `false` gelmedikçe açık kabul edilir (web `!== false`).
+  final num? sessionFeeMin;
+  final num? sessionFeeMax;
+  final bool offersOnline;
+  final bool offersFaceToFace;
+
+  bool get hasFee => sessionFeeMin != null || sessionFeeMax != null;
 
   bool get hasRating => reviewCount > 0;
 
@@ -48,6 +82,27 @@ class Expert {
       articleCount: (json['articleCount'] as num?)?.toInt() ?? 0,
       verified: json['verified'] as bool? ?? false,
       acceptingPatients: json['acceptingPatients'] as bool? ?? true,
+      bio: json['bio'] as String?,
+      licenseVerified: json['licenseVerified'] as bool? ?? false,
+      ageGroups: _stringList(json['ageGroups']),
+      supportTopics: _stringList(json['supportTopics']),
+      spokenLanguages: _stringList(json['spokenLanguages']),
+      sessionDurationMinutes:
+          (json['sessionDurationMinutes'] as num?)?.toInt(),
+      cancellationPolicy: json['cancellationPolicy'] as String?,
+      reschedulePolicy: json['reschedulePolicy'] as String?,
+      sessionFeeMin: json['sessionFeeMin'] as num?,
+      sessionFeeMax: json['sessionFeeMax'] as num?,
+      offersOnline: json['offersOnline'] != false,
+      offersFaceToFace: json['offersFaceToFace'] != false,
     );
   }
+}
+
+List<String> _stringList(Object? value) {
+  if (value is! List) return const [];
+  return [
+    for (final item in value)
+      if (item != null && item.toString().trim().isNotEmpty) item.toString(),
+  ];
 }

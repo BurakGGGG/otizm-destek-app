@@ -314,7 +314,18 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
   anahtar da okunur).
 - ✅ **Uzmanlar:** değerlendirmeler (`/api/experts/{id}/reviews` — ortalama,
   liste, kendi değerlendirmeni yaz/güncelle/sil) ve filtre sayfası (şehir,
-  yalnızca randevu kabul edenler, yalnızca doğrulanmış, sıralama).
+  yalnızca randevu kabul edenler, yalnızca doğrulanmış, **yalnızca online**,
+  sıralama). **Uzman profili** web `ProfilePage`/`ExpertsPage` bilgileriyle
+  dolduruldu: hakkında (bio), doğrulama rozetleri, profil bilgileri tablosu
+  (ilk uygun randevu `GET /appointments/experts/{id}/next-available`, görüşme
+  süresi, yaş grubu, diller, destek konuları, hizmet biçimi, seans ücreti,
+  iptal/erteleme koşulu — değerler veri, yalnızca etiketler çevrilir) ve
+  **profil şikayeti** (`POST /reports {targetType:'EXPERT'}`, nedenler web
+  `REPORT_REASONS` birebir; açıklama yeni satırla eklenir). Şikayet uç noktası
+  `features/reports/` altında ortaklaştı (forum da onu kullanıyor). Web'den
+  ayrım: "ilk uygun randevu" yalnızca uzman detayında sorulur (web listedeki
+  her uzman için ayrı istek atıyor); lisans numarası rozeti yok — `/experts`
+  yanıtı bu alanı taşımıyor (web'de de hep boş).
 - ✅ **Uzman erişimi** (`/expert-access`, `/api/patients/connections/**`):
   veli, uzmanın çocuk verisine erişimini onaylar/reddeder, verdiği erişimi
   geri alır. Ana sayfada bekleyen istek şeridi, Çocuklarım başlığında ve

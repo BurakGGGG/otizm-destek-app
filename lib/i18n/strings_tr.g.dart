@@ -1464,6 +1464,9 @@ class Translations$specialists$tr {
 	/// tr: 'Yalnızca doğrulanmış uzmanlar'
 	String get onlyVerified => 'Yalnızca doğrulanmış uzmanlar';
 
+	/// tr: 'Yalnızca online görüşme yapanlar'
+	String get onlyOnline => 'Yalnızca online görüşme yapanlar';
+
 	/// tr: 'Temizle'
 	String get clearFilters => 'Temizle';
 
@@ -1985,6 +1988,93 @@ class Translations$expertDetail$tr {
 
 	/// tr: 'Bu uzman şu an randevu kabul etmiyor.'
 	String get notAcceptingPatients => 'Bu uzman şu an randevu kabul etmiyor.';
+
+	/// tr: 'Hakkında'
+	String get aboutTitle => 'Hakkında';
+
+	/// tr: 'Profil bilgileri'
+	String get professionalTitle => 'Profil bilgileri';
+
+	/// tr: 'İlk uygun randevu'
+	String get factNextSlot => 'İlk uygun randevu';
+
+	/// tr: 'Takvimden görüntüleyin'
+	String get factNextSlotEmpty => 'Takvimden görüntüleyin';
+
+	/// tr: 'Görüşme süresi'
+	String get factSession => 'Görüşme süresi';
+
+	/// tr: '$count dakika'
+	String factSessionValue({required Object count}) => '${count} dakika';
+
+	/// tr: 'Çalıştığı yaş grubu'
+	String get factAgeGroups => 'Çalıştığı yaş grubu';
+
+	/// tr: 'Uzmanla görüşün'
+	String get factAgeGroupsEmpty => 'Uzmanla görüşün';
+
+	/// tr: 'Konuştuğu diller'
+	String get factLanguages => 'Konuştuğu diller';
+
+	/// tr: 'Destek verdiği konular'
+	String get factSupportTopics => 'Destek verdiği konular';
+
+	/// tr: 'Profilde belirtilmemiş'
+	String get factSupportTopicsEmpty => 'Profilde belirtilmemiş';
+
+	/// tr: 'İptal koşulu'
+	String get factCancellation => 'İptal koşulu';
+
+	/// tr: 'Randevudan önce uzmanla teyit edin'
+	String get factCancellationEmpty => 'Randevudan önce uzmanla teyit edin';
+
+	/// tr: 'Erteleme koşulu'
+	String get factReschedule => 'Erteleme koşulu';
+
+	/// tr: 'Hizmet biçimi'
+	String get factService => 'Hizmet biçimi';
+
+	/// tr: 'Belirtilmemiş'
+	String get factServiceEmpty => 'Belirtilmemiş';
+
+	/// tr: 'Online'
+	String get serviceOnline => 'Online';
+
+	/// tr: 'Yüz yüze'
+	String get serviceFaceToFace => 'Yüz yüze';
+
+	/// tr: 'Seans ücreti'
+	String get factFee => 'Seans ücreti';
+
+	/// tr: 'Uzmanla görüşün'
+	String get factFeeEmpty => 'Uzmanla görüşün';
+
+	/// tr: 'Onaylı uzman'
+	String get badgeVerified => 'Onaylı uzman';
+
+	/// tr: 'Onay bekliyor'
+	String get badgePending => 'Onay bekliyor';
+
+	/// tr: 'Lisans doğrulandı'
+	String get badgeLicenseVerified => 'Lisans doğrulandı';
+
+	/// tr: 'Profili şikayet et'
+	String get report => 'Profili şikayet et';
+
+	/// tr: 'Şikayet nedeni'
+	String get reportReasonLabel => 'Şikayet nedeni';
+
+	/// tr: 'Ek açıklama (isteğe bağlı)'
+	String get reportNoteLabel => 'Ek açıklama (isteğe bağlı)';
+
+	/// tr: 'Durumu birkaç cümleyle anlatın'
+	String get reportNoteHint => 'Durumu birkaç cümleyle anlatın';
+
+	/// tr: 'Şikayeti gönder'
+	String get reportSend => 'Şikayeti gönder';
+
+	/// tr: 'Şikayetiniz iletildi. Moderasyon ekibi inceleyecek.'
+	String get reportSent => 'Şikayetiniz iletildi. Moderasyon ekibi inceleyecek.';
 }
 
 // Path: booking
@@ -6132,6 +6222,7 @@ extension on Translations {
 			'specialists.sortName' => 'İsme göre',
 			'specialists.onlyAccepting' => 'Yalnızca randevu kabul edenler',
 			'specialists.onlyVerified' => 'Yalnızca doğrulanmış uzmanlar',
+			'specialists.onlyOnline' => 'Yalnızca online görüşme yapanlar',
 			'specialists.clearFilters' => 'Temizle',
 			'specialists.applyFilters' => 'Uygula',
 			'progress.title' => 'Gelişim Takibi',
@@ -6244,9 +6335,9 @@ extension on Translations {
 			'appointments.statusConfirmed' => 'Onaylandı',
 			'appointments.statusCompleted' => 'Tamamlandı',
 			'appointments.statusCancelled' => 'İptal Edildi',
-			'appointments.typeOnline' => 'Online Görüşme',
 			_ => null,
 		} ?? switch (path) {
+			'appointments.typeOnline' => 'Online Görüşme',
 			'appointments.typeFaceToFace' => 'Yüz Yüze',
 			'appointments.withChild' => ({required Object name}) => 'Çocuk: ${name}',
 			'appointments.dateLine' => ({required Object day, required Object month, required Object year, required Object time}) => '${day} ${month} ${year} · ${time}',
@@ -6284,6 +6375,35 @@ extension on Translations {
 			'expertDetail.specializationsTitle' => 'Uzmanlık Alanları',
 			'expertDetail.articleCount' => ({required Object count}) => '${count} makale',
 			'expertDetail.notAcceptingPatients' => 'Bu uzman şu an randevu kabul etmiyor.',
+			'expertDetail.aboutTitle' => 'Hakkında',
+			'expertDetail.professionalTitle' => 'Profil bilgileri',
+			'expertDetail.factNextSlot' => 'İlk uygun randevu',
+			'expertDetail.factNextSlotEmpty' => 'Takvimden görüntüleyin',
+			'expertDetail.factSession' => 'Görüşme süresi',
+			'expertDetail.factSessionValue' => ({required Object count}) => '${count} dakika',
+			'expertDetail.factAgeGroups' => 'Çalıştığı yaş grubu',
+			'expertDetail.factAgeGroupsEmpty' => 'Uzmanla görüşün',
+			'expertDetail.factLanguages' => 'Konuştuğu diller',
+			'expertDetail.factSupportTopics' => 'Destek verdiği konular',
+			'expertDetail.factSupportTopicsEmpty' => 'Profilde belirtilmemiş',
+			'expertDetail.factCancellation' => 'İptal koşulu',
+			'expertDetail.factCancellationEmpty' => 'Randevudan önce uzmanla teyit edin',
+			'expertDetail.factReschedule' => 'Erteleme koşulu',
+			'expertDetail.factService' => 'Hizmet biçimi',
+			'expertDetail.factServiceEmpty' => 'Belirtilmemiş',
+			'expertDetail.serviceOnline' => 'Online',
+			'expertDetail.serviceFaceToFace' => 'Yüz yüze',
+			'expertDetail.factFee' => 'Seans ücreti',
+			'expertDetail.factFeeEmpty' => 'Uzmanla görüşün',
+			'expertDetail.badgeVerified' => 'Onaylı uzman',
+			'expertDetail.badgePending' => 'Onay bekliyor',
+			'expertDetail.badgeLicenseVerified' => 'Lisans doğrulandı',
+			'expertDetail.report' => 'Profili şikayet et',
+			'expertDetail.reportReasonLabel' => 'Şikayet nedeni',
+			'expertDetail.reportNoteLabel' => 'Ek açıklama (isteğe bağlı)',
+			'expertDetail.reportNoteHint' => 'Durumu birkaç cümleyle anlatın',
+			'expertDetail.reportSend' => 'Şikayeti gönder',
+			'expertDetail.reportSent' => 'Şikayetiniz iletildi. Moderasyon ekibi inceleyecek.',
 			'booking.title' => 'Randevu Al',
 			'booking.childLabel' => 'Çocuk',
 			'booking.noChild' => 'Randevu almak için önce bir çocuk ekleyin.',
@@ -6729,6 +6849,8 @@ extension on Translations {
 			'treatment.aiStoryTitle' => 'AI ile Sosyal Hikâye',
 			'treatment.aiStoryBody' => 'Yeni bir durum için AI Asistan\'dan çocuğunuza özel kısa bir sosyal hikâye taslağı isteyin.',
 			'treatment.aiStoryOpen' => 'AI Asistan\'ı Aç',
+			_ => null,
+		} ?? switch (path) {
 			'tasks.title' => 'Ödevlerim',
 			'tasks.subtitle' => 'Uzmanınızın size atadığı çalışmalar burada görünür; tamamladıkça teslim edebilirsiniz.',
 			'tasks.pendingLabel' => 'Bekleyen',
@@ -6759,8 +6881,6 @@ extension on Translations {
 			'tasks.awaitingReview' => 'Uzman değerlendirmesi bekleniyor…',
 			'tasks.submitTitle' => 'Görevi Teslim Et',
 			'tasks.selectedTask' => 'Seçili Görev',
-			_ => null,
-		} ?? switch (path) {
 			'tasks.noteLabel' => 'Uzmana İletilecek Not',
 			'tasks.noteHint' => 'Çocuğunuz bu görevi yaparken nasıl hissetti? (Örn: Çok rahat tamamladı)',
 			'tasks.evidenceLabel' => 'Kanıt / Eklenti Bağlantısı (İsteğe Bağlı)',
@@ -7243,6 +7363,8 @@ extension on Translations {
 			'guide.videoCategorySupport' => 'Güven ve Destek',
 			'guide.badgeDaily' => 'Her gün',
 			'guide.badgeQuickLog' => 'Kısa kayıt',
+			_ => null,
+		} ?? switch (path) {
 			'guide.badgeQuickHelp' => 'Hızlı destek',
 			'guide.badgeFirstStep' => 'İlk adım',
 			'guide.badgeSetup' => 'İlk kurulum',
@@ -7273,8 +7395,6 @@ extension on Translations {
 			'guide.startExpertMessages' => 'Ailelerle iletişime geç',
 			'guide.startExpertMessagesDesc' => 'Güvenli mesajlaşmayla soruları yanıtlayın ve takibi sürdürün.',
 			'guide.startExpertProfile' => 'Uzman profilini tamamla',
-			_ => null,
-		} ?? switch (path) {
 			'guide.startExpertProfileDesc' => 'Unvan, uzmanlık alanları ve iletişim bilgilerinizi güncel tutun.',
 			'guide.pageHome' => 'Ana Sayfa',
 			'guide.pageHomePurpose' => 'Bugün yapılacakları, hatırlatmaları ve kısa günlük planı tek yerde gösterir.',

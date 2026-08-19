@@ -220,22 +220,6 @@ class ForumRepository {
     }
   }
 
-  /// İçerik şikayeti — `POST /reports {targetType, targetId, reason}`.
-  Future<void> report({
-    required String targetType,
-    required String targetId,
-    required String reason,
-  }) async {
-    try {
-      await _dio.post('/reports', data: {
-        'targetType': targetType,
-        'targetId': targetId,
-        'reason': reason.trim(),
-      });
-    } on DioException catch (e) {
-      throw ApiException.fromDio(e);
-    }
-  }
 }
 
 final forumRepositoryProvider = Provider<ForumRepository>((ref) {

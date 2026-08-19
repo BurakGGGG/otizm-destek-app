@@ -441,6 +441,7 @@ specialists:
   sortName: İsme göre
   onlyAccepting: Yalnızca randevu kabul edenler
   onlyVerified: Yalnızca doğrulanmış uzmanlar
+  onlyOnline: Yalnızca online görüşme yapanlar
   clearFilters: Temizle
   applyFilters: Uygula
 
@@ -607,6 +608,35 @@ expertDetail:
   specializationsTitle: Uzmanlık Alanları
   articleCount: $count makale
   notAcceptingPatients: Bu uzman şu an randevu kabul etmiyor.
+  aboutTitle: Hakkında
+  professionalTitle: Profil bilgileri
+  factNextSlot: İlk uygun randevu
+  factNextSlotEmpty: Takvimden görüntüleyin
+  factSession: Görüşme süresi
+  factSessionValue: $count dakika
+  factAgeGroups: Çalıştığı yaş grubu
+  factAgeGroupsEmpty: Uzmanla görüşün
+  factLanguages: Konuştuğu diller
+  factSupportTopics: Destek verdiği konular
+  factSupportTopicsEmpty: Profilde belirtilmemiş
+  factCancellation: İptal koşulu
+  factCancellationEmpty: Randevudan önce uzmanla teyit edin
+  factReschedule: Erteleme koşulu
+  factService: Hizmet biçimi
+  factServiceEmpty: Belirtilmemiş
+  serviceOnline: Online
+  serviceFaceToFace: Yüz yüze
+  factFee: Seans ücreti
+  factFeeEmpty: Uzmanla görüşün
+  badgeVerified: Onaylı uzman
+  badgePending: Onay bekliyor
+  badgeLicenseVerified: Lisans doğrulandı
+  report: Profili şikayet et
+  reportReasonLabel: Şikayet nedeni
+  reportNoteLabel: Ek açıklama (isteğe bağlı)
+  reportNoteHint: Durumu birkaç cümleyle anlatın
+  reportSend: Şikayeti gönder
+  reportSent: Şikayetiniz iletildi. Moderasyon ekibi inceleyecek.
 
 booking:
   title: Randevu Al

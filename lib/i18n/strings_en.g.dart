@@ -687,6 +687,7 @@ class _Translations$specialists$en extends Translations$specialists$tr {
 	@override String get sortName => 'By name';
 	@override String get onlyAccepting => 'Only experts accepting new clients';
 	@override String get onlyVerified => 'Only verified experts';
+	@override String get onlyOnline => 'Online sessions only';
 	@override String get clearFilters => 'Clear';
 	@override String get applyFilters => 'Apply';
 }
@@ -909,6 +910,35 @@ class _Translations$expertDetail$en extends Translations$expertDetail$tr {
 	@override String get specializationsTitle => 'Specializations';
 	@override String articleCount({required Object count}) => '${count} articles';
 	@override String get notAcceptingPatients => 'This expert is not accepting appointments right now.';
+	@override String get aboutTitle => 'About';
+	@override String get professionalTitle => 'Profile details';
+	@override String get factNextSlot => 'First available slot';
+	@override String get factNextSlotEmpty => 'Check the calendar';
+	@override String get factSession => 'Session length';
+	@override String factSessionValue({required Object count}) => '${count} minutes';
+	@override String get factAgeGroups => 'Age groups';
+	@override String get factAgeGroupsEmpty => 'Ask the expert';
+	@override String get factLanguages => 'Languages';
+	@override String get factSupportTopics => 'Support topics';
+	@override String get factSupportTopicsEmpty => 'Not stated on the profile';
+	@override String get factCancellation => 'Cancellation policy';
+	@override String get factCancellationEmpty => 'Confirm with the expert before the appointment';
+	@override String get factReschedule => 'Reschedule policy';
+	@override String get factService => 'Session format';
+	@override String get factServiceEmpty => 'Not stated';
+	@override String get serviceOnline => 'Online';
+	@override String get serviceFaceToFace => 'In person';
+	@override String get factFee => 'Session fee';
+	@override String get factFeeEmpty => 'Ask the expert';
+	@override String get badgeVerified => 'Verified expert';
+	@override String get badgePending => 'Awaiting approval';
+	@override String get badgeLicenseVerified => 'License verified';
+	@override String get report => 'Report this profile';
+	@override String get reportReasonLabel => 'Reason';
+	@override String get reportNoteLabel => 'Extra details (optional)';
+	@override String get reportNoteHint => 'Describe the situation in a few sentences';
+	@override String get reportSend => 'Send report';
+	@override String get reportSent => 'Your report has been sent. The moderation team will review it.';
 }
 
 // Path: booking
@@ -2814,6 +2844,7 @@ extension on TranslationsEn {
 			'specialists.sortName' => 'By name',
 			'specialists.onlyAccepting' => 'Only experts accepting new clients',
 			'specialists.onlyVerified' => 'Only verified experts',
+			'specialists.onlyOnline' => 'Online sessions only',
 			'specialists.clearFilters' => 'Clear',
 			'specialists.applyFilters' => 'Apply',
 			'progress.title' => 'Progress Tracking',
@@ -2926,9 +2957,9 @@ extension on TranslationsEn {
 			'appointments.statusConfirmed' => 'Confirmed',
 			'appointments.statusCompleted' => 'Completed',
 			'appointments.statusCancelled' => 'Cancelled',
-			'appointments.typeOnline' => 'Online session',
 			_ => null,
 		} ?? switch (path) {
+			'appointments.typeOnline' => 'Online session',
 			'appointments.typeFaceToFace' => 'In person',
 			'appointments.withChild' => ({required Object name}) => 'Child: ${name}',
 			'appointments.dateLine' => ({required Object day, required Object month, required Object year, required Object time}) => '${day} ${month} ${year} · ${time}',
@@ -2966,6 +2997,35 @@ extension on TranslationsEn {
 			'expertDetail.specializationsTitle' => 'Specializations',
 			'expertDetail.articleCount' => ({required Object count}) => '${count} articles',
 			'expertDetail.notAcceptingPatients' => 'This expert is not accepting appointments right now.',
+			'expertDetail.aboutTitle' => 'About',
+			'expertDetail.professionalTitle' => 'Profile details',
+			'expertDetail.factNextSlot' => 'First available slot',
+			'expertDetail.factNextSlotEmpty' => 'Check the calendar',
+			'expertDetail.factSession' => 'Session length',
+			'expertDetail.factSessionValue' => ({required Object count}) => '${count} minutes',
+			'expertDetail.factAgeGroups' => 'Age groups',
+			'expertDetail.factAgeGroupsEmpty' => 'Ask the expert',
+			'expertDetail.factLanguages' => 'Languages',
+			'expertDetail.factSupportTopics' => 'Support topics',
+			'expertDetail.factSupportTopicsEmpty' => 'Not stated on the profile',
+			'expertDetail.factCancellation' => 'Cancellation policy',
+			'expertDetail.factCancellationEmpty' => 'Confirm with the expert before the appointment',
+			'expertDetail.factReschedule' => 'Reschedule policy',
+			'expertDetail.factService' => 'Session format',
+			'expertDetail.factServiceEmpty' => 'Not stated',
+			'expertDetail.serviceOnline' => 'Online',
+			'expertDetail.serviceFaceToFace' => 'In person',
+			'expertDetail.factFee' => 'Session fee',
+			'expertDetail.factFeeEmpty' => 'Ask the expert',
+			'expertDetail.badgeVerified' => 'Verified expert',
+			'expertDetail.badgePending' => 'Awaiting approval',
+			'expertDetail.badgeLicenseVerified' => 'License verified',
+			'expertDetail.report' => 'Report this profile',
+			'expertDetail.reportReasonLabel' => 'Reason',
+			'expertDetail.reportNoteLabel' => 'Extra details (optional)',
+			'expertDetail.reportNoteHint' => 'Describe the situation in a few sentences',
+			'expertDetail.reportSend' => 'Send report',
+			'expertDetail.reportSent' => 'Your report has been sent. The moderation team will review it.',
 			'booking.title' => 'Book Appointment',
 			'booking.childLabel' => 'Child',
 			'booking.noChild' => 'Add a child first to book an appointment.',
@@ -3411,6 +3471,8 @@ extension on TranslationsEn {
 			'treatment.aiStoryTitle' => 'Social Story with AI',
 			'treatment.aiStoryBody' => 'Ask the AI Assistant for a short custom social story draft for a new situation.',
 			'treatment.aiStoryOpen' => 'Open AI Assistant',
+			_ => null,
+		} ?? switch (path) {
 			'tasks.title' => 'My Assignments',
 			'tasks.subtitle' => 'Tasks assigned by your expert appear here; submit them as you complete each one.',
 			'tasks.pendingLabel' => 'Pending',
@@ -3441,8 +3503,6 @@ extension on TranslationsEn {
 			'tasks.awaitingReview' => 'Awaiting expert review…',
 			'tasks.submitTitle' => 'Submit Task',
 			'tasks.selectedTask' => 'Selected Task',
-			_ => null,
-		} ?? switch (path) {
 			'tasks.noteLabel' => 'Note for Your Expert',
 			'tasks.noteHint' => 'How did your child feel doing this task? (e.g. Completed it very comfortably)',
 			'tasks.evidenceLabel' => 'Evidence / Attachment Link (Optional)',
@@ -3925,6 +3985,8 @@ extension on TranslationsEn {
 			'guide.videoCategorySupport' => 'Safety and support',
 			'guide.badgeDaily' => 'Every day',
 			'guide.badgeQuickLog' => 'Quick log',
+			_ => null,
+		} ?? switch (path) {
 			'guide.badgeQuickHelp' => 'Quick help',
 			'guide.badgeFirstStep' => 'First step',
 			'guide.badgeSetup' => 'First setup',
@@ -3955,8 +4017,6 @@ extension on TranslationsEn {
 			'guide.startExpertMessages' => 'Reach out to families',
 			'guide.startExpertMessagesDesc' => 'Answer questions through secure messaging and keep the follow-up going.',
 			'guide.startExpertProfile' => 'Complete your expert profile',
-			_ => null,
-		} ?? switch (path) {
 			'guide.startExpertProfileDesc' => 'Keep your title, specialisations and contact details up to date.',
 			'guide.pageHome' => 'Home',
 			'guide.pageHomePurpose' => 'Shows today\'s to-dos, reminders and the short daily plan in one place.',
