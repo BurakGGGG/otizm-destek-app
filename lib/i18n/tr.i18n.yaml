@@ -1697,6 +1697,38 @@ analytics:
   aiConsentTitle: Yapay zekâ analizi için rızanız gerekiyor
   aiConsentBody: Çocuğunuzun kayıtlarının analiz edilmesi açık rızaya bağlıdır. Rızayı KVKK ve rızalar sayfasından verebilirsiniz.
   aiConsentAction: Rızaları yönet
+  rangeDays: Son $count gün
+  scoreTitle: Takip skoru
+  scoreCoverage: $count / $total veri türünde kayıt var
+  scoreStrong: Güçlü takip
+  scoreGrowing: Takip gelişiyor
+  scoreWaiting: Veri bekleniyor
+  actionsTitle: Eksik veriler
+  actionMood: Ruh hali kaydı ekle
+  actionSleep: Uyku kaydı ekle
+  actionNote: Gelişim notu yaz
+  actionMilestone: Kilometre taşı ekle
+  insightMoodHigh: Son $days günde ortalama ruh hali $value/5 ile oldukça yüksek.
+  insightMoodLow: Son $days günde ortalama ruh hali $value/5 — bazı güçlükler olabilir.
+  insightSleepShort: Ortalama uyku süresi $value — yeterli dinlenme için 8-10 saat önerilir.
+  insightSleepGood: 'Uyku düzeni iyi: ortalama $value.'
+  insightMilestones: En fazla kilometre taşı "$category" alanında ($count adet).
+  insightAppointments: $count randevu tamamlandı.
+  insightAppointmentsWithPending: $count randevu tamamlandı, $pending aktif randevu devam ediyor.
+  dailyMood: Ruh hali trendi
+  dailyMoodUnit: günlük kayıt (1-5)
+  dailySleep: Uyku düzeni
+  dailySleepUnit: gecelik süre (saat)
+  dailySleepQuality: kalite (1-5)
+  behaviorCategories: Davranış kategorileri
+  behaviorCategoriesUnit: kayıt sayısı ve ortalama şiddet
+  milestoneCategories: Kilometre taşları
+  milestoneCategoriesUnit: kategoriye göre kazanım
+  notesActivity: Not aktivitesi
+  notesActivityUnit: aylık not sayısı
+  countWithIntensity: $count · ort. $intensity
+  exportCsv: CSV olarak paylaş
+  exportEmpty: Paylaşılacak kayıt yok.
 
 children:
   title: Çocuklarım

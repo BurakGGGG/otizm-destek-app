@@ -28,6 +28,10 @@ import 'package:otizm_destek_app/features/auth/domain/app_user.dart';
 import 'package:otizm_destek_app/features/auth/presentation/auth_controller.dart';
 import 'package:otizm_destek_app/features/children/data/child_repository.dart';
 import 'package:otizm_destek_app/features/children/data/connection_repository.dart';
+import 'package:otizm_destek_app/features/children/data/milestone_repository.dart';
+import 'package:otizm_destek_app/features/children/data/screening_repository.dart';
+import 'package:otizm_destek_app/features/children/domain/screening_result.dart';
+import 'package:otizm_destek_app/features/children/domain/milestone.dart';
 import 'package:otizm_destek_app/features/children/domain/child.dart';
 import 'package:otizm_destek_app/features/community/presentation/community_screen.dart';
 import 'package:otizm_destek_app/features/crisis/presentation/crisis_screen.dart';
@@ -568,14 +572,17 @@ class _FakeMoodRepository extends MoodRepository {
 
   @override
   Future<List<MoodEntry>> getEntries(String childId) async => [
-        MoodEntry(
-          id: 'md1',
-          childId: childId,
-          entryDate: localDateKey(DateTime.now()),
-          moodLevel: 4,
-          notes: 'Sabah okulda iyiydi.',
-          triggers: const ['Gürültü'],
-        ),
+        for (var i = 0; i < 10; i++)
+          MoodEntry(
+            id: 'md$i',
+            childId: childId,
+            entryDate: localDateKey(
+              DateTime.now().subtract(Duration(days: i)),
+            ),
+            moodLevel: [4, 3, 5, 4, 4, 2, 3, 5, 4, 3][i],
+            notes: i == 0 ? 'Sabah okulda iyiydi.' : null,
+            triggers: i == 0 ? const ['Gürültü'] : const [],
+          ),
       ];
 }
 
@@ -584,16 +591,19 @@ class _FakeSleepRepository extends SleepRepository {
 
   @override
   Future<List<SleepEntry>> getEntries(String childId) async => [
-        SleepEntry(
-          id: 'sl1',
-          childId: childId,
-          sleepDate: localDateKey(DateTime.now()),
-          bedtime: '21:15',
-          wakeTime: '07:00',
-          durationMinutes: 585,
-          quality: 4,
-          nightWakings: 1,
-        ),
+        for (var i = 0; i < 10; i++)
+          SleepEntry(
+            id: 'sl$i',
+            childId: childId,
+            sleepDate: localDateKey(
+              DateTime.now().subtract(Duration(days: i)),
+            ),
+            bedtime: '21:15',
+            wakeTime: '07:00',
+            durationMinutes: [585, 540, 600, 510, 570, 480, 555, 600, 525, 540][i],
+            quality: [4, 3, 5, 3, 4, 2, 4, 5, 3, 4][i],
+            nightWakings: i.isEven ? 1 : 0,
+          ),
       ];
 }
 
@@ -850,6 +860,41 @@ class _FakeNotificationRepository extends NotificationRepository {
       );
 }
 
+
+class _FakeMilestoneRepository extends MilestoneRepository {
+  _FakeMilestoneRepository() : super(Dio());
+
+  @override
+  Future<List<Milestone>> getByChild(String childId) async => [
+        Milestone(
+          id: 'ms1',
+          title: 'İki kelimelik istek cümlesi',
+          category: 'Dil ve İletişim',
+          achievedDate: DateTime.now().subtract(const Duration(days: 6)),
+        ),
+        Milestone(
+          id: 'ms2',
+          title: 'Sırasını bekledi',
+          category: 'Sosyal Beceriler',
+          achievedDate: DateTime.now().subtract(const Duration(days: 15)),
+        ),
+      ];
+}
+
+class _FakeScreeningRepository extends ScreeningRepository {
+  _FakeScreeningRepository() : super(Dio());
+
+  @override
+  Future<List<ScreeningResult>> getByChild(String childId) async => [
+        ScreeningResult(
+          id: 'sc1',
+          testType: 'M-CHAT-R',
+          score: 7,
+          riskLevel: 'MEDIUM',
+          createdAt: DateTime(2026, 5, 12),
+        ),
+      ];
+}
 
 class _FakeAnalyticsRepository extends AnalyticsRepository {
   _FakeAnalyticsRepository() : super(Dio());
@@ -1140,6 +1185,10 @@ Widget _app(Widget home, {List<dynamic> overrides = const []}) {
             .overrideWithValue(_FakeNotificationRepository()),
         analyticsRepositoryProvider
             .overrideWithValue(_FakeAnalyticsRepository()),
+        milestoneRepositoryProvider
+            .overrideWithValue(_FakeMilestoneRepository()),
+        screeningRepositoryProvider
+            .overrideWithValue(_FakeScreeningRepository()),
         kvkkRepositoryProvider.overrideWithValue(_FakeKvkkRepository()),
         searchRepositoryProvider.overrideWithValue(_FakeSearchRepository()),
         matchingRepositoryProvider.overrideWithValue(_FakeMatchingRepository()),
@@ -1187,8 +1236,10 @@ void main() {
     addTearDown(tester.view.reset);
 
     await tester.pumpWidget(_app(home, overrides: overrides));
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 400));
+    // Zincirli sağlayıcılar (kaynaklar → özet) birkaç tur sonra çözülüyor.
+    for (var i = 0; i < 4; i++) {
+      await tester.pump(const Duration(milliseconds: 200));
+    }
     if (after != null) await after(tester);
     await expectLater(
       find.byType(MaterialApp),
@@ -1351,6 +1402,23 @@ void main() {
       tester,
       '26-benzer-aileler',
       const SimilarFamiliesScreen(),
+    );
+  });
+
+  testWidgets('24b gelişim paneli grafikleri', (tester) async {
+    await shoot(
+      tester,
+      '24b-gelisim-paneli-grafikler',
+      const AnalyticsScreen(),
+      after: (tester) async {
+        final t = AppLocale.tr.buildSync();
+        await tester.dragUntilVisible(
+          find.text(t.analytics.dailySleep),
+          find.byType(Scrollable).last,
+          const Offset(0, -200),
+        );
+        await tester.pump();
+      },
     );
   });
 

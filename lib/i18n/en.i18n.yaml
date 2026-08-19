@@ -1690,6 +1690,38 @@ analytics:
   aiConsentTitle: AI analysis needs your consent
   aiConsentBody: Analysing your child's records requires explicit consent. You can grant it on the privacy and consents page.
   aiConsentAction: Manage consents
+  rangeDays: Last $count days
+  scoreTitle: Tracking score
+  scoreCoverage: Records in $count of $total data types
+  scoreStrong: Strong tracking
+  scoreGrowing: Tracking is growing
+  scoreWaiting: Waiting for data
+  actionsTitle: Missing data
+  actionMood: Add a mood entry
+  actionSleep: Add a sleep entry
+  actionNote: Write a development note
+  actionMilestone: Add a milestone
+  insightMoodHigh: Average mood over the last $days days is $value/5 — quite high.
+  insightMoodLow: Average mood over the last $days days is $value/5 — there may be some difficulties.
+  insightSleepShort: Average sleep is $value — 8-10 hours is recommended for enough rest.
+  insightSleepGood: 'Sleep looks good: $value on average.'
+  insightMilestones: Most milestones are in "$category" ($count of them).
+  insightAppointments: $count appointments completed.
+  insightAppointmentsWithPending: $count appointments completed, $pending still active.
+  dailyMood: Mood trend
+  dailyMoodUnit: daily entry (1-5)
+  dailySleep: Sleep pattern
+  dailySleepUnit: nightly duration (hours)
+  dailySleepQuality: quality (1-5)
+  behaviorCategories: Behaviour categories
+  behaviorCategoriesUnit: entry count and average intensity
+  milestoneCategories: Milestones
+  milestoneCategoriesUnit: achievements by category
+  notesActivity: Note activity
+  notesActivityUnit: notes per month
+  countWithIntensity: $count · avg $intensity
+  exportCsv: Share as CSV
+  exportEmpty: Nothing to share yet.
 
 children:
   title: My Children

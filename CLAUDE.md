@@ -130,9 +130,17 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
     web gibi tek seferlik uç noktaya düşülür. Backend veli `AI_ANALIZ` açık
     rızası istediği için kart rıza yoksa KVKK sayfasına yönlendirir; çıktı
     hafif markdown (başlık/madde/kalın) olarak çizilir ve tıbbi uyarı
-    şeridiyle birlikte gösterilir. Web'in mood/uyku/ABC ham veri grafikleri
-    (üç sekmeli chart paneli) mobile alınmadı — mobilde aynı veriler kendi
-    ekranlarında ve trend grafiğinde zaten var.
+    şeridiyle birlikte gösterilir. **Ham veri paneli** (web'in üç grafik
+    sekmesinin karşılığı, mobilde tek akış): gün aralığı seçici (7/14/30/90 —
+    web `RANGE_OPTIONS`), **takip skoru** (ruh hali %30 + uyku %30 + aktivite
+    %20 + veri kapsamı %20, web `wellbeingScore` birebir) ve kural tabanlı
+    öngörüler, eksik veri önerileri (en fazla üç), günlük ruh hali ve uyku
+    (süre + kalite) serileri, davranış/kilometre taşı kategori kırılımları,
+    aylık not aktivitesi ve **CSV paylaşımı** (web'de indirme; sütunlar
+    `exportCsv` ile aynı). Hesaplar saf (`domain/analytics_summary.dart`,
+    `test/analytics_summary_test.dart`), kaynaklar tek sağlayıcıda paralel
+    toplanır ve tek tek yakalanır. Web'den ayrım: tarama başlatma önerisi yok
+    (tarama anketi web'de de bulunmuyor).
   - **Davranış Günlüğü:** `/api/abc-entries` — ABC (Öncesi-Davranış-Sonuç)
     kayıtları; kategori/yer/tetikleyici/sonuç sabitleri web ile birebir düz
     metin (çevrilmez!), şiddet 1-5. category+location DB'de NOT NULL. `/behavior`,

@@ -1,8 +1,15 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:path_provider/path_provider.dart';
+import 'package:share_plus/share_plus.dart';
+
+import '../../../core/network/api_exception.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/util/date_key.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/widgets/empty_state.dart';
 import '../../../core/widgets/skeleton.dart';
@@ -10,7 +17,10 @@ import '../../../i18n/strings.g.dart';
 import '../../children/data/child_repository.dart';
 import '../../children/domain/child.dart';
 import '../data/analytics_repository.dart';
+import '../data/analytics_summary_provider.dart';
+import '../domain/analytics_summary.dart';
 import '../domain/analytics_trends.dart';
+import 'widgets/analytics_detail_section.dart';
 import 'widgets/ai_insights_card.dart';
 
 /// Gelişim Paneli — seçili çocuğun son 6 aylık trend grafikleri
@@ -24,6 +34,41 @@ class AnalyticsScreen extends ConsumerStatefulWidget {
 
 class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen> {
   String? _selectedChildId;
+  int _rangeDays = 30;
+
+  /// Ham kayıtları CSV olarak paylaşır (web'de indirme, mobilde paylaşım
+  /// sayfası). Sütunlar web `exportCsv` ile aynı.
+  Future<void> _shareCsv(String childId) async {
+    final t = context.t;
+    final messenger = ScaffoldMessenger.of(context);
+    try {
+      final sources =
+          await ref.read(analyticsSourcesProvider(childId).future);
+      final csv = analyticsCsv(
+        moods: sources.moods,
+        sleeps: sources.sleeps,
+        milestones: sources.milestones,
+      );
+      // Yalnızca başlık satırı varsa paylaşacak kayıt yok demektir.
+      if (!csv.contains('\n')) {
+        messenger.showSnackBar(
+          SnackBar(content: Text(t.analytics.exportEmpty)),
+        );
+        return;
+      }
+      final dir = await getTemporaryDirectory();
+      final file = File('${dir.path}/gelisim-${localDateKey(DateTime.now())}.csv');
+      await file.writeAsString(csv);
+      await SharePlus.instance.share(
+        ShareParams(
+          files: [XFile(file.path, mimeType: 'text/csv')],
+          fileNameOverrides: [file.uri.pathSegments.last],
+        ),
+      );
+    } on ApiException catch (e) {
+      messenger.showSnackBar(SnackBar(content: Text(e.message)));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +76,18 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen> {
     final childrenAsync = ref.watch(childrenProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text(t.analytics.title)),
+      appBar: AppBar(
+        title: Text(t.analytics.title),
+        actions: [
+          IconButton(
+            tooltip: t.analytics.exportCsv,
+            onPressed: _selectedChildId == null
+                ? null
+                : () => _shareCsv(_selectedChildId!),
+            icon: const Icon(Icons.ios_share_outlined),
+          ),
+        ],
+      ),
       body: SafeArea(
         child: childrenAsync.when(
           loading: () => const SkeletonList(count: 4),
@@ -56,7 +112,14 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen> {
                     selectedId: childId,
                     onSelect: (id) => setState(() => _selectedChildId = id),
                   ),
-                Expanded(child: _TrendsBody(childId: childId)),
+                Expanded(
+                  child: _TrendsBody(
+                    childId: childId,
+                    rangeDays: _rangeDays,
+                    onRangeChanged: (days) =>
+                        setState(() => _rangeDays = days),
+                  ),
+                ),
               ],
             );
           },
@@ -111,8 +174,15 @@ class _ChildSelector extends StatelessWidget {
 }
 
 class _TrendsBody extends ConsumerWidget {
-  const _TrendsBody({required this.childId});
+  const _TrendsBody({
+    required this.childId,
+    required this.rangeDays,
+    required this.onRangeChanged,
+  });
+
   final String childId;
+  final int rangeDays;
+  final ValueChanged<int> onRangeChanged;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -136,6 +206,10 @@ class _TrendsBody extends ConsumerWidget {
                   style: Theme.of(context).textTheme.bodySmall),
               const SizedBox(height: 16),
               AiInsightsCard(childId: childId),
+              const SizedBox(height: 16),
+              AnalyticsRangeBar(selected: rangeDays, onSelect: onRangeChanged),
+              const SizedBox(height: 12),
+              _DetailSection(childId: childId, rangeDays: rangeDays),
               const SizedBox(height: 16),
               _ChartCard(
                 icon: Icons.emoji_events_outlined,
@@ -342,6 +416,80 @@ class _MonthlyBars extends StatelessWidget {
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(fontSize: 10, color: colors.textTertiary),
+        ),
+      ],
+    );
+  }
+}
+
+/// Aralığa göre günlük seriler, kırılımlar ve takip skoru (web AnalyticsPage
+/// grafik sekmelerinin mobil karşılığı — mobilde tek akışta).
+class _DetailSection extends ConsumerWidget {
+  const _DetailSection({required this.childId, required this.rangeDays});
+
+  final String childId;
+  final int rangeDays;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.t;
+    final async = ref.watch(
+      analyticsSummaryProvider((childId: childId, rangeDays: rangeDays)),
+    );
+    final summary = async.asData?.value;
+    if (summary == null) return const SizedBox.shrink();
+
+    return Column(
+      children: [
+        AnalyticsSummaryCard(summary: summary),
+        const SizedBox(height: 12),
+        DailySeriesCard(
+          icon: Icons.mood_outlined,
+          title: t.analytics.dailyMood,
+          unit: t.analytics.dailyMoodUnit,
+          points: summary.moodPoints,
+          fixedMax: 5,
+          format: (v) => v.toStringAsFixed(1),
+        ),
+        const SizedBox(height: 12),
+        DailySeriesCard(
+          icon: Icons.bedtime_outlined,
+          title: t.analytics.dailySleep,
+          unit: t.analytics.dailySleepUnit,
+          points: summary.sleepHourPoints,
+          secondaryPoints: summary.sleepQualityPoints,
+          secondaryLabel: t.analytics.dailySleepQuality,
+          format: (v) => v.toStringAsFixed(1),
+        ),
+        const SizedBox(height: 12),
+        CategoryBreakdownCard(
+          icon: Icons.psychology_outlined,
+          title: t.analytics.behaviorCategories,
+          unit: t.analytics.behaviorCategoriesUnit,
+          items: summary.behaviorCategories,
+          showIntensity: true,
+        ),
+        const SizedBox(height: 12),
+        CategoryBreakdownCard(
+          icon: Icons.emoji_events_outlined,
+          title: t.analytics.milestoneCategories,
+          unit: t.analytics.milestoneCategoriesUnit,
+          items: summary.milestoneCategories,
+        ),
+        const SizedBox(height: 12),
+        CategoryBreakdownCard(
+          icon: Icons.sticky_note_2_outlined,
+          title: t.analytics.notesActivity,
+          unit: t.analytics.notesActivityUnit,
+          items: summary.notesByMonth,
+          labelOf: (month) {
+            final parts = month.split('-');
+            if (parts.length != 2) return month;
+            final index = int.tryParse(parts[1]) ?? 0;
+            return index >= 1 && index <= 12
+                ? '${t.common.monthsShort[index - 1]} ${parts[0]}'
+                : month;
+          },
         ),
       ],
     );

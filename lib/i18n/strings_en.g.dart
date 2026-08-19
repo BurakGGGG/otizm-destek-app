@@ -2044,6 +2044,38 @@ class _Translations$analytics$en extends Translations$analytics$tr {
 	@override String get aiConsentTitle => 'AI analysis needs your consent';
 	@override String get aiConsentBody => 'Analysing your child\'s records requires explicit consent. You can grant it on the privacy and consents page.';
 	@override String get aiConsentAction => 'Manage consents';
+	@override String rangeDays({required Object count}) => 'Last ${count} days';
+	@override String get scoreTitle => 'Tracking score';
+	@override String scoreCoverage({required Object count, required Object total}) => 'Records in ${count} of ${total} data types';
+	@override String get scoreStrong => 'Strong tracking';
+	@override String get scoreGrowing => 'Tracking is growing';
+	@override String get scoreWaiting => 'Waiting for data';
+	@override String get actionsTitle => 'Missing data';
+	@override String get actionMood => 'Add a mood entry';
+	@override String get actionSleep => 'Add a sleep entry';
+	@override String get actionNote => 'Write a development note';
+	@override String get actionMilestone => 'Add a milestone';
+	@override String insightMoodHigh({required Object days, required Object value}) => 'Average mood over the last ${days} days is ${value}/5 — quite high.';
+	@override String insightMoodLow({required Object days, required Object value}) => 'Average mood over the last ${days} days is ${value}/5 — there may be some difficulties.';
+	@override String insightSleepShort({required Object value}) => 'Average sleep is ${value} — 8-10 hours is recommended for enough rest.';
+	@override String insightSleepGood({required Object value}) => 'Sleep looks good: ${value} on average.';
+	@override String insightMilestones({required Object category, required Object count}) => 'Most milestones are in "${category}" (${count} of them).';
+	@override String insightAppointments({required Object count}) => '${count} appointments completed.';
+	@override String insightAppointmentsWithPending({required Object count, required Object pending}) => '${count} appointments completed, ${pending} still active.';
+	@override String get dailyMood => 'Mood trend';
+	@override String get dailyMoodUnit => 'daily entry (1-5)';
+	@override String get dailySleep => 'Sleep pattern';
+	@override String get dailySleepUnit => 'nightly duration (hours)';
+	@override String get dailySleepQuality => 'quality (1-5)';
+	@override String get behaviorCategories => 'Behaviour categories';
+	@override String get behaviorCategoriesUnit => 'entry count and average intensity';
+	@override String get milestoneCategories => 'Milestones';
+	@override String get milestoneCategoriesUnit => 'achievements by category';
+	@override String get notesActivity => 'Note activity';
+	@override String get notesActivityUnit => 'notes per month';
+	@override String countWithIntensity({required Object count, required Object intensity}) => '${count} · avg ${intensity}';
+	@override String get exportCsv => 'Share as CSV';
+	@override String get exportEmpty => 'Nothing to share yet.';
 }
 
 // Path: children
@@ -4084,10 +4116,42 @@ extension on TranslationsEn {
 			'analytics.aiConsentTitle' => 'AI analysis needs your consent',
 			'analytics.aiConsentBody' => 'Analysing your child\'s records requires explicit consent. You can grant it on the privacy and consents page.',
 			'analytics.aiConsentAction' => 'Manage consents',
-			'children.title' => 'My Children',
-			'children.addTitle' => 'Add Child',
+			'analytics.rangeDays' => ({required Object count}) => 'Last ${count} days',
+			'analytics.scoreTitle' => 'Tracking score',
 			_ => null,
 		} ?? switch (path) {
+			'analytics.scoreCoverage' => ({required Object count, required Object total}) => 'Records in ${count} of ${total} data types',
+			'analytics.scoreStrong' => 'Strong tracking',
+			'analytics.scoreGrowing' => 'Tracking is growing',
+			'analytics.scoreWaiting' => 'Waiting for data',
+			'analytics.actionsTitle' => 'Missing data',
+			'analytics.actionMood' => 'Add a mood entry',
+			'analytics.actionSleep' => 'Add a sleep entry',
+			'analytics.actionNote' => 'Write a development note',
+			'analytics.actionMilestone' => 'Add a milestone',
+			'analytics.insightMoodHigh' => ({required Object days, required Object value}) => 'Average mood over the last ${days} days is ${value}/5 — quite high.',
+			'analytics.insightMoodLow' => ({required Object days, required Object value}) => 'Average mood over the last ${days} days is ${value}/5 — there may be some difficulties.',
+			'analytics.insightSleepShort' => ({required Object value}) => 'Average sleep is ${value} — 8-10 hours is recommended for enough rest.',
+			'analytics.insightSleepGood' => ({required Object value}) => 'Sleep looks good: ${value} on average.',
+			'analytics.insightMilestones' => ({required Object category, required Object count}) => 'Most milestones are in "${category}" (${count} of them).',
+			'analytics.insightAppointments' => ({required Object count}) => '${count} appointments completed.',
+			'analytics.insightAppointmentsWithPending' => ({required Object count, required Object pending}) => '${count} appointments completed, ${pending} still active.',
+			'analytics.dailyMood' => 'Mood trend',
+			'analytics.dailyMoodUnit' => 'daily entry (1-5)',
+			'analytics.dailySleep' => 'Sleep pattern',
+			'analytics.dailySleepUnit' => 'nightly duration (hours)',
+			'analytics.dailySleepQuality' => 'quality (1-5)',
+			'analytics.behaviorCategories' => 'Behaviour categories',
+			'analytics.behaviorCategoriesUnit' => 'entry count and average intensity',
+			'analytics.milestoneCategories' => 'Milestones',
+			'analytics.milestoneCategoriesUnit' => 'achievements by category',
+			'analytics.notesActivity' => 'Note activity',
+			'analytics.notesActivityUnit' => 'notes per month',
+			'analytics.countWithIntensity' => ({required Object count, required Object intensity}) => '${count} · avg ${intensity}',
+			'analytics.exportCsv' => 'Share as CSV',
+			'analytics.exportEmpty' => 'Nothing to share yet.',
+			'children.title' => 'My Children',
+			'children.addTitle' => 'Add Child',
 			'children.editTitle' => 'Edit Child',
 			'children.empty' => 'You haven\'t added any children yet.',
 			'children.add' => 'Add Child',

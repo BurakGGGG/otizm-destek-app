@@ -4978,6 +4978,102 @@ class Translations$analytics$tr {
 
 	/// tr: 'Rızaları yönet'
 	String get aiConsentAction => 'Rızaları yönet';
+
+	/// tr: 'Son $count gün'
+	String rangeDays({required Object count}) => 'Son ${count} gün';
+
+	/// tr: 'Takip skoru'
+	String get scoreTitle => 'Takip skoru';
+
+	/// tr: '$count / $total veri türünde kayıt var'
+	String scoreCoverage({required Object count, required Object total}) => '${count} / ${total} veri türünde kayıt var';
+
+	/// tr: 'Güçlü takip'
+	String get scoreStrong => 'Güçlü takip';
+
+	/// tr: 'Takip gelişiyor'
+	String get scoreGrowing => 'Takip gelişiyor';
+
+	/// tr: 'Veri bekleniyor'
+	String get scoreWaiting => 'Veri bekleniyor';
+
+	/// tr: 'Eksik veriler'
+	String get actionsTitle => 'Eksik veriler';
+
+	/// tr: 'Ruh hali kaydı ekle'
+	String get actionMood => 'Ruh hali kaydı ekle';
+
+	/// tr: 'Uyku kaydı ekle'
+	String get actionSleep => 'Uyku kaydı ekle';
+
+	/// tr: 'Gelişim notu yaz'
+	String get actionNote => 'Gelişim notu yaz';
+
+	/// tr: 'Kilometre taşı ekle'
+	String get actionMilestone => 'Kilometre taşı ekle';
+
+	/// tr: 'Son $days günde ortalama ruh hali $value/5 ile oldukça yüksek.'
+	String insightMoodHigh({required Object days, required Object value}) => 'Son ${days} günde ortalama ruh hali ${value}/5 ile oldukça yüksek.';
+
+	/// tr: 'Son $days günde ortalama ruh hali $value/5 — bazı güçlükler olabilir.'
+	String insightMoodLow({required Object days, required Object value}) => 'Son ${days} günde ortalama ruh hali ${value}/5 — bazı güçlükler olabilir.';
+
+	/// tr: 'Ortalama uyku süresi $value — yeterli dinlenme için 8-10 saat önerilir.'
+	String insightSleepShort({required Object value}) => 'Ortalama uyku süresi ${value} — yeterli dinlenme için 8-10 saat önerilir.';
+
+	/// tr: 'Uyku düzeni iyi: ortalama $value.'
+	String insightSleepGood({required Object value}) => 'Uyku düzeni iyi: ortalama ${value}.';
+
+	/// tr: 'En fazla kilometre taşı "$category" alanında ($count adet).'
+	String insightMilestones({required Object category, required Object count}) => 'En fazla kilometre taşı "${category}" alanında (${count} adet).';
+
+	/// tr: '$count randevu tamamlandı.'
+	String insightAppointments({required Object count}) => '${count} randevu tamamlandı.';
+
+	/// tr: '$count randevu tamamlandı, $pending aktif randevu devam ediyor.'
+	String insightAppointmentsWithPending({required Object count, required Object pending}) => '${count} randevu tamamlandı, ${pending} aktif randevu devam ediyor.';
+
+	/// tr: 'Ruh hali trendi'
+	String get dailyMood => 'Ruh hali trendi';
+
+	/// tr: 'günlük kayıt (1-5)'
+	String get dailyMoodUnit => 'günlük kayıt (1-5)';
+
+	/// tr: 'Uyku düzeni'
+	String get dailySleep => 'Uyku düzeni';
+
+	/// tr: 'gecelik süre (saat)'
+	String get dailySleepUnit => 'gecelik süre (saat)';
+
+	/// tr: 'kalite (1-5)'
+	String get dailySleepQuality => 'kalite (1-5)';
+
+	/// tr: 'Davranış kategorileri'
+	String get behaviorCategories => 'Davranış kategorileri';
+
+	/// tr: 'kayıt sayısı ve ortalama şiddet'
+	String get behaviorCategoriesUnit => 'kayıt sayısı ve ortalama şiddet';
+
+	/// tr: 'Kilometre taşları'
+	String get milestoneCategories => 'Kilometre taşları';
+
+	/// tr: 'kategoriye göre kazanım'
+	String get milestoneCategoriesUnit => 'kategoriye göre kazanım';
+
+	/// tr: 'Not aktivitesi'
+	String get notesActivity => 'Not aktivitesi';
+
+	/// tr: 'aylık not sayısı'
+	String get notesActivityUnit => 'aylık not sayısı';
+
+	/// tr: '$count · ort. $intensity'
+	String countWithIntensity({required Object count, required Object intensity}) => '${count} · ort. ${intensity}';
+
+	/// tr: 'CSV olarak paylaş'
+	String get exportCsv => 'CSV olarak paylaş';
+
+	/// tr: 'Paylaşılacak kayıt yok.'
+	String get exportEmpty => 'Paylaşılacak kayıt yok.';
 }
 
 // Path: children
@@ -7644,10 +7740,42 @@ extension on Translations {
 			'analytics.aiConsentTitle' => 'Yapay zekâ analizi için rızanız gerekiyor',
 			'analytics.aiConsentBody' => 'Çocuğunuzun kayıtlarının analiz edilmesi açık rızaya bağlıdır. Rızayı KVKK ve rızalar sayfasından verebilirsiniz.',
 			'analytics.aiConsentAction' => 'Rızaları yönet',
-			'children.title' => 'Çocuklarım',
-			'children.addTitle' => 'Çocuk Ekle',
+			'analytics.rangeDays' => ({required Object count}) => 'Son ${count} gün',
+			'analytics.scoreTitle' => 'Takip skoru',
 			_ => null,
 		} ?? switch (path) {
+			'analytics.scoreCoverage' => ({required Object count, required Object total}) => '${count} / ${total} veri türünde kayıt var',
+			'analytics.scoreStrong' => 'Güçlü takip',
+			'analytics.scoreGrowing' => 'Takip gelişiyor',
+			'analytics.scoreWaiting' => 'Veri bekleniyor',
+			'analytics.actionsTitle' => 'Eksik veriler',
+			'analytics.actionMood' => 'Ruh hali kaydı ekle',
+			'analytics.actionSleep' => 'Uyku kaydı ekle',
+			'analytics.actionNote' => 'Gelişim notu yaz',
+			'analytics.actionMilestone' => 'Kilometre taşı ekle',
+			'analytics.insightMoodHigh' => ({required Object days, required Object value}) => 'Son ${days} günde ortalama ruh hali ${value}/5 ile oldukça yüksek.',
+			'analytics.insightMoodLow' => ({required Object days, required Object value}) => 'Son ${days} günde ortalama ruh hali ${value}/5 — bazı güçlükler olabilir.',
+			'analytics.insightSleepShort' => ({required Object value}) => 'Ortalama uyku süresi ${value} — yeterli dinlenme için 8-10 saat önerilir.',
+			'analytics.insightSleepGood' => ({required Object value}) => 'Uyku düzeni iyi: ortalama ${value}.',
+			'analytics.insightMilestones' => ({required Object category, required Object count}) => 'En fazla kilometre taşı "${category}" alanında (${count} adet).',
+			'analytics.insightAppointments' => ({required Object count}) => '${count} randevu tamamlandı.',
+			'analytics.insightAppointmentsWithPending' => ({required Object count, required Object pending}) => '${count} randevu tamamlandı, ${pending} aktif randevu devam ediyor.',
+			'analytics.dailyMood' => 'Ruh hali trendi',
+			'analytics.dailyMoodUnit' => 'günlük kayıt (1-5)',
+			'analytics.dailySleep' => 'Uyku düzeni',
+			'analytics.dailySleepUnit' => 'gecelik süre (saat)',
+			'analytics.dailySleepQuality' => 'kalite (1-5)',
+			'analytics.behaviorCategories' => 'Davranış kategorileri',
+			'analytics.behaviorCategoriesUnit' => 'kayıt sayısı ve ortalama şiddet',
+			'analytics.milestoneCategories' => 'Kilometre taşları',
+			'analytics.milestoneCategoriesUnit' => 'kategoriye göre kazanım',
+			'analytics.notesActivity' => 'Not aktivitesi',
+			'analytics.notesActivityUnit' => 'aylık not sayısı',
+			'analytics.countWithIntensity' => ({required Object count, required Object intensity}) => '${count} · ort. ${intensity}',
+			'analytics.exportCsv' => 'CSV olarak paylaş',
+			'analytics.exportEmpty' => 'Paylaşılacak kayıt yok.',
+			'children.title' => 'Çocuklarım',
+			'children.addTitle' => 'Çocuk Ekle',
 			'children.editTitle' => 'Çocuğu Düzenle',
 			'children.empty' => 'Henüz çocuk eklemediniz.',
 			'children.add' => 'Çocuk Ekle',
