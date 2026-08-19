@@ -16,6 +16,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:otizm_destek_app/core/providers.dart';
 import 'package:otizm_destek_app/core/realtime/stomp_service.dart';
 import 'package:otizm_destek_app/core/storage/secure_storage.dart';
+import 'package:otizm_destek_app/core/theme/app_colors.dart';
 import 'package:otizm_destek_app/core/theme/app_theme.dart';
 import 'package:otizm_destek_app/features/analytics/data/analytics_repository.dart';
 import 'package:otizm_destek_app/features/analytics/domain/analytics_trends.dart';
@@ -1352,7 +1353,16 @@ Future<void> _loadFonts() async {
 
 // `Override` tipi flutter_riverpod'un dar export listesinde olmadığı için
 // listeler dynamic taşınıp ProviderScope'a `cast()` ile veriliyor.
-Widget _app(Widget home, {List<dynamic> overrides = const []}) {
+/// Görüntü varyantı: normal (açık tema), karanlık tema ya da erişilebilirlik
+/// (büyük yazı + yüksek kontrast) ayarları. Uygulamadaki `app.dart` ile aynı
+/// palet dönüşümü kullanılır.
+enum ShotVariant { light, dark, accessible }
+
+Widget _app(
+  Widget home, {
+  List<dynamic> overrides = const [],
+  ShotVariant variant = ShotVariant.light,
+}) {
   return TranslationProvider(
     child: ProviderScope(
       overrides: [
@@ -1408,16 +1418,38 @@ Widget _app(Widget home, {List<dynamic> overrides = const []}) {
         debugShowCheckedModeBanner: false,
         // Emoji fontu yalnızca yedek olarak eklenir (cihazda sistem fontu
         // aynı işi yapıyor).
-        theme: AppTheme.light.copyWith(
-          textTheme: AppTheme.light.textTheme.apply(
-            fontFamilyFallback: const [_emojiFamily],
-          ),
+        theme: _themeFor(variant).copyWith(
+          textTheme: _themeFor(variant).textTheme.apply(
+                fontFamilyFallback: const [_emojiFamily],
+              ),
         ),
+        builder: (context, child) {
+          if (variant != ShotVariant.accessible) {
+            return child ?? const SizedBox.shrink();
+          }
+          // Büyük yazı tercihi (%112,5) uygulamadaki gibi MediaQuery ile.
+          final media = MediaQuery.of(context);
+          return MediaQuery(
+            data: media.copyWith(textScaler: const TextScaler.linear(1.125)),
+            child: child ?? const SizedBox.shrink(),
+          );
+        },
         home: home,
       ),
     ),
   );
 }
+
+ThemeData _themeFor(ShotVariant variant) => switch (variant) {
+      ShotVariant.light => AppTheme.light,
+      ShotVariant.dark => AppTheme.dark,
+      // Erişilebilirlik: yüksek kontrast paleti + büyük yazı.
+      ShotVariant.accessible => AppTheme.themeFor(
+          palette: AppPalette.light.highContrast,
+          brightness: Brightness.light,
+          reduceMotion: true,
+        ),
+    };
 
 void main() {
   setUpAll(() async {
@@ -1431,12 +1463,15 @@ void main() {
     Widget home, {
     List<dynamic> overrides = const [],
     Future<void> Function(WidgetTester tester)? after,
+    ShotVariant variant = ShotVariant.light,
   }) async {
     tester.view.devicePixelRatio = 2;
     tester.view.physicalSize = const Size(780, 1688); // ~390x844 mantıksal
     addTearDown(tester.view.reset);
 
-    await tester.pumpWidget(_app(home, overrides: overrides));
+    await tester.pumpWidget(
+      _app(home, overrides: overrides, variant: variant),
+    );
     // Zincirli sağlayıcılar (kaynaklar → özet) birkaç tur sonra çözülüyor.
     for (var i = 0; i < 4; i++) {
       await tester.pump(const Duration(milliseconds: 200));
@@ -1576,6 +1611,93 @@ void main() {
 
   testWidgets('19 gelişim', (tester) async {
     await shoot(tester, '19-gelisim', const Scaffold(body: ProgressTab()));
+  });
+
+  // --- Karanlık tema ve erişilebilirlik varyantları -----------------------
+
+  testWidgets('45 ana sayfa (karanlık)', (tester) async {
+    await shoot(
+      tester,
+      '45-ana-sayfa-karanlik',
+      const Scaffold(body: HomeTab()),
+      variant: ShotVariant.dark,
+      overrides: [
+        dailyPlanInputProvider.overrideWith((ref) async => DailyPlanInput(
+              now: DateTime.now(),
+              hasChild: true,
+              childName: 'Ada',
+              pendingMedicationSlots: 1,
+              recentNotes: 2,
+            )),
+      ],
+    );
+  });
+
+  testWidgets('46 gelişim paneli (karanlık)', (tester) async {
+    await shoot(
+      tester,
+      '46-gelisim-paneli-karanlik',
+      const AnalyticsScreen(),
+      variant: ShotVariant.dark,
+    );
+  });
+
+  testWidgets('47 sohbet (karanlık)', (tester) async {
+    await shoot(
+      tester,
+      '47-sohbet-karanlik',
+      const ConversationThreadScreen(
+        conversationId: 'cv1',
+        title: 'Uzm. Psk. Selin Aksoy',
+      ),
+      variant: ShotVariant.dark,
+    );
+  });
+
+  testWidgets('48 kriz rehberi (karanlık)', (tester) async {
+    await shoot(
+      tester,
+      '48-kriz-rehberi-karanlik',
+      const CrisisScreen(),
+      variant: ShotVariant.dark,
+    );
+  });
+
+  testWidgets('49 ana sayfa (büyük yazı + yüksek kontrast)', (tester) async {
+    await shoot(
+      tester,
+      '49-ana-sayfa-erisilebilir',
+      const Scaffold(body: HomeTab()),
+      variant: ShotVariant.accessible,
+      overrides: [
+        dailyPlanInputProvider.overrideWith((ref) async => DailyPlanInput(
+              now: DateTime.now(),
+              hasChild: true,
+              childName: 'Ada',
+              pendingMedicationSlots: 1,
+              recentNotes: 2,
+            )),
+      ],
+    );
+  });
+
+  testWidgets('50 günlük takip (büyük yazı + yüksek kontrast)',
+      (tester) async {
+    await shoot(
+      tester,
+      '50-gunluk-takip-erisilebilir',
+      const DailyTrackerScreen(),
+      variant: ShotVariant.accessible,
+    );
+  });
+
+  testWidgets('51 ödevlerim (büyük yazı + yüksek kontrast)', (tester) async {
+    await shoot(
+      tester,
+      '51-odevlerim-erisilebilir',
+      const TasksScreen(),
+      variant: ShotVariant.accessible,
+    );
   });
 
   testWidgets('33 rutinler', (tester) async {
