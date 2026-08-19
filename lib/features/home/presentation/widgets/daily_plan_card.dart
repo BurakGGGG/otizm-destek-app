@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../../../../core/widgets/skeleton.dart';
 import '../../../../core/util/date_key.dart';
 import '../../../../i18n/strings.g.dart';
 import '../../data/daily_plan_provider.dart';
@@ -19,8 +20,16 @@ class DailyPlanCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final input = ref.watch(dailyPlanInputProvider).asData?.value;
-    if (input == null) return const SizedBox.shrink();
+    final async = ref.watch(dailyPlanInputProvider);
+    final input = async.asData?.value;
+    // Render soğuk başlatmada plan verisi geç gelebiliyor: yüklenirken kart
+    // yerini iskelet tutar, hata durumunda hiç görünmez (ana sayfanın geri
+    // kalanı kendi başına çalışır).
+    if (input == null) {
+      return async.isLoading
+          ? const SkeletonList(count: 1, padding: EdgeInsets.only(bottom: 24))
+          : const SizedBox.shrink();
+    }
 
     final t = context.t;
     final colors = context.colors;

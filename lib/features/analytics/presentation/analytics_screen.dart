@@ -437,7 +437,11 @@ class _DetailSection extends ConsumerWidget {
       analyticsSummaryProvider((childId: childId, rangeDays: rangeDays)),
     );
     final summary = async.asData?.value;
-    if (summary == null) return const SizedBox.shrink();
+    if (summary == null) {
+      return async.isLoading
+          ? const SkeletonList(count: 2, padding: EdgeInsets.zero)
+          : const SizedBox.shrink();
+    }
 
     return Column(
       children: [
