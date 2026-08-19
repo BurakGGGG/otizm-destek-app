@@ -438,17 +438,20 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
   çökme noktası buldu). Kaynak taraması **dolaylı** durumları görmez (buton
   başka bir widget sınıfının içindeyse); onları ekran görüntüsü üreteci
   yakalar — Benzer Aileler ekranındaki `_ConnectButton` böyle bulundu.
-- **Ekran duman testleri:** `test/screen_smoke_test.dart` yeni ekranları
-  gerçekten kurar (yukarıdaki düzen hatası oradan yakalandı). Uzun listeler
-  için test yüzeyi büyütülür (`tester.view.physicalSize`).
+- **Ekran duman testleri:** `test/screen_smoke_test.dart` belirli ekranların
+  davranışını doğrular (rozet, düğme durumu vb.); uzun listeler için test
+  yüzeyi büyütülür (`tester.view.physicalSize`).
+- **Ekran çökme taraması:** `test/screens_build_test.dart` **62 ekranı**
+  sahte backend'le (`test/support/fake_backend.dart` → `screenCatalog`) kurar
+  ve hiçbir çizim/düzen hatası atmadığını doğrular; karanlık tema ve büyük
+  yazı + yüksek kontrast varyantları da listede. Yeni ekran eklerken katalog
+  listesine bir satır eklemek yeterli. **Fontlar `loadTestFonts()` ile
+  yüklenmeli**: test motorunun varsayılan fontu her karakteri sabit genişlikte
+  çizdiği için gerçekte olmayan taşma hataları üretiyor.
 - **Ekran görüntüsü üreteci:** `flutter test tool/screenshots_test.dart
-  --update-goldens` sahte verilerle ekranları kurup `build/screens/*.png`
-  yazar (emülatör/oturum gerektirmez; `flutter test` yalnızca `test/`
-  klasörünü çalıştırdığı için normal takıma girmez). **62 kare**: neredeyse
-  tüm ekranlar + karanlık tema ve büyük yazı/yüksek kontrast varyantları
-  (`ShotVariant`). Bir ekranda düzen hatası varsa (taşma, sonsuz genişlik)
-  test düşer — bu tarama şimdiye dek üç gerçek çökme buldu. Fontlar Flutter
-  SDK önbelleğinden yüklenir; aile belirtmeyen `TextStyle`lar başsız
-  render'da kutu çizer (cihazda sistem fontuna düşerler).
+  --update-goldens` aynı katalogdan `build/screens/*.png` üretir
+  (emülatör/oturum gerektirmez; `tool/` normal takıma girmez). Aile
+  belirtmeyen `TextStyle`lar başsız render'da kutu çizer (cihazda sistem
+  fontuna düşerler) — görüntülerdeki bu kusur beklenendir.
 - `dart format` bu depoda **kullanılmıyor** (mevcut dosyaların çoğu farklı
   sarmalanmış); elle 80 sütun hedeflenir.
