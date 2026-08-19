@@ -100,6 +100,21 @@ class AppointmentRepository {
     }
   }
 
+  /// Randevunun durum geçmişi — `GET /appointments/{id}/history`.
+  /// Kayıt yoksa boş liste döner (web de hatayı sessiz geçiyor).
+  Future<List<AppointmentHistoryEntry>> getHistory(String id) async {
+    try {
+      final res = await _dio.get('/appointments/$id/history');
+      return ApiEnvelope.fromJson(res.data)
+          .requireList()
+          .whereType<Map<String, dynamic>>()
+          .map(AppointmentHistoryEntry.fromJson)
+          .toList();
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
   /// Uzmanın ilk uygun randevu saati — `GET
   /// /appointments/experts/{id}/next-available`. Backend 60 güne kadar
   /// bakar; müsaitlik yoksa boş harita döner (burada null).
@@ -185,3 +200,9 @@ final nextAvailableSlotProvider = FutureProvider.family<
         .getNextAvailable(key.expertId, duration: key.duration);
   },
 );
+
+/// Bir randevunun durum geçmişi (detay sayfasında zaman çizelgesi).
+final appointmentHistoryProvider =
+    FutureProvider.family<List<AppointmentHistoryEntry>, String>((ref, id) {
+  return ref.watch(appointmentRepositoryProvider).getHistory(id);
+});

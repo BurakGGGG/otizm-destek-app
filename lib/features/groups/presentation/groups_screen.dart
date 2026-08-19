@@ -535,6 +535,7 @@ class _GroupCard extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   OutlinedButton(
+                    style: AppButtonStyles.inlineOutlined,
                     onPressed: onLeave,
                     child: Text(t.groups.leave),
                   ),

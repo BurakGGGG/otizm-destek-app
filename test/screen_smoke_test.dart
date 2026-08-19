@@ -4,6 +4,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:otizm_destek_app/core/providers.dart';
 import 'package:otizm_destek_app/core/storage/secure_storage.dart';
 import 'package:otizm_destek_app/core/theme/app_theme.dart';
+import 'package:otizm_destek_app/features/appointments/data/appointment_repository.dart';
+import 'package:otizm_destek_app/features/appointments/domain/appointment.dart';
+import 'package:otizm_destek_app/features/appointments/presentation/appointments_screen.dart';
 import 'package:otizm_destek_app/features/community/presentation/community_screen.dart';
 import 'package:otizm_destek_app/features/guide/presentation/guide_screen.dart';
 import 'package:otizm_destek_app/features/home/data/daily_plan_provider.dart';
@@ -57,6 +60,22 @@ Widget _hostWithPlan(Widget child, DailyPlanInput input) {
         dailyPlanInputProvider.overrideWith((ref) async => input),
       ],
       child: MaterialApp(theme: AppTheme.light, home: child),
+    ),
+  );
+}
+
+/// Randevu listesi sabitlenmiş yüzey.
+Widget _hostWithAppointments(List<Appointment> items) {
+  return TranslationProvider(
+    child: ProviderScope(
+      overrides: [
+        secureStorageProvider.overrideWithValue(_FakeSecureStorage()),
+        appointmentsProvider.overrideWith((ref) async => items),
+      ],
+      child: MaterialApp(
+        theme: AppTheme.light,
+        home: const AppointmentsScreen(),
+      ),
     ),
   );
 }
@@ -193,5 +212,28 @@ void main() {
     await tester.tap(find.byIcon(Icons.close));
     await tester.pump();
     expect(find.text(t.dailyPlan.startTitle), findsNothing);
+  });
+
+  testWidgets('Randevu kartı aksiyon düğmeleriyle birlikte kurulur',
+      (tester) async {
+    useTallSurface(tester);
+    // Bu ekran, satır içindeki butonlar Expanded ile sınırlanmadığı için
+    // "BoxConstraints forces an infinite width" hatasıyla çöküyordu.
+    final appointment = Appointment(
+      id: 'a1',
+      date: DateTime.now().add(const Duration(days: 2)),
+      time: '14:00',
+      status: 'PENDING',
+      expertId: 'e1',
+      expertName: 'Uzm. Ada',
+      type: 'ONLINE',
+    );
+    await tester.pumpWidget(_hostWithAppointments([appointment]));
+    await tester.pump();
+
+    final t = AppLocale.tr.buildSync();
+    expect(find.text('Uzm. Ada'), findsOneWidget);
+    expect(find.text(t.appointments.cancel), findsOneWidget);
+    expect(find.text(t.appointments.reschedule), findsOneWidget);
   });
 }

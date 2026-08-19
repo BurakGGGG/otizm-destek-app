@@ -214,6 +214,7 @@ class _TreatmentGoalsTabState extends State<TreatmentGoalsTab> {
                   ),
                 const SizedBox(width: 8),
                 FilledButton.icon(
+                  style: AppButtonStyles.inlineFilled,
                   onPressed: saving ? null : _addGoal,
                   icon: saving
                       ? const SizedBox(
@@ -340,11 +341,13 @@ class _TreatmentGoalsTabState extends State<TreatmentGoalsTab> {
           Row(
             children: [
               FilledButton(
+                style: AppButtonStyles.inlineFilled,
                 onPressed: saving ? null : _saveEditing,
                 child: Text(t.treatment.save),
               ),
               const SizedBox(width: 8),
               OutlinedButton(
+                style: AppButtonStyles.inlineOutlined,
                 onPressed: saving
                     ? null
                     : () => setState(() => _editingGoalId = null),
@@ -414,6 +417,7 @@ class _TreatmentGoalsTabState extends State<TreatmentGoalsTab> {
                 ),
                 const SizedBox(width: 8),
                 FilledButton(
+                  style: AppButtonStyles.inlineFilled,
                   onPressed: _savingMilestone ? null : _addMilestone,
                   child: _savingMilestone
                       ? const SizedBox(
@@ -598,12 +602,14 @@ class _TreatmentGoalsTabState extends State<TreatmentGoalsTab> {
             Row(
               children: [
                 FilledButton.icon(
+                  style: AppButtonStyles.inlineFilled,
                   onPressed: () => context.push('/appointments'),
                   icon: const Icon(Icons.calendar_month, size: 16),
                   label: Text(t.treatment.goAppointments),
                 ),
                 const SizedBox(width: 8),
                 OutlinedButton(
+                  style: AppButtonStyles.inlineOutlined,
                   onPressed: () => context.push('/calendar'),
                   child: Text(t.treatment.goCalendar),
                 ),

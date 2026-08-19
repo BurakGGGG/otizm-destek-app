@@ -458,6 +458,7 @@ class _TreatmentGamesTabState extends State<TreatmentGamesTab> {
                 ),
                 const SizedBox(width: 8),
                 FilledButton.icon(
+                  style: AppButtonStyles.inlineFilled,
                   onPressed: _savingStory ? null : _addStory,
                   icon: _savingStory
                       ? const SizedBox(

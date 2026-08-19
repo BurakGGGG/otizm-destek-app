@@ -418,6 +418,7 @@ class _GoalCardState extends ConsumerState<_GoalCard> {
                   )
                 else
                   FilledButton.tonalIcon(
+                    style: AppButtonStyles.inlineFilled,
                     onPressed: _busy
                         ? null
                         : () => _mutate((repo) => repo.addToken(goal)),

@@ -57,6 +57,7 @@ class MedicationTab extends ConsumerWidget {
                         style: Theme.of(context).textTheme.titleMedium),
                   ),
                   FilledButton.tonalIcon(
+                    style: AppButtonStyles.inlineFilled,
                     onPressed: () => _openForm(context, ref),
                     icon: const Icon(Icons.add, size: 18),
                     label: Text(t.meds.add),

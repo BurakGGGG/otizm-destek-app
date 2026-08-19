@@ -23,6 +23,25 @@ class AppSpacing {
 
 /// Uygulama teması (Serene Path). Otizm dostu: bol boşluk, sade tipografi,
 /// gölge yerine ince çizgi/tonal katman, büyük dokunma hedefleri.
+/// Satır (Row) içinde kullanılacak buton biçimleri.
+///
+/// Tema, dolgulu ve çerçeveli butonlara `Size.fromHeight(minTapTarget)`
+/// veriyor; bu **asgari genişliği sonsuz** yapar. Row çocuklarına sınırsız
+/// genişlik verdiği için sarmalanmamış bir buton "BoxConstraints forces an
+/// infinite width" hatasıyla ekranı çökertir. İki çözüm var:
+/// * buton satırı paylaşıp esneyecekse `Expanded` ile sarmalayın,
+/// * metin alanı gibi bir öğenin yanında kompakt duracaksa bu biçimi verin.
+class AppButtonStyles {
+  const AppButtonStyles._();
+
+  static ButtonStyle get inlineFilled =>
+      FilledButton.styleFrom(minimumSize: const Size(0, AppTheme.minTapTarget));
+
+  static ButtonStyle get inlineOutlined => OutlinedButton.styleFrom(
+        minimumSize: const Size(0, AppTheme.minTapTarget),
+      );
+}
+
 class AppTheme {
   const AppTheme._();
 

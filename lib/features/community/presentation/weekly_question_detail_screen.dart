@@ -508,6 +508,7 @@ class _AnswerComposer extends StatelessWidget {
               Text(t.weekly.anonymous, style: Theme.of(context).textTheme.bodySmall),
               const Spacer(),
               FilledButton.icon(
+                style: AppButtonStyles.inlineFilled,
                 onPressed: sending ? null : onSend,
                 icon: sending
                     ? const SizedBox(

@@ -312,11 +312,13 @@ class _MeetupCard extends StatelessWidget {
                 const Spacer(),
                 joined
                     ? OutlinedButton.icon(
+                        style: AppButtonStyles.inlineOutlined,
                         onPressed: onToggle,
                         icon: const Icon(Icons.check, size: 18),
                         label: Text(t.meetup.joined),
                       )
                     : FilledButton.icon(
+                        style: AppButtonStyles.inlineFilled,
                         onPressed: onToggle,
                         icon: const Icon(Icons.add, size: 18),
                         label: Text(t.meetup.join),

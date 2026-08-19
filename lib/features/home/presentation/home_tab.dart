@@ -654,6 +654,7 @@ class _EmptyCard extends StatelessWidget {
             Expanded(child: Text(message)),
             if (actionLabel != null && onAction != null)
               FilledButton.tonal(
+                style: AppButtonStyles.inlineFilled,
                 onPressed: onAction,
                 child: Text(actionLabel!),
               ),

@@ -488,10 +488,11 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
     }
 
     if (buttons.isEmpty) return const [];
+    // Temada dolgulu/çerçeveli butonların asgari genişliği sonsuz olduğu için
+    // satır içindeki her buton Expanded ile sınırlanmalı (bkz. CLAUDE.md).
     return [
       const SizedBox(height: 10),
       Row(
-        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           if (_busy)
             const Padding(
@@ -504,7 +505,7 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
             ),
           for (var i = 0; i < buttons.length; i++) ...[
             if (i > 0) const SizedBox(width: 8),
-            buttons[i],
+            Expanded(child: buttons[i]),
           ],
         ],
       ),

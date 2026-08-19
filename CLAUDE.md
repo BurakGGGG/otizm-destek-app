@@ -379,9 +379,15 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
   metinler) çevrilmez — i18n yalnızca arayüz metinleri içindir.
 - **Dolgulu butonlar tam genişlik tasarlandı:** temada `FilledButton` ve
   `OutlinedButton` için `minimumSize: Size.fromHeight(...)` verilir, yani
-  asgari genişlik **sonsuzdur**. Bu butonları `Row` içine koyarken `Expanded`
-  (ya da `SizedBox(width:)`) ile sınırlayın; aksi halde "BoxConstraints forces
-  an infinite width" hatası alınır. `TextButton`'da bu kısıt yok.
+  asgari genişlik **sonsuzdur**. Bu butonları `Row` içine koyarken ya
+  `Expanded`/`Flexible` ile sınırlayın ya da satır içi biçimi verin
+  (`AppButtonStyles.inlineFilled` / `inlineOutlined`,
+  `core/theme/app_theme.dart`); aksi halde "BoxConstraints forces an infinite
+  width" hatasıyla ekran çöker. `FilledButton.tonal*` de aynı temayı kullanır.
+  `TextButton`'da bu kısıt yok. Kural `test/button_layout_rule_test.dart` ile
+  korunur: hem davranışı doğrular hem de `lib/` kaynağını tarayıp sarmalanmamış
+  satır butonu kalmadığını denetler (bu tarama randevu kartı dahil 14 gerçek
+  çökme noktası buldu).
 - **Ekran duman testleri:** `test/screen_smoke_test.dart` yeni ekranları
   gerçekten kurar (yukarıdaki düzen hatası oradan yakalandı). Uzun listeler
   için test yüzeyi büyütülür (`tester.view.physicalSize`).

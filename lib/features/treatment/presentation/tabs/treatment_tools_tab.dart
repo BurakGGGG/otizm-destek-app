@@ -128,6 +128,7 @@ class _TreatmentToolsTabState extends State<TreatmentToolsTab> {
                   ),
                 ),
                 FilledButton(
+                  style: AppButtonStyles.inlineFilled,
                   onPressed:
                       data.saving ? null : () => widget.actions.saveSensory(),
                   child: Text(
@@ -290,6 +291,7 @@ class _TreatmentToolsTabState extends State<TreatmentToolsTab> {
                 ),
                 const SizedBox(width: 8),
                 OutlinedButton(
+                  style: AppButtonStyles.inlineOutlined,
                   onPressed: () {
                     final v = _rewardInput.text.trim();
                     if (v.isEmpty) return;

@@ -20,6 +20,15 @@ class Appointment {
     this.cancellationReason,
     this.duration,
     this.rating,
+    this.ratingComment,
+    this.appointmentTopic,
+    this.preSessionNotes,
+    this.sessionNotes,
+    this.sessionSummary,
+    this.followUpRecommendations,
+    this.followUpTask,
+    this.cancellationBy,
+    this.lateCancellation = false,
   });
 
   final String id;
@@ -38,6 +47,19 @@ class Appointment {
   final String? cancellationReason;
   final int? duration;
   final int? rating;
+  final String? ratingComment;
+
+  /// Randevu detayındaki serbest metinler (veli ve uzmanın girdiği veri).
+  final String? appointmentTopic;
+  final String? preSessionNotes;
+  final String? sessionNotes;
+  final String? sessionSummary;
+  final String? followUpRecommendations;
+  final String? followUpTask;
+
+  /// İptali kimin yaptığı (PARENT | EXPERT | SYSTEM) ve geç iptal bayrağı.
+  final String? cancellationBy;
+  final bool lateCancellation;
 
   AppointmentStatusKind get statusKind {
     switch (status.toUpperCase()) {
@@ -94,6 +116,42 @@ class Appointment {
       cancellationReason: json['cancellationReason'] as String?,
       duration: (json['duration'] as num?)?.toInt(),
       rating: (json['rating'] as num?)?.toInt(),
+      ratingComment: json['ratingComment'] as String?,
+      appointmentTopic: json['appointmentTopic'] as String?,
+      preSessionNotes: json['preSessionNotes'] as String?,
+      sessionNotes: json['sessionNotes'] as String?,
+      sessionSummary: json['sessionSummary'] as String?,
+      followUpRecommendations: json['followUpRecommendations'] as String?,
+      followUpTask: json['followUpTask'] as String?,
+      cancellationBy: json['cancellationBy'] as String?,
+      lateCancellation: json['lateCancellation'] == true,
+    );
+  }
+}
+
+/// `GET /appointments/{id}/history` — durum değişikliği kaydı.
+class AppointmentHistoryEntry {
+  const AppointmentHistoryEntry({
+    required this.newStatus,
+    this.oldStatus,
+    this.changedByName,
+    this.note,
+    this.changedAt,
+  });
+
+  final String newStatus;
+  final String? oldStatus;
+  final String? changedByName;
+  final String? note;
+  final DateTime? changedAt;
+
+  factory AppointmentHistoryEntry.fromJson(Map<String, dynamic> json) {
+    return AppointmentHistoryEntry(
+      newStatus: json['newStatus'] as String? ?? '',
+      oldStatus: json['oldStatus'] as String?,
+      changedByName: json['changedByName'] as String?,
+      note: json['note'] as String?,
+      changedAt: DateTime.tryParse(json['changedAt']?.toString() ?? ''),
     );
   }
 }
