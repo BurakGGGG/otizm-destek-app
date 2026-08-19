@@ -23,14 +23,20 @@ import 'package:otizm_destek_app/features/analytics/domain/analytics_trends.dart
 import 'package:otizm_destek_app/features/analytics/presentation/analytics_screen.dart';
 import 'package:otizm_destek_app/features/appointments/data/appointment_repository.dart';
 import 'package:otizm_destek_app/features/appointments/domain/appointment.dart';
+import 'package:otizm_destek_app/features/appointments/presentation/appointment_booking_screen.dart';
 import 'package:otizm_destek_app/features/appointments/presentation/appointments_screen.dart';
 import 'package:otizm_destek_app/features/appointments/presentation/widgets/appointment_detail_sheet.dart';
 import 'package:otizm_destek_app/features/auth/domain/app_user.dart';
+import 'package:otizm_destek_app/features/auth/presentation/forgot_password_screen.dart';
+import 'package:otizm_destek_app/features/auth/presentation/login_screen.dart';
+import 'package:otizm_destek_app/features/auth/presentation/register_screen.dart';
+import 'package:otizm_destek_app/features/auth/presentation/verify_email_screen.dart';
 import 'package:otizm_destek_app/features/auth/presentation/auth_controller.dart';
 import 'package:otizm_destek_app/features/children/data/child_repository.dart';
 import 'package:otizm_destek_app/features/children/data/connection_repository.dart';
 import 'package:otizm_destek_app/features/children/domain/expert_connection.dart';
 import 'package:otizm_destek_app/features/children/presentation/child_detail_screen.dart';
+import 'package:otizm_destek_app/features/children/presentation/child_form_screen.dart';
 import 'package:otizm_destek_app/features/children/presentation/expert_access_screen.dart';
 import 'package:otizm_destek_app/features/children/data/milestone_repository.dart';
 import 'package:otizm_destek_app/features/children/data/screening_repository.dart';
@@ -69,6 +75,7 @@ import 'package:otizm_destek_app/features/calendar/domain/calendar_event.dart';
 import 'package:otizm_destek_app/features/calendar/presentation/calendar_screen.dart';
 import 'package:otizm_destek_app/features/children/presentation/children_screen.dart';
 import 'package:otizm_destek_app/features/goals/data/goal_repository.dart';
+import 'package:otizm_destek_app/features/goals/presentation/goal_form_screen.dart';
 import 'package:otizm_destek_app/features/goals/domain/goal.dart';
 import 'package:otizm_destek_app/features/medications/data/medication_repository.dart';
 import 'package:otizm_destek_app/features/medications/domain/medication.dart';
@@ -77,6 +84,8 @@ import 'package:otizm_destek_app/features/mood/domain/mood_entry.dart';
 import 'package:otizm_destek_app/features/mood/presentation/daily_tracker_screen.dart';
 import 'package:otizm_destek_app/features/notes/data/note_repository.dart';
 import 'package:otizm_destek_app/features/notes/domain/development_note.dart';
+import 'package:otizm_destek_app/features/notes/presentation/note_form_screen.dart';
+import 'package:otizm_destek_app/features/onboarding/presentation/onboarding_screen.dart';
 import 'package:otizm_destek_app/features/notes/presentation/notes_screen.dart';
 import 'package:otizm_destek_app/features/progress/presentation/progress_tab.dart';
 import 'package:otizm_destek_app/features/sleep/data/sleep_repository.dart';
@@ -101,6 +110,7 @@ import 'package:otizm_destek_app/features/search/presentation/search_screen.dart
 import 'package:otizm_destek_app/features/community/data/community_repository.dart';
 import 'package:otizm_destek_app/features/community/domain/community_meetup.dart';
 import 'package:otizm_destek_app/features/community/domain/weekly_question.dart';
+import 'package:otizm_destek_app/features/chatbot/presentation/chat_screen.dart';
 import 'package:otizm_destek_app/features/community/presentation/meetups_screen.dart';
 import 'package:otizm_destek_app/features/community/presentation/weekly_question_detail_screen.dart';
 import 'package:otizm_destek_app/features/community/presentation/weekly_question_screen.dart';
@@ -122,6 +132,7 @@ import 'package:otizm_destek_app/features/profile/presentation/account_screen.da
 import 'package:otizm_destek_app/features/profile/presentation/help_screen.dart';
 import 'package:otizm_destek_app/features/routines/data/routine_repository.dart';
 import 'package:otizm_destek_app/features/routines/domain/routine.dart';
+import 'package:otizm_destek_app/features/routines/presentation/routine_form_screen.dart';
 import 'package:otizm_destek_app/features/routines/presentation/routines_screen.dart';
 import 'package:otizm_destek_app/features/settings/presentation/kvkk_screen.dart';
 import 'package:otizm_destek_app/features/support_wall/data/wall_repository.dart';
@@ -1611,6 +1622,64 @@ void main() {
 
   testWidgets('19 gelişim', (tester) async {
     await shoot(tester, '19-gelisim', const Scaffold(body: ProgressTab()));
+  });
+
+  // --- Form ve giriş ekranları --------------------------------------------
+
+  testWidgets('52 giriş', (tester) async {
+    await shoot(tester, '52-giris', const LoginScreen());
+  });
+
+  testWidgets('53 kayıt', (tester) async {
+    await shoot(tester, '53-kayit', const RegisterScreen());
+  });
+
+  testWidgets('54 şifremi unuttum', (tester) async {
+    await shoot(tester, '54-sifremi-unuttum', const ForgotPasswordScreen());
+  });
+
+  testWidgets('55 e-posta doğrulama', (tester) async {
+    await shoot(
+      tester,
+      '55-eposta-dogrulama',
+      const VerifyEmailScreen(email: 'veli@example.com'),
+    );
+  });
+
+  testWidgets('56 ilk kurulum', (tester) async {
+    await shoot(tester, '56-ilk-kurulum', const OnboardingScreen());
+  });
+
+  testWidgets('57 çocuk formu', (tester) async {
+    await shoot(tester, '57-cocuk-formu', const ChildFormScreen());
+  });
+
+  testWidgets('58 hedef formu', (tester) async {
+    await shoot(tester, '58-hedef-formu', const GoalFormScreen(childId: 'c1'));
+  });
+
+  testWidgets('59 not formu', (tester) async {
+    await shoot(tester, '59-not-formu', const NoteFormScreen(childId: 'c1'));
+  });
+
+  testWidgets('60 rutin formu', (tester) async {
+    await shoot(
+      tester,
+      '60-rutin-formu',
+      const RoutineFormScreen(childId: 'c1'),
+    );
+  });
+
+  testWidgets('61 randevu alma', (tester) async {
+    await shoot(
+      tester,
+      '61-randevu-alma',
+      const AppointmentBookingScreen(expert: _FakeExpertRepository._selin),
+    );
+  });
+
+  testWidgets('62 AI asistan', (tester) async {
+    await shoot(tester, '62-ai-asistan', const ChatScreen());
   });
 
   // --- Karanlık tema ve erişilebilirlik varyantları -----------------------

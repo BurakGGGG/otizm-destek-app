@@ -28,7 +28,10 @@ class _AppointmentBookingScreenState
 
   final _notes = TextEditingController();
   String? _childId;
-  String _type = 'FACE_TO_FACE';
+  /// Uzmanın sunduğu biçime göre başlar: yalnızca online çalışan bir uzmanda
+  /// yüz yüze seçilemez (web bu bayrakları randevu formunda kullanmıyor).
+  late String _type =
+      widget.expert.offersFaceToFace ? 'FACE_TO_FACE' : 'ONLINE';
   DateTime? _date;
   String? _time;
 
@@ -184,16 +187,22 @@ class _AppointmentBookingScreenState
             _Label(t.booking.typeLabel),
             SegmentedButton<String>(
               segments: [
-                ButtonSegment(
-                  value: 'FACE_TO_FACE',
-                  label: Text(t.appointments.typeFaceToFace),
-                  icon: const Icon(Icons.place_outlined),
-                ),
-                ButtonSegment(
-                  value: 'ONLINE',
-                  label: Text(t.appointments.typeOnline),
-                  icon: const Icon(Icons.videocam_outlined),
-                ),
+                // Uzman hangi biçimi sunuyorsa yalnızca o gösterilir; ikisi de
+                // kapalıysa (beklenmeyen veri) seçim açık bırakılır.
+                if (widget.expert.offersFaceToFace ||
+                    !widget.expert.offersOnline)
+                  ButtonSegment(
+                    value: 'FACE_TO_FACE',
+                    label: Text(t.appointments.typeFaceToFace),
+                    icon: const Icon(Icons.place_outlined),
+                  ),
+                if (widget.expert.offersOnline ||
+                    !widget.expert.offersFaceToFace)
+                  ButtonSegment(
+                    value: 'ONLINE',
+                    label: Text(t.appointments.typeOnline),
+                    icon: const Icon(Icons.videocam_outlined),
+                  ),
               ],
               selected: {_type},
               showSelectedIcon: false,

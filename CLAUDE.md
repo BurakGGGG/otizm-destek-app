@@ -81,7 +81,9 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
     destekler. `/notes`, Profil menüsü + Gelişim sekmesi kısayolu.
   - **Çocuklarım:** `/api/children` CRUD (ekle/düzenle/sil).
   - **Randevular:** `/api/appointments` liste + iptal (veli) / onayla·tamamla (uzman);
-    **randevu alma akışı** (müsaitlik slotları + `POST /appointments`);
+    **randevu alma akışı** (müsaitlik slotları + `POST /appointments`;
+    randevu tipi uzmanın sunduğu biçimle sınırlı — web bu bayrakları formda
+    kullanmıyor);
     **erteleme** (`PATCH /{id}/reschedule`, veli+uzman, müsaitlik slotlu);
     **detay sayfası** (web "Randevu Detayı" penceresi birebir: süre, taraflar,
     görüşme konusu/öncesi not/seans notu/özet/öneriler/takip görevi,
@@ -442,7 +444,11 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
 - **Ekran görüntüsü üreteci:** `flutter test tool/screenshots_test.dart
   --update-goldens` sahte verilerle ekranları kurup `build/screens/*.png`
   yazar (emülatör/oturum gerektirmez; `flutter test` yalnızca `test/`
-  klasörünü çalıştırdığı için normal takıma girmez). Fontlar Flutter SDK
-  önbelleğinden yüklenir; emoji fontu başsız render'da kutu çizebilir.
+  klasörünü çalıştırdığı için normal takıma girmez). **62 kare**: neredeyse
+  tüm ekranlar + karanlık tema ve büyük yazı/yüksek kontrast varyantları
+  (`ShotVariant`). Bir ekranda düzen hatası varsa (taşma, sonsuz genişlik)
+  test düşer — bu tarama şimdiye dek üç gerçek çökme buldu. Fontlar Flutter
+  SDK önbelleğinden yüklenir; aile belirtmeyen `TextStyle`lar başsız
+  render'da kutu çizer (cihazda sistem fontuna düşerler).
 - `dart format` bu depoda **kullanılmıyor** (mevcut dosyaların çoğu farklı
   sarmalanmış); elle 80 sütun hedeflenir.
