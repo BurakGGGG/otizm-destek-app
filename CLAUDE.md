@@ -412,6 +412,10 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
 - **Renkler:** widget'lar `context.colors.X` (AppPalette) kullanır; sabit palet
   `lib/core/theme/app_colors.dart` (`AppPalette.light`/`dark`). Tema kurarken `AppColors`
   (sabit, açık) kullanılır. Yeni ekranlarda `AppColors.*` yerine `context.colors.*`.
+- **Uygulama simgesi:** varsayılan Flutter simgesi yerine uygulama içindeki
+  logo (birincil mavi zemin + beyaz `volunteer_activism` ikonu). Android
+  mipmap'leri ve iOS AppIcon seti `python3 tool/generate_icons.py` ile
+  üretilir (kaynak: Flutter SDK'daki Material ikon fontu; ek varlık yok).
 - **Android manifest:** uygulama adı "Otizm Destek" (paket adı değil),
   `allowBackup=false` (sağlık verisi otomatik yedeklemeye girmesin) ve
   `url_launcher` için `VIEW` + `http(s)` paket görünürlük sorguları — Android
