@@ -6,6 +6,7 @@
 // sahte verilerle kurulur; ağ ya da oturum gerekmez. `flutter test` yalnızca
 // `test/` klasörünü çalıştırdığı için bu dosya normal takıma girmez.
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:stomp_dart_client/stomp_dart_client.dart';
@@ -47,6 +48,30 @@ import 'package:otizm_destek_app/features/specialists/presentation/expert_detail
 import 'package:otizm_destek_app/features/specialists/presentation/specialists_tab.dart';
 import 'package:otizm_destek_app/features/tags/data/tag_repository.dart';
 import 'package:otizm_destek_app/features/tags/domain/symptom_tag.dart';
+import 'package:otizm_destek_app/core/util/date_key.dart';
+import 'package:otizm_destek_app/features/behavior/data/abc_repository.dart';
+import 'package:otizm_destek_app/features/behavior/domain/abc_entry.dart';
+import 'package:otizm_destek_app/features/behavior/presentation/behavior_screen.dart';
+import 'package:otizm_destek_app/features/calendar/data/calendar_repository.dart';
+import 'package:otizm_destek_app/features/calendar/domain/calendar_event.dart';
+import 'package:otizm_destek_app/features/calendar/presentation/calendar_screen.dart';
+import 'package:otizm_destek_app/features/children/presentation/children_screen.dart';
+import 'package:otizm_destek_app/features/goals/data/goal_repository.dart';
+import 'package:otizm_destek_app/features/goals/domain/goal.dart';
+import 'package:otizm_destek_app/features/medications/data/medication_repository.dart';
+import 'package:otizm_destek_app/features/medications/domain/medication.dart';
+import 'package:otizm_destek_app/features/mood/data/mood_repository.dart';
+import 'package:otizm_destek_app/features/mood/domain/mood_entry.dart';
+import 'package:otizm_destek_app/features/mood/presentation/daily_tracker_screen.dart';
+import 'package:otizm_destek_app/features/notes/data/note_repository.dart';
+import 'package:otizm_destek_app/features/notes/domain/development_note.dart';
+import 'package:otizm_destek_app/features/notes/presentation/notes_screen.dart';
+import 'package:otizm_destek_app/features/progress/presentation/progress_tab.dart';
+import 'package:otizm_destek_app/features/sleep/data/sleep_repository.dart';
+import 'package:otizm_destek_app/features/sleep/domain/sleep_entry.dart';
+import 'package:otizm_destek_app/features/tasks/data/tasks_repository.dart';
+import 'package:otizm_destek_app/features/tasks/domain/expert_task.dart';
+import 'package:otizm_destek_app/features/tasks/presentation/tasks_screen.dart';
 import 'package:otizm_destek_app/i18n/strings.g.dart';
 
 // ---------------------------------------------------------------------------
@@ -446,6 +471,198 @@ class _FakeMessagingRepository extends MessagingRepository {
   Future<void> markAsRead(String conversationId) async {}
 }
 
+
+class _FakeNoteRepository extends NoteRepository {
+  _FakeNoteRepository() : super(Dio());
+
+  static final _notes = [
+    DevelopmentNote(
+      id: 'n1',
+      title: 'Sıra alma çalışması',
+      content: 'Ada oyun sırasında iki kez sırasını bekledi.',
+      category: 'Sosyal Beceri',
+      mood: 'happy',
+      noteDate: DateTime(2026, 8, 18),
+    ),
+    DevelopmentNote(
+      id: 'n2',
+      title: 'Markette zorlanma',
+      content: 'Kalabalıkta kulaklık işe yaradı, kriz olmadı.',
+      category: 'Davranış',
+      mood: 'neutral',
+      noteDate: DateTime(2026, 8, 15),
+    ),
+  ];
+
+  @override
+  Future<List<DevelopmentNote>> getRecentNotes(String childId) async => _notes;
+
+  @override
+  Future<NotesPage> getNotes(String childId, {int page = 0}) async =>
+      NotesPage(notes: _notes, totalPages: 1);
+}
+
+class _FakeGoalRepository extends GoalRepository {
+  _FakeGoalRepository() : super(Dio());
+
+  @override
+  Future<List<Goal>> getGoals(String childId) async => [
+        Goal(
+          id: 'g1',
+          title: 'Günde 10 dakika ortak oyun',
+          targetCount: 10,
+          category: 'Sosyal Beceri',
+          tokenEmoji: '⭐',
+          rewardTitle: 'Parkta ekstra süre',
+          entries: [
+            for (var i = 0; i < 6; i++) {'date': '2026-08-1$i'},
+          ],
+        ),
+        const Goal(
+          id: 'g2',
+          title: 'İki kelimelik istek cümlesi',
+          targetCount: 20,
+          category: 'Dil Gelişimi',
+        ),
+      ];
+}
+
+class _FakeMoodRepository extends MoodRepository {
+  _FakeMoodRepository() : super(Dio());
+
+  @override
+  Future<List<MoodEntry>> getEntries(String childId) async => [
+        MoodEntry(
+          id: 'md1',
+          childId: childId,
+          entryDate: localDateKey(DateTime.now()),
+          moodLevel: 4,
+          notes: 'Sabah okulda iyiydi.',
+          triggers: const ['Gürültü'],
+        ),
+      ];
+}
+
+class _FakeSleepRepository extends SleepRepository {
+  _FakeSleepRepository() : super(Dio());
+
+  @override
+  Future<List<SleepEntry>> getEntries(String childId) async => [
+        SleepEntry(
+          id: 'sl1',
+          childId: childId,
+          sleepDate: localDateKey(DateTime.now()),
+          bedtime: '21:15',
+          wakeTime: '07:00',
+          durationMinutes: 585,
+          quality: 4,
+          nightWakings: 1,
+        ),
+      ];
+}
+
+class _FakeMedicationRepository extends MedicationRepository {
+  _FakeMedicationRepository() : super(Dio());
+
+  @override
+  Future<List<Medication>> getMedications(String childId) async => [
+        Medication(
+          id: 'md1',
+          childId: childId,
+          name: 'D vitamini',
+          dosage: '3 damla',
+          scheduledTimes: const ['09:00'],
+          todayLogs: [
+            MedicationLog(
+              id: 'lg1',
+              medicationId: 'md1',
+              logDate: localDateKey(DateTime.now()),
+              scheduledTime: '09:00',
+              taken: true,
+            ),
+          ],
+        ),
+        Medication(
+          id: 'md2',
+          childId: childId,
+          name: 'Omega-3',
+          dosage: '1 kapsül',
+          scheduledTimes: const ['20:00'],
+        ),
+      ];
+}
+
+class _FakeCalendarRepository extends CalendarRepository {
+  _FakeCalendarRepository() : super(Dio());
+
+  @override
+  Future<List<CalendarEvent>> getByChild(String childId) async => [
+        CalendarEvent(
+          id: 'ev1',
+          title: 'Dil terapisi',
+          startTime: DateTime.now().add(const Duration(days: 1, hours: 3)),
+          eventType: 'TERAPI',
+          location: 'Mavi Gelişim Merkezi',
+          childId: childId,
+        ),
+        CalendarEvent(
+          id: 'ev2',
+          title: 'Okul veli toplantısı',
+          startTime: DateTime.now().add(const Duration(days: 4)),
+          eventType: 'EGITIM',
+          childId: childId,
+        ),
+      ];
+}
+
+class _FakeAbcRepository extends AbcRepository {
+  _FakeAbcRepository() : super(Dio());
+
+  @override
+  Future<List<AbcEntry>> getByChild(String childId) async => [
+        AbcEntry(
+          id: 'ab1',
+          childId: childId,
+          entryDate: localDateKey(DateTime.now()),
+          entryTime: '17:30',
+          antecedent: 'Markette kalabalık ve yüksek ses',
+          behavior: 'Kulaklarını kapatıp yere oturdu',
+          consequence: 'Sessiz köşeye geçtik, 5 dakikada sakinleşti',
+          intensity: 3,
+          category: 'Duyusal',
+          location: 'Market',
+        ),
+      ];
+}
+
+class _FakeTasksRepository extends TasksRepository {
+  _FakeTasksRepository() : super(Dio());
+
+  @override
+  Future<List<ExpertTask>> getMyTasks() async => [
+        ExpertTask(
+          id: 'tk1',
+          title: 'Günde 3 kez isim çağırma çalışması',
+          description: 'Ada başka bir şeyle ilgilenirken adını söyleyin.',
+          category: 'Ortak dikkat',
+          difficulty: 'EASY',
+          frequency: 'Her gün',
+          dueDate: DateTime.now().add(const Duration(days: 2)),
+        ),
+        const ExpertTask(
+          id: 'tk2',
+          title: 'Akşam rutin kartlarını birlikte dizin',
+          description: 'Rutin kartlarını Ada ile sırayla yerleştirin.',
+          category: 'Rutin',
+          difficulty: 'MEDIUM',
+          status: kTaskCompleted,
+        ),
+      ];
+
+  @override
+  Future<List<TaskSubmission>> getSubmissions(String taskId) async => const [];
+}
+
 // ---------------------------------------------------------------------------
 // Yardımcılar
 // ---------------------------------------------------------------------------
@@ -453,13 +670,18 @@ class _FakeMessagingRepository extends MessagingRepository {
 /// Metin ve ikonların kutu yerine gerçek glif olarak çizilmesi için SDK
 /// içindeki fontları yükler (tema 'Inter' istiyor, cihazda sistem fontuna
 /// düşüyor; burada Roboto ile temsil edilir).
+const _emojiFamily = 'Noto Color Emoji';
+
 Future<void> _loadFonts() async {
   const root = '/home/burak/flutter/bin/cache/artifacts/material_fonts';
   Future<void> load(String family, List<String> files) async {
     final loader = FontLoader(family);
     for (final file in files) {
-      final bytes = await File('$root/$file').readAsBytes();
-      loader.addFont(Future.value(ByteData.view(Uint8List.fromList(bytes).buffer)));
+      final path = file.startsWith('/') ? file : '$root/$file';
+      final bytes = await File(path).readAsBytes();
+      loader.addFont(
+        Future.value(ByteData.view(Uint8List.fromList(bytes).buffer)),
+      );
     }
     await loader.load();
   }
@@ -467,18 +689,17 @@ Future<void> _loadFonts() async {
   await load('Inter', ['Roboto-Regular.ttf', 'Roboto-Medium.ttf']);
   await load('Roboto', ['Roboto-Regular.ttf', 'Roboto-Medium.ttf']);
   await load('MaterialIcons', ['MaterialIcons-Regular.otf']);
+  // Not: uygulamadaki bazı `TextStyle`lar aile belirtmiyor (ör. bazı çip
+  // etiketleri). Cihazda sistem fontuna düşerler; başsız render'da ise motor
+  // varsayılan test fontunu kullandığı için kutu çizilirler. Aile adıyla font
+  // yüklemek bunu değiştirmiyor — görüntülerde beklenen bir kusurdur.
 
-  // Emoji: cihazda sistem fontundan gelir; testte yüklenmezse kutu çizilir.
+  // Emoji: cihazda sistem fontundan gelir. Kendi ailesine yüklenip yalnızca
+  // yedek (fallback) olarak verilir; aynı aileye eklenirse metin fontunun
+  // yerine geçip bütün etiketleri kutuya çeviriyor.
   const emojiPath = '/usr/share/fonts/truetype/noto/NotoColorEmoji.ttf';
   if (File(emojiPath).existsSync()) {
-    final bytes = await File(emojiPath).readAsBytes();
-    for (final family in ['Inter', 'Roboto']) {
-      final loader = FontLoader(family)
-        ..addFont(
-          Future.value(ByteData.view(Uint8List.fromList(bytes).buffer)),
-        );
-      await loader.load();
-    }
+    await load(_emojiFamily, [emojiPath]);
   }
 }
 
@@ -500,12 +721,27 @@ Widget _app(Widget home, {List<dynamic> overrides = const []}) {
         messagingRepositoryProvider
             .overrideWithValue(_FakeMessagingRepository()),
         stompServiceProvider.overrideWithValue(_FakeStompService()),
+        noteRepositoryProvider.overrideWithValue(_FakeNoteRepository()),
+        goalRepositoryProvider.overrideWithValue(_FakeGoalRepository()),
+        moodRepositoryProvider.overrideWithValue(_FakeMoodRepository()),
+        sleepRepositoryProvider.overrideWithValue(_FakeSleepRepository()),
+        medicationRepositoryProvider
+            .overrideWithValue(_FakeMedicationRepository()),
+        calendarRepositoryProvider.overrideWithValue(_FakeCalendarRepository()),
+        abcRepositoryProvider.overrideWithValue(_FakeAbcRepository()),
+        tasksRepositoryProvider.overrideWithValue(_FakeTasksRepository()),
         connectionRequestsProvider.overrideWith((ref) async => const []),
         ...overrides.cast(),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: AppTheme.light,
+        // Emoji fontu yalnızca yedek olarak eklenir (cihazda sistem fontu
+        // aynı işi yapıyor).
+        theme: AppTheme.light.copyWith(
+          textTheme: AppTheme.light.textTheme.apply(
+            fontFamilyFallback: const [_emojiFamily],
+          ),
+        ),
         home: home,
       ),
     ),
@@ -639,6 +875,34 @@ void main() {
         title: 'Uzm. Psk. Selin Aksoy',
       ),
     );
+  });
+
+  testWidgets('13 çocuklarım', (tester) async {
+    await shoot(tester, '13-cocuklarim', const ChildrenScreen());
+  });
+
+  testWidgets('14 notlarım', (tester) async {
+    await shoot(tester, '14-notlarim', const NotesScreen());
+  });
+
+  testWidgets('15 günlük takip', (tester) async {
+    await shoot(tester, '15-gunluk-takip', const DailyTrackerScreen());
+  });
+
+  testWidgets('16 ödevlerim', (tester) async {
+    await shoot(tester, '16-odevlerim', const TasksScreen());
+  });
+
+  testWidgets('17 takvim', (tester) async {
+    await shoot(tester, '17-takvim', const CalendarScreen());
+  });
+
+  testWidgets('18 davranış günlüğü', (tester) async {
+    await shoot(tester, '18-davranis-gunlugu', const BehaviorScreen());
+  });
+
+  testWidgets('19 gelişim', (tester) async {
+    await shoot(tester, '19-gelisim', const Scaffold(body: ProgressTab()));
   });
 
   testWidgets('10 kriz rehberi', (tester) async {

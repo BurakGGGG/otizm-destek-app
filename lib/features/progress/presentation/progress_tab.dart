@@ -519,6 +519,7 @@ class _NoteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mood = noteMoodDisplay(context.t, note.mood);
     final t = context.t;
     final text = Theme.of(context).textTheme;
     final date = note.noteDate;
@@ -548,8 +549,7 @@ class _NoteCard extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ],
-            if ((note.category?.isNotEmpty ?? false) ||
-                (note.mood?.isNotEmpty ?? false)) ...[
+            if ((note.category?.isNotEmpty ?? false) || mood != null) ...[
               const SizedBox(height: 8),
               Row(
                 children: [
@@ -563,8 +563,13 @@ class _NoteCard extends StatelessWidget {
                       ),
                     ),
                   const Spacer(),
-                  if (note.mood?.isNotEmpty ?? false)
-                    Text(note.mood!, style: text.bodySmall),
+                  // Ruh hâli kodu (happy/neutral/sad) veridir; ekranda
+                  // emoji + yerelleştirilmiş etiketle gösterilir.
+                  if (mood != null)
+                    Text(
+                      '${mood.emoji} ${mood.label}',
+                      style: text.bodySmall,
+                    ),
                 ],
               ),
             ],
