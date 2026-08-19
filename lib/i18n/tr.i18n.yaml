@@ -559,6 +559,17 @@ notifications:
   catSocial: Sosyal
   catSystem: Sistem
 
+search:
+  title: Arama
+  hint: Makale, gönderi, grup ya da uzman arayın…
+  help: Aramak istediğiniz kelimeyi yazın.
+  noResults: Bu aramaya uygun sonuç bulunamadı.
+  typeAll: Tümü
+  typeArticle: Makale
+  typePost: Gönderi
+  typeGroup: Grup
+  typeExpert: Uzman
+
 knowledge:
   title: Bilgi Bankası
   empty: Henüz makale eklenmemiş.

@@ -32,6 +32,25 @@ class ExpertRepository {
   }
 
   /// Uzmanın değerlendirmeleri + ortalama puan.
+  /// Tek uzman — `GET /experts/{id}` (`{expert, articleCount}` döner).
+  /// Genel aramadan uzman profiline geçerken kullanılır.
+  Future<Expert> getExpert(String id) async {
+    try {
+      final res = await _dio.get('/experts/$id');
+      final data = ApiEnvelope.fromJson(res.data).requireMap();
+      final raw = data['expert'];
+      if (raw is! Map<String, dynamic>) {
+        throw const ApiException('Uzman bulunamadı');
+      }
+      return Expert.fromJson({
+        ...raw,
+        'articleCount': ?(data['articleCount'] as num?)?.toInt(),
+      });
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
   Future<ExpertReviewSummary> getReviews(String expertId) async {
     try {
       final res = await _dio.get('/experts/$expertId/reviews');
@@ -87,4 +106,9 @@ final expertsProvider = FutureProvider<List<Expert>>((ref) {
 final expertReviewsProvider =
     FutureProvider.family<ExpertReviewSummary, String>((ref, expertId) {
   return ref.watch(expertRepositoryProvider).getReviews(expertId);
+});
+
+/// Genel aramadan açılan uzman profili için tek uzman.
+final expertByIdProvider = FutureProvider.family<Expert, String>((ref, id) {
+  return ref.watch(expertRepositoryProvider).getExpert(id);
 });

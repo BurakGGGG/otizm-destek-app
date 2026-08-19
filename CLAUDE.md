@@ -364,6 +364,11 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
   Ayarlar > Gizlilik altında kısayol. Uç noktalar PARENT'a kısıtlı.
 - ✅ **Ana sayfa:** dört hızlı eylem kısayolu (günlük kayıt, davranış notu,
   gözlem notu, plan ekle).
+- ✅ **Genel arama** (`/search`, `GET /api/search`): makale, forum gönderisi,
+  grup ve uzman tek sorguda; tür süzgeci ve kabuk başlığındaki arama düğmesi
+  (web bunu kenar çubuğu komut paletinde sunuyor). Web'den ayrım: sonuca
+  dokunmak bölüm listesine değil doğrudan içeriğe gider (uzman profili için
+  `GET /experts/{id}` ile profil çekilir).
 - ✅ **Günlük plan + koç notu** (ana sayfa, web `todayTasks`/`dailyCoachNote`):
   kural tabanlı "bugün ne yapalım" listesi — bekleyen doz ve bugün/yarın
   etkinliği en acil, tamamlananlar sona; ilerleme yüzdesi, sıra rozetleri

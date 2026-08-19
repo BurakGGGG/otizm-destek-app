@@ -66,6 +66,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$noteForm$tr noteForm = Translations$noteForm$tr.internal(_root);
 	late final Translations$notesPage$tr notesPage = Translations$notesPage$tr.internal(_root);
 	late final Translations$notifications$tr notifications = Translations$notifications$tr.internal(_root);
+	late final Translations$search$tr search = Translations$search$tr.internal(_root);
 	late final Translations$knowledge$tr knowledge = Translations$knowledge$tr.internal(_root);
 	late final Translations$appointments$tr appointments = Translations$appointments$tr.internal(_root);
 	late final Translations$expertDetail$tr expertDetail = Translations$expertDetail$tr.internal(_root);
@@ -1829,6 +1830,42 @@ class Translations$notifications$tr {
 
 	/// tr: 'Sistem'
 	String get catSystem => 'Sistem';
+}
+
+// Path: search
+class Translations$search$tr {
+	Translations$search$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Arama'
+	String get title => 'Arama';
+
+	/// tr: 'Makale, gönderi, grup ya da uzman arayın…'
+	String get hint => 'Makale, gönderi, grup ya da uzman arayın…';
+
+	/// tr: 'Aramak istediğiniz kelimeyi yazın.'
+	String get help => 'Aramak istediğiniz kelimeyi yazın.';
+
+	/// tr: 'Bu aramaya uygun sonuç bulunamadı.'
+	String get noResults => 'Bu aramaya uygun sonuç bulunamadı.';
+
+	/// tr: 'Tümü'
+	String get typeAll => 'Tümü';
+
+	/// tr: 'Makale'
+	String get typeArticle => 'Makale';
+
+	/// tr: 'Gönderi'
+	String get typePost => 'Gönderi';
+
+	/// tr: 'Grup'
+	String get typeGroup => 'Grup';
+
+	/// tr: 'Uzman'
+	String get typeExpert => 'Uzman';
 }
 
 // Path: knowledge
@@ -6527,14 +6564,23 @@ extension on Translations {
 			'notifications.catTasks' => 'Görevler',
 			'notifications.catSocial' => 'Sosyal',
 			'notifications.catSystem' => 'Sistem',
+			'search.title' => 'Arama',
+			'search.hint' => 'Makale, gönderi, grup ya da uzman arayın…',
+			'search.help' => 'Aramak istediğiniz kelimeyi yazın.',
+			'search.noResults' => 'Bu aramaya uygun sonuç bulunamadı.',
+			'search.typeAll' => 'Tümü',
+			'search.typeArticle' => 'Makale',
+			_ => null,
+		} ?? switch (path) {
+			'search.typePost' => 'Gönderi',
+			'search.typeGroup' => 'Grup',
+			'search.typeExpert' => 'Uzman',
 			'knowledge.title' => 'Bilgi Bankası',
 			'knowledge.empty' => 'Henüz makale eklenmemiş.',
 			'knowledge.noResults' => 'Bu filtreye uygun içerik yok.',
 			'knowledge.filterAll' => 'Tümü',
 			'knowledge.formatArticle' => 'Makale',
 			'knowledge.formatVideo' => 'Video',
-			_ => null,
-		} ?? switch (path) {
 			'knowledge.formatPodcast' => 'Podcast',
 			'knowledge.views' => ({required Object count}) => '${count} görüntülenme',
 			'knowledge.dateLine' => ({required Object day, required Object month, required Object year}) => '${day} ${month} ${year}',
@@ -7038,6 +7084,8 @@ extension on Translations {
 			'treatment.fbIndependentLong' => 'Tek başına yaptı',
 			'treatment.fbChallengingLong' => 'Zorlandı',
 			'treatment.feedbackSaved' => 'Oyun geri bildirimi kaydedildi.',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.allDoneTitle' => '🎉 Bugünün tüm oyunları tamamlandı. Harika gidiyorsunuz!',
 			'treatment.allDoneBody' => 'Bugünkü destek akışını tamamladınız; isterseniz notlar bölümüne kısa bir gözlem ekleyebilirsiniz.',
 			'treatment.hintMastered' => 'Ustalık kazandı! Daha zor varyant deneyin.',
@@ -7047,8 +7095,6 @@ extension on Translations {
 			'treatment.notifyBody' => ({required Object game}) => '${game} aktivitesindeki zorlanma hakkında uzmanınıza kısa bir not gönderin.',
 			'treatment.notifyDefaultMsg' => ({required Object game}) => '"${game}" aktivitesinde son zamanlarda zorlanıyor. Önerisi olan var mı?',
 			'treatment.notifyNoExpert' => 'Henüz mesajlaştığınız bir uzman yok. Önce bir uzmanla bağlantı kurmanız gerekiyor.',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.notifySeeExperts' => 'Uzmanları Görüntüle',
 			'treatment.notifySend' => 'Gönder',
 			'treatment.notifySent' => 'Uzmana bildirildi.',
@@ -7552,6 +7598,8 @@ extension on Translations {
 			'children.educationHint' => 'Devam ettiği eğitim programı',
 			'children.therapiesLabel' => 'Terapiler (isteğe bağlı)',
 			'children.therapiesHint' => 'Aldığı terapiler',
+			_ => null,
+		} ?? switch (path) {
 			'children.ageYears' => ({required Object years}) => '${years} yaş',
 			'children.save' => 'Kaydet',
 			'children.cancel' => 'İptal',
@@ -7561,8 +7609,6 @@ extension on Translations {
 			'children.errorNameRequired' => 'Lütfen çocuğun adını girin.',
 			'children.created' => 'Çocuk profili oluşturuldu.',
 			'children.updated' => 'Çocuk profili güncellendi.',
-			_ => null,
-		} ?? switch (path) {
 			'children.deleted' => 'Çocuk profili silindi.',
 			'account.title' => 'Hesap Bilgileri',
 			'account.emailLabel' => 'E-posta',

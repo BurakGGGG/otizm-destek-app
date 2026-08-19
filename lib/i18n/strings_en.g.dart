@@ -65,6 +65,7 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$noteForm$en noteForm = _Translations$noteForm$en._(_root);
 	@override late final _Translations$notesPage$en notesPage = _Translations$notesPage$en._(_root);
 	@override late final _Translations$notifications$en notifications = _Translations$notifications$en._(_root);
+	@override late final _Translations$search$en search = _Translations$search$en._(_root);
 	@override late final _Translations$knowledge$en knowledge = _Translations$knowledge$en._(_root);
 	@override late final _Translations$appointments$en appointments = _Translations$appointments$en._(_root);
 	@override late final _Translations$expertDetail$en expertDetail = _Translations$expertDetail$en._(_root);
@@ -839,6 +840,24 @@ class _Translations$notifications$en extends Translations$notifications$tr {
 	@override String get catTasks => 'Tasks';
 	@override String get catSocial => 'Social';
 	@override String get catSystem => 'System';
+}
+
+// Path: search
+class _Translations$search$en extends Translations$search$tr {
+	_Translations$search$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Search';
+	@override String get hint => 'Search articles, posts, groups or experts…';
+	@override String get help => 'Type what you are looking for.';
+	@override String get noResults => 'No results match this search.';
+	@override String get typeAll => 'All';
+	@override String get typeArticle => 'Article';
+	@override String get typePost => 'Post';
+	@override String get typeGroup => 'Group';
+	@override String get typeExpert => 'Expert';
 }
 
 // Path: knowledge
@@ -3017,14 +3036,23 @@ extension on TranslationsEn {
 			'notifications.catTasks' => 'Tasks',
 			'notifications.catSocial' => 'Social',
 			'notifications.catSystem' => 'System',
+			'search.title' => 'Search',
+			'search.hint' => 'Search articles, posts, groups or experts…',
+			'search.help' => 'Type what you are looking for.',
+			'search.noResults' => 'No results match this search.',
+			'search.typeAll' => 'All',
+			'search.typeArticle' => 'Article',
+			_ => null,
+		} ?? switch (path) {
+			'search.typePost' => 'Post',
+			'search.typeGroup' => 'Group',
+			'search.typeExpert' => 'Expert',
 			'knowledge.title' => 'Knowledge Base',
 			'knowledge.empty' => 'No articles yet.',
 			'knowledge.noResults' => 'No content matches this filter.',
 			'knowledge.filterAll' => 'All',
 			'knowledge.formatArticle' => 'Article',
 			'knowledge.formatVideo' => 'Video',
-			_ => null,
-		} ?? switch (path) {
 			'knowledge.formatPodcast' => 'Podcast',
 			'knowledge.views' => ({required Object count}) => '${count} views',
 			'knowledge.dateLine' => ({required Object day, required Object month, required Object year}) => '${day} ${month} ${year}',
@@ -3528,6 +3556,8 @@ extension on TranslationsEn {
 			'treatment.fbIndependentLong' => 'Did it independently',
 			'treatment.fbChallengingLong' => 'Struggled',
 			'treatment.feedbackSaved' => 'Game feedback saved.',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.allDoneTitle' => '🎉 All of today\'s games are done. You\'re doing great!',
 			'treatment.allDoneBody' => 'You completed today\'s support flow; you can add a short observation to the notes if you like.',
 			'treatment.hintMastered' => 'Mastered it! Try a harder variant.',
@@ -3537,8 +3567,6 @@ extension on TranslationsEn {
 			'treatment.notifyBody' => ({required Object game}) => 'Send your expert a short note about the difficulty in ${game}.',
 			'treatment.notifyDefaultMsg' => ({required Object game}) => '"${game}" aktivitesinde son zamanlarda zorlanıyor. Önerisi olan var mı?',
 			'treatment.notifyNoExpert' => 'You haven\'t messaged an expert yet. Connect with an expert first.',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.notifySeeExperts' => 'View Experts',
 			'treatment.notifySend' => 'Send',
 			'treatment.notifySent' => 'Expert notified.',
@@ -4042,6 +4070,8 @@ extension on TranslationsEn {
 			'children.educationHint' => 'Current education program',
 			'children.therapiesLabel' => 'Therapies (optional)',
 			'children.therapiesHint' => 'Therapies received',
+			_ => null,
+		} ?? switch (path) {
 			'children.ageYears' => ({required Object years}) => '${years} yrs',
 			'children.save' => 'Save',
 			'children.cancel' => 'Cancel',
@@ -4051,8 +4081,6 @@ extension on TranslationsEn {
 			'children.errorNameRequired' => 'Please enter the child\'s name.',
 			'children.created' => 'Child profile created.',
 			'children.updated' => 'Child profile updated.',
-			_ => null,
-		} ?? switch (path) {
 			'children.deleted' => 'Child profile deleted.',
 			'account.title' => 'Account Information',
 			'account.emailLabel' => 'Email',

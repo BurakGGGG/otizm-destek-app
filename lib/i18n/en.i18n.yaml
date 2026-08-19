@@ -558,6 +558,17 @@ notifications:
   catSocial: Social
   catSystem: System
 
+search:
+  title: Search
+  hint: Search articles, posts, groups or experts…
+  help: Type what you are looking for.
+  noResults: No results match this search.
+  typeAll: All
+  typeArticle: Article
+  typePost: Post
+  typeGroup: Group
+  typeExpert: Expert
+
 knowledge:
   title: Knowledge Base
   empty: No articles yet.

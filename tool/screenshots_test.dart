@@ -84,6 +84,9 @@ import 'package:otizm_destek_app/features/groups/presentation/groups_screen.dart
 import 'package:otizm_destek_app/features/notifications/data/notification_repository.dart';
 import 'package:otizm_destek_app/features/notifications/domain/app_notification.dart';
 import 'package:otizm_destek_app/features/notifications/presentation/notifications_screen.dart';
+import 'package:otizm_destek_app/features/search/data/search_repository.dart';
+import 'package:otizm_destek_app/features/search/domain/search_result.dart';
+import 'package:otizm_destek_app/features/search/presentation/search_screen.dart';
 import 'package:otizm_destek_app/features/settings/data/kvkk_repository.dart';
 import 'package:otizm_destek_app/features/settings/domain/kvkk.dart';
 import 'package:otizm_destek_app/features/support_wall/data/wall_repository.dart';
@@ -861,6 +864,35 @@ class _FakeKvkkRepository extends KvkkRepository {
       );
 }
 
+
+class _FakeSearchRepository extends SearchRepository {
+  _FakeSearchRepository() : super(Dio());
+
+  @override
+  Future<List<SearchResult>> search(String query, {String? type}) async => [
+        SearchResult(
+          id: 'k1',
+          type: kSearchTypeArticle,
+          title: 'Uyku rutinini kurmanın beş adımı',
+          excerpt: 'Akşam rutinini sabitlemek uykuya geçişi kolaylaştırıyor.',
+          createdAt: DateTime(2026, 7, 18),
+        ),
+        SearchResult(
+          id: 'f2',
+          type: kSearchTypePost,
+          title: 'Uyku öncesi rutini nasıl kısalttınız?',
+          excerpt: 'Bizde rutin 1 saati buluyor, önerisi olan var mı?',
+          createdAt: DateTime(2026, 8, 14),
+        ),
+        SearchResult(
+          id: 'e1',
+          type: kSearchTypeExpert,
+          title: 'Uzm. Psk. Selin Aksoy',
+          excerpt: 'Klinik Psikolog · İstanbul',
+        ),
+      ];
+}
+
 // ---------------------------------------------------------------------------
 // Yardımcılar
 // ---------------------------------------------------------------------------
@@ -936,6 +968,7 @@ Widget _app(Widget home, {List<dynamic> overrides = const []}) {
         analyticsRepositoryProvider
             .overrideWithValue(_FakeAnalyticsRepository()),
         kvkkRepositoryProvider.overrideWithValue(_FakeKvkkRepository()),
+        searchRepositoryProvider.overrideWithValue(_FakeSearchRepository()),
         connectionRequestsProvider.overrideWith((ref) async => const []),
         ...overrides.cast(),
       ],
@@ -1109,6 +1142,19 @@ void main() {
 
   testWidgets('19 gelişim', (tester) async {
     await shoot(tester, '19-gelisim', const Scaffold(body: ProgressTab()));
+  });
+
+  testWidgets('25 genel arama', (tester) async {
+    await shoot(
+      tester,
+      '25-arama',
+      const SearchScreen(),
+      after: (tester) async {
+        await tester.enterText(find.byType(TextField).first, 'uyku');
+        await tester.pump(const Duration(milliseconds: 500));
+        await tester.pump();
+      },
+    );
   });
 
   testWidgets('24 gelişim paneli', (tester) async {

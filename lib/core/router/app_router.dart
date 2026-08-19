@@ -36,6 +36,7 @@ import '../../features/profile/presentation/account_screen.dart';
 import '../../features/profile/presentation/help_screen.dart';
 import '../../features/routines/presentation/routines_screen.dart';
 import '../../features/settings/presentation/kvkk_screen.dart';
+import '../../features/search/presentation/search_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
 import '../../features/similar_families/presentation/similar_families_screen.dart';
 import '../../features/splash/splash_screen.dart';
@@ -147,6 +148,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         ),
       ),
       GoRoute(path: '/chat', builder: (_, _) => const ChatScreen()),
+      GoRoute(path: '/search', builder: (_, _) => const SearchScreen()),
       GoRoute(path: '/children', builder: (_, _) => const ChildrenScreen()),
       GoRoute(
         path: '/expert-access',

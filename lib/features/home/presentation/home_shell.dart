@@ -73,6 +73,11 @@ class _HomeShellState extends ConsumerState<HomeShell> {
         ),
         actions: [
           IconButton(
+            tooltip: t.search.title,
+            onPressed: () => context.push('/search'),
+            icon: const Icon(Icons.search),
+          ),
+          IconButton(
             tooltip: t.home.messages,
             onPressed: () => context.push('/messages'),
             icon: const Icon(Icons.chat_bubble_outline),
