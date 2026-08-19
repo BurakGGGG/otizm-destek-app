@@ -97,7 +97,14 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
     Gruplar/Arşiv — web `ConvFilter` birebir). **PECS görsel iletişim
     kartları**: 12 kart, 3 kategori; kart gönderilince web'deki gibi
     **etiket metni** mesaj olarak gider (paylaşılan veri, çevrilmez) ve
-    içerik eşleşen mesajlar emojisiyle çizilir.
+    içerik eşleşen mesajlar emojisiyle çizilir (`messageType: PECS`).
+    **Yanıtlama** (`replyToId` + balonda alıntı), **emoji tepkileri**
+    (`POST /messages/{id}/react`, hızlı emoji seti web `QUICK_EMOJIS`
+    birebir; `/topic/conversation/{id}/reactions` STOMP aboneliğiyle canlı),
+    **fotoğraf eki** (image_picker → `POST /upload` `CONVERSATION` kapsamı →
+    `IMAGE` mesajı). Ek dosyalar `GET /api/upload/**` kimlik doğrulaması
+    istediği için tarayıcıda açılamıyor: dosya Bearer'lı indirilip paylaşım
+    sayfasına veriliyor (web same-origin çerezle doğrudan açıyor).
   - **AI Asistan:** `/api/chatbot/stream` (SSE) streaming.
   - **Hesap:** `PUT /api/users/me` ile profil düzenleme.
   - **Bildirimler:** `/api/notifications` liste + okundu işaretleme; Ana Sayfa'da
@@ -403,5 +410,10 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
 - **Ekran duman testleri:** `test/screen_smoke_test.dart` yeni ekranları
   gerçekten kurar (yukarıdaki düzen hatası oradan yakalandı). Uzun listeler
   için test yüzeyi büyütülür (`tester.view.physicalSize`).
+- **Ekran görüntüsü üreteci:** `flutter test tool/screenshots_test.dart
+  --update-goldens` sahte verilerle ekranları kurup `build/screens/*.png`
+  yazar (emülatör/oturum gerektirmez; `flutter test` yalnızca `test/`
+  klasörünü çalıştırdığı için normal takıma girmez). Fontlar Flutter SDK
+  önbelleğinden yüklenir; emoji fontu başsız render'da kutu çizebilir.
 - `dart format` bu depoda **kullanılmıyor** (mevcut dosyaların çoğu farklı
   sarmalanmış); elle 80 sütun hedeflenir.

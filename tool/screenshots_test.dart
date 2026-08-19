@@ -422,6 +422,23 @@ class _FakeMessagingRepository extends MessagingRepository {
           senderId: 'e1',
           senderName: 'Uzm. Psk. Selin Aksoy',
           content: 'Harika! Kartlarla iletişimi sürdürelim.',
+          reactions: {
+            '👍': ReactionSummary(count: 1, reactedByMe: true),
+            '🙏': ReactionSummary(count: 2, reactedByMe: false),
+          },
+        ),
+        const Message(
+          id: 'm5',
+          conversationId: 'cv1',
+          senderId: 'u1',
+          content: 'Görsel programı da ekledim.',
+          messageType: kMessageTypeFile,
+          fileUrl: '/api/upload/gorsel-program.pdf',
+          fileName: 'gorsel-program.pdf',
+          fileType: 'application/pdf',
+          replyToId: 'm4',
+          replyToContent: 'Harika! Kartlarla iletişimi sürdürelim.',
+          replyToSenderName: 'Uzm. Psk. Selin Aksoy',
         ),
       ];
 
@@ -610,6 +627,17 @@ void main() {
         await tester.tap(find.text('🧸'));
         await tester.pump();
       },
+    );
+  });
+
+  testWidgets('09b sohbet tepki ve yanıt', (tester) async {
+    await shoot(
+      tester,
+      '09b-sohbet-tepki-yanit',
+      const ConversationThreadScreen(
+        conversationId: 'cv1',
+        title: 'Uzm. Psk. Selin Aksoy',
+      ),
     );
   });
 

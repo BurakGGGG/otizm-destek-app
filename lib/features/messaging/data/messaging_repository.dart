@@ -109,11 +109,56 @@ class MessagingRepository {
     }
   }
 
-  Future<Message> sendMessage(String conversationId, String content) async {
+  /// Mesaj gönderir. Web ile aynı gövde: içerik + isteğe bağlı dosya,
+  /// yanıtlanan mesaj ve tür (TEXT/IMAGE/FILE/PECS).
+  Future<Message> sendMessage(
+    String conversationId,
+    String content, {
+    String messageType = kMessageTypeText,
+    String? replyToId,
+    String? fileUrl,
+    String? fileName,
+    String? fileType,
+  }) async {
     try {
       final res = await _dio.post(
         '/messages/conversations/$conversationId',
-        data: {'content': content, 'messageType': 'TEXT'},
+        data: {
+          'content': content,
+          'messageType': messageType,
+          'replyToId': ?replyToId,
+          'fileUrl': ?fileUrl,
+          'fileName': ?fileName,
+          'fileType': ?fileType,
+        },
+      );
+      return Message.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Ekli dosyayı indirir (uç nokta kimlik doğrulaması istediği için
+  /// tarayıcıda açılamıyor; Dio ile Bearer'lı indirilip paylaşılır).
+  Future<List<int>> downloadAttachment(String url) async {
+    try {
+      final res = await _dio.get<List<int>>(
+        url,
+        options: Options(responseType: ResponseType.bytes),
+      );
+      return res.data ?? const [];
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Emoji tepkisini açar/kapatır — `POST /messages/{id}/react`. Sunucu
+  /// mesajın güncel hâlini döner.
+  Future<Message> toggleReaction(String messageId, String emoji) async {
+    try {
+      final res = await _dio.post(
+        '/messages/$messageId/react',
+        data: {'emoji': emoji},
       );
       return Message.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
     } on DioException catch (e) {

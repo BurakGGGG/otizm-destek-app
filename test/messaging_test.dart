@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:otizm_destek_app/features/messaging/domain/conversation.dart';
+import 'package:otizm_destek_app/features/messaging/domain/message.dart';
 import 'package:otizm_destek_app/features/messaging/domain/pecs_cards.dart';
 import 'package:otizm_destek_app/features/messaging/presentation/conversations_screen.dart';
 
@@ -89,6 +90,58 @@ void main() {
         kPecsCategories.fold<int>(0, (n, c) => n + pecsCardsOf(c).length),
         kPecsCards.length,
       );
+    });
+  });
+
+  group('mesaj ayrıştırma', () {
+    test('ek, yanıt ve tepkiler okunur', () {
+      final message = Message.fromJson({
+        'id': 'm1',
+        'conversationId': 'cv1',
+        'senderId': 'u2',
+        'content': 'Bak bu haftaki program',
+        'messageType': 'IMAGE',
+        'fileUrl': '/api/upload/plan.png',
+        'fileName': 'plan.png',
+        'fileType': 'image/png',
+        'replyToId': 'm0',
+        'replyToContent': 'Programı paylaşır mısın?',
+        'replyToSenderName': 'Elif',
+        'reactions': {
+          '👍': {'count': 2, 'reactedByMe': true},
+          '❤️': {'count': 1, 'reactedByMe': false},
+        },
+      });
+      expect(message.hasImage, isTrue);
+      expect(message.hasFile, isFalse);
+      expect(message.replyToSenderName, 'Elif');
+      expect(message.reactions['👍']?.count, 2);
+      expect(message.reactions['👍']?.reactedByMe, isTrue);
+      expect(message.reactions['❤️']?.reactedByMe, isFalse);
+    });
+
+    test('görsel olmayan ek dosya sayılır', () {
+      final message = Message.fromJson({
+        'id': 'm2',
+        'senderId': 'u2',
+        'messageType': 'FILE',
+        'fileUrl': '/api/upload/rapor.pdf',
+        'fileType': 'application/pdf',
+      });
+      expect(message.hasFile, isTrue);
+      expect(message.hasImage, isFalse);
+    });
+
+    test('eksik alanlar güvenli varsayılana düşer', () {
+      final message = Message.fromJson({'id': 'm3', 'senderId': 'u2'});
+      expect(message.reactions, isEmpty);
+      expect(message.hasImage, isFalse);
+      expect(message.hasFile, isFalse);
+      expect(message.messageType, kMessageTypeText);
+    });
+
+    test('hızlı tepkiler web listesiyle aynı', () {
+      expect(kQuickReactions, ['👍', '❤️', '😂', '😮', '😢', '🙏']);
     });
   });
 }

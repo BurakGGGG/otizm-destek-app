@@ -1145,6 +1145,21 @@ class Translations$messages$tr {
 
 	/// tr: 'Sesi aç'
 	String get unmute => 'Sesi aç';
+
+	/// tr: 'Yanıtla'
+	String get reply => 'Yanıtla';
+
+	/// tr: '$name yanıtlanıyor'
+	String replyingTo({required Object name}) => '${name} yanıtlanıyor';
+
+	/// tr: 'Mesaj'
+	String get someone => 'Mesaj';
+
+	/// tr: 'Fotoğraf ekle'
+	String get attachPhoto => 'Fotoğraf ekle';
+
+	/// tr: 'Fotoğraf gönderildi.'
+	String get photoSent => 'Fotoğraf gönderildi.';
 }
 
 // Path: home
@@ -6248,6 +6263,11 @@ extension on Translations {
 			'messages.unarchive' => 'Arşivden çıkar',
 			'messages.mute' => 'Sessize al',
 			'messages.unmute' => 'Sesi aç',
+			'messages.reply' => 'Yanıtla',
+			'messages.replyingTo' => ({required Object name}) => '${name} yanıtlanıyor',
+			'messages.someone' => 'Mesaj',
+			'messages.attachPhoto' => 'Fotoğraf ekle',
+			'messages.photoSent' => 'Fotoğraf gönderildi.',
 			'home.notifications' => 'Bildirimler',
 			'home.assistant' => 'AI Asistan',
 			'home.messages' => 'Mesajlar',
@@ -6453,13 +6473,13 @@ extension on Translations {
 			'knowledge.podcastLink' => 'Podcast bağlantısı',
 			'knowledge.searchHint' => 'Makale, konu veya anahtar kelime ara…',
 			'knowledge.bookmarks' => 'Yer imlerim',
+			_ => null,
+		} ?? switch (path) {
 			'knowledge.bookmark' => 'Yer imi',
 			'knowledge.noBookmarks' => 'Henüz yer imine eklediğiniz içerik yok.',
 			'knowledge.relatedTitle' => 'İlgili içerikler',
 			'knowledge.commentsTitle' => ({required Object count}) => 'Yorumlar (${count})',
 			'knowledge.noComments' => 'İlk yorumu siz yazın.',
-			_ => null,
-		} ?? switch (path) {
 			'knowledge.commentHint' => 'Deneyiminizi veya sorunuzu yazın…',
 			'knowledge.commentSend' => 'Yorumu gönder',
 			'knowledge.someone' => 'Bir aile',
@@ -6967,13 +6987,13 @@ extension on Translations {
 			'treatment.historyTitle' => 'Oyun Geçmişi',
 			'treatment.historySubtitle' => 'Oynadığınız etkinliklerin geçmişi burada görünür.',
 			'treatment.historyCount' => ({required Object count}) => '${count} kayıt',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.historyEmpty' => 'Henüz oyun kaydı yok. İlk kayıt oluşturulduğunda geçmiş burada görünür.',
 			'treatment.challengingSummary' => ({required Object count}) => '💪 ${count} etkinlikte "Zorlandı" işaretlenmiş. Zorlanılan etkinlikleri tekrar denerken daha küçük adımlara bölmeyi ya da uzmanınıza bildirmeyi düşünebilirsiniz.',
 			'treatment.storiesTitle' => 'Sosyal Hikâyeler ve Görsel Akış',
 			'treatment.storiesSubtitle' => 'Bir etkinliğe başlamadan önce çocuğunuza "Ne olacak?" sorusunu yanıtlayan kısa resimli hikâyeler — geçişleri kolaylaştırır.',
 			'treatment.customBadge' => 'Özel hikâye',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.linkedGoalBadge' => ({required Object name}) => 'Bağlı hedef: ${name}',
 			'treatment.addStoryTitle' => 'Özel Sosyal Hikâye Ekle',
 			'treatment.storyTitleHint' => 'Hikâye başlığı (örn: Alışverişe Gidiyorum)',
@@ -7481,13 +7501,13 @@ extension on Translations {
 			'help.aboutBody' => 'Otizm Destek; çocuğunuzun gelişimini takip etmenize, uzmanlarla iletişim kurmanıza ve randevu almanıza yardımcı olan bir mobil uygulamadır.',
 			'help.tipsTitle' => 'İpuçları',
 			'help.tip1' => 'Çocuklarınızı "Çocuklarım"dan ekleyin; hedef ve gelişim notlarını "Gelişim" sekmesinden takip edin.',
+			_ => null,
+		} ?? switch (path) {
 			'help.tip2' => '"Uzmanlar"dan bir uzman seçip randevu alabilir veya mesaj gönderebilirsiniz.',
 			'help.tip3' => 'AI Asistan\'a otizm ve çocuk gelişimi hakkında sorular sorabilirsiniz.',
 			'help.contactTitle' => 'İletişim',
 			'help.contactBody' => 'Soru ve önerileriniz için uygulama içinden bize ulaşabilirsiniz.',
 			'help.version' => ({required Object version}) => 'Sürüm ${version}',
-			_ => null,
-		} ?? switch (path) {
 			'profile.defaultUser' => 'Kullanıcı',
 			'profile.accountInfo' => 'Hesap Bilgileri',
 			'profile.myChildren' => 'Çocuklarım',

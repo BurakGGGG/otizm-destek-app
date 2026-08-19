@@ -338,6 +338,11 @@ messages:
   unarchive: Arşivden çıkar
   mute: Sessize al
   unmute: Sesi aç
+  reply: Yanıtla
+  replyingTo: $name yanıtlanıyor
+  someone: Mesaj
+  attachPhoto: Fotoğraf ekle
+  photoSent: Fotoğraf gönderildi.
 
 home:
   notifications: Bildirimler

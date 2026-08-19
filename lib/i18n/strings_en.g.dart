@@ -563,6 +563,11 @@ class _Translations$messages$en extends Translations$messages$tr {
 	@override String get unarchive => 'Unarchive';
 	@override String get mute => 'Mute';
 	@override String get unmute => 'Unmute';
+	@override String get reply => 'Reply';
+	@override String replyingTo({required Object name}) => 'Replying to ${name}';
+	@override String get someone => 'Message';
+	@override String get attachPhoto => 'Attach a photo';
+	@override String get photoSent => 'Photo sent.';
 }
 
 // Path: home
@@ -2788,6 +2793,11 @@ extension on TranslationsEn {
 			'messages.unarchive' => 'Unarchive',
 			'messages.mute' => 'Mute',
 			'messages.unmute' => 'Unmute',
+			'messages.reply' => 'Reply',
+			'messages.replyingTo' => ({required Object name}) => 'Replying to ${name}',
+			'messages.someone' => 'Message',
+			'messages.attachPhoto' => 'Attach a photo',
+			'messages.photoSent' => 'Photo sent.',
 			'home.notifications' => 'Notifications',
 			'home.assistant' => 'AI Assistant',
 			'home.messages' => 'Messages',
@@ -2993,13 +3003,13 @@ extension on TranslationsEn {
 			'knowledge.podcastLink' => 'Podcast link',
 			'knowledge.searchHint' => 'Search articles, topics or keywords…',
 			'knowledge.bookmarks' => 'My bookmarks',
+			_ => null,
+		} ?? switch (path) {
 			'knowledge.bookmark' => 'Bookmark',
 			'knowledge.noBookmarks' => 'You have not bookmarked anything yet.',
 			'knowledge.relatedTitle' => 'Related content',
 			'knowledge.commentsTitle' => ({required Object count}) => 'Comments (${count})',
 			'knowledge.noComments' => 'Be the first to comment.',
-			_ => null,
-		} ?? switch (path) {
 			'knowledge.commentHint' => 'Share your experience or ask a question…',
 			'knowledge.commentSend' => 'Post comment',
 			'knowledge.someone' => 'A family',
@@ -3507,13 +3517,13 @@ extension on TranslationsEn {
 			'treatment.historyTitle' => 'Game History',
 			'treatment.historySubtitle' => 'The history of played activities appears here.',
 			'treatment.historyCount' => ({required Object count}) => '${count} records',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.historyEmpty' => 'No game records yet. History appears after the first record.',
 			'treatment.challengingSummary' => ({required Object count}) => '💪 "Struggled" was marked in ${count} activities. Consider breaking them into smaller steps or notifying your expert when retrying.',
 			'treatment.storiesTitle' => 'Social Stories & Visual Flow',
 			'treatment.storiesSubtitle' => 'Short picture stories that answer "What will happen?" before an activity — they ease transitions.',
 			'treatment.customBadge' => 'Custom story',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.linkedGoalBadge' => ({required Object name}) => 'Linked goal: ${name}',
 			'treatment.addStoryTitle' => 'Add a Custom Social Story',
 			'treatment.storyTitleHint' => 'Story title (e.g. Going Shopping)',
@@ -4021,13 +4031,13 @@ extension on TranslationsEn {
 			'help.aboutBody' => 'Otizm Destek is a mobile app that helps you track your child\'s development, connect with experts, and book appointments.',
 			'help.tipsTitle' => 'Tips',
 			'help.tip1' => 'Add your children under "My Children"; track goals and notes in the "Progress" tab.',
+			_ => null,
+		} ?? switch (path) {
 			'help.tip2' => 'Pick an expert under "Experts" to book an appointment or send a message.',
 			'help.tip3' => 'Ask the AI Assistant questions about autism and child development.',
 			'help.contactTitle' => 'Contact',
 			'help.contactBody' => 'Reach us from within the app for any questions or suggestions.',
 			'help.version' => ({required Object version}) => 'Version ${version}',
-			_ => null,
-		} ?? switch (path) {
 			'profile.defaultUser' => 'User',
 			'profile.accountInfo' => 'Account Information',
 			'profile.myChildren' => 'My Children',

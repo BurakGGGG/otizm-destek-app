@@ -1,11 +1,18 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:stomp_dart_client/stomp_dart_client.dart';
 
 import '../../../core/haptics.dart';
 import '../../../core/network/api_exception.dart';
+import '../../../core/network/media.dart';
+import '../../../core/network/upload_repository.dart';
+import '../../../core/providers.dart';
 import '../../../core/realtime/stomp_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
@@ -42,7 +49,9 @@ class _ConversationThreadScreenState
   bool _error = false;
   bool _sending = false;
   bool _showPecs = false;
+  Message? _replyTo;
   void Function()? _unsub;
+  void Function()? _unsubReactions;
 
   @override
   void initState() {
@@ -53,6 +62,7 @@ class _ConversationThreadScreenState
   @override
   void dispose() {
     _unsub?.call();
+    _unsubReactions?.call();
     _input.dispose();
     _scroll.dispose();
     super.dispose();
@@ -71,10 +81,16 @@ class _ConversationThreadScreenState
       _scrollToBottom();
       _markRead();
 
-      // Canlı mesajlar için STOMP aboneliği.
-      _unsub = await ref
-          .read(stompServiceProvider)
-          .subscribe('/topic/conversation/${widget.conversationId}', _onFrame);
+      // Canlı mesajlar ve tepkiler için STOMP abonelikleri.
+      final stomp = ref.read(stompServiceProvider);
+      _unsub = await stomp.subscribe(
+        '/topic/conversation/${widget.conversationId}',
+        _onFrame,
+      );
+      _unsubReactions = await stomp.subscribe(
+        '/topic/conversation/${widget.conversationId}/reactions',
+        _onReactionFrame,
+      );
     } catch (_) {
       if (!mounted) return;
       setState(() {
@@ -110,6 +126,91 @@ class _ConversationThreadScreenState
     }
   }
 
+  /// Tepki güncellemesi: sunucu mesajın güncel hâlini yayınlar.
+  void _onReactionFrame(StompFrame frame) {
+    final body = frame.body;
+    if (body == null || body.isEmpty) return;
+    try {
+      final decoded = jsonDecode(body);
+      if (decoded is! Map<String, dynamic>) return;
+      _replaceMessage(Message.fromJson(decoded));
+    } catch (_) {
+      // bozuk frame yok say
+    }
+  }
+
+  void _replaceMessage(Message updated) {
+    if (updated.id.isEmpty || !mounted) return;
+    final index = _messages.indexWhere((m) => m.id == updated.id);
+    if (index < 0) return;
+    setState(() => _messages[index] = updated);
+  }
+
+  Future<void> _toggleReaction(Message message, String emoji) async {
+    try {
+      final updated = await ref
+          .read(messagingRepositoryProvider)
+          .toggleReaction(message.id, emoji);
+      Haptics.selection();
+      _replaceMessage(updated);
+    } on ApiException catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(e.message)));
+      }
+    }
+  }
+
+  /// Mesaja uzun basınca: yanıtla + hızlı tepki seçenekleri.
+  Future<void> _openMessageActions(Message message) async {
+    final t = context.t;
+    await showModalBottomSheet<void>(
+      context: context,
+      builder: (sheetContext) => SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.margin,
+                vertical: 12,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  for (final emoji in kQuickReactions)
+                    InkWell(
+                      borderRadius: BorderRadius.circular(AppRadius.full),
+                      onTap: () {
+                        Navigator.of(sheetContext).pop();
+                        _toggleReaction(message, emoji);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: Text(
+                          emoji,
+                          style: const TextStyle(fontSize: 26),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.reply_outlined),
+              title: Text(t.messages.reply),
+              onTap: () {
+                Navigator.of(sheetContext).pop();
+                setState(() => _replyTo = message);
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   void _addMessage(Message m) {
     if (m.id.isEmpty || !_ids.add(m.id)) return; // tekilleştir
     if (!mounted) return;
@@ -117,11 +218,81 @@ class _ConversationThreadScreenState
     _scrollToBottom();
   }
 
-  /// PECS kartı: etiket metni mesaj olarak gönderilir (paylaşılan veri).
+  /// PECS kartı: etiket metni `PECS` türüyle gönderilir (web birebir).
   Future<void> _sendPecs(PecsCard card) async {
     setState(() => _showPecs = false);
     _input.text = card.label;
-    await _send();
+    await _send(messageType: kMessageTypePecs);
+  }
+
+  /// Ekli dosyayı açar: uç nokta kimlik doğrulaması istediği için dosya
+  /// Bearer'lı indirilip paylaşım sayfasına verilir (tarayıcıda açılamaz).
+  Future<void> _openAttachment(Message message) async {
+    final url = absoluteMediaUrl(message.fileUrl);
+    if (url == null) return;
+    final t = context.t;
+    final messenger = ScaffoldMessenger.of(context);
+    setState(() => _sending = true);
+    try {
+      final bytes = await ref
+          .read(messagingRepositoryProvider)
+          .downloadAttachment(url);
+      final dir = await getTemporaryDirectory();
+      final name = message.fileName?.trim().isNotEmpty ?? false
+          ? message.fileName!.trim()
+          : 'ek';
+      final file = File('${dir.path}/$name');
+      await file.writeAsBytes(bytes);
+      await SharePlus.instance.share(
+        ShareParams(
+          files: [XFile(file.path, mimeType: message.fileType)],
+          fileNameOverrides: [name],
+        ),
+      );
+    } on ApiException catch (e) {
+      messenger.showSnackBar(SnackBar(content: Text(e.message)));
+    } catch (_) {
+      messenger.showSnackBar(SnackBar(content: Text(t.common.loadError)));
+    } finally {
+      if (mounted) setState(() => _sending = false);
+    }
+  }
+
+  /// Fotoğraf eki: galeriden seçilip yüklenir, sonra IMAGE mesajı gönderilir.
+  Future<void> _attachPhoto() async {
+    final t = context.t;
+    final messenger = ScaffoldMessenger.of(context);
+    final picked = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+      maxWidth: 1600,
+      imageQuality: 85,
+    );
+    if (picked == null || !mounted) return;
+    setState(() => _sending = true);
+    try {
+      final url = await ref.read(uploadRepositoryProvider).upload(
+            picked.path,
+            picked.name,
+            scope: UploadScope(type: 'CONVERSATION', id: widget.conversationId),
+          );
+      final sent = await ref.read(messagingRepositoryProvider).sendMessage(
+            widget.conversationId,
+            _input.text.trim(),
+            messageType: kMessageTypeImage,
+            replyToId: _replyTo?.id,
+            fileUrl: url,
+            fileName: picked.name,
+            fileType: picked.mimeType ?? 'image/jpeg',
+          );
+      _input.clear();
+      if (mounted) setState(() => _replyTo = null);
+      _addMessage(sent);
+      messenger.showSnackBar(SnackBar(content: Text(t.messages.photoSent)));
+    } on ApiException catch (e) {
+      messenger.showSnackBar(SnackBar(content: Text(e.message)));
+    } finally {
+      if (mounted) setState(() => _sending = false);
+    }
   }
 
   void _scrollToBottom() {
@@ -136,16 +307,20 @@ class _ConversationThreadScreenState
     });
   }
 
-  Future<void> _send() async {
+  Future<void> _send({String messageType = kMessageTypeText}) async {
     final content = _input.text.trim();
     if (content.isEmpty || _sending) return;
     setState(() => _sending = true);
     try {
-      final sent = await ref
-          .read(messagingRepositoryProvider)
-          .sendMessage(widget.conversationId, content);
+      final sent = await ref.read(messagingRepositoryProvider).sendMessage(
+            widget.conversationId,
+            content,
+            messageType: messageType,
+            replyToId: _replyTo?.id,
+          );
       Haptics.selection();
       _input.clear();
+      if (mounted) setState(() => _replyTo = null);
       _addMessage(sent); // STOMP echo'su id ile tekilleştirilecek
     } on ApiException catch (e) {
       if (mounted) {
@@ -168,6 +343,11 @@ class _ConversationThreadScreenState
       body: Column(
         children: [
           Expanded(child: _body(t, currentUserId)),
+          if (_replyTo != null)
+            _ReplyBanner(
+              message: _replyTo!,
+              onCancel: () => setState(() => _replyTo = null),
+            ),
           if (_showPecs)
             _PecsPanel(
               onSelect: _sendPecs,
@@ -180,6 +360,7 @@ class _ConversationThreadScreenState
             hint: t.messages.inputHint,
             pecsOpen: _showPecs,
             onTogglePecs: () => setState(() => _showPecs = !_showPecs),
+            onAttach: _sending ? null : _attachPhoto,
           ),
         ],
       ),
@@ -210,25 +391,48 @@ class _ConversationThreadScreenState
       itemBuilder: (context, i) => _Bubble(
         message: _messages[i],
         mine: _messages[i].isMine(currentUserId),
+        onLongPress: () => _openMessageActions(_messages[i]),
+        onReaction: (emoji) => _toggleReaction(_messages[i], emoji),
+        onOpenFile: () => _openAttachment(_messages[i]),
       ),
     );
   }
 }
 
-class _Bubble extends StatelessWidget {
-  const _Bubble({required this.message, required this.mine});
+class _Bubble extends ConsumerWidget {
+  const _Bubble({
+    required this.message,
+    required this.mine,
+    required this.onLongPress,
+    required this.onReaction,
+    required this.onOpenFile,
+  });
+
   final Message message;
   final bool mine;
+  final VoidCallback onLongPress;
+  final ValueChanged<String> onReaction;
+  final VoidCallback onOpenFile;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     // İçerik bir PECS kartıysa emojisiyle birlikte gösterilir (web birebir).
     final card = pecsCardForContent(message.content);
     final bg = mine ? context.colors.primary : context.colors.surfaceVariant;
     final fg = mine ? Colors.white : context.colors.textPrimary;
+    final image = message.hasImage
+        ? mediaImageProvider(message.fileUrl, ref.watch(dioProvider))
+        : null;
+
     return Align(
       alignment: mine ? Alignment.centerRight : Alignment.centerLeft,
-      child: Container(
+      child: Column(
+        crossAxisAlignment:
+            mine ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        children: [
+          GestureDetector(
+            onLongPress: onLongPress,
+            child: Container(
         margin: const EdgeInsets.only(bottom: 10),
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
         constraints: BoxConstraints(
@@ -243,9 +447,43 @@ class _Bubble extends StatelessWidget {
             bottomRight: Radius.circular(mine ? 4 : AppRadius.lg),
           ),
         ),
-        child: card == null
-            ? Text(message.content, style: TextStyle(color: fg, height: 1.35))
-            : Column(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (message.replyToContent?.isNotEmpty ?? false)
+              _QuotedMessage(message: message, mine: mine),
+            if (image != null) ...[
+              ClipRRect(
+                borderRadius: BorderRadius.circular(AppRadius.md),
+                child: Image(image: image, fit: BoxFit.cover),
+              ),
+              if (message.content.isNotEmpty) const SizedBox(height: 6),
+            ] else if (message.hasFile) ...[
+              InkWell(
+                onTap: onOpenFile,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.attach_file, size: 16, color: fg),
+                    const SizedBox(width: 6),
+                    Flexible(
+                      child: Text(
+                        message.fileName ?? message.fileUrl!,
+                        style: TextStyle(
+                          color: fg,
+                          fontWeight: FontWeight.w600,
+                          decoration: TextDecoration.underline,
+                          decorationColor: fg,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              if (message.content.isNotEmpty) const SizedBox(height: 6),
+            ],
+            if (card != null)
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(card.emoji, style: const TextStyle(fontSize: 34)),
@@ -255,7 +493,139 @@ class _Bubble extends StatelessWidget {
                     style: TextStyle(color: fg, fontWeight: FontWeight.w600),
                   ),
                 ],
+              )
+            else if (message.content.isNotEmpty)
+              Text(message.content, style: TextStyle(color: fg, height: 1.35)),
+          ],
+        ),
+            ),
+          ),
+          if (message.reactions.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Wrap(
+                spacing: 6,
+                children: [
+                  for (final entry in message.reactions.entries)
+                    InkWell(
+                      borderRadius: BorderRadius.circular(AppRadius.full),
+                      onTap: () => onReaction(entry.key),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 2,
+                        ),
+                        decoration: BoxDecoration(
+                          color: entry.value.reactedByMe
+                              ? context.colors.primary.withValues(alpha: .12)
+                              : context.colors.surfaceVariant,
+                          borderRadius: BorderRadius.circular(AppRadius.full),
+                          border: Border.all(
+                            color: entry.value.reactedByMe
+                                ? context.colors.primary.withValues(alpha: .4)
+                                : context.colors.border,
+                          ),
+                        ),
+                        child: Text(
+                          '${entry.key} ${entry.value.count}',
+                          style: const TextStyle(fontSize: 12),
+                        ),
+                      ),
+                    ),
+                ],
               ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Yanıtlanan mesajın alıntısı (balon içinde).
+class _QuotedMessage extends StatelessWidget {
+  const _QuotedMessage({required this.message, required this.mine});
+
+  final Message message;
+  final bool mine;
+
+  @override
+  Widget build(BuildContext context) {
+    final color = mine ? Colors.white : context.colors.textSecondary;
+    return Container(
+      margin: const EdgeInsets.only(bottom: 6),
+      padding: const EdgeInsets.only(left: 8),
+      decoration: BoxDecoration(
+        border: Border(left: BorderSide(color: color.withValues(alpha: .6), width: 3)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (message.replyToSenderName?.isNotEmpty ?? false)
+            Text(
+              message.replyToSenderName!,
+              style: TextStyle(
+                color: color.withValues(alpha: .9),
+                fontSize: 11,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          Text(
+            message.replyToContent ?? '',
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(color: color.withValues(alpha: .9), fontSize: 12),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Yanıtlanacak mesajı gösteren şerit (giriş çubuğunun üstünde).
+class _ReplyBanner extends StatelessWidget {
+  const _ReplyBanner({required this.message, required this.onCancel});
+
+  final Message message;
+  final VoidCallback onCancel;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    final colors = context.colors;
+    final text = Theme.of(context).textTheme;
+    return Container(
+      padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
+      color: colors.surfaceVariant,
+      child: Row(
+        children: [
+          Container(width: 3, height: 32, color: colors.primary),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  t.messages.replyingTo(
+                    name: message.senderName ?? t.messages.someone,
+                  ),
+                  style: text.labelSmall?.copyWith(color: colors.primary),
+                ),
+                Text(
+                  message.content,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: text.labelSmall
+                      ?.copyWith(color: colors.textSecondary),
+                ),
+              ],
+            ),
+          ),
+          IconButton(
+            onPressed: onCancel,
+            icon: const Icon(Icons.close, size: 18),
+            visualDensity: VisualDensity.compact,
+          ),
+        ],
       ),
     );
   }
@@ -269,6 +639,7 @@ class _InputBar extends StatelessWidget {
     required this.hint,
     required this.pecsOpen,
     required this.onTogglePecs,
+    required this.onAttach,
   });
 
   final TextEditingController controller;
@@ -277,6 +648,7 @@ class _InputBar extends StatelessWidget {
   final String hint;
   final bool pecsOpen;
   final VoidCallback onTogglePecs;
+  final VoidCallback? onAttach;
 
   @override
   Widget build(BuildContext context) {
@@ -286,6 +658,11 @@ class _InputBar extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
         child: Row(
           children: [
+            IconButton(
+              tooltip: context.t.messages.attachPhoto,
+              onPressed: onAttach,
+              icon: const Icon(Icons.attach_file, size: 20),
+            ),
             IconButton(
               tooltip: context.t.messages.pecsTitle,
               onPressed: onTogglePecs,

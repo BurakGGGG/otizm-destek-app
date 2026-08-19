@@ -337,6 +337,11 @@ messages:
   unarchive: Unarchive
   mute: Mute
   unmute: Unmute
+  reply: Reply
+  replyingTo: Replying to $name
+  someone: Message
+  attachPhoto: Attach a photo
+  photoSent: Photo sent.
 
 home:
   notifications: Notifications
