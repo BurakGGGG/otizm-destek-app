@@ -1396,6 +1396,7 @@ class _Translations$treatment$en extends Translations$treatment$tr {
 	// Translations
 	@override String get title => 'Treatment Panel';
 	@override String get subtitle => 'Daily Support Plan';
+	@override String get programActiveDefault => 'The daily support plan is active';
 	@override String programActive({required Object name}) => '${name} plan is active';
 	@override String get selectChild => 'Select profile';
 	@override String get noChildrenTitle => 'No child profile yet';
@@ -3465,6 +3466,7 @@ extension on TranslationsEn {
 			'groups.errorName' => 'Please enter a group name.',
 			'treatment.title' => 'Treatment Panel',
 			'treatment.subtitle' => 'Daily Support Plan',
+			'treatment.programActiveDefault' => 'The daily support plan is active',
 			'treatment.programActive' => ({required Object name}) => '${name} plan is active',
 			'treatment.selectChild' => 'Select profile',
 			'treatment.noChildrenTitle' => 'No child profile yet',
@@ -3570,9 +3572,9 @@ extension on TranslationsEn {
 			'treatment.gameReady' => 'Ready',
 			'treatment.gameDoneBadge' => '✅ Done',
 			'treatment.methodLabel' => ({required Object name}) => 'Method: ${name}',
-			'treatment.whyGood' => 'Why it helps',
 			_ => null,
 		} ?? switch (path) {
+			'treatment.whyGood' => 'Why it helps',
 			'treatment.goalBadge' => ({required Object name}) => 'Goal: ${name}',
 			'treatment.toolBadge' => ({required Object name}) => 'Tool: ${name}',
 			'treatment.playToday' => 'Play today',
@@ -4084,9 +4086,9 @@ extension on TranslationsEn {
 			'analytics.aiConsentAction' => 'Manage consents',
 			'children.title' => 'My Children',
 			'children.addTitle' => 'Add Child',
-			'children.editTitle' => 'Edit Child',
 			_ => null,
 		} ?? switch (path) {
+			'children.editTitle' => 'Edit Child',
 			'children.empty' => 'You haven\'t added any children yet.',
 			'children.add' => 'Add Child',
 			'children.nameLabel' => 'Full Name',

@@ -6,7 +6,6 @@
 // sahte verilerle kurulur; ağ ya da oturum gerekmez. `flutter test` yalnızca
 // `test/` klasörünü çalıştırdığı için bu dosya normal takıma girmez.
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:stomp_dart_client/stomp_dart_client.dart';
@@ -87,7 +86,19 @@ import 'package:otizm_destek_app/features/notifications/presentation/notificatio
 import 'package:otizm_destek_app/features/search/data/search_repository.dart';
 import 'package:otizm_destek_app/features/search/domain/search_result.dart';
 import 'package:otizm_destek_app/features/search/presentation/search_screen.dart';
+import 'package:otizm_destek_app/features/community/data/community_repository.dart';
+import 'package:otizm_destek_app/features/community/domain/community_meetup.dart';
+import 'package:otizm_destek_app/features/community/domain/weekly_question.dart';
+import 'package:otizm_destek_app/features/community/presentation/meetups_screen.dart';
+import 'package:otizm_destek_app/features/community/presentation/weekly_question_screen.dart';
+import 'package:otizm_destek_app/features/emergency/data/emergency_repository.dart';
+import 'package:otizm_destek_app/features/emergency/domain/emergency_card.dart';
+import 'package:otizm_destek_app/features/emergency/presentation/emergency_screen.dart';
 import 'package:otizm_destek_app/features/settings/data/kvkk_repository.dart';
+import 'package:otizm_destek_app/features/settings/presentation/settings_screen.dart';
+import 'package:otizm_destek_app/features/treatment/data/treatment_repository.dart';
+import 'package:otizm_destek_app/features/treatment/domain/treatment_state.dart';
+import 'package:otizm_destek_app/features/treatment/presentation/treatment_screen.dart';
 import 'package:otizm_destek_app/features/similar_families/data/matching_repository.dart';
 import 'package:otizm_destek_app/features/similar_families/data/meetup_request_repository.dart';
 import 'package:otizm_destek_app/features/similar_families/domain/meetup_request.dart';
@@ -955,6 +966,106 @@ class _FakeMeetupRequestRepository extends MeetupRequestRepository {
       ];
 }
 
+
+class _FakeTreatmentRepository extends TreatmentRepository {
+  _FakeTreatmentRepository() : super(Dio());
+
+  @override
+  Future<TreatmentPageState> getState(String childId) async =>
+      const TreatmentPageState();
+
+  @override
+  Future<TreatmentPageState> saveState(
+    String childId,
+    TreatmentPageState state,
+  ) async =>
+      state;
+}
+
+class _FakeCommunityRepository extends CommunityRepository {
+  _FakeCommunityRepository() : super(Dio());
+
+  @override
+  Future<List<CommunityMeetup>> getMeetups({String? city}) async => [
+        CommunityMeetup(
+          id: 'mt1',
+          title: 'Parkta duyusal dostu buluşma',
+          city: 'İstanbul',
+          district: 'Kadıköy',
+          venue: 'Özgürlük Parkı',
+          date: DateTime(2026, 8, 24),
+          time: '11:00',
+          description: 'Sakin köşesi olan, gölgeli bir alanda buluşuyoruz.',
+          organizer: 'Zeynep A.',
+          attendees: 7,
+          emoji: '🌳',
+        ),
+        CommunityMeetup(
+          id: 'mt2',
+          title: 'Kahve sohbeti (yalnızca veliler)',
+          city: 'İstanbul',
+          date: DateTime(2026, 9, 5),
+          time: '14:30',
+          attendees: 3,
+          joined: true,
+          emoji: '☕',
+        ),
+      ];
+
+  @override
+  Future<List<WeeklyQuestion>> getWeeklyQuestions() async => [
+        WeeklyQuestion(
+          id: 'wq1',
+          question: 'Çocuğunuzla iletişimde işe yarayan küçük bir alışkanlık?',
+          weekLabel: '34. hafta',
+          answers: [
+            WeeklyAnswer(
+              id: 'wa1',
+              author: 'Elif Y.',
+              rawText: 'Sabah rutinini görsel kartlarla anlatıyoruz.',
+              city: 'İstanbul',
+              likes: 12,
+            ),
+            WeeklyAnswer(
+              id: 'wa2',
+              author: 'Uzm. Selin A.',
+              rawText: 'Cümlelerimizi kısalttık, bekleme süresini uzattık.',
+              authorRole: 'EXPERT',
+              expertTitle: 'Klinik Psikolog',
+              likes: 21,
+            ),
+          ],
+        ),
+      ];
+}
+
+class _FakeEmergencyRepository extends EmergencyRepository {
+  _FakeEmergencyRepository() : super(Dio());
+
+  @override
+  Future<EmergencyCard?> getCard(String childId) async => EmergencyCard(
+        childId: childId,
+        childName: 'Ada Yılmaz',
+        birthDate: '2019-04-12',
+        bloodType: '0 Rh+',
+        communicationLevel: 'Sözel, kısa cümleler',
+        contactName1: 'Elif Yılmaz',
+        contactPhone1: '0555 000 00 00',
+        contactName2: 'Mert Yılmaz',
+        contactPhone2: '0555 111 11 11',
+        doctorName: 'Dr. Mert Kaya',
+        medications: 'D vitamini (günlük)',
+        allergies: 'Fındık',
+        triggersList: 'Ani yüksek ses, kalabalık',
+        calmingStrategies: 'Kulaklık, sakin köşe, sayma oyunu',
+        avoidList: 'Ani dokunma, yüksek sesle uyarma',
+      );
+
+  @override
+  Future<EmergencyShareStatus> shareStatus(String childId) async =>
+      const EmergencyShareStatus(consentGranted: true, shareEnabled: false);
+}
+
 // ---------------------------------------------------------------------------
 // Yardımcılar
 // ---------------------------------------------------------------------------
@@ -1034,6 +1145,12 @@ Widget _app(Widget home, {List<dynamic> overrides = const []}) {
         matchingRepositoryProvider.overrideWithValue(_FakeMatchingRepository()),
         meetupRequestRepositoryProvider
             .overrideWithValue(_FakeMeetupRequestRepository()),
+        treatmentRepositoryProvider
+            .overrideWithValue(_FakeTreatmentRepository()),
+        communityRepositoryProvider
+            .overrideWithValue(_FakeCommunityRepository()),
+        emergencyRepositoryProvider
+            .overrideWithValue(_FakeEmergencyRepository()),
         connectionRequestsProvider.overrideWith((ref) async => const []),
         ...overrides.cast(),
       ],
@@ -1207,6 +1324,26 @@ void main() {
 
   testWidgets('19 gelişim', (tester) async {
     await shoot(tester, '19-gelisim', const Scaffold(body: ProgressTab()));
+  });
+
+  testWidgets('27 tedavi paneli', (tester) async {
+    await shoot(tester, '27-tedavi-paneli', const TreatmentScreen());
+  });
+
+  testWidgets('28 buluşmalar', (tester) async {
+    await shoot(tester, '28-bulusmalar', const MeetupsScreen());
+  });
+
+  testWidgets('29 haftanın sorusu', (tester) async {
+    await shoot(tester, '29-haftanin-sorusu', const WeeklyQuestionScreen());
+  });
+
+  testWidgets('30 acil durum kartı', (tester) async {
+    await shoot(tester, '30-acil-kart', const EmergencyScreen());
+  });
+
+  testWidgets('31 ayarlar', (tester) async {
+    await shoot(tester, '31-ayarlar', const SettingsScreen());
   });
 
   testWidgets('26 benzer aileler', (tester) async {

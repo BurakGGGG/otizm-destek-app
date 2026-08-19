@@ -3211,6 +3211,9 @@ class Translations$treatment$tr {
 	/// tr: 'Günlük Destek Planı'
 	String get subtitle => 'Günlük Destek Planı';
 
+	/// tr: 'Günlük destek planı aktif'
+	String get programActiveDefault => 'Günlük destek planı aktif';
+
 	/// tr: '$name planı aktif'
 	String programActive({required Object name}) => '${name} planı aktif';
 
@@ -7023,6 +7026,7 @@ extension on Translations {
 			'groups.errorName' => 'Lütfen bir grup adı girin.',
 			'treatment.title' => 'Tedavi Paneli',
 			'treatment.subtitle' => 'Günlük Destek Planı',
+			'treatment.programActiveDefault' => 'Günlük destek planı aktif',
 			'treatment.programActive' => ({required Object name}) => '${name} planı aktif',
 			'treatment.selectChild' => 'Profil seç',
 			'treatment.noChildrenTitle' => 'Henüz çocuk profili yok',
@@ -7128,9 +7132,9 @@ extension on Translations {
 			'treatment.gameReady' => 'Hazır',
 			'treatment.gameDoneBadge' => '✅ Yapıldı',
 			'treatment.methodLabel' => ({required Object name}) => 'Yöntem: ${name}',
-			'treatment.whyGood' => 'Neden iyi gelir?',
 			_ => null,
 		} ?? switch (path) {
+			'treatment.whyGood' => 'Neden iyi gelir?',
 			'treatment.goalBadge' => ({required Object name}) => 'Hedef: ${name}',
 			'treatment.toolBadge' => ({required Object name}) => 'Araç: ${name}',
 			'treatment.playToday' => 'Bugün oynat',
@@ -7642,9 +7646,9 @@ extension on Translations {
 			'analytics.aiConsentAction' => 'Rızaları yönet',
 			'children.title' => 'Çocuklarım',
 			'children.addTitle' => 'Çocuk Ekle',
-			'children.editTitle' => 'Çocuğu Düzenle',
 			_ => null,
 		} ?? switch (path) {
+			'children.editTitle' => 'Çocuğu Düzenle',
 			'children.empty' => 'Henüz çocuk eklemediniz.',
 			'children.add' => 'Çocuk Ekle',
 			'children.nameLabel' => 'Ad Soyad',

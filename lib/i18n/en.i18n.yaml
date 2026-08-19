@@ -1006,6 +1006,7 @@ groups:
 treatment:
   title: Treatment Panel
   subtitle: Daily Support Plan
+  programActiveDefault: The daily support plan is active
   programActive: $name plan is active
   selectChild: Select profile
   noChildrenTitle: No child profile yet

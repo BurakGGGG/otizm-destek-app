@@ -1008,6 +1008,7 @@ groups:
 treatment:
   title: Tedavi Paneli
   subtitle: Günlük Destek Planı
+  programActiveDefault: Günlük destek planı aktif
   programActive: $name planı aktif
   selectChild: Profil seç
   noChildrenTitle: Henüz çocuk profili yok

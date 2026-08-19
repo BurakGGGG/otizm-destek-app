@@ -150,6 +150,12 @@ class SmartSuggestion {
   final String detail;
 }
 
+/// Terapi bilgisi girilmemişse kullanılan varsayılan program etiketi
+/// (web `treatmentPlan.tsx` birebir). Arayüz bu değeri gördüğünde
+/// `<etiket> planı aktif` kalıbını kullanmaz — web'de "Günlük destek planı
+/// planı aktif" gibi tekrar eden bir metin çıkıyor.
+const String kDefaultProgramLabel = 'Günlük destek planı';
+
 class SupportPlan {
   const SupportPlan({
     required this.focusAreas,
@@ -1010,7 +1016,7 @@ SupportPlan buildSupportPlan(
 ) {
   final focusAreas = detectFocusAreas(therapies, notes);
   final activeProgramLabel =
-      therapies.isNotEmpty ? therapies.first : 'Günlük destek planı';
+      therapies.isNotEmpty ? therapies.first : kDefaultProgramLabel;
   final triggerSummary = focusAreas.any((a) => a.key == 'sensory')
       ? 'Son notlarda geçişler ve ses uyaranları duyusal destek ihtiyacını güçlendiriyor.'
       : 'Son notlarda büyük bir duyusal zorlanma sinyali yok, rutin desteği ile ilerleniyor.';
