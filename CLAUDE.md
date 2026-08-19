@@ -417,6 +417,10 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
   `url_launcher` için `VIEW` + `http(s)` paket görünürlük sorguları — Android
   11+ bu sorgu olmadan tarayıcıyı açamıyor (rehber videoları, görüşme linki,
   ödev materyali bu yüzden sessizce açılmıyordu).
+- **iOS Info.plist:** görünen ad "Otizm Destek", `image_picker` için galeri ve
+  kamera kullanım açıklamaları, `url_launcher` için `LSApplicationQueriesSchemes`
+  (`tel`, `http`, `https`) hazır — Mac'te derlenince izin uyarısı ya da sessiz
+  başarısızlık olmasın (GoogleService-Info.plist hâlâ eklenecek).
 - **Dış bağlantılar:** uzmanın/velinin girdiği adresler (görüşme linki, ödev
   materyali, kanıt dosyası, makale medyası) `core/util/external_link.dart`
   üzerinden açılır; yalnızca `http`/`https` kabul edilir (`intent://`,
