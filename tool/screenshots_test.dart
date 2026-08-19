@@ -28,6 +28,9 @@ import 'package:otizm_destek_app/features/auth/domain/app_user.dart';
 import 'package:otizm_destek_app/features/auth/presentation/auth_controller.dart';
 import 'package:otizm_destek_app/features/children/data/child_repository.dart';
 import 'package:otizm_destek_app/features/children/data/connection_repository.dart';
+import 'package:otizm_destek_app/features/children/domain/expert_connection.dart';
+import 'package:otizm_destek_app/features/children/presentation/child_detail_screen.dart';
+import 'package:otizm_destek_app/features/children/presentation/expert_access_screen.dart';
 import 'package:otizm_destek_app/features/children/data/milestone_repository.dart';
 import 'package:otizm_destek_app/features/children/data/screening_repository.dart';
 import 'package:otizm_destek_app/features/children/domain/screening_result.dart';
@@ -41,6 +44,8 @@ import 'package:otizm_destek_app/features/home/domain/daily_plan.dart';
 import 'package:otizm_destek_app/features/home/presentation/home_tab.dart';
 import 'package:otizm_destek_app/features/knowledge/data/knowledge_repository.dart';
 import 'package:otizm_destek_app/features/knowledge/domain/article.dart';
+import 'package:otizm_destek_app/features/knowledge/domain/article_comment.dart';
+import 'package:otizm_destek_app/features/knowledge/presentation/article_detail_screen.dart';
 import 'package:otizm_destek_app/features/knowledge/presentation/knowledge_screen.dart';
 import 'package:otizm_destek_app/features/messaging/data/messaging_repository.dart';
 import 'package:otizm_destek_app/features/messaging/domain/conversation.dart';
@@ -80,7 +85,9 @@ import 'package:otizm_destek_app/features/tasks/domain/expert_task.dart';
 import 'package:otizm_destek_app/features/tasks/presentation/tasks_screen.dart';
 import 'package:otizm_destek_app/features/forum/data/forum_repository.dart';
 import 'package:otizm_destek_app/features/forum/domain/forum_post.dart';
+import 'package:otizm_destek_app/features/forum/presentation/forum_post_detail_screen.dart';
 import 'package:otizm_destek_app/features/forum/presentation/forum_screen.dart';
+import 'package:otizm_destek_app/features/legal/presentation/legal_screen.dart';
 import 'package:otizm_destek_app/features/groups/data/group_repository.dart';
 import 'package:otizm_destek_app/features/groups/domain/group.dart';
 import 'package:otizm_destek_app/features/groups/presentation/groups_screen.dart';
@@ -94,6 +101,7 @@ import 'package:otizm_destek_app/features/community/data/community_repository.da
 import 'package:otizm_destek_app/features/community/domain/community_meetup.dart';
 import 'package:otizm_destek_app/features/community/domain/weekly_question.dart';
 import 'package:otizm_destek_app/features/community/presentation/meetups_screen.dart';
+import 'package:otizm_destek_app/features/community/presentation/weekly_question_detail_screen.dart';
 import 'package:otizm_destek_app/features/community/presentation/weekly_question_screen.dart';
 import 'package:otizm_destek_app/features/emergency/data/emergency_repository.dart';
 import 'package:otizm_destek_app/features/emergency/domain/emergency_card.dart';
@@ -109,8 +117,15 @@ import 'package:otizm_destek_app/features/similar_families/domain/meetup_request
 import 'package:otizm_destek_app/features/similar_families/domain/similar_family.dart';
 import 'package:otizm_destek_app/features/similar_families/presentation/similar_families_screen.dart';
 import 'package:otizm_destek_app/features/settings/domain/kvkk.dart';
+import 'package:otizm_destek_app/features/profile/presentation/account_screen.dart';
+import 'package:otizm_destek_app/features/profile/presentation/help_screen.dart';
+import 'package:otizm_destek_app/features/routines/data/routine_repository.dart';
+import 'package:otizm_destek_app/features/routines/domain/routine.dart';
+import 'package:otizm_destek_app/features/routines/presentation/routines_screen.dart';
+import 'package:otizm_destek_app/features/settings/presentation/kvkk_screen.dart';
 import 'package:otizm_destek_app/features/support_wall/data/wall_repository.dart';
 import 'package:otizm_destek_app/features/support_wall/domain/wall_post.dart';
+import 'package:otizm_destek_app/features/support_wall/presentation/support_wall_detail_screen.dart';
 import 'package:otizm_destek_app/features/support_wall/presentation/support_wall_screen.dart';
 import 'package:otizm_destek_app/i18n/strings.g.dart';
 
@@ -151,6 +166,15 @@ class _FakeAuth extends AuthController {
 
 class _FakeChildRepository extends ChildRepository {
   _FakeChildRepository() : super(Dio());
+
+  @override
+  Future<Child> getChild(String id) async {
+    final children = await getChildren();
+    return children.firstWhere(
+      (child) => child.id == id,
+      orElse: () => children.first,
+    );
+  }
 
   @override
   Future<List<Child>> getChildren() async => [
@@ -285,6 +309,49 @@ class _FakeKnowledgeRepository extends KnowledgeRepository {
       createdAt: DateTime(2026, 6, 21),
     ),
   ];
+
+  @override
+  Future<Article> getArticle(String id) async => Article(
+        id: id,
+        title: 'Uyku rutinini kurmanın beş adımı',
+        category: 'Sağlık',
+        format: 'TEXT',
+        authorName: 'Uzm. Psk. Selin Aksoy',
+        viewCount: 412,
+        createdAt: DateTime(2026, 7, 18),
+        tags: _tags,
+        content: 'Akşam rutinini her gün aynı saatte başlatmak, uykuya '
+            'geçişi kolaylaştırıyor. Işıkları kısın, ekranları rutinden '
+            'en az bir saat önce kapatın ve sıralamayı görsel kartlarla '
+            'gösterin. İlk hafta küçük gerilemeler olabilir; rutini '
+            'değiştirmeden sürdürmek en etkili yol.',
+      );
+
+  @override
+  Future<List<Article>> getRelated(String id) async =>
+      _articles.where((a) => a.id != id).take(2).toList();
+
+  @override
+  Future<List<ArticleComment>> getComments(
+    String articleId, {
+    int page = 0,
+    int size = 20,
+  }) async =>
+      [
+        ArticleComment(
+          id: 'ac1',
+          content: 'Görsel kart fikrini denedik, üçüncü günde oturdu.',
+          authorName: 'Zeynep A.',
+          createdAt: DateTime(2026, 8, 2),
+        ),
+        ArticleComment(
+          id: 'ac2',
+          content: 'Ekran süresini erken kesmek bizde de işe yaradı.',
+          authorName: 'Uzm. Ece Demir',
+          authorRole: 'EXPERT',
+          createdAt: DateTime(2026, 8, 5),
+        ),
+      ];
 
   @override
   Future<ArticlePage> search(
@@ -714,6 +781,42 @@ class _FakeForumRepository extends ForumRepository {
   _FakeForumRepository() : super(Dio());
 
   @override
+  Future<ForumPost> getPost(String id) async => ForumPost(
+        id: id,
+        title: 'Okula uyum sürecinde ne işe yaradı?',
+        content:
+            'İlk hafta yarım gün gittik, öğretmenle görsel programı '
+            'paylaştık. Üçüncü haftada tam güne geçtik; sabah ayrılma '
+            'anını kısa tutmak en çok işe yarayan şey oldu.',
+        postType: 'DENEYIM',
+        likeCount: 12,
+        commentCount: 2,
+        authorName: 'Zeynep A.',
+        createdAt: DateTime(2026, 8, 16),
+      );
+
+  @override
+  Future<List<ForumComment>> getComments(String postId) async => [
+        ForumComment(
+          id: 'fc1',
+          content: 'Görsel program bizde de ayrılma kaygısını azalttı.',
+          authorName: 'Emre K.',
+          likeCount: 4,
+          createdAt: DateTime(2026, 8, 17),
+        ),
+        ForumComment(
+          id: 'fc2',
+          content: 'Öğretmenle ortak dil kurmak çok önemli. '
+              'Haftalık kısa bir not defteri öneririm.',
+          authorName: 'Uzm. Psk. Selin Aksoy',
+          authorRole: 'EXPERT',
+          expertApproved: true,
+          likeCount: 9,
+          createdAt: DateTime(2026, 8, 17),
+        ),
+      ];
+
+  @override
   Future<ForumPageResult> getPosts({
     String? type,
     List<String> tagIds = const [],
@@ -755,6 +858,74 @@ class _FakeForumRepository extends ForumRepository {
       );
 }
 
+class _FakeRoutineRepository extends RoutineRepository {
+  _FakeRoutineRepository() : super(Dio());
+
+  @override
+  Future<List<Routine>> getRoutines(String childId) async => const [
+        Routine(
+          id: 'r1',
+          name: 'Sabah rutini',
+          description: 'Okul öncesi sıralı adımlar',
+          items: [
+            RoutineItem(
+              id: 'ri1',
+              title: 'Uyanma ve sarılma',
+              scheduledTime: '07:00',
+              iconName: 'wb_sunny',
+            ),
+            RoutineItem(
+              id: 'ri2',
+              title: 'Diş fırçalama',
+              scheduledTime: '07:20',
+              iconName: 'brush',
+            ),
+            RoutineItem(
+              id: 'ri3',
+              title: 'Kahvaltı',
+              scheduledTime: '07:35',
+              iconName: 'restaurant',
+            ),
+          ],
+        ),
+        Routine(
+          id: 'r2',
+          name: 'Akşam rutini',
+          items: [
+            RoutineItem(
+              id: 'ri4',
+              title: 'Işıkları kıs',
+              scheduledTime: '20:30',
+            ),
+          ],
+        ),
+      ];
+}
+
+class _FakeConnectionRepository extends ConnectionRepository {
+  _FakeConnectionRepository() : super(Dio());
+
+  @override
+  Future<List<ExpertConnection>> getRequests() async => [
+        ExpertConnection(
+          id: 'cn1',
+          expertName: 'Uzm. Psk. Selin Aksoy',
+          childName: 'Ada',
+          createdAt: DateTime(2026, 8, 18),
+        ),
+      ];
+
+  @override
+  Future<List<ExpertConnection>> getActive() async => [
+        ExpertConnection(
+          id: 'cn2',
+          expertName: 'Uzm. Ece Demir',
+          childName: 'Ada',
+          createdAt: DateTime(2026, 6, 2),
+        ),
+      ];
+}
+
 class _FakeGroupRepository extends GroupRepository {
   _FakeGroupRepository() : super(Dio());
 
@@ -792,6 +963,34 @@ class _FakeGroupRepository extends GroupRepository {
 
 class _FakeWallRepository extends WallRepository {
   _FakeWallRepository() : super(Dio());
+
+  @override
+  Future<WallPost> getPost(String id) async => WallPost(
+        id: id,
+        title: 'Bugün zor bir gündü',
+        content:
+            'Markette kriz yaşadık, çevrenin bakışları çok yordu. '
+            'Eve dönünce ikimiz de sakinleştik ama içimde kalan yorgunluk '
+            'sürüyor. Yalnız olmadığımı bilmek iyi geliyor.',
+        likeCount: 24,
+        commentCount: 2,
+        createdAt: DateTime(2026, 8, 18),
+      );
+
+  @override
+  Future<List<WallComment>> getComments(String postId, {int page = 0}) async =>
+      [
+        WallComment(
+          id: 'wc1',
+          content: 'Aynısını geçen ay yaşadık. Yalnız değilsin.',
+          createdAt: DateTime(2026, 8, 18),
+        ),
+        WallComment(
+          id: 'wc2',
+          content: 'Kulaklık ve sakin köşe bizde çok işe yaradı.',
+          createdAt: DateTime(2026, 8, 19),
+        ),
+      ];
 
   @override
   Future<List<WallPost>> getPosts({int page = 0}) async => [
@@ -1179,6 +1378,9 @@ Widget _app(Widget home, {List<dynamic> overrides = const []}) {
         abcRepositoryProvider.overrideWithValue(_FakeAbcRepository()),
         tasksRepositoryProvider.overrideWithValue(_FakeTasksRepository()),
         forumRepositoryProvider.overrideWithValue(_FakeForumRepository()),
+        routineRepositoryProvider.overrideWithValue(_FakeRoutineRepository()),
+        connectionRepositoryProvider
+            .overrideWithValue(_FakeConnectionRepository()),
         groupRepositoryProvider.overrideWithValue(_FakeGroupRepository()),
         wallRepositoryProvider.overrideWithValue(_FakeWallRepository()),
         notificationRepositoryProvider
@@ -1200,7 +1402,6 @@ Widget _app(Widget home, {List<dynamic> overrides = const []}) {
             .overrideWithValue(_FakeCommunityRepository()),
         emergencyRepositoryProvider
             .overrideWithValue(_FakeEmergencyRepository()),
-        connectionRequestsProvider.overrideWith((ref) async => const []),
         ...overrides.cast(),
       ],
       child: MaterialApp(
@@ -1375,6 +1576,66 @@ void main() {
 
   testWidgets('19 gelişim', (tester) async {
     await shoot(tester, '19-gelisim', const Scaffold(body: ProgressTab()));
+  });
+
+  testWidgets('33 rutinler', (tester) async {
+    await shoot(tester, '33-rutinler', const RoutinesScreen());
+  });
+
+  testWidgets('34 uzman erişimi', (tester) async {
+    await shoot(tester, '34-uzman-erisimi', const ExpertAccessScreen());
+  });
+
+  testWidgets('35 çocuk detayı', (tester) async {
+    await shoot(tester, '35-cocuk-detayi', const ChildDetailScreen(childId: 'c1'));
+  });
+
+  testWidgets('36 makale detayı', (tester) async {
+    await shoot(
+      tester,
+      '36-makale-detayi',
+      const ArticleDetailScreen(id: 'k1', initialTitle: 'Uyku rutini'),
+    );
+  });
+
+  testWidgets('37 forum gönderisi', (tester) async {
+    await shoot(
+      tester,
+      '37-forum-gonderisi',
+      const ForumPostDetailScreen(postId: 'f1'),
+    );
+  });
+
+  testWidgets('38 duvar gönderisi', (tester) async {
+    await shoot(
+      tester,
+      '38-duvar-gonderisi',
+      const SupportWallDetailScreen(postId: 'w1'),
+    );
+  });
+
+  testWidgets('39 haftanın sorusu detayı', (tester) async {
+    await shoot(
+      tester,
+      '39-haftanin-sorusu-detayi',
+      const WeeklyQuestionDetailScreen(questionId: 'wq1'),
+    );
+  });
+
+  testWidgets('40 KVKK', (tester) async {
+    await shoot(tester, '40-kvkk', const KvkkScreen());
+  });
+
+  testWidgets('41 yasal metinler', (tester) async {
+    await shoot(tester, '41-yasal-metinler', const LegalIndexScreen());
+  });
+
+  testWidgets('42 hesap', (tester) async {
+    await shoot(tester, '42-hesap', const AccountScreen());
+  });
+
+  testWidgets('43 yardım', (tester) async {
+    await shoot(tester, '43-yardim', const HelpScreen());
   });
 
   testWidgets('27 tedavi paneli', (tester) async {
