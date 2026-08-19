@@ -11,6 +11,7 @@ import '../../../i18n/strings.g.dart';
 import '../data/expert_repository.dart';
 import '../domain/expert.dart';
 import 'expert_detail_screen.dart';
+import '../data/favorite_experts.dart';
 
 /// Uzmanlar sekmesi — `GET /api/experts` gerçek verisi + arama/filtre.
 class SpecialistsTab extends ConsumerStatefulWidget {
@@ -30,6 +31,7 @@ class _SpecialistsTabState extends ConsumerState<SpecialistsTab> {
   bool _onlyAccepting = false;
   bool _onlyVerified = false;
   bool _onlyOnline = false;
+  bool _onlyFavorites = false;
   _ExpertSort _sort = _ExpertSort.none;
 
   bool get _hasExtraFilters =>
@@ -37,6 +39,7 @@ class _SpecialistsTabState extends ConsumerState<SpecialistsTab> {
       _onlyAccepting ||
       _onlyVerified ||
       _onlyOnline ||
+      _onlyFavorites ||
       _sort != _ExpertSort.none;
 
   // Filtre anahtarları backend verisine (Türkçe) göre eşleşir; etiketler yerelleştirilir.
@@ -47,13 +50,14 @@ class _SpecialistsTabState extends ConsumerState<SpecialistsTab> {
     'dil', // Dil ve Konuşma
   ];
 
-  bool _matches(Expert e) {
+  bool _matches(Expert e, Set<String> favorites) {
     final keyword = _filterKeywords[_filter];
     if (keyword != null && !_hasKeyword(e, keyword)) return false;
     if (_city != null && e.city != _city) return false;
     if (_onlyAccepting && !e.acceptingPatients) return false;
     if (_onlyVerified && !e.verified) return false;
     if (_onlyOnline && !e.offersOnline) return false;
+    if (_onlyFavorites && !favorites.contains(e.id)) return false;
     if (_query.isEmpty) return true;
     return searchMatches(_query, [
       e.fullName,
@@ -95,6 +99,7 @@ class _SpecialistsTabState extends ConsumerState<SpecialistsTab> {
         onlyAccepting: _onlyAccepting,
         onlyVerified: _onlyVerified,
         onlyOnline: _onlyOnline,
+        onlyFavorites: _onlyFavorites,
         sort: _sort,
         onApply: (selection) {
           setState(() {
@@ -102,6 +107,7 @@ class _SpecialistsTabState extends ConsumerState<SpecialistsTab> {
             _onlyAccepting = selection.accepting;
             _onlyVerified = selection.verified;
             _onlyOnline = selection.online;
+            _onlyFavorites = selection.favorites;
             _sort = selection.sort;
           });
         },
@@ -125,6 +131,8 @@ class _SpecialistsTabState extends ConsumerState<SpecialistsTab> {
       t.specialists.filterSpeech,
     ];
     final expertsAsync = ref.watch(expertsProvider);
+    // Favori değişince "yalnızca favorilerim" listesi anında güncellensin.
+    final favorites = ref.watch(favoriteExpertsProvider);
 
     return SafeArea(
       child: Column(
@@ -204,7 +212,9 @@ class _SpecialistsTabState extends ConsumerState<SpecialistsTab> {
               error: (e, _) =>
                   ErrorRetry(onRetry: () => ref.invalidate(expertsProvider)),
               data: (experts) {
-                final filtered = _sorted(experts.where(_matches).toList());
+                final filtered = _sorted(
+                  experts.where((e) => _matches(e, favorites)).toList(),
+                );
                 if (filtered.isEmpty) {
                   return EmptyState(
                     icon: Icons.person_search_outlined,
@@ -234,13 +244,14 @@ class _SpecialistsTabState extends ConsumerState<SpecialistsTab> {
   }
 }
 
-class _ExpertCard extends StatelessWidget {
+class _ExpertCard extends ConsumerWidget {
   const _ExpertCard({required this.expert});
   final Expert expert;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t;
+    final isFavorite = ref.watch(favoriteExpertsProvider).contains(expert.id);
     final text = Theme.of(context).textTheme;
     final e = expert;
     return Card(
@@ -298,6 +309,24 @@ class _ExpertCard extends StatelessWidget {
                               ? e.avgRating.toStringAsFixed(1)
                               : t.specialists.ratingNew,
                           style: text.bodySmall,
+                        ),
+                        IconButton(
+                          tooltip: isFavorite
+                              ? t.specialists.removeFavorite
+                              : t.specialists.addFavorite,
+                          visualDensity: VisualDensity.compact,
+                          onPressed: () => ref
+                              .read(favoriteExpertsProvider.notifier)
+                              .toggle(e.id),
+                          icon: Icon(
+                            isFavorite
+                                ? Icons.favorite
+                                : Icons.favorite_border,
+                            size: 18,
+                            color: isFavorite
+                                ? context.colors.error
+                                : context.colors.textTertiary,
+                          ),
                         ),
                       ],
                     ),
@@ -385,6 +414,7 @@ typedef ExpertFilterSelection = ({
   bool accepting,
   bool verified,
   bool online,
+  bool favorites,
   _ExpertSort sort,
 });
 
@@ -395,6 +425,7 @@ class _FilterSheet extends StatefulWidget {
     required this.onlyAccepting,
     required this.onlyVerified,
     required this.onlyOnline,
+    required this.onlyFavorites,
     required this.sort,
     required this.onApply,
   });
@@ -404,6 +435,7 @@ class _FilterSheet extends StatefulWidget {
   final bool onlyAccepting;
   final bool onlyVerified;
   final bool onlyOnline;
+  final bool onlyFavorites;
   final _ExpertSort sort;
   final ValueChanged<ExpertFilterSelection> onApply;
 
@@ -416,6 +448,7 @@ class _FilterSheetState extends State<_FilterSheet> {
   late bool _accepting = widget.onlyAccepting;
   late bool _verified = widget.onlyVerified;
   late bool _online = widget.onlyOnline;
+  late bool _favorites = widget.onlyFavorites;
   late _ExpertSort _sort = widget.sort;
 
   @override
@@ -499,6 +532,12 @@ class _FilterSheetState extends State<_FilterSheet> {
                 onChanged: (v) => setState(() => _online = v),
                 title: Text(t.specialists.onlyOnline),
               ),
+              SwitchListTile(
+                contentPadding: EdgeInsets.zero,
+                value: _favorites,
+                onChanged: (v) => setState(() => _favorites = v),
+                title: Text(t.specialists.onlyFavorites),
+              ),
               const SizedBox(height: 8),
               Row(
                 children: [
@@ -510,6 +549,7 @@ class _FilterSheetState extends State<_FilterSheet> {
                           accepting: false,
                           verified: false,
                           online: false,
+                          favorites: false,
                           sort: _ExpertSort.none,
                         ));
                         Navigator.of(context).pop();
@@ -526,6 +566,7 @@ class _FilterSheetState extends State<_FilterSheet> {
                           accepting: _accepting,
                           verified: _verified,
                           online: _online,
+                          favorites: _favorites,
                           sort: _sort,
                         ));
                         Navigator.of(context).pop();

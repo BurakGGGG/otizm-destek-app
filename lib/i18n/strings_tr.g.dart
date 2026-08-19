@@ -1467,6 +1467,15 @@ class Translations$specialists$tr {
 	/// tr: 'Yalnızca online görüşme yapanlar'
 	String get onlyOnline => 'Yalnızca online görüşme yapanlar';
 
+	/// tr: 'Yalnızca favorilerim'
+	String get onlyFavorites => 'Yalnızca favorilerim';
+
+	/// tr: 'Favorilere ekle'
+	String get addFavorite => 'Favorilere ekle';
+
+	/// tr: 'Favorilerden çıkar'
+	String get removeFavorite => 'Favorilerden çıkar';
+
 	/// tr: 'Temizle'
 	String get clearFilters => 'Temizle';
 
@@ -6223,6 +6232,9 @@ extension on Translations {
 			'specialists.onlyAccepting' => 'Yalnızca randevu kabul edenler',
 			'specialists.onlyVerified' => 'Yalnızca doğrulanmış uzmanlar',
 			'specialists.onlyOnline' => 'Yalnızca online görüşme yapanlar',
+			'specialists.onlyFavorites' => 'Yalnızca favorilerim',
+			'specialists.addFavorite' => 'Favorilere ekle',
+			'specialists.removeFavorite' => 'Favorilerden çıkar',
 			'specialists.clearFilters' => 'Temizle',
 			'specialists.applyFilters' => 'Uygula',
 			'progress.title' => 'Gelişim Takibi',
@@ -6332,11 +6344,11 @@ extension on Translations {
 			'appointments.upcoming' => 'Yaklaşan',
 			'appointments.past' => 'Geçmiş',
 			'appointments.statusPending' => 'Onay Bekliyor',
+			_ => null,
+		} ?? switch (path) {
 			'appointments.statusConfirmed' => 'Onaylandı',
 			'appointments.statusCompleted' => 'Tamamlandı',
 			'appointments.statusCancelled' => 'İptal Edildi',
-			_ => null,
-		} ?? switch (path) {
 			'appointments.typeOnline' => 'Online Görüşme',
 			'appointments.typeFaceToFace' => 'Yüz Yüze',
 			'appointments.withChild' => ({required Object name}) => 'Çocuk: ${name}',
@@ -6846,11 +6858,11 @@ extension on Translations {
 			'treatment.breathTitle' => 'Nefes Alıştırması',
 			'treatment.breathBody' => 'Çocuğunuz aşırı uyarılmış hissettiğinde Kriz Rehberi\'ndeki nefes regülatörünü birlikte kullanın.',
 			'treatment.breathOpen' => 'Nefes Egzersizini Aç',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.aiStoryTitle' => 'AI ile Sosyal Hikâye',
 			'treatment.aiStoryBody' => 'Yeni bir durum için AI Asistan\'dan çocuğunuza özel kısa bir sosyal hikâye taslağı isteyin.',
 			'treatment.aiStoryOpen' => 'AI Asistan\'ı Aç',
-			_ => null,
-		} ?? switch (path) {
 			'tasks.title' => 'Ödevlerim',
 			'tasks.subtitle' => 'Uzmanınızın size atadığı çalışmalar burada görünür; tamamladıkça teslim edebilirsiniz.',
 			'tasks.pendingLabel' => 'Bekleyen',
@@ -7360,11 +7372,11 @@ extension on Translations {
 			'guide.videoCategoryTracking' => 'Günlük Takip',
 			'guide.videoCategoryPlan' => 'Plan ve Randevu',
 			'guide.videoCategoryCommunity' => 'İletişim ve Topluluk',
+			_ => null,
+		} ?? switch (path) {
 			'guide.videoCategorySupport' => 'Güven ve Destek',
 			'guide.badgeDaily' => 'Her gün',
 			'guide.badgeQuickLog' => 'Kısa kayıt',
-			_ => null,
-		} ?? switch (path) {
 			'guide.badgeQuickHelp' => 'Hızlı destek',
 			'guide.badgeFirstStep' => 'İlk adım',
 			'guide.badgeSetup' => 'İlk kurulum',

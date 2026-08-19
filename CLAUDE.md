@@ -315,7 +315,8 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
 - ✅ **Uzmanlar:** değerlendirmeler (`/api/experts/{id}/reviews` — ortalama,
   liste, kendi değerlendirmeni yaz/güncelle/sil) ve filtre sayfası (şehir,
   yalnızca randevu kabul edenler, yalnızca doğrulanmış, **yalnızca online**,
-  sıralama). **Uzman profili** web `ProfilePage`/`ExpertsPage` bilgileriyle
+  **yalnızca favorilerim**, sıralama). Favoriler cihazda saklanır (web
+  `expert_favorites_v1`), kartta kalp düğmesi. **Uzman profili** web `ProfilePage`/`ExpertsPage` bilgileriyle
   dolduruldu: hakkında (bio), doğrulama rozetleri, profil bilgileri tablosu
   (ilk uygun randevu `GET /appointments/experts/{id}/next-available`, görüşme
   süresi, yaş grubu, diller, destek konuları, hizmet biçimi, seans ücreti,
@@ -351,7 +352,9 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
   Kapsam dışı: BEP oluşturucu + danışanlar EXPERT_ONLY; tarama anketi web'de
   YOK (`/tarama` → `/cocuklarim` redirect); admin paneli mobil hedefi değil;
   ilaç-davranış zaman çizelgesi (web'de yalnızca EXPERT_ONLY danışanlar
-  sayfasında ve **sabit sahte veriyle** çiziliyor); uzman içerik yazarlığı
+  sayfasında ve **sabit sahte veriyle** çiziliyor); uzman "harita" görünümü
+  (web'de gerçek harita değil, CSS ızgarasına yerleştirilmiş sahte konum
+  kartları); uzman içerik yazarlığı
   (makale oluştur/AI taslak/analitik) web'de kalıyor. Sosyal hikayeler ve
   wellbeing backend'de var ama web'de mirror edilecek UX yok.
 - Modül kapsamı ve fazlar: bkz. plan `~/.claude/plans/bir-otizm-destek-mobil-compressed-fog.md`.

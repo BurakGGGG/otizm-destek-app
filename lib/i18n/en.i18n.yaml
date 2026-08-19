@@ -441,6 +441,9 @@ specialists:
   onlyAccepting: Only experts accepting new clients
   onlyVerified: Only verified experts
   onlyOnline: Online sessions only
+  onlyFavorites: My favourites only
+  addFavorite: Add to favourites
+  removeFavorite: Remove from favourites
   clearFilters: Clear
   applyFilters: Apply
 

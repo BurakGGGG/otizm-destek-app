@@ -442,6 +442,9 @@ specialists:
   onlyAccepting: Yalnızca randevu kabul edenler
   onlyVerified: Yalnızca doğrulanmış uzmanlar
   onlyOnline: Yalnızca online görüşme yapanlar
+  onlyFavorites: Yalnızca favorilerim
+  addFavorite: Favorilere ekle
+  removeFavorite: Favorilerden çıkar
   clearFilters: Temizle
   applyFilters: Uygula
 

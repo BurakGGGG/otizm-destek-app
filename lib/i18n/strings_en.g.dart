@@ -688,6 +688,9 @@ class _Translations$specialists$en extends Translations$specialists$tr {
 	@override String get onlyAccepting => 'Only experts accepting new clients';
 	@override String get onlyVerified => 'Only verified experts';
 	@override String get onlyOnline => 'Online sessions only';
+	@override String get onlyFavorites => 'My favourites only';
+	@override String get addFavorite => 'Add to favourites';
+	@override String get removeFavorite => 'Remove from favourites';
 	@override String get clearFilters => 'Clear';
 	@override String get applyFilters => 'Apply';
 }
@@ -2845,6 +2848,9 @@ extension on TranslationsEn {
 			'specialists.onlyAccepting' => 'Only experts accepting new clients',
 			'specialists.onlyVerified' => 'Only verified experts',
 			'specialists.onlyOnline' => 'Online sessions only',
+			'specialists.onlyFavorites' => 'My favourites only',
+			'specialists.addFavorite' => 'Add to favourites',
+			'specialists.removeFavorite' => 'Remove from favourites',
 			'specialists.clearFilters' => 'Clear',
 			'specialists.applyFilters' => 'Apply',
 			'progress.title' => 'Progress Tracking',
@@ -2954,11 +2960,11 @@ extension on TranslationsEn {
 			'appointments.upcoming' => 'Upcoming',
 			'appointments.past' => 'Past',
 			'appointments.statusPending' => 'Pending',
+			_ => null,
+		} ?? switch (path) {
 			'appointments.statusConfirmed' => 'Confirmed',
 			'appointments.statusCompleted' => 'Completed',
 			'appointments.statusCancelled' => 'Cancelled',
-			_ => null,
-		} ?? switch (path) {
 			'appointments.typeOnline' => 'Online session',
 			'appointments.typeFaceToFace' => 'In person',
 			'appointments.withChild' => ({required Object name}) => 'Child: ${name}',
@@ -3468,11 +3474,11 @@ extension on TranslationsEn {
 			'treatment.breathTitle' => 'Breathing Exercise',
 			'treatment.breathBody' => 'When your child feels overstimulated, use the breathing regulator in the Crisis Guide together.',
 			'treatment.breathOpen' => 'Open Breathing Exercise',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.aiStoryTitle' => 'Social Story with AI',
 			'treatment.aiStoryBody' => 'Ask the AI Assistant for a short custom social story draft for a new situation.',
 			'treatment.aiStoryOpen' => 'Open AI Assistant',
-			_ => null,
-		} ?? switch (path) {
 			'tasks.title' => 'My Assignments',
 			'tasks.subtitle' => 'Tasks assigned by your expert appear here; submit them as you complete each one.',
 			'tasks.pendingLabel' => 'Pending',
@@ -3982,11 +3988,11 @@ extension on TranslationsEn {
 			'guide.videoCategoryTracking' => 'Daily tracking',
 			'guide.videoCategoryPlan' => 'Plans and appointments',
 			'guide.videoCategoryCommunity' => 'Communication and community',
+			_ => null,
+		} ?? switch (path) {
 			'guide.videoCategorySupport' => 'Safety and support',
 			'guide.badgeDaily' => 'Every day',
 			'guide.badgeQuickLog' => 'Quick log',
-			_ => null,
-		} ?? switch (path) {
 			'guide.badgeQuickHelp' => 'Quick help',
 			'guide.badgeFirstStep' => 'First step',
 			'guide.badgeSetup' => 'First setup',
