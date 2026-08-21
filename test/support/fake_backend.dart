@@ -96,6 +96,8 @@ import 'package:otizm_destek_app/features/forum/data/forum_repository.dart';
 import 'package:otizm_destek_app/features/forum/domain/forum_post.dart';
 import 'package:otizm_destek_app/features/forum/presentation/forum_post_detail_screen.dart';
 import 'package:otizm_destek_app/features/forum/presentation/forum_screen.dart';
+import 'package:otizm_destek_app/features/auth/presentation/reset_password_screen.dart';
+import 'package:otizm_destek_app/features/legal/domain/legal_documents.dart';
 import 'package:otizm_destek_app/features/legal/presentation/legal_screen.dart';
 import 'package:otizm_destek_app/features/groups/data/group_repository.dart';
 import 'package:otizm_destek_app/features/groups/domain/group.dart';
@@ -1908,6 +1910,14 @@ List<ScreenShot> screenCatalog() => [
   ScreenShot(
     '41-yasal-metinler',
     () => const LegalIndexScreen(),
+  ),
+  ScreenShot(
+    '41b-yasal-metin',
+    () => const LegalDocumentScreen(kind: LegalDocumentKind.kvkk),
+  ),
+  ScreenShot(
+    '41c-sifre-sifirla',
+    () => const ResetPasswordScreen(token: 'demo-token'),
   ),
   ScreenShot(
     '42-hesap',
