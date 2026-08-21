@@ -15,7 +15,10 @@ import '../../../i18n/strings.g.dart';
 import '../data/child_repository.dart';
 import '../data/milestone_repository.dart';
 import '../data/screening_repository.dart';
+import '../../behavior/data/abc_repository.dart';
+import '../../medications/data/medication_repository.dart';
 import '../domain/child.dart';
+import '../domain/medication_correlation.dart';
 import '../domain/milestone.dart';
 import 'child_form_screen.dart';
 import 'widgets/milestone_sheet.dart';
@@ -209,6 +212,8 @@ class _ChildDetailScreenState extends ConsumerState<ChildDetailScreen> {
                 ),
                 const SizedBox(height: AppSpacing.md),
                 _ScreeningCard(childId: widget.childId),
+                const SizedBox(height: AppSpacing.md),
+                _CorrelationCard(childId: widget.childId),
                 const SizedBox(height: AppSpacing.md),
                 _ShortcutsCard(childName: child.name),
               ],
@@ -591,6 +596,155 @@ class _ScreeningCard extends ConsumerWidget {
             ],
           );
         },
+      ),
+    );
+  }
+}
+
+/// İlaç uyumu ↔ davranış kaydı ilişkisi (web'deki korelasyon grafiği).
+///
+/// Telefonda alan grafiği yerine gün satırları: davranış sayısı, doz uyum
+/// çubuğu ve o günün yan etkileri. Veri yoksa bölüm hiç çizilmez.
+class _CorrelationCard extends ConsumerWidget {
+  const _CorrelationCard({required this.childId});
+
+  final String childId;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.t;
+    final text = Theme.of(context).textTheme;
+    final colors = context.colors;
+    final behaviors = ref.watch(abcEntriesProvider(childId)).asData?.value;
+    final logs = ref.watch(medicationLogsProvider(childId)).asData?.value;
+    if (behaviors == null || logs == null) return const SizedBox.shrink();
+
+    final days = buildMedicationCorrelation(
+      behaviors: behaviors,
+      logs: logs,
+    );
+    if (days.isEmpty) return const SizedBox.shrink();
+
+    // Telefonda son 14 gün yeter; en yeni üstte.
+    final visible = days.reversed.take(14).toList();
+    final maxBehavior = visible.fold<int>(
+      1,
+      (max, day) => day.behaviorCount > max ? day.behaviorCount : max,
+    );
+
+    return _SectionCard(
+      icon: Icons.monitor_heart_outlined,
+      title: t.childDetail.correlationTitle,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            t.childDetail.correlationHint,
+            style: text.labelSmall?.copyWith(color: colors.textTertiary),
+          ),
+          const SizedBox(height: 10),
+          for (final day in visible)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 54,
+                        child: Text(
+                          day.date.substring(5).replaceAll('-', '.'),
+                          style: text.labelSmall
+                              ?.copyWith(color: colors.textSecondary),
+                        ),
+                      ),
+                      Expanded(
+                        child: Row(
+                          children: [
+                            Icon(Icons.warning_amber_rounded,
+                                size: 13, color: colors.error),
+                            const SizedBox(width: 4),
+                            Expanded(
+                              child: ClipRRect(
+                                borderRadius:
+                                    BorderRadius.circular(AppRadius.full),
+                                child: LinearProgressIndicator(
+                                  value: day.behaviorCount / maxBehavior,
+                                  minHeight: 6,
+                                  backgroundColor: colors.surfaceVariant,
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    colors.error,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 22,
+                              child: Text(
+                                '${day.behaviorCount}',
+                                textAlign: TextAlign.end,
+                                style: text.labelSmall
+                                    ?.copyWith(color: colors.textTertiary),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      SizedBox(
+                        width: 54,
+                        child: Text(
+                          day.adherence == null
+                              ? t.childDetail.correlationNoDose
+                              : '%${day.adherence}',
+                          textAlign: TextAlign.end,
+                          style: text.labelSmall?.copyWith(
+                            color: day.adherence == null
+                                ? colors.textTertiary
+                                : colors.success,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  if (day.sideEffects.isNotEmpty)
+                    Padding(
+                      padding: const EdgeInsets.only(left: 54, top: 4),
+                      child: Wrap(
+                        spacing: 4,
+                        runSpacing: 4,
+                        children: [
+                          for (final effect in day.sideEffects)
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 6,
+                                vertical: 2,
+                              ),
+                              decoration: BoxDecoration(
+                                color: colors.warning.withValues(alpha: 0.14),
+                                borderRadius:
+                                    BorderRadius.circular(AppRadius.sm),
+                              ),
+                              child: Text(
+                                effect,
+                                style: text.labelSmall
+                                    ?.copyWith(color: colors.textSecondary),
+                              ),
+                            ),
+                        ],
+                      ),
+                    ),
+                ],
+              ),
+            ),
+          const SizedBox(height: 4),
+          Text(
+            t.childDetail.correlationLegend,
+            style: text.labelSmall?.copyWith(color: colors.textTertiary),
+          ),
+        ],
       ),
     );
   }

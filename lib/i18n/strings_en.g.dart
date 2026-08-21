@@ -1876,6 +1876,10 @@ class _Translations$childDetail$en extends Translations$childDetail$tr {
 	final TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	@override String get correlationTitle => 'Medication adherence and behaviour';
+	@override String get correlationHint => 'How dose adherence and behaviour logs line up day by day.';
+	@override String get correlationNoDose => 'No record';
+	@override String get correlationLegend => 'The red bar is the behaviour count; the percentage on the right is dose adherence.';
 	@override String get title => 'Child Profile';
 	@override String get editProfile => 'Edit Profile';
 	@override String ageYears({required Object age}) => '${age} yrs';
@@ -4121,6 +4125,10 @@ extension on TranslationsEn {
 			'forum.privacyDiagnosis' => 'Show diagnosis details',
 			'forum.privacyMatching' => 'Allow use in the matching algorithm',
 			'forum.share' => 'Share',
+			'childDetail.correlationTitle' => 'Medication adherence and behaviour',
+			'childDetail.correlationHint' => 'How dose adherence and behaviour logs line up day by day.',
+			'childDetail.correlationNoDose' => 'No record',
+			'childDetail.correlationLegend' => 'The red bar is the behaviour count; the percentage on the right is dose adherence.',
 			'childDetail.title' => 'Child Profile',
 			'childDetail.editProfile' => 'Edit Profile',
 			'childDetail.ageYears' => ({required Object age}) => '${age} yrs',
@@ -4267,12 +4275,12 @@ extension on TranslationsEn {
 			'calendar.reminder' => 'Reminder',
 			'calendar.reminderOff' => 'Off',
 			'calendar.reminderMin' => ({required Object count}) => '${count} min before',
+			_ => null,
+		} ?? switch (path) {
 			'calendar.reminderHour' => ({required Object count}) => '${count} h before',
 			'calendar.reminderDay' => '1 day before',
 			'calendar.statusPlanned' => 'Planned',
 			'calendar.statusCompleted' => 'Completed',
-			_ => null,
-		} ?? switch (path) {
 			'calendar.statusCancelled' => 'Cancelled',
 			'calendar.markCompleted' => 'Mark completed',
 			'calendar.markPlanned' => 'Mark planned',

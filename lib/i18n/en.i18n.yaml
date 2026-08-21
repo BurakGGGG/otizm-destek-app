@@ -1515,6 +1515,11 @@ forum:
   share: Share
 
 childDetail:
+  correlationTitle: Medication adherence and behaviour
+  correlationHint: How dose adherence and behaviour logs line up day by day.
+  correlationNoDose: No record
+  correlationLegend: The red bar is the behaviour count; the percentage on the
+    right is dose adherence.
   title: Child Profile
   editProfile: Edit Profile
   ageYears: $age yrs

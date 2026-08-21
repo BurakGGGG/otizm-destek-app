@@ -24,6 +24,22 @@ class MedicationRepository {
     }
   }
 
+  /// Çocuğun tüm doz günlüğü kayıtları (`GET /medications/child/{id}/logs`).
+  Future<List<MedicationLog>> getChildLogs(String childId) async {
+    try {
+      final res = await _dio.get('/medications/child/$childId/logs');
+      final data = ApiEnvelope.fromJson(res.data).data;
+      return data is List
+          ? data
+              .whereType<Map<String, dynamic>>()
+              .map(MedicationLog.fromJson)
+              .toList()
+          : const [];
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
   Future<Medication> create({
     required String childId,
     required String name,
@@ -143,4 +159,10 @@ final medicationRepositoryProvider = Provider<MedicationRepository>((ref) {
 final medicationsProvider =
     FutureProvider.family<List<Medication>, String>((ref, childId) {
   return ref.watch(medicationRepositoryProvider).getMedications(childId);
+});
+
+/// Çocuğun ilaç doz günlüğü (davranış korelasyonu için).
+final medicationLogsProvider =
+    FutureProvider.family<List<MedicationLog>, String>((ref, childId) {
+  return ref.watch(medicationRepositoryProvider).getChildLogs(childId);
 });

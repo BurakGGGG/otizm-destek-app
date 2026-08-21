@@ -1521,6 +1521,11 @@ forum:
   share: Paylaş
 
 childDetail:
+  correlationTitle: İlaç uyumu ve davranış
+  correlationHint: Doz uyumu ile davranış kayıtlarının aynı gündeki ilişkisi.
+  correlationNoDose: Kayıt yok
+  correlationLegend: Kırmızı çubuk davranış kaydı sayısı, sağdaki yüzde doz
+    uyumu.
   title: Çocuk Profili
   editProfile: Profili Düzenle
   ageYears: $age yaş

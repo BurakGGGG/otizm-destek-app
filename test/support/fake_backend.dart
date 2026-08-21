@@ -769,6 +769,37 @@ class _FakeMedicationRepository extends MedicationRepository {
           scheduledTimes: const ['20:00'],
         ),
       ];
+
+  @override
+  Future<List<MedicationLog>> getChildLogs(String childId) async {
+    final today = DateTime.now();
+    String key(int daysAgo) =>
+        localDateKey(today.subtract(Duration(days: daysAgo)));
+    return [
+      MedicationLog(
+        id: 'lg1',
+        medicationId: 'md1',
+        logDate: key(0),
+        scheduledTime: '09:00',
+        taken: true,
+      ),
+      MedicationLog(
+        id: 'lg2',
+        medicationId: 'md2',
+        logDate: key(0),
+        scheduledTime: '20:00',
+        taken: false,
+        sideEffects: const ['Uykusuzluk'],
+      ),
+      MedicationLog(
+        id: 'lg3',
+        medicationId: 'md1',
+        logDate: key(1),
+        scheduledTime: '09:00',
+        taken: true,
+      ),
+    ];
+  }
 }
 
 class _FakeCalendarRepository extends CalendarRepository {

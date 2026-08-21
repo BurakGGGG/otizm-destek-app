@@ -4576,6 +4576,18 @@ class Translations$childDetail$tr {
 
 	// Translations
 
+	/// tr: 'İlaç uyumu ve davranış'
+	String get correlationTitle => 'İlaç uyumu ve davranış';
+
+	/// tr: 'Doz uyumu ile davranış kayıtlarının aynı gündeki ilişkisi.'
+	String get correlationHint => 'Doz uyumu ile davranış kayıtlarının aynı gündeki ilişkisi.';
+
+	/// tr: 'Kayıt yok'
+	String get correlationNoDose => 'Kayıt yok';
+
+	/// tr: 'Kırmızı çubuk davranış kaydı sayısı, sağdaki yüzde doz uyumu.'
+	String get correlationLegend => 'Kırmızı çubuk davranış kaydı sayısı, sağdaki yüzde doz uyumu.';
+
 	/// tr: 'Çocuk Profili'
 	String get title => 'Çocuk Profili';
 
@@ -8011,6 +8023,10 @@ extension on Translations {
 			'forum.privacyDiagnosis' => 'Tanı detaylarını göster',
 			'forum.privacyMatching' => 'Eşleştirme algoritmasında kullanılsın',
 			'forum.share' => 'Paylaş',
+			'childDetail.correlationTitle' => 'İlaç uyumu ve davranış',
+			'childDetail.correlationHint' => 'Doz uyumu ile davranış kayıtlarının aynı gündeki ilişkisi.',
+			'childDetail.correlationNoDose' => 'Kayıt yok',
+			'childDetail.correlationLegend' => 'Kırmızı çubuk davranış kaydı sayısı, sağdaki yüzde doz uyumu.',
 			'childDetail.title' => 'Çocuk Profili',
 			'childDetail.editProfile' => 'Profili Düzenle',
 			'childDetail.ageYears' => ({required Object age}) => '${age} yaş',
@@ -8157,12 +8173,12 @@ extension on Translations {
 			'calendar.reminder' => 'Hatırlatma',
 			'calendar.reminderOff' => 'Kapalı',
 			'calendar.reminderMin' => ({required Object count}) => '${count} dk önce',
+			_ => null,
+		} ?? switch (path) {
 			'calendar.reminderHour' => ({required Object count}) => '${count} saat önce',
 			'calendar.reminderDay' => '1 gün önce',
 			'calendar.statusPlanned' => 'Planlandı',
 			'calendar.statusCompleted' => 'Tamamlandı',
-			_ => null,
-		} ?? switch (path) {
 			'calendar.statusCancelled' => 'İptal',
 			'calendar.markCompleted' => 'Tamamlandı işaretle',
 			'calendar.markPlanned' => 'Planlandı yap',
