@@ -1039,6 +1039,27 @@ similar:
   scoreEducation: Eğitim
 
 groups:
+  detailTitle: Grup Detayı
+  detailHint: Üye listesi ve buluşmalar yalnızca grup üyelerine görünür.
+  membersTitle: Üyeler
+  membersEmpty: Üye listesi görüntülenemiyor.
+  membersOnly: Üye listesini ve buluşmaları görmek için gruba katılın.
+  meetingsTitle: Buluşmalar
+  meetingsEmpty: Planlanmış buluşma yok.
+  meetingAdd: Buluşma planla
+  meetingTitleLabel: Buluşma başlığı
+  meetingPickDate: Tarih seç
+  meetingPickTime: Saat seç
+  meetingUrlLabel: Görüşme bağlantısı (isteğe bağlı)
+  meetingNoteLabel: Açıklama (isteğe bağlı)
+  meetingSave: Kaydet
+  meetingCreated: Buluşma planlandı.
+  meetingJoin: Görüşmeye katıl
+  meetingDelete: Buluşmayı iptal et
+  meetingDeleteConfirm: '"$title" buluşması iptal edilsin mi?'
+  meetingErrorTitle: Buluşma başlığı gerekli.
+  meetingErrorDate: Tarih ve saat seçin.
+  meetingErrorUrl: Bağlantı http:// ya da https:// ile başlamalı.
   title: Destek Grupları
   subtitle: Benzer konularda ailelerle bir araya gel, grup sohbetine katıl.
   tabMy: Gruplarım

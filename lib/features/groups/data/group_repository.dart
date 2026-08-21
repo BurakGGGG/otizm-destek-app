@@ -78,6 +78,82 @@ class GroupRepository {
       throw ApiException.fromDio(e);
     }
   }
+
+  /// Grup üyeleri — yalnızca üyeler (ve yönetici) görebilir.
+  Future<List<GroupMember>> getMembers(String id) async {
+    try {
+      final res = await _dio.get('/groups/$id/members');
+      final data = ApiEnvelope.fromJson(res.data).data;
+      return data is List
+          ? data
+              .whereType<Map<String, dynamic>>()
+              .map(GroupMember.fromJson)
+              .toList()
+          : const [];
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Grup buluşmaları (başlangıç saatine göre sıralı gelir).
+  Future<List<GroupMeeting>> getMeetings(String id) async {
+    try {
+      final res = await _dio.get('/groups/$id/meetings');
+      final data = ApiEnvelope.fromJson(res.data).data;
+      return data is List
+          ? data
+              .whereType<Map<String, dynamic>>()
+              .map(GroupMeeting.fromJson)
+              .toList()
+          : const [];
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Buluşma planlar (yalnızca grubu kuran ya da yönetici).
+  Future<GroupMeeting> createMeeting(
+    String id, {
+    required String title,
+    required DateTime startTime,
+    String? description,
+    String? meetingUrl,
+    DateTime? endTime,
+  }) async {
+    try {
+      final res = await _dio.post('/groups/$id/meetings', data: {
+        'title': title.trim(),
+        'startTime': _localDateTime(startTime),
+        'description': ?(description?.trim().isEmpty ?? true
+            ? null
+            : description!.trim()),
+        'meetingUrl': ?(meetingUrl?.trim().isEmpty ?? true
+            ? null
+            : meetingUrl!.trim()),
+        'endTime': ?(endTime == null ? null : _localDateTime(endTime)),
+      });
+      final data = ApiEnvelope.fromJson(res.data).data;
+      return GroupMeeting.fromJson(data as Map<String, dynamic>);
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Buluşmayı iptal eder (yalnızca grubu kuran ya da yönetici).
+  Future<void> deleteMeeting(String id, String meetingId) async {
+    try {
+      await _dio.delete('/groups/$id/meetings/$meetingId');
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Saat dilimsiz `LocalDateTime` biçimi (backend böyle bekliyor).
+  static String _localDateTime(DateTime value) {
+    String two(int v) => v.toString().padLeft(2, '0');
+    return '${value.year}-${two(value.month)}-${two(value.day)}'
+        'T${two(value.hour)}:${two(value.minute)}:00';
+  }
 }
 
 final groupRepositoryProvider = Provider<GroupRepository>((ref) {
@@ -99,4 +175,16 @@ final discoverGroupsProvider =
   if (key.query.trim().isNotEmpty) return repo.search(key.query.trim());
   if (key.category.isNotEmpty) return repo.getByCategory(key.category);
   return repo.search('');
+});
+
+/// Bir grubun üyeleri (üye değilse backend yetki hatası döner).
+final groupMembersProvider =
+    FutureProvider.family<List<GroupMember>, String>((ref, groupId) {
+  return ref.watch(groupRepositoryProvider).getMembers(groupId);
+});
+
+/// Bir grubun buluşmaları.
+final groupMeetingsProvider =
+    FutureProvider.family<List<GroupMeeting>, String>((ref, groupId) {
+  return ref.watch(groupRepositoryProvider).getMeetings(groupId);
 });

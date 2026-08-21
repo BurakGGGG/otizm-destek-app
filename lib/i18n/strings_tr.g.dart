@@ -3234,6 +3234,69 @@ class Translations$groups$tr {
 
 	// Translations
 
+	/// tr: 'Grup Detayı'
+	String get detailTitle => 'Grup Detayı';
+
+	/// tr: 'Üye listesi ve buluşmalar yalnızca grup üyelerine görünür.'
+	String get detailHint => 'Üye listesi ve buluşmalar yalnızca grup üyelerine görünür.';
+
+	/// tr: 'Üyeler'
+	String get membersTitle => 'Üyeler';
+
+	/// tr: 'Üye listesi görüntülenemiyor.'
+	String get membersEmpty => 'Üye listesi görüntülenemiyor.';
+
+	/// tr: 'Üye listesini ve buluşmaları görmek için gruba katılın.'
+	String get membersOnly => 'Üye listesini ve buluşmaları görmek için gruba katılın.';
+
+	/// tr: 'Buluşmalar'
+	String get meetingsTitle => 'Buluşmalar';
+
+	/// tr: 'Planlanmış buluşma yok.'
+	String get meetingsEmpty => 'Planlanmış buluşma yok.';
+
+	/// tr: 'Buluşma planla'
+	String get meetingAdd => 'Buluşma planla';
+
+	/// tr: 'Buluşma başlığı'
+	String get meetingTitleLabel => 'Buluşma başlığı';
+
+	/// tr: 'Tarih seç'
+	String get meetingPickDate => 'Tarih seç';
+
+	/// tr: 'Saat seç'
+	String get meetingPickTime => 'Saat seç';
+
+	/// tr: 'Görüşme bağlantısı (isteğe bağlı)'
+	String get meetingUrlLabel => 'Görüşme bağlantısı (isteğe bağlı)';
+
+	/// tr: 'Açıklama (isteğe bağlı)'
+	String get meetingNoteLabel => 'Açıklama (isteğe bağlı)';
+
+	/// tr: 'Kaydet'
+	String get meetingSave => 'Kaydet';
+
+	/// tr: 'Buluşma planlandı.'
+	String get meetingCreated => 'Buluşma planlandı.';
+
+	/// tr: 'Görüşmeye katıl'
+	String get meetingJoin => 'Görüşmeye katıl';
+
+	/// tr: 'Buluşmayı iptal et'
+	String get meetingDelete => 'Buluşmayı iptal et';
+
+	/// tr: '"$title" buluşması iptal edilsin mi?'
+	String meetingDeleteConfirm({required Object title}) => '"${title}" buluşması iptal edilsin mi?';
+
+	/// tr: 'Buluşma başlığı gerekli.'
+	String get meetingErrorTitle => 'Buluşma başlığı gerekli.';
+
+	/// tr: 'Tarih ve saat seçin.'
+	String get meetingErrorDate => 'Tarih ve saat seçin.';
+
+	/// tr: 'Bağlantı http:// ya da https:// ile başlamalı.'
+	String get meetingErrorUrl => 'Bağlantı http:// ya da https:// ile başlamalı.';
+
 	/// tr: 'Destek Grupları'
 	String get title => 'Destek Grupları';
 
@@ -7351,6 +7414,27 @@ extension on Translations {
 			'similar.scoreSensory' => 'Duyusal',
 			'similar.scoreTherapy' => 'Terapi',
 			'similar.scoreEducation' => 'Eğitim',
+			'groups.detailTitle' => 'Grup Detayı',
+			'groups.detailHint' => 'Üye listesi ve buluşmalar yalnızca grup üyelerine görünür.',
+			'groups.membersTitle' => 'Üyeler',
+			'groups.membersEmpty' => 'Üye listesi görüntülenemiyor.',
+			'groups.membersOnly' => 'Üye listesini ve buluşmaları görmek için gruba katılın.',
+			'groups.meetingsTitle' => 'Buluşmalar',
+			'groups.meetingsEmpty' => 'Planlanmış buluşma yok.',
+			'groups.meetingAdd' => 'Buluşma planla',
+			'groups.meetingTitleLabel' => 'Buluşma başlığı',
+			'groups.meetingPickDate' => 'Tarih seç',
+			'groups.meetingPickTime' => 'Saat seç',
+			'groups.meetingUrlLabel' => 'Görüşme bağlantısı (isteğe bağlı)',
+			'groups.meetingNoteLabel' => 'Açıklama (isteğe bağlı)',
+			'groups.meetingSave' => 'Kaydet',
+			'groups.meetingCreated' => 'Buluşma planlandı.',
+			'groups.meetingJoin' => 'Görüşmeye katıl',
+			'groups.meetingDelete' => 'Buluşmayı iptal et',
+			'groups.meetingDeleteConfirm' => ({required Object title}) => '"${title}" buluşması iptal edilsin mi?',
+			'groups.meetingErrorTitle' => 'Buluşma başlığı gerekli.',
+			'groups.meetingErrorDate' => 'Tarih ve saat seçin.',
+			'groups.meetingErrorUrl' => 'Bağlantı http:// ya da https:// ile başlamalı.',
 			'groups.title' => 'Destek Grupları',
 			'groups.subtitle' => 'Benzer konularda ailelerle bir araya gel, grup sohbetine katıl.',
 			'groups.tabMy' => 'Gruplarım',
@@ -7407,6 +7491,8 @@ extension on Translations {
 			'treatment.onboardStep3' => '3. Oyun sonrası "Kolay geldi / Zorlandı" seçin — gerisini sistem halleder.',
 			'treatment.todayTitle' => 'Bugünün kısa planı',
 			'treatment.todaySubtitle' => 'Bir madde seçin, uygulayın, sonra tamamlandı olarak işaretleyin.',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.streakDays' => ({required Object count}) => '${count} gün seri',
 			'treatment.doneOf' => ({required Object done, required Object total}) => '${done}/${total} yapıldı',
 			'treatment.stepCount' => ({required Object count}) => '${count} adım',
@@ -7428,8 +7514,6 @@ extension on Translations {
 			'treatment.defaultExpert' => 'Uzman Terapist',
 			'treatment.noNoteAuthor' => 'Platform Terapi Modülü',
 			'treatment.noNoteRole' => 'Otomatik günlük plan',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.noNoteBody' => 'Henüz uzman notu yok. Bugünün planı, çocuğunuzun kayıtlarına göre hazırlandı.',
 			'treatment.noteEmptyContent' => 'Bu nota eklenmiş detay bulunmuyor.',
 			'treatment.weeklyTitle' => 'Haftalık özet',
@@ -7921,6 +8005,8 @@ extension on Translations {
 			'emergency.selfInjury' => 'Öz-zarar davranışı olabilir',
 			'emergency.wandering' => 'Kaçma / kaybolma riski var',
 			'emergency.nonVerbal' => 'Sözel iletişim yoktur',
+			_ => null,
+		} ?? switch (path) {
 			'emergency.contact1' => 'Birinci Kişi',
 			'emergency.contact2' => 'İkinci Kişi',
 			'emergency.doctor' => 'Doktor / Hastane',
@@ -7942,8 +8028,6 @@ extension on Translations {
 			'emergency.calmingHint' => 'Ne işe yarar? Örn: sevdiği müzik, sessiz oda',
 			'emergency.avoid' => 'Kesinlikle Yapılmaması Gerekenler',
 			'emergency.avoidHint' => 'Örn: bağırmayın, tutmayın, göz temasına zorlamayın',
-			_ => null,
-		} ?? switch (path) {
 			'emergency.special' => 'Özel Talimatlar',
 			'emergency.specialHint' => 'Acil servis veya bakıcı için ek notlar',
 			'emergency.select' => 'Seçin...',

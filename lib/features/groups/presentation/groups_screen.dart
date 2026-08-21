@@ -12,6 +12,7 @@ import '../../messaging/data/messaging_repository.dart';
 import '../../messaging/presentation/conversation_thread_screen.dart';
 import '../data/group_repository.dart';
 import '../domain/group.dart';
+import 'group_detail_screen.dart';
 import 'widgets/group_form_sheet.dart';
 
 /// Destek Grupları — Gruplarım + Keşfet (arama/kategori). Katıl/ayrıl, grup
@@ -107,6 +108,12 @@ class _GroupsScreenState extends ConsumerState<GroupsScreen> {
     }
   }
 
+  void _openDetail(Group group) {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => GroupDetailScreen(group: group)),
+    );
+  }
+
   Future<void> _openChat(Group group) async {
     setState(() => _openingChatId = group.id);
     try {
@@ -152,6 +159,7 @@ class _GroupsScreenState extends ConsumerState<GroupsScreen> {
                 onJoin: _join,
                 onLeave: _leave,
                 onChat: _openChat,
+                onOpen: _openDetail,
                 openingChatId: _openingChatId,
               ),
               _DiscoverTab(
@@ -168,6 +176,7 @@ class _GroupsScreenState extends ConsumerState<GroupsScreen> {
                 onJoin: _join,
                 onLeave: _leave,
                 onChat: _openChat,
+                onOpen: _openDetail,
                 openingChatId: _openingChatId,
               ),
             ],
@@ -188,12 +197,14 @@ class _MyGroupsTab extends ConsumerWidget {
     required this.onJoin,
     required this.onLeave,
     required this.onChat,
+    required this.onOpen,
     required this.openingChatId,
   });
 
   final ValueChanged<Group> onJoin;
   final ValueChanged<Group> onLeave;
   final ValueChanged<Group> onChat;
+  final ValueChanged<Group> onOpen;
   final String? openingChatId;
 
   @override
@@ -238,6 +249,7 @@ class _MyGroupsTab extends ConsumerWidget {
               onJoin: () => onJoin(groups[i]),
               onLeave: () => onLeave(groups[i]),
               onChat: () => onChat(groups[i]),
+              onOpen: () => onOpen(groups[i]),
             ),
           ),
         );
@@ -257,6 +269,7 @@ class _DiscoverTab extends ConsumerWidget {
     required this.onJoin,
     required this.onLeave,
     required this.onChat,
+    required this.onOpen,
     required this.openingChatId,
   });
 
@@ -269,6 +282,7 @@ class _DiscoverTab extends ConsumerWidget {
   final ValueChanged<Group> onJoin;
   final ValueChanged<Group> onLeave;
   final ValueChanged<Group> onChat;
+  final ValueChanged<Group> onOpen;
   final String? openingChatId;
 
   @override
@@ -348,6 +362,7 @@ class _DiscoverTab extends ConsumerWidget {
                     onJoin: () => onJoin(groups[i]),
                     onLeave: () => onLeave(groups[i]),
                     onChat: () => onChat(groups[i]),
+                    onOpen: () => onOpen(groups[i]),
                   ),
                 ),
               );
@@ -412,6 +427,7 @@ class _GroupCard extends StatelessWidget {
     required this.onJoin,
     required this.onLeave,
     required this.onChat,
+    required this.onOpen,
   });
 
   final Group group;
@@ -419,6 +435,7 @@ class _GroupCard extends StatelessWidget {
   final VoidCallback onJoin;
   final VoidCallback onLeave;
   final VoidCallback onChat;
+  final VoidCallback onOpen;
 
   @override
   Widget build(BuildContext context) {
@@ -429,128 +446,134 @@ class _GroupCard extends StatelessWidget {
 
     return Card(
       margin: EdgeInsets.zero,
-      child: Padding(
-        padding: const EdgeInsets.all(AppSpacing.md),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CircleAvatar(
-                  radius: 22,
-                  backgroundColor:
-                      context.colors.primary.withValues(alpha: 0.12),
-                  child: Text(
-                    initial,
-                    style: text.titleMedium?.copyWith(
-                      color: context.colors.primary,
-                      fontWeight: FontWeight.w700,
+      child: InkWell(
+        onTap: onOpen,
+        borderRadius: BorderRadius.circular(AppRadius.lg),
+        child: Padding(
+          padding: const EdgeInsets.all(AppSpacing.md),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CircleAvatar(
+                    radius: 22,
+                    backgroundColor:
+                        context.colors.primary.withValues(alpha: 0.12),
+                    child: Text(
+                      initial,
+                      style: text.titleMedium?.copyWith(
+                        color: context.colors.primary,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Flexible(
-                            child: Text(
-                              group.name,
-                              style: text.titleMedium,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                          if (group.verified) ...[
-                            const SizedBox(width: 4),
-                            Icon(
-                              Icons.verified,
-                              size: 16,
-                              color: context.colors.primary,
-                            ),
-                          ],
-                        ],
-                      ),
-                      const SizedBox(height: 2),
-                      Wrap(
-                        spacing: 10,
-                        children: [
-                          if (group.category?.isNotEmpty == true)
-                            Text(
-                              group.category!,
-                              style: text.labelSmall?.copyWith(
-                                color: context.colors.primary,
-                                fontWeight: FontWeight.w600,
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Flexible(
+                              child: Text(
+                                group.name,
+                                style: text.titleMedium,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
-                          Text(
-                            t.groups.memberCount(count: group.memberCount),
-                            style: text.labelSmall?.copyWith(
-                              color: context.colors.textTertiary,
-                            ),
-                          ),
-                          if (group.expertCount > 0)
+                            if (group.verified) ...[
+                              const SizedBox(width: 4),
+                              Icon(
+                                Icons.verified,
+                                size: 16,
+                                color: context.colors.primary,
+                              ),
+                            ],
+                          ],
+                        ),
+                        const SizedBox(height: 2),
+                        Wrap(
+                          spacing: 10,
+                          children: [
+                            if (group.category?.isNotEmpty == true)
+                              Text(
+                                group.category!,
+                                style: text.labelSmall?.copyWith(
+                                  color: context.colors.primary,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
                             Text(
-                              t.groups.expertCount(count: group.expertCount),
+                              t.groups.memberCount(count: group.memberCount),
                               style: text.labelSmall?.copyWith(
                                 color: context.colors.textTertiary,
                               ),
                             ),
-                        ],
-                      ),
-                    ],
+                            if (group.expertCount > 0)
+                              Text(
+                                t.groups.expertCount(count: group.expertCount),
+                                style: text.labelSmall?.copyWith(
+                                  color: context.colors.textTertiary,
+                                ),
+                              ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
+                ],
+              ),
+              if (group.description?.isNotEmpty == true) ...[
+                const SizedBox(height: 10),
+                Text(
+                  group.description!,
+                  style: text.bodyMedium?.copyWith(
+                    color: context.colors.textSecondary,
+                  ),
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ],
-            ),
-            if (group.description?.isNotEmpty == true) ...[
-              const SizedBox(height: 10),
-              Text(
-                group.description!,
-                style: text.bodyMedium?.copyWith(
-                  color: context.colors.textSecondary,
-                ),
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
+              const SizedBox(height: 12),
+              Row(
+                children: [
+                  if (group.isMember) ...[
+                    Expanded(
+                      child: FilledButton.icon(
+                        onPressed: opening ? null : onChat,
+                        icon: opening
+                            ? const SizedBox(
+                                width: 16,
+                                height: 16,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                ),
+                              )
+                            : const Icon(Icons.forum_outlined, size: 18),
+                        label: Text(t.groups.chat),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    OutlinedButton(
+                      style: AppButtonStyles.inlineOutlined,
+                      onPressed: onLeave,
+                      child: Text(t.groups.leave),
+                    ),
+                  ] else
+                    Expanded(
+                      child: FilledButton.tonalIcon(
+                        onPressed: onJoin,
+                        icon: const Icon(Icons.add, size: 18),
+                        label: Text(t.groups.join),
+                      ),
+                    ),
+                ],
               ),
             ],
-            const SizedBox(height: 12),
-            Row(
-              children: [
-                if (group.isMember) ...[
-                  Expanded(
-                    child: FilledButton.icon(
-                      onPressed: opening ? null : onChat,
-                      icon: opening
-                          ? const SizedBox(
-                              width: 16,
-                              height: 16,
-                              child: CircularProgressIndicator(strokeWidth: 2),
-                            )
-                          : const Icon(Icons.forum_outlined, size: 18),
-                      label: Text(t.groups.chat),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  OutlinedButton(
-                    style: AppButtonStyles.inlineOutlined,
-                    onPressed: onLeave,
-                    child: Text(t.groups.leave),
-                  ),
-                ] else
-                  Expanded(
-                    child: FilledButton.tonalIcon(
-                      onPressed: onJoin,
-                      icon: const Icon(Icons.add, size: 18),
-                      label: Text(t.groups.join),
-                    ),
-                  ),
-              ],
             ),
-          ],
         ),
       ),
     );

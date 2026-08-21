@@ -1399,6 +1399,27 @@ class _Translations$groups$en extends Translations$groups$tr {
 	final TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	@override String get detailTitle => 'Group details';
+	@override String get detailHint => 'Members and meetings are visible to group members only.';
+	@override String get membersTitle => 'Members';
+	@override String get membersEmpty => 'Member list is not available.';
+	@override String get membersOnly => 'Join the group to see members and meetings.';
+	@override String get meetingsTitle => 'Meetings';
+	@override String get meetingsEmpty => 'No meetings scheduled.';
+	@override String get meetingAdd => 'Schedule meeting';
+	@override String get meetingTitleLabel => 'Meeting title';
+	@override String get meetingPickDate => 'Pick date';
+	@override String get meetingPickTime => 'Pick time';
+	@override String get meetingUrlLabel => 'Meeting link (optional)';
+	@override String get meetingNoteLabel => 'Description (optional)';
+	@override String get meetingSave => 'Save';
+	@override String get meetingCreated => 'Meeting scheduled.';
+	@override String get meetingJoin => 'Join meeting';
+	@override String get meetingDelete => 'Cancel meeting';
+	@override String meetingDeleteConfirm({required Object title}) => 'Cancel the meeting "${title}"?';
+	@override String get meetingErrorTitle => 'Meeting title is required.';
+	@override String get meetingErrorDate => 'Pick a date and time.';
+	@override String get meetingErrorUrl => 'The link must start with http:// or https://.';
 	@override String get title => 'Support Groups';
 	@override String get subtitle => 'Meet families on similar topics and join the group chat.';
 	@override String get tabMy => 'My Groups';
@@ -3607,6 +3628,27 @@ extension on TranslationsEn {
 			'similar.scoreSensory' => 'Sensory',
 			'similar.scoreTherapy' => 'Therapy',
 			'similar.scoreEducation' => 'Education',
+			'groups.detailTitle' => 'Group details',
+			'groups.detailHint' => 'Members and meetings are visible to group members only.',
+			'groups.membersTitle' => 'Members',
+			'groups.membersEmpty' => 'Member list is not available.',
+			'groups.membersOnly' => 'Join the group to see members and meetings.',
+			'groups.meetingsTitle' => 'Meetings',
+			'groups.meetingsEmpty' => 'No meetings scheduled.',
+			'groups.meetingAdd' => 'Schedule meeting',
+			'groups.meetingTitleLabel' => 'Meeting title',
+			'groups.meetingPickDate' => 'Pick date',
+			'groups.meetingPickTime' => 'Pick time',
+			'groups.meetingUrlLabel' => 'Meeting link (optional)',
+			'groups.meetingNoteLabel' => 'Description (optional)',
+			'groups.meetingSave' => 'Save',
+			'groups.meetingCreated' => 'Meeting scheduled.',
+			'groups.meetingJoin' => 'Join meeting',
+			'groups.meetingDelete' => 'Cancel meeting',
+			'groups.meetingDeleteConfirm' => ({required Object title}) => 'Cancel the meeting "${title}"?',
+			'groups.meetingErrorTitle' => 'Meeting title is required.',
+			'groups.meetingErrorDate' => 'Pick a date and time.',
+			'groups.meetingErrorUrl' => 'The link must start with http:// or https://.',
 			'groups.title' => 'Support Groups',
 			'groups.subtitle' => 'Meet families on similar topics and join the group chat.',
 			'groups.tabMy' => 'My Groups',
@@ -3663,6 +3705,8 @@ extension on TranslationsEn {
 			'treatment.onboardStep3' => '3. After playing, pick "Easy / Struggled" — the system handles the rest.',
 			'treatment.todayTitle' => 'Today\'s short plan',
 			'treatment.todaySubtitle' => 'Pick an item, apply it, then mark it as done.',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.streakDays' => ({required Object count}) => '${count} day streak',
 			'treatment.doneOf' => ({required Object done, required Object total}) => '${done}/${total} done',
 			'treatment.stepCount' => ({required Object count}) => '${count} steps',
@@ -3684,8 +3728,6 @@ extension on TranslationsEn {
 			'treatment.defaultExpert' => 'Expert Therapist',
 			'treatment.noNoteAuthor' => 'Platform Therapy Module',
 			'treatment.noNoteRole' => 'Automatic daily plan',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.noNoteBody' => 'No expert note yet. Today\'s plan was prepared from your child\'s records.',
 			'treatment.noteEmptyContent' => 'This note has no additional details.',
 			'treatment.weeklyTitle' => 'Weekly summary',
@@ -4177,6 +4219,8 @@ extension on TranslationsEn {
 			'emergency.selfInjury' => 'May exhibit self-injury',
 			'emergency.wandering' => 'Risk of wandering / getting lost',
 			'emergency.nonVerbal' => 'Non-verbal',
+			_ => null,
+		} ?? switch (path) {
 			'emergency.contact1' => 'First Contact',
 			'emergency.contact2' => 'Second Contact',
 			'emergency.doctor' => 'Doctor / Hospital',
@@ -4198,8 +4242,6 @@ extension on TranslationsEn {
 			'emergency.calmingHint' => 'What helps? E.g. favorite music, quiet room',
 			'emergency.avoid' => 'Things to Never Do',
 			'emergency.avoidHint' => 'E.g. don\'t shout, don\'t restrain, don\'t force eye contact',
-			_ => null,
-		} ?? switch (path) {
 			'emergency.special' => 'Special Instructions',
 			'emergency.specialHint' => 'Extra notes for emergency services or caregivers',
 			'emergency.select' => 'Select...',

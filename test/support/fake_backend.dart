@@ -99,6 +99,7 @@ import 'package:otizm_destek_app/features/forum/presentation/forum_screen.dart';
 import 'package:otizm_destek_app/features/legal/presentation/legal_screen.dart';
 import 'package:otizm_destek_app/features/groups/data/group_repository.dart';
 import 'package:otizm_destek_app/features/groups/domain/group.dart';
+import 'package:otizm_destek_app/features/groups/presentation/group_detail_screen.dart';
 import 'package:otizm_destek_app/features/groups/presentation/groups_screen.dart';
 import 'package:otizm_destek_app/features/notifications/data/notification_repository.dart';
 import 'package:otizm_destek_app/features/notifications/domain/app_notification.dart';
@@ -947,17 +948,18 @@ class _FakeGroupRepository extends GroupRepository {
       id: 'gr1',
       name: 'Okul Öncesi Aileler',
       description: 'Anaokulu ve kreş sürecindeki aileler için destek grubu.',
-      category: 'Yaş Grubu',
+      category: 'Okul Dönemi',
       memberCount: 128,
       expertCount: 3,
       isMember: true,
       conversationId: 'cv2',
+      createdByUserId: 'u1',
     ),
     Group(
       id: 'gr2',
       name: 'Duyusal Destek',
       description: 'Duyusal profil ve regülasyon deneyimleri.',
-      category: 'Konu',
+      category: 'Duyusal İşleme',
       memberCount: 64,
       expertCount: 1,
     ),
@@ -972,6 +974,37 @@ class _FakeGroupRepository extends GroupRepository {
 
   @override
   Future<List<Group>> getByCategory(String category) async => _groups;
+
+  @override
+  Future<List<GroupMember>> getMembers(String id) async => const [
+        GroupMember(
+          id: 'u1',
+          fullName: 'Elif Yılmaz',
+          role: 'PARENT',
+          city: 'İstanbul',
+        ),
+        GroupMember(
+          id: 'u5',
+          fullName: 'Uzm. Psk. Selin Aksoy',
+          role: 'EXPERT',
+          expertTitle: 'Klinik Psikolog',
+          city: 'İzmir',
+        ),
+      ];
+
+  @override
+  Future<List<GroupMeeting>> getMeetings(String id) async => [
+        GroupMeeting(
+          id: 'gm1',
+          title: 'Okula uyum sohbeti',
+          startTime: DateTime.now().add(const Duration(days: 3, hours: 2)),
+          description: 'Eylül döneminde okula başlama deneyimleri.',
+          meetingUrl: 'https://meet.example.com/okul-uyum',
+        ),
+      ];
+
+  @override
+  Future<void> deleteMeeting(String id, String meetingId) async {}
 }
 
 class _FakeWallRepository extends WallRepository {
@@ -1845,6 +1878,21 @@ List<ScreenShot> screenCatalog() => [
   ScreenShot(
     '21-gruplar',
     () => const GroupsScreen(),
+  ),
+  ScreenShot(
+    '21b-grup-detayi',
+    () => const GroupDetailScreen(
+      group: Group(
+        id: 'gr1',
+        name: 'Okul Öncesi Aileler',
+        description: 'Anaokulu ve kreş sürecindeki aileler için destek grubu.',
+        category: 'Okul Dönemi',
+        memberCount: 128,
+        expertCount: 3,
+        isMember: true,
+        createdByUserId: 'u1',
+      ),
+    ),
   ),
   ScreenShot(
     '22-dertlesme-duvari',

@@ -1037,6 +1037,27 @@ similar:
   scoreEducation: Education
 
 groups:
+  detailTitle: Group details
+  detailHint: Members and meetings are visible to group members only.
+  membersTitle: Members
+  membersEmpty: Member list is not available.
+  membersOnly: Join the group to see members and meetings.
+  meetingsTitle: Meetings
+  meetingsEmpty: No meetings scheduled.
+  meetingAdd: Schedule meeting
+  meetingTitleLabel: Meeting title
+  meetingPickDate: Pick date
+  meetingPickTime: Pick time
+  meetingUrlLabel: Meeting link (optional)
+  meetingNoteLabel: Description (optional)
+  meetingSave: Save
+  meetingCreated: Meeting scheduled.
+  meetingJoin: Join meeting
+  meetingDelete: Cancel meeting
+  meetingDeleteConfirm: 'Cancel the meeting "$title"?'
+  meetingErrorTitle: Meeting title is required.
+  meetingErrorDate: Pick a date and time.
+  meetingErrorUrl: The link must start with http:// or https://.
   title: Support Groups
   subtitle: Meet families on similar topics and join the group chat.
   tabMy: My Groups
