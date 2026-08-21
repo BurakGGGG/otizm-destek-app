@@ -905,6 +905,24 @@ class _Translations$appointments$en extends Translations$appointments$tr {
 	final TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	@override String get rate => 'Rate';
+	@override String get rateTitle => 'Rate this appointment';
+	@override String get rateComment => 'Your comment (optional)';
+	@override String get rateSave => 'Send';
+	@override String get rated => 'Your rating has been saved.';
+	@override String rateStars({required Object count}) => '${count} stars';
+	@override String get ratingShown => 'Your rating';
+	@override String get cancelSeries => 'Cancel series';
+	@override String get cancelSeriesTitle => 'Cancel the whole series?';
+	@override String get cancelSeriesConfirm => 'All upcoming appointments in this recurring series will be cancelled.';
+	@override String get seriesCancelled => 'Series cancelled.';
+	@override String seriesIndex({required Object index}) => 'Session ${index}';
+	@override String get seriesBadge => 'Series';
+	@override String get recurrenceTitle => 'Recurring sessions';
+	@override String get recurrenceHint => 'Created automatically every week at the same day and time.';
+	@override String get recurrenceSingle => 'Single';
+	@override String recurrenceWeeks({required Object count}) => '${count} weeks';
+	@override String recurrenceCreated({required Object count}) => 'A ${count}-week series has been created.';
 	@override String get title => 'Appointments';
 	@override String get empty => 'You don\'t have any appointments yet.';
 	@override String get upcoming => 'Upcoming';
@@ -3242,6 +3260,24 @@ extension on TranslationsEn {
 			'knowledge.tagFilterTitle' => 'Narrow down by tag',
 			'knowledge.tagFilterClear' => 'Clear tags',
 			'knowledge.tagFilterCount' => ({required Object count}) => '${count} tags selected',
+			'appointments.rate' => 'Rate',
+			'appointments.rateTitle' => 'Rate this appointment',
+			'appointments.rateComment' => 'Your comment (optional)',
+			'appointments.rateSave' => 'Send',
+			'appointments.rated' => 'Your rating has been saved.',
+			'appointments.rateStars' => ({required Object count}) => '${count} stars',
+			'appointments.ratingShown' => 'Your rating',
+			'appointments.cancelSeries' => 'Cancel series',
+			'appointments.cancelSeriesTitle' => 'Cancel the whole series?',
+			'appointments.cancelSeriesConfirm' => 'All upcoming appointments in this recurring series will be cancelled.',
+			'appointments.seriesCancelled' => 'Series cancelled.',
+			'appointments.seriesIndex' => ({required Object index}) => 'Session ${index}',
+			'appointments.seriesBadge' => 'Series',
+			'appointments.recurrenceTitle' => 'Recurring sessions',
+			'appointments.recurrenceHint' => 'Created automatically every week at the same day and time.',
+			'appointments.recurrenceSingle' => 'Single',
+			'appointments.recurrenceWeeks' => ({required Object count}) => '${count} weeks',
+			'appointments.recurrenceCreated' => ({required Object count}) => 'A ${count}-week series has been created.',
 			'appointments.title' => 'Appointments',
 			'appointments.empty' => 'You don\'t have any appointments yet.',
 			'appointments.upcoming' => 'Upcoming',
@@ -3687,6 +3723,8 @@ extension on TranslationsEn {
 			'treatment.noChildrenBody' => 'Add a child profile first to build a treatment plan.',
 			'treatment.addChild' => 'Add Child',
 			'treatment.saveError' => 'Treatment data could not be saved; the change was rolled back.',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.tabToday' => 'Today',
 			'treatment.tabGoals' => 'Goals',
 			'treatment.tabGames' => 'Games',
@@ -3705,8 +3743,6 @@ extension on TranslationsEn {
 			'treatment.onboardStep3' => '3. After playing, pick "Easy / Struggled" — the system handles the rest.',
 			'treatment.todayTitle' => 'Today\'s short plan',
 			'treatment.todaySubtitle' => 'Pick an item, apply it, then mark it as done.',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.streakDays' => ({required Object count}) => '${count} day streak',
 			'treatment.doneOf' => ({required Object done, required Object total}) => '${done}/${total} done',
 			'treatment.stepCount' => ({required Object count}) => '${count} steps',
@@ -4201,6 +4237,8 @@ extension on TranslationsEn {
 			'emergency.shareDisable' => 'Turn sharing off',
 			'emergency.shareValidUntil' => ({required Object date}) => 'The link is valid until ${date}.',
 			'emergency.shareCopy' => 'Copy link',
+			_ => null,
+		} ?? switch (path) {
 			'emergency.shareCopied' => 'Link copied.',
 			'emergency.shareSend' => 'Share',
 			'emergency.shareMessage' => 'You can view my child\'s emergency card here:',
@@ -4219,8 +4257,6 @@ extension on TranslationsEn {
 			'emergency.selfInjury' => 'May exhibit self-injury',
 			'emergency.wandering' => 'Risk of wandering / getting lost',
 			'emergency.nonVerbal' => 'Non-verbal',
-			_ => null,
-		} ?? switch (path) {
 			'emergency.contact1' => 'First Contact',
 			'emergency.contact2' => 'Second Contact',
 			'emergency.doctor' => 'Doctor / Hospital',

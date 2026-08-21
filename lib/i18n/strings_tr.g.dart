@@ -1968,6 +1968,60 @@ class Translations$appointments$tr {
 
 	// Translations
 
+	/// tr: 'Değerlendir'
+	String get rate => 'Değerlendir';
+
+	/// tr: 'Randevuyu değerlendir'
+	String get rateTitle => 'Randevuyu değerlendir';
+
+	/// tr: 'Yorumunuz (isteğe bağlı)'
+	String get rateComment => 'Yorumunuz (isteğe bağlı)';
+
+	/// tr: 'Gönder'
+	String get rateSave => 'Gönder';
+
+	/// tr: 'Değerlendirmeniz kaydedildi.'
+	String get rated => 'Değerlendirmeniz kaydedildi.';
+
+	/// tr: '$count yıldız'
+	String rateStars({required Object count}) => '${count} yıldız';
+
+	/// tr: 'Değerlendirmeniz'
+	String get ratingShown => 'Değerlendirmeniz';
+
+	/// tr: 'Seriyi iptal et'
+	String get cancelSeries => 'Seriyi iptal et';
+
+	/// tr: 'Tüm seri iptal edilsin mi?'
+	String get cancelSeriesTitle => 'Tüm seri iptal edilsin mi?';
+
+	/// tr: 'Bu tekrarlayan seansın gelecekteki tüm randevuları iptal edilecek.'
+	String get cancelSeriesConfirm => 'Bu tekrarlayan seansın gelecekteki tüm randevuları iptal edilecek.';
+
+	/// tr: 'Seri iptal edildi.'
+	String get seriesCancelled => 'Seri iptal edildi.';
+
+	/// tr: '$index. seans'
+	String seriesIndex({required Object index}) => '${index}. seans';
+
+	/// tr: 'Seri'
+	String get seriesBadge => 'Seri';
+
+	/// tr: 'Tekrarlayan seans'
+	String get recurrenceTitle => 'Tekrarlayan seans';
+
+	/// tr: 'Aynı gün ve saatte her hafta otomatik oluşturulur.'
+	String get recurrenceHint => 'Aynı gün ve saatte her hafta otomatik oluşturulur.';
+
+	/// tr: 'Tekil'
+	String get recurrenceSingle => 'Tekil';
+
+	/// tr: '$count hafta'
+	String recurrenceWeeks({required Object count}) => '${count} hafta';
+
+	/// tr: '$count haftalık seri oluşturuldu.'
+	String recurrenceCreated({required Object count}) => '${count} haftalık seri oluşturuldu.';
+
 	/// tr: 'Randevular'
 	String get title => 'Randevular';
 
@@ -7028,6 +7082,24 @@ extension on Translations {
 			'knowledge.tagFilterTitle' => 'Etiketlere göre daralt',
 			'knowledge.tagFilterClear' => 'Etiketleri temizle',
 			'knowledge.tagFilterCount' => ({required Object count}) => '${count} etiket seçili',
+			'appointments.rate' => 'Değerlendir',
+			'appointments.rateTitle' => 'Randevuyu değerlendir',
+			'appointments.rateComment' => 'Yorumunuz (isteğe bağlı)',
+			'appointments.rateSave' => 'Gönder',
+			'appointments.rated' => 'Değerlendirmeniz kaydedildi.',
+			'appointments.rateStars' => ({required Object count}) => '${count} yıldız',
+			'appointments.ratingShown' => 'Değerlendirmeniz',
+			'appointments.cancelSeries' => 'Seriyi iptal et',
+			'appointments.cancelSeriesTitle' => 'Tüm seri iptal edilsin mi?',
+			'appointments.cancelSeriesConfirm' => 'Bu tekrarlayan seansın gelecekteki tüm randevuları iptal edilecek.',
+			'appointments.seriesCancelled' => 'Seri iptal edildi.',
+			'appointments.seriesIndex' => ({required Object index}) => '${index}. seans',
+			'appointments.seriesBadge' => 'Seri',
+			'appointments.recurrenceTitle' => 'Tekrarlayan seans',
+			'appointments.recurrenceHint' => 'Aynı gün ve saatte her hafta otomatik oluşturulur.',
+			'appointments.recurrenceSingle' => 'Tekil',
+			'appointments.recurrenceWeeks' => ({required Object count}) => '${count} hafta',
+			'appointments.recurrenceCreated' => ({required Object count}) => '${count} haftalık seri oluşturuldu.',
 			'appointments.title' => 'Randevular',
 			'appointments.empty' => 'Henüz randevunuz yok.',
 			'appointments.upcoming' => 'Yaklaşan',
@@ -7473,6 +7545,8 @@ extension on Translations {
 			'treatment.noChildrenBody' => 'Tedavi planı için önce bir çocuk profili ekleyin.',
 			'treatment.addChild' => 'Çocuk Ekle',
 			'treatment.saveError' => 'Tedavi verileri kaydedilemedi, değişiklik geri alındı.',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.tabToday' => 'Bugün',
 			'treatment.tabGoals' => 'Hedefler',
 			'treatment.tabGames' => 'Oyunlar',
@@ -7491,8 +7565,6 @@ extension on Translations {
 			'treatment.onboardStep3' => '3. Oyun sonrası "Kolay geldi / Zorlandı" seçin — gerisini sistem halleder.',
 			'treatment.todayTitle' => 'Bugünün kısa planı',
 			'treatment.todaySubtitle' => 'Bir madde seçin, uygulayın, sonra tamamlandı olarak işaretleyin.',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.streakDays' => ({required Object count}) => '${count} gün seri',
 			'treatment.doneOf' => ({required Object done, required Object total}) => '${done}/${total} yapıldı',
 			'treatment.stepCount' => ({required Object count}) => '${count} adım',
@@ -7987,6 +8059,8 @@ extension on Translations {
 			'emergency.shareDisable' => 'Paylaşımı kapat',
 			'emergency.shareValidUntil' => ({required Object date}) => 'Bağlantı ${date} tarihine kadar geçerli.',
 			'emergency.shareCopy' => 'Bağlantıyı kopyala',
+			_ => null,
+		} ?? switch (path) {
 			'emergency.shareCopied' => 'Bağlantı kopyalandı.',
 			'emergency.shareSend' => 'Paylaş',
 			'emergency.shareMessage' => 'Çocuğumun acil durum kartını buradan görüntüleyebilirsiniz:',
@@ -8005,8 +8079,6 @@ extension on Translations {
 			'emergency.selfInjury' => 'Öz-zarar davranışı olabilir',
 			'emergency.wandering' => 'Kaçma / kaybolma riski var',
 			'emergency.nonVerbal' => 'Sözel iletişim yoktur',
-			_ => null,
-		} ?? switch (path) {
 			'emergency.contact1' => 'Birinci Kişi',
 			'emergency.contact2' => 'İkinci Kişi',
 			'emergency.doctor' => 'Doktor / Hastane',

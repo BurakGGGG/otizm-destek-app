@@ -622,6 +622,25 @@ knowledge:
   tagFilterCount: $count etiket seçili
 
 appointments:
+  rate: Değerlendir
+  rateTitle: Randevuyu değerlendir
+  rateComment: Yorumunuz (isteğe bağlı)
+  rateSave: Gönder
+  rated: Değerlendirmeniz kaydedildi.
+  rateStars: $count yıldız
+  ratingShown: Değerlendirmeniz
+  cancelSeries: Seriyi iptal et
+  cancelSeriesTitle: Tüm seri iptal edilsin mi?
+  cancelSeriesConfirm: Bu tekrarlayan seansın gelecekteki tüm randevuları
+    iptal edilecek.
+  seriesCancelled: Seri iptal edildi.
+  seriesIndex: $index. seans
+  seriesBadge: Seri
+  recurrenceTitle: Tekrarlayan seans
+  recurrenceHint: Aynı gün ve saatte her hafta otomatik oluşturulur.
+  recurrenceSingle: Tekil
+  recurrenceWeeks: $count hafta
+  recurrenceCreated: $count haftalık seri oluşturuldu.
   title: Randevular
   empty: Henüz randevunuz yok.
   upcoming: Yaklaşan

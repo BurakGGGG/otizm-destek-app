@@ -21,6 +21,8 @@ class Appointment {
     this.duration,
     this.rating,
     this.ratingComment,
+    this.recurringGroupId,
+    this.recurrenceIndex,
     this.appointmentTopic,
     this.preSessionNotes,
     this.sessionNotes,
@@ -48,6 +50,15 @@ class Appointment {
   final int? duration;
   final int? rating;
   final String? ratingComment;
+
+  /// Tekrarlayan seans serisinin kimliği (seriyi topluca iptal etmek için).
+  final String? recurringGroupId;
+
+  /// Seride kaçıncı seans (1 tabanlı).
+  final int? recurrenceIndex;
+
+  /// Seriye ait mi.
+  bool get isRecurring => (recurringGroupId ?? '').isNotEmpty;
 
   /// Randevu detayındaki serbest metinler (veli ve uzmanın girdiği veri).
   final String? appointmentTopic;
@@ -117,6 +128,8 @@ class Appointment {
       duration: (json['duration'] as num?)?.toInt(),
       rating: (json['rating'] as num?)?.toInt(),
       ratingComment: json['ratingComment'] as String?,
+      recurringGroupId: json['recurringGroupId']?.toString(),
+      recurrenceIndex: (json['recurrenceIndex'] as num?)?.toInt(),
       appointmentTopic: json['appointmentTopic'] as String?,
       preSessionNotes: json['preSessionNotes'] as String?,
       sessionNotes: json['sessionNotes'] as String?,

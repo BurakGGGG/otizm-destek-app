@@ -239,6 +239,8 @@ class _FakeAppointmentRepository extends AppointmentRepository {
         childName: 'Ada',
         type: 'FACE_TO_FACE',
         duration: 40,
+        recurringGroupId: 'rg1',
+        recurrenceIndex: 2,
       ),
       Appointment(
         id: 'a3',
@@ -252,6 +254,17 @@ class _FakeAppointmentRepository extends AppointmentRepository {
         duration: 50,
         sessionSummary: 'Ortak dikkat çalışmaları tekrar edildi.',
         rating: 5,
+      ),
+      Appointment(
+        id: 'a4',
+        date: now.subtract(const Duration(days: 2)),
+        time: '10:00',
+        status: 'COMPLETED',
+        expertId: 'e2',
+        expertName: 'Dr. Mert Kaya',
+        childName: 'Ada',
+        type: 'FACE_TO_FACE',
+        duration: 40,
       ),
     ];
   }

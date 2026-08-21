@@ -139,6 +139,32 @@ class AppointmentRepository {
   }
 
   /// Yeni randevu oluştur (PARENT).
+  /// Tamamlanmış randevuyu puanlar (veliye kısıtlı).
+  Future<Appointment> rate(String id, int rating, {String? comment}) async {
+    try {
+      final res = await _dio.patch(
+        '/appointments/$id/rate',
+        queryParameters: {
+          'rating': rating,
+          if (comment != null && comment.trim().isNotEmpty)
+            'comment': comment.trim(),
+        },
+      );
+      return Appointment.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Tekrarlayan seans serisinin tamamını iptal eder.
+  Future<void> cancelSeries(String groupId) async {
+    try {
+      await _dio.delete('/appointments/group/$groupId');
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
   Future<Appointment> create({
     required String expertId,
     required String childId,
@@ -147,6 +173,7 @@ class AppointmentRepository {
     required String type, // ONLINE | FACE_TO_FACE
     int duration = 50,
     String? notes,
+    int? recurrenceWeeks,
   }) async {
     try {
       final res = await _dio.post(
@@ -159,6 +186,9 @@ class AppointmentRepository {
           'type': type,
           'duration': duration,
           if (notes != null && notes.trim().isNotEmpty) 'notes': notes.trim(),
+          // Web tekil randevuda alanı hiç göndermiyor.
+          if (recurrenceWeeks != null && recurrenceWeeks > 1)
+            'recurrenceWeeks': recurrenceWeeks,
         },
       );
       return Appointment.fromJson(ApiEnvelope.fromJson(res.data).requireMap());

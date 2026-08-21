@@ -621,6 +621,25 @@ knowledge:
   tagFilterCount: $count tags selected
 
 appointments:
+  rate: Rate
+  rateTitle: Rate this appointment
+  rateComment: Your comment (optional)
+  rateSave: Send
+  rated: Your rating has been saved.
+  rateStars: $count stars
+  ratingShown: Your rating
+  cancelSeries: Cancel series
+  cancelSeriesTitle: Cancel the whole series?
+  cancelSeriesConfirm: All upcoming appointments in this recurring series will
+    be cancelled.
+  seriesCancelled: Series cancelled.
+  seriesIndex: Session $index
+  seriesBadge: Series
+  recurrenceTitle: Recurring sessions
+  recurrenceHint: Created automatically every week at the same day and time.
+  recurrenceSingle: Single
+  recurrenceWeeks: $count weeks
+  recurrenceCreated: A $count-week series has been created.
   title: Appointments
   empty: You don't have any appointments yet.
   upcoming: Upcoming

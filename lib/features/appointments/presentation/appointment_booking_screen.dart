@@ -27,6 +27,9 @@ class _AppointmentBookingScreenState
   static const _duration = 50;
 
   final _notes = TextEditingController();
+
+  /// Tekrarlayan seans: 0 = tekil (web'deki seçeneklerle birebir).
+  int _recurrenceWeeks = 0;
   String? _childId;
   /// Uzmanın sunduğu biçime göre başlar: yalnızca online çalışan bir uzmanda
   /// yüz yüze seçilemez (web bu bayrakları randevu formunda kullanmıyor).
@@ -125,11 +128,16 @@ class _AppointmentBookingScreenState
             type: _type,
             duration: _duration,
             notes: _notes.text,
+            recurrenceWeeks: _recurrenceWeeks,
           );
       ref.invalidate(appointmentsProvider);
       if (!mounted) return;
       Haptics.success();
-      Navigator.of(context).pop(t.booking.created);
+      Navigator.of(context).pop(
+        _recurrenceWeeks > 1
+            ? t.appointments.recurrenceCreated(count: _recurrenceWeeks)
+            : t.booking.created,
+      );
     } on ApiException catch (e) {
       if (mounted) {
         setState(() => _submitting = false);
@@ -230,6 +238,34 @@ class _AppointmentBookingScreenState
             // Saat (slot)
             _Label(t.booking.timeLabel),
             _slotArea(t),
+            const SizedBox(height: 20),
+
+            // Tekrarlayan seans (web: Tekil / 4 / 8 / 12 / 24 hafta)
+            _Label(t.appointments.recurrenceTitle),
+            Text(
+              t.appointments.recurrenceHint,
+              style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    color: context.colors.textTertiary,
+                  ),
+            ),
+            const SizedBox(height: 8),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                for (final weeks in const [0, 4, 8, 12, 24])
+                  ChoiceChip(
+                    label: Text(
+                      weeks == 0
+                          ? t.appointments.recurrenceSingle
+                          : t.appointments.recurrenceWeeks(count: weeks),
+                    ),
+                    selected: _recurrenceWeeks == weeks,
+                    onSelected: (_) =>
+                        setState(() => _recurrenceWeeks = weeks),
+                  ),
+              ],
+            ),
             const SizedBox(height: 20),
 
             // Not

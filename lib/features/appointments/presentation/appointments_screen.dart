@@ -303,6 +303,67 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
     );
   }
 
+  /// Tamamlanmış randevuyu 1-5 yıldız ve isteğe bağlı yorumla puanlar.
+  Future<void> _rate() async {
+    final t = context.t;
+    final result = await showModalBottomSheet<({int rating, String comment})>(
+      context: context,
+      isScrollControlled: true,
+      builder: (_) => const _RateSheet(),
+    );
+    if (result == null) return;
+    Haptics.success();
+    await _run(
+      () => ref.read(appointmentRepositoryProvider).rate(
+            a.id,
+            result.rating,
+            comment: result.comment,
+          ),
+      t.appointments.rated,
+    );
+  }
+
+  /// Tekrarlayan seansın tüm gelecekteki randevularını iptal eder.
+  Future<void> _cancelSeries() async {
+    final t = context.t;
+    final groupId = a.recurringGroupId;
+    if (groupId == null) return;
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(t.appointments.cancelSeriesTitle),
+        content: Text(t.appointments.cancelSeriesConfirm),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(false),
+            child: Text(t.appointments.keepIt),
+          ),
+          FilledButton(
+            style: FilledButton.styleFrom(
+              backgroundColor: context.colors.error,
+            ),
+            onPressed: () => Navigator.of(ctx).pop(true),
+            child: Text(t.appointments.cancelSeries),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !mounted) return;
+    Haptics.warning();
+    setState(() => _busy = true);
+    final messenger = ScaffoldMessenger.of(context);
+    try {
+      await ref.read(appointmentRepositoryProvider).cancelSeries(groupId);
+      ref.invalidate(appointmentsProvider);
+      messenger.showSnackBar(
+        SnackBar(content: Text(t.appointments.seriesCancelled)),
+      );
+    } on ApiException catch (e) {
+      if (mounted) setState(() => _busy = false);
+      messenger.showSnackBar(SnackBar(content: Text(e.message)));
+    }
+  }
+
   Future<void> _reschedule() async {
     final t = context.t;
     final expertId = a.expertId;
@@ -355,6 +416,10 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
+                if (a.isRecurring) ...[
+                  _SeriesBadge(index: a.recurrenceIndex),
+                  const SizedBox(width: 6),
+                ],
                 _StatusChip(kind: a.statusKind),
               ],
             ),
@@ -378,6 +443,30 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
               _InfoRow(
                 icon: Icons.child_care_outlined,
                 text: t.appointments.withChild(name: a.childName!),
+              ),
+            if (a.rating case final rating?)
+              Padding(
+                padding: const EdgeInsets.only(top: 6),
+                child: Row(
+                  children: [
+                    for (var i = 1; i <= 5; i++)
+                      Icon(
+                        i <= rating
+                            ? Icons.star_rounded
+                            : Icons.star_border_rounded,
+                        size: 16,
+                        color: i <= rating
+                            ? context.colors.warning
+                            : context.colors.textTertiary,
+                      ),
+                    const SizedBox(width: 6),
+                    Text(
+                      t.appointments.ratingShown,
+                      style: text.labelSmall
+                          ?.copyWith(color: context.colors.textTertiary),
+                    ),
+                  ],
+                ),
               ),
             if (a.notes?.isNotEmpty ?? false)
               Padding(
@@ -425,6 +514,7 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
   List<Widget> _actions(Translations t) {
     final buttons = <Widget>[
       OutlinedButton.icon(
+        style: AppButtonStyles.inlineOutlined,
         onPressed: () => showModalBottomSheet<void>(
           context: context,
           isScrollControlled: true,
@@ -444,6 +534,7 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
     if (canReschedule) {
       buttons.add(
         OutlinedButton.icon(
+          style: AppButtonStyles.inlineOutlined,
           onPressed: _busy ? null : _reschedule,
           icon: const Icon(Icons.edit_calendar_outlined, size: 18),
           label: Text(t.appointments.reschedule),
@@ -455,6 +546,7 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
       if (kind == AppointmentStatusKind.pending) {
         buttons.add(
           FilledButton.tonalIcon(
+            style: AppButtonStyles.inlineFilled,
             onPressed: _busy
                 ? null
                 : () => _run(
@@ -468,6 +560,7 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
       } else if (kind == AppointmentStatusKind.confirmed) {
         buttons.add(
           FilledButton.tonalIcon(
+            style: AppButtonStyles.inlineFilled,
             onPressed: _busy
                 ? null
                 : () => _run(
@@ -490,36 +583,173 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
             onPressed: _busy ? null : _cancel,
             style: OutlinedButton.styleFrom(
               foregroundColor: context.colors.error,
+              minimumSize: const Size(0, AppTheme.minTapTarget),
             ),
             icon: const Icon(Icons.close, size: 18),
             label: Text(t.appointments.cancel),
           ),
         );
       }
+      // Tamamlanmış ve henüz puanlanmamış randevu değerlendirilebilir.
+      if (kind == AppointmentStatusKind.completed && a.rating == null) {
+        buttons.add(
+          FilledButton.tonalIcon(
+            style: AppButtonStyles.inlineFilled,
+            onPressed: _busy ? null : _rate,
+            icon: const Icon(Icons.star_border_rounded, size: 18),
+            label: Text(t.appointments.rate),
+          ),
+        );
+      }
+      // Seriye ait, iptal edilebilir bir randevuda tüm seri iptal edilebilir.
+      if (a.isRecurring &&
+          (kind == AppointmentStatusKind.pending ||
+              kind == AppointmentStatusKind.confirmed)) {
+        buttons.add(
+          OutlinedButton.icon(
+            style: AppButtonStyles.inlineOutlined,
+            onPressed: _busy ? null : _cancelSeries,
+            icon: const Icon(Icons.repeat, size: 18),
+            label: Text(t.appointments.cancelSeries),
+          ),
+        );
+      }
     }
 
-    // Temada dolgulu/çerçeveli butonların asgari genişliği sonsuz olduğu için
-    // satır içindeki her buton Expanded ile sınırlanmalı (bkz. CLAUDE.md).
+    // Butonlar dörde çıkabildiği için satır yerine Wrap: dar ekranda alt
+    // satıra iner. Satır içi biçim zorunlu — temada asgari genişlik sonsuz
+    // (bkz. CLAUDE.md).
     return [
       const SizedBox(height: 10),
-      Row(
+      Wrap(
+        spacing: 8,
+        runSpacing: 8,
+        crossAxisAlignment: WrapCrossAlignment.center,
         children: [
           if (_busy)
-            const Padding(
-              padding: EdgeInsets.only(right: 12),
-              child: SizedBox(
-                height: 18,
-                width: 18,
-                child: CircularProgressIndicator(strokeWidth: 2),
-              ),
+            const SizedBox(
+              height: 18,
+              width: 18,
+              child: CircularProgressIndicator(strokeWidth: 2),
             ),
-          for (var i = 0; i < buttons.length; i++) ...[
-            if (i > 0) const SizedBox(width: 8),
-            Expanded(child: buttons[i]),
-          ],
+          ...buttons,
         ],
       ),
     ];
+  }
+}
+
+/// Tekrarlayan seans rozeti ("3. seans" ya da "Seri").
+class _SeriesBadge extends StatelessWidget {
+  const _SeriesBadge({this.index});
+
+  final int? index;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    final colors = context.colors;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+      decoration: BoxDecoration(
+        color: colors.primaryContainer,
+        borderRadius: BorderRadius.circular(AppRadius.full),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.repeat, size: 12, color: colors.primary),
+          const SizedBox(width: 4),
+          Text(
+            index == null
+                ? t.appointments.seriesBadge
+                : t.appointments.seriesIndex(index: index!),
+            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                  color: colors.primary,
+                  fontWeight: FontWeight.w700,
+                ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Randevu değerlendirme formu (1-5 yıldız + isteğe bağlı yorum).
+class _RateSheet extends StatefulWidget {
+  const _RateSheet();
+
+  @override
+  State<_RateSheet> createState() => _RateSheetState();
+}
+
+class _RateSheetState extends State<_RateSheet> {
+  final _comment = TextEditingController();
+  int _rating = 5;
+
+  @override
+  void dispose() {
+    _comment.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    final text = Theme.of(context).textTheme;
+
+    return Padding(
+      padding: EdgeInsets.only(
+        left: AppSpacing.margin,
+        right: AppSpacing.margin,
+        top: AppSpacing.md,
+        bottom: MediaQuery.viewInsetsOf(context).bottom + AppSpacing.md,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(t.appointments.rateTitle, style: text.titleMedium),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              for (var i = 1; i <= 5; i++)
+                IconButton(
+                  tooltip: t.appointments.rateStars(count: i),
+                  onPressed: () => setState(() => _rating = i),
+                  icon: Icon(
+                    i <= _rating
+                        ? Icons.star_rounded
+                        : Icons.star_border_rounded,
+                    size: 30,
+                    color: i <= _rating
+                        ? context.colors.warning
+                        : context.colors.textTertiary,
+                  ),
+                ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          TextField(
+            controller: _comment,
+            minLines: 2,
+            maxLines: 4,
+            textCapitalization: TextCapitalization.sentences,
+            decoration:
+                InputDecoration(labelText: t.appointments.rateComment),
+          ),
+          const SizedBox(height: 16),
+          FilledButton.icon(
+            onPressed: () => Navigator.of(context).pop(
+              (rating: _rating, comment: _comment.text),
+            ),
+            icon: const Icon(Icons.send_outlined, size: 18),
+            label: Text(t.appointments.rateSave),
+          ),
+          const SizedBox(height: 8),
+        ],
+      ),
+    );
   }
 }
 
