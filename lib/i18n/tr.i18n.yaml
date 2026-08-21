@@ -411,6 +411,8 @@ messages:
   deleteMessage: Mesajı sil
 
 home:
+  weeklyTopicBadge: Haftanın sorusu
+  weeklyTopicReplies: $count aile yanıtladı
   learningPathBadge: Size özel video rehberi
   learningPathTitle: Nereden başlayacağınızı bilmiyor musunuz?
   learningPathBody: Kısa videolarla uygulamayı adım adım tanıyın; ilk video

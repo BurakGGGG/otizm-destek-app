@@ -410,6 +410,8 @@ messages:
   deleteMessage: Delete message
 
 home:
+  weeklyTopicBadge: Question of the week
+  weeklyTopicReplies: $count families replied
   learningPathBadge: A video guide for you
   learningPathTitle: Not sure where to start?
   learningPathBody: Get to know the app step by step with short videos; the

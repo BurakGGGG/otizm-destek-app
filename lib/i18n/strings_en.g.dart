@@ -624,6 +624,8 @@ class _Translations$home$en extends Translations$home$tr {
 	final TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	@override String get weeklyTopicBadge => 'Question of the week';
+	@override String weeklyTopicReplies({required Object count}) => '${count} families replied';
 	@override String get learningPathBadge => 'A video guide for you';
 	@override String get learningPathTitle => 'Not sure where to start?';
 	@override String get learningPathBody => 'Get to know the app step by step with short videos; the first one covers daily tracking and the plan.';
@@ -3135,6 +3137,8 @@ extension on TranslationsEn {
 			'messages.searchInChat' => 'Search in chat',
 			'messages.searchNoResults' => 'No messages match this search.',
 			'messages.deleteMessage' => 'Delete message',
+			'home.weeklyTopicBadge' => 'Question of the week',
+			'home.weeklyTopicReplies' => ({required Object count}) => '${count} families replied',
 			'home.learningPathBadge' => 'A video guide for you',
 			'home.learningPathTitle' => 'Not sure where to start?',
 			'home.learningPathBody' => 'Get to know the app step by step with short videos; the first one covers daily tracking and the plan.',
@@ -3275,10 +3279,10 @@ extension on TranslationsEn {
 			'progress.rewardLine' => ({required Object title}) => 'Reward: ${title}',
 			'goalForm.title' => 'Add Goal',
 			'goalForm.nameLabel' => 'Title',
-			'goalForm.nameHint' => 'e.g. Making eye contact',
-			'goalForm.categoryLabel' => 'Category',
 			_ => null,
 		} ?? switch (path) {
+			'goalForm.nameHint' => 'e.g. Making eye contact',
+			'goalForm.categoryLabel' => 'Category',
 			'goalForm.targetLabel' => 'Target Count',
 			'goalForm.descriptionLabel' => 'Description (optional)',
 			'goalForm.descriptionHint' => 'Details about the goal',
@@ -3789,10 +3793,10 @@ extension on TranslationsEn {
 			'groups.updated' => 'Group updated.',
 			'groups.deleteTitle' => 'Delete group',
 			'groups.deleteConfirm' => ({required Object name}) => 'The group "${name}" and its chat will be permanently deleted.',
-			'groups.deleted' => 'Group deleted.',
-			'groups.chatUnread' => ({required Object count}) => 'Chat (${count})',
 			_ => null,
 		} ?? switch (path) {
+			'groups.deleted' => 'Group deleted.',
+			'groups.chatUnread' => ({required Object count}) => 'Chat (${count})',
 			'groups.detailTitle' => 'Group details',
 			'groups.detailHint' => 'Members and meetings are visible to group members only.',
 			'groups.membersTitle' => 'Members',
@@ -4303,10 +4307,10 @@ extension on TranslationsEn {
 			'crisis.cards.anxiety.steps.2' => 'Use the "see 5 things, touch 4 things" grounding exercise.',
 			'crisis.cards.anxiety.steps.3' => 'Offer a safe person or object (favorite toy, headphones).',
 			'crisis.cards.anxiety.steps.4' => 'Give time for it to pass; don\'t rush them.',
-			'crisis.cards.anxiety.avoid.0' => 'Don\'t belittle it by saying "Calm down, it\'s fine."',
-			'crisis.cards.anxiety.avoid.1' => 'Don\'t keep asking and applying pressure.',
 			_ => null,
 		} ?? switch (path) {
+			'crisis.cards.anxiety.avoid.0' => 'Don\'t belittle it by saying "Calm down, it\'s fine."',
+			'crisis.cards.anxiety.avoid.1' => 'Don\'t keep asking and applying pressure.',
 			'crisis.cards.anxiety.avoid.2' => 'Don\'t add new demands during anxiety.',
 			'calendar.title' => 'Calendar',
 			'calendar.subtitle' => 'Child-specific therapy, doctor and activity schedule.',

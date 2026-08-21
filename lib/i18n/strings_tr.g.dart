@@ -1305,6 +1305,12 @@ class Translations$home$tr {
 
 	// Translations
 
+	/// tr: 'Haftanın sorusu'
+	String get weeklyTopicBadge => 'Haftanın sorusu';
+
+	/// tr: '$count aile yanıtladı'
+	String weeklyTopicReplies({required Object count}) => '${count} aile yanıtladı';
+
 	/// tr: 'Size özel video rehberi'
 	String get learningPathBadge => 'Size özel video rehberi';
 
@@ -7093,6 +7099,8 @@ extension on Translations {
 			'messages.searchInChat' => 'Sohbette ara',
 			'messages.searchNoResults' => 'Bu aramaya uyan mesaj yok.',
 			'messages.deleteMessage' => 'Mesajı sil',
+			'home.weeklyTopicBadge' => 'Haftanın sorusu',
+			'home.weeklyTopicReplies' => ({required Object count}) => '${count} aile yanıtladı',
 			'home.learningPathBadge' => 'Size özel video rehberi',
 			'home.learningPathTitle' => 'Nereden başlayacağınızı bilmiyor musunuz?',
 			'home.learningPathBody' => 'Kısa videolarla uygulamayı adım adım tanıyın; ilk video günlük takibi ve planı anlatıyor.',
@@ -7233,10 +7241,10 @@ extension on Translations {
 			'progress.rewardLine' => ({required Object title}) => 'Ödül: ${title}',
 			'goalForm.title' => 'Hedef Ekle',
 			'goalForm.nameLabel' => 'Başlık',
-			'goalForm.nameHint' => 'Örn. Göz teması kurma',
-			'goalForm.categoryLabel' => 'Kategori',
 			_ => null,
 		} ?? switch (path) {
+			'goalForm.nameHint' => 'Örn. Göz teması kurma',
+			'goalForm.categoryLabel' => 'Kategori',
 			'goalForm.targetLabel' => 'Hedef Sayısı',
 			'goalForm.descriptionLabel' => 'Açıklama (isteğe bağlı)',
 			'goalForm.descriptionHint' => 'Hedefle ilgili detay',
@@ -7747,10 +7755,10 @@ extension on Translations {
 			'groups.updated' => 'Grup güncellendi.',
 			'groups.deleteTitle' => 'Grubu sil',
 			'groups.deleteConfirm' => ({required Object name}) => '"${name}" grubu ve sohbeti kalıcı olarak silinecek.',
-			'groups.deleted' => 'Grup silindi.',
-			'groups.chatUnread' => ({required Object count}) => 'Sohbet (${count})',
 			_ => null,
 		} ?? switch (path) {
+			'groups.deleted' => 'Grup silindi.',
+			'groups.chatUnread' => ({required Object count}) => 'Sohbet (${count})',
 			'groups.detailTitle' => 'Grup Detayı',
 			'groups.detailHint' => 'Üye listesi ve buluşmalar yalnızca grup üyelerine görünür.',
 			'groups.membersTitle' => 'Üyeler',
@@ -8261,10 +8269,10 @@ extension on Translations {
 			'crisis.cards.anxiety.steps.2' => '"Şu an 5 şey gör, 4 şey dokun" duyusal zemin egzersizi uygulayın.',
 			'crisis.cards.anxiety.steps.3' => 'Güvenli kişi veya nesne sunun (sevdiği oyuncak, kulaklık).',
 			'crisis.cards.anxiety.steps.4' => 'Krizin geçmesi için zaman verin, acele ettirmeyin.',
-			'crisis.cards.anxiety.avoid.0' => '"Sakin ol, sorun yok" diyerek küçümsemeyin.',
-			'crisis.cards.anxiety.avoid.1' => 'Sormaya devam edip baskı uygulamayın.',
 			_ => null,
 		} ?? switch (path) {
+			'crisis.cards.anxiety.avoid.0' => '"Sakin ol, sorun yok" diyerek küçümsemeyin.',
+			'crisis.cards.anxiety.avoid.1' => 'Sormaya devam edip baskı uygulamayın.',
 			'crisis.cards.anxiety.avoid.2' => 'Kaygı anında yeni talep eklemeyin.',
 			'calendar.title' => 'Takvim',
 			'calendar.subtitle' => 'Çocuğa özel terapi, doktor ve etkinlik planı.',

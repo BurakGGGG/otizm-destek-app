@@ -42,6 +42,14 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text(t.home.learningPathTitle), findsNothing);
   });
+
+  testWidgets('haftanın sorusu kartı ana sayfada görünür', (tester) async {
+    final t = AppLocale.tr.buildSync();
+    usePhoneSurface(tester);
+    await tester.pumpWidget(hostApp(const Scaffold(body: HomeTab())));
+    await settleScreen(tester);
+    expect(find.text(t.home.weeklyTopicBadge), findsOneWidget);
+  });
 }
 
 class _WatchedFirstVideo extends WatchedVideosController {
