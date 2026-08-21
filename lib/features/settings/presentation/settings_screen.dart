@@ -94,6 +94,16 @@ class SettingsScreen extends ConsumerWidget {
                 _PrefSwitch(
                   pref: AppPreference.privacyAllowMessages,
                   label: t.settings.privacyAllowMessages,
+                  onServer: (ref, value) => ref
+                      .read(authControllerProvider.notifier)
+                      .updateProfile(allowDirectMessages: value),
+                ),
+                _PrefSwitch(
+                  pref: AppPreference.privacyFamilyMessages,
+                  label: t.settings.privacyFamilyMessages,
+                  onServer: (ref, value) => ref
+                      .read(authControllerProvider.notifier)
+                      .updateProfile(allowFamilyMessages: value),
                 ),
                 if (!isExpert)
                   _PrefSwitch(
@@ -103,11 +113,18 @@ class SettingsScreen extends ConsumerWidget {
                 _PrefSwitch(
                   pref: AppPreference.privacyApproximateLocation,
                   label: t.settings.privacyApproximateLocation,
+                  onServer: (ref, value) => ref
+                      .read(authControllerProvider.notifier)
+                      .updateProfile(approximateLocationOnly: value),
                 ),
                 _PrefSwitch(
                   pref: AppPreference.privacyHidePresence,
                   label: t.settings.privacyHidePresence,
+                  onServer: (ref, value) => ref
+                      .read(authControllerProvider.notifier)
+                      .updateProfile(hideOnlineStatus: value),
                 ),
+                if (!isExpert) const _MatchingPreferences(),
                 // Uzmanların çocuk verisine erişimi cihaz tercihi değil,
                 // sunucudaki onaylardır — ayrı ekrana götürülür.
                 ListTile(
@@ -300,16 +317,126 @@ class _Section extends StatelessWidget {
 }
 
 /// Cihazda saklanan bir tercihi açıp kapatan anahtar.
+/// Eşleşme tercihleri — sunucuda saklanır (`PUT /users/me`).
+///
+/// Kodlar paylaşılan veridir (DENEYIM_PAYLASIMI, YAZISMA…); yalnızca
+/// etiketler çevrilir. Web Ayarlar > Gizlilik altında aynı iki grup var.
+class _MatchingPreferences extends ConsumerStatefulWidget {
+  const _MatchingPreferences();
+
+  @override
+  ConsumerState<_MatchingPreferences> createState() =>
+      _MatchingPreferencesState();
+}
+
+class _MatchingPreferencesState extends ConsumerState<_MatchingPreferences> {
+  late Set<String> _intents;
+  late Set<String> _comms;
+  bool _seeded = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    final text = Theme.of(context).textTheme;
+    final user = ref.watch(authControllerProvider).user;
+    if (!_seeded && user != null) {
+      _seeded = true;
+      _intents = {...user.supportIntents};
+      _comms = {...user.communicationPreferences};
+    } else if (!_seeded) {
+      _intents = {};
+      _comms = {};
+    }
+
+    final intents = <String, String>{
+      'DENEYIM_PAYLASIMI': t.settings.intentExperience,
+      'DUZENLI_DESTEK': t.settings.intentRegular,
+      'YEREL_BULUSMA': t.settings.intentLocalMeet,
+      'MENTOR_ARIYOR': t.settings.intentSeekMentor,
+      'MENTORLUK': t.settings.intentBeMentor,
+    };
+    final comms = <String, String>{
+      'YAZISMA': t.settings.commWriting,
+      'GORUNTULU': t.settings.commVideo,
+      'AKSAM': t.settings.commEvening,
+    };
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 8),
+        Text(t.settings.matchingTitle, style: text.bodyMedium),
+        Text(
+          t.settings.matchingHint,
+          style: text.labelSmall?.copyWith(color: context.colors.textTertiary),
+        ),
+        const SizedBox(height: 8),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            for (final entry in intents.entries)
+              FilterChip(
+                label: Text(entry.value),
+                selected: _intents.contains(entry.key),
+                onSelected: (_) => _toggle(_intents, entry.key, intents: true),
+              ),
+          ],
+        ),
+        const SizedBox(height: 12),
+        Text(t.settings.communicationTitle, style: text.bodyMedium),
+        const SizedBox(height: 8),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            for (final entry in comms.entries)
+              FilterChip(
+                label: Text(entry.value),
+                selected: _comms.contains(entry.key),
+                onSelected: (_) => _toggle(_comms, entry.key, intents: false),
+              ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Future<void> _toggle(
+    Set<String> target,
+    String code, {
+    required bool intents,
+  }) async {
+    Haptics.selection();
+    setState(() {
+      target.contains(code) ? target.remove(code) : target.add(code);
+    });
+    final messenger = ScaffoldMessenger.of(context);
+    final error = await ref.read(authControllerProvider.notifier).updateProfile(
+          supportIntents: intents ? _intents.toList() : null,
+          communicationPreferences: intents ? null : _comms.toList(),
+        );
+    if (error != null && mounted) {
+      messenger.showSnackBar(SnackBar(content: Text(error)));
+    }
+  }
+}
+
 class _PrefSwitch extends ConsumerWidget {
   const _PrefSwitch({
     required this.pref,
     required this.label,
     this.description,
+    this.onServer,
   });
 
   final AppPreference pref;
   final String label;
   final String? description;
+
+  /// Cihaz tercihiyle birlikte sunucuya da yazılan anahtarlarda çalışır
+  /// (web de aynı dört tercihi `PUT /users/me` ile saklıyor).
+  final Future<String?> Function(WidgetRef ref, bool value)? onServer;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -325,6 +452,14 @@ class _PrefSwitch extends ConsumerWidget {
       onChanged: (value) {
         Haptics.selection();
         ref.read(appPreferencesProvider.notifier).set(pref, value);
+        // Sunucu yazımı düşse de cihaz tercihi korunur; hata gösterilir.
+        final messenger = ScaffoldMessenger.of(context);
+        final failure = onServer?.call(ref, value);
+        failure?.then((error) {
+          if (error != null) {
+            messenger.showSnackBar(SnackBar(content: Text(error)));
+          }
+        });
       },
     );
   }

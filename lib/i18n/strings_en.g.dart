@@ -340,6 +340,18 @@ class _Translations$settings$en extends Translations$settings$tr {
 	final TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	@override String get privacyFamilyMessages => 'Let other families message me';
+	@override String get matchingTitle => 'What are you looking for in the community?';
+	@override String get matchingHint => 'Shown in match suggestions and on your profile.';
+	@override String get communicationTitle => 'Your communication preference';
+	@override String get intentExperience => 'Sharing experience';
+	@override String get intentRegular => 'Regular conversation';
+	@override String get intentLocalMeet => 'Meeting nearby';
+	@override String get intentSeekMentor => 'Looking for a mentor';
+	@override String get intentBeMentor => 'Can be a mentor';
+	@override String get commWriting => 'Messaging first';
+	@override String get commVideo => 'Video calls';
+	@override String get commEvening => 'I reply in the evening';
 	@override String get title => 'Settings';
 	@override String get notificationsTitle => 'Notifications';
 	@override String get notificationsSubtitle => 'Choose what you want to be notified about.';
@@ -2846,6 +2858,18 @@ extension on TranslationsEn {
 			'register.emailTaken' => 'This email address is already registered. Try signing in.',
 			'register.emailAvailable' => 'This email address is available.',
 			'register.errorKvkkRequired' => 'KVKK consent is required to continue.',
+			'settings.privacyFamilyMessages' => 'Let other families message me',
+			'settings.matchingTitle' => 'What are you looking for in the community?',
+			'settings.matchingHint' => 'Shown in match suggestions and on your profile.',
+			'settings.communicationTitle' => 'Your communication preference',
+			'settings.intentExperience' => 'Sharing experience',
+			'settings.intentRegular' => 'Regular conversation',
+			'settings.intentLocalMeet' => 'Meeting nearby',
+			'settings.intentSeekMentor' => 'Looking for a mentor',
+			'settings.intentBeMentor' => 'Can be a mentor',
+			'settings.commWriting' => 'Messaging first',
+			'settings.commVideo' => 'Video calls',
+			'settings.commEvening' => 'I reply in the evening',
 			'settings.title' => 'Settings',
 			'settings.notificationsTitle' => 'Notifications',
 			'settings.notificationsSubtitle' => 'Choose what you want to be notified about.',
@@ -3197,6 +3221,8 @@ extension on TranslationsEn {
 			'notesPage.noChildren' => 'Add a child profile first.',
 			'notesPage.loadMore' => 'Load More',
 			'notesPage.edit' => 'Edit',
+			_ => null,
+		} ?? switch (path) {
 			'notesPage.delete' => 'Delete',
 			'notesPage.cancel' => 'Cancel',
 			'notesPage.deleteTitle' => 'Delete Note',
@@ -3209,8 +3235,6 @@ extension on TranslationsEn {
 			'notifications.dateLine' => ({required Object day, required Object month, required Object time}) => '${day} ${month} · ${time}',
 			'notifications.noneInFilter' => 'No notifications match this filter.',
 			'notifications.unreadOnly' => 'Unread only',
-			_ => null,
-		} ?? switch (path) {
 			'notifications.selectedCount' => ({required Object count}) => '${count} selected',
 			'notifications.deleteSelected' => 'Delete selected',
 			'notifications.groupToday' => 'Today',
@@ -3711,6 +3735,8 @@ extension on TranslationsEn {
 			'groups.descriptionLabel' => 'Description',
 			'groups.descriptionHint' => 'What is the group about, who can join?',
 			'groups.categoryLabel' => 'Category',
+			_ => null,
+		} ?? switch (path) {
 			'groups.create' => 'Create',
 			'groups.created' => 'Group created.',
 			'groups.errorName' => 'Please enter a group name.',
@@ -3723,8 +3749,6 @@ extension on TranslationsEn {
 			'treatment.noChildrenBody' => 'Add a child profile first to build a treatment plan.',
 			'treatment.addChild' => 'Add Child',
 			'treatment.saveError' => 'Treatment data could not be saved; the change was rolled back.',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.tabToday' => 'Today',
 			'treatment.tabGoals' => 'Goals',
 			'treatment.tabGames' => 'Games',
@@ -4225,6 +4249,8 @@ extension on TranslationsEn {
 			'emergency.save' => 'Save',
 			'emergency.saved' => 'Emergency card saved.',
 			'emergency.shareTitle' => 'Share with a QR code',
+			_ => null,
+		} ?? switch (path) {
 			'emergency.shareBody' => 'Create a time-limited link; a teacher or paramedic can open the card from it. You can revoke the link at any time.',
 			'emergency.shareConsentRequired' => 'Sharing requires the "Emergency card sharing" consent.',
 			'emergency.shareOpenConsents' => 'Open consent settings',
@@ -4237,8 +4263,6 @@ extension on TranslationsEn {
 			'emergency.shareDisable' => 'Turn sharing off',
 			'emergency.shareValidUntil' => ({required Object date}) => 'The link is valid until ${date}.',
 			'emergency.shareCopy' => 'Copy link',
-			_ => null,
-		} ?? switch (path) {
 			'emergency.shareCopied' => 'Link copied.',
 			'emergency.shareSend' => 'Share',
 			'emergency.shareMessage' => 'You can view my child\'s emergency card here:',

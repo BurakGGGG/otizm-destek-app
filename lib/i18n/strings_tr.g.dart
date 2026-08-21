@@ -579,6 +579,42 @@ class Translations$settings$tr {
 
 	// Translations
 
+	/// tr: 'Diğer aileler bana mesaj gönderebilsin'
+	String get privacyFamilyMessages => 'Diğer aileler bana mesaj gönderebilsin';
+
+	/// tr: 'Toplulukta ne arıyorsunuz?'
+	String get matchingTitle => 'Toplulukta ne arıyorsunuz?';
+
+	/// tr: 'Eşleşme önerilerinde ve profilinde görünür.'
+	String get matchingHint => 'Eşleşme önerilerinde ve profilinde görünür.';
+
+	/// tr: 'İletişim tercihiniz'
+	String get communicationTitle => 'İletişim tercihiniz';
+
+	/// tr: 'Deneyim paylaşımı'
+	String get intentExperience => 'Deneyim paylaşımı';
+
+	/// tr: 'Düzenli konuşma'
+	String get intentRegular => 'Düzenli konuşma';
+
+	/// tr: 'Yakında buluşma'
+	String get intentLocalMeet => 'Yakında buluşma';
+
+	/// tr: 'Mentor arıyorum'
+	String get intentSeekMentor => 'Mentor arıyorum';
+
+	/// tr: 'Mentorluk yapabilirim'
+	String get intentBeMentor => 'Mentorluk yapabilirim';
+
+	/// tr: 'Önce yazışma'
+	String get commWriting => 'Önce yazışma';
+
+	/// tr: 'Görüntülü görüşme'
+	String get commVideo => 'Görüntülü görüşme';
+
+	/// tr: 'Akşam yanıtlarım'
+	String get commEvening => 'Akşam yanıtlarım';
+
 	/// tr: 'Ayarlar'
 	String get title => 'Ayarlar';
 
@@ -6668,6 +6704,18 @@ extension on Translations {
 			'register.errorKvkkRequired' => 'Devam etmek için KVKK onayı gereklidir.',
 			'register.emailTaken' => 'Bu e-posta adresi zaten kayıtlı. Giriş yapmayı deneyin.',
 			'register.emailAvailable' => 'Bu e-posta adresi kullanılabilir.',
+			'settings.privacyFamilyMessages' => 'Diğer aileler bana mesaj gönderebilsin',
+			'settings.matchingTitle' => 'Toplulukta ne arıyorsunuz?',
+			'settings.matchingHint' => 'Eşleşme önerilerinde ve profilinde görünür.',
+			'settings.communicationTitle' => 'İletişim tercihiniz',
+			'settings.intentExperience' => 'Deneyim paylaşımı',
+			'settings.intentRegular' => 'Düzenli konuşma',
+			'settings.intentLocalMeet' => 'Yakında buluşma',
+			'settings.intentSeekMentor' => 'Mentor arıyorum',
+			'settings.intentBeMentor' => 'Mentorluk yapabilirim',
+			'settings.commWriting' => 'Önce yazışma',
+			'settings.commVideo' => 'Görüntülü görüşme',
+			'settings.commEvening' => 'Akşam yanıtlarım',
 			'settings.title' => 'Ayarlar',
 			'settings.notificationsTitle' => 'Bildirimler',
 			'settings.notificationsSubtitle' => 'Hangi konularda bildirim almak istediğinizi seçin.',
@@ -7019,6 +7067,8 @@ extension on Translations {
 			'notesPage.noChildren' => 'Önce bir çocuk profili ekleyin.',
 			'notesPage.loadMore' => 'Daha Fazla Yükle',
 			'notesPage.edit' => 'Düzenle',
+			_ => null,
+		} ?? switch (path) {
 			'notesPage.delete' => 'Sil',
 			'notesPage.cancel' => 'Vazgeç',
 			'notesPage.deleteTitle' => 'Notu Sil',
@@ -7031,8 +7081,6 @@ extension on Translations {
 			'notifications.dateLine' => ({required Object day, required Object month, required Object time}) => '${day} ${month} · ${time}',
 			'notifications.noneInFilter' => 'Bu filtreye uygun bildirim yok.',
 			'notifications.unreadOnly' => 'Yalnızca okunmamış',
-			_ => null,
-		} ?? switch (path) {
 			'notifications.selectedCount' => ({required Object count}) => '${count} seçildi',
 			'notifications.deleteSelected' => 'Seçilenleri sil',
 			'notifications.groupToday' => 'Bugün',
@@ -7533,6 +7581,8 @@ extension on Translations {
 			'groups.descriptionLabel' => 'Açıklama',
 			'groups.descriptionHint' => 'Grup ne hakkında, kimler katılabilir?',
 			'groups.categoryLabel' => 'Kategori',
+			_ => null,
+		} ?? switch (path) {
 			'groups.create' => 'Oluştur',
 			'groups.created' => 'Grup oluşturuldu.',
 			'groups.errorName' => 'Lütfen bir grup adı girin.',
@@ -7545,8 +7595,6 @@ extension on Translations {
 			'treatment.noChildrenBody' => 'Tedavi planı için önce bir çocuk profili ekleyin.',
 			'treatment.addChild' => 'Çocuk Ekle',
 			'treatment.saveError' => 'Tedavi verileri kaydedilemedi, değişiklik geri alındı.',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.tabToday' => 'Bugün',
 			'treatment.tabGoals' => 'Hedefler',
 			'treatment.tabGames' => 'Oyunlar',
@@ -8047,6 +8095,8 @@ extension on Translations {
 			'emergency.save' => 'Kaydet',
 			'emergency.saved' => 'Acil durum kartı kaydedildi.',
 			'emergency.shareTitle' => 'QR kod ile paylaş',
+			_ => null,
+		} ?? switch (path) {
 			'emergency.shareBody' => 'Süreli bir bağlantı oluşturun; öğretmen veya sağlık görevlisi kartı bu bağlantıdan görüntüleyebilir. Bağlantıyı istediğiniz an kapatabilirsiniz.',
 			'emergency.shareConsentRequired' => 'Paylaşım için "Acil durum kartı paylaşımı" rızasını vermeniz gerekiyor.',
 			'emergency.shareOpenConsents' => 'Rıza ayarlarını aç',
@@ -8059,8 +8109,6 @@ extension on Translations {
 			'emergency.shareDisable' => 'Paylaşımı kapat',
 			'emergency.shareValidUntil' => ({required Object date}) => 'Bağlantı ${date} tarihine kadar geçerli.',
 			'emergency.shareCopy' => 'Bağlantıyı kopyala',
-			_ => null,
-		} ?? switch (path) {
 			'emergency.shareCopied' => 'Bağlantı kopyalandı.',
 			'emergency.shareSend' => 'Paylaş',
 			'emergency.shareMessage' => 'Çocuğumun acil durum kartını buradan görüntüleyebilirsiniz:',

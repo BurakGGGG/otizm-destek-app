@@ -175,6 +175,18 @@ register:
   errorKvkkRequired: KVKK consent is required to continue.
 
 settings:
+  privacyFamilyMessages: Let other families message me
+  matchingTitle: What are you looking for in the community?
+  matchingHint: Shown in match suggestions and on your profile.
+  communicationTitle: Your communication preference
+  intentExperience: Sharing experience
+  intentRegular: Regular conversation
+  intentLocalMeet: Meeting nearby
+  intentSeekMentor: Looking for a mentor
+  intentBeMentor: Can be a mentor
+  commWriting: Messaging first
+  commVideo: Video calls
+  commEvening: I reply in the evening
   title: Settings
   notificationsTitle: Notifications
   notificationsSubtitle: Choose what you want to be notified about.

@@ -136,6 +136,12 @@ class AuthRepository {
     String? institution,
     String? licenseNumber,
     String? bio,
+    bool? allowDirectMessages,
+    bool? allowFamilyMessages,
+    bool? hideOnlineStatus,
+    bool? approximateLocationOnly,
+    List<String>? communicationPreferences,
+    List<String>? supportIntents,
   }) async {
     try {
       final res = await _dio.put(
@@ -148,6 +154,12 @@ class AuthRepository {
           'institution': ?institution,
           'licenseNumber': ?licenseNumber,
           'bio': ?bio,
+          'allowDirectMessages': ?allowDirectMessages,
+          'allowFamilyMessages': ?allowFamilyMessages,
+          'hideOnlineStatus': ?hideOnlineStatus,
+          'approximateLocationOnly': ?approximateLocationOnly,
+          'communicationPreferences': ?communicationPreferences,
+          'supportIntents': ?supportIntents,
         },
       );
       return AppUser.fromJson(ApiEnvelope.fromJson(res.data).requireMap());

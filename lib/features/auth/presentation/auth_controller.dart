@@ -161,6 +161,12 @@ class AuthController extends Notifier<AuthState> {
     String? institution,
     String? licenseNumber,
     String? bio,
+    bool? allowDirectMessages,
+    bool? allowFamilyMessages,
+    bool? hideOnlineStatus,
+    bool? approximateLocationOnly,
+    List<String>? communicationPreferences,
+    List<String>? supportIntents,
   }) async {
     try {
       final updated = await _repo.updateProfile(
@@ -171,6 +177,12 @@ class AuthController extends Notifier<AuthState> {
         institution: institution,
         licenseNumber: licenseNumber,
         bio: bio,
+        allowDirectMessages: allowDirectMessages,
+        allowFamilyMessages: allowFamilyMessages,
+        hideOnlineStatus: hideOnlineStatus,
+        approximateLocationOnly: approximateLocationOnly,
+        communicationPreferences: communicationPreferences,
+        supportIntents: supportIntents,
       );
       state = state.copyWith(user: updated);
       return null;

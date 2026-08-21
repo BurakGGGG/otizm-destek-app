@@ -170,6 +170,9 @@ final _parent = const AppUser(
   email: 'veli@example.com',
   fullName: 'Elif Yılmaz',
   role: UserRole.parent,
+  city: 'İstanbul',
+  supportIntents: ['DENEYIM_PAYLASIMI'],
+  communicationPreferences: ['YAZISMA'],
 );
 
 class _FakeAuth extends AuthController {

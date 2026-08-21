@@ -24,6 +24,7 @@ enum AppPreference {
   privacyShareProgress('privacy_share_progress', true),
   privacyApproximateLocation('privacy_approximate_location', true),
   privacyHidePresence('privacy_hide_presence', false),
+  privacyFamilyMessages('privacy_family_messages', true),
 
   // Erişilebilirlik
   a11yLargeText('access-large-text', false),

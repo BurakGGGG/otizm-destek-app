@@ -176,6 +176,18 @@ register:
   emailAvailable: Bu e-posta adresi kullanılabilir.
 
 settings:
+  privacyFamilyMessages: Diğer aileler bana mesaj gönderebilsin
+  matchingTitle: Toplulukta ne arıyorsunuz?
+  matchingHint: Eşleşme önerilerinde ve profilinde görünür.
+  communicationTitle: İletişim tercihiniz
+  intentExperience: Deneyim paylaşımı
+  intentRegular: Düzenli konuşma
+  intentLocalMeet: Yakında buluşma
+  intentSeekMentor: Mentor arıyorum
+  intentBeMentor: Mentorluk yapabilirim
+  commWriting: Önce yazışma
+  commVideo: Görüntülü görüşme
+  commEvening: Akşam yanıtlarım
   title: Ayarlar
   notificationsTitle: Bildirimler
   notificationsSubtitle: Hangi konularda bildirim almak istediğinizi seçin.

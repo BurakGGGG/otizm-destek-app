@@ -35,6 +35,12 @@ class AppUser {
     required this.role,
     this.phone,
     this.city,
+    this.allowDirectMessages = true,
+    this.allowFamilyMessages = true,
+    this.hideOnlineStatus = false,
+    this.approximateLocationOnly = true,
+    this.communicationPreferences = const [],
+    this.supportIntents = const [],
     this.expertTitle,
     this.institution,
     this.licenseNumber,
@@ -52,6 +58,19 @@ class AppUser {
   final UserRole role;
   final String? phone;
   final String? city;
+
+  /// Sunucuda saklanan gizlilik/eşleşme tercihleri (web Ayarlar > Gizlilik).
+  final bool allowDirectMessages;
+  final bool allowFamilyMessages;
+  final bool hideOnlineStatus;
+  final bool approximateLocationOnly;
+
+  /// İletişim tercihi kodları (YAZISMA/GORUNTULU/AKSAM) — veri,
+  /// çevrilmez.
+  final List<String> communicationPreferences;
+
+  /// Toplulukta ne arıyor (DENEYIM_PAYLASIMI/…) — veri, çevrilmez.
+  final List<String> supportIntents;
   final String? expertTitle;
   final String? institution;
   final String? licenseNumber;
@@ -82,6 +101,12 @@ class AppUser {
       role: role,
       phone: phone,
       city: city,
+      allowDirectMessages: allowDirectMessages,
+      allowFamilyMessages: allowFamilyMessages,
+      hideOnlineStatus: hideOnlineStatus,
+      approximateLocationOnly: approximateLocationOnly,
+      communicationPreferences: communicationPreferences,
+      supportIntents: supportIntents,
       expertTitle: expertTitle,
       institution: institution,
       licenseNumber: licenseNumber,
@@ -102,6 +127,12 @@ class AppUser {
       role: UserRole.fromBackend(json['role'] as String?),
       phone: json['phone'] as String?,
       city: json['city'] as String?,
+      allowDirectMessages: json['allowDirectMessages'] != false,
+      allowFamilyMessages: json['allowFamilyMessages'] != false,
+      hideOnlineStatus: json['hideOnlineStatus'] == true,
+      approximateLocationOnly: json['approximateLocationOnly'] != false,
+      communicationPreferences: _stringList(json['communicationPreferences']),
+      supportIntents: _stringList(json['supportIntents']),
       expertTitle: json['expertTitle'] as String?,
       institution: json['institution'] as String?,
       licenseNumber: json['licenseNumber'] as String?,
@@ -118,3 +149,8 @@ class AppUser {
     );
   }
 }
+
+/// JSON dizisini güvenle string listesine çevirir.
+List<String> _stringList(dynamic value) => value is List
+    ? value.map((e) => e.toString()).where((e) => e.isNotEmpty).toList()
+    : const [];
