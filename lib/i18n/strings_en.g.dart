@@ -1464,6 +1464,11 @@ class _Translations$groups$en extends Translations$groups$tr {
 	final TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	@override String get editTitle => 'Edit group';
+	@override String get updated => 'Group updated.';
+	@override String get deleteTitle => 'Delete group';
+	@override String deleteConfirm({required Object name}) => 'The group "${name}" and its chat will be permanently deleted.';
+	@override String get deleted => 'Group deleted.';
 	@override String chatUnread({required Object count}) => 'Chat (${count})';
 	@override String get detailTitle => 'Group details';
 	@override String get detailHint => 'Members and meetings are visible to group members only.';
@@ -3768,6 +3773,11 @@ extension on TranslationsEn {
 			'similar.scoreSensory' => 'Sensory',
 			'similar.scoreTherapy' => 'Therapy',
 			'similar.scoreEducation' => 'Education',
+			'groups.editTitle' => 'Edit group',
+			'groups.updated' => 'Group updated.',
+			'groups.deleteTitle' => 'Delete group',
+			'groups.deleteConfirm' => ({required Object name}) => 'The group "${name}" and its chat will be permanently deleted.',
+			'groups.deleted' => 'Group deleted.',
 			'groups.chatUnread' => ({required Object count}) => 'Chat (${count})',
 			'groups.detailTitle' => 'Group details',
 			'groups.detailHint' => 'Members and meetings are visible to group members only.',
@@ -3775,13 +3785,13 @@ extension on TranslationsEn {
 			'groups.membersEmpty' => 'Member list is not available.',
 			'groups.membersOnly' => 'Join the group to see members and meetings.',
 			'groups.meetingsTitle' => 'Meetings',
+			_ => null,
+		} ?? switch (path) {
 			'groups.meetingsEmpty' => 'No meetings scheduled.',
 			'groups.meetingAdd' => 'Schedule meeting',
 			'groups.meetingTitleLabel' => 'Meeting title',
 			'groups.meetingPickDate' => 'Pick date',
 			'groups.meetingPickTime' => 'Pick time',
-			_ => null,
-		} ?? switch (path) {
 			'groups.meetingUrlLabel' => 'Meeting link (optional)',
 			'groups.meetingNoteLabel' => 'Description (optional)',
 			'groups.meetingSave' => 'Save',
@@ -4289,13 +4299,13 @@ extension on TranslationsEn {
 			'calendar.noChild' => 'Add a child first to use the calendar.',
 			'calendar.empty' => 'No events yet. Add the first one.',
 			'calendar.add' => 'Add Event',
+			_ => null,
+		} ?? switch (path) {
 			'calendar.addTitle' => 'New Event',
 			'calendar.editTitle' => 'Edit Event',
 			'calendar.eventType' => 'Event Type',
 			'calendar.typeTerapi' => 'Therapy',
 			'calendar.typeDoktor' => 'Doctor',
-			_ => null,
-		} ?? switch (path) {
 			'calendar.typeEgitim' => 'Education',
 			'calendar.typeAktivite' => 'Activity',
 			'calendar.typeAppointment' => 'Appointment',

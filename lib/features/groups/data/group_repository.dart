@@ -63,6 +63,35 @@ class GroupRepository {
     }
   }
 
+  /// Grubu düzenler (yalnızca grubu kuran; backend de doğruluyor).
+  Future<Group> update(
+    String id, {
+    required String name,
+    String? description,
+    String? category,
+  }) async {
+    String? clean(String? v) => (v == null || v.trim().isEmpty) ? null : v.trim();
+    try {
+      final res = await _dio.put('/groups/$id', data: {
+        'name': name.trim(),
+        'description': ?clean(description),
+        'category': ?clean(category),
+      });
+      return Group.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Grubu siler (grubu kuran ya da yönetici).
+  Future<void> delete(String id) async {
+    try {
+      await _dio.delete('/groups/$id');
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
   Future<void> join(String id) async {
     try {
       await _dio.post('/groups/$id/join');

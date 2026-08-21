@@ -1090,6 +1090,18 @@ class _FakeGroupRepository extends GroupRepository {
 
   @override
   Future<void> deleteMeeting(String id, String meetingId) async {}
+
+  @override
+  Future<Group> update(
+    String id, {
+    required String name,
+    String? description,
+    String? category,
+  }) async =>
+      Group(id: id, name: name, description: description, category: category);
+
+  @override
+  Future<void> delete(String id) async {}
 }
 
 class _FakeWallRepository extends WallRepository {

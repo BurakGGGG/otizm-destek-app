@@ -1105,6 +1105,11 @@ similar:
   scoreEducation: Eğitim
 
 groups:
+  editTitle: Grubu düzenle
+  updated: Grup güncellendi.
+  deleteTitle: Grubu sil
+  deleteConfirm: '"$name" grubu ve sohbeti kalıcı olarak silinecek.'
+  deleted: Grup silindi.
   chatUnread: Sohbet ($count)
   detailTitle: Grup Detayı
   detailHint: Üye listesi ve buluşmalar yalnızca grup üyelerine görünür.

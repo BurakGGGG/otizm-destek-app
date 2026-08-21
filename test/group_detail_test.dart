@@ -90,4 +90,37 @@ void main() {
     expect(find.text(t.groups.meetingAdd), findsOneWidget);
     expect(find.byTooltip(t.groups.meetingDelete), findsOneWidget);
   });
+
+  testWidgets('grubu kuran düzenle ve sil düğmelerini görür', (tester) async {
+    final t = AppLocale.tr.buildSync();
+    usePhoneSurface(tester);
+    await tester.pumpWidget(hostApp(
+      const GroupDetailScreen(group: Group(
+        id: 'gr1',
+        name: 'Okul Öncesi Aileler',
+        memberCount: 128,
+        isMember: true,
+        createdByUserId: 'u1',
+      )),
+    ));
+    await settleScreen(tester);
+    expect(find.byTooltip(t.common.a11y.edit), findsOneWidget);
+    expect(find.byTooltip(t.common.a11y.delete), findsOneWidget);
+  });
+
+  testWidgets('üye ama kurucu olmayan düzenleyemez', (tester) async {
+    final t = AppLocale.tr.buildSync();
+    usePhoneSurface(tester);
+    await tester.pumpWidget(hostApp(
+      const GroupDetailScreen(group: Group(
+        id: 'gr1',
+        name: 'Okul Öncesi Aileler',
+        memberCount: 128,
+        isMember: true,
+      )),
+    ));
+    await settleScreen(tester);
+    expect(find.byTooltip(t.common.a11y.edit), findsNothing);
+    expect(find.byTooltip(t.common.a11y.delete), findsNothing);
+  });
 }

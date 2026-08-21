@@ -13,6 +13,7 @@ import '../../../i18n/strings.g.dart';
 import '../../auth/presentation/auth_controller.dart';
 import '../data/group_repository.dart';
 import '../domain/group.dart';
+import 'widgets/group_form_sheet.dart';
 
 /// Grup detayı — bilgi, üyeler ve buluşmalar (web `GroupDetailsModal`).
 ///
@@ -34,7 +35,23 @@ class GroupDetailScreen extends ConsumerWidget {
         group.createdByUserId != null && group.createdByUserId == userId;
 
     return Scaffold(
-      appBar: AppBar(title: Text(group.name)),
+      appBar: AppBar(
+        title: Text(group.name),
+        actions: [
+          if (isOwner) ...[
+            IconButton(
+              tooltip: t.common.a11y.edit,
+              onPressed: () => _edit(context, ref),
+              icon: const Icon(Icons.edit_outlined),
+            ),
+            IconButton(
+              tooltip: t.common.a11y.delete,
+              onPressed: () => _delete(context, ref),
+              icon: Icon(Icons.delete_outline, color: colors.error),
+            ),
+          ],
+        ],
+      ),
       body: SafeArea(
         child: RefreshIndicator(
           onRefresh: () async {
@@ -89,6 +106,59 @@ class GroupDetailScreen extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  /// Grup bilgilerini düzenler (yalnızca grubu kuran).
+  Future<void> _edit(BuildContext context, WidgetRef ref) async {
+    final saved = await showModalBottomSheet<bool>(
+      context: context,
+      isScrollControlled: true,
+      builder: (_) => GroupFormSheet(existing: group),
+    );
+    if (saved != true || !context.mounted) return;
+    ref.invalidate(myGroupsProvider);
+    Haptics.success();
+    final navigator = Navigator.of(context);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(context.t.groups.updated)),
+    );
+    // Başlık ve alanlar listeden tazelenir; detay eski nesneyle kalmasın.
+    navigator.pop();
+  }
+
+  /// Grubu siler (grubu kuran ya da yönetici).
+  Future<void> _delete(BuildContext context, WidgetRef ref) async {
+    final t = context.t;
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(t.groups.deleteTitle),
+        content: Text(t.groups.deleteConfirm(name: group.name)),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(false),
+            child: Text(t.common.cancel),
+          ),
+          FilledButton(
+            style: FilledButton.styleFrom(backgroundColor: AppColors.error),
+            onPressed: () => Navigator.of(ctx).pop(true),
+            child: Text(t.common.a11y.delete),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !context.mounted) return;
+    final messenger = ScaffoldMessenger.of(context);
+    final navigator = Navigator.of(context);
+    try {
+      await ref.read(groupRepositoryProvider).delete(group.id);
+      ref.invalidate(myGroupsProvider);
+      Haptics.warning();
+      messenger.showSnackBar(SnackBar(content: Text(t.groups.deleted)));
+      navigator.pop();
+    } on ApiException catch (e) {
+      messenger.showSnackBar(SnackBar(content: Text(e.message)));
+    }
   }
 
   Future<void> _planMeeting(BuildContext context, WidgetRef ref) async {

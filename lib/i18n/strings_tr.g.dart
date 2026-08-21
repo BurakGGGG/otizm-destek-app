@@ -3429,6 +3429,21 @@ class Translations$groups$tr {
 
 	// Translations
 
+	/// tr: 'Grubu düzenle'
+	String get editTitle => 'Grubu düzenle';
+
+	/// tr: 'Grup güncellendi.'
+	String get updated => 'Grup güncellendi.';
+
+	/// tr: 'Grubu sil'
+	String get deleteTitle => 'Grubu sil';
+
+	/// tr: '"$name" grubu ve sohbeti kalıcı olarak silinecek.'
+	String deleteConfirm({required Object name}) => '"${name}" grubu ve sohbeti kalıcı olarak silinecek.';
+
+	/// tr: 'Grup silindi.'
+	String get deleted => 'Grup silindi.';
+
 	/// tr: 'Sohbet ($count)'
 	String chatUnread({required Object count}) => 'Sohbet (${count})';
 
@@ -7704,6 +7719,11 @@ extension on Translations {
 			'similar.scoreSensory' => 'Duyusal',
 			'similar.scoreTherapy' => 'Terapi',
 			'similar.scoreEducation' => 'Eğitim',
+			'groups.editTitle' => 'Grubu düzenle',
+			'groups.updated' => 'Grup güncellendi.',
+			'groups.deleteTitle' => 'Grubu sil',
+			'groups.deleteConfirm' => ({required Object name}) => '"${name}" grubu ve sohbeti kalıcı olarak silinecek.',
+			'groups.deleted' => 'Grup silindi.',
 			'groups.chatUnread' => ({required Object count}) => 'Sohbet (${count})',
 			'groups.detailTitle' => 'Grup Detayı',
 			'groups.detailHint' => 'Üye listesi ve buluşmalar yalnızca grup üyelerine görünür.',
@@ -7711,13 +7731,13 @@ extension on Translations {
 			'groups.membersEmpty' => 'Üye listesi görüntülenemiyor.',
 			'groups.membersOnly' => 'Üye listesini ve buluşmaları görmek için gruba katılın.',
 			'groups.meetingsTitle' => 'Buluşmalar',
+			_ => null,
+		} ?? switch (path) {
 			'groups.meetingsEmpty' => 'Planlanmış buluşma yok.',
 			'groups.meetingAdd' => 'Buluşma planla',
 			'groups.meetingTitleLabel' => 'Buluşma başlığı',
 			'groups.meetingPickDate' => 'Tarih seç',
 			'groups.meetingPickTime' => 'Saat seç',
-			_ => null,
-		} ?? switch (path) {
 			'groups.meetingUrlLabel' => 'Görüşme bağlantısı (isteğe bağlı)',
 			'groups.meetingNoteLabel' => 'Açıklama (isteğe bağlı)',
 			'groups.meetingSave' => 'Kaydet',
@@ -8225,13 +8245,13 @@ extension on Translations {
 			'calendar.noChild' => 'Takvim için önce bir çocuk ekleyin.',
 			'calendar.empty' => 'Henüz etkinlik yok. İlk etkinliği ekleyin.',
 			'calendar.add' => 'Etkinlik Ekle',
+			_ => null,
+		} ?? switch (path) {
 			'calendar.addTitle' => 'Yeni Etkinlik',
 			'calendar.editTitle' => 'Etkinliği Düzenle',
 			'calendar.eventType' => 'Etkinlik Tipi',
 			'calendar.typeTerapi' => 'Terapi',
 			'calendar.typeDoktor' => 'Doktor',
-			_ => null,
-		} ?? switch (path) {
 			'calendar.typeEgitim' => 'Eğitim',
 			'calendar.typeAktivite' => 'Aktivite',
 			'calendar.typeAppointment' => 'Randevu',

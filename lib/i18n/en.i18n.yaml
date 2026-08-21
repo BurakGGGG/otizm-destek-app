@@ -1103,6 +1103,11 @@ similar:
   scoreEducation: Education
 
 groups:
+  editTitle: Edit group
+  updated: Group updated.
+  deleteTitle: Delete group
+  deleteConfirm: 'The group "$name" and its chat will be permanently deleted.'
+  deleted: Group deleted.
   chatUnread: Chat ($count)
   detailTitle: Group details
   detailHint: Members and meetings are visible to group members only.
