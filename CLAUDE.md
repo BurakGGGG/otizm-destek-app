@@ -414,8 +414,16 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
   (sabit, açık) kullanılır. Yeni ekranlarda `AppColors.*` yerine `context.colors.*`.
 - **Uygulama simgesi:** varsayılan Flutter simgesi yerine uygulama içindeki
   logo (birincil mavi zemin + beyaz `volunteer_activism` ikonu). Android
-  mipmap'leri ve iOS AppIcon seti `python3 tool/generate_icons.py` ile
-  üretilir (kaynak: Flutter SDK'daki Material ikon fontu; ek varlık yok).
+  mipmap'leri (eski + API 26 uyarlanabilir ön plan/tek renk katmanları,
+  `mipmap-anydpi-v26/ic_launcher.xml`) ve iOS AppIcon seti
+  `python3 tool/generate_icons.py` ile üretilir (kaynak: Flutter SDK'daki
+  Material ikon fontu; ek varlık yok). Uyarlanabilir katman olmadan API 26+
+  simgeyi beyaz dairenin içine küçültüyordu. Açılış penceresi rengi
+  `values/colors.xml` + `values-night` ile uygulamanın sayfa zemininde
+  (`splash_background`).
+- **Android sürüm imzası:** `android/key.properties` varsa gerçek anahtarla,
+  yoksa debug anahtarıyla imzalanır (`android/app/build.gradle.kts`). Şablon
+  `android/key.properties.example`; anahtar/parola depoya girmez.
 - **Android manifest:** uygulama adı "Otizm Destek" (paket adı değil),
   `allowBackup=false` (sağlık verisi otomatik yedeklemeye girmesin) ve
   `url_launcher` için `VIEW` + `http(s)` paket görünürlük sorguları — Android
@@ -434,6 +442,18 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
   günlükçü yalnızca yöntem + yol + durum kodu yazar. İstek gövdeleri (çocuk
   sağlık kaydı, acil durum kartı, şifre) ve `Authorization` başlığı hiçbir
   derlemede günlüğe düşmez (`test/network_logging_test.dart`).
+- **Simge düğmeleri:** yalnızca ikon taşıyan her `IconButton` `tooltip` almak
+  zorunda — ekran okuyucu adı buradan gelir. Ortak etiketler
+  `t.common.a11y.*`; kural `test/icon_button_tooltip_test.dart` kaynak
+  taramasıyla korunuyor.
+- **Kaydedilmemiş form:** form ekranları `UnsavedChangesGuard`
+  (`core/widgets/unsaved_changes_guard.dart`) ile sarılır; `hasChanges` pop
+  anında değerlendirilir (formun her tuş vuruşunda çizilmesi gerekmez).
+  Kaydettikten sonra `Navigator.pop` doğrudan çağrıldığı için onay çıkmaz.
+- **Autofill:** giriş/kayıt/şifre alanları `AutofillGroup` içinde ve
+  `autofillHints` taşır; başarılı giriş/kayıt sonrası
+  `TextInput.finishAutofillContext()` şifre yöneticisinin kaydetme istemini
+  tetikler.
 - Backend mutasyonları (POST/PUT/DELETE) canlı paylaşılan DB'yi kirletmemek için sözleşme
   bazında kaynaktan doğrulandı; canlı deneme kullanıcıya bırakıldı.
 - **Web/backend kaynağı:** parite çalışmasında `github.com/EnesKotay/otizm-destek-platformu`
