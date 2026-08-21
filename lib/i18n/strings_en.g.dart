@@ -1047,6 +1047,10 @@ class _Translations$routines$en extends Translations$routines$tr {
 	final TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	@override String starWallet({required Object count}) => '${count} stars';
+	@override String get stepDone => 'Step completed, +1 star!';
+	@override String progressDone({required Object percent}) => '${percent}% completed';
+	@override String stepCount({required Object count}) => '${count} steps';
 	@override String get title => 'Routines';
 	@override String get empty => 'No routines for this child yet.';
 	@override String get noChild => 'Add a child first to create routines.';
@@ -3324,6 +3328,10 @@ extension on TranslationsEn {
 			'booking.created' => 'Appointment created.',
 			'booking.errorSelectChild' => 'Please select a child.',
 			'booking.errorSelectTime' => 'Please select a time.',
+			'routines.starWallet' => ({required Object count}) => '${count} stars',
+			'routines.stepDone' => 'Step completed, +1 star!',
+			'routines.progressDone' => ({required Object percent}) => '${percent}% completed',
+			'routines.stepCount' => ({required Object count}) => '${count} steps',
 			'routines.title' => 'Routines',
 			'routines.empty' => 'No routines for this child yet.',
 			'routines.noChild' => 'Add a child first to create routines.',
@@ -3668,12 +3676,12 @@ extension on TranslationsEn {
 			'treatment.legendGoal' => 'Goals',
 			'treatment.chartGames' => ({required Object count}) => '${count} games',
 			'treatment.chartGoal' => ({required Object percent}) => '${percent}% goals',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.weekGamesTitle' => 'Games this week',
 			'treatment.weekGamesDetail' => 'Mini exercises repeated this week',
 			'treatment.weekGamesEmpty' => 'You can plan the first game today',
 			'treatment.weekGoalsTitle' => 'Goals completed',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.weekGoalsDetail' => 'Total progress across all active skill areas',
 			'treatment.weekGoalsEmpty' => 'You can add goals from the Goals tab',
 			'treatment.weekSessionsTitle' => 'Upcoming sessions',
@@ -4182,12 +4190,12 @@ extension on TranslationsEn {
 			'behavior.add' => 'Add Entry',
 			'behavior.addTitle' => 'New ABC Entry',
 			'behavior.empty' => 'No behavior entries yet. Add the first observation.',
+			_ => null,
+		} ?? switch (path) {
 			'behavior.noChild' => 'Add a child first to use the behavior journal.',
 			'behavior.date' => 'Date',
 			'behavior.time' => 'Time',
 			'behavior.category' => 'Category',
-			_ => null,
-		} ?? switch (path) {
 			'behavior.location' => 'Location',
 			'behavior.antecedentLabel' => 'A — Antecedent (Trigger)',
 			'behavior.antecedentHint' => 'Describe the trigger',

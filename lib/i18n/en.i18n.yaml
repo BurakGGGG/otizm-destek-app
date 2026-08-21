@@ -742,6 +742,10 @@ booking:
   errorSelectTime: Please select a time.
 
 routines:
+  starWallet: $count stars
+  stepDone: Step completed, +1 star!
+  progressDone: '$percent% completed'
+  stepCount: $count steps
   title: Routines
   empty: No routines for this child yet.
   noChild: Add a child first to create routines.

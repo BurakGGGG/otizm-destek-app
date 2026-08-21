@@ -743,6 +743,10 @@ booking:
   errorSelectTime: Lütfen bir saat seçin.
 
 routines:
+  starWallet: $count yıldız
+  stepDone: Adım tamamlandı, +1 yıldız!
+  progressDone: '%$percent tamamlandı'
+  stepCount: $count adım
   title: Rutinler
   empty: Bu çocuk için henüz rutin yok.
   noChild: Rutin oluşturmak için önce bir çocuk ekleyin.

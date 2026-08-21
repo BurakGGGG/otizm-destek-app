@@ -11,6 +11,7 @@ import '../../../core/widgets/skeleton.dart';
 import '../../../i18n/strings.g.dart';
 import '../../children/data/child_repository.dart';
 import '../../children/domain/child.dart';
+import '../data/routine_progress_controller.dart';
 import '../data/routine_repository.dart';
 import '../domain/routine.dart';
 import '../domain/routine_icons.dart';
@@ -32,8 +33,18 @@ class _RoutinesScreenState extends ConsumerState<RoutinesScreen> {
     final t = context.t;
     final childrenAsync = ref.watch(childrenProvider);
 
+    final stars = ref.watch(routineProgressProvider).stars;
+
     return Scaffold(
-      appBar: AppBar(title: Text(t.routines.title)),
+      appBar: AppBar(
+        title: Text(t.routines.title),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: AppSpacing.sm),
+            child: Center(child: _StarWallet(stars: stars)),
+          ),
+        ],
+      ),
       body: SafeArea(
         child: childrenAsync.when(
           loading: () => const SkeletonList(count: 3),
@@ -82,6 +93,39 @@ class _RoutinesScreenState extends ConsumerState<RoutinesScreen> {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(result)));
     }
+  }
+}
+
+/// Toplanan yıldızlar (web'deki "Yıldız Cüzdanı").
+class _StarWallet extends StatelessWidget {
+  const _StarWallet({required this.stars});
+
+  final int stars;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      decoration: BoxDecoration(
+        color: colors.warning.withValues(alpha: 0.14),
+        borderRadius: BorderRadius.circular(AppRadius.full),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.star_rounded, size: 16, color: colors.warning),
+          const SizedBox(width: 4),
+          Text(
+            context.t.routines.starWallet(count: '$stars'),
+            style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                  color: colors.textPrimary,
+                  fontWeight: FontWeight.w700,
+                ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -169,10 +213,26 @@ class _RoutineCard extends ConsumerWidget {
   final String childId;
   final Routine routine;
 
+  Future<void> _toggle(WidgetRef ref, BuildContext context, String id) async {
+    final done = await ref
+        .read(routineProgressProvider.notifier)
+        .toggle(routine.id, id);
+    if (!done || !context.mounted) return;
+    Haptics.success();
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(
+        content: Text(context.t.routines.stepDone),
+        duration: const Duration(seconds: 2),
+      ));
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t;
     final text = Theme.of(context).textTheme;
+    final progress = ref.watch(routineProgressProvider);
+    final percent = progress.percentOf(routine.id, routine.items.length);
 
     return Card(
       child: Padding(
@@ -204,6 +264,32 @@ class _RoutineCard extends ConsumerWidget {
                 ),
               ],
             ),
+            if (routine.items.isNotEmpty) ...[
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  Expanded(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(AppRadius.full),
+                      child: LinearProgressIndicator(
+                        value: percent / 100,
+                        minHeight: 6,
+                        backgroundColor: context.colors.surfaceVariant,
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          context.colors.success,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    t.routines.progressDone(percent: '$percent'),
+                    style: text.labelSmall
+                        ?.copyWith(color: context.colors.textSecondary),
+                  ),
+                ],
+              ),
+            ],
             const SizedBox(height: 8),
             if (routine.items.isEmpty)
               Padding(
@@ -216,6 +302,8 @@ class _RoutineCard extends ConsumerWidget {
               for (final item in routine.items)
                 _ItemRow(
                   item: item,
+                  done: progress.isDone(routine.id, item.id),
+                  onToggle: () => _toggle(ref, context, item.id),
                   onDelete: () => _deleteItem(context, ref, item),
                 ),
             const SizedBox(height: 4),
@@ -312,42 +400,68 @@ class _RoutineCard extends ConsumerWidget {
   }
 }
 
+/// Rutin adımı — dokununca bugün için tamamlandı işaretlenir (cihazda).
 class _ItemRow extends StatelessWidget {
-  const _ItemRow({required this.item, required this.onDelete});
+  const _ItemRow({
+    required this.item,
+    required this.done,
+    required this.onToggle,
+    required this.onDelete,
+  });
   final RoutineItem item;
+  final bool done;
+  final VoidCallback onToggle;
   final VoidCallback onDelete;
 
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
-      child: Row(
-        children: [
-          CircleAvatar(
-            radius: 18,
-            backgroundColor: context.colors.primary.withValues(alpha: 0.12),
-            child: Icon(routineIconFor(item.iconName),
-                size: 18, color: context.colors.primary),
-          ),
-          const SizedBox(width: 12),
-          if (item.scheduledTime?.isNotEmpty ?? false) ...[
-            Text(item.scheduledTime!,
-                style: text.labelMedium
-                    ?.copyWith(color: context.colors.primary)),
-            const SizedBox(width: 10),
+    final colors = context.colors;
+    return InkWell(
+      onTap: onToggle,
+      borderRadius: BorderRadius.circular(AppRadius.md),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4),
+        child: Row(
+          children: [
+            CircleAvatar(
+              radius: 18,
+              backgroundColor: done
+                  ? colors.success.withValues(alpha: 0.16)
+                  : colors.primary.withValues(alpha: 0.12),
+              child: Icon(
+                done ? Icons.check_rounded : routineIconFor(item.iconName),
+                size: 18,
+                color: done ? colors.success : colors.primary,
+              ),
+            ),
+            const SizedBox(width: 12),
+            if (item.scheduledTime?.isNotEmpty ?? false) ...[
+              Text(item.scheduledTime!,
+                  style: text.labelMedium?.copyWith(color: colors.primary)),
+              const SizedBox(width: 10),
+            ],
+            Expanded(
+              child: Text(
+                item.title,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: done
+                    ? TextStyle(
+                        decoration: TextDecoration.lineThrough,
+                        color: colors.textTertiary,
+                      )
+                    : null,
+              ),
+            ),
+            IconButton(
+              tooltip: context.t.common.a11y.delete,
+              visualDensity: VisualDensity.compact,
+              icon: Icon(Icons.close, size: 18, color: colors.textTertiary),
+              onPressed: onDelete,
+            ),
           ],
-          Expanded(
-            child: Text(item.title,
-                maxLines: 1, overflow: TextOverflow.ellipsis),
-          ),
-          IconButton(
-            tooltip: context.t.common.a11y.delete,
-            visualDensity: VisualDensity.compact,
-            icon: Icon(Icons.close, size: 18, color: context.colors.textTertiary),
-            onPressed: onDelete,
-          ),
-        ],
+        ),
       ),
     );
   }

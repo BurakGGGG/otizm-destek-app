@@ -2340,6 +2340,18 @@ class Translations$routines$tr {
 
 	// Translations
 
+	/// tr: '$count yıldız'
+	String starWallet({required Object count}) => '${count} yıldız';
+
+	/// tr: 'Adım tamamlandı, +1 yıldız!'
+	String get stepDone => 'Adım tamamlandı, +1 yıldız!';
+
+	/// tr: '%$percent tamamlandı'
+	String progressDone({required Object percent}) => '%${percent} tamamlandı';
+
+	/// tr: '$count adım'
+	String stepCount({required Object count}) => '${count} adım';
+
 	/// tr: 'Rutinler'
 	String get title => 'Rutinler';
 
@@ -7044,6 +7056,10 @@ extension on Translations {
 			'booking.created' => 'Randevu oluşturuldu.',
 			'booking.errorSelectChild' => 'Lütfen bir çocuk seçin.',
 			'booking.errorSelectTime' => 'Lütfen bir saat seçin.',
+			'routines.starWallet' => ({required Object count}) => '${count} yıldız',
+			'routines.stepDone' => 'Adım tamamlandı, +1 yıldız!',
+			'routines.progressDone' => ({required Object percent}) => '%${percent} tamamlandı',
+			'routines.stepCount' => ({required Object count}) => '${count} adım',
 			'routines.title' => 'Rutinler',
 			'routines.empty' => 'Bu çocuk için henüz rutin yok.',
 			'routines.noChild' => 'Rutin oluşturmak için önce bir çocuk ekleyin.',
@@ -7388,12 +7404,12 @@ extension on Translations {
 			'treatment.legendGoal' => 'Hedef',
 			'treatment.chartGames' => ({required Object count}) => '${count} oyun',
 			'treatment.chartGoal' => ({required Object percent}) => '%${percent} hedef',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.weekGamesTitle' => 'Bu hafta oyun',
 			'treatment.weekGamesDetail' => 'Bu hafta tekrar edilen mini egzersiz sayısı',
 			'treatment.weekGamesEmpty' => 'Bugün ilk oyunu planlayabilirsiniz',
 			'treatment.weekGoalsTitle' => 'Tamamlanan hedef',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.weekGoalsDetail' => 'Tüm aktif beceri alanlarındaki toplam ilerleme',
 			'treatment.weekGoalsEmpty' => 'Hedefler sekmesinden hedef ekleyebilirsiniz',
 			'treatment.weekSessionsTitle' => 'Yaklaşan Seans',
@@ -7902,12 +7918,12 @@ extension on Translations {
 			'behavior.add' => 'Kayıt Ekle',
 			'behavior.addTitle' => 'Yeni ABC Kaydı',
 			'behavior.empty' => 'Henüz davranış kaydı yok. İlk gözlemi ekleyin.',
+			_ => null,
+		} ?? switch (path) {
 			'behavior.noChild' => 'Davranış günlüğü için önce bir çocuk ekleyin.',
 			'behavior.date' => 'Tarih',
 			'behavior.time' => 'Saat',
 			'behavior.category' => 'Kategori',
-			_ => null,
-		} ?? switch (path) {
 			'behavior.location' => 'Yer',
 			'behavior.antecedentLabel' => 'A — Öncesi (Tetikleyici)',
 			'behavior.antecedentHint' => 'Tetikleyiciyi açıklayın',
