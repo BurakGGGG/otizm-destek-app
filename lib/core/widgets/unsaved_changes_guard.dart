@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../i18n/strings.g.dart';
+import '../theme/app_colors.dart';
 
 /// Doldurulmuş bir formdan geri çıkılırken onay ister.
 ///
@@ -45,13 +46,17 @@ Future<bool> confirmDiscardChanges(BuildContext context) async {
       title: Text(t.common.unsaved.title),
       content: Text(t.common.unsaved.body),
       actions: [
+        // Veriyi silen eylem daha sönük dursun; vurgulu düğme formda tutar.
         TextButton(
-          onPressed: () => Navigator.of(dialogContext).pop(false),
-          child: Text(t.common.unsaved.stay),
-        ),
-        FilledButton(
+          style: TextButton.styleFrom(
+            foregroundColor: context.colors.error,
+          ),
           onPressed: () => Navigator.of(dialogContext).pop(true),
           child: Text(t.common.unsaved.leave),
+        ),
+        FilledButton(
+          onPressed: () => Navigator.of(dialogContext).pop(false),
+          child: Text(t.common.unsaved.stay),
         ),
       ],
     ),
