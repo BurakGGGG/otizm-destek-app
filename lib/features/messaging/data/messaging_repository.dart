@@ -61,14 +61,16 @@ class MessagingRepository {
     }
   }
 
-  /// Tek bir konuşmayı getirir (grup ayarlarında katılımcılar için).
-  Future<Conversation> getConversation(String id) async {
-    try {
-      final res = await _dio.get('/messages/conversations/$id');
-      return Conversation.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
-    } on DioException catch (e) {
-      throw ApiException.fromDio(e);
+  /// Konuşmayı listeden bulur (grup ayarlarında katılımcılar için).
+  ///
+  /// `GET /conversations/{id}` mesaj sayfası döner, konuşmanın kendisini
+  /// değil; web de paneli listedeki nesneyle dolduruyor.
+  Future<Conversation?> findConversation(String id) async {
+    final conversations = await getConversations();
+    for (final conversation in conversations) {
+      if (conversation.id == id) return conversation;
     }
+    return null;
   }
 
   /// Grup sohbetinin adını değiştirir.

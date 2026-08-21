@@ -1098,11 +1098,11 @@ class _GroupSettingsSheetState extends ConsumerState<_GroupSettingsSheet> {
     try {
       final conversation = await ref
           .read(messagingRepositoryProvider)
-          .getConversation(widget.conversationId);
+          .findConversation(widget.conversationId);
       if (!mounted) return;
       setState(() {
         _conversation = conversation;
-        _name.text = conversation.title ?? '';
+        _name.text = conversation?.title ?? '';
         _loading = false;
       });
     } on ApiException catch (e) {

@@ -517,7 +517,7 @@ class _FakeMessagingRepository extends MessagingRepository {
   _FakeMessagingRepository() : super(Dio());
 
   @override
-  Future<Conversation> getConversation(String id) async => const Conversation(
+  Future<Conversation?> findConversation(String id) async => const Conversation(
         id: 'cv2',
         type: 'GROUP',
         title: 'Okul Öncesi Aileler',
