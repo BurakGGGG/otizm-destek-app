@@ -117,6 +117,23 @@ class WallRepository {
     }
   }
 
+  /// Kendi destek mesajını düzenler (forum yorum uç noktası).
+  Future<WallComment> updateComment(
+    String postId,
+    String commentId,
+    String content,
+  ) async {
+    try {
+      final res = await _dio.put(
+        '/forum/posts/$postId/comments/$commentId',
+        data: {'content': content.trim()},
+      );
+      return WallComment.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
   Future<void> deleteComment(String postId, String commentId) async {
     try {
       await _dio.delete('/forum/posts/$postId/comments/$commentId');

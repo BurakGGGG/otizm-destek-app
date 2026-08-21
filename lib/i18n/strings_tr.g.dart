@@ -2874,6 +2874,15 @@ class Translations$wall$tr {
 
 	// Translations
 
+	/// tr: 'Mesajı düzenle'
+	String get commentEdit => 'Mesajı düzenle';
+
+	/// tr: 'Kaydet'
+	String get commentSave => 'Kaydet';
+
+	/// tr: 'Mesaj güncellendi.'
+	String get commentUpdated => 'Mesaj güncellendi.';
+
 	/// tr: 'Dertleşme Duvarı'
 	String get title => 'Dertleşme Duvarı';
 
@@ -7507,6 +7516,9 @@ extension on Translations {
 			'meds.logNotesLabel' => 'Gözlem notları (isteğe bağlı)',
 			'meds.logNotesHint' => 'Doktorunuza iletmek istediğiniz bir gözlem var mı?',
 			'meds.logSaved' => 'Doz günlüğü kaydedildi.',
+			'wall.commentEdit' => 'Mesajı düzenle',
+			'wall.commentSave' => 'Kaydet',
+			'wall.commentUpdated' => 'Mesaj güncellendi.',
 			'wall.title' => 'Dertleşme Duvarı',
 			'wall.subtitle' => 'Duygularınızı paylaşın, birbirinize destek olun. Paylaşımlar anonim olabilir.',
 			'wall.empty' => 'Henüz paylaşım yok. İlk paylaşımı sen yap.',
@@ -7689,11 +7701,11 @@ extension on Translations {
 			'groups.meetingNoteLabel' => 'Açıklama (isteğe bağlı)',
 			'groups.meetingSave' => 'Kaydet',
 			'groups.meetingCreated' => 'Buluşma planlandı.',
+			_ => null,
+		} ?? switch (path) {
 			'groups.meetingJoin' => 'Görüşmeye katıl',
 			'groups.meetingDelete' => 'Buluşmayı iptal et',
 			'groups.meetingDeleteConfirm' => ({required Object title}) => '"${title}" buluşması iptal edilsin mi?',
-			_ => null,
-		} ?? switch (path) {
 			'groups.meetingErrorTitle' => 'Buluşma başlığı gerekli.',
 			'groups.meetingErrorDate' => 'Tarih ve saat seçin.',
 			'groups.meetingErrorUrl' => 'Bağlantı http:// ya da https:// ile başlamalı.',
@@ -8203,11 +8215,11 @@ extension on Translations {
 			'calendar.typeAktivite' => 'Aktivite',
 			'calendar.typeAppointment' => 'Randevu',
 			'calendar.typeDiger' => 'Diğer',
+			_ => null,
+		} ?? switch (path) {
 			'calendar.eventTitle' => 'Başlık',
 			'calendar.titleHint' => 'Etkinlik adı',
 			'calendar.location' => 'Konum',
-			_ => null,
-		} ?? switch (path) {
 			'calendar.locationHint' => 'Klinik adı, adres',
 			'calendar.description' => 'Açıklama',
 			'calendar.start' => 'Başlangıç',

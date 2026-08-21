@@ -1255,6 +1255,9 @@ class _Translations$wall$en extends Translations$wall$tr {
 	final TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	@override String get commentEdit => 'Edit message';
+	@override String get commentSave => 'Save';
+	@override String get commentUpdated => 'Message updated.';
 	@override String get title => 'Support Wall';
 	@override String get subtitle => 'Share your feelings and support each other. Posts can be anonymous.';
 	@override String get empty => 'No posts yet. Be the first to share.';
@@ -3587,6 +3590,9 @@ extension on TranslationsEn {
 			'meds.logNotesLabel' => 'Observation notes (optional)',
 			'meds.logNotesHint' => 'Anything you want to share with your doctor?',
 			'meds.logSaved' => 'Dose log saved.',
+			'wall.commentEdit' => 'Edit message',
+			'wall.commentSave' => 'Save',
+			'wall.commentUpdated' => 'Message updated.',
 			'wall.title' => 'Support Wall',
 			'wall.subtitle' => 'Share your feelings and support each other. Posts can be anonymous.',
 			'wall.empty' => 'No posts yet. Be the first to share.',
@@ -3769,11 +3775,11 @@ extension on TranslationsEn {
 			'groups.meetingNoteLabel' => 'Description (optional)',
 			'groups.meetingSave' => 'Save',
 			'groups.meetingCreated' => 'Meeting scheduled.',
+			_ => null,
+		} ?? switch (path) {
 			'groups.meetingJoin' => 'Join meeting',
 			'groups.meetingDelete' => 'Cancel meeting',
 			'groups.meetingDeleteConfirm' => ({required Object title}) => 'Cancel the meeting "${title}"?',
-			_ => null,
-		} ?? switch (path) {
 			'groups.meetingErrorTitle' => 'Meeting title is required.',
 			'groups.meetingErrorDate' => 'Pick a date and time.',
 			'groups.meetingErrorUrl' => 'The link must start with http:// or https://.',
@@ -4283,11 +4289,11 @@ extension on TranslationsEn {
 			'calendar.typeAktivite' => 'Activity',
 			'calendar.typeAppointment' => 'Appointment',
 			'calendar.typeDiger' => 'Other',
+			_ => null,
+		} ?? switch (path) {
 			'calendar.eventTitle' => 'Title',
 			'calendar.titleHint' => 'Event name',
 			'calendar.location' => 'Location',
-			_ => null,
-		} ?? switch (path) {
 			'calendar.locationHint' => 'Clinic name, address',
 			'calendar.description' => 'Description',
 			'calendar.start' => 'Start',

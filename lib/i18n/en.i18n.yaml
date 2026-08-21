@@ -917,6 +917,9 @@ meds:
   logSaved: Dose log saved.
 
 wall:
+  commentEdit: Edit message
+  commentSave: Save
+  commentUpdated: Message updated.
   title: Support Wall
   subtitle: Share your feelings and support each other. Posts can be anonymous.
   empty: No posts yet. Be the first to share.

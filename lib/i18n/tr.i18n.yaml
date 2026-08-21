@@ -918,6 +918,9 @@ meds:
   logSaved: Doz günlüğü kaydedildi.
 
 wall:
+  commentEdit: Mesajı düzenle
+  commentSave: Kaydet
+  commentUpdated: Mesaj güncellendi.
   title: Dertleşme Duvarı
   subtitle: Duygularınızı paylaşın, birbirinize destek olun. Paylaşımlar anonim
     olabilir.
