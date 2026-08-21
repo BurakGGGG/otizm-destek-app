@@ -4987,6 +4987,18 @@ class Translations$emergency$tr {
 
 	// Translations
 
+	/// tr: 'Sesli oku'
+	String get listen => 'Sesli oku';
+
+	/// tr: 'Okumayı durdur'
+	String get listenStop => 'Okumayı durdur';
+
+	/// tr: 'belirtilmedi'
+	String get listenUnknown => 'belirtilmedi';
+
+	/// tr: 'Cihazda sesli okuma başlatılamadı.'
+	String get listenFailed => 'Cihazda sesli okuma başlatılamadı.';
+
 	/// tr: 'Acil Durum Kartı'
 	String get title => 'Acil Durum Kartı';
 
@@ -8221,6 +8233,10 @@ extension on Translations {
 			'calendar.errorTitle' => 'Lütfen bir başlık girin.',
 			'calendar.cancel' => 'İptal',
 			'calendar.delete' => 'Sil',
+			'emergency.listen' => 'Sesli oku',
+			'emergency.listenStop' => 'Okumayı durdur',
+			'emergency.listenUnknown' => 'belirtilmedi',
+			'emergency.listenFailed' => 'Cihazda sesli okuma başlatılamadı.',
 			'emergency.title' => 'Acil Durum Kartı',
 			'emergency.subtitle' => 'Acil bir durumda çocuğunuzla karşılaşan kişilere gösterilecek bilgiler.',
 			'emergency.noChild' => 'Acil durum kartı için önce bir çocuk ekleyin.',

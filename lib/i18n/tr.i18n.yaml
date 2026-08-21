@@ -1726,6 +1726,10 @@ calendar:
   delete: Sil
 
 emergency:
+  listen: Sesli oku
+  listenStop: Okumayı durdur
+  listenUnknown: belirtilmedi
+  listenFailed: Cihazda sesli okuma başlatılamadı.
   title: Acil Durum Kartı
   subtitle: Acil bir durumda çocuğunuzla karşılaşan kişilere gösterilecek bilgiler.
   noChild: Acil durum kartı için önce bir çocuk ekleyin.

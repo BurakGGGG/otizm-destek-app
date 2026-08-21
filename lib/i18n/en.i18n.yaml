@@ -1719,6 +1719,10 @@ calendar:
   delete: Delete
 
 emergency:
+  listen: Read aloud
+  listenStop: Stop reading
+  listenUnknown: not specified
+  listenFailed: Text-to-speech could not start on this device.
   title: Emergency Card
   subtitle: Information to show to anyone who meets your child in an emergency.
   noChild: Add a child first to create an emergency card.

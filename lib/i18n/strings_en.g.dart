@@ -2036,6 +2036,10 @@ class _Translations$emergency$en extends Translations$emergency$tr {
 	final TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	@override String get listen => 'Read aloud';
+	@override String get listenStop => 'Stop reading';
+	@override String get listenUnknown => 'not specified';
+	@override String get listenFailed => 'Text-to-speech could not start on this device.';
 	@override String get title => 'Emergency Card';
 	@override String get subtitle => 'Information to show to anyone who meets your child in an emergency.';
 	@override String get noChild => 'Add a child first to create an emergency card.';
@@ -4309,6 +4313,10 @@ extension on TranslationsEn {
 			'calendar.errorTitle' => 'Please enter a title.',
 			'calendar.cancel' => 'Cancel',
 			'calendar.delete' => 'Delete',
+			'emergency.listen' => 'Read aloud',
+			'emergency.listenStop' => 'Stop reading',
+			'emergency.listenUnknown' => 'not specified',
+			'emergency.listenFailed' => 'Text-to-speech could not start on this device.',
 			'emergency.title' => 'Emergency Card',
 			'emergency.subtitle' => 'Information to show to anyone who meets your child in an emergency.',
 			'emergency.noChild' => 'Add a child first to create an emergency card.',
