@@ -93,6 +93,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               icon: Icons.mail_outline,
                               keyboardType: TextInputType.emailAddress,
                               autofillHints: const [AutofillHints.username],
+                              textInputAction: TextInputAction.next,
                             ),
                             const SizedBox(height: 16),
                             _Field(
@@ -102,6 +103,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               icon: Icons.lock_outline,
                               obscure: _obscure,
                               autofillHints: const [AutofillHints.password],
+                              // Klavyedeki "bitti" doğrudan giriş yapsın.
+                              textInputAction: TextInputAction.done,
+                              onSubmitted: isBusy ? null : _onLogin,
                               trailing: IconButton(
                                 tooltip: _obscure
                                     ? t.common.a11y.showPassword
@@ -277,6 +281,8 @@ class _Field extends StatelessWidget {
     this.obscure = false,
     this.keyboardType,
     this.autofillHints,
+    this.textInputAction,
+    this.onSubmitted,
     this.trailing,
   });
 
@@ -287,6 +293,8 @@ class _Field extends StatelessWidget {
   final bool obscure;
   final TextInputType? keyboardType;
   final List<String>? autofillHints;
+  final TextInputAction? textInputAction;
+  final VoidCallback? onSubmitted;
   final Widget? trailing;
 
   @override
@@ -301,6 +309,8 @@ class _Field extends StatelessWidget {
           obscureText: obscure,
           keyboardType: keyboardType,
           autofillHints: autofillHints,
+          textInputAction: textInputAction,
+          onSubmitted: onSubmitted == null ? null : (_) => onSubmitted!(),
           decoration: InputDecoration(
             hintText: hint,
             prefixIcon: Icon(icon, color: context.colors.textTertiary),

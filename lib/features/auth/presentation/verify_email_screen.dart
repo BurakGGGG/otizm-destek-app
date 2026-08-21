@@ -201,6 +201,10 @@ class _VerifyEmailScreenState extends ConsumerState<VerifyEmailScreen> {
                         const SizedBox(height: 20),
                         TextField(
                           controller: _token,
+                          textInputAction: TextInputAction.done,
+                          onSubmitted: (_) {
+                            if (_status != _Status.verifying) _verify();
+                          },
                           decoration: InputDecoration(
                             labelText: t.verifyEmail.tokenLabel,
                             hintText: t.verifyEmail.tokenHint,
