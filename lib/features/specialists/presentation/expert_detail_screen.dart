@@ -512,6 +512,7 @@ class _ExpertActionsState extends ConsumerState<_ExpertActions> {
           builder: (_) => ConversationThreadScreen(
             conversationId: conv.id,
             title: widget.expert.fullName,
+            otherUserId: widget.expert.id,
           ),
         ),
       );

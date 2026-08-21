@@ -118,10 +118,12 @@ import 'package:otizm_destek_app/features/emergency/data/emergency_repository.da
 import 'package:otizm_destek_app/features/emergency/domain/emergency_card.dart';
 import 'package:otizm_destek_app/features/emergency/presentation/emergency_screen.dart';
 import 'package:otizm_destek_app/features/settings/data/kvkk_repository.dart';
+import 'package:otizm_destek_app/features/settings/presentation/blocked_users_screen.dart';
 import 'package:otizm_destek_app/features/settings/presentation/settings_screen.dart';
 import 'package:otizm_destek_app/features/treatment/data/treatment_repository.dart';
 import 'package:otizm_destek_app/features/treatment/domain/treatment_state.dart';
 import 'package:otizm_destek_app/features/treatment/presentation/treatment_screen.dart';
+import 'package:otizm_destek_app/features/profile/data/block_repository.dart';
 import 'package:otizm_destek_app/features/similar_families/data/buddy_repository.dart';
 import 'package:otizm_destek_app/features/similar_families/data/matching_repository.dart';
 import 'package:otizm_destek_app/features/similar_families/domain/buddy.dart';
@@ -1330,6 +1332,27 @@ class _FakeBuddyRepository extends BuddyRepository {
   Future<void> withdraw(String relationshipId) async {}
 }
 
+class _FakeBlockRepository extends BlockRepository {
+  _FakeBlockRepository() : super(Dio());
+
+  @override
+  Future<List<AppUser>> getBlocked() async => const [
+        AppUser(
+          id: 'u9',
+          email: 'engelli@example.com',
+          fullName: 'Kerem T.',
+          role: UserRole.parent,
+          city: 'Ankara',
+        ),
+      ];
+
+  @override
+  Future<void> block(String userId) async {}
+
+  @override
+  Future<void> unblock(String userId) async {}
+}
+
 class _FakeTreatmentRepository extends TreatmentRepository {
   _FakeTreatmentRepository() : super(Dio());
 
@@ -1490,6 +1513,7 @@ Widget hostApp(
         searchRepositoryProvider.overrideWithValue(_FakeSearchRepository()),
         matchingRepositoryProvider.overrideWithValue(_FakeMatchingRepository()),
         buddyRepositoryProvider.overrideWithValue(_FakeBuddyRepository()),
+        blockRepositoryProvider.overrideWithValue(_FakeBlockRepository()),
         meetupRequestRepositoryProvider
             .overrideWithValue(_FakeMeetupRequestRepository()),
         treatmentRepositoryProvider
@@ -1847,6 +1871,10 @@ List<ScreenShot> screenCatalog() => [
   ScreenShot(
     '31-ayarlar',
     () => const SettingsScreen(),
+  ),
+  ScreenShot(
+    '31b-engellenenler',
+    () => const BlockedUsersScreen(),
   ),
   ScreenShot(
     '26-benzer-aileler',

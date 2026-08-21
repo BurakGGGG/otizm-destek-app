@@ -176,6 +176,10 @@ register:
   emailAvailable: Bu e-posta adresi kullanılabilir.
 
 settings:
+  blockedTitle: Engellenen kullanıcılar
+  blockedEmpty: Engellediğiniz kullanıcı yok.
+  blockedRemove: Engeli kaldır
+  blockedRemoved: Engel kaldırıldı.
   privacyFamilyMessages: Diğer aileler bana mesaj gönderebilsin
   matchingTitle: Toplulukta ne arıyorsunuz?
   matchingHint: Eşleşme önerilerinde ve profilinde görünür.
@@ -353,6 +357,9 @@ chat:
   errorGeneric: Yanıt alınamadı, lütfen tekrar deneyin.
 
 messages:
+  blockUser: Kullanıcıyı engelle
+  blockConfirm: $name artık size mesaj gönderemeyecek. Engellensin mi?
+  blocked: Kullanıcı engellendi.
   title: Mesajlar
   noConversations: Henüz bir konuşmanız yok.
   noMessages: Henüz mesaj yok. İlk mesajı gönderin.
@@ -1070,6 +1077,7 @@ similar:
   scoreEducation: Eğitim
 
 groups:
+  chatUnread: Sohbet ($count)
   detailTitle: Grup Detayı
   detailHint: Üye listesi ve buluşmalar yalnızca grup üyelerine görünür.
   membersTitle: Üyeler

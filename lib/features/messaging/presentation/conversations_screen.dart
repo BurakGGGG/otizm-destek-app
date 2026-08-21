@@ -269,7 +269,12 @@ class _ConversationTile extends ConsumerWidget {
         ],
       ),
       onTap: () =>
-          context.push('/messages/thread', extra: {'id': c.id, 'title': title}),
+          context.push('/messages/thread', extra: {
+            'id': c.id,
+            'title': title,
+            // Birebir sohbette engelleme için karşı tarafın kimliği.
+            'otherUserId': c.otherParticipantId(currentUserId),
+          }),
     );
   }
 }

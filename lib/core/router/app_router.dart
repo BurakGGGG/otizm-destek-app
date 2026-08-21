@@ -37,6 +37,7 @@ import '../../features/profile/presentation/help_screen.dart';
 import '../../features/routines/presentation/routines_screen.dart';
 import '../../features/settings/presentation/kvkk_screen.dart';
 import '../../features/search/presentation/search_screen.dart';
+import '../../features/settings/presentation/blocked_users_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
 import '../../features/similar_families/presentation/similar_families_screen.dart';
 import '../../features/splash/splash_screen.dart';
@@ -157,6 +158,10 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/account', builder: (_, _) => const AccountScreen()),
       GoRoute(path: '/settings', builder: (_, _) => const SettingsScreen()),
       GoRoute(path: '/kvkk', builder: (_, _) => const KvkkScreen()),
+      GoRoute(
+        path: '/blocked',
+        builder: (_, _) => const BlockedUsersScreen(),
+      ),
       GoRoute(path: '/legal', builder: (_, _) => const LegalIndexScreen()),
       GoRoute(
         path: '/legal/:kind',
@@ -218,6 +223,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
           return ConversationThreadScreen(
             conversationId: extra?['id'] as String? ?? '',
             title: extra?['title'] as String? ?? '',
+            otherUserId: extra?['otherUserId'] as String?,
           );
         },
       ),

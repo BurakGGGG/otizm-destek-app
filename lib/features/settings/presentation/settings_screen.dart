@@ -125,6 +125,13 @@ class SettingsScreen extends ConsumerWidget {
                       .updateProfile(hideOnlineStatus: value),
                 ),
                 if (!isExpert) const _MatchingPreferences(),
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  leading: const Icon(Icons.block_outlined),
+                  title: Text(t.settings.blockedTitle),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () => context.push('/blocked'),
+                ),
                 // Uzmanların çocuk verisine erişimi cihaz tercihi değil,
                 // sunucudaki onaylardır — ayrı ekrana götürülür.
                 ListTile(

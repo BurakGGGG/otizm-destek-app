@@ -15,6 +15,7 @@ class Group {
     this.isMember = false,
     this.conversationId,
     this.createdByUserId,
+    this.unreadCount = 0,
   });
 
   final String id;
@@ -29,6 +30,9 @@ class Group {
   final String? conversationId;
   final String? createdByUserId;
 
+  /// Grup sohbetindeki okunmamış mesaj sayısı.
+  final int unreadCount;
+
   Group copyWith({bool? isMember, int? memberCount}) {
     return Group(
       id: id,
@@ -42,6 +46,7 @@ class Group {
       isMember: isMember ?? this.isMember,
       conversationId: conversationId,
       createdByUserId: createdByUserId,
+      unreadCount: unreadCount,
     );
   }
 
@@ -58,6 +63,7 @@ class Group {
       isMember: json['isMember'] == true,
       conversationId: json['conversationId']?.toString(),
       createdByUserId: json['createdByUserId']?.toString(),
+      unreadCount: (json['unreadCount'] as num?)?.toInt() ?? 0,
     );
   }
 }

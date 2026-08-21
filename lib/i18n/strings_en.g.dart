@@ -340,6 +340,10 @@ class _Translations$settings$en extends Translations$settings$tr {
 	final TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	@override String get blockedTitle => 'Blocked users';
+	@override String get blockedEmpty => 'You have not blocked anyone.';
+	@override String get blockedRemove => 'Unblock';
+	@override String get blockedRemoved => 'User unblocked.';
 	@override String get privacyFamilyMessages => 'Let other families message me';
 	@override String get matchingTitle => 'What are you looking for in the community?';
 	@override String get matchingHint => 'Shown in match suggestions and on your profile.';
@@ -559,6 +563,9 @@ class _Translations$messages$en extends Translations$messages$tr {
 	final TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	@override String get blockUser => 'Block user';
+	@override String blockConfirm({required Object name}) => '${name} will no longer be able to message you. Block?';
+	@override String get blocked => 'User blocked.';
 	@override String get title => 'Messages';
 	@override String get noConversations => 'You have no conversations yet.';
 	@override String get noMessages => 'No messages yet. Send the first one.';
@@ -1429,6 +1436,7 @@ class _Translations$groups$en extends Translations$groups$tr {
 	final TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	@override String chatUnread({required Object count}) => 'Chat (${count})';
 	@override String get detailTitle => 'Group details';
 	@override String get detailHint => 'Members and meetings are visible to group members only.';
 	@override String get membersTitle => 'Members';
@@ -2858,6 +2866,10 @@ extension on TranslationsEn {
 			'register.emailTaken' => 'This email address is already registered. Try signing in.',
 			'register.emailAvailable' => 'This email address is available.',
 			'register.errorKvkkRequired' => 'KVKK consent is required to continue.',
+			'settings.blockedTitle' => 'Blocked users',
+			'settings.blockedEmpty' => 'You have not blocked anyone.',
+			'settings.blockedRemove' => 'Unblock',
+			'settings.blockedRemoved' => 'User unblocked.',
 			'settings.privacyFamilyMessages' => 'Let other families message me',
 			'settings.matchingTitle' => 'What are you looking for in the community?',
 			'settings.matchingHint' => 'Shown in match suggestions and on your profile.',
@@ -3023,6 +3035,9 @@ extension on TranslationsEn {
 			'chat.greeting' => 'Hi! I\'ll try to answer your questions about autism and child development.',
 			'chat.inputHint' => 'Ask a question...',
 			'chat.errorGeneric' => 'Couldn\'t get a response, please try again.',
+			'messages.blockUser' => 'Block user',
+			'messages.blockConfirm' => ({required Object name}) => '${name} will no longer be able to message you. Block?',
+			'messages.blocked' => 'User blocked.',
 			'messages.title' => 'Messages',
 			'messages.noConversations' => 'You have no conversations yet.',
 			'messages.noMessages' => 'No messages yet. Send the first one.',
@@ -3214,6 +3229,8 @@ extension on TranslationsEn {
 			'noteForm.created' => 'Note added.',
 			'noteForm.updated' => 'Note updated.',
 			'notesPage.title' => 'My Notes',
+			_ => null,
+		} ?? switch (path) {
 			'notesPage.add' => 'Add Note',
 			'notesPage.searchHint' => 'Search notes…',
 			'notesPage.empty' => 'No development notes yet. Start by adding the first note.',
@@ -3221,8 +3238,6 @@ extension on TranslationsEn {
 			'notesPage.noChildren' => 'Add a child profile first.',
 			'notesPage.loadMore' => 'Load More',
 			'notesPage.edit' => 'Edit',
-			_ => null,
-		} ?? switch (path) {
 			'notesPage.delete' => 'Delete',
 			'notesPage.cancel' => 'Cancel',
 			'notesPage.deleteTitle' => 'Delete Note',
@@ -3688,6 +3703,7 @@ extension on TranslationsEn {
 			'similar.scoreSensory' => 'Sensory',
 			'similar.scoreTherapy' => 'Therapy',
 			'similar.scoreEducation' => 'Education',
+			'groups.chatUnread' => ({required Object count}) => 'Chat (${count})',
 			'groups.detailTitle' => 'Group details',
 			'groups.detailHint' => 'Members and meetings are visible to group members only.',
 			'groups.membersTitle' => 'Members',
@@ -3727,6 +3743,8 @@ extension on TranslationsEn {
 			'groups.joinedMsg' => 'You joined the group.',
 			'groups.leftMsg' => 'You left the group.',
 			'groups.leaveTitle' => 'Leave Group',
+			_ => null,
+		} ?? switch (path) {
 			'groups.leaveConfirm' => 'Are you sure you want to leave this group?',
 			'groups.add' => 'Create Group',
 			'groups.addTitle' => 'New Group',
@@ -3735,8 +3753,6 @@ extension on TranslationsEn {
 			'groups.descriptionLabel' => 'Description',
 			'groups.descriptionHint' => 'What is the group about, who can join?',
 			'groups.categoryLabel' => 'Category',
-			_ => null,
-		} ?? switch (path) {
 			'groups.create' => 'Create',
 			'groups.created' => 'Group created.',
 			'groups.errorName' => 'Please enter a group name.',
@@ -4241,6 +4257,8 @@ extension on TranslationsEn {
 			'calendar.errorTitle' => 'Please enter a title.',
 			'calendar.cancel' => 'Cancel',
 			'calendar.delete' => 'Delete',
+			_ => null,
+		} ?? switch (path) {
 			'emergency.title' => 'Emergency Card',
 			'emergency.subtitle' => 'Information to show to anyone who meets your child in an emergency.',
 			'emergency.noChild' => 'Add a child first to create an emergency card.',
@@ -4249,8 +4267,6 @@ extension on TranslationsEn {
 			'emergency.save' => 'Save',
 			'emergency.saved' => 'Emergency card saved.',
 			'emergency.shareTitle' => 'Share with a QR code',
-			_ => null,
-		} ?? switch (path) {
 			'emergency.shareBody' => 'Create a time-limited link; a teacher or paramedic can open the card from it. You can revoke the link at any time.',
 			'emergency.shareConsentRequired' => 'Sharing requires the "Emergency card sharing" consent.',
 			'emergency.shareOpenConsents' => 'Open consent settings',

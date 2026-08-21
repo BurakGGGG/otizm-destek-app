@@ -579,6 +579,18 @@ class Translations$settings$tr {
 
 	// Translations
 
+	/// tr: 'Engellenen kullanıcılar'
+	String get blockedTitle => 'Engellenen kullanıcılar';
+
+	/// tr: 'Engellediğiniz kullanıcı yok.'
+	String get blockedEmpty => 'Engellediğiniz kullanıcı yok.';
+
+	/// tr: 'Engeli kaldır'
+	String get blockedRemove => 'Engeli kaldır';
+
+	/// tr: 'Engel kaldırıldı.'
+	String get blockedRemoved => 'Engel kaldırıldı.';
+
 	/// tr: 'Diğer aileler bana mesaj gönderebilsin'
 	String get privacyFamilyMessages => 'Diğer aileler bana mesaj gönderebilsin';
 
@@ -1127,6 +1139,15 @@ class Translations$messages$tr {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
+
+	/// tr: 'Kullanıcıyı engelle'
+	String get blockUser => 'Kullanıcıyı engelle';
+
+	/// tr: '$name artık size mesaj gönderemeyecek. Engellensin mi?'
+	String blockConfirm({required Object name}) => '${name} artık size mesaj gönderemeyecek. Engellensin mi?';
+
+	/// tr: 'Kullanıcı engellendi.'
+	String get blocked => 'Kullanıcı engellendi.';
 
 	/// tr: 'Mesajlar'
 	String get title => 'Mesajlar';
@@ -3323,6 +3344,9 @@ class Translations$groups$tr {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
+
+	/// tr: 'Sohbet ($count)'
+	String chatUnread({required Object count}) => 'Sohbet (${count})';
 
 	/// tr: 'Grup Detayı'
 	String get detailTitle => 'Grup Detayı';
@@ -6704,6 +6728,10 @@ extension on Translations {
 			'register.errorKvkkRequired' => 'Devam etmek için KVKK onayı gereklidir.',
 			'register.emailTaken' => 'Bu e-posta adresi zaten kayıtlı. Giriş yapmayı deneyin.',
 			'register.emailAvailable' => 'Bu e-posta adresi kullanılabilir.',
+			'settings.blockedTitle' => 'Engellenen kullanıcılar',
+			'settings.blockedEmpty' => 'Engellediğiniz kullanıcı yok.',
+			'settings.blockedRemove' => 'Engeli kaldır',
+			'settings.blockedRemoved' => 'Engel kaldırıldı.',
 			'settings.privacyFamilyMessages' => 'Diğer aileler bana mesaj gönderebilsin',
 			'settings.matchingTitle' => 'Toplulukta ne arıyorsunuz?',
 			'settings.matchingHint' => 'Eşleşme önerilerinde ve profilinde görünür.',
@@ -6869,6 +6897,9 @@ extension on Translations {
 			'chat.greeting' => 'Merhaba! Otizm ve çocuk gelişimi hakkındaki sorularınızı yanıtlamaya çalışayım.',
 			'chat.inputHint' => 'Bir soru sorun...',
 			'chat.errorGeneric' => 'Yanıt alınamadı, lütfen tekrar deneyin.',
+			'messages.blockUser' => 'Kullanıcıyı engelle',
+			'messages.blockConfirm' => ({required Object name}) => '${name} artık size mesaj gönderemeyecek. Engellensin mi?',
+			'messages.blocked' => 'Kullanıcı engellendi.',
 			'messages.title' => 'Mesajlar',
 			'messages.noConversations' => 'Henüz bir konuşmanız yok.',
 			'messages.noMessages' => 'Henüz mesaj yok. İlk mesajı gönderin.',
@@ -7060,6 +7091,8 @@ extension on Translations {
 			'noteForm.created' => 'Not eklendi.',
 			'noteForm.updated' => 'Not güncellendi.',
 			'notesPage.title' => 'Notlarım',
+			_ => null,
+		} ?? switch (path) {
 			'notesPage.add' => 'Not Ekle',
 			'notesPage.searchHint' => 'Notlarda ara…',
 			'notesPage.empty' => 'Henüz gelişim notu yok. İlk notu ekleyerek başlayın.',
@@ -7067,8 +7100,6 @@ extension on Translations {
 			'notesPage.noChildren' => 'Önce bir çocuk profili ekleyin.',
 			'notesPage.loadMore' => 'Daha Fazla Yükle',
 			'notesPage.edit' => 'Düzenle',
-			_ => null,
-		} ?? switch (path) {
 			'notesPage.delete' => 'Sil',
 			'notesPage.cancel' => 'Vazgeç',
 			'notesPage.deleteTitle' => 'Notu Sil',
@@ -7534,6 +7565,7 @@ extension on Translations {
 			'similar.scoreSensory' => 'Duyusal',
 			'similar.scoreTherapy' => 'Terapi',
 			'similar.scoreEducation' => 'Eğitim',
+			'groups.chatUnread' => ({required Object count}) => 'Sohbet (${count})',
 			'groups.detailTitle' => 'Grup Detayı',
 			'groups.detailHint' => 'Üye listesi ve buluşmalar yalnızca grup üyelerine görünür.',
 			'groups.membersTitle' => 'Üyeler',
@@ -7573,6 +7605,8 @@ extension on Translations {
 			'groups.joinedMsg' => 'Gruba katıldın.',
 			'groups.leftMsg' => 'Gruptan ayrıldın.',
 			'groups.leaveTitle' => 'Gruptan Ayrıl',
+			_ => null,
+		} ?? switch (path) {
 			'groups.leaveConfirm' => 'Bu gruptan ayrılmak istediğine emin misin?',
 			'groups.add' => 'Grup Oluştur',
 			'groups.addTitle' => 'Yeni Grup',
@@ -7581,8 +7615,6 @@ extension on Translations {
 			'groups.descriptionLabel' => 'Açıklama',
 			'groups.descriptionHint' => 'Grup ne hakkında, kimler katılabilir?',
 			'groups.categoryLabel' => 'Kategori',
-			_ => null,
-		} ?? switch (path) {
 			'groups.create' => 'Oluştur',
 			'groups.created' => 'Grup oluşturuldu.',
 			'groups.errorName' => 'Lütfen bir grup adı girin.',
@@ -8087,6 +8119,8 @@ extension on Translations {
 			'calendar.errorTitle' => 'Lütfen bir başlık girin.',
 			'calendar.cancel' => 'İptal',
 			'calendar.delete' => 'Sil',
+			_ => null,
+		} ?? switch (path) {
 			'emergency.title' => 'Acil Durum Kartı',
 			'emergency.subtitle' => 'Acil bir durumda çocuğunuzla karşılaşan kişilere gösterilecek bilgiler.',
 			'emergency.noChild' => 'Acil durum kartı için önce bir çocuk ekleyin.',
@@ -8095,8 +8129,6 @@ extension on Translations {
 			'emergency.save' => 'Kaydet',
 			'emergency.saved' => 'Acil durum kartı kaydedildi.',
 			'emergency.shareTitle' => 'QR kod ile paylaş',
-			_ => null,
-		} ?? switch (path) {
 			'emergency.shareBody' => 'Süreli bir bağlantı oluşturun; öğretmen veya sağlık görevlisi kartı bu bağlantıdan görüntüleyebilir. Bağlantıyı istediğiniz an kapatabilirsiniz.',
 			'emergency.shareConsentRequired' => 'Paylaşım için "Acil durum kartı paylaşımı" rızasını vermeniz gerekiyor.',
 			'emergency.shareOpenConsents' => 'Rıza ayarlarını aç',

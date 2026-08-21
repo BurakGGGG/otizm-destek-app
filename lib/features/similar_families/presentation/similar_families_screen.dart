@@ -67,6 +67,7 @@ class _SimilarFamiliesScreenState
           builder: (_) => ConversationThreadScreen(
             conversationId: conv.id,
             title: family.parentName,
+            otherUserId: family.parentId,
           ),
         ),
       );
@@ -195,8 +196,11 @@ class _SimilarFamiliesScreenState
       if (!mounted) return;
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (_) =>
-              ConversationThreadScreen(conversationId: conv.id, title: name),
+          builder: (_) => ConversationThreadScreen(
+            conversationId: conv.id,
+            title: name,
+            otherUserId: userId,
+          ),
         ),
       );
     } on ApiException catch (e) {

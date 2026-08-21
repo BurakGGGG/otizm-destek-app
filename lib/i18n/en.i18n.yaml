@@ -175,6 +175,10 @@ register:
   errorKvkkRequired: KVKK consent is required to continue.
 
 settings:
+  blockedTitle: Blocked users
+  blockedEmpty: You have not blocked anyone.
+  blockedRemove: Unblock
+  blockedRemoved: User unblocked.
   privacyFamilyMessages: Let other families message me
   matchingTitle: What are you looking for in the community?
   matchingHint: Shown in match suggestions and on your profile.
@@ -352,6 +356,9 @@ chat:
   errorGeneric: Couldn't get a response, please try again.
 
 messages:
+  blockUser: Block user
+  blockConfirm: $name will no longer be able to message you. Block?
+  blocked: User blocked.
   title: Messages
   noConversations: You have no conversations yet.
   noMessages: No messages yet. Send the first one.
@@ -1068,6 +1075,7 @@ similar:
   scoreEducation: Education
 
 groups:
+  chatUnread: Chat ($count)
   detailTitle: Group details
   detailHint: Members and meetings are visible to group members only.
   membersTitle: Members

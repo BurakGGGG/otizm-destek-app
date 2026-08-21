@@ -62,6 +62,13 @@ class Conversation {
     return participants.isNotEmpty ? participants.first.fullName : '';
   }
 
+  /// Birebir sohbette karşı tarafın kimliği (grupta null).
+  String? otherParticipantId(String? currentUserId) {
+    if (isGroup) return null;
+    final others = participants.where((p) => p.id != currentUserId).toList();
+    return others.isNotEmpty ? others.first.id : null;
+  }
+
   String? avatarUrl(String? currentUserId) {
     final others = participants.where((p) => p.id != currentUserId).toList();
     return others.isNotEmpty ? others.first.profileImageUrl : null;

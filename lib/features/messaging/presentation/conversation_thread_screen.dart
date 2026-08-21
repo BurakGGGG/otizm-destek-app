@@ -19,6 +19,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../i18n/strings.g.dart';
 import '../../auth/presentation/auth_controller.dart';
+import '../../profile/data/block_repository.dart';
 import '../data/messaging_repository.dart';
 import '../domain/message.dart';
 import '../domain/pecs_cards.dart';
@@ -29,10 +30,15 @@ class ConversationThreadScreen extends ConsumerStatefulWidget {
     super.key,
     required this.conversationId,
     required this.title,
+    this.otherUserId,
   });
 
   final String conversationId;
   final String title;
+
+  /// Birebir sohbette karşı tarafın kimliği — engelleme için gerekir.
+  /// Grup sohbetlerinde null.
+  final String? otherUserId;
 
   @override
   ConsumerState<ConversationThreadScreen> createState() =>
@@ -164,6 +170,46 @@ class _ConversationThreadScreenState
   }
 
   /// Mesaja uzun basınca: yanıtla + hızlı tepki seçenekleri.
+  /// Karşı tarafı engeller (mesaj gönderemez hâle gelir).
+  Future<void> _blockUser() async {
+    final userId = widget.otherUserId;
+    if (userId == null) return;
+    final t = context.t;
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(t.messages.blockUser),
+        content: Text(t.messages.blockConfirm(name: widget.title)),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(false),
+            child: Text(t.common.cancel),
+          ),
+          FilledButton(
+            style: FilledButton.styleFrom(
+              backgroundColor: context.colors.error,
+            ),
+            onPressed: () => Navigator.of(ctx).pop(true),
+            child: Text(t.messages.blockUser),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !mounted) return;
+    final messenger = ScaffoldMessenger.of(context);
+    final navigator = Navigator.of(context);
+    try {
+      await ref.read(blockRepositoryProvider).block(userId);
+      ref.invalidate(blockedUsersProvider);
+      ref.invalidate(conversationsProvider);
+      Haptics.warning();
+      messenger.showSnackBar(SnackBar(content: Text(t.messages.blocked)));
+      navigator.pop();
+    } on ApiException catch (e) {
+      messenger.showSnackBar(SnackBar(content: Text(e.message)));
+    }
+  }
+
   Future<void> _openMessageActions(Message message) async {
     final t = context.t;
     await showModalBottomSheet<void>(
@@ -374,6 +420,12 @@ class _ConversationThreadScreenState
       appBar: AppBar(
         title: Text(widget.title),
         actions: [
+          if (widget.otherUserId != null)
+            IconButton(
+              tooltip: t.messages.blockUser,
+              onPressed: _blockUser,
+              icon: const Icon(Icons.block),
+            ),
           IconButton(
             tooltip: t.messages.searchInChat,
             onPressed: () => showModalBottomSheet<void>(
