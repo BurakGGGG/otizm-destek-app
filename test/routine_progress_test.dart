@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:otizm_destek_app/core/providers.dart';
 import 'package:otizm_destek_app/core/storage/secure_storage.dart';
 import 'package:otizm_destek_app/features/routines/data/routine_progress_controller.dart';
+import 'package:otizm_destek_app/features/routines/domain/routine_icons.dart';
 import 'package:otizm_destek_app/features/routines/presentation/routines_screen.dart';
 import 'package:otizm_destek_app/i18n/strings.g.dart';
 
@@ -103,5 +104,23 @@ void main() {
     expect(find.text(t.routines.starWallet(count: '1')), findsOneWidget);
     expect(find.text(t.routines.stepDone), findsOneWidget);
     expect(find.byIcon(Icons.check_rounded), findsOneWidget);
+  });
+
+  test('ikon adları web ICON_OPTIONS ile birebir', () {
+    // Paylaşılan veri: web bu değerleri emojiye çeviriyor (RoutinesPage).
+    expect(kRoutineIcons.keys.toList(), [
+      'morning',
+      'eat',
+      'brush',
+      'shower',
+      'dress',
+      'school',
+      'homework',
+      'play',
+      'sleep',
+      'medicine',
+      'walk',
+      'therapy',
+    ]);
   });
 }
