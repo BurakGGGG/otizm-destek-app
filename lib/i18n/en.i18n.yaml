@@ -1915,6 +1915,7 @@ children:
   deleted: Child profile deleted.
 
 account:
+  photoUpdated: Profile photo updated.
   title: Account Information
   emailLabel: Email
   fullNameLabel: Full Name

@@ -1922,6 +1922,7 @@ children:
   deleted: Çocuk profili silindi.
 
 account:
+  photoUpdated: Profil fotoğrafı güncellendi.
   title: Hesap Bilgileri
   emailLabel: E-posta
   fullNameLabel: Ad Soyad

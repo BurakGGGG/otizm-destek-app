@@ -5587,6 +5587,9 @@ class Translations$account$tr {
 
 	// Translations
 
+	/// tr: 'Profil fotoğrafı güncellendi.'
+	String get photoUpdated => 'Profil fotoğrafı güncellendi.';
+
 	/// tr: 'Hesap Bilgileri'
 	String get title => 'Hesap Bilgileri';
 
@@ -8442,6 +8445,7 @@ extension on Translations {
 			'children.created' => 'Çocuk profili oluşturuldu.',
 			'children.updated' => 'Çocuk profili güncellendi.',
 			'children.deleted' => 'Çocuk profili silindi.',
+			'account.photoUpdated' => 'Profil fotoğrafı güncellendi.',
 			'account.title' => 'Hesap Bilgileri',
 			'account.emailLabel' => 'E-posta',
 			'account.fullNameLabel' => 'Ad Soyad',

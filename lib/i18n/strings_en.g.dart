@@ -2260,6 +2260,7 @@ class _Translations$account$en extends Translations$account$tr {
 	final TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	@override String get photoUpdated => 'Profile photo updated.';
 	@override String get title => 'Account Information';
 	@override String get emailLabel => 'Email';
 	@override String get fullNameLabel => 'Full Name';
@@ -4508,6 +4509,7 @@ extension on TranslationsEn {
 			'children.created' => 'Child profile created.',
 			'children.updated' => 'Child profile updated.',
 			'children.deleted' => 'Child profile deleted.',
+			'account.photoUpdated' => 'Profile photo updated.',
 			'account.title' => 'Account Information',
 			'account.emailLabel' => 'Email',
 			'account.fullNameLabel' => 'Full Name',
