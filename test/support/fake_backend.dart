@@ -1999,6 +1999,22 @@ List<ScreenShot> screenCatalog() => [
     () => const GroupsScreen(),
   ),
   ScreenShot(
+    '21c-grup-detayi-karanlik',
+    () => const GroupDetailScreen(
+      group: Group(
+        id: 'gr1',
+        name: 'Okul Öncesi Aileler',
+        description: 'Anaokulu ve kreş sürecindeki aileler için destek grubu.',
+        category: 'Okul Dönemi',
+        memberCount: 128,
+        expertCount: 3,
+        isMember: true,
+        createdByUserId: 'u1',
+      ),
+    ),
+    variant: ShotVariant.dark,
+  ),
+  ScreenShot(
     '21b-grup-detayi',
     () => const GroupDetailScreen(
       group: Group(
