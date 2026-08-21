@@ -17,10 +17,12 @@ import '../../../core/providers.dart';
 import '../../../core/realtime/stomp_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/widgets/user_avatar.dart';
 import '../../../i18n/strings.g.dart';
 import '../../auth/presentation/auth_controller.dart';
 import '../../profile/data/block_repository.dart';
 import '../data/messaging_repository.dart';
+import '../domain/conversation.dart';
 import '../domain/message.dart';
 import '../domain/pecs_cards.dart';
 
@@ -31,6 +33,7 @@ class ConversationThreadScreen extends ConsumerStatefulWidget {
     required this.conversationId,
     required this.title,
     this.otherUserId,
+    this.isGroup = false,
   });
 
   final String conversationId;
@@ -39,6 +42,9 @@ class ConversationThreadScreen extends ConsumerStatefulWidget {
   /// Birebir sohbette karşı tarafın kimliği — engelleme için gerekir.
   /// Grup sohbetlerinde null.
   final String? otherUserId;
+
+  /// Grup sohbeti mi (ad değiştirme ve üye yönetimi için).
+  final bool isGroup;
 
   @override
   ConsumerState<ConversationThreadScreen> createState() =>
@@ -420,6 +426,17 @@ class _ConversationThreadScreenState
       appBar: AppBar(
         title: Text(widget.title),
         actions: [
+          if (widget.isGroup)
+            IconButton(
+              tooltip: t.messages.groupSettings,
+              onPressed: () => showModalBottomSheet<void>(
+                context: context,
+                isScrollControlled: true,
+                builder: (_) =>
+                    _GroupSettingsSheet(conversationId: widget.conversationId),
+              ),
+              icon: const Icon(Icons.group_outlined),
+            ),
           if (widget.otherUserId != null)
             IconButton(
               tooltip: t.messages.blockUser,
@@ -1036,6 +1053,235 @@ class _MessageSearchSheetState extends ConsumerState<_MessageSearchSheet> {
                 ),
               ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Grup sohbeti ayarları — ad değiştirme ve üye ekleme/çıkarma
+/// (web `MessagesPage` içindeki "Grup Ayarları" paneli).
+class _GroupSettingsSheet extends ConsumerStatefulWidget {
+  const _GroupSettingsSheet({required this.conversationId});
+
+  final String conversationId;
+
+  @override
+  ConsumerState<_GroupSettingsSheet> createState() =>
+      _GroupSettingsSheetState();
+}
+
+class _GroupSettingsSheetState extends ConsumerState<_GroupSettingsSheet> {
+  final _name = TextEditingController();
+  final _search = TextEditingController();
+  Timer? _debounce;
+  Conversation? _conversation;
+  List<Participant> _results = const [];
+  bool _loading = true;
+  bool _busy = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  @override
+  void dispose() {
+    _debounce?.cancel();
+    _name.dispose();
+    _search.dispose();
+    super.dispose();
+  }
+
+  Future<void> _load() async {
+    try {
+      final conversation = await ref
+          .read(messagingRepositoryProvider)
+          .getConversation(widget.conversationId);
+      if (!mounted) return;
+      setState(() {
+        _conversation = conversation;
+        _name.text = conversation.title ?? '';
+        _loading = false;
+      });
+    } on ApiException catch (e) {
+      if (!mounted) return;
+      setState(() => _loading = false);
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.message)));
+    }
+  }
+
+  void _onSearch(String value) {
+    _debounce?.cancel();
+    _debounce = Timer(const Duration(milliseconds: 350), () async {
+      if (value.trim().length < 2) {
+        if (mounted) setState(() => _results = const []);
+        return;
+      }
+      try {
+        final users =
+            await ref.read(messagingRepositoryProvider).searchUsers(value);
+        if (mounted) setState(() => _results = users);
+      } on ApiException catch (_) {
+        // Arama hatası sessiz: panel çalışmaya devam eder.
+      }
+    });
+  }
+
+  Future<void> _apply(
+    Future<Conversation> Function() action,
+    String okMessage,
+  ) async {
+    setState(() => _busy = true);
+    final messenger = ScaffoldMessenger.of(context);
+    try {
+      final updated = await action();
+      ref.invalidate(conversationsProvider);
+      if (!mounted) return;
+      setState(() {
+        _conversation = updated;
+        _busy = false;
+      });
+      Haptics.selection();
+      messenger.showSnackBar(SnackBar(content: Text(okMessage)));
+    } on ApiException catch (e) {
+      if (mounted) setState(() => _busy = false);
+      messenger.showSnackBar(SnackBar(content: Text(e.message)));
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    final text = Theme.of(context).textTheme;
+    final repo = ref.read(messagingRepositoryProvider);
+    final currentUserId = ref.watch(authControllerProvider).user?.id;
+    final members = _conversation?.participants
+            .where((p) => p.id != currentUserId)
+            .toList() ??
+        const <Participant>[];
+
+    return SafeArea(
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: AppSpacing.margin,
+          right: AppSpacing.margin,
+          top: AppSpacing.md,
+          bottom: MediaQuery.viewInsetsOf(context).bottom + AppSpacing.md,
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(t.messages.groupSettings, style: text.titleMedium),
+              const SizedBox(height: 12),
+              if (_loading)
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 24),
+                  child: Center(
+                    child: SizedBox(
+                      height: 20,
+                      width: 20,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    ),
+                  ),
+                )
+              else ...[
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        controller: _name,
+                        decoration: InputDecoration(
+                          labelText: t.messages.groupNameLabel,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    FilledButton(
+                      style: AppButtonStyles.inlineFilled,
+                      onPressed: _busy
+                          ? null
+                          : () => _apply(
+                                () => repo.updateGroupTitle(
+                                  widget.conversationId,
+                                  _name.text,
+                                ),
+                                t.messages.groupRenamed,
+                              ),
+                      child: Text(t.messages.groupRename),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                Text(t.messages.groupAddMember, style: text.labelLarge),
+                const SizedBox(height: 6),
+                TextField(
+                  controller: _search,
+                  onChanged: _onSearch,
+                  decoration: InputDecoration(
+                    hintText: t.messages.searchUserHint,
+                    prefixIcon: const Icon(Icons.search, size: 20),
+                  ),
+                ),
+                for (final user in _results.take(4))
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    leading: UserAvatar(
+                      name: user.fullName,
+                      imageUrl: user.profileImageUrl,
+                      radius: 16,
+                    ),
+                    title: Text(user.fullName),
+                    trailing: const Icon(Icons.person_add_alt_1_outlined),
+                    onTap: _busy
+                        ? null
+                        : () => _apply(
+                              () => repo.addMember(
+                                widget.conversationId,
+                                user.id,
+                              ),
+                              t.messages.groupMemberAdded,
+                            ),
+                  ),
+                const SizedBox(height: 16),
+                Text(t.messages.groupMembers, style: text.labelLarge),
+                for (final member in members)
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    leading: UserAvatar(
+                      name: member.fullName,
+                      imageUrl: member.profileImageUrl,
+                      radius: 16,
+                    ),
+                    title: Text(member.fullName),
+                    subtitle: member.role == 'EXPERT'
+                        ? Text(context.t.roles.expert)
+                        : null,
+                    trailing: IconButton(
+                      tooltip: t.messages.groupMemberRemoved,
+                      icon: Icon(
+                        Icons.person_remove_outlined,
+                        color: context.colors.error,
+                      ),
+                      onPressed: _busy
+                          ? null
+                          : () => _apply(
+                                () => repo.removeMember(
+                                  widget.conversationId,
+                                  member.id,
+                                ),
+                                t.messages.groupMemberRemoved,
+                              ),
+                    ),
+                  ),
+              ],
+              const SizedBox(height: 8),
+            ],
+          ),
         ),
       ),
     );

@@ -357,6 +357,20 @@ chat:
   errorGeneric: Yanıt alınamadı, lütfen tekrar deneyin.
 
 messages:
+  newGroup: Yeni grup sohbeti
+  chatDirect: Birebir
+  chatGroup: Grup
+  groupNameLabel: Grup adı
+  groupCreate: Grubu oluştur
+  groupNameRequired: Grup adı gerekli.
+  groupMembersRequired: En az bir katılımcı seçin.
+  groupSettings: Grup ayarları
+  groupRename: Adı kaydet
+  groupRenamed: Grup adı güncellendi.
+  groupAddMember: Üye ekle
+  groupMembers: Üyeler
+  groupMemberRemoved: Üye çıkarıldı.
+  groupMemberAdded: Üye eklendi.
   blockUser: Kullanıcıyı engelle
   blockConfirm: $name artık size mesaj gönderemeyecek. Engellensin mi?
   blocked: Kullanıcı engellendi.

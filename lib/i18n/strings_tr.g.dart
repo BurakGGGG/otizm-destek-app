@@ -1140,6 +1140,48 @@ class Translations$messages$tr {
 
 	// Translations
 
+	/// tr: 'Yeni grup sohbeti'
+	String get newGroup => 'Yeni grup sohbeti';
+
+	/// tr: 'Birebir'
+	String get chatDirect => 'Birebir';
+
+	/// tr: 'Grup'
+	String get chatGroup => 'Grup';
+
+	/// tr: 'Grup adı'
+	String get groupNameLabel => 'Grup adı';
+
+	/// tr: 'Grubu oluştur'
+	String get groupCreate => 'Grubu oluştur';
+
+	/// tr: 'Grup adı gerekli.'
+	String get groupNameRequired => 'Grup adı gerekli.';
+
+	/// tr: 'En az bir katılımcı seçin.'
+	String get groupMembersRequired => 'En az bir katılımcı seçin.';
+
+	/// tr: 'Grup ayarları'
+	String get groupSettings => 'Grup ayarları';
+
+	/// tr: 'Adı kaydet'
+	String get groupRename => 'Adı kaydet';
+
+	/// tr: 'Grup adı güncellendi.'
+	String get groupRenamed => 'Grup adı güncellendi.';
+
+	/// tr: 'Üye ekle'
+	String get groupAddMember => 'Üye ekle';
+
+	/// tr: 'Üyeler'
+	String get groupMembers => 'Üyeler';
+
+	/// tr: 'Üye çıkarıldı.'
+	String get groupMemberRemoved => 'Üye çıkarıldı.';
+
+	/// tr: 'Üye eklendi.'
+	String get groupMemberAdded => 'Üye eklendi.';
+
 	/// tr: 'Kullanıcıyı engelle'
 	String get blockUser => 'Kullanıcıyı engelle';
 
@@ -6897,6 +6939,20 @@ extension on Translations {
 			'chat.greeting' => 'Merhaba! Otizm ve çocuk gelişimi hakkındaki sorularınızı yanıtlamaya çalışayım.',
 			'chat.inputHint' => 'Bir soru sorun...',
 			'chat.errorGeneric' => 'Yanıt alınamadı, lütfen tekrar deneyin.',
+			'messages.newGroup' => 'Yeni grup sohbeti',
+			'messages.chatDirect' => 'Birebir',
+			'messages.chatGroup' => 'Grup',
+			'messages.groupNameLabel' => 'Grup adı',
+			'messages.groupCreate' => 'Grubu oluştur',
+			'messages.groupNameRequired' => 'Grup adı gerekli.',
+			'messages.groupMembersRequired' => 'En az bir katılımcı seçin.',
+			'messages.groupSettings' => 'Grup ayarları',
+			'messages.groupRename' => 'Adı kaydet',
+			'messages.groupRenamed' => 'Grup adı güncellendi.',
+			'messages.groupAddMember' => 'Üye ekle',
+			'messages.groupMembers' => 'Üyeler',
+			'messages.groupMemberRemoved' => 'Üye çıkarıldı.',
+			'messages.groupMemberAdded' => 'Üye eklendi.',
 			'messages.blockUser' => 'Kullanıcıyı engelle',
 			'messages.blockConfirm' => ({required Object name}) => '${name} artık size mesaj gönderemeyecek. Engellensin mi?',
 			'messages.blocked' => 'Kullanıcı engellendi.',
@@ -7077,6 +7133,8 @@ extension on Translations {
 			'noteForm.title' => 'Not Ekle',
 			'noteForm.editTitle' => 'Notu Düzenle',
 			'noteForm.nameLabel' => 'Başlık',
+			_ => null,
+		} ?? switch (path) {
 			'noteForm.nameHint' => 'Örn. Bugünkü gelişme',
 			'noteForm.contentLabel' => 'İçerik (isteğe bağlı)',
 			'noteForm.contentHint' => 'Gözlemlerinizi yazın',
@@ -7091,8 +7149,6 @@ extension on Translations {
 			'noteForm.created' => 'Not eklendi.',
 			'noteForm.updated' => 'Not güncellendi.',
 			'notesPage.title' => 'Notlarım',
-			_ => null,
-		} ?? switch (path) {
 			'notesPage.add' => 'Not Ekle',
 			'notesPage.searchHint' => 'Notlarda ara…',
 			'notesPage.empty' => 'Henüz gelişim notu yok. İlk notu ekleyerek başlayın.',
@@ -7591,6 +7647,8 @@ extension on Translations {
 			'groups.subtitle' => 'Benzer konularda ailelerle bir araya gel, grup sohbetine katıl.',
 			'groups.tabMy' => 'Gruplarım',
 			'groups.tabDiscover' => 'Keşfet',
+			_ => null,
+		} ?? switch (path) {
 			'groups.searchHint' => 'Grup ara…',
 			'groups.allCategories' => 'Tümü',
 			'groups.emptyMy' => 'Henüz bir gruba katılmadın. Keşfet sekmesinden gruplara göz at.',
@@ -7605,8 +7663,6 @@ extension on Translations {
 			'groups.joinedMsg' => 'Gruba katıldın.',
 			'groups.leftMsg' => 'Gruptan ayrıldın.',
 			'groups.leaveTitle' => 'Gruptan Ayrıl',
-			_ => null,
-		} ?? switch (path) {
 			'groups.leaveConfirm' => 'Bu gruptan ayrılmak istediğine emin misin?',
 			'groups.add' => 'Grup Oluştur',
 			'groups.addTitle' => 'Yeni Grup',
@@ -8105,6 +8161,8 @@ extension on Translations {
 			'calendar.reminderDay' => '1 gün önce',
 			'calendar.statusPlanned' => 'Planlandı',
 			'calendar.statusCompleted' => 'Tamamlandı',
+			_ => null,
+		} ?? switch (path) {
 			'calendar.statusCancelled' => 'İptal',
 			'calendar.markCompleted' => 'Tamamlandı işaretle',
 			'calendar.markPlanned' => 'Planlandı yap',
@@ -8119,8 +8177,6 @@ extension on Translations {
 			'calendar.errorTitle' => 'Lütfen bir başlık girin.',
 			'calendar.cancel' => 'İptal',
 			'calendar.delete' => 'Sil',
-			_ => null,
-		} ?? switch (path) {
 			'emergency.title' => 'Acil Durum Kartı',
 			'emergency.subtitle' => 'Acil bir durumda çocuğunuzla karşılaşan kişilere gösterilecek bilgiler.',
 			'emergency.noChild' => 'Acil durum kartı için önce bir çocuk ekleyin.',

@@ -125,6 +125,8 @@ class _GroupsScreenState extends ConsumerState<GroupsScreen> {
           builder: (_) => ConversationThreadScreen(
             conversationId: conv.id,
             title: group.name,
+            // Destek grubu sohbetinde üyeliği grup yönetiyor; ayar paneli
+            // yalnızca sohbet grubu (ad/üye) için gösterilir.
           ),
         ),
       );

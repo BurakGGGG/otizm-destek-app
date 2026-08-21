@@ -45,6 +45,62 @@ class MessagingRepository {
     }
   }
 
+  /// Yeni grup sohbeti oluşturur (ad + katılımcılar).
+  Future<Conversation> createGroup(
+    String title,
+    List<String> participantIds,
+  ) async {
+    try {
+      final res = await _dio.post(
+        '/messages/conversations/group',
+        data: {'title': title.trim(), 'participantIds': participantIds},
+      );
+      return Conversation.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Tek bir konuşmayı getirir (grup ayarlarında katılımcılar için).
+  Future<Conversation> getConversation(String id) async {
+    try {
+      final res = await _dio.get('/messages/conversations/$id');
+      return Conversation.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Grup sohbetinin adını değiştirir.
+  Future<Conversation> updateGroupTitle(String id, String title) async {
+    try {
+      final res = await _dio.patch(
+        '/messages/conversations/$id/title',
+        data: {'title': title.trim()},
+      );
+      return Conversation.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Gruba üye ekler.
+  Future<Conversation> addMember(String id, String userId) =>
+      _memberChange('/messages/conversations/$id/members/$userId', add: true);
+
+  /// Gruptan üye çıkarır.
+  Future<Conversation> removeMember(String id, String userId) =>
+      _memberChange('/messages/conversations/$id/members/$userId', add: false);
+
+  Future<Conversation> _memberChange(String path, {required bool add}) async {
+    try {
+      final res = add ? await _dio.post(path) : await _dio.delete(path);
+      return Conversation.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
   /// Bir konuşmanın mesajları (en yeni sayfa), eskiden yeniye sıralı.
   Future<List<Message>> getMessages(
     String conversationId, {

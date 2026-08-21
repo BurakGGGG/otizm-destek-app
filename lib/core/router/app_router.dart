@@ -224,6 +224,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             conversationId: extra?['id'] as String? ?? '',
             title: extra?['title'] as String? ?? '',
             otherUserId: extra?['otherUserId'] as String?,
+            isGroup: extra?['isGroup'] == true,
           );
         },
       ),

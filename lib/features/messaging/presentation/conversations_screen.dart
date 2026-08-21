@@ -274,6 +274,7 @@ class _ConversationTile extends ConsumerWidget {
             'title': title,
             // Birebir sohbette engelleme için karşı tarafın kimliği.
             'otherUserId': c.otherParticipantId(currentUserId),
+            'isGroup': c.isGroup,
           }),
     );
   }
@@ -297,16 +298,69 @@ class _NewChatSheet extends ConsumerStatefulWidget {
 
 class _NewChatSheetState extends ConsumerState<_NewChatSheet> {
   final _controller = TextEditingController();
+  final _groupName = TextEditingController();
   Timer? _debounce;
   List<Participant> _results = const [];
   bool _searching = false;
   bool _opening = false;
 
+  /// Grup modunda seçilen katılımcılar (web'deki grup oluşturma
+  /// penceresi).
+  bool _groupMode = false;
+  final List<Participant> _selected = [];
+
   @override
   void dispose() {
     _debounce?.cancel();
     _controller.dispose();
+    _groupName.dispose();
     super.dispose();
+  }
+
+  void _toggleSelected(Participant user) {
+    setState(() {
+      final index = _selected.indexWhere((p) => p.id == user.id);
+      index >= 0 ? _selected.removeAt(index) : _selected.add(user);
+    });
+  }
+
+  Future<void> _createGroup() async {
+    final t = context.t;
+    final messenger = ScaffoldMessenger.of(context);
+    if (_groupName.text.trim().isEmpty) {
+      messenger.showSnackBar(
+        SnackBar(content: Text(t.messages.groupNameRequired)),
+      );
+      return;
+    }
+    if (_selected.isEmpty) {
+      messenger.showSnackBar(
+        SnackBar(content: Text(t.messages.groupMembersRequired)),
+      );
+      return;
+    }
+    setState(() => _opening = true);
+    final navigator = Navigator.of(context);
+    final router = GoRouter.of(context);
+    try {
+      final conversation = await ref
+          .read(messagingRepositoryProvider)
+          .createGroup(_groupName.text, [for (final p in _selected) p.id]);
+      ref.invalidate(conversationsProvider);
+      navigator.pop();
+      router.push(
+        '/messages/thread',
+        extra: {
+          'id': conversation.id,
+          'title': _groupName.text.trim(),
+          'isGroup': true,
+        },
+      );
+    } on ApiException catch (e) {
+      messenger.showSnackBar(SnackBar(content: Text(e.message)));
+    } finally {
+      if (mounted) setState(() => _opening = false);
+    }
   }
 
   void _onChanged(String value) {
@@ -349,7 +403,11 @@ class _NewChatSheetState extends ConsumerState<_NewChatSheet> {
       navigator.pop();
       router.push(
         '/messages/thread',
-        extra: {'id': conversation.id, 'title': user.fullName},
+        extra: {
+          'id': conversation.id,
+          'title': user.fullName,
+          'otherUserId': user.id,
+        },
       );
     } on ApiException catch (e) {
       messenger.showSnackBar(SnackBar(content: Text(e.message)));
@@ -374,8 +432,48 @@ class _NewChatSheetState extends ConsumerState<_NewChatSheet> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(t.messages.newChat, style: text.titleMedium),
+            Text(
+              _groupMode ? t.messages.newGroup : t.messages.newChat,
+              style: text.titleMedium,
+            ),
+            const SizedBox(height: 8),
+            SegmentedButton<bool>(
+              segments: [
+                ButtonSegment(value: false, label: Text(t.messages.chatDirect)),
+                ButtonSegment(value: true, label: Text(t.messages.chatGroup)),
+              ],
+              showSelectedIcon: false,
+              selected: {_groupMode},
+              onSelectionChanged: (value) => setState(() {
+                _groupMode = value.first;
+                _selected.clear();
+              }),
+            ),
             const SizedBox(height: 12),
+            if (_groupMode) ...[
+              TextField(
+                controller: _groupName,
+                textCapitalization: TextCapitalization.sentences,
+                decoration: InputDecoration(
+                  labelText: t.messages.groupNameLabel,
+                ),
+              ),
+              if (_selected.isNotEmpty) ...[
+                const SizedBox(height: 8),
+                Wrap(
+                  spacing: 6,
+                  runSpacing: 6,
+                  children: [
+                    for (final user in _selected)
+                      InputChip(
+                        label: Text(user.fullName),
+                        onDeleted: () => _toggleSelected(user),
+                      ),
+                  ],
+                ),
+              ],
+              const SizedBox(height: 12),
+            ],
             TextField(
               controller: _controller,
               autofocus: true,
@@ -426,11 +524,37 @@ class _NewChatSheetState extends ConsumerState<_NewChatSheet> {
                       subtitle: user.role == 'EXPERT'
                           ? Text(t.knowledge.expertBadge)
                           : null,
-                      onTap: _opening ? null : () => _open(user),
+                      trailing: !_groupMode
+                          ? null
+                          : Icon(
+                              _selected.any((p) => p.id == user.id)
+                                  ? Icons.check_circle
+                                  : Icons.radio_button_unchecked,
+                              color: context.colors.primary,
+                            ),
+                      onTap: _opening
+                          ? null
+                          : () => _groupMode
+                              ? _toggleSelected(user)
+                              : _open(user),
                     );
                   },
                 ),
               ),
+            if (_groupMode) ...[
+              const SizedBox(height: 12),
+              FilledButton.icon(
+                onPressed: _opening ? null : _createGroup,
+                icon: _opening
+                    ? const SizedBox(
+                        height: 18,
+                        width: 18,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : const Icon(Icons.group_add_outlined, size: 18),
+                label: Text(t.messages.groupCreate),
+              ),
+            ],
           ],
         ),
       ),

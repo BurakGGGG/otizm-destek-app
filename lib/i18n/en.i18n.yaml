@@ -356,6 +356,20 @@ chat:
   errorGeneric: Couldn't get a response, please try again.
 
 messages:
+  newGroup: New group chat
+  chatDirect: Direct
+  chatGroup: Group
+  groupNameLabel: Group name
+  groupCreate: Create group
+  groupNameRequired: Group name is required.
+  groupMembersRequired: Select at least one participant.
+  groupSettings: Group settings
+  groupRename: Save name
+  groupRenamed: Group name updated.
+  groupAddMember: Add member
+  groupMembers: Members
+  groupMemberRemoved: Member removed.
+  groupMemberAdded: Member added.
   blockUser: Block user
   blockConfirm: $name will no longer be able to message you. Block?
   blocked: User blocked.

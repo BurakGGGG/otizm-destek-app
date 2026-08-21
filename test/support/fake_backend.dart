@@ -515,6 +515,40 @@ class _FakeMessagingRepository extends MessagingRepository {
   _FakeMessagingRepository() : super(Dio());
 
   @override
+  Future<Conversation> getConversation(String id) async => const Conversation(
+        id: 'cv2',
+        type: 'GROUP',
+        title: 'Okul Öncesi Aileler',
+        participants: [
+          Participant(id: 'u1', fullName: 'Elif Yılmaz', role: 'PARENT'),
+          Participant(
+            id: 'u5',
+            fullName: 'Uzm. Psk. Selin Aksoy',
+            role: 'EXPERT',
+          ),
+        ],
+      );
+
+  @override
+  Future<Conversation> updateGroupTitle(String id, String title) async =>
+      Conversation(id: id, type: 'GROUP', title: title);
+
+  @override
+  Future<Conversation> addMember(String id, String userId) async =>
+      Conversation(id: id, type: 'GROUP');
+
+  @override
+  Future<Conversation> removeMember(String id, String userId) async =>
+      Conversation(id: id, type: 'GROUP');
+
+  @override
+  Future<Conversation> createGroup(
+    String title,
+    List<String> participantIds,
+  ) async =>
+      Conversation(id: 'cvNew', type: 'GROUP', title: title);
+
+  @override
   Future<List<Conversation>> getConversations() async => [
         Conversation(
           id: 'cv1',

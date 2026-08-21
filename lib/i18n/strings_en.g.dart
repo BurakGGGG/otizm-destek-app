@@ -563,6 +563,20 @@ class _Translations$messages$en extends Translations$messages$tr {
 	final TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	@override String get newGroup => 'New group chat';
+	@override String get chatDirect => 'Direct';
+	@override String get chatGroup => 'Group';
+	@override String get groupNameLabel => 'Group name';
+	@override String get groupCreate => 'Create group';
+	@override String get groupNameRequired => 'Group name is required.';
+	@override String get groupMembersRequired => 'Select at least one participant.';
+	@override String get groupSettings => 'Group settings';
+	@override String get groupRename => 'Save name';
+	@override String get groupRenamed => 'Group name updated.';
+	@override String get groupAddMember => 'Add member';
+	@override String get groupMembers => 'Members';
+	@override String get groupMemberRemoved => 'Member removed.';
+	@override String get groupMemberAdded => 'Member added.';
 	@override String get blockUser => 'Block user';
 	@override String blockConfirm({required Object name}) => '${name} will no longer be able to message you. Block?';
 	@override String get blocked => 'User blocked.';
@@ -3035,6 +3049,20 @@ extension on TranslationsEn {
 			'chat.greeting' => 'Hi! I\'ll try to answer your questions about autism and child development.',
 			'chat.inputHint' => 'Ask a question...',
 			'chat.errorGeneric' => 'Couldn\'t get a response, please try again.',
+			'messages.newGroup' => 'New group chat',
+			'messages.chatDirect' => 'Direct',
+			'messages.chatGroup' => 'Group',
+			'messages.groupNameLabel' => 'Group name',
+			'messages.groupCreate' => 'Create group',
+			'messages.groupNameRequired' => 'Group name is required.',
+			'messages.groupMembersRequired' => 'Select at least one participant.',
+			'messages.groupSettings' => 'Group settings',
+			'messages.groupRename' => 'Save name',
+			'messages.groupRenamed' => 'Group name updated.',
+			'messages.groupAddMember' => 'Add member',
+			'messages.groupMembers' => 'Members',
+			'messages.groupMemberRemoved' => 'Member removed.',
+			'messages.groupMemberAdded' => 'Member added.',
 			'messages.blockUser' => 'Block user',
 			'messages.blockConfirm' => ({required Object name}) => '${name} will no longer be able to message you. Block?',
 			'messages.blocked' => 'User blocked.',
@@ -3215,6 +3243,8 @@ extension on TranslationsEn {
 			'noteForm.title' => 'Add Note',
 			'noteForm.editTitle' => 'Edit Note',
 			'noteForm.nameLabel' => 'Title',
+			_ => null,
+		} ?? switch (path) {
 			'noteForm.nameHint' => 'e.g. Today\'s progress',
 			'noteForm.contentLabel' => 'Content (optional)',
 			'noteForm.contentHint' => 'Write your observations',
@@ -3229,8 +3259,6 @@ extension on TranslationsEn {
 			'noteForm.created' => 'Note added.',
 			'noteForm.updated' => 'Note updated.',
 			'notesPage.title' => 'My Notes',
-			_ => null,
-		} ?? switch (path) {
 			'notesPage.add' => 'Add Note',
 			'notesPage.searchHint' => 'Search notes…',
 			'notesPage.empty' => 'No development notes yet. Start by adding the first note.',
@@ -3729,6 +3757,8 @@ extension on TranslationsEn {
 			'groups.subtitle' => 'Meet families on similar topics and join the group chat.',
 			'groups.tabMy' => 'My Groups',
 			'groups.tabDiscover' => 'Discover',
+			_ => null,
+		} ?? switch (path) {
 			'groups.searchHint' => 'Search groups…',
 			'groups.allCategories' => 'All',
 			'groups.emptyMy' => 'You haven\'t joined any group yet. Browse groups in the Discover tab.',
@@ -3743,8 +3773,6 @@ extension on TranslationsEn {
 			'groups.joinedMsg' => 'You joined the group.',
 			'groups.leftMsg' => 'You left the group.',
 			'groups.leaveTitle' => 'Leave Group',
-			_ => null,
-		} ?? switch (path) {
 			'groups.leaveConfirm' => 'Are you sure you want to leave this group?',
 			'groups.add' => 'Create Group',
 			'groups.addTitle' => 'New Group',
@@ -4243,6 +4271,8 @@ extension on TranslationsEn {
 			'calendar.reminderDay' => '1 day before',
 			'calendar.statusPlanned' => 'Planned',
 			'calendar.statusCompleted' => 'Completed',
+			_ => null,
+		} ?? switch (path) {
 			'calendar.statusCancelled' => 'Cancelled',
 			'calendar.markCompleted' => 'Mark completed',
 			'calendar.markPlanned' => 'Mark planned',
@@ -4257,8 +4287,6 @@ extension on TranslationsEn {
 			'calendar.errorTitle' => 'Please enter a title.',
 			'calendar.cancel' => 'Cancel',
 			'calendar.delete' => 'Delete',
-			_ => null,
-		} ?? switch (path) {
 			'emergency.title' => 'Emergency Card',
 			'emergency.subtitle' => 'Information to show to anyone who meets your child in an emergency.',
 			'emergency.noChild' => 'Add a child first to create an emergency card.',
