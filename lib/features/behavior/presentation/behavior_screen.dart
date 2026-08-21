@@ -314,6 +314,7 @@ class _EntryCard extends ConsumerWidget {
                   ),
                 ),
                 IconButton(
+                  tooltip: context.t.common.a11y.delete,
                   visualDensity: VisualDensity.compact,
                   icon: Icon(Icons.delete_outline,
                       size: 20, color: colors.textTertiary),

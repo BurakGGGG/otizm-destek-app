@@ -327,10 +327,12 @@ class _ForumPostDetailScreenState
         actions: [
           if (post != null && post.ownedByMe) ...[
             IconButton(
+              tooltip: context.t.common.a11y.edit,
               icon: const Icon(Icons.edit_outlined, size: 20),
               onPressed: _editPost,
             ),
             IconButton(
+              tooltip: context.t.common.a11y.delete,
               icon: const Icon(Icons.delete_outline, size: 20),
               onPressed: _deletePost,
             ),
@@ -432,6 +434,7 @@ class _ForumPostDetailScreenState
                                     ),
                                   ),
                                   IconButton(
+                                    tooltip: context.t.common.a11y.cancelReply,
                                     icon: const Icon(Icons.close, size: 14),
                                     visualDensity: VisualDensity.compact,
                                     onPressed: () =>
@@ -457,6 +460,7 @@ class _ForumPostDetailScreenState
                                 ),
                                 const SizedBox(width: 8),
                                 IconButton.filled(
+                                  tooltip: context.t.common.a11y.send,
                                   onPressed: _sending ? null : _sendComment,
                                   icon: _sending
                                       ? const SizedBox(
@@ -786,17 +790,20 @@ class _CommentTile extends StatelessWidget {
               const Spacer(),
               if (comment.ownedByMe) ...[
                 IconButton(
+                  tooltip: context.t.common.a11y.edit,
                   icon: const Icon(Icons.edit_outlined, size: 15),
                   visualDensity: VisualDensity.compact,
                   onPressed: () => onEdit(comment),
                 ),
                 IconButton(
+                  tooltip: context.t.common.a11y.delete,
                   icon: const Icon(Icons.delete_outline, size: 15),
                   visualDensity: VisualDensity.compact,
                   onPressed: () => onDelete(comment),
                 ),
               ] else
                 IconButton(
+                  tooltip: context.t.common.a11y.report,
                   icon: const Icon(Icons.flag_outlined, size: 15),
                   visualDensity: VisualDensity.compact,
                   onPressed: () => onReport(comment),

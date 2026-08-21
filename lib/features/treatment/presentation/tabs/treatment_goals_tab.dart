@@ -207,6 +207,7 @@ class _TreatmentGoalsTabState extends State<TreatmentGoalsTab> {
                 ),
                 if (_goalDueDate != null)
                   IconButton(
+                    tooltip: context.t.common.a11y.clearDate,
                     onPressed: saving
                         ? null
                         : () => setState(() => _goalDueDate = null),
@@ -330,6 +331,7 @@ class _TreatmentGoalsTabState extends State<TreatmentGoalsTab> {
               ),
               if (_editDueDate != null)
                 IconButton(
+                  tooltip: context.t.common.a11y.clearDate,
                   onPressed: saving
                       ? null
                       : () => setState(() => _editDueDate = null),

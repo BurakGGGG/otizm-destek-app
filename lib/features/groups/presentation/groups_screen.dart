@@ -295,6 +295,7 @@ class _DiscoverTab extends ConsumerWidget {
               suffixIcon: query.isEmpty
                   ? null
                   : IconButton(
+                      tooltip: context.t.common.a11y.clearSearch,
                       icon: const Icon(Icons.close),
                       onPressed: () {
                         searchController.clear();

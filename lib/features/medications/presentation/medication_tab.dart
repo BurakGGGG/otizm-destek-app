@@ -275,12 +275,14 @@ class _MedicationCard extends ConsumerWidget {
                   ),
                 ),
                 IconButton(
+                  tooltip: context.t.common.a11y.edit,
                   visualDensity: VisualDensity.compact,
                   icon: Icon(Icons.edit_outlined,
                       size: 20, color: colors.textTertiary),
                   onPressed: onEdit,
                 ),
                 IconButton(
+                  tooltip: context.t.common.a11y.delete,
                   visualDensity: VisualDensity.compact,
                   icon: Icon(Icons.delete_outline,
                       size: 20, color: colors.textTertiary),

@@ -239,7 +239,11 @@ class _DateField extends StatelessWidget {
         decoration: InputDecoration(
           labelText: label,
           suffixIcon: onClear != null
-              ? IconButton(icon: const Icon(Icons.clear), onPressed: onClear)
+              ? IconButton(
+                  tooltip: context.t.common.a11y.clearDate,
+                  icon: const Icon(Icons.clear),
+                  onPressed: onClear,
+                )
               : const Icon(Icons.calendar_today_outlined),
         ),
         child: Text(

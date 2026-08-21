@@ -10,6 +10,23 @@ common:
   more: More
   retry: Retry
   loadError: Could not load data.
+  # Accessibility labels for icon-only buttons (screen reader + tooltip)
+  a11y:
+    edit: Edit
+    delete: Delete
+    close: Close
+    send: Send
+    options: Options
+    report: Report
+    clearSearch: Clear search
+    clearDate: Clear date
+    clearSelection: Clear selection
+    cancelReply: Cancel reply
+    showPassword: Show password
+    hidePassword: Hide password
+    decrease: Decrease
+    increase: Increase
+    rating: $count stars
   monthsShort:
     - Jan
     - Feb

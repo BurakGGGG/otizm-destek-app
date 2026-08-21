@@ -504,11 +504,13 @@ class _MilestonesCard extends ConsumerWidget {
                         ),
                       ),
                       IconButton(
+                        tooltip: context.t.common.a11y.edit,
                         icon: const Icon(Icons.edit_outlined, size: 15),
                         visualDensity: VisualDensity.compact,
                         onPressed: () => onEdit(milestone),
                       ),
                       IconButton(
+                        tooltip: context.t.common.a11y.delete,
                         icon: const Icon(Icons.delete_outline, size: 15),
                         visualDensity: VisualDensity.compact,
                         onPressed: () => onDelete(milestone),

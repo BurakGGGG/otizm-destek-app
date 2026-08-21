@@ -749,6 +749,7 @@ class _OnboardingCard extends StatelessWidget {
                 ),
               ),
               IconButton(
+                tooltip: context.t.common.a11y.close,
                 visualDensity: VisualDensity.compact,
                 onPressed: onDismiss,
                 icon: Icon(Icons.close,

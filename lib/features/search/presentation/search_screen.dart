@@ -152,6 +152,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                   suffixIcon: _controller.text.isEmpty
                       ? null
                       : IconButton(
+                          tooltip: context.t.common.a11y.clearSearch,
                           icon: const Icon(Icons.close, size: 18),
                           onPressed: () {
                             _controller.clear();

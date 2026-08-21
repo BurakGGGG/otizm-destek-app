@@ -667,6 +667,7 @@ class _ReplyBanner extends StatelessWidget {
             ),
           ),
           IconButton(
+            tooltip: context.t.common.a11y.cancelReply,
             onPressed: onCancel,
             icon: const Icon(Icons.close, size: 18),
             visualDensity: VisualDensity.compact,
@@ -739,6 +740,7 @@ class _InputBar extends StatelessWidget {
             ),
             const SizedBox(width: 8),
             IconButton.filled(
+              tooltip: context.t.common.a11y.send,
               onPressed: enabled ? onSend : null,
               icon: const Icon(Icons.send),
               style: IconButton.styleFrom(
@@ -783,6 +785,7 @@ class _PecsPanel extends StatelessWidget {
                   child: Text(t.messages.pecsTitle, style: text.labelLarge),
                 ),
                 IconButton(
+                  tooltip: context.t.common.a11y.close,
                   onPressed: onClose,
                   icon: const Icon(Icons.close, size: 18),
                   visualDensity: VisualDensity.compact,

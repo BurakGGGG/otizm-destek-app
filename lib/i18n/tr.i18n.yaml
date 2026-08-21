@@ -10,6 +10,23 @@ common:
   more: Daha Fazla
   retry: Tekrar Dene
   loadError: Veriler yüklenemedi.
+  # Simge düğmelerinin erişilebilirlik etiketleri (ekran okuyucu + ipucu)
+  a11y:
+    edit: Düzenle
+    delete: Sil
+    close: Kapat
+    send: Gönder
+    options: Seçenekler
+    report: Şikayet et
+    clearSearch: Aramayı temizle
+    clearDate: Tarihi temizle
+    clearSelection: Seçimi temizle
+    cancelReply: Yanıtı iptal et
+    showPassword: Şifreyi göster
+    hidePassword: Şifreyi gizle
+    decrease: Azalt
+    increase: Artır
+    rating: $count yıldız
   monthsShort:
     - Oca
     - Şub

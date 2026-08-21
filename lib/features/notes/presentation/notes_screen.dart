@@ -342,6 +342,7 @@ class _Filters extends StatelessWidget {
               suffixIcon: search.text.isEmpty
                   ? null
                   : IconButton(
+                      tooltip: context.t.common.a11y.clearSearch,
                       icon: const Icon(Icons.close, size: 16),
                       onPressed: () {
                         search.clear();

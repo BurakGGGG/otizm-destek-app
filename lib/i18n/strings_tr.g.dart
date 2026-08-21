@@ -142,6 +142,7 @@ class Translations$common$tr {
 	/// tr: 'Veriler yüklenemedi.'
 	String get loadError => 'Veriler yüklenemedi.';
 
+	late final Translations$common$a11y$tr a11y = Translations$common$a11y$tr.internal(_root);
 	List<String> get monthsShort => [
 		'Oca',
 		'Şub',
@@ -6060,6 +6061,60 @@ class Translations$expertAccess$tr {
 	String pendingBanner({required Object count}) => '${count} uzman erişim isteğiniz onay bekliyor';
 }
 
+// Path: common.a11y
+class Translations$common$a11y$tr {
+	Translations$common$a11y$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Düzenle'
+	String get edit => 'Düzenle';
+
+	/// tr: 'Sil'
+	String get delete => 'Sil';
+
+	/// tr: 'Kapat'
+	String get close => 'Kapat';
+
+	/// tr: 'Gönder'
+	String get send => 'Gönder';
+
+	/// tr: 'Seçenekler'
+	String get options => 'Seçenekler';
+
+	/// tr: 'Şikayet et'
+	String get report => 'Şikayet et';
+
+	/// tr: 'Aramayı temizle'
+	String get clearSearch => 'Aramayı temizle';
+
+	/// tr: 'Tarihi temizle'
+	String get clearDate => 'Tarihi temizle';
+
+	/// tr: 'Seçimi temizle'
+	String get clearSelection => 'Seçimi temizle';
+
+	/// tr: 'Yanıtı iptal et'
+	String get cancelReply => 'Yanıtı iptal et';
+
+	/// tr: 'Şifreyi göster'
+	String get showPassword => 'Şifreyi göster';
+
+	/// tr: 'Şifreyi gizle'
+	String get hidePassword => 'Şifreyi gizle';
+
+	/// tr: 'Azalt'
+	String get decrease => 'Azalt';
+
+	/// tr: 'Artır'
+	String get increase => 'Artır';
+
+	/// tr: '$count yıldız'
+	String rating({required Object count}) => '${count} yıldız';
+}
+
 // Path: crisis.cards
 class Translations$crisis$cards$tr {
 	Translations$crisis$cards$tr.internal(this._root);
@@ -6210,6 +6265,21 @@ extension on Translations {
 			'common.more' => 'Daha Fazla',
 			'common.retry' => 'Tekrar Dene',
 			'common.loadError' => 'Veriler yüklenemedi.',
+			'common.a11y.edit' => 'Düzenle',
+			'common.a11y.delete' => 'Sil',
+			'common.a11y.close' => 'Kapat',
+			'common.a11y.send' => 'Gönder',
+			'common.a11y.options' => 'Seçenekler',
+			'common.a11y.report' => 'Şikayet et',
+			'common.a11y.clearSearch' => 'Aramayı temizle',
+			'common.a11y.clearDate' => 'Tarihi temizle',
+			'common.a11y.clearSelection' => 'Seçimi temizle',
+			'common.a11y.cancelReply' => 'Yanıtı iptal et',
+			'common.a11y.showPassword' => 'Şifreyi göster',
+			'common.a11y.hidePassword' => 'Şifreyi gizle',
+			'common.a11y.decrease' => 'Azalt',
+			'common.a11y.increase' => 'Artır',
+			'common.a11y.rating' => ({required Object count}) => '${count} yıldız',
 			'common.monthsShort.0' => 'Oca',
 			'common.monthsShort.1' => 'Şub',
 			'common.monthsShort.2' => 'Mar',
@@ -6699,6 +6769,8 @@ extension on Translations {
 			'notifications.deleteSelected' => 'Seçilenleri sil',
 			'notifications.groupToday' => 'Bugün',
 			'notifications.groupYesterday' => 'Dün',
+			_ => null,
+		} ?? switch (path) {
 			'notifications.groupThisWeek' => 'Bu Hafta',
 			'notifications.groupOlder' => 'Daha Eski',
 			'notifications.catAll' => 'Tümü',
@@ -6714,8 +6786,6 @@ extension on Translations {
 			'search.noResults' => 'Bu aramaya uygun sonuç bulunamadı.',
 			'search.typeAll' => 'Tümü',
 			'search.typeArticle' => 'Makale',
-			_ => null,
-		} ?? switch (path) {
 			'search.typePost' => 'Gönderi',
 			'search.typeGroup' => 'Grup',
 			'search.typeExpert' => 'Uzman',
@@ -7213,6 +7283,8 @@ extension on Translations {
 			'treatment.emptyGroupsBody' => 'Çocuğunuzun profiline terapi türü eklendiğinde hedefler otomatik olarak burada listelenir.',
 			'treatment.milestoneTitle' => 'Büyük Bir Başarı Kaydet 🏅',
 			'treatment.milestoneSubtitle' => 'Hatırlamak istediğiniz önemli bir an',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.milestoneHint' => 'Örn: İlk kez adını söyledi',
 			'treatment.milestoneSaved' => 'Kilometre taşı kaydedildi 🎉',
 			'treatment.notesTitle' => 'Son Gözlem Notları',
@@ -7228,8 +7300,6 @@ extension on Translations {
 			'treatment.gameReady' => 'Hazır',
 			'treatment.gameDoneBadge' => '✅ Yapıldı',
 			'treatment.methodLabel' => ({required Object name}) => 'Yöntem: ${name}',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.whyGood' => 'Neden iyi gelir?',
 			'treatment.goalBadge' => ({required Object name}) => 'Hedef: ${name}',
 			'treatment.toolBadge' => ({required Object name}) => 'Araç: ${name}',
@@ -7727,6 +7797,8 @@ extension on Translations {
 			'analytics.behaviorUnit' => 'aylık kayıt sayısı',
 			'analytics.noData' => 'Bu aralıkta henüz veri yok.',
 			'analytics.noChild' => 'Gelişim paneli için önce bir çocuk ekleyin.',
+			_ => null,
+		} ?? switch (path) {
 			'analytics.aiTitle' => 'Yapay zekâ analizi',
 			'analytics.aiSubtitle' => 'Çocuğunuzun kayıtlarındaki örüntüleri özetler; tanı koymaz.',
 			'analytics.aiTypeGeneral' => 'Genel',
@@ -7742,8 +7814,6 @@ extension on Translations {
 			'analytics.aiConsentAction' => 'Rızaları yönet',
 			'analytics.rangeDays' => ({required Object count}) => 'Son ${count} gün',
 			'analytics.scoreTitle' => 'Takip skoru',
-			_ => null,
-		} ?? switch (path) {
 			'analytics.scoreCoverage' => ({required Object count, required Object total}) => '${count} / ${total} veri türünde kayıt var',
 			'analytics.scoreStrong' => 'Güçlü takip',
 			'analytics.scoreGrowing' => 'Takip gelişiyor',

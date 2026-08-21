@@ -100,6 +100,7 @@ class _ChangePasswordSheetState extends ConsumerState<ChangePasswordSheet> {
               labelText: t.settings.currentPasswordLabel,
               prefixIcon: const Icon(Icons.lock_outline),
               suffixIcon: IconButton(
+                tooltip: _obscure ? context.t.common.a11y.showPassword : context.t.common.a11y.hidePassword,
                 onPressed: () => setState(() => _obscure = !_obscure),
                 icon: Icon(
                   _obscure

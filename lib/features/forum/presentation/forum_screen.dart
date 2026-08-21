@@ -249,6 +249,7 @@ class _ForumScreenState extends ConsumerState<ForumScreen> {
                             suffixIcon: _appliedSearch.isEmpty
                                 ? null
                                 : IconButton(
+                                    tooltip: context.t.common.a11y.clearSearch,
                                     icon: const Icon(Icons.close, size: 16),
                                     onPressed: () {
                                       _search.clear();

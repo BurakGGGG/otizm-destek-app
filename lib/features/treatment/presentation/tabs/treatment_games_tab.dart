@@ -972,6 +972,7 @@ class _StoryTile extends StatelessWidget {
           ),
           if (onDelete != null)
             IconButton(
+              tooltip: context.t.common.a11y.delete,
               visualDensity: VisualDensity.compact,
               onPressed: onDelete,
               icon: Icon(Icons.delete_outline,

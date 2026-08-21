@@ -115,6 +115,7 @@ class _GoalFormScreenState extends ConsumerState<GoalFormScreen> {
                 ),
                 const Spacer(),
                 IconButton.outlined(
+                  tooltip: context.t.common.a11y.decrease,
                   onPressed: _target > 1
                       ? () => setState(() => _target--)
                       : null,
@@ -128,6 +129,7 @@ class _GoalFormScreenState extends ConsumerState<GoalFormScreen> {
                   ),
                 ),
                 IconButton.outlined(
+                  tooltip: context.t.common.a11y.increase,
                   onPressed: _target < 50
                       ? () => setState(() => _target++)
                       : null,

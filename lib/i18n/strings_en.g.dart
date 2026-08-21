@@ -124,6 +124,7 @@ class _Translations$common$en extends Translations$common$tr {
 	@override String get more => 'More';
 	@override String get retry => 'Retry';
 	@override String get loadError => 'Could not load data.';
+	@override late final _Translations$common$a11y$en a11y = _Translations$common$a11y$en._(_root);
 	@override List<String> get monthsShort => [
 		'Jan',
 		'Feb',
@@ -2460,6 +2461,30 @@ class _Translations$expertAccess$en extends Translations$expertAccess$tr {
 	@override String pendingBanner({required Object count}) => '${count} expert access request(s) waiting for your approval';
 }
 
+// Path: common.a11y
+class _Translations$common$a11y$en extends Translations$common$a11y$tr {
+	_Translations$common$a11y$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get edit => 'Edit';
+	@override String get delete => 'Delete';
+	@override String get close => 'Close';
+	@override String get send => 'Send';
+	@override String get options => 'Options';
+	@override String get report => 'Report';
+	@override String get clearSearch => 'Clear search';
+	@override String get clearDate => 'Clear date';
+	@override String get clearSelection => 'Clear selection';
+	@override String get cancelReply => 'Cancel reply';
+	@override String get showPassword => 'Show password';
+	@override String get hidePassword => 'Hide password';
+	@override String get decrease => 'Decrease';
+	@override String get increase => 'Increase';
+	@override String rating({required Object count}) => '${count} stars';
+}
+
 // Path: crisis.cards
 class _Translations$crisis$cards$en extends Translations$crisis$cards$tr {
 	_Translations$crisis$cards$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -2586,6 +2611,21 @@ extension on TranslationsEn {
 			'common.more' => 'More',
 			'common.retry' => 'Retry',
 			'common.loadError' => 'Could not load data.',
+			'common.a11y.edit' => 'Edit',
+			'common.a11y.delete' => 'Delete',
+			'common.a11y.close' => 'Close',
+			'common.a11y.send' => 'Send',
+			'common.a11y.options' => 'Options',
+			'common.a11y.report' => 'Report',
+			'common.a11y.clearSearch' => 'Clear search',
+			'common.a11y.clearDate' => 'Clear date',
+			'common.a11y.clearSelection' => 'Clear selection',
+			'common.a11y.cancelReply' => 'Cancel reply',
+			'common.a11y.showPassword' => 'Show password',
+			'common.a11y.hidePassword' => 'Hide password',
+			'common.a11y.decrease' => 'Decrease',
+			'common.a11y.increase' => 'Increase',
+			'common.a11y.rating' => ({required Object count}) => '${count} stars',
 			'common.monthsShort.0' => 'Jan',
 			'common.monthsShort.1' => 'Feb',
 			'common.monthsShort.2' => 'Mar',
@@ -3075,6 +3115,8 @@ extension on TranslationsEn {
 			'notifications.deleteSelected' => 'Delete selected',
 			'notifications.groupToday' => 'Today',
 			'notifications.groupYesterday' => 'Yesterday',
+			_ => null,
+		} ?? switch (path) {
 			'notifications.groupThisWeek' => 'This Week',
 			'notifications.groupOlder' => 'Older',
 			'notifications.catAll' => 'All',
@@ -3090,8 +3132,6 @@ extension on TranslationsEn {
 			'search.noResults' => 'No results match this search.',
 			'search.typeAll' => 'All',
 			'search.typeArticle' => 'Article',
-			_ => null,
-		} ?? switch (path) {
 			'search.typePost' => 'Post',
 			'search.typeGroup' => 'Group',
 			'search.typeExpert' => 'Expert',
@@ -3589,6 +3629,8 @@ extension on TranslationsEn {
 			'treatment.emptyGroupsBody' => 'Goals are listed here automatically once a therapy type is added to your child\'s profile.',
 			'treatment.milestoneTitle' => 'Record a Big Win 🏅',
 			'treatment.milestoneSubtitle' => 'An important moment you want to remember',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.milestoneHint' => 'e.g. Said their name for the first time',
 			'treatment.milestoneSaved' => 'Milestone saved 🎉',
 			'treatment.notesTitle' => 'Recent Observation Notes',
@@ -3604,8 +3646,6 @@ extension on TranslationsEn {
 			'treatment.gameReady' => 'Ready',
 			'treatment.gameDoneBadge' => '✅ Done',
 			'treatment.methodLabel' => ({required Object name}) => 'Method: ${name}',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.whyGood' => 'Why it helps',
 			'treatment.goalBadge' => ({required Object name}) => 'Goal: ${name}',
 			'treatment.toolBadge' => ({required Object name}) => 'Tool: ${name}',
@@ -4103,6 +4143,8 @@ extension on TranslationsEn {
 			'analytics.behaviorUnit' => 'entries per month',
 			'analytics.noData' => 'No data in this range yet.',
 			'analytics.noChild' => 'Add a child first to see the development panel.',
+			_ => null,
+		} ?? switch (path) {
 			'analytics.aiTitle' => 'AI analysis',
 			'analytics.aiSubtitle' => 'Summarises patterns in your child\'s records; it does not diagnose.',
 			'analytics.aiTypeGeneral' => 'General',
@@ -4118,8 +4160,6 @@ extension on TranslationsEn {
 			'analytics.aiConsentAction' => 'Manage consents',
 			'analytics.rangeDays' => ({required Object count}) => 'Last ${count} days',
 			'analytics.scoreTitle' => 'Tracking score',
-			_ => null,
-		} ?? switch (path) {
 			'analytics.scoreCoverage' => ({required Object count, required Object total}) => 'Records in ${count} of ${total} data types',
 			'analytics.scoreStrong' => 'Strong tracking',
 			'analytics.scoreGrowing' => 'Tracking is growing',

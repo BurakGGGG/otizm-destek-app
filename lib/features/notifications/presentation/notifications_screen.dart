@@ -151,6 +151,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
         ),
         leading: _selecting
             ? IconButton(
+                tooltip: context.t.common.a11y.clearSelection,
                 icon: const Icon(Icons.close),
                 onPressed: () => setState(_selected.clear),
               )

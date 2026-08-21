@@ -342,6 +342,7 @@ class _ItemRow extends StatelessWidget {
                 maxLines: 1, overflow: TextOverflow.ellipsis),
           ),
           IconButton(
+            tooltip: context.t.common.a11y.delete,
             visualDensity: VisualDensity.compact,
             icon: Icon(Icons.close, size: 18, color: context.colors.textTertiary),
             onPressed: onDelete,

@@ -94,6 +94,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         icon: Icons.lock_outline,
                         obscure: _obscure,
                         trailing: IconButton(
+                          tooltip: _obscure ? context.t.common.a11y.showPassword : context.t.common.a11y.hidePassword,
                           onPressed: () => setState(() => _obscure = !_obscure),
                           icon: Icon(
                             _obscure

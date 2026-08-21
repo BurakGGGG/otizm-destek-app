@@ -93,6 +93,7 @@ class _GuideScreenState extends ConsumerState<GuideScreen> {
                 prefixIcon: const Icon(Icons.search, size: 20),
                 suffixIcon: searching
                     ? IconButton(
+                        tooltip: context.t.common.a11y.clearSearch,
                         icon: const Icon(Icons.close, size: 18),
                         onPressed: () {
                           _search.clear();

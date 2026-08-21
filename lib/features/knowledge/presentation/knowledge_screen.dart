@@ -92,6 +92,7 @@ class _KnowledgeScreenState extends ConsumerState<KnowledgeScreen> {
                   suffixIcon: _search.text.isEmpty
                       ? null
                       : IconButton(
+                          tooltip: context.t.common.a11y.clearSearch,
                           icon: const Icon(Icons.close, size: 18),
                           onPressed: () {
                             _search.clear();

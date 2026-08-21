@@ -308,6 +308,7 @@ class _ReviewSheetState extends ConsumerState<_ReviewSheet> {
             children: [
               for (var i = 1; i <= 5; i++)
                 IconButton(
+                  tooltip: context.t.common.a11y.rating(count: i),
                   onPressed: _saving ? null : () => setState(() => _rating = i),
                   icon: Icon(
                     i <= _rating
