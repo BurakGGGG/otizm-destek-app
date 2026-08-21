@@ -95,6 +95,8 @@ class BuddyCircleView extends ConsumerWidget {
     final pending = pendingAsync.asData?.value ?? const <Buddy>[];
     final buddies = myAsync.asData?.value ?? const <Buddy>[];
     final loading = pendingAsync.isLoading || myAsync.isLoading;
+    // Liste yüklenemediyse "çemberiniz boş" demek yanıltıcı olur.
+    final failed = myAsync.hasError && !myAsync.isLoading;
 
     return RefreshIndicator(
       onRefresh: () async {
@@ -126,6 +128,13 @@ class BuddyCircleView extends ConsumerWidget {
           const SizedBox(height: 8),
           if (loading && buddies.isEmpty)
             const SkeletonList(count: 2)
+          else if (failed)
+            ErrorRetry(
+              onRetry: () {
+                ref.invalidate(myBuddiesProvider);
+                ref.invalidate(pendingBuddiesProvider);
+              },
+            )
           else if (buddies.isEmpty)
             EmptyState(
               icon: Icons.handshake_outlined,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:otizm_destek_app/core/network/api_exception.dart';
+import 'package:otizm_destek_app/features/similar_families/data/buddy_repository.dart';
 import 'package:otizm_destek_app/features/similar_families/domain/buddy.dart';
 import 'package:otizm_destek_app/features/similar_families/domain/similar_family.dart';
 import 'package:otizm_destek_app/features/similar_families/presentation/similar_families_screen.dart';
@@ -95,5 +97,26 @@ void main() {
       const Offset(0, -200),
     );
     expect(find.text(t.similar.withdraw), findsOneWidget);
+  });
+
+  testWidgets('bağlantılar yüklenemezse tekrar dene gösterilir',
+      (tester) async {
+    final t = AppLocale.tr.buildSync();
+    usePhoneSurface(tester);
+    await tester.pumpWidget(hostApp(
+      const SimilarFamiliesScreen(),
+      overrides: [
+        myBuddiesProvider.overrideWith((ref) async {
+          throw const ApiException('Bağlantı yok');
+        }),
+      ],
+    ));
+    await settleScreen(tester);
+
+    await tester.tap(find.text(t.similar.tabCircle));
+    await tester.pumpAndSettle();
+
+    expect(find.text(t.common.retry), findsOneWidget);
+    expect(find.text(t.similar.circleEmpty), findsNothing);
   });
 }
