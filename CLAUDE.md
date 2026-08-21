@@ -118,12 +118,15 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
     `PATCH /{id}/title`, üye ekle/çıkar `POST|DELETE /{id}/members/{userId}`;
     yalnızca grup sohbetlerinde) ve **sohbet içi arama**
     (`GET /conversations/{id}/search`). Birebir sohbetin başlığından
-    **kullanıcı engelleme** (`POST /users/{id}/block`); engellenenler listesi
+    **kullanıcı engelleme** (`POST /users/{id}/block`) ve mesaj balonundan
+    **şikayet** (`POST /reports` targetType `MESSAGE`, yalnızca başkasının
+    mesajında); engellenenler listesi
     ve engeli kaldırma Ayarlar > Gizlilik altında (web engellemeyi yalnızca
     benzer aileler çekmecesinde sunuyor, kaldırma arayüzü yok). Arama sonucuna dokunmak
     mesaja atlamıyor (geçmiş sayfalı geldiği için konum garanti edilemiyor).
   - **AI Asistan:** `/api/chatbot/stream` (SSE) streaming.
-  - **Hesap:** `PUT /api/users/me` ile profil düzenleme.
+  - **Hesap:** `PUT /api/users/me` ile profil düzenleme + **profil fotoğrafı**
+    (galeri → `POST /upload` AUTHENTICATED → `profileImageUrl`).
   - **Bildirimler:** `/api/notifications` liste + okundu işaretleme; Ana Sayfa'da
     okunmamış rozeti.
   - **Şifremi unuttum / sıfırla:** `/api/auth/forgot-password|reset-password`.
@@ -133,7 +136,9 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
     mobil tek anahtarda gün bilgisiyle tutuyor). Adım ikonu adları paylaşılan
     VERİ: `kRoutineIcons` web `ICON_OPTIONS` ile birebir
     (`test/routine_progress_test.dart` korur). Profil menüsünden `/routines`.
-  - **Günlük Takip:** 3 sekme — `/daily-tracker`. **Duygu** `/api/mood` (5'li emoji
+  - **Günlük Takip:** 3 sekme + haftalık özet şeridi (ortalama uyku, en sık ruh
+    hali, en sık tetikleyici, eksiksiz gün — saf `buildTrackerInsights`) —
+    `/daily-tracker`. **Duygu** `/api/mood` (5'li emoji
     + tetikleyiciler + not, gün başına upsert); **Uyku** `/api/sleep` (yatış/uyanış,
     kalite 1-5, gece uyanma, duyusal faktörler — faktörler web ile aynı
     `Weighted:..|Sensory:..|Melatonin:..|Disturbance:..|Notes:..` formatında notes
@@ -177,7 +182,8 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
     DB'de sabit (etiketler çevrilebilir); `startTime`/`endTime` saat dilimsiz
     LocalDateTime (`yyyy-MM-ddTHH:mm:ss`). Güne göre gruplu liste. `/calendar`,
     Profil menüsü kısayolu.
-  - **Acil Durum Kartı:** `/api/emergency-card/{childId}` — çocuğun kritik
+  - **Acil Durum Kartı** (sesli okunabilir): `/api/emergency-card/{childId}` —
+    çocuğun kritik
     bilgileri (tanı, kan grubu, iletişim seviyesi, acil kişiler, doktor,
     ilaç/alerji, tetikleyici/sakinleştirme/yapılmayacaklar). Backend serbest
     JSON blob'u; `data` string olarak gelir (jsonDecode). Alan anahtarları web
@@ -188,7 +194,8 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
     `PageResponseDto.content`); paylaşım oluştur (`POST /forum/posts`
     `{category:'SUPPORT_WALL', postType:'DENEYIM', anonymous}`, başlık boşsa web
     gibi varsayılan başlık), düzenle/sil (sahibi); destek mesajları
-    (`/forum/posts/{id}/comments`, yorum daima `anonymous:true`); beğeni/destek
+    (`/forum/posts/{id}/comments`, yorum daima `anonymous:true`; kendi
+    mesajını düzenleme `PUT .../comments/{commentId}` ve silme); beğeni/destek
     aç-kapa (`POST /votes` `{targetType:'POST', targetId, voteValue:1}`, iyimser
     UI). Liste + detay (tam metin + yorumlar + yazma çubuğu). `/support-wall`,
     Profil menüsü kısayolu.
@@ -247,7 +254,8 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
     detayını** açar (web `GroupDetailsModal`): bilgi, **buluşmalar**
     (`GET /groups/{id}/meetings`; grubu kuran `POST` ile planlar, `DELETE` ile
     iptal eder) ve **üye listesi** (`GET /groups/{id}/members`, uzman rozetli).
-    İkisi de backend'de üyelere kısıtlı; üye değilken istek atılmaz. Grup
+    İkisi de backend'de üyelere kısıtlı; üye değilken istek atılmaz. Grubu
+    kuran başlıktan grubu **düzenler/siler** (`PUT|DELETE /groups/{id}`). Grup
     kartındaki sohbet düğmesi okunmamış sayısını gösterir (`unreadCount`).
     `/groups`, Profil menüsü kısayolu.
   - **Tedavi Paneli:** `/api/treatment-state/{childId}` — günlük destek planı
