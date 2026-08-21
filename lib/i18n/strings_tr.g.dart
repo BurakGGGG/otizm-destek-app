@@ -3228,6 +3228,9 @@ class Translations$similar$tr {
 
 	// Translations
 
+	/// tr: 'Eşleştirme; çocuğunuzun etiketleri, yaş aralığı, terapi/eğitim notları ve varsa şehir bilgisini kullanır. Kesin konumunuz karşı tarafa gösterilmez.'
+	String get privacyNote => 'Eşleştirme; çocuğunuzun etiketleri, yaş aralığı, terapi/eğitim notları ve varsa şehir bilgisini kullanır. Kesin konumunuz karşı tarafa gösterilmez.';
+
 	/// tr: 'Benzer Aileler'
 	String get title => 'Benzer Aileler';
 
@@ -7670,6 +7673,7 @@ extension on Translations {
 			'meetup.inDays' => ({required Object count}) => '${count} gün sonra',
 			'meetup.past' => 'Geçmiş',
 			'meetup.organizerBy' => ({required Object name}) => 'Düzenleyen ${name}',
+			'similar.privacyNote' => 'Eşleştirme; çocuğunuzun etiketleri, yaş aralığı, terapi/eğitim notları ve varsa şehir bilgisini kullanır. Kesin konumunuz karşı tarafa gösterilmez.',
 			'similar.title' => 'Benzer Aileler',
 			'similar.subtitle' => 'Çocuğunuza yakın gelişim sürecindeki ailelerle tanışın, deneyim paylaşın.',
 			'similar.noChild' => 'Önce bir çocuk ekleyin, sonra benzer aileleri keşfedin.',
@@ -7745,9 +7749,9 @@ extension on Translations {
 			'groups.deleteConfirm' => ({required Object name}) => '"${name}" grubu ve sohbeti kalıcı olarak silinecek.',
 			'groups.deleted' => 'Grup silindi.',
 			'groups.chatUnread' => ({required Object count}) => 'Sohbet (${count})',
-			'groups.detailTitle' => 'Grup Detayı',
 			_ => null,
 		} ?? switch (path) {
+			'groups.detailTitle' => 'Grup Detayı',
 			'groups.detailHint' => 'Üye listesi ve buluşmalar yalnızca grup üyelerine görünür.',
 			'groups.membersTitle' => 'Üyeler',
 			'groups.membersEmpty' => 'Üye listesi görüntülenemiyor.',
@@ -8259,9 +8263,9 @@ extension on Translations {
 			'crisis.cards.anxiety.steps.4' => 'Krizin geçmesi için zaman verin, acele ettirmeyin.',
 			'crisis.cards.anxiety.avoid.0' => '"Sakin ol, sorun yok" diyerek küçümsemeyin.',
 			'crisis.cards.anxiety.avoid.1' => 'Sormaya devam edip baskı uygulamayın.',
-			'crisis.cards.anxiety.avoid.2' => 'Kaygı anında yeni talep eklemeyin.',
 			_ => null,
 		} ?? switch (path) {
+			'crisis.cards.anxiety.avoid.2' => 'Kaygı anında yeni talep eklemeyin.',
 			'calendar.title' => 'Takvim',
 			'calendar.subtitle' => 'Çocuğa özel terapi, doktor ve etkinlik planı.',
 			'calendar.noChild' => 'Takvim için önce bir çocuk ekleyin.',

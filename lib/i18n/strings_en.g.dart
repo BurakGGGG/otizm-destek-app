@@ -1391,6 +1391,7 @@ class _Translations$similar$en extends Translations$similar$tr {
 	final TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	@override String get privacyNote => 'Matching uses your child\'s tags, age range, therapy/education notes and your city if provided. Your exact location is never shown to others.';
 	@override String get title => 'Similar Families';
 	@override String get subtitle => 'Meet families at a similar stage to your child and share experiences.';
 	@override String get noChild => 'Add a child first, then discover similar families.';
@@ -3714,6 +3715,7 @@ extension on TranslationsEn {
 			'meetup.inDays' => ({required Object count}) => 'in ${count} days',
 			'meetup.past' => 'Past',
 			'meetup.organizerBy' => ({required Object name}) => 'Organized by ${name}',
+			'similar.privacyNote' => 'Matching uses your child\'s tags, age range, therapy/education notes and your city if provided. Your exact location is never shown to others.',
 			'similar.title' => 'Similar Families',
 			'similar.subtitle' => 'Meet families at a similar stage to your child and share experiences.',
 			'similar.noChild' => 'Add a child first, then discover similar families.',
@@ -3789,9 +3791,9 @@ extension on TranslationsEn {
 			'groups.deleteConfirm' => ({required Object name}) => 'The group "${name}" and its chat will be permanently deleted.',
 			'groups.deleted' => 'Group deleted.',
 			'groups.chatUnread' => ({required Object count}) => 'Chat (${count})',
-			'groups.detailTitle' => 'Group details',
 			_ => null,
 		} ?? switch (path) {
+			'groups.detailTitle' => 'Group details',
 			'groups.detailHint' => 'Members and meetings are visible to group members only.',
 			'groups.membersTitle' => 'Members',
 			'groups.membersEmpty' => 'Member list is not available.',
@@ -4303,9 +4305,9 @@ extension on TranslationsEn {
 			'crisis.cards.anxiety.steps.4' => 'Give time for it to pass; don\'t rush them.',
 			'crisis.cards.anxiety.avoid.0' => 'Don\'t belittle it by saying "Calm down, it\'s fine."',
 			'crisis.cards.anxiety.avoid.1' => 'Don\'t keep asking and applying pressure.',
-			'crisis.cards.anxiety.avoid.2' => 'Don\'t add new demands during anxiety.',
 			_ => null,
 		} ?? switch (path) {
+			'crisis.cards.anxiety.avoid.2' => 'Don\'t add new demands during anxiety.',
 			'calendar.title' => 'Calendar',
 			'calendar.subtitle' => 'Child-specific therapy, doctor and activity schedule.',
 			'calendar.noChild' => 'Add a child first to use the calendar.',

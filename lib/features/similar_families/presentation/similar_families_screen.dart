@@ -533,18 +533,48 @@ class _MatchingStatusCard extends ConsumerWidget {
         AppSpacing.margin,
         4,
       ),
-      child: SwitchListTile(
-        value: enabled,
-        onChanged: busy || async.isLoading ? null : onToggle,
-        secondary: Icon(
-          enabled ? Icons.visibility_outlined : Icons.visibility_off_outlined,
-          color: context.colors.primary,
-        ),
-        title: Text(enabled ? t.similar.discoverable : t.similar.hidden),
-        subtitle: Text(
-          t.similar.discoverableHint,
-          style: Theme.of(context).textTheme.labelSmall,
-        ),
+      child: Column(
+        children: [
+          SwitchListTile(
+            value: enabled,
+            onChanged: busy || async.isLoading ? null : onToggle,
+            secondary: Icon(
+              enabled
+                  ? Icons.visibility_outlined
+                  : Icons.visibility_off_outlined,
+              color: context.colors.primary,
+            ),
+            title: Text(enabled ? t.similar.discoverable : t.similar.hidden),
+            subtitle: Text(
+              t.similar.discoverableHint,
+              style: Theme.of(context).textTheme.labelSmall,
+            ),
+          ),
+          // Eşleştirmenin neyi kullandığı açıkça yazılır (web "Güven ve
+          // gizlilik kontrolü" paneli); veri paylaşımı gönüllü.
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(
+                  Icons.shield_outlined,
+                  size: 15,
+                  color: context.colors.textTertiary,
+                ),
+                const SizedBox(width: 6),
+                Expanded(
+                  child: Text(
+                    t.similar.privacyNote,
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          color: context.colors.textTertiary,
+                        ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

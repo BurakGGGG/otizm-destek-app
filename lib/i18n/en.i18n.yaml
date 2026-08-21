@@ -1035,6 +1035,9 @@ meetup:
   organizerBy: Organized by $name
 
 similar:
+  privacyNote: Matching uses your child's tags, age range, therapy/education
+    notes and your city if provided. Your exact location is never shown to
+    others.
   title: Similar Families
   subtitle: Meet families at a similar stage to your child and share experiences.
   noChild: Add a child first, then discover similar families.

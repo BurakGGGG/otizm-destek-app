@@ -1036,6 +1036,9 @@ meetup:
   organizerBy: Düzenleyen $name
 
 similar:
+  privacyNote: Eşleştirme; çocuğunuzun etiketleri, yaş aralığı, terapi/eğitim
+    notları ve varsa şehir bilgisini kullanır. Kesin konumunuz karşı tarafa
+    gösterilmez.
   title: Benzer Aileler
   subtitle: Çocuğunuza yakın gelişim sürecindeki ailelerle tanışın, deneyim
     paylaşın.
