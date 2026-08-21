@@ -1140,6 +1140,18 @@ class Translations$messages$tr {
 
 	// Translations
 
+	/// tr: 'Mesajı şikayet et'
+	String get reportMessage => 'Mesajı şikayet et';
+
+	/// tr: 'Bu mesajı neden şikayet ediyorsunuz?'
+	String get reportHint => 'Bu mesajı neden şikayet ediyorsunuz?';
+
+	/// tr: 'Gönder'
+	String get reportSend => 'Gönder';
+
+	/// tr: 'Mesaj incelemeye alındı.'
+	String get reported => 'Mesaj incelemeye alındı.';
+
 	/// tr: 'Yeni grup sohbeti'
 	String get newGroup => 'Yeni grup sohbeti';
 
@@ -6993,6 +7005,10 @@ extension on Translations {
 			'chat.greeting' => 'Merhaba! Otizm ve çocuk gelişimi hakkındaki sorularınızı yanıtlamaya çalışayım.',
 			'chat.inputHint' => 'Bir soru sorun...',
 			'chat.errorGeneric' => 'Yanıt alınamadı, lütfen tekrar deneyin.',
+			'messages.reportMessage' => 'Mesajı şikayet et',
+			'messages.reportHint' => 'Bu mesajı neden şikayet ediyorsunuz?',
+			'messages.reportSend' => 'Gönder',
+			'messages.reported' => 'Mesaj incelemeye alındı.',
 			'messages.newGroup' => 'Yeni grup sohbeti',
 			'messages.chatDirect' => 'Birebir',
 			'messages.chatGroup' => 'Grup',
@@ -7183,12 +7199,12 @@ extension on Translations {
 			'goalForm.descriptionHint' => 'Hedefle ilgili detay',
 			'goalForm.save' => 'Kaydet',
 			'goalForm.errorTitle' => 'Lütfen bir başlık girin.',
+			_ => null,
+		} ?? switch (path) {
 			'goalForm.created' => 'Hedef eklendi.',
 			'noteForm.title' => 'Not Ekle',
 			'noteForm.editTitle' => 'Notu Düzenle',
 			'noteForm.nameLabel' => 'Başlık',
-			_ => null,
-		} ?? switch (path) {
 			'noteForm.nameHint' => 'Örn. Bugünkü gelişme',
 			'noteForm.contentLabel' => 'İçerik (isteğe bağlı)',
 			'noteForm.contentHint' => 'Gözlemlerinizi yazın',
@@ -7697,12 +7713,12 @@ extension on Translations {
 			'groups.meetingTitleLabel' => 'Buluşma başlığı',
 			'groups.meetingPickDate' => 'Tarih seç',
 			'groups.meetingPickTime' => 'Saat seç',
+			_ => null,
+		} ?? switch (path) {
 			'groups.meetingUrlLabel' => 'Görüşme bağlantısı (isteğe bağlı)',
 			'groups.meetingNoteLabel' => 'Açıklama (isteğe bağlı)',
 			'groups.meetingSave' => 'Kaydet',
 			'groups.meetingCreated' => 'Buluşma planlandı.',
-			_ => null,
-		} ?? switch (path) {
 			'groups.meetingJoin' => 'Görüşmeye katıl',
 			'groups.meetingDelete' => 'Buluşmayı iptal et',
 			'groups.meetingDeleteConfirm' => ({required Object title}) => '"${title}" buluşması iptal edilsin mi?',
@@ -8211,12 +8227,12 @@ extension on Translations {
 			'calendar.eventType' => 'Etkinlik Tipi',
 			'calendar.typeTerapi' => 'Terapi',
 			'calendar.typeDoktor' => 'Doktor',
+			_ => null,
+		} ?? switch (path) {
 			'calendar.typeEgitim' => 'Eğitim',
 			'calendar.typeAktivite' => 'Aktivite',
 			'calendar.typeAppointment' => 'Randevu',
 			'calendar.typeDiger' => 'Diğer',
-			_ => null,
-		} ?? switch (path) {
 			'calendar.eventTitle' => 'Başlık',
 			'calendar.titleHint' => 'Etkinlik adı',
 			'calendar.location' => 'Konum',

@@ -356,6 +356,10 @@ chat:
   errorGeneric: Couldn't get a response, please try again.
 
 messages:
+  reportMessage: Report message
+  reportHint: Why are you reporting this message?
+  reportSend: Send
+  reported: The message has been reported for review.
   newGroup: New group chat
   chatDirect: Direct
   chatGroup: Group

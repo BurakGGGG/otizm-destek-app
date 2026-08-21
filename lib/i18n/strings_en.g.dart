@@ -563,6 +563,10 @@ class _Translations$messages$en extends Translations$messages$tr {
 	final TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	@override String get reportMessage => 'Report message';
+	@override String get reportHint => 'Why are you reporting this message?';
+	@override String get reportSend => 'Send';
+	@override String get reported => 'The message has been reported for review.';
 	@override String get newGroup => 'New group chat';
 	@override String get chatDirect => 'Direct';
 	@override String get chatGroup => 'Group';
@@ -3067,6 +3071,10 @@ extension on TranslationsEn {
 			'chat.greeting' => 'Hi! I\'ll try to answer your questions about autism and child development.',
 			'chat.inputHint' => 'Ask a question...',
 			'chat.errorGeneric' => 'Couldn\'t get a response, please try again.',
+			'messages.reportMessage' => 'Report message',
+			'messages.reportHint' => 'Why are you reporting this message?',
+			'messages.reportSend' => 'Send',
+			'messages.reported' => 'The message has been reported for review.',
 			'messages.newGroup' => 'New group chat',
 			'messages.chatDirect' => 'Direct',
 			'messages.chatGroup' => 'Group',
@@ -3257,12 +3265,12 @@ extension on TranslationsEn {
 			'goalForm.descriptionHint' => 'Details about the goal',
 			'goalForm.save' => 'Save',
 			'goalForm.errorTitle' => 'Please enter a title.',
+			_ => null,
+		} ?? switch (path) {
 			'goalForm.created' => 'Goal added.',
 			'noteForm.title' => 'Add Note',
 			'noteForm.editTitle' => 'Edit Note',
 			'noteForm.nameLabel' => 'Title',
-			_ => null,
-		} ?? switch (path) {
 			'noteForm.nameHint' => 'e.g. Today\'s progress',
 			'noteForm.contentLabel' => 'Content (optional)',
 			'noteForm.contentHint' => 'Write your observations',
@@ -3771,12 +3779,12 @@ extension on TranslationsEn {
 			'groups.meetingTitleLabel' => 'Meeting title',
 			'groups.meetingPickDate' => 'Pick date',
 			'groups.meetingPickTime' => 'Pick time',
+			_ => null,
+		} ?? switch (path) {
 			'groups.meetingUrlLabel' => 'Meeting link (optional)',
 			'groups.meetingNoteLabel' => 'Description (optional)',
 			'groups.meetingSave' => 'Save',
 			'groups.meetingCreated' => 'Meeting scheduled.',
-			_ => null,
-		} ?? switch (path) {
 			'groups.meetingJoin' => 'Join meeting',
 			'groups.meetingDelete' => 'Cancel meeting',
 			'groups.meetingDeleteConfirm' => ({required Object title}) => 'Cancel the meeting "${title}"?',
@@ -4285,12 +4293,12 @@ extension on TranslationsEn {
 			'calendar.eventType' => 'Event Type',
 			'calendar.typeTerapi' => 'Therapy',
 			'calendar.typeDoktor' => 'Doctor',
+			_ => null,
+		} ?? switch (path) {
 			'calendar.typeEgitim' => 'Education',
 			'calendar.typeAktivite' => 'Activity',
 			'calendar.typeAppointment' => 'Appointment',
 			'calendar.typeDiger' => 'Other',
-			_ => null,
-		} ?? switch (path) {
 			'calendar.eventTitle' => 'Title',
 			'calendar.titleHint' => 'Event name',
 			'calendar.location' => 'Location',

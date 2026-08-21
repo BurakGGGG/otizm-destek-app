@@ -21,6 +21,7 @@ import '../../../core/widgets/user_avatar.dart';
 import '../../../i18n/strings.g.dart';
 import '../../auth/presentation/auth_controller.dart';
 import '../../profile/data/block_repository.dart';
+import '../../reports/data/report_repository.dart';
 import '../data/messaging_repository.dart';
 import '../domain/conversation.dart';
 import '../domain/message.dart';
@@ -216,6 +217,51 @@ class _ConversationThreadScreenState
     }
   }
 
+  /// Mesajı şikayet eder (web serbest metin soruyor, mobilde de öyle).
+  Future<void> _reportMessage(Message message) async {
+    final t = context.t;
+    final controller = TextEditingController();
+    final send = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(t.messages.reportMessage),
+        content: TextField(
+          controller: controller,
+          minLines: 2,
+          maxLines: 4,
+          autofocus: true,
+          textCapitalization: TextCapitalization.sentences,
+          decoration: InputDecoration(hintText: t.messages.reportHint),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(false),
+            child: Text(t.common.cancel),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(ctx).pop(true),
+            child: Text(t.messages.reportSend),
+          ),
+        ],
+      ),
+    );
+    final reason = controller.text.trim();
+    controller.dispose();
+    if (send != true || reason.isEmpty || !mounted) return;
+    final messenger = ScaffoldMessenger.of(context);
+    try {
+      await ref.read(reportRepositoryProvider).create(
+            targetType: 'MESSAGE',
+            targetId: message.id,
+            reason: reason,
+          );
+      Haptics.selection();
+      messenger.showSnackBar(SnackBar(content: Text(t.messages.reported)));
+    } on ApiException catch (e) {
+      messenger.showSnackBar(SnackBar(content: Text(e.message)));
+    }
+  }
+
   Future<void> _openMessageActions(Message message) async {
     final t = context.t;
     await showModalBottomSheet<void>(
@@ -258,6 +304,16 @@ class _ConversationThreadScreenState
                 setState(() => _replyTo = message);
               },
             ),
+            // Başkasının mesajı şikayet edilebilir (web'de de yalnızca o).
+            if (!message.isMine(ref.read(authControllerProvider).user?.id))
+              ListTile(
+                leading: const Icon(Icons.flag_outlined),
+                title: Text(t.messages.reportMessage),
+                onTap: () {
+                  Navigator.of(sheetContext).pop();
+                  _reportMessage(message);
+                },
+              ),
             // Silme yalnızca kendi mesajında; sunucu da sahipliği doğruluyor.
             if (message.isMine(ref.read(authControllerProvider).user?.id))
               ListTile(

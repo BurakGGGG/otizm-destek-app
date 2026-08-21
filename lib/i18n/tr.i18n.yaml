@@ -357,6 +357,10 @@ chat:
   errorGeneric: Yanıt alınamadı, lütfen tekrar deneyin.
 
 messages:
+  reportMessage: Mesajı şikayet et
+  reportHint: Bu mesajı neden şikayet ediyorsunuz?
+  reportSend: Gönder
+  reported: Mesaj incelemeye alındı.
   newGroup: Yeni grup sohbeti
   chatDirect: Birebir
   chatGroup: Grup
