@@ -96,11 +96,14 @@ class _ChangePasswordSheetState extends ConsumerState<ChangePasswordSheet> {
           TextField(
             controller: _current,
             obscureText: _obscure,
+            autofillHints: const [AutofillHints.password],
             decoration: InputDecoration(
               labelText: t.settings.currentPasswordLabel,
               prefixIcon: const Icon(Icons.lock_outline),
               suffixIcon: IconButton(
-                tooltip: _obscure ? context.t.common.a11y.showPassword : context.t.common.a11y.hidePassword,
+                tooltip: _obscure
+                    ? t.common.a11y.showPassword
+                    : t.common.a11y.hidePassword,
                 onPressed: () => setState(() => _obscure = !_obscure),
                 icon: Icon(
                   _obscure
@@ -114,6 +117,7 @@ class _ChangePasswordSheetState extends ConsumerState<ChangePasswordSheet> {
           TextField(
             controller: _next,
             obscureText: _obscure,
+            autofillHints: const [AutofillHints.newPassword],
             onChanged: (_) => setState(() {}),
             decoration: InputDecoration(
               labelText: t.settings.newPasswordLabel,

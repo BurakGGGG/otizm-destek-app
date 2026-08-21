@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -98,81 +99,102 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
             ),
             const SizedBox(height: 20),
 
-            _Field(
-              label: t.register.fullNameLabel,
-              hint: t.register.fullNameHint,
-              controller: _fullName,
-              icon: Icons.badge_outlined,
-              textCapitalization: TextCapitalization.words,
-            ),
-            const SizedBox(height: 16),
-            Focus(
-              onFocusChange: (hasFocus) {
-                if (!hasFocus) _checkEmail();
-              },
-              child: _Field(
-                label: t.auth.emailLabel,
-                hint: t.auth.emailHint,
-                controller: _email,
-                icon: Icons.mail_outline,
-                keyboardType: TextInputType.emailAddress,
-                onChanged: (_) {
-                  if (_emailTaken != null) setState(() => _emailTaken = null);
-                },
-              ),
-            ),
-            if (_emailTaken case final taken?) ...[
-              const SizedBox(height: 6),
-              Row(
+            // Ad, e-posta, şifre ve telefon tek autofill grubunda:
+            // şifre yöneticisi güçlü şifre önerip kaydı saklayabilsin.
+            AutofillGroup(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Icon(
-                    taken ? Icons.error_outline : Icons.check_circle_outline,
-                    size: 15,
-                    color: taken
-                        ? context.colors.error
-                        : context.colors.success,
+                  _Field(
+                    label: t.register.fullNameLabel,
+                    hint: t.register.fullNameHint,
+                    controller: _fullName,
+                    icon: Icons.badge_outlined,
+                    autofillHints: const [AutofillHints.name],
+                    textCapitalization: TextCapitalization.words,
                   ),
-                  const SizedBox(width: 6),
-                  Expanded(
-                    child: Text(
-                      taken ? t.register.emailTaken : t.register.emailAvailable,
-                      style: text.labelSmall?.copyWith(
-                        color: taken
-                            ? context.colors.error
-                            : context.colors.success,
+                  const SizedBox(height: 16),
+                  Focus(
+                    onFocusChange: (hasFocus) {
+                      if (!hasFocus) _checkEmail();
+                    },
+                    child: _Field(
+                      label: t.auth.emailLabel,
+                      hint: t.auth.emailHint,
+                      controller: _email,
+                      icon: Icons.mail_outline,
+                      keyboardType: TextInputType.emailAddress,
+                      autofillHints: const [AutofillHints.username],
+                      onChanged: (_) {
+                        if (_emailTaken != null) {
+                          setState(() => _emailTaken = null);
+                        }
+                      },
+                    ),
+                  ),
+                  if (_emailTaken case final taken?) ...[
+                    const SizedBox(height: 6),
+                    Row(
+                      children: [
+                        Icon(
+                          taken
+                              ? Icons.error_outline
+                              : Icons.check_circle_outline,
+                          size: 15,
+                          color: taken
+                              ? context.colors.error
+                              : context.colors.success,
+                        ),
+                        const SizedBox(width: 6),
+                        Expanded(
+                          child: Text(
+                            taken
+                                ? t.register.emailTaken
+                                : t.register.emailAvailable,
+                            style: text.labelSmall?.copyWith(
+                              color: taken
+                                  ? context.colors.error
+                                  : context.colors.success,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                  const SizedBox(height: 16),
+                  _Field(
+                    label: t.auth.passwordLabel,
+                    hint: t.auth.passwordHint,
+                    controller: _password,
+                    icon: Icons.lock_outline,
+                    obscure: _obscure,
+                    autofillHints: const [AutofillHints.newPassword],
+                    onChanged: (_) => setState(() {}),
+                    trailing: IconButton(
+                      tooltip: _obscure
+                          ? t.common.a11y.showPassword
+                          : t.common.a11y.hidePassword,
+                      onPressed: () => setState(() => _obscure = !_obscure),
+                      icon: Icon(
+                        _obscure
+                            ? Icons.visibility_outlined
+                            : Icons.visibility_off_outlined,
+                        color: context.colors.textTertiary,
                       ),
                     ),
                   ),
+                  PasswordStrengthMeter(password: _password.text),
+                  const SizedBox(height: 16),
+                  _Field(
+                    label: t.register.phoneLabel,
+                    hint: t.register.phoneHint,
+                    controller: _phone,
+                    icon: Icons.phone_outlined,
+                    keyboardType: TextInputType.phone,
+                    autofillHints: const [AutofillHints.telephoneNumber],
+                  ),
                 ],
               ),
-            ],
-            const SizedBox(height: 16),
-            _Field(
-              label: t.auth.passwordLabel,
-              hint: t.auth.passwordHint,
-              controller: _password,
-              icon: Icons.lock_outline,
-              obscure: _obscure,
-              onChanged: (_) => setState(() {}),
-              trailing: IconButton(
-                tooltip: _obscure ? context.t.common.a11y.showPassword : context.t.common.a11y.hidePassword,
-                onPressed: () => setState(() => _obscure = !_obscure),
-                icon: Icon(
-                  _obscure
-                      ? Icons.visibility_outlined
-                      : Icons.visibility_off_outlined,
-                  color: context.colors.textTertiary,
-                ),
-              ),
-            ),
-            PasswordStrengthMeter(password: _password.text),
-            const SizedBox(height: 16),
-            _Field(
-              label: t.register.phoneLabel,
-              hint: t.register.phoneHint,
-              controller: _phone,
-              icon: Icons.phone_outlined,
-              keyboardType: TextInputType.phone,
             ),
             const SizedBox(height: 16),
             _Field(
@@ -315,6 +337,8 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
         );
     if (!mounted) return;
     if (outcome.error case final message?) return _showError(message);
+    // Kayıt başarılı: şifre yöneticisine kaydetme istemini tetikler.
+    TextInput.finishAutofillContext();
     if (outcome.signedIn) return; // router otomatik /home'a yönlendirir
     // Oturum açılmadı: e-posta doğrulaması ve/veya uzman onayı bekleniyor.
     context.go(
@@ -360,6 +384,7 @@ class _Field extends StatelessWidget {
     this.hint,
     this.obscure = false,
     this.keyboardType,
+    this.autofillHints,
     this.textCapitalization = TextCapitalization.none,
     this.maxLines = 1,
     this.trailing,
@@ -372,6 +397,7 @@ class _Field extends StatelessWidget {
   final String? hint;
   final bool obscure;
   final TextInputType? keyboardType;
+  final List<String>? autofillHints;
   final TextCapitalization textCapitalization;
   final int maxLines;
   final Widget? trailing;
@@ -388,6 +414,7 @@ class _Field extends StatelessWidget {
           controller: controller,
           obscureText: obscure,
           keyboardType: keyboardType,
+          autofillHints: autofillHints,
           textCapitalization: textCapitalization,
           maxLines: obscure ? 1 : maxLines,
           onChanged: onChanged,

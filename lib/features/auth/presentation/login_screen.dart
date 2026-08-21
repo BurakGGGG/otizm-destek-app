@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -79,29 +80,43 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         style: text.bodySmall,
                       ),
                       const SizedBox(height: 24),
-                      _Field(
-                        label: t.auth.emailLabel,
-                        controller: _email,
-                        hint: t.auth.emailHint,
-                        icon: Icons.mail_outline,
-                        keyboardType: TextInputType.emailAddress,
-                      ),
-                      const SizedBox(height: 16),
-                      _Field(
-                        label: t.auth.passwordLabel,
-                        controller: _password,
-                        hint: t.auth.passwordHint,
-                        icon: Icons.lock_outline,
-                        obscure: _obscure,
-                        trailing: IconButton(
-                          tooltip: _obscure ? context.t.common.a11y.showPassword : context.t.common.a11y.hidePassword,
-                          onPressed: () => setState(() => _obscure = !_obscure),
-                          icon: Icon(
-                            _obscure
-                                ? Icons.visibility_outlined
-                                : Icons.visibility_off_outlined,
-                            color: context.colors.textTertiary,
-                          ),
+                      // İki alan aynı autofill grubunda: şifre yöneticisi
+                      // ikisini birlikte doldurup kaydedebilsin.
+                      AutofillGroup(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            _Field(
+                              label: t.auth.emailLabel,
+                              controller: _email,
+                              hint: t.auth.emailHint,
+                              icon: Icons.mail_outline,
+                              keyboardType: TextInputType.emailAddress,
+                              autofillHints: const [AutofillHints.username],
+                            ),
+                            const SizedBox(height: 16),
+                            _Field(
+                              label: t.auth.passwordLabel,
+                              controller: _password,
+                              hint: t.auth.passwordHint,
+                              icon: Icons.lock_outline,
+                              obscure: _obscure,
+                              autofillHints: const [AutofillHints.password],
+                              trailing: IconButton(
+                                tooltip: _obscure
+                                    ? t.common.a11y.showPassword
+                                    : t.common.a11y.hidePassword,
+                                onPressed: () =>
+                                    setState(() => _obscure = !_obscure),
+                                icon: Icon(
+                                  _obscure
+                                      ? Icons.visibility_outlined
+                                      : Icons.visibility_off_outlined,
+                                  color: context.colors.textTertiary,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       const SizedBox(height: 8),
@@ -200,7 +215,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     final error = await ref
         .read(authControllerProvider.notifier)
         .signIn(email, password);
-    if (error == null) return; // router otomatik ana sayfaya yönlendirir
+    if (error == null) {
+      // Şifre yöneticisine "kaydedeyim mi?" istemini tetikler.
+      TextInput.finishAutofillContext();
+      return; // router otomatik ana sayfaya yönlendirir
+    }
     if (!mounted) return;
     // Backend doğrulanmamış e-postada girişi engelliyor ("Giriş yapmadan önce
     // e-posta adresinizi doğrulayın"); kullanıcıyı çıkmaz sokakta bırakmamak
@@ -257,6 +276,7 @@ class _Field extends StatelessWidget {
     this.hint,
     this.obscure = false,
     this.keyboardType,
+    this.autofillHints,
     this.trailing,
   });
 
@@ -266,6 +286,7 @@ class _Field extends StatelessWidget {
   final String? hint;
   final bool obscure;
   final TextInputType? keyboardType;
+  final List<String>? autofillHints;
   final Widget? trailing;
 
   @override
@@ -279,6 +300,7 @@ class _Field extends StatelessWidget {
           controller: controller,
           obscureText: obscure,
           keyboardType: keyboardType,
+          autofillHints: autofillHints,
           decoration: InputDecoration(
             hintText: hint,
             prefixIcon: Icon(icon, color: context.colors.textTertiary),

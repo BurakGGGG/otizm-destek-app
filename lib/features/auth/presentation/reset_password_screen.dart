@@ -113,12 +113,15 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
                       TextField(
                         controller: _password,
                         obscureText: _obscure,
+                        autofillHints: const [AutofillHints.newPassword],
                         onChanged: (_) => setState(() {}),
                         decoration: InputDecoration(
                           labelText: t.resetPassword.newPasswordLabel,
                           prefixIcon: const Icon(Icons.lock_outline),
                           suffixIcon: IconButton(
-                            tooltip: _obscure ? context.t.common.a11y.showPassword : context.t.common.a11y.hidePassword,
+                            tooltip: _obscure
+                                ? t.common.a11y.showPassword
+                                : t.common.a11y.hidePassword,
                             onPressed: () =>
                                 setState(() => _obscure = !_obscure),
                             icon: Icon(_obscure
