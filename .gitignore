@@ -43,3 +43,8 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Android sürüm imzası — anahtar deposu depoya girmez
+# (android/key.properties zaten android/.gitignore ile hariç)
+*.jks
+*.keystore
