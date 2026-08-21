@@ -176,6 +176,12 @@ register:
   emailAvailable: Bu e-posta adresi kullanılabilir.
 
 settings:
+  pushGranted: Cihaz bildirimleri açık
+  pushGrantedHint: Uygulama kapalıyken de bildirim alırsınız.
+  pushDenied: Cihaz bildirimleri kapalı
+  pushDeniedHint: İzin verilmediği için aşağıdaki tercihler yalnızca uygulama
+    içinde geçerli. Sistem ayarlarından da açabilirsiniz.
+  pushRequest: İzin ver
   blockedTitle: Engellenen kullanıcılar
   blockedEmpty: Engellediğiniz kullanıcı yok.
   blockedRemove: Engeli kaldır

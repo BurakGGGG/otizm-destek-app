@@ -175,6 +175,12 @@ register:
   errorKvkkRequired: KVKK consent is required to continue.
 
 settings:
+  pushGranted: Device notifications are on
+  pushGrantedHint: You will get notifications even when the app is closed.
+  pushDenied: Device notifications are off
+  pushDeniedHint: Without permission the preferences below only apply inside
+    the app. You can also enable it from system settings.
+  pushRequest: Allow
   blockedTitle: Blocked users
   blockedEmpty: You have not blocked anyone.
   blockedRemove: Unblock

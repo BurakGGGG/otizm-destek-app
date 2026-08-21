@@ -67,6 +67,33 @@ class PushService {
     }
   }
 
+  /// Cihaz bildirim izni verilmiş mi? Firebase kurulmadıysa (ör. testler)
+  /// `null` döner ve arayüz satırı hiç göstermez.
+  Future<bool?> hasPermission() async {
+    try {
+      final settings = await _messaging.getNotificationSettings();
+      return settings.authorizationStatus == AuthorizationStatus.authorized ||
+          settings.authorizationStatus == AuthorizationStatus.provisional;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  /// Kullanıcı isteğiyle izni yeniden ister; verilip verilmediğini döner.
+  /// Kalıcı reddedilmişse sistem penceresi açılmaz, `false` döner.
+  Future<bool> requestPermission() async {
+    try {
+      final settings = await _messaging.requestPermission();
+      final granted =
+          settings.authorizationStatus == AuthorizationStatus.authorized ||
+              settings.authorizationStatus == AuthorizationStatus.provisional;
+      if (granted) await registerToken();
+      return granted;
+    } catch (_) {
+      return false;
+    }
+  }
+
   /// Geçerli FCM token'ını backend'e kaydet.
   Future<void> registerToken() async {
     try {
@@ -157,3 +184,8 @@ class PushService {
 }
 
 final pushServiceProvider = Provider<PushService>((ref) => PushService(ref));
+
+/// Cihaz bildirim izninin durumu (Ayarlar ekranındaki satır için).
+final pushPermissionProvider = FutureProvider<bool?>((ref) {
+  return ref.watch(pushServiceProvider).hasPermission();
+});

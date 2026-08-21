@@ -579,6 +579,21 @@ class Translations$settings$tr {
 
 	// Translations
 
+	/// tr: 'Cihaz bildirimleri açık'
+	String get pushGranted => 'Cihaz bildirimleri açık';
+
+	/// tr: 'Uygulama kapalıyken de bildirim alırsınız.'
+	String get pushGrantedHint => 'Uygulama kapalıyken de bildirim alırsınız.';
+
+	/// tr: 'Cihaz bildirimleri kapalı'
+	String get pushDenied => 'Cihaz bildirimleri kapalı';
+
+	/// tr: 'İzin verilmediği için aşağıdaki tercihler yalnızca uygulama içinde geçerli. Sistem ayarlarından da açabilirsiniz.'
+	String get pushDeniedHint => 'İzin verilmediği için aşağıdaki tercihler yalnızca uygulama içinde geçerli. Sistem ayarlarından da açabilirsiniz.';
+
+	/// tr: 'İzin ver'
+	String get pushRequest => 'İzin ver';
+
 	/// tr: 'Engellenen kullanıcılar'
 	String get blockedTitle => 'Engellenen kullanıcılar';
 
@@ -6878,6 +6893,11 @@ extension on Translations {
 			'register.errorKvkkRequired' => 'Devam etmek için KVKK onayı gereklidir.',
 			'register.emailTaken' => 'Bu e-posta adresi zaten kayıtlı. Giriş yapmayı deneyin.',
 			'register.emailAvailable' => 'Bu e-posta adresi kullanılabilir.',
+			'settings.pushGranted' => 'Cihaz bildirimleri açık',
+			'settings.pushGrantedHint' => 'Uygulama kapalıyken de bildirim alırsınız.',
+			'settings.pushDenied' => 'Cihaz bildirimleri kapalı',
+			'settings.pushDeniedHint' => 'İzin verilmediği için aşağıdaki tercihler yalnızca uygulama içinde geçerli. Sistem ayarlarından da açabilirsiniz.',
+			'settings.pushRequest' => 'İzin ver',
 			'settings.blockedTitle' => 'Engellenen kullanıcılar',
 			'settings.blockedEmpty' => 'Engellediğiniz kullanıcı yok.',
 			'settings.blockedRemove' => 'Engeli kaldır',
@@ -7236,13 +7256,13 @@ extension on Translations {
 			'progress.addNote' => 'Not Ekle',
 			'progress.addToken' => 'Jeton Ekle',
 			'progress.tokenAdded' => 'Jeton eklendi 🎉',
+			_ => null,
+		} ?? switch (path) {
 			'progress.tokenRemoved' => 'Jeton geri alındı.',
 			'progress.goalCompleted' => 'Hedef tamamlandı! 🎉',
 			'progress.rewardLine' => ({required Object title}) => 'Ödül: ${title}',
 			'goalForm.title' => 'Hedef Ekle',
 			'goalForm.nameLabel' => 'Başlık',
-			_ => null,
-		} ?? switch (path) {
 			'goalForm.nameHint' => 'Örn. Göz teması kurma',
 			'goalForm.categoryLabel' => 'Kategori',
 			'goalForm.targetLabel' => 'Hedef Sayısı',
@@ -7750,13 +7770,13 @@ extension on Translations {
 			'similar.scoreAge' => 'Yaş',
 			'similar.scoreSensory' => 'Duyusal',
 			'similar.scoreTherapy' => 'Terapi',
+			_ => null,
+		} ?? switch (path) {
 			'similar.scoreEducation' => 'Eğitim',
 			'groups.editTitle' => 'Grubu düzenle',
 			'groups.updated' => 'Grup güncellendi.',
 			'groups.deleteTitle' => 'Grubu sil',
 			'groups.deleteConfirm' => ({required Object name}) => '"${name}" grubu ve sohbeti kalıcı olarak silinecek.',
-			_ => null,
-		} ?? switch (path) {
 			'groups.deleted' => 'Grup silindi.',
 			'groups.chatUnread' => ({required Object count}) => 'Sohbet (${count})',
 			'groups.detailTitle' => 'Grup Detayı',
@@ -8264,13 +8284,13 @@ extension on Translations {
 			'crisis.cards.aggression.emergency' => '112 — Acil Çağrı Merkezi',
 			'crisis.cards.anxiety.title' => 'Yoğun Kaygı / Panik',
 			'crisis.cards.anxiety.subtitle' => 'Titreme, nefes darlığı, ağlama, ortalıktan çekilme',
+			_ => null,
+		} ?? switch (path) {
 			'crisis.cards.anxiety.steps.0' => 'Sakin bir ses tonuyla "Yanındayım, güvendesin" deyin.',
 			'crisis.cards.anxiety.steps.1' => 'Derin nefes egzersizi yapın: 4 saniye içeri, 6 saniye dışarı.',
 			'crisis.cards.anxiety.steps.2' => '"Şu an 5 şey gör, 4 şey dokun" duyusal zemin egzersizi uygulayın.',
 			'crisis.cards.anxiety.steps.3' => 'Güvenli kişi veya nesne sunun (sevdiği oyuncak, kulaklık).',
 			'crisis.cards.anxiety.steps.4' => 'Krizin geçmesi için zaman verin, acele ettirmeyin.',
-			_ => null,
-		} ?? switch (path) {
 			'crisis.cards.anxiety.avoid.0' => '"Sakin ol, sorun yok" diyerek küçümsemeyin.',
 			'crisis.cards.anxiety.avoid.1' => 'Sormaya devam edip baskı uygulamayın.',
 			'crisis.cards.anxiety.avoid.2' => 'Kaygı anında yeni talep eklemeyin.',

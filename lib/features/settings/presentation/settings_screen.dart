@@ -15,6 +15,7 @@ import '../../../core/theme/theme_mode_provider.dart';
 import '../../../i18n/strings.g.dart';
 import '../../auth/domain/app_user.dart';
 import '../../auth/presentation/auth_controller.dart';
+import '../../notifications/data/push_service.dart';
 import '../data/settings_repository.dart';
 import 'change_password_sheet.dart';
 import 'delete_account_sheet.dart';
@@ -46,6 +47,7 @@ class SettingsScreen extends ConsumerWidget {
               title: t.settings.notificationsTitle,
               subtitle: t.settings.notificationsSubtitle,
               children: [
+                const _DevicePermissionRow(),
                 _PrefSwitch(
                   pref: AppPreference.notifMessages,
                   label: t.settings.notifMessages,
@@ -324,6 +326,60 @@ class _Section extends StatelessWidget {
 }
 
 /// Cihazda saklanan bir tercihi açıp kapatan anahtar.
+/// Cihaz bildirim izni satırı — izin yoksa yeniden istemeyi dener, kalıcı
+/// reddedilmişse sistem ayarlarına yönlendiren açıklama gösterir.
+/// (Web'deki `NotificationPermissionBanner` karşılığı.)
+class _DevicePermissionRow extends ConsumerWidget {
+  const _DevicePermissionRow();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.t;
+    final granted = ref.watch(pushPermissionProvider).asData?.value;
+    // Firebase kurulu değilse (test/emülatör) satır hiç görünmez.
+    if (granted == null) return const SizedBox.shrink();
+
+    if (granted) {
+      return ListTile(
+        contentPadding: EdgeInsets.zero,
+        leading: Icon(
+          Icons.notifications_active_outlined,
+          color: context.colors.success,
+        ),
+        title: Text(t.settings.pushGranted),
+        subtitle: Text(
+          t.settings.pushGrantedHint,
+          style: Theme.of(context).textTheme.bodySmall,
+        ),
+      );
+    }
+
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      leading: Icon(
+        Icons.notifications_off_outlined,
+        color: context.colors.error,
+      ),
+      title: Text(t.settings.pushDenied),
+      subtitle: Text(
+        t.settings.pushDeniedHint,
+        style: Theme.of(context).textTheme.bodySmall,
+      ),
+      trailing: TextButton(
+        onPressed: () async {
+          final messenger = ScaffoldMessenger.of(context);
+          final ok = await ref.read(pushServiceProvider).requestPermission();
+          ref.invalidate(pushPermissionProvider);
+          messenger.showSnackBar(SnackBar(
+            content: Text(ok ? t.settings.pushGranted : t.settings.pushDenied),
+          ));
+        },
+        child: Text(t.settings.pushRequest),
+      ),
+    );
+  }
+}
+
 /// Eşleşme tercihleri — sunucuda saklanır (`PUT /users/me`).
 ///
 /// Kodlar paylaşılan veridir (DENEYIM_PAYLASIMI, YAZISMA…); yalnızca

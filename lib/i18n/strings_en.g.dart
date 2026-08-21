@@ -340,6 +340,11 @@ class _Translations$settings$en extends Translations$settings$tr {
 	final TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	@override String get pushGranted => 'Device notifications are on';
+	@override String get pushGrantedHint => 'You will get notifications even when the app is closed.';
+	@override String get pushDenied => 'Device notifications are off';
+	@override String get pushDeniedHint => 'Without permission the preferences below only apply inside the app. You can also enable it from system settings.';
+	@override String get pushRequest => 'Allow';
 	@override String get blockedTitle => 'Blocked users';
 	@override String get blockedEmpty => 'You have not blocked anyone.';
 	@override String get blockedRemove => 'Unblock';
@@ -2916,6 +2921,11 @@ extension on TranslationsEn {
 			'register.emailTaken' => 'This email address is already registered. Try signing in.',
 			'register.emailAvailable' => 'This email address is available.',
 			'register.errorKvkkRequired' => 'KVKK consent is required to continue.',
+			'settings.pushGranted' => 'Device notifications are on',
+			'settings.pushGrantedHint' => 'You will get notifications even when the app is closed.',
+			'settings.pushDenied' => 'Device notifications are off',
+			'settings.pushDeniedHint' => 'Without permission the preferences below only apply inside the app. You can also enable it from system settings.',
+			'settings.pushRequest' => 'Allow',
 			'settings.blockedTitle' => 'Blocked users',
 			'settings.blockedEmpty' => 'You have not blocked anyone.',
 			'settings.blockedRemove' => 'Unblock',
@@ -3274,13 +3284,13 @@ extension on TranslationsEn {
 			'progress.addNote' => 'Add Note',
 			'progress.addToken' => 'Add Token',
 			'progress.tokenAdded' => 'Token added 🎉',
+			_ => null,
+		} ?? switch (path) {
 			'progress.tokenRemoved' => 'Token removed.',
 			'progress.goalCompleted' => 'Goal completed! 🎉',
 			'progress.rewardLine' => ({required Object title}) => 'Reward: ${title}',
 			'goalForm.title' => 'Add Goal',
 			'goalForm.nameLabel' => 'Title',
-			_ => null,
-		} ?? switch (path) {
 			'goalForm.nameHint' => 'e.g. Making eye contact',
 			'goalForm.categoryLabel' => 'Category',
 			'goalForm.targetLabel' => 'Target Count',
@@ -3788,13 +3798,13 @@ extension on TranslationsEn {
 			'similar.scoreAge' => 'Age',
 			'similar.scoreSensory' => 'Sensory',
 			'similar.scoreTherapy' => 'Therapy',
+			_ => null,
+		} ?? switch (path) {
 			'similar.scoreEducation' => 'Education',
 			'groups.editTitle' => 'Edit group',
 			'groups.updated' => 'Group updated.',
 			'groups.deleteTitle' => 'Delete group',
 			'groups.deleteConfirm' => ({required Object name}) => 'The group "${name}" and its chat will be permanently deleted.',
-			_ => null,
-		} ?? switch (path) {
 			'groups.deleted' => 'Group deleted.',
 			'groups.chatUnread' => ({required Object count}) => 'Chat (${count})',
 			'groups.detailTitle' => 'Group details',
@@ -4302,13 +4312,13 @@ extension on TranslationsEn {
 			'crisis.cards.aggression.emergency' => '112 — Emergency Call Center',
 			'crisis.cards.anxiety.title' => 'Intense Anxiety / Panic',
 			'crisis.cards.anxiety.subtitle' => 'Trembling, shortness of breath, crying, withdrawing',
+			_ => null,
+		} ?? switch (path) {
 			'crisis.cards.anxiety.steps.0' => 'Say in a calm tone, "I\'m here, you\'re safe."',
 			'crisis.cards.anxiety.steps.1' => 'Do a deep breathing exercise: 4 seconds in, 6 seconds out.',
 			'crisis.cards.anxiety.steps.2' => 'Use the "see 5 things, touch 4 things" grounding exercise.',
 			'crisis.cards.anxiety.steps.3' => 'Offer a safe person or object (favorite toy, headphones).',
 			'crisis.cards.anxiety.steps.4' => 'Give time for it to pass; don\'t rush them.',
-			_ => null,
-		} ?? switch (path) {
 			'crisis.cards.anxiety.avoid.0' => 'Don\'t belittle it by saying "Calm down, it\'s fine."',
 			'crisis.cards.anxiety.avoid.1' => 'Don\'t keep asking and applying pressure.',
 			'crisis.cards.anxiety.avoid.2' => 'Don\'t add new demands during anxiety.',

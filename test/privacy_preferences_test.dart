@@ -51,4 +51,15 @@ void main() {
     // Sahte kullanıcıda iki tercih işaretli (bkz. fake_backend).
     expect(selected, 2);
   });
+
+  testWidgets('Firebase yokken cihaz izni satırı gizlenir', (tester) async {
+    final t = AppLocale.tr.buildSync();
+    usePhoneSurface(tester);
+    await tester.pumpWidget(hostApp(const SettingsScreen()));
+    await settleScreen(tester);
+
+    // Testte Firebase kurulu değil: satır ne açık ne kapalı görünmeli.
+    expect(find.text(t.settings.pushGranted), findsNothing);
+    expect(find.text(t.settings.pushDenied), findsNothing);
+  });
 }
