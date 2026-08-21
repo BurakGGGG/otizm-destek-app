@@ -121,7 +121,9 @@ import 'package:otizm_destek_app/features/settings/presentation/settings_screen.
 import 'package:otizm_destek_app/features/treatment/data/treatment_repository.dart';
 import 'package:otizm_destek_app/features/treatment/domain/treatment_state.dart';
 import 'package:otizm_destek_app/features/treatment/presentation/treatment_screen.dart';
+import 'package:otizm_destek_app/features/similar_families/data/buddy_repository.dart';
 import 'package:otizm_destek_app/features/similar_families/data/matching_repository.dart';
+import 'package:otizm_destek_app/features/similar_families/domain/buddy.dart';
 import 'package:otizm_destek_app/features/similar_families/data/meetup_request_repository.dart';
 import 'package:otizm_destek_app/features/similar_families/domain/meetup_request.dart';
 import 'package:otizm_destek_app/features/similar_families/domain/similar_family.dart';
@@ -1177,6 +1179,11 @@ class _FakeMatchingRepository extends MatchingRepository {
           parentCity: 'İstanbul',
           childName: 'Kaan',
           similarityScore: 0.82,
+          tagScore: 0.9,
+          ageScore: 1,
+          sensoryScore: 0.45,
+          therapyScore: 0.6,
+          educationScore: 0.3,
           totalCommonTags: 3,
           commonTags: [
             FamilyTag(id: 't1', name: 'Uyku düzeni', category: 'DAVRANIS'),
@@ -1193,7 +1200,12 @@ class _FakeMatchingRepository extends MatchingRepository {
           childAgeRange: '4-6 yaş',
           parentCity: 'Ankara',
           similarityScore: 0.74,
+          tagScore: 0.6,
+          ageScore: 0.9,
           relationshipStatus: 'PENDING',
+          relationshipId: 'r9',
+          requestedByMe: true,
+          communicationPreferences: ['YAZISMA', 'AKSAM'],
         ),
       ];
 
@@ -1221,6 +1233,53 @@ class _FakeMeetupRequestRepository extends MeetupRequestRepository {
       ];
 }
 
+
+class _FakeBuddyRepository extends BuddyRepository {
+  _FakeBuddyRepository() : super(Dio());
+
+  @override
+  Future<List<Buddy>> getMyBuddies() async => const [
+        Buddy(
+          buddyId: 'p2',
+          fullName: 'Zeynep A.',
+          relationshipId: 'r1',
+          city: 'İstanbul',
+          distanceKm: 3.4,
+        ),
+        Buddy(
+          buddyId: 'p5',
+          fullName: 'Uzm. Psk. Selin Aksoy',
+          relationshipId: 'r2',
+          city: 'İzmir',
+          mentorRelation: true,
+        ),
+      ];
+
+  @override
+  Future<List<Buddy>> getPendingRequests() async => const [
+        Buddy(
+          buddyId: 'p7',
+          fullName: 'Merve D.',
+          relationshipId: 'r3',
+          city: 'Bursa',
+          status: 'PENDING',
+          requestMessage:
+              'Merhaba, oğlum da dil terapisine yeni başladı. Tanışmak isterim.',
+        ),
+      ];
+
+  @override
+  Future<void> accept(String relationshipId) async {}
+
+  @override
+  Future<void> reject(String relationshipId) async {}
+
+  @override
+  Future<void> remove(String relationshipId) async {}
+
+  @override
+  Future<void> withdraw(String relationshipId) async {}
+}
 
 class _FakeTreatmentRepository extends TreatmentRepository {
   _FakeTreatmentRepository() : super(Dio());
@@ -1381,6 +1440,7 @@ Widget hostApp(
         kvkkRepositoryProvider.overrideWithValue(_FakeKvkkRepository()),
         searchRepositoryProvider.overrideWithValue(_FakeSearchRepository()),
         matchingRepositoryProvider.overrideWithValue(_FakeMatchingRepository()),
+        buddyRepositoryProvider.overrideWithValue(_FakeBuddyRepository()),
         meetupRequestRepositoryProvider
             .overrideWithValue(_FakeMeetupRequestRepository()),
         treatmentRepositoryProvider
@@ -1742,6 +1802,15 @@ List<ScreenShot> screenCatalog() => [
   ScreenShot(
     '26-benzer-aileler',
     () => const SimilarFamiliesScreen(),
+  ),
+  ScreenShot(
+    '26b-benzer-aileler-cemberim',
+    () => const SimilarFamiliesScreen(),
+    after: (tester) async {
+      final t = AppLocale.tr.buildSync();
+      await tester.tap(find.text(t.similar.tabCircle));
+      await tester.pumpAndSettle();
+    },
   ),
   ScreenShot(
     '24b-gelisim-paneli-grafikler',

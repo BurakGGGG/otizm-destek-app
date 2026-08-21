@@ -20,6 +20,7 @@ import '../data/meetup_request_repository.dart';
 import '../domain/meetup_request.dart';
 import '../data/matching_repository.dart';
 import '../domain/similar_family.dart';
+import 'widgets/buddy_circle_view.dart';
 
 /// Benzer Aileler — eşleştirme motorunun çocuğa yakın bulduğu aileler.
 /// Keşfedilebilirlik anahtarı + mesaj/arkadaş/mentor bağlantı istekleri.
@@ -137,6 +138,9 @@ class _SimilarFamiliesScreenState
           );
       if (!mounted) return;
       setState(() => _statusOverride[family.parentId] = 'PENDING');
+      // Geri çekme için ilişki kimliği gerekiyor; listeyi tazeliyoruz.
+      final childId = _selectedChildId;
+      if (childId != null) ref.invalidate(similarFamiliesProvider(childId));
       Haptics.success();
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(t.similar.sent)));
@@ -144,6 +148,26 @@ class _SimilarFamiliesScreenState
       if (!mounted) return;
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.message)));
+    }
+  }
+
+  /// Gönderilmiş ama yanıtlanmamış bağlantı isteğini geri çeker.
+  Future<void> _withdrawRequest(SimilarFamily family) async {
+    final id = family.relationshipId;
+    if (id == null) return;
+    final t = context.t;
+    final messenger = ScaffoldMessenger.of(context);
+    try {
+      await ref.read(buddyRepositoryProvider).withdraw(id);
+      if (!mounted) return;
+      setState(() => _statusOverride.remove(family.parentId));
+      final childId = _selectedChildId;
+      if (childId != null) ref.invalidate(similarFamiliesProvider(childId));
+      Haptics.selection();
+      messenger.showSnackBar(SnackBar(content: Text(t.similar.withdrawn)));
+    } on ApiException catch (e) {
+      if (!mounted) return;
+      messenger.showSnackBar(SnackBar(content: Text(e.message)));
     }
   }
 
@@ -162,195 +186,148 @@ class _SimilarFamiliesScreenState
     ).showSnackBar(SnackBar(content: Text(t.similar.meetupSent)));
   }
 
-  @override
-  Widget build(BuildContext context) {
-    final t = context.t;
-    final childrenAsync = ref.watch(childrenProvider);
-
-    return Scaffold(
-      appBar: AppBar(title: Text(t.similar.title)),
-      body: SafeArea(
-        child: childrenAsync.when(
-          loading: () => const SkeletonList(count: 3),
-          error: (e, _) =>
-              ErrorRetry(onRetry: () => ref.invalidate(childrenProvider)),
-          data: (children) {
-            if (children.isEmpty) {
-              return EmptyState(
-                icon: Icons.child_care_outlined,
-                message: t.similar.noChild,
-                actionLabel: t.children.add,
-                actionIcon: Icons.child_care_outlined,
-                onAction: () => context.push('/children'),
-              );
-            }
-            final childId = _selectedChildId ??= children.first.id;
-            return Column(
-              children: [
-                _MatchingStatusCard(
-                  busy: _togglingStatus,
-                  onToggle: _toggleStatus,
-                ),
-                if (children.length > 1)
-                  _ChildSelector(
-                    children: children,
-                    selectedId: childId,
-                    onSelect: (id) => setState(() => _selectedChildId = id),
-                  ),
-                const _MeetupRequestsSection(),
-                Expanded(
-                  child: _FamiliesBody(
-                    childId: childId,
-                    statusOf: (f) => _statusOverride[f.parentId],
-                    onMessage: _message,
-                    onBuddy: (f) => _requestBuddy(f, mentor: false),
-                    onMentor: (f) => _requestBuddy(f, mentor: true),
-                    onMeetup: _requestMeetup,
-                  ),
-                ),
-              ],
-            );
-          },
-        ),
-      ),
-    );
-  }
-}
-
-
-/// Bekleyen buluşma istekleri şeridi — gelen isteklerde onay/ret, giden
-/// isteklerde iptal. İstek yoksa yer kaplamaz.
-class _MeetupRequestsSection extends ConsumerWidget {
-  const _MeetupRequestsSection();
-
-  Future<void> _update(
-    BuildContext context,
-    WidgetRef ref,
-    MeetupRequest request,
-    String status,
-  ) async {
-    final messenger = ScaffoldMessenger.of(context);
+  /// Bir kullanıcıyla doğrudan sohbeti açar (çember sekmesinden).
+  Future<void> _messageUser(String userId, String name) async {
     try {
-      await ref
-          .read(meetupRequestRepositoryProvider)
-          .updateStatus(request.id, status);
-      ref.invalidate(meetupRequestsProvider);
-      Haptics.selection();
+      final conv = await ref
+          .read(messagingRepositoryProvider)
+          .getOrCreateDirect(userId);
+      if (!mounted) return;
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) =>
+              ConversationThreadScreen(conversationId: conv.id, title: name),
+        ),
+      );
     } on ApiException catch (e) {
-      messenger.showSnackBar(SnackBar(content: Text(e.message)));
+      if (!mounted) return;
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.message)));
     }
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final t = context.t;
-    final colors = context.colors;
-    final text = Theme.of(context).textTheme;
+    // Çember sekmesindeki rozet: bekleyen bağlantı + gelen buluşma istekleri.
+    final pendingBuddies =
+        ref.watch(pendingBuddiesProvider).asData?.value.length ?? 0;
     final userId = ref.watch(authControllerProvider).user?.id;
-    final requests = ref.watch(meetupRequestsProvider).asData?.value ?? const [];
-    final pending = [for (final r in requests) if (r.isPending) r];
-    if (pending.isEmpty) return const SizedBox.shrink();
+    final meetupRequests =
+        ref.watch(meetupRequestsProvider).asData?.value ?? const [];
+    final incomingMeetups = meetupRequests
+        .where((r) => r.isPending && !r.sentByMe(userId))
+        .length;
+    final badge = pendingBuddies + incomingMeetups;
 
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(
-        AppSpacing.margin,
-        0,
-        AppSpacing.margin,
-        8,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(t.similar.meetupRequestsTitle, style: text.titleSmall),
-          const SizedBox(height: 8),
-          for (final request in pending)
-            Container(
-              margin: const EdgeInsets.only(bottom: 8),
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: colors.surface,
-                borderRadius: BorderRadius.circular(AppRadius.md),
-                border: Border.all(color: colors.border),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    request.otherName(userId) ?? t.similar.unknownFamily,
-                    style: text.labelLarge,
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    '${meetupTypeLabel(t, request.type)} · '
-                    '${request.proposedDate} ${request.proposedTime}',
-                    style: text.labelSmall
-                        ?.copyWith(color: colors.textSecondary),
-                  ),
-                  if (request.location?.trim().isNotEmpty ?? false)
-                    Text(
-                      request.location!.trim(),
-                      style: text.labelSmall
-                          ?.copyWith(color: colors.textSecondary),
-                    ),
-                  if (request.message?.trim().isNotEmpty ?? false) ...[
-                    const SizedBox(height: 4),
-                    Text(request.message!.trim(), style: text.bodySmall),
-                  ],
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      if (request.sentByMe(userId))
-                        Expanded(
-                          child: OutlinedButton(
-                            onPressed: () => _update(
-                              context,
-                              ref,
-                              request,
-                              kMeetupRequestCancelled,
-                            ),
-                            child: Text(t.similar.meetupCancel),
-                          ),
-                        )
-                      else ...[
-                        Expanded(
-                          child: FilledButton.tonal(
-                            onPressed: () => _update(
-                              context,
-                              ref,
-                              request,
-                              kMeetupRequestAccepted,
-                            ),
-                            child: Text(t.similar.meetupAccept),
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: OutlinedButton(
-                            onPressed: () => _update(
-                              context,
-                              ref,
-                              request,
-                              kMeetupRequestDeclined,
-                            ),
-                            child: Text(t.similar.meetupDecline),
-                          ),
-                        ),
-                      ],
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(t.similar.title),
+          bottom: TabBar(
+            tabs: [
+              Tab(text: t.similar.tabMatches),
+              Tab(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(t.similar.tabCircle),
+                    if (badge > 0) ...[
+                      const SizedBox(width: 6),
+                      _TabBadge(count: badge),
                     ],
-                  ),
-                ],
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        body: SafeArea(
+          child: TabBarView(
+            children: [
+              _matchesTab(context),
+              BuddyCircleView(onMessage: _messageUser),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _matchesTab(BuildContext context) {
+    final t = context.t;
+    final childrenAsync = ref.watch(childrenProvider);
+
+    return childrenAsync.when(
+      loading: () => const SkeletonList(count: 3),
+      error: (e, _) =>
+          ErrorRetry(onRetry: () => ref.invalidate(childrenProvider)),
+      data: (children) {
+        if (children.isEmpty) {
+          return EmptyState(
+            icon: Icons.child_care_outlined,
+            message: t.similar.noChild,
+            actionLabel: t.children.add,
+            actionIcon: Icons.child_care_outlined,
+            onAction: () => context.push('/children'),
+          );
+        }
+        final childId = _selectedChildId ??= children.first.id;
+        return Column(
+          children: [
+            _MatchingStatusCard(
+              busy: _togglingStatus,
+              onToggle: _toggleStatus,
+            ),
+            if (children.length > 1)
+              _ChildSelector(
+                children: children,
+                selectedId: childId,
+                onSelect: (id) => setState(() => _selectedChildId = id),
+              ),
+            Expanded(
+              child: _FamiliesBody(
+                childId: childId,
+                statusOf: (f) => _statusOverride[f.parentId],
+                onMessage: _message,
+                onBuddy: (f) => _requestBuddy(f, mentor: false),
+                onMentor: (f) => _requestBuddy(f, mentor: true),
+                onMeetup: _requestMeetup,
+                onWithdraw: _withdrawRequest,
               ),
             ),
-        ],
-      ),
+          ],
+        );
+      },
     );
   }
 }
 
-String meetupTypeLabel(Translations t, String type) =>
-    type == kMeetupRequestInPerson
-        ? t.similar.meetupInPerson
-        : t.similar.meetupOnline;
+/// Sekme başlığındaki bekleyen istek rozeti.
+class _TabBadge extends StatelessWidget {
+  const _TabBadge({required this.count});
+
+  final int count;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
+      decoration: BoxDecoration(
+        color: context.colors.error,
+        borderRadius: BorderRadius.circular(AppRadius.full),
+      ),
+      child: Text(
+        '$count',
+        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+              color: Colors.white,
+              fontWeight: FontWeight.w700,
+            ),
+      ),
+    );
+  }
+}
 
 /// Buluşma isteği formu.
 class _MeetupRequestSheet extends ConsumerStatefulWidget {
@@ -577,6 +554,7 @@ class _FamiliesBody extends ConsumerWidget {
     required this.onMeetup,
     required this.onBuddy,
     required this.onMentor,
+    required this.onWithdraw,
   });
 
   final String childId;
@@ -585,6 +563,7 @@ class _FamiliesBody extends ConsumerWidget {
   final ValueChanged<SimilarFamily> onMeetup;
   final ValueChanged<SimilarFamily> onBuddy;
   final ValueChanged<SimilarFamily> onMentor;
+  final ValueChanged<SimilarFamily> onWithdraw;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -637,6 +616,7 @@ class _FamiliesBody extends ConsumerWidget {
                 onMeetup: () => onMeetup(family),
                 onBuddy: () => onBuddy(family),
                 onMentor: () => onMentor(family),
+                onWithdraw: () => onWithdraw(family),
               );
             },
           ),
@@ -653,6 +633,7 @@ class _FamilyCard extends StatelessWidget {
     required this.onMeetup,
     required this.onBuddy,
     required this.onMentor,
+    required this.onWithdraw,
   });
 
   final SimilarFamily family;
@@ -660,6 +641,7 @@ class _FamilyCard extends StatelessWidget {
   final VoidCallback onMeetup;
   final VoidCallback onBuddy;
   final VoidCallback onMentor;
+  final VoidCallback onWithdraw;
 
   String? _relationLabel(Translations t) {
     switch (family.relationshipStatus) {
@@ -747,6 +729,22 @@ class _FamilyCard extends StatelessWidget {
                 ],
               ),
             ],
+            if (family.communicationPreferences.isNotEmpty) ...[
+              const SizedBox(height: 10),
+              Wrap(
+                spacing: 6,
+                runSpacing: 6,
+                children: [
+                  for (final pref in family.communicationPreferences)
+                    _TagChip(label: _commPrefLabel(t, pref)),
+                ],
+              ),
+            ],
+            // Alt skorlar gelmediyse beş boş çubuk göstermenin anlamı yok.
+            if (family.hasScoreBreakdown) ...[
+              const SizedBox(height: 12),
+              _ScoreBars(family: family),
+            ],
             if (family.commonTags.isNotEmpty) ...[
               const SizedBox(height: 12),
               Text(
@@ -825,11 +823,97 @@ class _FamilyCard extends StatelessWidget {
                   label: t.similar.meetup,
                   onTap: onMeetup,
                 ),
+                // Bekleyen isteği yalnızca gönderen geri çekebilir.
+                if (family.canWithdraw)
+                  _ConnectButton(
+                    icon: Icons.undo_outlined,
+                    label: t.similar.withdraw,
+                    onTap: onWithdraw,
+                  ),
               ],
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+/// İletişim tercihi kodları veri olarak gelir (YAZISMA/GORUNTULU/AKSAM);
+/// yalnızca gösterim metni çevrilir, tanınmayan kod olduğu gibi yazılır.
+String _commPrefLabel(Translations t, String code) => switch (code) {
+      'YAZISMA' => t.similar.commPrefWriting,
+      'GORUNTULU' => t.similar.commPrefVideo,
+      'AKSAM' => t.similar.commPrefEvening,
+      _ => code,
+    };
+
+/// Uyum ayrıntısı — beş boyutun mini çubukları (web'deki ScoreBar'lar).
+class _ScoreBars extends StatelessWidget {
+  const _ScoreBars({required this.family});
+
+  final SimilarFamily family;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    final text = Theme.of(context).textTheme;
+    final colors = context.colors;
+    final rows = <(String, double)>[
+      (t.similar.scoreTag, family.tagScore),
+      (t.similar.scoreAge, family.ageScore),
+      (t.similar.scoreSensory, family.sensoryScore),
+      (t.similar.scoreTherapy, family.therapyScore),
+      (t.similar.scoreEducation, family.educationScore),
+    ];
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          t.similar.scoresTitle,
+          style: text.labelMedium?.copyWith(color: colors.textSecondary),
+        ),
+        const SizedBox(height: 6),
+        for (final (label, value) in rows)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 4),
+            child: Row(
+              children: [
+                SizedBox(
+                  width: 62,
+                  child: Text(
+                    label,
+                    style: text.labelSmall
+                        ?.copyWith(color: colors.textSecondary),
+                  ),
+                ),
+                Expanded(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(AppRadius.full),
+                    child: LinearProgressIndicator(
+                      value: value.clamp(0, 1),
+                      minHeight: 6,
+                      backgroundColor: colors.surfaceVariant,
+                      valueColor:
+                          AlwaysStoppedAnimation<Color>(colors.primary),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                SizedBox(
+                  width: 34,
+                  child: Text(
+                    '%${(value * 100).round()}',
+                    textAlign: TextAlign.end,
+                    style: text.labelSmall
+                        ?.copyWith(color: colors.textTertiary),
+                  ),
+                ),
+              ],
+            ),
+          ),
+      ],
     );
   }
 }

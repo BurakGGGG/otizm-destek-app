@@ -20,6 +20,9 @@ class SimilarFamily {
     this.matchReasons = const [],
     this.relationshipStatus = 'NONE',
     this.mentorRelation = false,
+    this.relationshipId,
+    this.requestedByMe = false,
+    this.communicationPreferences = const [],
   });
 
   final String parentId;
@@ -39,6 +42,27 @@ class SimilarFamily {
   final String relationshipStatus;
   final bool mentorRelation;
 
+  /// İlişki kimliği — bekleyen isteği geri çekmek için gerekir.
+  final String? relationshipId;
+
+  /// Bekleyen isteği ben mi gönderdim (geri çekme yalnızca o zaman görünür).
+  final bool requestedByMe;
+
+  /// İletişim tercihi kodları (YAZISMA / GORUNTULU / AKSAM) — veri.
+  final List<String> communicationPreferences;
+
+  /// Alt skorlardan en az biri doldurulmuş mu (kırılım gösterilsin mi).
+  bool get hasScoreBreakdown =>
+      tagScore > 0 ||
+      ageScore > 0 ||
+      therapyScore > 0 ||
+      educationScore > 0 ||
+      sensoryScore > 0;
+
+  /// Geri çekilebilir bekleyen bir istek var mı.
+  bool get canWithdraw =>
+      relationshipStatus == 'PENDING' && requestedByMe && relationshipId != null;
+
   /// Genel uyum yüzdesi (0..100).
   int get scorePercent => (similarityScore * 100).round();
 
@@ -46,7 +70,11 @@ class SimilarFamily {
   bool get hasRelationship =>
       relationshipStatus == 'PENDING' || relationshipStatus == 'ACCEPTED';
 
-  SimilarFamily copyWith({String? relationshipStatus, bool? mentorRelation}) {
+  SimilarFamily copyWith({
+    String? relationshipStatus,
+    bool? mentorRelation,
+    bool clearRelationship = false,
+  }) {
     return SimilarFamily(
       parentId: parentId,
       parentName: parentName,
@@ -64,6 +92,9 @@ class SimilarFamily {
       matchReasons: matchReasons,
       relationshipStatus: relationshipStatus ?? this.relationshipStatus,
       mentorRelation: mentorRelation ?? this.mentorRelation,
+      relationshipId: clearRelationship ? null : relationshipId,
+      requestedByMe: clearRelationship ? false : requestedByMe,
+      communicationPreferences: communicationPreferences,
     );
   }
 
@@ -96,6 +127,15 @@ class SimilarFamily {
           : const [],
       relationshipStatus: json['relationshipStatus'] as String? ?? 'NONE',
       mentorRelation: json['mentorRelation'] == true,
+      relationshipId: json['relationshipId'] == null
+          ? null
+          : '${json['relationshipId']}',
+      requestedByMe: json['requestedByMe'] == true,
+      communicationPreferences: json['communicationPreferences'] is List
+          ? (json['communicationPreferences'] as List)
+              .map((e) => e.toString())
+              .toList()
+          : const [],
     );
   }
 }

@@ -3101,6 +3101,93 @@ class Translations$similar$tr {
 
 	/// tr: 'Aile'
 	String get unknownFamily => 'Aile';
+
+	/// tr: 'Eşleşmeler'
+	String get tabMatches => 'Eşleşmeler';
+
+	/// tr: 'Çemberim'
+	String get tabCircle => 'Çemberim';
+
+	/// tr: 'Gelen bağlantı istekleri'
+	String get circlePendingTitle => 'Gelen bağlantı istekleri';
+
+	/// tr: 'Arkadaşlarım ve mentorlarım'
+	String get circleAcceptedTitle => 'Arkadaşlarım ve mentorlarım';
+
+	/// tr: 'Çemberiniz henüz boş. Eşleşmeler sekmesinden bir aileye istek göndererek başlayın.'
+	String get circleEmpty => 'Çemberiniz henüz boş. Eşleşmeler sekmesinden bir aileye istek göndererek başlayın.';
+
+	/// tr: 'Bekleyen istek yok.'
+	String get circleNoPending => 'Bekleyen istek yok.';
+
+	/// tr: 'Arkadaş isteği'
+	String get circleBuddyRequest => 'Arkadaş isteği';
+
+	/// tr: 'Mentor isteği'
+	String get circleMentorRequest => 'Mentor isteği';
+
+	/// tr: 'Kabul et'
+	String get accept => 'Kabul et';
+
+	/// tr: 'Reddet'
+	String get reject => 'Reddet';
+
+	/// tr: 'Bağlantı kuruldu.'
+	String get accepted => 'Bağlantı kuruldu.';
+
+	/// tr: 'İstek reddedildi.'
+	String get rejected => 'İstek reddedildi.';
+
+	/// tr: 'Bağlantıyı kaldır'
+	String get removeBuddy => 'Bağlantıyı kaldır';
+
+	/// tr: '$name ile bağlantınız kaldırılsın mı?'
+	String removeBuddyConfirm({required Object name}) => '${name} ile bağlantınız kaldırılsın mı?';
+
+	/// tr: 'Bağlantı kaldırıldı.'
+	String get removed => 'Bağlantı kaldırıldı.';
+
+	/// tr: 'İstek notu'
+	String get requestNote => 'İstek notu';
+
+	/// tr: 'İsteği geri çek'
+	String get withdraw => 'İsteği geri çek';
+
+	/// tr: 'İstek geri çekildi.'
+	String get withdrawn => 'İstek geri çekildi.';
+
+	/// tr: '$km km yakınında'
+	String distance({required Object km}) => '${km} km yakınında';
+
+	/// tr: 'Şehir belirtilmemiş'
+	String get noCity => 'Şehir belirtilmemiş';
+
+	/// tr: 'Önce yazışmayı tercih eder'
+	String get commPrefWriting => 'Önce yazışmayı tercih eder';
+
+	/// tr: 'Görüntülü görüşmeye açık'
+	String get commPrefVideo => 'Görüntülü görüşmeye açık';
+
+	/// tr: 'Genellikle akşam yanıt verir'
+	String get commPrefEvening => 'Genellikle akşam yanıt verir';
+
+	/// tr: 'Uyum ayrıntısı'
+	String get scoresTitle => 'Uyum ayrıntısı';
+
+	/// tr: 'Etiket'
+	String get scoreTag => 'Etiket';
+
+	/// tr: 'Yaş'
+	String get scoreAge => 'Yaş';
+
+	/// tr: 'Duyusal'
+	String get scoreSensory => 'Duyusal';
+
+	/// tr: 'Terapi'
+	String get scoreTherapy => 'Terapi';
+
+	/// tr: 'Eğitim'
+	String get scoreEducation => 'Eğitim';
 }
 
 // Path: groups
@@ -7187,6 +7274,35 @@ extension on Translations {
 			'similar.meetupDecline' => 'Reddet',
 			'similar.meetupCancel' => 'İsteği geri çek',
 			'similar.unknownFamily' => 'Aile',
+			'similar.tabMatches' => 'Eşleşmeler',
+			'similar.tabCircle' => 'Çemberim',
+			'similar.circlePendingTitle' => 'Gelen bağlantı istekleri',
+			'similar.circleAcceptedTitle' => 'Arkadaşlarım ve mentorlarım',
+			'similar.circleEmpty' => 'Çemberiniz henüz boş. Eşleşmeler sekmesinden bir aileye istek göndererek başlayın.',
+			'similar.circleNoPending' => 'Bekleyen istek yok.',
+			'similar.circleBuddyRequest' => 'Arkadaş isteği',
+			'similar.circleMentorRequest' => 'Mentor isteği',
+			'similar.accept' => 'Kabul et',
+			'similar.reject' => 'Reddet',
+			'similar.accepted' => 'Bağlantı kuruldu.',
+			'similar.rejected' => 'İstek reddedildi.',
+			'similar.removeBuddy' => 'Bağlantıyı kaldır',
+			'similar.removeBuddyConfirm' => ({required Object name}) => '${name} ile bağlantınız kaldırılsın mı?',
+			'similar.removed' => 'Bağlantı kaldırıldı.',
+			'similar.requestNote' => 'İstek notu',
+			'similar.withdraw' => 'İsteği geri çek',
+			'similar.withdrawn' => 'İstek geri çekildi.',
+			'similar.distance' => ({required Object km}) => '${km} km yakınında',
+			'similar.noCity' => 'Şehir belirtilmemiş',
+			'similar.commPrefWriting' => 'Önce yazışmayı tercih eder',
+			'similar.commPrefVideo' => 'Görüntülü görüşmeye açık',
+			'similar.commPrefEvening' => 'Genellikle akşam yanıt verir',
+			'similar.scoresTitle' => 'Uyum ayrıntısı',
+			'similar.scoreTag' => 'Etiket',
+			'similar.scoreAge' => 'Yaş',
+			'similar.scoreSensory' => 'Duyusal',
+			'similar.scoreTherapy' => 'Terapi',
+			'similar.scoreEducation' => 'Eğitim',
 			'groups.title' => 'Destek Grupları',
 			'groups.subtitle' => 'Benzer konularda ailelerle bir araya gel, grup sohbetine katıl.',
 			'groups.tabMy' => 'Gruplarım',
@@ -7276,6 +7392,8 @@ extension on Translations {
 			'treatment.weekGamesDetail' => 'Bu hafta tekrar edilen mini egzersiz sayısı',
 			'treatment.weekGamesEmpty' => 'Bugün ilk oyunu planlayabilirsiniz',
 			'treatment.weekGoalsTitle' => 'Tamamlanan hedef',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.weekGoalsDetail' => 'Tüm aktif beceri alanlarındaki toplam ilerleme',
 			'treatment.weekGoalsEmpty' => 'Hedefler sekmesinden hedef ekleyebilirsiniz',
 			'treatment.weekSessionsTitle' => 'Yaklaşan Seans',
@@ -7305,8 +7423,6 @@ extension on Translations {
 			'treatment.statusDone' => 'Tamamlandı',
 			'treatment.statusActive' => 'Devam',
 			'treatment.statusUpcoming' => 'Sırada',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.emptyGroupsTitle' => 'Henüz terapi hedefi görünmüyor',
 			'treatment.emptyGroupsBody' => 'Çocuğunuzun profiline terapi türü eklendiğinde hedefler otomatik olarak burada listelenir.',
 			'treatment.milestoneTitle' => 'Büyük Bir Başarı Kaydet 🏅',
@@ -7790,6 +7906,8 @@ extension on Translations {
 			'behavior.date' => 'Tarih',
 			'behavior.time' => 'Saat',
 			'behavior.category' => 'Kategori',
+			_ => null,
+		} ?? switch (path) {
 			'behavior.location' => 'Yer',
 			'behavior.antecedentLabel' => 'A — Öncesi (Tetikleyici)',
 			'behavior.antecedentHint' => 'Tetikleyiciyi açıklayın',
@@ -7819,8 +7937,6 @@ extension on Translations {
 			'analytics.moodUnit' => '1-5 arası aylık ortalama',
 			'analytics.sleep' => 'Ortalama Uyku',
 			'analytics.sleepUnit' => 'gecelik saat (aylık ortalama)',
-			_ => null,
-		} ?? switch (path) {
 			'analytics.behavior' => 'Davranış Kayıtları',
 			'analytics.behaviorUnit' => 'aylık kayıt sayısı',
 			'analytics.noData' => 'Bu aralıkta henüz veri yok.',

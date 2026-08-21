@@ -995,6 +995,36 @@ similar:
   meetupDecline: Reddet
   meetupCancel: İsteği geri çek
   unknownFamily: Aile
+  tabMatches: Eşleşmeler
+  tabCircle: Çemberim
+  circlePendingTitle: Gelen bağlantı istekleri
+  circleAcceptedTitle: Arkadaşlarım ve mentorlarım
+  circleEmpty: Çemberiniz henüz boş. Eşleşmeler sekmesinden bir aileye istek
+    göndererek başlayın.
+  circleNoPending: Bekleyen istek yok.
+  circleBuddyRequest: Arkadaş isteği
+  circleMentorRequest: Mentor isteği
+  accept: Kabul et
+  reject: Reddet
+  accepted: Bağlantı kuruldu.
+  rejected: İstek reddedildi.
+  removeBuddy: Bağlantıyı kaldır
+  removeBuddyConfirm: $name ile bağlantınız kaldırılsın mı?
+  removed: Bağlantı kaldırıldı.
+  requestNote: İstek notu
+  withdraw: İsteği geri çek
+  withdrawn: İstek geri çekildi.
+  distance: $km km yakınında
+  noCity: Şehir belirtilmemiş
+  commPrefWriting: Önce yazışmayı tercih eder
+  commPrefVideo: Görüntülü görüşmeye açık
+  commPrefEvening: Genellikle akşam yanıt verir
+  scoresTitle: Uyum ayrıntısı
+  scoreTag: Etiket
+  scoreAge: Yaş
+  scoreSensory: Duyusal
+  scoreTherapy: Terapi
+  scoreEducation: Eğitim
 
 groups:
   title: Destek Grupları

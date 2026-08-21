@@ -993,6 +993,36 @@ similar:
   meetupDecline: Decline
   meetupCancel: Withdraw request
   unknownFamily: Family
+  tabMatches: Matches
+  tabCircle: My circle
+  circlePendingTitle: Incoming connection requests
+  circleAcceptedTitle: My friends and mentors
+  circleEmpty: Your circle is empty. Start by sending a request from the
+    Matches tab.
+  circleNoPending: No pending requests.
+  circleBuddyRequest: Friend request
+  circleMentorRequest: Mentor request
+  accept: Accept
+  reject: Decline
+  accepted: You are now connected.
+  rejected: Request declined.
+  removeBuddy: Remove connection
+  removeBuddyConfirm: Remove your connection with $name?
+  removed: Connection removed.
+  requestNote: Request note
+  withdraw: Withdraw request
+  withdrawn: Request withdrawn.
+  distance: $km km away
+  noCity: City not specified
+  commPrefWriting: Prefers messaging first
+  commPrefVideo: Open to video calls
+  commPrefEvening: Usually replies in the evening
+  scoresTitle: Match details
+  scoreTag: Tags
+  scoreAge: Age
+  scoreSensory: Sensory
+  scoreTherapy: Therapy
+  scoreEducation: Education
 
 groups:
   title: Support Groups

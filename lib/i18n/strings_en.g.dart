@@ -1349,6 +1349,35 @@ class _Translations$similar$en extends Translations$similar$tr {
 	@override String get meetupDecline => 'Decline';
 	@override String get meetupCancel => 'Withdraw request';
 	@override String get unknownFamily => 'Family';
+	@override String get tabMatches => 'Matches';
+	@override String get tabCircle => 'My circle';
+	@override String get circlePendingTitle => 'Incoming connection requests';
+	@override String get circleAcceptedTitle => 'My friends and mentors';
+	@override String get circleEmpty => 'Your circle is empty. Start by sending a request from the Matches tab.';
+	@override String get circleNoPending => 'No pending requests.';
+	@override String get circleBuddyRequest => 'Friend request';
+	@override String get circleMentorRequest => 'Mentor request';
+	@override String get accept => 'Accept';
+	@override String get reject => 'Decline';
+	@override String get accepted => 'You are now connected.';
+	@override String get rejected => 'Request declined.';
+	@override String get removeBuddy => 'Remove connection';
+	@override String removeBuddyConfirm({required Object name}) => 'Remove your connection with ${name}?';
+	@override String get removed => 'Connection removed.';
+	@override String get requestNote => 'Request note';
+	@override String get withdraw => 'Withdraw request';
+	@override String get withdrawn => 'Request withdrawn.';
+	@override String distance({required Object km}) => '${km} km away';
+	@override String get noCity => 'City not specified';
+	@override String get commPrefWriting => 'Prefers messaging first';
+	@override String get commPrefVideo => 'Open to video calls';
+	@override String get commPrefEvening => 'Usually replies in the evening';
+	@override String get scoresTitle => 'Match details';
+	@override String get scoreTag => 'Tags';
+	@override String get scoreAge => 'Age';
+	@override String get scoreSensory => 'Sensory';
+	@override String get scoreTherapy => 'Therapy';
+	@override String get scoreEducation => 'Education';
 }
 
 // Path: groups
@@ -3525,6 +3554,35 @@ extension on TranslationsEn {
 			'similar.meetupDecline' => 'Decline',
 			'similar.meetupCancel' => 'Withdraw request',
 			'similar.unknownFamily' => 'Family',
+			'similar.tabMatches' => 'Matches',
+			'similar.tabCircle' => 'My circle',
+			'similar.circlePendingTitle' => 'Incoming connection requests',
+			'similar.circleAcceptedTitle' => 'My friends and mentors',
+			'similar.circleEmpty' => 'Your circle is empty. Start by sending a request from the Matches tab.',
+			'similar.circleNoPending' => 'No pending requests.',
+			'similar.circleBuddyRequest' => 'Friend request',
+			'similar.circleMentorRequest' => 'Mentor request',
+			'similar.accept' => 'Accept',
+			'similar.reject' => 'Decline',
+			'similar.accepted' => 'You are now connected.',
+			'similar.rejected' => 'Request declined.',
+			'similar.removeBuddy' => 'Remove connection',
+			'similar.removeBuddyConfirm' => ({required Object name}) => 'Remove your connection with ${name}?',
+			'similar.removed' => 'Connection removed.',
+			'similar.requestNote' => 'Request note',
+			'similar.withdraw' => 'Withdraw request',
+			'similar.withdrawn' => 'Request withdrawn.',
+			'similar.distance' => ({required Object km}) => '${km} km away',
+			'similar.noCity' => 'City not specified',
+			'similar.commPrefWriting' => 'Prefers messaging first',
+			'similar.commPrefVideo' => 'Open to video calls',
+			'similar.commPrefEvening' => 'Usually replies in the evening',
+			'similar.scoresTitle' => 'Match details',
+			'similar.scoreTag' => 'Tags',
+			'similar.scoreAge' => 'Age',
+			'similar.scoreSensory' => 'Sensory',
+			'similar.scoreTherapy' => 'Therapy',
+			'similar.scoreEducation' => 'Education',
 			'groups.title' => 'Support Groups',
 			'groups.subtitle' => 'Meet families on similar topics and join the group chat.',
 			'groups.tabMy' => 'My Groups',
@@ -3614,6 +3672,8 @@ extension on TranslationsEn {
 			'treatment.weekGamesDetail' => 'Mini exercises repeated this week',
 			'treatment.weekGamesEmpty' => 'You can plan the first game today',
 			'treatment.weekGoalsTitle' => 'Goals completed',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.weekGoalsDetail' => 'Total progress across all active skill areas',
 			'treatment.weekGoalsEmpty' => 'You can add goals from the Goals tab',
 			'treatment.weekSessionsTitle' => 'Upcoming sessions',
@@ -3643,8 +3703,6 @@ extension on TranslationsEn {
 			'treatment.statusDone' => 'Done',
 			'treatment.statusActive' => 'Active',
 			'treatment.statusUpcoming' => 'Queued',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.emptyGroupsTitle' => 'No therapy goals yet',
 			'treatment.emptyGroupsBody' => 'Goals are listed here automatically once a therapy type is added to your child\'s profile.',
 			'treatment.milestoneTitle' => 'Record a Big Win 🏅',
@@ -4128,6 +4186,8 @@ extension on TranslationsEn {
 			'behavior.date' => 'Date',
 			'behavior.time' => 'Time',
 			'behavior.category' => 'Category',
+			_ => null,
+		} ?? switch (path) {
 			'behavior.location' => 'Location',
 			'behavior.antecedentLabel' => 'A — Antecedent (Trigger)',
 			'behavior.antecedentHint' => 'Describe the trigger',
@@ -4157,8 +4217,6 @@ extension on TranslationsEn {
 			'analytics.moodUnit' => 'monthly average (1-5)',
 			'analytics.sleep' => 'Average Sleep',
 			'analytics.sleepUnit' => 'hours per night (monthly average)',
-			_ => null,
-		} ?? switch (path) {
 			'analytics.behavior' => 'Behavior Logs',
 			'analytics.behaviorUnit' => 'entries per month',
 			'analytics.noData' => 'No data in this range yet.',
