@@ -124,6 +124,7 @@ class _Translations$common$en extends Translations$common$tr {
 	@override String get more => 'More';
 	@override String get retry => 'Retry';
 	@override String get loadError => 'Could not load data.';
+	@override late final _Translations$common$unsaved$en unsaved = _Translations$common$unsaved$en._(_root);
 	@override late final _Translations$common$a11y$en a11y = _Translations$common$a11y$en._(_root);
 	@override List<String> get monthsShort => [
 		'Jan',
@@ -2461,6 +2462,19 @@ class _Translations$expertAccess$en extends Translations$expertAccess$tr {
 	@override String pendingBanner({required Object count}) => '${count} expert access request(s) waiting for your approval';
 }
 
+// Path: common.unsaved
+class _Translations$common$unsaved$en extends Translations$common$unsaved$tr {
+	_Translations$common$unsaved$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+	final TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Unsaved changes';
+	@override String get body => 'Your entries have not been saved yet. They will be lost if you leave.';
+	@override String get stay => 'Stay';
+	@override String get leave => 'Leave';
+}
+
 // Path: common.a11y
 class _Translations$common$a11y$en extends Translations$common$a11y$tr {
 	_Translations$common$a11y$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -2611,6 +2625,10 @@ extension on TranslationsEn {
 			'common.more' => 'More',
 			'common.retry' => 'Retry',
 			'common.loadError' => 'Could not load data.',
+			'common.unsaved.title' => 'Unsaved changes',
+			'common.unsaved.body' => 'Your entries have not been saved yet. They will be lost if you leave.',
+			'common.unsaved.stay' => 'Stay',
+			'common.unsaved.leave' => 'Leave',
 			'common.a11y.edit' => 'Edit',
 			'common.a11y.delete' => 'Delete',
 			'common.a11y.close' => 'Close',
@@ -3111,12 +3129,12 @@ extension on TranslationsEn {
 			'notifications.dateLine' => ({required Object day, required Object month, required Object time}) => '${day} ${month} · ${time}',
 			'notifications.noneInFilter' => 'No notifications match this filter.',
 			'notifications.unreadOnly' => 'Unread only',
+			_ => null,
+		} ?? switch (path) {
 			'notifications.selectedCount' => ({required Object count}) => '${count} selected',
 			'notifications.deleteSelected' => 'Delete selected',
 			'notifications.groupToday' => 'Today',
 			'notifications.groupYesterday' => 'Yesterday',
-			_ => null,
-		} ?? switch (path) {
 			'notifications.groupThisWeek' => 'This Week',
 			'notifications.groupOlder' => 'Older',
 			'notifications.catAll' => 'All',
@@ -3625,12 +3643,12 @@ extension on TranslationsEn {
 			'treatment.statusDone' => 'Done',
 			'treatment.statusActive' => 'Active',
 			'treatment.statusUpcoming' => 'Queued',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.emptyGroupsTitle' => 'No therapy goals yet',
 			'treatment.emptyGroupsBody' => 'Goals are listed here automatically once a therapy type is added to your child\'s profile.',
 			'treatment.milestoneTitle' => 'Record a Big Win 🏅',
 			'treatment.milestoneSubtitle' => 'An important moment you want to remember',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.milestoneHint' => 'e.g. Said their name for the first time',
 			'treatment.milestoneSaved' => 'Milestone saved 🎉',
 			'treatment.notesTitle' => 'Recent Observation Notes',
@@ -4139,12 +4157,12 @@ extension on TranslationsEn {
 			'analytics.moodUnit' => 'monthly average (1-5)',
 			'analytics.sleep' => 'Average Sleep',
 			'analytics.sleepUnit' => 'hours per night (monthly average)',
+			_ => null,
+		} ?? switch (path) {
 			'analytics.behavior' => 'Behavior Logs',
 			'analytics.behaviorUnit' => 'entries per month',
 			'analytics.noData' => 'No data in this range yet.',
 			'analytics.noChild' => 'Add a child first to see the development panel.',
-			_ => null,
-		} ?? switch (path) {
 			'analytics.aiTitle' => 'AI analysis',
 			'analytics.aiSubtitle' => 'Summarises patterns in your child\'s records; it does not diagnose.',
 			'analytics.aiTypeGeneral' => 'General',

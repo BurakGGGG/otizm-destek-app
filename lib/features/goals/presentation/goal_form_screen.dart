@@ -5,6 +5,7 @@ import '../../../core/haptics.dart';
 import '../../../core/network/api_exception.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/widgets/unsaved_changes_guard.dart';
 import '../../../i18n/strings.g.dart';
 import '../data/goal_repository.dart';
 import '../domain/goal_categories.dart';
@@ -25,6 +26,13 @@ class _GoalFormScreenState extends ConsumerState<GoalFormScreen> {
   int _target = 5;
   bool _saving = false;
   String? _titleError;
+  late final String _initial;
+
+  @override
+  void initState() {
+    super.initState();
+    _initial = _snapshot();
+  }
 
   @override
   void dispose() {
@@ -66,8 +74,26 @@ class _GoalFormScreenState extends ConsumerState<GoalFormScreen> {
     }
   }
 
+  /// Form açıldığındaki hâlden farklı mı?
+  /// (Onaysız çıkışta veri kaybını engellemek için.)
+  bool get _isDirty => _snapshot() != _initial;
+
+  String _snapshot() => [
+        _title.text,
+        _description.text,
+        _category,
+        '$_target',
+      ].join('\u0000');
+
   @override
   Widget build(BuildContext context) {
+    return UnsavedChangesGuard(
+      hasChanges: () => _isDirty,
+      child: _form(context),
+    );
+  }
+
+  Widget _form(BuildContext context) {
     final t = context.t;
     return Scaffold(
       appBar: AppBar(title: Text(t.goalForm.title)),

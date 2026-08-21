@@ -142,6 +142,7 @@ class Translations$common$tr {
 	/// tr: 'Veriler yüklenemedi.'
 	String get loadError => 'Veriler yüklenemedi.';
 
+	late final Translations$common$unsaved$tr unsaved = Translations$common$unsaved$tr.internal(_root);
 	late final Translations$common$a11y$tr a11y = Translations$common$a11y$tr.internal(_root);
 	List<String> get monthsShort => [
 		'Oca',
@@ -6061,6 +6062,27 @@ class Translations$expertAccess$tr {
 	String pendingBanner({required Object count}) => '${count} uzman erişim isteğiniz onay bekliyor';
 }
 
+// Path: common.unsaved
+class Translations$common$unsaved$tr {
+	Translations$common$unsaved$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Kaydedilmemiş değişiklikler'
+	String get title => 'Kaydedilmemiş değişiklikler';
+
+	/// tr: 'Girdikleriniz henüz kaydedilmedi. Çıkarsanız kaybolacak.'
+	String get body => 'Girdikleriniz henüz kaydedilmedi. Çıkarsanız kaybolacak.';
+
+	/// tr: 'Formda kal'
+	String get stay => 'Formda kal';
+
+	/// tr: 'Çık'
+	String get leave => 'Çık';
+}
+
 // Path: common.a11y
 class Translations$common$a11y$tr {
 	Translations$common$a11y$tr.internal(this._root);
@@ -6265,6 +6287,10 @@ extension on Translations {
 			'common.more' => 'Daha Fazla',
 			'common.retry' => 'Tekrar Dene',
 			'common.loadError' => 'Veriler yüklenemedi.',
+			'common.unsaved.title' => 'Kaydedilmemiş değişiklikler',
+			'common.unsaved.body' => 'Girdikleriniz henüz kaydedilmedi. Çıkarsanız kaybolacak.',
+			'common.unsaved.stay' => 'Formda kal',
+			'common.unsaved.leave' => 'Çık',
 			'common.a11y.edit' => 'Düzenle',
 			'common.a11y.delete' => 'Sil',
 			'common.a11y.close' => 'Kapat',
@@ -6765,12 +6791,12 @@ extension on Translations {
 			'notifications.dateLine' => ({required Object day, required Object month, required Object time}) => '${day} ${month} · ${time}',
 			'notifications.noneInFilter' => 'Bu filtreye uygun bildirim yok.',
 			'notifications.unreadOnly' => 'Yalnızca okunmamış',
+			_ => null,
+		} ?? switch (path) {
 			'notifications.selectedCount' => ({required Object count}) => '${count} seçildi',
 			'notifications.deleteSelected' => 'Seçilenleri sil',
 			'notifications.groupToday' => 'Bugün',
 			'notifications.groupYesterday' => 'Dün',
-			_ => null,
-		} ?? switch (path) {
 			'notifications.groupThisWeek' => 'Bu Hafta',
 			'notifications.groupOlder' => 'Daha Eski',
 			'notifications.catAll' => 'Tümü',
@@ -7279,12 +7305,12 @@ extension on Translations {
 			'treatment.statusDone' => 'Tamamlandı',
 			'treatment.statusActive' => 'Devam',
 			'treatment.statusUpcoming' => 'Sırada',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.emptyGroupsTitle' => 'Henüz terapi hedefi görünmüyor',
 			'treatment.emptyGroupsBody' => 'Çocuğunuzun profiline terapi türü eklendiğinde hedefler otomatik olarak burada listelenir.',
 			'treatment.milestoneTitle' => 'Büyük Bir Başarı Kaydet 🏅',
 			'treatment.milestoneSubtitle' => 'Hatırlamak istediğiniz önemli bir an',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.milestoneHint' => 'Örn: İlk kez adını söyledi',
 			'treatment.milestoneSaved' => 'Kilometre taşı kaydedildi 🎉',
 			'treatment.notesTitle' => 'Son Gözlem Notları',
@@ -7793,12 +7819,12 @@ extension on Translations {
 			'analytics.moodUnit' => '1-5 arası aylık ortalama',
 			'analytics.sleep' => 'Ortalama Uyku',
 			'analytics.sleepUnit' => 'gecelik saat (aylık ortalama)',
+			_ => null,
+		} ?? switch (path) {
 			'analytics.behavior' => 'Davranış Kayıtları',
 			'analytics.behaviorUnit' => 'aylık kayıt sayısı',
 			'analytics.noData' => 'Bu aralıkta henüz veri yok.',
 			'analytics.noChild' => 'Gelişim paneli için önce bir çocuk ekleyin.',
-			_ => null,
-		} ?? switch (path) {
 			'analytics.aiTitle' => 'Yapay zekâ analizi',
 			'analytics.aiSubtitle' => 'Çocuğunuzun kayıtlarındaki örüntüleri özetler; tanı koymaz.',
 			'analytics.aiTypeGeneral' => 'Genel',

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/haptics.dart';
 import '../../../core/network/api_exception.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/widgets/unsaved_changes_guard.dart';
 import '../../../i18n/strings.g.dart';
 import '../data/routine_repository.dart';
 
@@ -57,8 +58,20 @@ class _RoutineFormScreenState extends ConsumerState<RoutineFormScreen> {
     }
   }
 
+  /// Form açıldığındaki hâlden farklı mı?
+  /// (Onaysız çıkışta veri kaybını engellemek için.)
+  bool get _isDirty =>
+      _name.text.trim().isNotEmpty || _description.text.trim().isNotEmpty;
+
   @override
   Widget build(BuildContext context) {
+    return UnsavedChangesGuard(
+      hasChanges: () => _isDirty,
+      child: _form(context),
+    );
+  }
+
+  Widget _form(BuildContext context) {
     final t = context.t;
     return Scaffold(
       appBar: AppBar(title: Text(t.routineForm.title)),

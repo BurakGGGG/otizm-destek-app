@@ -10,6 +10,11 @@ common:
   more: Daha Fazla
   retry: Tekrar Dene
   loadError: Veriler yüklenemedi.
+  unsaved:
+    title: Kaydedilmemiş değişiklikler
+    body: Girdikleriniz henüz kaydedilmedi. Çıkarsanız kaybolacak.
+    stay: Formda kal
+    leave: Çık
   # Simge düğmelerinin erişilebilirlik etiketleri (ekran okuyucu + ipucu)
   a11y:
     edit: Düzenle

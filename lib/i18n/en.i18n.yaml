@@ -10,6 +10,11 @@ common:
   more: More
   retry: Retry
   loadError: Could not load data.
+  unsaved:
+    title: Unsaved changes
+    body: Your entries have not been saved yet. They will be lost if you leave.
+    stay: Stay
+    leave: Leave
   # Accessibility labels for icon-only buttons (screen reader + tooltip)
   a11y:
     edit: Edit
