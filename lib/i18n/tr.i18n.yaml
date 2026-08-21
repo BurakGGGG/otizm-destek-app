@@ -900,6 +900,14 @@ wall:
   daysAgo: $count gün önce
 
 weekly:
+  filterAll: Tümü
+  filterExpert: Uzman
+  filterPopular: Popüler
+  filterLocal: Şehrim
+  searchHint: Cevaplarda ara
+  localHint: Yalnızca $city şehrindeki ailelerin cevapları listeleniyor.
+  localHintNoCity: Profilinizde şehir yok; tüm cevaplar listeleniyor.
+  noMatch: Bu süzgeçle cevap yok.
   title: Haftanın Sorusu
   subtitle: Bu hafta ailelere sorduğumuz soru. Deneyimini paylaş, birbirinize
     destek olun.

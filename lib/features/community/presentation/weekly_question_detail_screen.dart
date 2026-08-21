@@ -9,6 +9,7 @@ import '../../../core/widgets/empty_state.dart';
 import '../../../core/widgets/skeleton.dart';
 import '../../../i18n/strings.g.dart';
 import '../data/community_repository.dart';
+import '../../auth/presentation/auth_controller.dart';
 import '../domain/weekly_question.dart';
 import 'weekly_question_screen.dart';
 
@@ -33,10 +34,25 @@ class _WeeklyQuestionDetailScreenState
   bool _anonymous = false;
   bool _sending = false;
 
+  /// Cevap listesi süzgeci ve arama metni (web ile aynı, istemci tarafı).
+  WeeklyAnswerFilter _filter = WeeklyAnswerFilter.all;
+  final TextEditingController _search = TextEditingController();
+  String _query = '';
+
   @override
   void dispose() {
     _answer.dispose();
+    _search.dispose();
     super.dispose();
+  }
+
+  List<WeeklyAnswer> _visibleAnswers(WeeklyQuestion question, String? city) {
+    return filterWeeklyAnswers(
+      question.answers,
+      filter: _filter,
+      query: _query,
+      userCity: city,
+    );
   }
 
   Future<void> _toggleLike(WeeklyAnswer answer) async {
@@ -105,6 +121,7 @@ class _WeeklyQuestionDetailScreenState
   Widget build(BuildContext context) {
     final t = context.t;
     final async = ref.watch(weeklyQuestionsProvider);
+    final userCity = ref.watch(authControllerProvider).user?.city;
 
     return Scaffold(
       appBar: AppBar(title: Text(t.weekly.title)),
@@ -152,16 +169,49 @@ class _WeeklyQuestionDetailScreenState
                               message: t.weekly.noAnswers,
                             ),
                           )
-                        else
-                          for (final a in question.answers) ...[
-                            _AnswerTile(
-                              answer: a,
-                              likes: _likeOverride[a.id]?.likes ?? a.likes,
-                              liked: _likeOverride[a.id]?.liked ?? a.liked,
-                              onLike: () => _toggleLike(a),
+                        else ...[
+                          _AnswerFilters(
+                            filter: _filter,
+                            query: _search,
+                            onFilter: (f) => setState(() => _filter = f),
+                            onQuery: (q) => setState(() => _query = q),
+                          ),
+                          if (_filter == WeeklyAnswerFilter.local) ...[
+                            const SizedBox(height: 8),
+                            Text(
+                              userCity == null || userCity.isEmpty
+                                  ? t.weekly.localHintNoCity
+                                  : t.weekly.localHint(city: userCity),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelSmall
+                                  ?.copyWith(
+                                    color: context.colors.textSecondary,
+                                  ),
                             ),
-                            const SizedBox(height: 10),
                           ],
+                          const SizedBox(height: 12),
+                          if (_visibleAnswers(question, userCity).isEmpty)
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 24),
+                              child: EmptyState(
+                                icon: Icons.search_off_outlined,
+                                message: t.weekly.noMatch,
+                              ),
+                            )
+                          else
+                            for (final a
+                                in _visibleAnswers(question, userCity)) ...[
+                              _AnswerTile(
+                                answer: a,
+                                likes: _likeOverride[a.id]?.likes ?? a.likes,
+                                liked: _likeOverride[a.id]?.liked ?? a.liked,
+                                onLike: () => _toggleLike(a),
+                              ),
+                              const SizedBox(height: 10),
+                            ],
+                        ],
                       ],
                     ),
                   ),
@@ -243,6 +293,71 @@ class _QuestionHeader extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+/// Cevap süzgeçleri: sekme çipleri + arama kutusu.
+class _AnswerFilters extends StatelessWidget {
+  const _AnswerFilters({
+    required this.filter,
+    required this.query,
+    required this.onFilter,
+    required this.onQuery,
+  });
+
+  final WeeklyAnswerFilter filter;
+  final TextEditingController query;
+  final ValueChanged<WeeklyAnswerFilter> onFilter;
+  final ValueChanged<String> onQuery;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    final labels = <WeeklyAnswerFilter, String>{
+      WeeklyAnswerFilter.all: t.weekly.filterAll,
+      WeeklyAnswerFilter.expert: t.weekly.filterExpert,
+      WeeklyAnswerFilter.popular: t.weekly.filterPopular,
+      WeeklyAnswerFilter.local: t.weekly.filterLocal,
+    };
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            for (final entry in labels.entries)
+              ChoiceChip(
+                label: Text(entry.value),
+                selected: filter == entry.key,
+                onSelected: (_) => onFilter(entry.key),
+              ),
+          ],
+        ),
+        const SizedBox(height: 10),
+        TextField(
+          controller: query,
+          onChanged: onQuery,
+          textInputAction: TextInputAction.search,
+          decoration: InputDecoration(
+            isDense: true,
+            hintText: t.weekly.searchHint,
+            prefixIcon: const Icon(Icons.search, size: 18),
+            suffixIcon: query.text.isEmpty
+                ? null
+                : IconButton(
+                    tooltip: t.common.a11y.clearSearch,
+                    icon: const Icon(Icons.close, size: 16),
+                    onPressed: () {
+                      query.clear();
+                      onQuery('');
+                    },
+                  ),
+          ),
+        ),
+      ],
     );
   }
 }

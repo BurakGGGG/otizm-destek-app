@@ -2823,6 +2823,30 @@ class Translations$weekly$tr {
 
 	// Translations
 
+	/// tr: 'Tümü'
+	String get filterAll => 'Tümü';
+
+	/// tr: 'Uzman'
+	String get filterExpert => 'Uzman';
+
+	/// tr: 'Popüler'
+	String get filterPopular => 'Popüler';
+
+	/// tr: 'Şehrim'
+	String get filterLocal => 'Şehrim';
+
+	/// tr: 'Cevaplarda ara'
+	String get searchHint => 'Cevaplarda ara';
+
+	/// tr: 'Yalnızca $city şehrindeki ailelerin cevapları listeleniyor.'
+	String localHint({required Object city}) => 'Yalnızca ${city} şehrindeki ailelerin cevapları listeleniyor.';
+
+	/// tr: 'Profilinizde şehir yok; tüm cevaplar listeleniyor.'
+	String get localHintNoCity => 'Profilinizde şehir yok; tüm cevaplar listeleniyor.';
+
+	/// tr: 'Bu süzgeçle cevap yok.'
+	String get noMatch => 'Bu süzgeçle cevap yok.';
+
 	/// tr: 'Haftanın Sorusu'
 	String get title => 'Haftanın Sorusu';
 
@@ -7199,6 +7223,14 @@ extension on Translations {
 			'wall.minsAgo' => ({required Object count}) => '${count} dk önce',
 			'wall.hoursAgo' => ({required Object count}) => '${count} sa önce',
 			'wall.daysAgo' => ({required Object count}) => '${count} gün önce',
+			'weekly.filterAll' => 'Tümü',
+			'weekly.filterExpert' => 'Uzman',
+			'weekly.filterPopular' => 'Popüler',
+			'weekly.filterLocal' => 'Şehrim',
+			'weekly.searchHint' => 'Cevaplarda ara',
+			'weekly.localHint' => ({required Object city}) => 'Yalnızca ${city} şehrindeki ailelerin cevapları listeleniyor.',
+			'weekly.localHintNoCity' => 'Profilinizde şehir yok; tüm cevaplar listeleniyor.',
+			'weekly.noMatch' => 'Bu süzgeçle cevap yok.',
 			'weekly.title' => 'Haftanın Sorusu',
 			'weekly.subtitle' => 'Bu hafta ailelere sorduğumuz soru. Deneyimini paylaş, birbirinize destek olun.',
 			'weekly.empty' => 'Henüz haftalık soru yok. Yeni soru yayınlandığında burada olacak.',
@@ -7396,6 +7428,8 @@ extension on Translations {
 			'treatment.defaultExpert' => 'Uzman Terapist',
 			'treatment.noNoteAuthor' => 'Platform Terapi Modülü',
 			'treatment.noNoteRole' => 'Otomatik günlük plan',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.noNoteBody' => 'Henüz uzman notu yok. Bugünün planı, çocuğunuzun kayıtlarına göre hazırlandı.',
 			'treatment.noteEmptyContent' => 'Bu nota eklenmiş detay bulunmuyor.',
 			'treatment.weeklyTitle' => 'Haftalık özet',
@@ -7404,8 +7438,6 @@ extension on Translations {
 			'treatment.legendGoal' => 'Hedef',
 			'treatment.chartGames' => ({required Object count}) => '${count} oyun',
 			'treatment.chartGoal' => ({required Object percent}) => '%${percent} hedef',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.weekGamesTitle' => 'Bu hafta oyun',
 			'treatment.weekGamesDetail' => 'Bu hafta tekrar edilen mini egzersiz sayısı',
 			'treatment.weekGamesEmpty' => 'Bugün ilk oyunu planlayabilirsiniz',
@@ -7910,6 +7942,8 @@ extension on Translations {
 			'emergency.calmingHint' => 'Ne işe yarar? Örn: sevdiği müzik, sessiz oda',
 			'emergency.avoid' => 'Kesinlikle Yapılmaması Gerekenler',
 			'emergency.avoidHint' => 'Örn: bağırmayın, tutmayın, göz temasına zorlamayın',
+			_ => null,
+		} ?? switch (path) {
 			'emergency.special' => 'Özel Talimatlar',
 			'emergency.specialHint' => 'Acil servis veya bakıcı için ek notlar',
 			'emergency.select' => 'Seçin...',
@@ -7918,8 +7952,6 @@ extension on Translations {
 			'behavior.add' => 'Kayıt Ekle',
 			'behavior.addTitle' => 'Yeni ABC Kaydı',
 			'behavior.empty' => 'Henüz davranış kaydı yok. İlk gözlemi ekleyin.',
-			_ => null,
-		} ?? switch (path) {
 			'behavior.noChild' => 'Davranış günlüğü için önce bir çocuk ekleyin.',
 			'behavior.date' => 'Tarih',
 			'behavior.time' => 'Saat',

@@ -1244,6 +1244,14 @@ class _Translations$weekly$en extends Translations$weekly$tr {
 	final TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	@override String get filterAll => 'All';
+	@override String get filterExpert => 'Experts';
+	@override String get filterPopular => 'Popular';
+	@override String get filterLocal => 'My city';
+	@override String get searchHint => 'Search answers';
+	@override String localHint({required Object city}) => 'Showing answers from families in ${city} only.';
+	@override String get localHintNoCity => 'No city on your profile; showing all answers.';
+	@override String get noMatch => 'No answers match this filter.';
 	@override String get title => 'Question of the Week';
 	@override String get subtitle => 'This week\'s question for families. Share your experience and support each other.';
 	@override String get empty => 'No weekly question yet. It will appear here when a new one is published.';
@@ -3471,6 +3479,14 @@ extension on TranslationsEn {
 			'wall.minsAgo' => ({required Object count}) => '${count} min ago',
 			'wall.hoursAgo' => ({required Object count}) => '${count} h ago',
 			'wall.daysAgo' => ({required Object count}) => '${count} d ago',
+			'weekly.filterAll' => 'All',
+			'weekly.filterExpert' => 'Experts',
+			'weekly.filterPopular' => 'Popular',
+			'weekly.filterLocal' => 'My city',
+			'weekly.searchHint' => 'Search answers',
+			'weekly.localHint' => ({required Object city}) => 'Showing answers from families in ${city} only.',
+			'weekly.localHintNoCity' => 'No city on your profile; showing all answers.',
+			'weekly.noMatch' => 'No answers match this filter.',
 			'weekly.title' => 'Question of the Week',
 			'weekly.subtitle' => 'This week\'s question for families. Share your experience and support each other.',
 			'weekly.empty' => 'No weekly question yet. It will appear here when a new one is published.',
@@ -3668,6 +3684,8 @@ extension on TranslationsEn {
 			'treatment.defaultExpert' => 'Expert Therapist',
 			'treatment.noNoteAuthor' => 'Platform Therapy Module',
 			'treatment.noNoteRole' => 'Automatic daily plan',
+			_ => null,
+		} ?? switch (path) {
 			'treatment.noNoteBody' => 'No expert note yet. Today\'s plan was prepared from your child\'s records.',
 			'treatment.noteEmptyContent' => 'This note has no additional details.',
 			'treatment.weeklyTitle' => 'Weekly summary',
@@ -3676,8 +3694,6 @@ extension on TranslationsEn {
 			'treatment.legendGoal' => 'Goals',
 			'treatment.chartGames' => ({required Object count}) => '${count} games',
 			'treatment.chartGoal' => ({required Object percent}) => '${percent}% goals',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.weekGamesTitle' => 'Games this week',
 			'treatment.weekGamesDetail' => 'Mini exercises repeated this week',
 			'treatment.weekGamesEmpty' => 'You can plan the first game today',
@@ -4182,6 +4198,8 @@ extension on TranslationsEn {
 			'emergency.calmingHint' => 'What helps? E.g. favorite music, quiet room',
 			'emergency.avoid' => 'Things to Never Do',
 			'emergency.avoidHint' => 'E.g. don\'t shout, don\'t restrain, don\'t force eye contact',
+			_ => null,
+		} ?? switch (path) {
 			'emergency.special' => 'Special Instructions',
 			'emergency.specialHint' => 'Extra notes for emergency services or caregivers',
 			'emergency.select' => 'Select...',
@@ -4190,8 +4208,6 @@ extension on TranslationsEn {
 			'behavior.add' => 'Add Entry',
 			'behavior.addTitle' => 'New ABC Entry',
 			'behavior.empty' => 'No behavior entries yet. Add the first observation.',
-			_ => null,
-		} ?? switch (path) {
 			'behavior.noChild' => 'Add a child first to use the behavior journal.',
 			'behavior.date' => 'Date',
 			'behavior.time' => 'Time',

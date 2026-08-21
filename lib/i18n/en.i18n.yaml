@@ -898,6 +898,14 @@ wall:
   daysAgo: $count d ago
 
 weekly:
+  filterAll: All
+  filterExpert: Experts
+  filterPopular: Popular
+  filterLocal: My city
+  searchHint: Search answers
+  localHint: Showing answers from families in $city only.
+  localHintNoCity: No city on your profile; showing all answers.
+  noMatch: No answers match this filter.
   title: Question of the Week
   subtitle: This week's question for families. Share your experience and support
     each other.
