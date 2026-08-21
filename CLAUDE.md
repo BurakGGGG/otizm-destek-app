@@ -82,6 +82,10 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
     destekler. `/notes`, Profil menüsü + Gelişim sekmesi kısayolu.
   - **Çocuklarım:** `/api/children` CRUD (ekle/düzenle/sil).
   - **Randevular:** `/api/appointments` liste + iptal (veli) / onayla·tamamla (uzman);
+    **değerlendirme** (`PATCH /{id}/rate?rating=&comment=`, veli; tamamlanmış ve
+    puanlanmamış randevuda) ve **tekrarlayan seans** (randevu alırken
+    Tekil/4/8/12/24 hafta → `recurrenceWeeks`, yalnızca >1 gönderilir; kartta
+    "N. seans" rozeti, seriyi topluca iptal `DELETE /appointments/group/{id}`);
     **randevu alma akışı** (müsaitlik slotları + `POST /appointments`;
     randevu tipi uzmanın sunduğu biçimle sınırlı — web bu bayrakları formda
     kullanmıyor);
@@ -108,8 +112,15 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
     `IMAGE` mesajı). Ek dosyalar `GET /api/upload/**` kimlik doğrulaması
     istediği için tarayıcıda açılamıyor: dosya Bearer'lı indirilip paylaşım
     sayfasına veriliyor (web same-origin çerezle doğrudan açıyor).
-    **Yeni sohbet** (`GET /users/search?q=`, en az iki harf) ve **sohbet içi
-    arama** (`GET /conversations/{id}/search`). Arama sonucuna dokunmak
+    **Yeni sohbet** (`GET /users/search?q=`, en az iki harf; Birebir/Grup
+    seçimiyle **grup sohbeti oluşturma** — `POST /conversations/group`
+    `{title, participantIds}`), **grup ayarları** (ad değiştirme
+    `PATCH /{id}/title`, üye ekle/çıkar `POST|DELETE /{id}/members/{userId}`;
+    yalnızca grup sohbetlerinde) ve **sohbet içi arama**
+    (`GET /conversations/{id}/search`). Birebir sohbetin başlığından
+    **kullanıcı engelleme** (`POST /users/{id}/block`); engellenenler listesi
+    ve engeli kaldırma Ayarlar > Gizlilik altında (web engellemeyi yalnızca
+    benzer aileler çekmecesinde sunuyor, kaldırma arayüzü yok). Arama sonucuna dokunmak
     mesaja atlamıyor (geçmiş sayfalı geldiği için konum garanti edilemiyor).
   - **AI Asistan:** `/api/chatbot/stream` (SSE) streaming.
   - **Hesap:** `PUT /api/users/me` ile profil düzenleme.
@@ -117,7 +128,11 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
     okunmamış rozeti.
   - **Şifremi unuttum / sıfırla:** `/api/auth/forgot-password|reset-password`.
   - **Rutinler:** `/api/routines` — çocuk bazlı görsel program; rutin/adım
-    ekleme-silme (saat + ikon). Profil menüsünden `/routines`.
+    ekleme-silme (saat + ikon) ve **günlük adım işaretleme + yıldız cüzdanı**
+    (cihazda; web `routine_completed_<tarih>` anahtarlarını biriktiriyor,
+    mobil tek anahtarda gün bilgisiyle tutuyor). Adım ikonu adları paylaşılan
+    VERİ: `kRoutineIcons` web `ICON_OPTIONS` ile birebir
+    (`test/routine_progress_test.dart` korur). Profil menüsünden `/routines`.
   - **Günlük Takip:** 3 sekme — `/daily-tracker`. **Duygu** `/api/mood` (5'li emoji
     + tetikleyiciler + not, gün başına upsert); **Uyku** `/api/sleep` (yatış/uyanış,
     kalite 1-5, gece uyanma, duyusal faktörler — faktörler web ile aynı
@@ -145,9 +160,12 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
     toplanır ve tek tek yakalanır. Web'den ayrım: tarama başlatma önerisi yok
     (tarama anketi web'de de bulunmuyor).
   - **Davranış Günlüğü:** `/api/abc-entries` — ABC (Öncesi-Davranış-Sonuç)
-    kayıtları; kategori/yer/tetikleyici/sonuç sabitleri web ile birebir düz
-    metin (çevrilmez!), şiddet 1-5. category+location DB'de NOT NULL. `/behavior`,
-    Gelişim sekmesi kısayolu.
+    kayıtları; kategori/yer/tetikleyici/sonuç sabitleri düz metin veri
+    (çevrilmez!), şiddet 1-5. **Düzeltme:** web'de ABC *girişi* yok (yalnızca
+    çocuk detayında ve panellerde okunuyor), yani bu sözlüğü tek yazan mobil —
+    "web ile birebir" değil, ama DB'ye yazılan veri olduğu için sabit kalır.
+    `category`/`location` DB'de ve entity'de **nullable** (eski not yanlıştı);
+    mobil yine de ikisini de gönderiyor. `/behavior`, Gelişim sekmesi kısayolu.
   - **Kriz Rehberi:** statik içerik (API yok) — 4 kriz kartı (meltdown, duyusal
     aşırı yüklenme, saldırganlık, kaygı) adım-adım müdahale + kaçınılacaklar +
     acil hat; nefes egzersizi (4sn al / 6sn ver animasyonlu halka); acil
@@ -181,7 +199,11 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
     iyimser UI). Cevap metnine web ile **birebir aynı** meta gömülür:
     `[ANONYMOUS_META:true]` + `[TAGS:a,b]` önekleri (`WeeklyAnswer.encode`/parse);
     etiket kodları (`kWeeklyAnswerTags`) çevrilmez. Uzman rozeti: rol EXPERT ya
-    da ad "Uzm."/"Dr." içerir. `/weekly-question`, Profil menüsü kısayolu.
+    da ad "Uzm."/"Dr." içerir. Cevap listesinde web'deki dört süzgeç
+    (Tümü/Uzman/Popüler/Şehrim) + arama; kurallar saf `filterWeeklyAnswers`
+    (anonim cevapta yazar/şehir aramaya girmez). Web'den ayrım: web'in cevap
+    kutusundaki "şehrimi gizle" onayı listedeki herkesin şehrini gizliyor,
+    mobilde bu oturumluk kural yok. `/weekly-question`, Profil menüsü kısayolu.
   - **Yerel Buluşmalar:** `/api/community/meetups` — şehir bazlı aile
     buluşmaları. Şehir filtresi (`kMeetupFilterCities`, `Tümü` sunucuya
     gönderilmez), liste + oluşturma (`POST /meetups`, title/city/date zorunlu;
@@ -202,6 +224,16 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
     tür (ONLINE/YUZEYUZE — veri), tarih (`yyyy-MM-dd`), saat (`HH:mm`), yer ve
     not; gelen isteklerde kabul/ret, giden isteklerde geri çekme şeridi.
     (Topluluk buluşmaları ayrı `/meetups` özelliğidir.)
+    İki sekme: **Eşleşmeler** ve **Çemberim** — gelen bağlantı istekleri
+    (`GET /buddies/pending`, kabul `POST /buddies/accept/{id}`, ret
+    `/reject/{id}`), kurulmuş bağlantılar (`GET /buddies/my-list`, mesaj ve
+    kaldır `DELETE /buddies/remove/{id}`) ve gelen buluşma istekleri; sekmede
+    bekleyen sayısı rozeti. Eşleşme kartında gönderilen isteği geri çekme
+    (`DELETE /buddies/request/{id}`, yalnızca `requestedByMe` + PENDING),
+    iletişim tercihi çipleri ve beş boyutlu uyum kırılımı.
+    Web'in üçüncü sekmesi (**Yakındaki veliler radarı**, `/buddies/nearby`)
+    mobilde YOK: konum gerektiriyor, mobilde konum yazan bir akış yok
+    (web tarayıcı geolocation'ıyla profile lat/lng yazıyor).
     `/similar-families`, Topluluk merkezi kısayolu.
   - **Destek Grupları:** `/api/groups` — kategori bazlı aile/uzman toplulukları
     + grup sohbeti. İki sekme: **Gruplarım** (`/groups/my`) ve **Keşfet** (arama
@@ -211,8 +243,13 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
     veri, çevrilmez). Üyeyse **Grup Sohbeti** →
     `POST /messages/conversations/group/{groupId}` (messaging repo'ya
     `getOrCreateGroup` eklendi) → mevcut `ConversationThreadScreen`.
-    Mutasyon sonrası her iki liste invalidate edilir. `/groups`, Profil menüsü
-    kısayolu.
+    Mutasyon sonrası her iki liste invalidate edilir. Karta dokunmak **grup
+    detayını** açar (web `GroupDetailsModal`): bilgi, **buluşmalar**
+    (`GET /groups/{id}/meetings`; grubu kuran `POST` ile planlar, `DELETE` ile
+    iptal eder) ve **üye listesi** (`GET /groups/{id}/members`, uzman rozetli).
+    İkisi de backend'de üyelere kısıtlı; üye değilken istek atılmaz. Grup
+    kartındaki sohbet düğmesi okunmamış sayısını gösterir (`unreadCount`).
+    `/groups`, Profil menüsü kısayolu.
   - **Tedavi Paneli:** `/api/treatment-state/{childId}` — günlük destek planı
     (web `/tedavi` birebir). **DİKKAT: bu uç nokta zarfsız** — GET/PUT ham
     `TreatmentStateDto` döner/alır (`{success,data}` yok, tek istisna). Backend
@@ -269,7 +306,11 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
     not bölümlerinin kendi ekranları zaten var; kısayol çipleri verildi).
     Bölümler: **profil fotoğrafı** (image_picker galeri → `POST /upload`
     multipart `{data:{url}}` → child PUT `profileImageUrl`), bilgiler (tanı/
-    eğitim/terapi + mevcut form ekranına düzenleme), **semptom etiketleri**
+    eğitim/terapi + mevcut form ekranına düzenleme),
+    **ilaç uyumu ↔ davranış** (gün bazında davranış sayısı + doz uyum yüzdesi
+    + yan etkiler; `GET /medications/child/{id}/logs` + `/abc-entries`,
+    hesap saf `buildMedicationCorrelation`, web'in korelasyon grafiğiyle aynı
+    kurallar — mobilde son 14 gün satır satır), **semptom etiketleri**
     (`/tags/grouped` çoklu seçim; kayıt tam gövde + `tagIds` PUT — web
     birebir; Child modeline `tags` eklendi), **kilometre taşları**
     (`/api/milestones` tam CRUD; kategori değerleri Türkçe sabit veri
@@ -310,6 +351,12 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
 - ✅ **Ayarlar** (`/settings`): bildirim/gizlilik/erişilebilirlik tercihleri
   (cihazda, web localStorage anahtarlarıyla aynı adlar), tema+dil (Profil'den
   taşındı), şifre değiştirme, verilerimi indir (JSON paylaşımı), hesap silme.
+  **Gizlilikte dört anahtar sunucuya da yazılır** (`PUT /users/me`:
+  allowDirectMessages, allowFamilyMessages, hideOnlineStatus,
+  approximateLocationOnly) — web de bunları saklıyor, mobilde eskiden yalnızca
+  cihazda kalıyordu. Ayrıca **eşleşme tercihleri** (supportIntents /
+  communicationPreferences; kodlar veri, etiketler çevrili) ve **engellenen
+  kullanıcılar** (`/blocked`) buradan yönetilir.
 - ✅ **KVKK** (`/kvkk`): amaç bazlı rızalar, yeniden rıza kartı, rıza geçmişi,
   veri sahibi başvuruları (`/kvkk/requests`).
 - ✅ **Yasal metinler** (`/legal`, `/legal/:kind`): KVKK aydınlatma, gizlilik,
@@ -398,14 +445,21 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
   gerçek dakikaları toplar (web "30 sn"yi 30 dakika sayıyor), duyusal profil
   adımı yok (mobilde Tedavi Paneli > Araçlar altında).
 - ⏳ Sonraki adaylar: backend FCM deploy sonrası uçtan uca push testi.
-  Kapsam dışı: BEP oluşturucu + danışanlar EXPERT_ONLY; tarama anketi web'de
-  YOK (`/tarama` → `/cocuklarim` redirect); admin paneli mobil hedefi değil;
-  ilaç-davranış zaman çizelgesi (web'de yalnızca EXPERT_ONLY danışanlar
-  sayfasında ve **sabit sahte veriyle** çiziliyor); uzman "harita" görünümü
-  (web'de gerçek harita değil, CSS ızgarasına yerleştirilmiş sahte konum
-  kartları); uzman içerik yazarlığı
-  (makale oluştur/AI taslak/analitik) web'de kalıyor. Sosyal hikayeler ve
-  wellbeing backend'de var ama web'de mirror edilecek UX yok.
+  Kapsam dışı (2026-08-21 tam parite taramasında yeniden doğrulandı — web
+  deposunun son sürümü 2026-07-27, yani referans değişmedi):
+  BEP oluşturucu + danışanlar EXPERT_ONLY; tarama anketi web'de YOK
+  (`/tarama` → `/cocuklarim` redirect); admin paneli mobil hedefi değil;
+  uzman "harita" görünümü (web'de gerçek harita değil, CSS ızgarasına
+  yerleştirilmiş sahte konum kartları); uzman içerik yazarlığı (makale
+  oluştur/AI taslak/analitik). **Web'de tanımlı ama kullanılmayan** (bu yüzden
+  mobilde de yok): sosyal hikaye ve wellbeing servisleri, kurum listesi
+  (`/institutions`), ilaç aç-kapa (`/medications/{id}/toggle`), rutin "Yıldız
+  Tablosu" sekmesi (düğme var, içerik yok), randevu tercihleri
+  (`appt_prefer_*` — yazılıyor, okunmuyor), engellenenleri listeleme
+  (mobil bunu ekledi). **Bilinçli farklar:** yakındaki veliler radarı (konum
+  gerekiyor), panodaki "sonraki araçlar" görevleri (dördünün ikisi web'de
+  yönlendirme sonrası boş sayfaya çıkıyor), sohbete özel duyusal ayarlar
+  (mobilde küresel erişilebilirlik tercihleri var).
 - Modül kapsamı ve fazlar: bkz. plan `~/.claude/plans/bir-otizm-destek-mobil-compressed-fog.md`.
 
 ## Notlar
