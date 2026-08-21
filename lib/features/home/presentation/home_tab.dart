@@ -21,6 +21,7 @@ import '../../knowledge/presentation/article_detail_screen.dart';
 import '../data/daily_plan_provider.dart';
 import 'widgets/daily_plan_card.dart';
 import 'widgets/section_header.dart';
+import 'widgets/learning_path_card.dart';
 import 'widgets/start_checklist.dart';
 
 /// Ana Sayfa sekmesi — backend'den gerçek veri (çocuklar, randevular, makaleler).
@@ -62,6 +63,7 @@ class HomeTab extends ConsumerWidget {
             const SizedBox(height: AppSpacing.md),
             const _ExpertAccessBanner(),
             if (isParent) ...[
+              const LearningPathCard(),
               const StartChecklist(),
               const DailyPlanCard(),
             ],

@@ -410,6 +410,13 @@ messages:
   deleteMessage: Delete message
 
 home:
+  learningPathBadge: A video guide for you
+  learningPathTitle: Not sure where to start?
+  learningPathBody: Get to know the app step by step with short videos; the
+    first one covers daily tracking and the plan.
+  learningPathBodyExpert: Get to know the expert tools step by step with short
+    videos.
+  learningPathCta: Start the learning path
   notifications: Notifications
   assistant: AI Assistant
   messages: Messages

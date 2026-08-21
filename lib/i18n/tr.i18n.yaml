@@ -411,6 +411,12 @@ messages:
   deleteMessage: Mesajı sil
 
 home:
+  learningPathBadge: Size özel video rehberi
+  learningPathTitle: Nereden başlayacağınızı bilmiyor musunuz?
+  learningPathBody: Kısa videolarla uygulamayı adım adım tanıyın; ilk video
+    günlük takibi ve planı anlatıyor.
+  learningPathBodyExpert: Kısa videolarla uzman araçlarını adım adım tanıyın.
+  learningPathCta: Öğrenme yoluna başla
   notifications: Bildirimler
   assistant: AI Asistan
   messages: Mesajlar

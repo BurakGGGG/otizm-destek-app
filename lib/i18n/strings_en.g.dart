@@ -624,6 +624,11 @@ class _Translations$home$en extends Translations$home$tr {
 	final TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	@override String get learningPathBadge => 'A video guide for you';
+	@override String get learningPathTitle => 'Not sure where to start?';
+	@override String get learningPathBody => 'Get to know the app step by step with short videos; the first one covers daily tracking and the plan.';
+	@override String get learningPathBodyExpert => 'Get to know the expert tools step by step with short videos.';
+	@override String get learningPathCta => 'Start the learning path';
 	@override String get notifications => 'Notifications';
 	@override String get assistant => 'AI Assistant';
 	@override String get messages => 'Messages';
@@ -3129,6 +3134,11 @@ extension on TranslationsEn {
 			'messages.searchInChat' => 'Search in chat',
 			'messages.searchNoResults' => 'No messages match this search.',
 			'messages.deleteMessage' => 'Delete message',
+			'home.learningPathBadge' => 'A video guide for you',
+			'home.learningPathTitle' => 'Not sure where to start?',
+			'home.learningPathBody' => 'Get to know the app step by step with short videos; the first one covers daily tracking and the plan.',
+			'home.learningPathBodyExpert' => 'Get to know the expert tools step by step with short videos.',
+			'home.learningPathCta' => 'Start the learning path',
 			'home.notifications' => 'Notifications',
 			'home.assistant' => 'AI Assistant',
 			'home.messages' => 'Messages',
@@ -3266,13 +3276,13 @@ extension on TranslationsEn {
 			'goalForm.nameLabel' => 'Title',
 			'goalForm.nameHint' => 'e.g. Making eye contact',
 			'goalForm.categoryLabel' => 'Category',
+			_ => null,
+		} ?? switch (path) {
 			'goalForm.targetLabel' => 'Target Count',
 			'goalForm.descriptionLabel' => 'Description (optional)',
 			'goalForm.descriptionHint' => 'Details about the goal',
 			'goalForm.save' => 'Save',
 			'goalForm.errorTitle' => 'Please enter a title.',
-			_ => null,
-		} ?? switch (path) {
 			'goalForm.created' => 'Goal added.',
 			'noteForm.title' => 'Add Note',
 			'noteForm.editTitle' => 'Edit Note',
@@ -3780,13 +3790,13 @@ extension on TranslationsEn {
 			'groups.deleted' => 'Group deleted.',
 			'groups.chatUnread' => ({required Object count}) => 'Chat (${count})',
 			'groups.detailTitle' => 'Group details',
+			_ => null,
+		} ?? switch (path) {
 			'groups.detailHint' => 'Members and meetings are visible to group members only.',
 			'groups.membersTitle' => 'Members',
 			'groups.membersEmpty' => 'Member list is not available.',
 			'groups.membersOnly' => 'Join the group to see members and meetings.',
 			'groups.meetingsTitle' => 'Meetings',
-			_ => null,
-		} ?? switch (path) {
 			'groups.meetingsEmpty' => 'No meetings scheduled.',
 			'groups.meetingAdd' => 'Schedule meeting',
 			'groups.meetingTitleLabel' => 'Meeting title',
@@ -4294,13 +4304,13 @@ extension on TranslationsEn {
 			'crisis.cards.anxiety.avoid.0' => 'Don\'t belittle it by saying "Calm down, it\'s fine."',
 			'crisis.cards.anxiety.avoid.1' => 'Don\'t keep asking and applying pressure.',
 			'crisis.cards.anxiety.avoid.2' => 'Don\'t add new demands during anxiety.',
+			_ => null,
+		} ?? switch (path) {
 			'calendar.title' => 'Calendar',
 			'calendar.subtitle' => 'Child-specific therapy, doctor and activity schedule.',
 			'calendar.noChild' => 'Add a child first to use the calendar.',
 			'calendar.empty' => 'No events yet. Add the first one.',
 			'calendar.add' => 'Add Event',
-			_ => null,
-		} ?? switch (path) {
 			'calendar.addTitle' => 'New Event',
 			'calendar.editTitle' => 'Edit Event',
 			'calendar.eventType' => 'Event Type',

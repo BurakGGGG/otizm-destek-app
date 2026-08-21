@@ -1305,6 +1305,21 @@ class Translations$home$tr {
 
 	// Translations
 
+	/// tr: 'Size özel video rehberi'
+	String get learningPathBadge => 'Size özel video rehberi';
+
+	/// tr: 'Nereden başlayacağınızı bilmiyor musunuz?'
+	String get learningPathTitle => 'Nereden başlayacağınızı bilmiyor musunuz?';
+
+	/// tr: 'Kısa videolarla uygulamayı adım adım tanıyın; ilk video günlük takibi ve planı anlatıyor.'
+	String get learningPathBody => 'Kısa videolarla uygulamayı adım adım tanıyın; ilk video günlük takibi ve planı anlatıyor.';
+
+	/// tr: 'Kısa videolarla uzman araçlarını adım adım tanıyın.'
+	String get learningPathBodyExpert => 'Kısa videolarla uzman araçlarını adım adım tanıyın.';
+
+	/// tr: 'Öğrenme yoluna başla'
+	String get learningPathCta => 'Öğrenme yoluna başla';
+
 	/// tr: 'Bildirimler'
 	String get notifications => 'Bildirimler';
 
@@ -7075,6 +7090,11 @@ extension on Translations {
 			'messages.searchInChat' => 'Sohbette ara',
 			'messages.searchNoResults' => 'Bu aramaya uyan mesaj yok.',
 			'messages.deleteMessage' => 'Mesajı sil',
+			'home.learningPathBadge' => 'Size özel video rehberi',
+			'home.learningPathTitle' => 'Nereden başlayacağınızı bilmiyor musunuz?',
+			'home.learningPathBody' => 'Kısa videolarla uygulamayı adım adım tanıyın; ilk video günlük takibi ve planı anlatıyor.',
+			'home.learningPathBodyExpert' => 'Kısa videolarla uzman araçlarını adım adım tanıyın.',
+			'home.learningPathCta' => 'Öğrenme yoluna başla',
 			'home.notifications' => 'Bildirimler',
 			'home.assistant' => 'AI Asistan',
 			'home.messages' => 'Mesajlar',
@@ -7212,13 +7232,13 @@ extension on Translations {
 			'goalForm.nameLabel' => 'Başlık',
 			'goalForm.nameHint' => 'Örn. Göz teması kurma',
 			'goalForm.categoryLabel' => 'Kategori',
+			_ => null,
+		} ?? switch (path) {
 			'goalForm.targetLabel' => 'Hedef Sayısı',
 			'goalForm.descriptionLabel' => 'Açıklama (isteğe bağlı)',
 			'goalForm.descriptionHint' => 'Hedefle ilgili detay',
 			'goalForm.save' => 'Kaydet',
 			'goalForm.errorTitle' => 'Lütfen bir başlık girin.',
-			_ => null,
-		} ?? switch (path) {
 			'goalForm.created' => 'Hedef eklendi.',
 			'noteForm.title' => 'Not Ekle',
 			'noteForm.editTitle' => 'Notu Düzenle',
@@ -7726,13 +7746,13 @@ extension on Translations {
 			'groups.deleted' => 'Grup silindi.',
 			'groups.chatUnread' => ({required Object count}) => 'Sohbet (${count})',
 			'groups.detailTitle' => 'Grup Detayı',
+			_ => null,
+		} ?? switch (path) {
 			'groups.detailHint' => 'Üye listesi ve buluşmalar yalnızca grup üyelerine görünür.',
 			'groups.membersTitle' => 'Üyeler',
 			'groups.membersEmpty' => 'Üye listesi görüntülenemiyor.',
 			'groups.membersOnly' => 'Üye listesini ve buluşmaları görmek için gruba katılın.',
 			'groups.meetingsTitle' => 'Buluşmalar',
-			_ => null,
-		} ?? switch (path) {
 			'groups.meetingsEmpty' => 'Planlanmış buluşma yok.',
 			'groups.meetingAdd' => 'Buluşma planla',
 			'groups.meetingTitleLabel' => 'Buluşma başlığı',
@@ -8240,13 +8260,13 @@ extension on Translations {
 			'crisis.cards.anxiety.avoid.0' => '"Sakin ol, sorun yok" diyerek küçümsemeyin.',
 			'crisis.cards.anxiety.avoid.1' => 'Sormaya devam edip baskı uygulamayın.',
 			'crisis.cards.anxiety.avoid.2' => 'Kaygı anında yeni talep eklemeyin.',
+			_ => null,
+		} ?? switch (path) {
 			'calendar.title' => 'Takvim',
 			'calendar.subtitle' => 'Çocuğa özel terapi, doktor ve etkinlik planı.',
 			'calendar.noChild' => 'Takvim için önce bir çocuk ekleyin.',
 			'calendar.empty' => 'Henüz etkinlik yok. İlk etkinliği ekleyin.',
 			'calendar.add' => 'Etkinlik Ekle',
-			_ => null,
-		} ?? switch (path) {
 			'calendar.addTitle' => 'Yeni Etkinlik',
 			'calendar.editTitle' => 'Etkinliği Düzenle',
 			'calendar.eventType' => 'Etkinlik Tipi',
