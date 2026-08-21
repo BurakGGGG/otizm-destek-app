@@ -42,6 +42,7 @@ flutter analyze
 flutter test
 flutter run                 # Android emülatör/cihaz
 flutter build apk --debug
+flutter build appbundle --release   # mağaza paketi (key.properties gerekir)
 ```
 
 `flutterfire` CLI: `~/.pub-cache/bin` PATH'te olmalı. Yeniden yapılandırma:
