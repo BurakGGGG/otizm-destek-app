@@ -830,6 +830,13 @@ routineForm:
   errorName: Lütfen bir rutin adı girin.
 
 dailyTracker:
+  insightSleep: Ort. uyku
+  insightMood: Sık ruh hali
+  insightTrigger: Sık tetikleyici
+  insightComplete: Eksiksiz
+  insightNone: Kayıt yok
+  insightHours: ${hours}sa ${minutes}dk
+  insightDays: $count gün
   title: Günlük Takip
   tabMood: Duygu
   tabSleep: Uyku

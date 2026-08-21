@@ -2604,6 +2604,27 @@ class Translations$dailyTracker$tr {
 
 	// Translations
 
+	/// tr: 'Ort. uyku'
+	String get insightSleep => 'Ort. uyku';
+
+	/// tr: 'Sık ruh hali'
+	String get insightMood => 'Sık ruh hali';
+
+	/// tr: 'Sık tetikleyici'
+	String get insightTrigger => 'Sık tetikleyici';
+
+	/// tr: 'Eksiksiz'
+	String get insightComplete => 'Eksiksiz';
+
+	/// tr: 'Kayıt yok'
+	String get insightNone => 'Kayıt yok';
+
+	/// tr: '${hours}sa ${minutes}dk'
+	String insightHours({required Object hours, required Object minutes}) => '${hours}sa ${minutes}dk';
+
+	/// tr: '$count gün'
+	String insightDays({required Object count}) => '${count} gün';
+
 	/// tr: 'Günlük Takip'
 	String get title => 'Günlük Takip';
 
@@ -7393,6 +7414,13 @@ extension on Translations {
 			'routineForm.descriptionHint' => 'Bu rutin ne için?',
 			'routineForm.save' => 'Kaydet',
 			'routineForm.errorName' => 'Lütfen bir rutin adı girin.',
+			'dailyTracker.insightSleep' => 'Ort. uyku',
+			'dailyTracker.insightMood' => 'Sık ruh hali',
+			'dailyTracker.insightTrigger' => 'Sık tetikleyici',
+			'dailyTracker.insightComplete' => 'Eksiksiz',
+			'dailyTracker.insightNone' => 'Kayıt yok',
+			'dailyTracker.insightHours' => ({required Object hours, required Object minutes}) => '${hours}sa ${minutes}dk',
+			'dailyTracker.insightDays' => ({required Object count}) => '${count} gün',
 			'dailyTracker.title' => 'Günlük Takip',
 			'dailyTracker.tabMood' => 'Duygu',
 			'dailyTracker.tabSleep' => 'Uyku',
@@ -7652,6 +7680,8 @@ extension on Translations {
 			'groups.meetingJoin' => 'Görüşmeye katıl',
 			'groups.meetingDelete' => 'Buluşmayı iptal et',
 			'groups.meetingDeleteConfirm' => ({required Object title}) => '"${title}" buluşması iptal edilsin mi?',
+			_ => null,
+		} ?? switch (path) {
 			'groups.meetingErrorTitle' => 'Buluşma başlığı gerekli.',
 			'groups.meetingErrorDate' => 'Tarih ve saat seçin.',
 			'groups.meetingErrorUrl' => 'Bağlantı http:// ya da https:// ile başlamalı.',
@@ -7659,8 +7689,6 @@ extension on Translations {
 			'groups.subtitle' => 'Benzer konularda ailelerle bir araya gel, grup sohbetine katıl.',
 			'groups.tabMy' => 'Gruplarım',
 			'groups.tabDiscover' => 'Keşfet',
-			_ => null,
-		} ?? switch (path) {
 			'groups.searchHint' => 'Grup ara…',
 			'groups.allCategories' => 'Tümü',
 			'groups.emptyMy' => 'Henüz bir gruba katılmadın. Keşfet sekmesinden gruplara göz at.',
@@ -8166,6 +8194,8 @@ extension on Translations {
 			'calendar.eventTitle' => 'Başlık',
 			'calendar.titleHint' => 'Etkinlik adı',
 			'calendar.location' => 'Konum',
+			_ => null,
+		} ?? switch (path) {
 			'calendar.locationHint' => 'Klinik adı, adres',
 			'calendar.description' => 'Açıklama',
 			'calendar.start' => 'Başlangıç',
@@ -8173,8 +8203,6 @@ extension on Translations {
 			'calendar.reminder' => 'Hatırlatma',
 			'calendar.reminderOff' => 'Kapalı',
 			'calendar.reminderMin' => ({required Object count}) => '${count} dk önce',
-			_ => null,
-		} ?? switch (path) {
 			'calendar.reminderHour' => ({required Object count}) => '${count} saat önce',
 			'calendar.reminderDay' => '1 gün önce',
 			'calendar.statusPlanned' => 'Planlandı',

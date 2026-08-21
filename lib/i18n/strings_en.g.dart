@@ -1147,6 +1147,13 @@ class _Translations$dailyTracker$en extends Translations$dailyTracker$tr {
 	final TranslationsEn _root; // ignore: unused_field
 
 	// Translations
+	@override String get insightSleep => 'Avg. sleep';
+	@override String get insightMood => 'Top mood';
+	@override String get insightTrigger => 'Top trigger';
+	@override String get insightComplete => 'Complete';
+	@override String get insightNone => 'No data';
+	@override String insightHours({required Object hours, required Object minutes}) => '${hours}h ${minutes}m';
+	@override String insightDays({required Object count}) => '${count} days';
 	@override String get title => 'Daily Tracker';
 	@override String get tabMood => 'Mood';
 	@override String get tabSleep => 'Sleep';
@@ -3495,6 +3502,13 @@ extension on TranslationsEn {
 			'routineForm.descriptionHint' => 'What is this routine for?',
 			'routineForm.save' => 'Save',
 			'routineForm.errorName' => 'Please enter a routine name.',
+			'dailyTracker.insightSleep' => 'Avg. sleep',
+			'dailyTracker.insightMood' => 'Top mood',
+			'dailyTracker.insightTrigger' => 'Top trigger',
+			'dailyTracker.insightComplete' => 'Complete',
+			'dailyTracker.insightNone' => 'No data',
+			'dailyTracker.insightHours' => ({required Object hours, required Object minutes}) => '${hours}h ${minutes}m',
+			'dailyTracker.insightDays' => ({required Object count}) => '${count} days',
 			'dailyTracker.title' => 'Daily Tracker',
 			'dailyTracker.tabMood' => 'Mood',
 			'dailyTracker.tabSleep' => 'Sleep',
@@ -3754,6 +3768,8 @@ extension on TranslationsEn {
 			'groups.meetingJoin' => 'Join meeting',
 			'groups.meetingDelete' => 'Cancel meeting',
 			'groups.meetingDeleteConfirm' => ({required Object title}) => 'Cancel the meeting "${title}"?',
+			_ => null,
+		} ?? switch (path) {
 			'groups.meetingErrorTitle' => 'Meeting title is required.',
 			'groups.meetingErrorDate' => 'Pick a date and time.',
 			'groups.meetingErrorUrl' => 'The link must start with http:// or https://.',
@@ -3761,8 +3777,6 @@ extension on TranslationsEn {
 			'groups.subtitle' => 'Meet families on similar topics and join the group chat.',
 			'groups.tabMy' => 'My Groups',
 			'groups.tabDiscover' => 'Discover',
-			_ => null,
-		} ?? switch (path) {
 			'groups.searchHint' => 'Search groups…',
 			'groups.allCategories' => 'All',
 			'groups.emptyMy' => 'You haven\'t joined any group yet. Browse groups in the Discover tab.',
@@ -4268,6 +4282,8 @@ extension on TranslationsEn {
 			'calendar.eventTitle' => 'Title',
 			'calendar.titleHint' => 'Event name',
 			'calendar.location' => 'Location',
+			_ => null,
+		} ?? switch (path) {
 			'calendar.locationHint' => 'Clinic name, address',
 			'calendar.description' => 'Description',
 			'calendar.start' => 'Start',
@@ -4275,8 +4291,6 @@ extension on TranslationsEn {
 			'calendar.reminder' => 'Reminder',
 			'calendar.reminderOff' => 'Off',
 			'calendar.reminderMin' => ({required Object count}) => '${count} min before',
-			_ => null,
-		} ?? switch (path) {
 			'calendar.reminderHour' => ({required Object count}) => '${count} h before',
 			'calendar.reminderDay' => '1 day before',
 			'calendar.statusPlanned' => 'Planned',

@@ -829,6 +829,13 @@ routineForm:
   errorName: Please enter a routine name.
 
 dailyTracker:
+  insightSleep: Avg. sleep
+  insightMood: Top mood
+  insightTrigger: Top trigger
+  insightComplete: Complete
+  insightNone: No data
+  insightHours: ${hours}h ${minutes}m
+  insightDays: $count days
   title: Daily Tracker
   tabMood: Mood
   tabSleep: Sleep
