@@ -20,17 +20,24 @@ class AnalyticsRangeBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = context.t;
-    return Wrap(
-      spacing: 8,
-      children: [
-        for (final days in kAnalyticsRanges)
-          ChoiceChip(
-            label: Text(t.analytics.rangeDays(count: days)),
-            selected: selected == days,
-            showCheckmark: false,
-            onSelected: (_) => onSelect(days),
-          ),
-      ],
+    // Dört aralık tek satırda: Wrap kullanıldığında son seçenek alt satıra
+    // düşüp seçiciyi ikiye bölüyordu. Yatay kaydırma büyük yazı modunda da
+    // taşmıyor (ekrandaki diğer süzgeç şeritleriyle aynı desen).
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          for (final days in kAnalyticsRanges) ...[
+            ChoiceChip(
+              label: Text(t.analytics.rangeDays(count: days)),
+              selected: selected == days,
+              showCheckmark: false,
+              onSelected: (_) => onSelect(days),
+            ),
+            if (days != kAnalyticsRanges.last) const SizedBox(width: 8),
+          ],
+        ],
+      ),
     );
   }
 }
