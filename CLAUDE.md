@@ -475,6 +475,18 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
 - **Renkler:** widget'lar `context.colors.X` (AppPalette) kullanır; sabit palet
   `lib/core/theme/app_colors.dart` (`AppPalette.light`/`dark`). Tema kurarken `AppColors`
   (sabit, açık) kullanılır. Yeni ekranlarda `AppColors.*` yerine `context.colors.*`.
+  Açık temada `textTertiary` **#64748B**'dir (eski #94A3B8 sayfa zemininde
+  2,4:1 kontrast veriyordu); daha soluk bir ton gerekiyorsa yeni bir anlamsal
+  renk tanımlayın, bu tonu açmayın.
+- **Bileşen temaları:** çip, FAB, SnackBar (yüzen), alt sayfa (tutamaçlı),
+  diyalog, sekme çubuğu, liste satırı, açılır menü, ipucu ve ilerleme çubuğu
+  biçimleri temada tanımlıdır (`core/theme/app_theme.dart`) — ekran içinde
+  yeniden biçimlendirmeyin. Tema metin biçimleri `_fontFallback` (emoji
+  ailesi) taşır; bileşen temasına yeni bir `TextStyle` eklerken font ailesini
+  ve yedeğini vermeyi unutmayın, yoksa emoji taşıyan metinlerde boş kutu
+  çıkar. Çip etiketinin rengi **duruma göre çözülür** (`WidgetStateColor`):
+  `FilterChip` seçiliyken `ChoiceChip` gibi `secondaryLabelStyle`a geçmediği
+  için sabit renk verilirse seçili çipin yazısı zemine karışır.
 - **Uygulama simgesi:** varsayılan Flutter simgesi yerine uygulama içindeki
   logo (birincil mavi zemin + beyaz `volunteer_activism` ikonu). Android
   mipmap'leri (eski + API 26 uyarlanabilir ön plan/tek renk katmanları,
@@ -536,8 +548,10 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
   `Expanded`/`Flexible` ile sınırlayın ya da satır içi biçimi verin
   (`AppButtonStyles.inlineFilled` / `inlineOutlined`,
   `core/theme/app_theme.dart`); aksi halde "BoxConstraints forces an infinite
-  width" hatasıyla ekran çöker. `FilledButton.tonal*` de aynı temayı kullanır.
-  `TextButton`'da bu kısıt yok. Kural `test/button_layout_rule_test.dart` ile
+  width" hatasıyla ekran çöker. `FilledButton.tonal*` de aynı temayı kullanır —
+  bu yüzden **ikincil eylemlerde `AppButtonStyles.tonal(context)` /
+  `inlineTonal(context)` verilir**, aksi halde tonal buton birincil maviyle
+  çizilir ve ana eylemden ayırt edilemez. `TextButton`'da bu kısıt yok. Kural `test/button_layout_rule_test.dart` ile
   korunur: hem davranışı doğrular hem de `lib/` kaynağını tarayıp sarmalanmamış
   satır butonu kalmadığını denetler (bu tarama randevu kartı dahil 14 gerçek
   çökme noktası buldu). Kaynak taraması **dolaylı** durumları görmez (buton

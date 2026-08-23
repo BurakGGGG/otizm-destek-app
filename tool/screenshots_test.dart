@@ -8,9 +8,11 @@
 // bu dosya normal takıma girmez — aynı ekran listesi her koşuda
 // `test/screens_build_test.dart` tarafından çizilip denetlenir.
 //
-// Not: uygulamadaki bazı `TextStyle`lar font ailesi belirtmiyor (ör. bazı çip
-// etiketleri). Cihazda sistem fontuna düşerler; başsız render'da motorun
-// varsayılan test fontu kutu çizer — görüntülerdeki bu kusur beklenendir.
+// Not: tema düzeyindeki metin biçimleri font ailesini ve emoji yedeğini
+// taşıyor; ekran kodunda ailesiz bırakılan bir `TextStyle` kalırsa başsız
+// render'da kutu çizilir (cihazda sistem fontuna düşer). Yükseltilmiş
+// (elevation) yüzeylerin gölgesi başsız render'da sert siyah bir çerçeve gibi
+// çıkar — açılır menü/FAB görüntülerindeki bu kusur beklenendir.
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:otizm_destek_app/i18n/strings.g.dart';
