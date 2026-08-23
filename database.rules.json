@@ -1,0 +1,7 @@
+{
+  "//": "Realtime Database bu üründe kullanılmıyor — istemciye kapalı. Yayınlamak için: firebase deploy --only database",
+  "rules": {
+    ".read": false,
+    ".write": false
+  }
+}
