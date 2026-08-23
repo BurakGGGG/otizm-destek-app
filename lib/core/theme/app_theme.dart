@@ -193,10 +193,18 @@ class AppTheme {
         selectedColor: p.primary,
         disabledColor: p.surfaceVariant,
         showCheckmark: false,
+        // FilterChip seçiliyken de bu biçimi kullanıyor (ChoiceChip'in
+        // aksine secondaryLabelStyle'a geçmiyor); renk duruma göre
+        // çözülmezse dolu birincil zeminde birincil renkli etiket
+        // görünmez oluyordu.
         labelStyle: TextStyle(
           fontFamily: _fontFamily,
           fontFamilyFallback: _fontFallback,
-          color: p.primary,
+          color: WidgetStateColor.resolveWith(
+            (states) => states.contains(WidgetState.selected)
+                ? p.onPrimary
+                : p.primary,
+          ),
           fontWeight: FontWeight.w600,
           fontSize: 12.5,
         ),
