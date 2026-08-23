@@ -24,7 +24,10 @@ Dio buildDioClient({
     ),
   );
 
-  dio.interceptors.add(AuthInterceptor(tokenProvider));
+  // Token yalnızca backend host'una gönderilir (savunma katmanı).
+  dio.interceptors.add(
+    AuthInterceptor(tokenProvider, allowedHost: Env.apiBaseUrl),
+  );
   dio.interceptors.add(
     RefreshInterceptor(storage: storage, onSessionExpired: onSessionExpired),
   );

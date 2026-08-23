@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/network/api_exception.dart';
+import '../../../core/network/media.dart';
 import '../../../core/network/api_response.dart';
 import '../../../core/providers.dart';
 import '../domain/conversation.dart';
@@ -249,6 +250,14 @@ class MessagingRepository {
   /// Ekli dosyayı indirir (uç nokta kimlik doğrulaması istediği için
   /// tarayıcıda açılamıyor; Dio ile Bearer'lı indirilip paylaşılır).
   Future<List<int>> downloadAttachment(String url) async {
+    // Ek adresi mesaj gövdesinden gelir (sunucu kontrollü, ama kötü niyetli
+    // bir mesaj yabancı bir host gösterebilir). Yalnızca kendi backend'imizden
+    // indiriyoruz: aksi halde uygulama, dokunulan mesajla saldırganın
+    // adresine istek atıp cihaz IP'sini sızdırır ve rastgele içeriği paylaşım
+    // sayfasına verir.
+    if (!isBackendMediaUrl(url)) {
+      throw const ApiException('Geçersiz dosya adresi');
+    }
     try {
       final res = await _dio.get<List<int>>(
         url,

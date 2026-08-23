@@ -251,10 +251,16 @@ tahmin edilebilir alt alan adları allowlist'i genişletir).
 
 ## 9. Güvenlik başlıkları
 
-`SecurityConfig`'te açık bir `.headers(...)` yapılandırması **yok**; yalnızca
-Spring Security'nin varsayılanları geçerli: `X-Content-Type-Options: nosniff`,
-`X-Frame-Options: DENY`, kimlik doğrulamalı yanıtlarda `Cache-Control:
-no-store`. Eksikler ve önerilen ek (backend deposunda uygulanacak):
+**Canlı doğrulama (2026-08-23, prod başlıkları):** `X-Content-Type-Options:
+nosniff` ✓, `X-Frame-Options: DENY` ✓, `Strict-Transport-Security:
+max-age=31536000; includeSubDomains` ✓ — HSTS **var** ama Spring'den değil,
+önündeki **Cloudflare**'den geliyor (`server: cloudflare`; §10'daki "HSTS
+çıkmaz" tahminim bu yüzden yanlıştı, edge ekliyor). `Server:` başlığı Spring/
+Tomcat sürümünü sızdırmıyor (Cloudflare maskeliyor) ✓. **Eksik olanlar:**
+`Content-Security-Policy`, `Referrer-Policy`, `Permissions-Policy` — üçü de
+yanıtta yok. `SecurityConfig`'te açık bir `.headers(...)` bloğu yok. Önerilen
+ek (backend deposunda; CSP/Referrer/Permissions için — HSTS'yi Cloudflare
+zaten veriyor):
 
 ```java
 http.headers(headers -> headers
@@ -272,9 +278,10 @@ http.headers(headers -> headers
 );
 ```
 
-⚠️ Spring HSTS başlığını yalnızca isteği **güvenli** gördüğünde yazar. TLS
-ters vekilde sonlanıyorsa uygulama isteği HTTP sanır ve HSTS hiç çıkmaz;
-bunun için `server.forward-headers-strategy: framework` gerekir (§10).
+ℹ️ Not: HSTS'yi üretimde Cloudflare ekliyor (canlı doğrulandı), yani başlık
+bugün mevcut. Yine de `server.forward-headers-strategy: framework` verilmesi
+iyi olur ki Spring de isteği HTTPS görsün (aksi halde `secure` çerez ve
+uygulama düzeyli HTTPS mantığı isteği http sanabilir).
 
 Mobil uygulama için başlıkların doğrudan etkisi yok (WebView kullanılmıyor,
 yanıtlar JSON olarak ayrıştırılıyor); başlıklar web PWA'yı korur.
@@ -634,7 +641,73 @@ konuşma uzadıkça kartopu gibi büyüyor. Artık son 20 tur gönderiliyor
 uzun oturumlarda maliyet sabitleniyor. Sunucu tarafına da aynı tavan
 konmalı; istemciye güvenilmez.
 
-## 24. Üretim kontrol listesi
+## 24. Saldırgan gözüyle test (2026-08-23)
+
+Yetkili kırmızı takım turu. İki tür kanıt: **statik** (üretilen sürüm APK'sı +
+istemci kaynağı) ve **canlı/zararsız** (paylaşılan prod'a yalnızca okuma
+amaçlı, veri değiştirmeyen, kaba kuvvet olmayan bir avuç istek). Hiçbir
+POST/PUT/DELETE atılmadı, kimlik denemesi yapılmadı, kullanıcı verisi
+okunmadı/değiştirilmedi.
+
+### Sağlam çıkanlar (denenip kırılamayanlar)
+
+| Test | Sonuç |
+| --- | --- |
+| Korumalı uca kimliksiz erişim (`/api/children`, `/api/users/me`) | 401 ✓ |
+| Rastgele origin ile CORS preflight (`Origin: evil.example.com`) | 403 — origin reddedildi ✓ |
+| Bozuk JSON ile hata ayrıntısı sızıntısı | Temiz kullanıcı mesajı, yığın izi yok ✓ |
+| Yol geçişi (`/api/upload/..%2f..%2fapplication.yml`) | 400 ✓ |
+| Acil kart paylaşımı, geçersiz/rastgele jeton | 404, jeton varlığını sızdırmıyor ✓ |
+| Güvenlik başlıkları (canlı) | HSTS + nosniff + frame-DENY var; sürüm sızmıyor ✓ |
+| İstemci mutasyon gövdelerinde sahip kimliği | Gönderilmiyor — IDOR yüzeyi yok ✓ |
+| İstemci rol kontrolleri | Hepsi arayüz kapısı; APK repackage ile yetki kazanılamaz (sunucu zorluyor) ✓ |
+| STOMP/WS kimlik | `Authorization: Bearer` native header, sunucu doğruluyor ✓ |
+| Görsel yükleyici (`mediaImageProvider`) | Bearer yalnızca backend host'una; yabancı host'a düz NetworkImage ✓ |
+| eval / Process / dart:mirrors | İstemcide yok ✓ |
+| Açık metin (`http://`) | Yalnızca şema kontrolünde; gerçek çağrı yok ✓ |
+
+### Bu turda kapatılan gerçek bulgular (mobil)
+
+1. **Bearer token host'a çıpalanmadı (savunma katmanı).** `AuthInterceptor`
+   token'ı host kontrolü yapmadan **her** isteğe ekliyordu. Bugün sızıntı yok
+   (uygulama Dio'yu hep göreli yolla çağırıyor), ama biri ileride mutlak bir
+   dış adres geçirseydi token o host'a giderdi — tek satır uzaklıkta bir
+   felaket. Artık token yalnızca backend host'una ekleniyor; alt alan adı
+   hilesi (`backend...evil.net`) host eşitliğiyle engelli.
+   `test/auth_interceptor_test.dart`.
+
+2. **Ek dosya indirme yabancı host'a kapatıldı.** `downloadAttachment` mesaj
+   gövdesinden gelen mutlak adresi körlemesine indiriyordu; kötü niyetli bir
+   mesaj `fileUrl`'ü saldırganın adresini gösterirse uygulama dokunulan
+   mesajla oraya istek atıp cihaz IP'sini sızdırır ve rastgele baytı paylaşım
+   sayfasına verirdi. Artık yalnızca kendi backend'imizden indiriliyor.
+
+(Bu turdan bağımsız ama aynı sınıftan, önceki turlarda kapatılanlar: hesap
+silmede cihaz temizliği §22, "Beni hatırla" oturum kipi §12, hata metni
+süzgeci §13, günlük hijyeni §14, sohbet geçmişi tavanı §23.)
+
+### Doğrulanan açık bulgular (sizde/backend'de)
+
+- **APK'daki Firebase anahtarı gerçekten kısıtsız.** Sürüm ikilisinden
+  çıkarılan anahtar (`AIzaSy…x6Ro`) Google Identity Toolkit çağrısında
+  reddedilmeden kabul edildi (`CONFIGURATION_NOT_FOUND` — anahtar geçerli,
+  yalnızca Firebase Auth yapılandırılmamış). Yani anahtar her yerden
+  kullanılabiliyor; konsolda uygulama+API kısıtlaması hâlâ yapılmamış (§2).
+- **CSP / Referrer-Policy / Permissions-Policy başlıkları yok** (§9, canlı
+  doğrulandı).
+- Önceki turların backend bulguları geçerliliğini koruyor: hesap silmeyi
+  engelleyen 6 yabancı anahtar (§22), AI harcama kotasının olmayışı (§23),
+  yetki hatalarının 500 olarak dönmesi (§18), yedek betiğinin depoda
+  olmayışı (§20).
+
+### Kapsam dışı bırakılanlar (bilinçli)
+
+Canlı prod'a karşı **yapılmadı**: giriş kaba kuvveti / hız sınırı taşması
+(gerçek kullanıcıları 429'a sokar), herhangi bir yazma işlemi (paylaşılan
+DB'yi kirletir), kimlik denemesi, kullanıcı verisi enumerasyonu. Bunların
+uçtan uca doğrulaması bir deneme/staging hesabına bırakıldı.
+
+## 25. Üretim kontrol listesi
 
 Bu depodan doğrulanamayan, sunucuda bakılması gerekenler:
 
