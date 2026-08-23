@@ -426,24 +426,146 @@ geçiren biri) makaleyi okuyan herkesin tarayıcısında betik çalıştırabili
 İki katmanlı çözüm: web'de aynı `sanitizeHtml` ile sarmak **ve** sunucuda
 kaydederken `HtmlSanitizer`'ı bilgi bankası içeriğine de uygulamak.
 
-## 17. Üretim kontrol listesi
+## 17. Webhook imzası
+
+Bu üründe **gelen webhook yok**. Backend'de `webhook`, `/callback`,
+`X-Signature`, `HmacSHA256` gibi bir uç nokta ya da doğrulama kodu bulunmuyor;
+dış servislerle ilişki tek yönlü ve dışa doğru: FCM push gönderimi, SMTP,
+Gemini çağrısı, Turnstile doğrulaması. Yani bugün imzalanacak bir istek yok.
+
+Mobil tarafta da dışarıdan tetiklenen bir giriş noktası yok: Android
+manifestinde yalnızca `MAIN`/`LAUNCHER` intent filtresi var, özel şema
+(deep link) tanımlı değil — başka bir uygulama bu uygulamada bir akış
+başlatamıyor.
+
+**Bir gün webhook eklenirse** (ödeme, e-posta bounce, SMS durumu) uyulacak
+kural:
+
+1. İmza **ham gövde** üzerinden doğrulanır — JSON'a çevirdikten sonra yeniden
+   serileştirilen metin baytı baytına aynı olmaz.
+2. `HMAC-SHA256(secret, timestamp + "." + body)`; secret ortam değişkeninden.
+3. Karşılaştırma **sabit zamanlı** (`MessageDigest.isEqual`), `equals` değil.
+4. Zaman damgası ±5 dakika penceresi dışındaysa reddedilir (tekrar saldırısı).
+5. Doğrulama, gövde ayrıştırılmadan ve iş mantığı çalıştırılmadan önce yapılır;
+   reddedilen istekler 401 döner ve günlüğe yazılır.
+6. Uç nokta `SecurityConfig`'te `permitAll` olur ama kendi imza kontrolü
+   vardır; hız sınırı (`@RateLimit`) eklenir.
+
+## 18. Yönetici rolü
+
+`AdminController` **sınıf düzeyinde** `@PreAuthorize("hasRole('ADMIN')")`
+taşıyor, yani `/api/admin/**` altındaki her uç nokta yöneticiye kapalı.
+`DataSubjectRequestController` (KVKK başvuruları) ve `ForumController`
+(moderasyon) yönetici gerektiren metotlarını tek tek işaretlemiş. Swagger
+arayüzü hem `hasRole('ADMIN')` ile korunuyor hem de üretim compose'unda
+kapatılmış (`SPRINGDOC_*_ENABLED=false`).
+
+Mimari not: controller'ların çoğunda `@PreAuthorize` yok; onlar filtre
+zincirindeki `anyRequest().authenticated()` ile korunuyor ve **yetki kontrolü
+servis katmanında** yapılıyor. Örneklerle doğrulandı: makale oluşturmada
+`PARENT` reddediliyor, yayınlamak için `ADMIN` şart, çocuk/acil kart/ilaç
+servislerinde sahiplik kontrolü var.
+
+⚠️ **Bulgu:** servis içindeki bu kontroller düz `RuntimeException` fırlatıyor
+(ör. `throw new RuntimeException("Sadece uzmanlar makale yazabilir")`).
+`GlobalExceptionHandler` tipli olmayan istisnayı 500 + "Sistemde geçici bir
+aksaklık oluştu" ile karşılıyor; yani **yetki hatası kullanıcıya sunucu
+arızası gibi görünüyor** ve hata metriklerini şişiriyor. Depoda zaten
+`UnauthorizedException` / `AccessDeniedException` var (403'e eşleniyor);
+bu atışlar onlarla değiştirilmeli.
+
+## 19. Paket denetimi
+
+Dart/pub tarafında `npm audit` karşılığı bir komut **yok** (SDK 3.12).
+Yapılabilecek denetim `tool/audit_deps.sh` ile betiğe bağlandı: kısıt içinde
+güncellenebilirler, kullanımdan kaldırılmış paket uyarısı ve elle bakılacak
+adımlar (pub.dev "Security advisories" bölümü, Android eklenti sürümleri).
+
+Bu turda yapılan denetim sonucu:
+
+- Kullanımdan kaldırılmış/geri çekilmiş paket **yok**.
+- Kısıt içindeki güncellemeler alındı: `dio` 5.9.2→5.11.0, `firebase_core`
+  4.11→4.13, `firebase_messaging` 16.4→16.5, `firebase_crashlytics` 5.2.4→
+  5.2.7, `firebase_analytics` 12.4.3→12.4.6, `go_router` 17.3→17.5, `slang`
+  4.16→4.19 ve 27 geçişli paket. Analyze temiz, 352 test geçti, sürüm APK'sı
+  derlendi.
+- **Bilerek ertelenenler:** `flutter_secure_storage` 11.0.0 (büyük sürüm —
+  yükseltmenin depodaki token'ları taşıyıp taşımadığı denenmeden alınmamalı,
+  aksi halde bütün kullanıcılar oturumdan düşer) ve `flutter_riverpod` 3.4.2
+  (dev bağımlılığı `riverpod_generator` eski sürümde tutuyor).
+- Daha önce hiç kullanılmayan beş paket kaldırılmıştı (§2): en iyi denetim,
+  bağımlı olmadığın pakettir.
+
+## 20. Otomatik yedek
+
+**Mobil.** Cihazda yedeklenecek kalıcı veri yok; yine de Android manifestinde
+`allowBackup=false` ve `fullBackupContent=false` — sağlık verisi Google'ın
+otomatik yedeğine girmesin. iOS anahtarlık öğeleri `first_unlock_this_device`
+olduğu için yedekle başka cihaza taşınmıyor (§12).
+
+**Sunucu.** `docker-compose.prod.yml` içinde bir `db-backup` servisi var:
+24 saatte bir `/scripts/backup-db.sh` çalıştırıyor, `BACKUP_ENCRYPTION_PASSWORD`
+zorunlu, `BACKUP_RETENTION_DAYS` varsayılanı 30 ve çıktı `encrypted_backups`
+adlı docker volume'una yazılıyor.
+
+⚠️ **Bulgu 1:** çalıştırılan betik (`./scripts/backup-db.sh`) **depoda yok**.
+Sunucuda elle oluşturulmadıysa kapsayıcı her gün "not found" ile dönüp hiçbir
+şey yedeklemiyor demektir — üstelik sessizce, çünkü döngü hatayı yutuyor.
+Doğrulama:
+
+```bash
+docker logs --tail 50 autism-platform-db-backup
+docker run --rm -v <proje>_encrypted_backups:/b alpine ls -lh /b
+```
+
+⚠️ **Bulgu 2:** yedekler veritabanıyla **aynı makinedeki** bir volume'da.
+Disk/sunucu kaybında yedek de gider. Şifreli dosyanın günlük olarak dış bir
+depoya (S3/R2, farklı sağlayıcı) kopyalanması ve düzenli **geri yükleme
+provası** gerekiyor — hiç denenmemiş yedek yedek sayılmaz.
+
+Ayrıca dosyalar artık S3'te (`STORAGE_TYPE=s3`): kovada sürümleme ve yaşam
+döngüsü kuralı ayrıca ayarlanmalı, veritabanı yedeği onları kapsamıyor.
+
+Eksik betik için başlangıç (platform deposundaki `scripts/backup-db.sh`):
+
+```sh
+#!/bin/sh
+set -eu
+STAMP=$(date +%Y%m%d-%H%M%S)
+OUT="/backups/autism-$STAMP.sql.gz.enc"
+PGPASSWORD="$DB_PASSWORD" pg_dump -h "$DB_HOST" -U "$DB_USERNAME" -d "$DB_NAME" \
+  | gzip -9 \
+  | openssl enc -aes-256-cbc -pbkdf2 -pass env:BACKUP_ENCRYPTION_PASSWORD -out "$OUT"
+# Bozuk/boş çıktı yedek sayılmasın
+[ -s "$OUT" ] || { echo "BOŞ YEDEK: $OUT" >&2; rm -f "$OUT"; exit 1; }
+find /backups -name 'autism-*.sql.gz.enc' -mtime "+${BACKUP_RETENTION_DAYS:-30}" -delete
+echo "yedek tamam: $OUT ($(stat -c%s "$OUT") bayt)"
+```
+
+Geri yükleme: `openssl enc -d -aes-256-cbc -pbkdf2 -pass env:… -in dosya |
+gunzip | psql …`
+
+## 21. Üretim kontrol listesi
 
 Bu depodan doğrulanamayan, sunucuda bakılması gerekenler:
 
 - [ ] `JWT_SECRET`, `ENCRYPTION_KEY`, `APP_BOOTSTRAP_ADMIN_PASSWORD`,
       `DB_PASSWORD` tanımlı mı (§1'deki varsayılanlara düşmüyor mu)?
-- [ ] `TRUST_PROXY_HEADERS=true` (ters vekil arkasındaysa) — §5.
+- [x] `TRUST_PROXY_HEADERS=true` — üretim compose'unda ayarlı (§5).
 - [ ] `CORS_ORIGINS` gerçek alan adlarıyla dolu mu — §8.
 - [ ] `app.auth.cookie-same-site` değeri (§1'deki CSRF notu).
 - [ ] Firebase kuralları yayınlandı mı: `firebase deploy --only storage` — §3.
 - [ ] Google Cloud Console'da Android API anahtarı kısıtlandı mı — §2.
-- [ ] `REFRESH_COOKIE_SECURE=true` mi (çerezler `Secure` bayrağıyla mı
-      gidiyor) — §12.
+- [x] `REFRESH_COOKIE_SECURE=true` — üretim compose'unda ayarlı (§12).
 - [ ] `server.forward-headers-strategy=framework` ve vekilde http→https
       yönlendirme var mı — §10.
 - [ ] Güvenlik başlıkları (HSTS/CSP/Referrer-Policy) eklendi mi — §9.
-- [ ] `LOG_LEVEL` üretimde `INFO` mu (DEBUG sağlık verisini günlüğe düşürür)
-      — §14.
-- [ ] Swagger/OpenAPI üretimde kapalı mı (`SPRINGDOC_API_DOCS_ENABLED=false`);
-      şu an yalnızca ADMIN rolüne kısıtlı ama kapatmak daha ucuz.
+- [x] `LOG_LEVEL=WARN` — üretim compose'unda ayarlı (§14).
+- [x] Swagger/OpenAPI üretimde kapalı — compose'da `SPRINGDOC_*_ENABLED=false`.
 - [ ] Bilgi bankası içeriği web'de temizlenerek mi basılıyor — §16.
+- [ ] `scripts/backup-db.sh` sunucuda var mı, yedekler gerçekten yazılıyor mu
+      ve dış depoya kopyalanıyor mu — §20.
+- [ ] Geri yükleme provası yapıldı mı — §20.
+- [ ] S3 kovasında sürümleme/yaşam döngüsü açık mı — §20.
+- [ ] `JWT_SECRET`/`ENCRYPTION_KEY` compose'da `${VAR:?...}` ile zorunlu
+      kılınmalı; şu an boş geçilebiliyor (S3 değişkenleri gibi) — §1.
