@@ -12,9 +12,11 @@ Otizm destek ürünü için Flutter + Firebase mobil uygulama. Mevcut web platfo
   - Gerçek zamanlı: STOMP over SockJS, `/ws`.
   - AI sohbet botu: SSE streaming, `/api/chatbot/stream`.
   - REST ön eki: `/api`.
-- **Firebase (proje: `otizm-destek-app`):** mobilde FCM push, Crashlytics, Analytics,
-  Remote Config, Storage. **Kimlik (Auth) DEĞİL**, **Firestore DEĞİL** — kaynak doğruluk
-  Spring backend + Postgres.
+- **Firebase (proje: `otizm-destek-app`):** mobilde yalnızca FCM push, Crashlytics
+  ve Analytics. **Kimlik (Auth) DEĞİL**, **Firestore DEĞİL**, **Storage DEĞİL** —
+  kaynak doğruluk Spring backend + Postgres; dosyalar `/api/upload` üzerinden
+  gider. Kullanılmayan SDK'lar (auth/storage/remote_config) bağımlılıklardan
+  çıkarıldı, izin kuralları istemciye kapalı (`docs/security.md`).
 - **Auth (KARAR: backend JWT — Seçenek B):** Mobil doğrudan backend'in kendi JWT auth'unu
   kullanır (`/api/auth/login`, `/register`, `/refresh`, `/logout`, `/me`). Access+refresh
   token `flutter_secure_storage`'da; Dio `AuthInterceptor` Bearer ekler, `RefreshInterceptor`
@@ -513,6 +515,15 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
   üzerinden açılır; yalnızca `http`/`https` kabul edilir (`intent://`,
   `file://`, `market://` gibi şemalar cihazda başka uygulama tetikleyebilir).
   Uygulamanın kendi ürettiği `tel:` bağlantıları doğrudan açılmaya devam eder.
+- **Sırlar ve yetki:** Firebase istemci yapılandırması (`google-services.json`,
+  `lib/firebase_options.dart`), imza anahtarı ve `.env` **depoya girmez**;
+  şablonlar `*.example` olarak durur, yeniden üretim `flutterfire configure`.
+  Kural `test/secrets_scan_test.dart` ile korunur (izlenen dosyalarda yasak ad
+  ya da `AIza…`/PEM deseni aranır). Firebase izin kuralları (`storage.rules`,
+  `firestore.rules`, `database.rules.json`) istemciye **kapalı** — yükleme
+  backend'in `/api/upload`'ından geçer. Yetki kontrolü tamamen backend'de;
+  istemcideki rol kontrolleri yalnızca arayüz içindir. Ayrıntı ve denetim
+  kaydı: `docs/security.md`.
 - **Ağ günlüğü:** `Env.enableNetworkLogs` varsayılanı **debug**'dır ve
   günlükçü yalnızca yöntem + yol + durum kodu yazar. İstek gövdeleri (çocuk
   sağlık kaydı, acil durum kartı, şifre) ve `Authorization` başlığı hiçbir
