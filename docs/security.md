@@ -249,6 +249,105 @@ CORS_ORIGINS=https://otizmdestek.com,https://www.otizmdestek.com
 Vercel önizleme adresleri kalıcı listeye girmemeli (her dağıtımda değişir ve
 tahmin edilebilir alt alan adları allowlist'i genişletir).
 
+## 9. Güvenlik başlıkları
+
+`SecurityConfig`'te açık bir `.headers(...)` yapılandırması **yok**; yalnızca
+Spring Security'nin varsayılanları geçerli: `X-Content-Type-Options: nosniff`,
+`X-Frame-Options: DENY`, kimlik doğrulamalı yanıtlarda `Cache-Control:
+no-store`. Eksikler ve önerilen ek (backend deposunda uygulanacak):
+
+```java
+http.headers(headers -> headers
+    // HSTS: tarayıcı bir daha http ile denemesin
+    .httpStrictTransportSecurity(hsts -> hsts
+        .includeSubDomains(true)
+        .maxAgeInSeconds(31536000))
+    .referrerPolicy(rp -> rp.policy(
+        ReferrerPolicyHeaderWriter.ReferrerPolicy.STRICT_ORIGIN_WHEN_CROSS_ORIGIN))
+    // API yalnızca JSON döndürüyor: her şeyi kapatmak güvenli
+    .contentSecurityPolicy(csp -> csp.policyDirectives(
+        "default-src 'none'; frame-ancestors 'none'; base-uri 'none'"))
+    .permissionsPolicy(pp -> pp.policy(
+        "camera=(), microphone=(), geolocation=()"))
+);
+```
+
+⚠️ Spring HSTS başlığını yalnızca isteği **güvenli** gördüğünde yazar. TLS
+ters vekilde sonlanıyorsa uygulama isteği HTTP sanır ve HSTS hiç çıkmaz;
+bunun için `server.forward-headers-strategy: framework` gerekir (§10).
+
+Mobil uygulama için başlıkların doğrudan etkisi yok (WebView kullanılmıyor,
+yanıtlar JSON olarak ayrıştırılıyor); başlıklar web PWA'yı korur.
+
+## 10. HTTPS zorunlu
+
+**Mobil (bu depoda yapıldı).**
+
+- `android/app/src/main/res/xml/network_security_config.xml`: açık metin
+  trafiği kapalı, manifestte `usesCleartextTraffic="false"` ile birlikte
+  bağlandı. Android 9+ zaten varsayılan olarak engelliyor; açıkça yazmak bir
+  bağımlılığın manifestine `usesCleartextTraffic="true"` eklemesi durumunda
+  birleşmede bizim kuralımızın kazanmasını sağlıyor.
+- Debug derlemesi için ayrı yapılandırma (`src/debug/res/xml/...`) yalnızca
+  `localhost`, `127.0.0.1` ve `10.0.2.2` için açık metne izin verir; sürüm
+  derlemesine sızmaz.
+- iOS'ta `Info.plist` içinde ATS istisnası yok, yani varsayılan (açık metin
+  kapalı) geçerli.
+- `test/env_https_test.dart` derleme öncesi bekçi: varsayılan adresler ve
+  `config/*.json` profilleri `https://` ile başlamazsa ya da manifestten
+  cleartext kuralı düşerse takım kırılır.
+- Sertifika sabitleme (pinning) bilinçli olarak **yok**: sertifika otomatik
+  yenileniyor, sabit bir pin yenilemede uygulamayı tamamen offline'a düşürür.
+
+**Sunucu.** Uygulama düzeyinde `requiresChannel().requiresSecure()` yok; TLS
+ters vekilde sonlanıyor. Yapılması gerekenler: vekilde http→https yönlendirme,
+`server.forward-headers-strategy: framework` (uygulama isteğin HTTPS geldiğini
+görsün) ve §9'daki HSTS başlığı.
+
+## 11. Şifre saklama
+
+**Sunucu.** `BCryptPasswordEncoder` (Spring Security), kayıtta ve yönetici
+tohumlamasında `passwordEncoder.encode(...)` ile hash'leniyor; doğrulama
+`matches` ile yapılıyor. Şifre hiçbir yerde düz metin saklanmıyor.
+`passwordHash` alanı hiçbir DTO'da ya da controller yanıtında geçmiyor.
+
+Öneriler (backend): `new BCryptPasswordEncoder(12)` ile maliyeti artırmak
+(varsayılan 10) ve `User` varlığındaki `passwordHash` alanına `@JsonIgnore`
+eklemek — bugün sızmıyor ama bir gün varlık doğrudan döndürülürse diye.
+
+**Mobil.** Şifre hiçbir yere yazılmıyor: "Beni hatırla" yalnızca oturum
+token'ının kalıcılığını belirler (şifreyi saklamaz), ağ günlüğü istek
+gövdelerini yazmaz, şifre alanları `obscureText` ve autofill ipuçlarıyla
+çalışır. Şifre kuralları `core/util/password_rules.dart` ile backend'in
+`StrongPasswordValidator`'ıyla birebir.
+
+## 12. Oturum ve çerez güvenliği
+
+**Sunucu.** Refresh ve medya çerezleri `httpOnly`, yola göre sınırlı
+(`/api/auth`, `/api/upload`), `maxAge` verilmiş ve her yenilemede refresh
+token rotasyona giriyor.
+
+⚠️ `app.auth.refresh-cookie-secure` (env `REFRESH_COOKIE_SECURE`) varsayılanı
+**false**. Üretimde `true` verilmezse çerezler `Secure` bayrağı olmadan yazılır
+— yani araya giren bir http isteğinde açık metin gidebilirler. Aynı ayar
+`SameSite`'ı da belirliyor (true → `None`, false → `Strict`); §1'deki CSRF
+notu nedeniyle `app.auth.cookie-same-site=Lax` önerilir.
+
+**Mobil (bu depoda yapıldı).**
+
+- Anahtarlık öğeleri artık `first_unlock_this_device` ile yazılıyor. Paketin
+  varsayılanı (`unlocked`) öğenin yedekle **başka bir cihaza taşınmasına** izin
+  veriyordu; oturum token'ının taşınmasını istemiyoruz. `first_unlock`
+  seçilmesinin nedeni arka planda gelen push'ta token'ın okunabilmesi.
+- Android'de paket zaten KeyStore destekli AES-GCM kullanıyor (v10'da
+  `encryptedSharedPreferences` kullanımdan kalktı), ek ayar gerekmiyor.
+- **"Beni hatırla" kutusu hiçbir şey yapmıyordu** — işaretlense de
+  işaretlenmese de oturum diske yazılıyordu. Artık kapalıyken token'lar yalnızca
+  bellekte tutulur ve uygulama kapanınca oturum biter; açıkken (varsayılan,
+  bugünkü davranış) güvenli depoya yazılır. Token yenileme oturum içi bir
+  girişi kalıcıya çeviremez. Davranış `test/session_persistence_test.dart`
+  ile korunuyor.
+
 ## 9. Üretim kontrol listesi
 
 Bu depodan doğrulanamayan, sunucuda bakılması gerekenler:
@@ -260,3 +359,8 @@ Bu depodan doğrulanamayan, sunucuda bakılması gerekenler:
 - [ ] `app.auth.cookie-same-site` değeri (§1'deki CSRF notu).
 - [ ] Firebase kuralları yayınlandı mı: `firebase deploy --only storage` — §3.
 - [ ] Google Cloud Console'da Android API anahtarı kısıtlandı mı — §2.
+- [ ] `REFRESH_COOKIE_SECURE=true` mi (çerezler `Secure` bayrağıyla mı
+      gidiyor) — §12.
+- [ ] `server.forward-headers-strategy=framework` ve vekilde http→https
+      yönlendirme var mı — §10.
+- [ ] Güvenlik başlıkları (HSTS/CSP/Referrer-Policy) eklendi mi — §9.

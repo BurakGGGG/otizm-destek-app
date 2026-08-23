@@ -515,6 +515,13 @@ ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
   üzerinden açılır; yalnızca `http`/`https` kabul edilir (`intent://`,
   `file://`, `market://` gibi şemalar cihazda başka uygulama tetikleyebilir).
   Uygulamanın kendi ürettiği `tel:` bağlantıları doğrudan açılmaya devam eder.
+- **Aktarım ve oturum:** uygulama yalnızca HTTPS konuşur — Android'de açık
+  metin `network_security_config.xml` ile kapalı (debug'da yalnızca localhost/
+  10.0.2.2 istisnası), `test/env_https_test.dart` hem adresleri hem manifest
+  kuralını denetler. Oturum token'ları güvenli depoda; **"Beni hatırla"
+  kapalıyken token diske yazılmaz**, yalnızca bellekte tutulur
+  (`test/session_persistence_test.dart`). iOS anahtarlık öğeleri
+  `first_unlock_this_device` (yedekle başka cihaza taşınmasın).
 - **Sırlar ve yetki:** Firebase istemci yapılandırması (`google-services.json`,
   `lib/firebase_options.dart`), imza anahtarı ve `.env` **depoya girmez**;
   şablonlar `*.example` olarak durur, yeniden üretim `flutterfire configure`.

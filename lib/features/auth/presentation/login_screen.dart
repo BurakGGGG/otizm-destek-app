@@ -29,7 +29,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   final _email = TextEditingController();
   final _password = TextEditingController();
   bool _obscure = true;
-  bool _rememberMe = false;
+  /// Varsayılan açık: bugüne kadarki davranış oturumu saklıyordu.
+  bool _rememberMe = true;
 
   /// Art arda başarısız giriş sayısı ve kalan bekleme (saniye).
   int _failedAttempts = 0;
@@ -262,7 +263,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     }
     final failure = await ref
         .read(authControllerProvider.notifier)
-        .signIn(email, password);
+        .signIn(email, password, rememberMe: _rememberMe);
     if (failure == null) {
       _failedAttempts = 0;
       // Şifre yöneticisine "kaydedeyim mi?" istemini tetikler.

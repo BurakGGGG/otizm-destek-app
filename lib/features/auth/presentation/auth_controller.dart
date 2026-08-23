@@ -83,7 +83,13 @@ class AuthController extends Notifier<AuthState> {
   }
 
   /// Giriş. Başarılıysa `null`, hatadaysa kullanıcıya gösterilecek mesaj döner.
-  Future<AuthFailure?> signIn(String email, String password) async {
+  /// [rememberMe] kapalıyken token'lar diske yazılmaz: uygulama kapanınca
+  /// oturum biter (ortak cihazda kullanıcıların beklediği davranış).
+  Future<AuthFailure?> signIn(
+    String email,
+    String password, {
+    bool rememberMe = true,
+  }) async {
     state = state.copyWith(isBusy: true);
     try {
       final result = await _repo.login(email.trim(), password);
@@ -100,6 +106,7 @@ class AuthController extends Notifier<AuthState> {
       await _storage.saveTokens(
         accessToken: result.accessToken,
         refreshToken: result.refreshToken,
+        persist: rememberMe,
       );
       state = AuthState(status: AuthStatus.authenticated, user: result.user);
       return null;
