@@ -505,7 +505,11 @@ class _ErrorView extends StatelessWidget {
           const SizedBox(height: 12),
           Text(t.common.loadError),
           const SizedBox(height: 12),
-          FilledButton.tonal(onPressed: onRetry, child: Text(t.common.retry)),
+          FilledButton.tonal(
+              style: AppButtonStyles.tonal(context),
+              onPressed: onRetry,
+              child: Text(t.common.retry),
+            ),
         ],
       ),
     );

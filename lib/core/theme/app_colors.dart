@@ -26,7 +26,10 @@ class AppColors {
   // Metin
   static const Color textPrimary = Color(0xFF0F172A); // yüksek kontrast
   static const Color textSecondary = Color(0xFF475569);
-  static const Color textTertiary = Color(0xFF94A3B8);
+  // slate-500: #94A3B8 açık zeminde 2,4:1 kontrast veriyordu (WCAG AA
+  // normal metin için 4,5:1 ister) — zaman damgası, bölüm etiketi ve
+  // yardımcı satırlar bu renkle yazıldığı için ton koyulaştırıldı.
+  static const Color textTertiary = Color(0xFF64748B);
 
   // Durumlar
   static const Color success = Color(0xFF10B981);
@@ -84,7 +87,7 @@ class AppPalette extends ThemeExtension<AppPalette> {
     border: Color(0xFFE2E8F0),
     textPrimary: Color(0xFF0F172A),
     textSecondary: Color(0xFF475569),
-    textTertiary: Color(0xFF94A3B8),
+    textTertiary: Color(0xFF64748B),
     success: Color(0xFF10B981),
     warning: Color(0xFFF59E0B),
     error: Color(0xFFDC2626),

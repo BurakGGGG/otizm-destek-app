@@ -105,13 +105,11 @@ class _HomeShellState extends ConsumerState<HomeShell> {
         ],
       ),
       body: IndexedStack(index: _index, children: _tabs),
-      bottomNavigationBar: NavigationBarTheme(
-        data: NavigationBarThemeData(
-          backgroundColor: context.colors.surface,
-          indicatorColor: context.colors.primary.withValues(alpha: 0.12),
-          labelTextStyle: WidgetStateProperty.all(
-            const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
-          ),
+      // Alt navigasyonun biçimi temada (navigationBarTheme); burada yalnızca
+      // sayfa zemininden ayıran ince üst çizgi veriliyor.
+      bottomNavigationBar: DecoratedBox(
+        decoration: BoxDecoration(
+          border: Border(top: BorderSide(color: context.colors.border)),
         ),
         child: NavigationBar(
           selectedIndex: _index,

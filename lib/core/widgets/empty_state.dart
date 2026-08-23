@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../theme/app_colors.dart';
+import '../theme/app_theme.dart';
 import '../../i18n/strings.g.dart';
 
 /// Boş liste/içerik durumu — ikon + mesaj + opsiyonel eylem butonu (CTA).
@@ -67,7 +68,11 @@ class ErrorRetry extends StatelessWidget {
             const SizedBox(height: 12),
             Text(message ?? t.common.loadError, textAlign: TextAlign.center),
             const SizedBox(height: 16),
-            FilledButton.tonal(onPressed: onRetry, child: Text(t.common.retry)),
+            FilledButton.tonal(
+              style: AppButtonStyles.tonal(context),
+              onPressed: onRetry,
+              child: Text(t.common.retry),
+            ),
           ],
         ),
       ),

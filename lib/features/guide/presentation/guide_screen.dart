@@ -484,6 +484,7 @@ class _VideoCard extends StatelessWidget {
               const SizedBox(width: 8),
               Expanded(
                 child: FilledButton.tonalIcon(
+                  style: AppButtonStyles.tonal(context),
                   onPressed: onOpen,
                   icon: const Icon(Icons.open_in_new, size: 16),
                   label: Text(t.guide.videoWatch),

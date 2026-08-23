@@ -1029,6 +1029,8 @@ class _ConnectButton extends StatelessWidget {
       // Satır içinde kullanılıyor: temanın sonsuz asgari genişliği burada
       // sıfırlanmazsa "BoxConstraints forces an infinite width" ile çöker.
       style: FilledButton.styleFrom(
+        backgroundColor: context.colors.primaryContainer,
+        foregroundColor: context.colors.primary,
         minimumSize: const Size(0, AppTheme.minTapTarget),
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
         visualDensity: VisualDensity.compact,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../i18n/strings.g.dart';
 import '../theme/app_colors.dart';
+import '../theme/app_theme.dart';
 
 /// Doldurulmuş bir formdan geri çıkılırken onay ister.
 ///
@@ -55,6 +56,9 @@ Future<bool> confirmDiscardChanges(BuildContext context) async {
           child: Text(t.common.unsaved.leave),
         ),
         FilledButton(
+          // Temadaki asgari genişlik sonsuz olduğu için düğmeler alt alta
+          // dizilip diyaloğu uzatıyordu; satır içi biçimle yan yana duruyor.
+          style: AppButtonStyles.inlineFilled,
           onPressed: () => Navigator.of(dialogContext).pop(false),
           child: Text(t.common.unsaved.stay),
         ),

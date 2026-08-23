@@ -567,6 +567,7 @@ class _GroupCard extends StatelessWidget {
                   ] else
                     Expanded(
                       child: FilledButton.tonalIcon(
+                        style: AppButtonStyles.tonal(context),
                         onPressed: onJoin,
                         icon: const Icon(Icons.add, size: 18),
                         label: Text(t.groups.join),

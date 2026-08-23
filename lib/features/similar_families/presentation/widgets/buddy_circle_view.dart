@@ -233,6 +233,7 @@ class _PendingCard extends StatelessWidget {
               children: [
                 Expanded(
                   child: FilledButton.tonal(
+                    style: AppButtonStyles.tonal(context),
                     onPressed: onAccept,
                     child: Text(t.similar.accept),
                   ),
@@ -462,6 +463,7 @@ class MeetupRequestsSection extends ConsumerWidget {
                       else ...[
                         Expanded(
                           child: FilledButton.tonal(
+                            style: AppButtonStyles.tonal(context),
                             onPressed: () => _update(
                               context,
                               ref,

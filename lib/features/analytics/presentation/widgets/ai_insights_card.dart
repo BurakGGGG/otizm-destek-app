@@ -131,6 +131,7 @@ class _AiInsightsCardState extends ConsumerState<AiInsightsCard> {
             ),
             const SizedBox(height: 12),
             FilledButton.tonalIcon(
+              style: AppButtonStyles.tonal(context),
               onPressed: _running ? null : _run,
               icon: _running
                   ? const SizedBox(
