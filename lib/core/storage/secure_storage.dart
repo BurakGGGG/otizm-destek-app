@@ -82,4 +82,16 @@ class SecureStorage {
     await _storage.delete(key: _kAccessToken);
     await _storage.delete(key: _kRefreshToken);
   }
+
+  /// Cihazdaki **her şeyi** siler: token'lar, tercihler (`pref_*`), tema, dil.
+  ///
+  /// Hesap silindiğinde çağrılır: yalnızca oturumu kapatmak yeterli değil,
+  /// çünkü rutin yıldızları (çocuğun ilerlemesi), uzman favorileri, izlenen
+  /// videolar ve kapatılan kart işaretleri cihazda kalıyordu — silinen hesaba
+  /// ait izler ortak kullanılan bir telefonda görünmemeli.
+  Future<void> wipeAll() async {
+    _sessionTokens.clear();
+    _sessionOnly = false;
+    await _storage.deleteAll();
+  }
 }

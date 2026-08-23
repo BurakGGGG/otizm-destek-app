@@ -1,5 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:otizm_destek_app/core/network/upload_rules.dart';
+import 'package:otizm_destek_app/features/chatbot/data/chatbot_repository.dart';
+import 'package:otizm_destek_app/features/chatbot/domain/chat_message.dart';
 import 'package:otizm_destek_app/core/util/input_rules.dart';
 import 'package:otizm_destek_app/features/auth/domain/login_throttle.dart';
 
@@ -124,6 +126,27 @@ void main() {
         uploadRejection(fileName: 'zararli.jpg.exe', sizeBytes: 1024),
         UploadRejection.unsupportedType,
       );
+    });
+  });
+
+  group('sohbet geçmişi tavanı', () {
+    ChatMessage msg(int i) => ChatMessage(
+          role: i.isEven ? ChatRole.user : ChatRole.assistant,
+          text: 'mesaj $i',
+        );
+
+    test('kısa geçmiş olduğu gibi gider', () {
+      final history = List.generate(6, msg);
+      expect(ChatbotRepository.trimHistory(history), hasLength(6));
+    });
+
+    test('uzun geçmişte yalnızca son turlar gider', () {
+      final history = List.generate(60, msg);
+      final trimmed = ChatbotRepository.trimHistory(history);
+      expect(trimmed, hasLength(kMaxChatHistoryTurns));
+      // En yeni mesaj korunur, en eskiler düşer.
+      expect(trimmed.last.text, 'mesaj 59');
+      expect(trimmed.first.text, 'mesaj ${60 - kMaxChatHistoryTurns}');
     });
   });
 }

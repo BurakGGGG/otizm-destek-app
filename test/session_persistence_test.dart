@@ -37,6 +37,16 @@ class _DiskSpy extends FlutterSecureStorage {
   }
 
   @override
+  Future<void> deleteAll({
+    AppleOptions? iOptions,
+    AndroidOptions? aOptions,
+    LinuxOptions? lOptions,
+    WebOptions? webOptions,
+    AppleOptions? mOptions,
+    WindowsOptions? wOptions,
+  }) async => disk.clear();
+
+  @override
   Future<void> delete({
     required String key,
     AppleOptions? iOptions,
@@ -115,6 +125,26 @@ void main() {
 
     expect(disk, isEmpty);
     expect(await storage.readAccessToken(), 'a2');
+  });
+
+  test('hesap silinince cihazdaki tercihler de gider', () async {
+    // `clear()` yalnızca token'ları siliyor: çıkışta tema/dil/erişilebilirlik
+    // tercihi kalmalı. Hesap silmede ise hiçbir iz kalmamalı.
+    final disk = <String, String>{};
+    final storage = SecureStorage(_DiskSpy(disk));
+
+    await storage.saveTokens(accessToken: 'a1', persist: true);
+    await storage.savePreference('routine_stars', '12');
+    await storage.saveThemeMode('dark');
+
+    await storage.clear();
+    expect(disk['pref_routine_stars'], '12', reason: 'çıkışta tercih kalır');
+    expect(disk['theme_mode'], 'dark');
+
+    await storage.wipeAll();
+    expect(disk, isEmpty, reason: 'hesap silmede hiçbir iz kalmamalı');
+    expect(await storage.readAccessToken(), isNull);
+    expect(await storage.readPreference('routine_stars'), isNull);
   });
 
   test('çıkışta bellek ve disk temizlenir', () async {

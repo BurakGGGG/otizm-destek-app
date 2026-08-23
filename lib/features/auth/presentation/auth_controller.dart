@@ -231,12 +231,18 @@ class AuthController extends Notifier<AuthState> {
     }
   }
 
-  Future<void> signOut() async {
+  /// [wipeDevice] hesap silindiğinde verilir: token'ların yanı sıra cihazdaki
+  /// tercihler ve yerel izler de silinir (bkz. [SecureStorage.wipeAll]).
+  Future<void> signOut({bool wipeDevice = false}) async {
     final rt = await _storage.readRefreshToken();
     if (rt != null && rt.isNotEmpty) {
       await _repo.logout(rt);
     }
-    await _storage.clear();
+    if (wipeDevice) {
+      await _storage.wipeAll();
+    } else {
+      await _storage.clear();
+    }
     state = const AuthState(status: AuthStatus.unauthenticated);
   }
 

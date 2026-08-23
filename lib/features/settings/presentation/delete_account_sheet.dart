@@ -56,7 +56,8 @@ class _DeleteAccountSheetState extends ConsumerState<DeleteAccountSheet> {
           .deleteAccount(_password.text);
       if (!mounted) return;
       Navigator.of(context).pop();
-      await ref.read(authControllerProvider.notifier).signOut();
+      // Hesap sunucudan silindi: cihazdaki tercih ve izler de gitmeli.
+      await ref.read(authControllerProvider.notifier).signOut(wipeDevice: true);
     } on ApiException catch (e) {
       if (mounted) {
         setState(() {

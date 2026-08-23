@@ -545,7 +545,96 @@ echo "yedek tamam: $OUT ($(stat -c%s "$OUT") bayt)"
 Geri yükleme: `openssl enc -d -aes-256-cbc -pbkdf2 -pass env:… -in dosya |
 gunzip | psql …`
 
-## 21. Üretim kontrol listesi
+## 22. Hesap silme
+
+**Akış.** Mobil: Ayarlar → hesabı sil; mevcut şifre + onay kelimesi isteniyor,
+`DELETE /api/users/me` çağrılıyor. Sunucu şifreyi doğrulayıp
+`AccountDeletionService.delete(user)` çalıştırıyor: kullanıcının dosyaları
+`storage_deletion_queue`'ya yazılıyor (`StorageDeletionWorker` kuyruğu tüketip
+depodan siliyor, hata sayacıyla birlikte), refresh token'lar siliniyor ve
+kullanıcı satırı **gerçekten** siliniyor (`userRepository.delete`) — pasife
+çekme/soft delete yok.
+
+⚠️ **Bulgu — silme büyük olasılıkla hiç çalışmıyor.** Şemada `users(id)`'ye
+bakan 58 yabancı anahtarın 50'si `ON DELETE CASCADE`, 2'si `SET NULL`, ama
+**6'sında kural yok** (varsayılan NO ACTION → silmeyi engeller):
+
+| Tablo.sütun | Sütun | Öneri |
+| --- | --- | --- |
+| `notifications.user_id` | NOT NULL | `ON DELETE CASCADE` |
+| `reports.reporter_id` | NOT NULL | nullable + `SET NULL` (moderasyon kaydı kalsın) |
+| `expert_reviews.expert_id` | NOT NULL | `CASCADE` |
+| `expert_reviews.reviewer_id` | NOT NULL | `CASCADE` |
+| `social_story_comments.author_id` | NOT NULL | `CASCADE` |
+| `knowledge_articles.reviewed_by_id` | nullable | `SET NULL` |
+
+Bunlar `User` varlığında da eşlenmemiş (yalnızca children, expertConnections,
+assignedTasks, expertAppointments `cascade = ALL`), yani Hibernate da
+temizlemiyor. **Bildirimi olan her kullanıcı** — pratikte herkes — silinmeye
+çalışıldığında yabancı anahtar ihlali alır; `GlobalExceptionHandler` bunu 500 +
+"Sistemde geçici bir aksaklık oluştu" ile karşılar, yani kullanıcı hesabının
+silindiğini sanır ama silinmez. KVKK açısından da sorunlu.
+
+Kaynaktan (şema dökümü + varlık eşlemeleri + migration'lar) çıkarıldı, canlıda
+denenmedi: bir deneme hesabıyla doğrulanmalı. Düzeltme migration'ı:
+
+```sql
+ALTER TABLE notifications DROP CONSTRAINT fk9y21adhxn0ayjhfocscqox7bh,
+  ADD CONSTRAINT notifications_user_id_fkey FOREIGN KEY (user_id)
+  REFERENCES users(id) ON DELETE CASCADE;
+-- expert_reviews (expert_id, reviewer_id) ve social_story_comments.author_id
+-- için aynı desen; knowledge_articles.reviewed_by_id → ON DELETE SET NULL;
+-- reports.reporter_id için önce ALTER COLUMN reporter_id DROP NOT NULL.
+```
+
+**Mobil (bu depoda yapıldı).** Hesap silindikten sonra yalnızca token'lar
+temizleniyordu; rutin yıldızları (çocuğun ilerlemesi), uzman favorileri,
+izlenen videolar, kapatılan kart işaretleri ve erişilebilirlik tercihleri
+cihazda kalıyordu. Artık `SecureStorage.wipeAll()` çağrılıyor: silinen hesabın
+hiçbir izi kalmıyor. Normal çıkışta davranış değişmedi (tema/dil tercihi
+korunur). `test/session_persistence_test.dart` ikisini de doğruluyor.
+
+## 23. Harcama uyarısı
+
+**Para harcayan yüzeyler:** Gemini çağrıları (sohbet botu, yapay zekâ analizi,
+makale taslağı, AI arama), S3/R2 depolama ve indirme trafiği, SMTP, sunucu.
+
+**Bugün var olan sınırlar:** yanıt başına `maxOutputTokens` 1024/2048;
+kullanıcı başına hız sınırı (sohbet 20/dk, akış 10/dk, analiz 10/dk); ve
+`PlatformSettings.aiEnabled` — yani yöneticinin elinde çalışan bir **kapatma
+anahtarı** var.
+
+⚠️ **Boşluk:** günlük/aylık kota yok, toplam harcama sayacı yok, uyarı yok.
+Tek bir hesap mevcut sınırlar içinde günde **14.400 akış isteği** atabilir
+(10/dk × 60 × 24); bu tamamen meşru görünen bir kullanım örüntüsüyle bile
+faturayı beklenmedik yere taşır.
+
+**Konsolda kurulacak uyarılar (sizde):**
+
+1. Google Cloud → Billing → Budgets & alerts: Gemini anahtarının bulunduğu
+   proje için aylık bütçe + %50/%90/%100 e-posta uyarısı. Uyarı faturayı
+   durdurmaz; asıl fren 2. madde.
+2. Google Cloud → APIs & Services → Generative Language API → Quotas:
+   dakika/gün başına **sert tavan**. Tavana çarpınca istekler reddedilir,
+   ücret işlemez.
+3. Cloudflare R2 / S3: depolama ve çıkış trafiği için uyarı; kovada yaşam
+   döngüsü kuralı.
+4. Sunucu sağlayıcısı: fatura uyarısı.
+
+**Sunucuda önerilen fren (backend işi):** mevcut hız sınırı altyapısıyla
+kullanıcı başına **günlük** kota (ör. 100 AI çağrısı/gün), toplam günlük
+sayaç ve eşiği aşınca `aiEnabled` bayrağını otomatik kapatma; ayrıca
+micrometer'a `ai.calls` sayacı ekleyip uyarıyı oradan kurmak.
+
+**Mobil (bu depoda yapıldı).** Sohbet ekranı her mesajda **geçmişin tamamını**
+yeniden gönderiyordu ve ne mobilde ne sunucuda tavan vardı: 30 mesajlık bir
+sohbette 30. istek önceki 29 mesajı da taşıyor, yani modele giren jeton
+konuşma uzadıkça kartopu gibi büyüyor. Artık son 20 tur gönderiliyor
+(`kMaxChatHistoryTurns`) — sıradan bir destek sohbeti tamamen kapsanıyor,
+uzun oturumlarda maliyet sabitleniyor. Sunucu tarafına da aynı tavan
+konmalı; istemciye güvenilmez.
+
+## 24. Üretim kontrol listesi
 
 Bu depodan doğrulanamayan, sunucuda bakılması gerekenler:
 
@@ -566,6 +655,10 @@ Bu depodan doğrulanamayan, sunucuda bakılması gerekenler:
 - [ ] `scripts/backup-db.sh` sunucuda var mı, yedekler gerçekten yazılıyor mu
       ve dış depoya kopyalanıyor mu — §20.
 - [ ] Geri yükleme provası yapıldı mı — §20.
+- [ ] Hesap silme bir deneme hesabıyla uçtan uca denendi mi; 6 yabancı anahtar
+      düzeltildi mi — §22.
+- [ ] Gemini bütçe uyarısı + API kota tavanı kuruldu mu — §23.
+- [ ] Kullanıcı başına günlük AI kotası eklendi mi — §23.
 - [ ] S3 kovasında sürümleme/yaşam döngüsü açık mı — §20.
 - [ ] `JWT_SECRET`/`ENCRYPTION_KEY` compose'da `${VAR:?...}` ile zorunlu
       kılınmalı; şu an boş geçilebiliyor (S3 değişkenleri gibi) — §1.
