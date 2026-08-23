@@ -971,7 +971,7 @@ class _FakeRoutineRepository extends RoutineRepository {
               id: 'ri1',
               title: 'Uyanma ve sarılma',
               scheduledTime: '07:00',
-              iconName: 'wb_sunny',
+              iconName: 'morning',
             ),
             RoutineItem(
               id: 'ri2',
@@ -983,7 +983,7 @@ class _FakeRoutineRepository extends RoutineRepository {
               id: 'ri3',
               title: 'Kahvaltı',
               scheduledTime: '07:35',
-              iconName: 'restaurant',
+              iconName: 'eat',
             ),
           ],
         ),
@@ -1726,6 +1726,18 @@ List<ScreenShot> screenCatalog() => [
   ScreenShot(
     '05-randevular',
     () => const AppointmentsScreen(),
+  ),
+  // Kart üzerindeki ikincil eylemler (ertele/iptal) taşma menüsünde:
+  // menünün ve tema diyalog biçiminin çizimi de görüntüye girsin.
+  ScreenShot(
+    '05b-randevu-secenekleri',
+    () => const AppointmentsScreen(),
+    after: (tester) async {
+      await tester.tap(find.byType(PopupMenuButton<VoidCallback>).first);
+      // Geri sayım sayacı süregeldiği için pumpAndSettle kullanılmıyor.
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 400));
+    },
   ),
   ScreenShot(
     '06-randevu-detayi',

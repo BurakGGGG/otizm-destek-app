@@ -233,6 +233,12 @@ void main() {
 
     final t = AppLocale.tr.buildSync();
     expect(find.text('Uzm. Ada'), findsOneWidget);
+    expect(find.text(t.appointments.detailOpen), findsOneWidget);
+
+    // İkincil eylemler taşma menüsünde: açılınca çiziliyor mu?
+    await tester.tap(find.byType(PopupMenuButton<VoidCallback>));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 400));
     expect(find.text(t.appointments.cancel), findsOneWidget);
     expect(find.text(t.appointments.reschedule), findsOneWidget);
   });

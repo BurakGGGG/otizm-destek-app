@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:otizm_destek_app/features/appointments/domain/appointment.dart';
 import 'package:otizm_destek_app/features/appointments/presentation/appointments_screen.dart';
@@ -46,10 +45,29 @@ void main() {
 
     // a4 tamamlanmış ve puanlanmamış → değerlendir; a3 puanlı → yok.
     expect(find.text(t.appointments.rate), findsOneWidget);
-    // a2 seriye ait ve bekliyor → seriyi iptal et + "2. seans" rozeti.
-    expect(find.text(t.appointments.cancelSeries), findsOneWidget);
+    // a2 seriye ait ve bekliyor → "2. seans" rozeti.
     expect(find.text(t.appointments.seriesIndex(index: 2)), findsOneWidget);
     // a3'ün puanı yıldızlarla gösterilir.
     expect(find.text(t.appointments.ratingShown), findsOneWidget);
+
+    // İptal/erteleme kartta değil taşma menüsünde duruyor.
+    expect(find.text(t.appointments.cancelSeries), findsNothing);
+    final seriesCard = find.ancestor(
+      of: find.text(t.appointments.seriesIndex(index: 2)),
+      matching: find.byType(Card),
+    );
+    await tester.tap(
+      find.descendant(
+        of: seriesCard,
+        matching: find.byType(PopupMenuButton<VoidCallback>),
+      ),
+    );
+    // Geri sayım sayacı süregelen animasyon üretiyor: pumpAndSettle yerine
+    // menü açılışı kadar ilerletiliyor.
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 400));
+    expect(find.text(t.appointments.cancelSeries), findsOneWidget);
+    expect(find.text(t.appointments.cancel), findsOneWidget);
+    expect(find.text(t.appointments.reschedule), findsOneWidget);
   });
 }

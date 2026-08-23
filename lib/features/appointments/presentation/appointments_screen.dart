@@ -6,6 +6,7 @@ import '../../../core/haptics.dart';
 import '../../../core/network/api_exception.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/util/external_link.dart';
 import '../../../core/widgets/empty_state.dart';
 import '../../../core/widgets/skeleton.dart';
 import '../../../i18n/strings.g.dart';
@@ -173,26 +174,29 @@ class _StatBox extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
     final text = Theme.of(context).textTheme;
+    // Sayı ve etiket tek satırda: altı kutu iki sıraya sığarken yükseklik
+    // yarıya iniyor, liste ekranın üstünden başlıyor.
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+      padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 10),
       decoration: BoxDecoration(
         color: color.withValues(alpha: .06),
         borderRadius: BorderRadius.circular(AppRadius.md),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
         children: [
           Text(
             '$value',
             style: text.titleMedium
                 ?.copyWith(color: color, fontWeight: FontWeight.w800),
           ),
-          const SizedBox(height: 2),
-          Text(
-            label,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: text.labelSmall?.copyWith(color: colors.textSecondary),
+          const SizedBox(width: 6),
+          Expanded(
+            child: Text(
+              label,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: text.labelSmall?.copyWith(color: colors.textSecondary),
+            ),
           ),
         ],
       ),
@@ -391,13 +395,13 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
     final t = context.t;
     final text = Theme.of(context).textTheme;
 
-    // Karşı taraf: veli için uzman; uzman için veli/çocuk.
+    // Karşı taraf: veli için uzman; uzman için veli/çocuk. Ad ile unvan tek
+    // satıra sığmadığı için ayrı satırlarda gösteriliyor (eskiden "Ad · Unvan"
+    // kırpılıyordu).
     final counterpart = isExpert
         ? (a.parentName ?? a.childName ?? '')
-        : [
-            a.expertName,
-            a.expertTitle,
-          ].where((s) => s?.isNotEmpty ?? false).join(' · ');
+        : (a.expertName ?? '');
+    final counterpartSub = isExpert ? null : a.expertTitle;
 
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
@@ -407,23 +411,47 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                  child: Text(
-                    counterpart.isEmpty ? a.type ?? '' : counterpart,
-                    style: text.titleMedium,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        counterpart.isEmpty ? a.type ?? '' : counterpart,
+                        style: text.titleMedium,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      if (counterpartSub?.isNotEmpty ?? false)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 2),
+                          child: Text(
+                            counterpartSub!,
+                            style: text.bodySmall
+                                ?.copyWith(color: context.colors.textSecondary),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                    ],
                   ),
                 ),
-                if (a.isRecurring) ...[
-                  _SeriesBadge(index: a.recurrenceIndex),
-                  const SizedBox(width: 6),
-                ],
-                _StatusChip(kind: a.statusKind),
+                const SizedBox(width: 8),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    _StatusChip(kind: a.statusKind),
+                    if (a.isRecurring)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 6),
+                        child: _SeriesBadge(index: a.recurrenceIndex),
+                      ),
+                  ],
+                ),
               ],
             ),
-            const SizedBox(height: 6),
+            const SizedBox(height: 8),
             _InfoRow(
               icon: Icons.event_outlined,
               text: t.appointments.dateLine(
@@ -483,25 +511,21 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
                   style: text.bodySmall?.copyWith(color: context.colors.error),
                 ),
               ),
+            // Görüşme bağlantısı ham adres olarak uzun ve okunmuyordu; kart
+            // içinde tek düğme duruyor (adres detay sayfasında görülebilir).
             if (a.isOnline &&
                 !a.isCancelled &&
-                (a.meetingLink?.isNotEmpty ?? false))
+                isSafeExternalLink(a.meetingLink))
               Padding(
-                padding: const EdgeInsets.only(top: 8),
-                child: Row(
-                  children: [
-                    Icon(Icons.link, size: 18, color: context.colors.primary),
-                    const SizedBox(width: 6),
-                    Expanded(
-                      child: SelectableText(
-                        a.meetingLink!,
-                        style: TextStyle(
-                          color: context.colors.primary,
-                          fontSize: 13,
-                        ),
-                      ),
-                    ),
-                  ],
+                padding: const EdgeInsets.only(top: 10),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: FilledButton.tonalIcon(
+                    style: AppButtonStyles.inlineTonal(context),
+                    onPressed: () => openExternalLink(a.meetingLink),
+                    icon: const Icon(Icons.videocam_outlined, size: 18),
+                    label: Text(t.appointments.joinMeeting),
+                  ),
                 ),
               ),
             ..._actions(t),
@@ -512,7 +536,12 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
   }
 
   List<Widget> _actions(Translations t) {
-    final buttons = <Widget>[
+    final kind = a.statusKind;
+
+    // Kartta iki eylem görünür kalır: detay ve rolün ana eylemi. Ertele/iptal
+    // gibi ikincil eylemler taşma menüsünde toplanıyor — dört düğme iki satıra
+    // sarılınca kart listesi okunmaz hâle geliyordu.
+    final visible = <Widget>[
       OutlinedButton.icon(
         style: AppButtonStyles.inlineOutlined,
         onPressed: () => showModalBottomSheet<void>(
@@ -524,7 +553,7 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
         label: Text(t.appointments.detailOpen),
       ),
     ];
-    final kind = a.statusKind;
+    final menu = <PopupMenuEntry<VoidCallback>>[];
 
     // Ertele — veli ve uzman için, yaklaşan bekleyen/onaylı randevularda.
     final canReschedule = a.isUpcoming &&
@@ -532,21 +561,20 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
             kind == AppointmentStatusKind.confirmed) &&
         (a.expertId?.isNotEmpty ?? false);
     if (canReschedule) {
-      buttons.add(
-        OutlinedButton.icon(
-          style: AppButtonStyles.inlineOutlined,
-          onPressed: _busy ? null : _reschedule,
-          icon: const Icon(Icons.edit_calendar_outlined, size: 18),
-          label: Text(t.appointments.reschedule),
+      menu.add(
+        _menuItem(
+          icon: Icons.edit_calendar_outlined,
+          label: t.appointments.reschedule,
+          onSelected: _reschedule,
         ),
       );
     }
 
     if (isExpert) {
       if (kind == AppointmentStatusKind.pending) {
-        buttons.add(
+        visible.add(
           FilledButton.tonalIcon(
-            style: AppButtonStyles.inlineFilled,
+            style: AppButtonStyles.inlineTonal(context),
             onPressed: _busy
                 ? null
                 : () => _run(
@@ -558,9 +586,9 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
           ),
         );
       } else if (kind == AppointmentStatusKind.confirmed) {
-        buttons.add(
+        visible.add(
           FilledButton.tonalIcon(
-            style: AppButtonStyles.inlineFilled,
+            style: AppButtonStyles.inlineTonal(context),
             onPressed: _busy
                 ? null
                 : () => _run(
@@ -574,50 +602,66 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
         );
       }
     } else {
-      // PARENT — onay bekleyen/onaylı ve yaklaşan randevuyu iptal edebilir.
-      if (a.isUpcoming &&
-          (kind == AppointmentStatusKind.pending ||
-              kind == AppointmentStatusKind.confirmed)) {
-        buttons.add(
-          OutlinedButton.icon(
-            onPressed: _busy ? null : _cancel,
-            style: OutlinedButton.styleFrom(
-              foregroundColor: context.colors.error,
-              minimumSize: const Size(0, AppTheme.minTapTarget),
-            ),
-            icon: const Icon(Icons.close, size: 18),
-            label: Text(t.appointments.cancel),
-          ),
-        );
-      }
       // Tamamlanmış ve henüz puanlanmamış randevu değerlendirilebilir.
       if (kind == AppointmentStatusKind.completed && a.rating == null) {
-        buttons.add(
+        visible.add(
           FilledButton.tonalIcon(
-            style: AppButtonStyles.inlineFilled,
+            style: AppButtonStyles.inlineTonal(context),
             onPressed: _busy ? null : _rate,
             icon: const Icon(Icons.star_border_rounded, size: 18),
             label: Text(t.appointments.rate),
           ),
         );
       }
-      // Seriye ait, iptal edilebilir bir randevuda tüm seri iptal edilebilir.
-      if (a.isRecurring &&
+      // PARENT — onay bekleyen/onaylı ve yaklaşan randevuyu iptal edebilir.
+      if (a.isUpcoming &&
           (kind == AppointmentStatusKind.pending ||
               kind == AppointmentStatusKind.confirmed)) {
-        buttons.add(
-          OutlinedButton.icon(
-            style: AppButtonStyles.inlineOutlined,
-            onPressed: _busy ? null : _cancelSeries,
-            icon: const Icon(Icons.repeat, size: 18),
-            label: Text(t.appointments.cancelSeries),
+        menu.add(
+          _menuItem(
+            icon: Icons.close,
+            label: t.appointments.cancel,
+            onSelected: _cancel,
+            danger: true,
           ),
         );
+        // Seriye ait randevuda tüm seri birlikte iptal edilebilir.
+        if (a.isRecurring) {
+          menu.add(
+            _menuItem(
+              icon: Icons.repeat,
+              label: t.appointments.cancelSeries,
+              onSelected: _cancelSeries,
+              danger: true,
+            ),
+          );
+        }
       }
     }
 
-    // Butonlar dörde çıkabildiği için satır yerine Wrap: dar ekranda alt
-    // satıra iner. Satır içi biçim zorunlu — temada asgari genişlik sonsuz
+    if (menu.isNotEmpty) {
+      visible.add(
+        PopupMenuButton<VoidCallback>(
+          tooltip: t.common.a11y.options,
+          enabled: !_busy,
+          onSelected: (action) => action(),
+          itemBuilder: (_) => menu,
+          position: PopupMenuPosition.under,
+          // Yanındaki çerçeveli düğmeyle aynı yükseklik/biçim.
+          child: Container(
+            height: AppTheme.minTapTarget,
+            width: AppTheme.minTapTarget,
+            decoration: BoxDecoration(
+              border: Border.all(color: context.colors.border),
+              borderRadius: BorderRadius.circular(AppRadius.md),
+            ),
+            child: Icon(Icons.more_horiz, color: context.colors.textSecondary),
+          ),
+        ),
+      );
+    }
+
+    // Satır içi biçim zorunlu — temada asgari genişlik sonsuz
     // (bkz. CLAUDE.md).
     return [
       const SizedBox(height: 10),
@@ -632,10 +676,33 @@ class _AppointmentCardState extends ConsumerState<_AppointmentCard> {
               width: 18,
               child: CircularProgressIndicator(strokeWidth: 2),
             ),
-          ...buttons,
+          ...visible,
         ],
       ),
     ];
+  }
+
+  /// Taşma menüsü satırı; yıkıcı eylemler (iptal) hata renginde.
+  PopupMenuItem<VoidCallback> _menuItem({
+    required IconData icon,
+    required String label,
+    required VoidCallback onSelected,
+    bool danger = false,
+  }) {
+    final color = danger ? context.colors.error : context.colors.textPrimary;
+    return PopupMenuItem<VoidCallback>(
+      value: onSelected,
+      child: Row(
+        children: [
+          Icon(icon, size: 18, color: color),
+          const SizedBox(width: 10),
+          Text(
+            label,
+            style: TextStyle(color: color, fontWeight: FontWeight.w600),
+          ),
+        ],
+      ),
+    );
   }
 }
 
