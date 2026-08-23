@@ -40,15 +40,10 @@ dependencies:
   dio: ^5.9.2
   flutter_secure_storage: ^10.3.1
   stomp_dart_client: ^3.0.1
-  google_sign_in: ^7.2.0
   firebase_core: ^4.11.0
-  firebase_auth: ^6.5.4
   firebase_messaging: ^16.4.1
   firebase_crashlytics: ^5.2.4
   firebase_analytics: ^12.4.3
-  firebase_remote_config: ^6.5.3
-  firebase_storage: ^13.4.3
-  hive_flutter: ^1.1.0
   intl: 0.20.2
   flutter_localizations:
     sdk: flutter
