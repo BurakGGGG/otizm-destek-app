@@ -24,18 +24,37 @@ class EmptyState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hasAction = actionLabel != null && onAction != null;
+    final colors = context.colors;
+    final text = Theme.of(context).textTheme;
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(32),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, size: 48, color: context.colors.textTertiary),
-            const SizedBox(height: 12),
-            Text(message, textAlign: TextAlign.center),
+            // İkon tonlu dairenin içinde: boş ekranın ortasında tek başına
+            // duran gri simge "bir şey yüklenemedi" izlenimi veriyordu.
+            Container(
+              width: 72,
+              height: 72,
+              decoration: BoxDecoration(
+                color: colors.primary.withValues(alpha: 0.10),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(icon, size: 34, color: colors.primary),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              message,
+              textAlign: TextAlign.center,
+              style: text.titleSmall?.copyWith(color: colors.textSecondary),
+            ),
             if (hasAction) ...[
-              const SizedBox(height: 16),
+              const SizedBox(height: 20),
               FilledButton.icon(
+                // Satır içi biçim: temanın sonsuz asgari genişliği butonu
+                // gereksizce ekran boyuna yayıyordu.
+                style: AppButtonStyles.inlineFilled,
                 onPressed: onAction,
                 icon: Icon(actionIcon ?? Icons.add, size: 18),
                 label: Text(actionLabel!),
@@ -64,12 +83,31 @@ class ErrorRetry extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.error_outline, size: 48, color: context.colors.error),
-            const SizedBox(height: 12),
-            Text(message ?? t.common.loadError, textAlign: TextAlign.center),
+            Container(
+              width: 72,
+              height: 72,
+              decoration: BoxDecoration(
+                color: context.colors.error.withValues(alpha: 0.10),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                Icons.error_outline,
+                size: 34,
+                color: context.colors.error,
+              ),
+            ),
             const SizedBox(height: 16),
+            Text(
+              message ?? t.common.loadError,
+              textAlign: TextAlign.center,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleSmall
+                  ?.copyWith(color: context.colors.textSecondary),
+            ),
+            const SizedBox(height: 20),
             FilledButton.tonal(
-              style: AppButtonStyles.tonal(context),
+              style: AppButtonStyles.inlineTonal(context),
               onPressed: onRetry,
               child: Text(t.common.retry),
             ),
