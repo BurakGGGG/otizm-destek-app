@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 
+import '../util/app_log.dart';
 import '../config/env.dart';
 import '../storage/secure_storage.dart';
 import 'auth_interceptor.dart';
@@ -67,5 +67,5 @@ class _MinimalLogInterceptor extends Interceptor {
 }
 
 void _log(String message) {
-  debugPrint('[DIO] $message');
+  logDebug('[DIO] $message');
 }

@@ -1,3 +1,4 @@
+import 'core/util/app_log.dart';
 import 'dart:async';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -33,7 +34,7 @@ Future<void> main() async {
         firebaseReady = true;
       } catch (e) {
         // Native yapılandırma eksikse (ör. iOS plist) uygulama yine de açılsın.
-        debugPrint('Firebase başlatılamadı: $e');
+        logDebugError('Firebase başlatılamadı', e);
       }
 
       if (firebaseReady) {
@@ -71,7 +72,7 @@ Future<void> main() async {
     },
     (error, stack) {
       // Zone'da yakalanan hatalar (Firebase hazırsa) Crashlytics'e gider.
-      debugPrint('Yakalanmamış hata: $error');
+      logDebugError('Yakalanmamış hata', error);
       if (firebaseReady) {
         FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
       }

@@ -4,6 +4,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/util/app_log.dart';
 import '../../../core/app_keys.dart';
 import '../../../core/providers.dart';
 import '../../../core/router/app_router.dart';
@@ -23,7 +24,7 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   } catch (_) {
     // zaten başlatılmışsa yoksay
   }
-  debugPrint('Arka plan bildirimi: ${message.messageId}');
+  logDebug('Arka plan bildirimi: ${message.messageId}');
 }
 
 /// FCM cihaz push'unu yöneten servis: izin, token kaydı, ön plan + dokunma.
@@ -63,7 +64,7 @@ class PushService {
         WidgetsBinding.instance.addPostFrameCallback((_) => _onOpened(initial));
       }
     } catch (e) {
-      debugPrint('Push kurulum hatası: $e');
+      logDebugError('Push kurulum hatası', e);
     }
   }
 
@@ -100,7 +101,7 @@ class PushService {
       final token = await _messaging.getToken();
       if (token != null && token.isNotEmpty) await _sendToken(token);
     } catch (e) {
-      debugPrint('FCM token alınamadı: $e');
+      logDebugError('FCM token alınamadı', e);
     }
   }
 
@@ -114,7 +115,7 @@ class PushService {
           );
     } on DioException catch (e) {
       // Backend uç noktası henüz yoksa (404) ya da geçici hata: sessiz geç.
-      debugPrint('Cihaz token kaydı atlandı (${e.response?.statusCode}).');
+      logDebug('Cihaz token kaydı atlandı (${e.response?.statusCode}).');
     }
   }
 
@@ -127,7 +128,7 @@ class PushService {
           .read(dioProvider)
           .delete('/push/device-token', queryParameters: {'token': token});
     } catch (e) {
-      debugPrint('Cihaz token silme atlandı: $e');
+      logDebugError('Cihaz token silme atlandı', e);
     }
   }
 

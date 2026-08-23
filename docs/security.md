@@ -348,7 +348,85 @@ notu nedeniyle `app.auth.cookie-same-site=Lax` önerilir.
   girişi kalıcıya çeviremez. Davranış `test/session_persistence_test.dart`
   ile korunuyor.
 
-## 9. Üretim kontrol listesi
+## 13. Hata mesajları
+
+**Sunucu.** `GlobalExceptionHandler` tipli istisnalarda geliştiricinin yazdığı
+kısa Türkçe mesajı, yakalanmayan her şeyde ise sabit bir metin döndürüyor
+("Sistemde geçici bir aksaklık oluştu…"); istisna mesajı yanıta değil yalnızca
+sunucu günlüğüne, üstelik tipi ve korelasyon kimliğiyle yazılıyor. Yani 500
+yanıtları altyapıyı ifşa etmiyor.
+
+**Mobil.** İstemci yine de sunucudan gelen metni körlemesine göstermiyor
+(`ApiException.safeServerMessage`):
+
+- 5xx yanıtlarında metin ne olursa olsun genel mesaja düşülür,
+- 300 karakterden uzun metin (yığın izi/HTML hata sayfası göstergesi) elenir,
+- `Exception`, `Caused by`, `java.`, `org.springframework`,
+  `com.autismsupport`, `SQLSTATE`, `SELECT … FROM`, `<html` gibi iç ayrıntı
+  işaretleri taşıyan metin elenir.
+
+Ayrıca Dio'nun varsayılan hata dalı artık `e.message` döndürmüyor: o metin
+istek adresini ve host'u içeriyordu ve doğrudan kullanıcıya gösteriliyordu.
+Kurallar `test/error_and_logging_test.dart` ile korunuyor.
+
+## 14. Günlük hijyeni
+
+**Mobil.**
+
+- Ağ günlükçüsü yalnızca yöntem + yol + durum kodu yazar; istek gövdesi
+  (çocuk sağlık kaydı, acil durum kartı, şifre) ve `Authorization` başlığı
+  hiçbir derlemede günlüğe düşmez (`test/network_logging_test.dart`) ve
+  varsayılan olarak yalnızca debug'da açıktır.
+- **`debugPrint` sürüm derlemesinde de yazar** ve yazdığı satır cihaz
+  günlüğüne (logcat) düşer; istisna metinleri oraya sızıyordu. Artık günlükler
+  `core/util/app_log.dart` üzerinden geçiyor (`logDebug`/`logDebugError`,
+  sürümde no-op). Sürümde hata takibi Crashlytics'te. `lib/` içinde doğrudan
+  `debugPrint` kullanımı testle yasaklandı.
+
+**Sunucu.** `logging.level.com.autismsupport` varsayılanı `INFO`, Spring
+Security `WARN`; SQL günlüğü kapalı. `LOG_LEVEL=DEBUG` üretimde açılırsa
+sağlık verisi günlüğe düşebilir — kontrol listesine eklendi.
+
+## 15. Sorgu parametreleme
+
+Depodaki 104 `@Query` JPQL ya da native SQL; hepsi **adlandırılmış
+parametre** kullanıyor (`:userId`, `:q`). Kaynakta görünen `+` işaretleri
+kullanıcı girdisini değil, çok satırlı sorgu metnini birleştiriyor.
+
+Dinamik kurulan tek yer `SearchService`: filtre varsa `WHERE` cümlesine
+**sabit** parçalar ekleniyor (`AND p.category = :category` gibi), değerlerin
+tamamı `setParameter` ile bağlanıyor, `LIMIT` sabit. Yani birleştirilen metne
+kullanıcı girdisi hiç girmiyor — enjeksiyon yüzeyi yok.
+
+Mobil tarafta yerel veritabanı yok (sqflite/drift kullanılmıyor), istemcide
+sorgu kurulmuyor.
+
+## 16. XSS
+
+**Mobil (risk yok).** Uygulama WebView kullanmıyor; bilgi bankası ve forum
+içerikleri `htmlToPlainText` ile düz metne çevrilip `Text` bileşenleriyle
+çiziliyor, yani içerikteki işaretleme çalıştırılamaz. Dış bağlantılar
+`core/util/external_link.dart` ile yalnızca `http`/`https` şemasına açık —
+tarayıcı bağlamında XSS taşıyıcısı olan `javascript:` adresleri engelli.
+Paylaşım bağlantısındaki jeton sunucuda `Base64.getUrlEncoder()` ile
+üretiliyor, URL güvenli.
+
+**Sunucu.** `HtmlSanitizer` var ama yalnızca `ForumService` içinde
+uygulanıyor; bilgi bankası makalesi içeriği temizlenmeden saklanıyor.
+
+⚠️ **Web'de açık bir XSS yolu var** (bu depoda düzeltilemez):
+
+| Yer | Durum |
+| --- | --- |
+| `frontend/src/pages/ForumPage.tsx:471` | `sanitizeHtml(...)` ile temizlenip basılıyor ✓ |
+| `frontend/src/pages/KnowledgePage.tsx:749` | `dangerouslySetInnerHTML={{ __html: parsed.text }}` — **temizlenmiyor** ⚠️ |
+
+Makale içeriğini yazabilen biri (uzman/yönetici hesabı ya da o hesabı ele
+geçiren biri) makaleyi okuyan herkesin tarayıcısında betik çalıştırabilir.
+İki katmanlı çözüm: web'de aynı `sanitizeHtml` ile sarmak **ve** sunucuda
+kaydederken `HtmlSanitizer`'ı bilgi bankası içeriğine de uygulamak.
+
+## 17. Üretim kontrol listesi
 
 Bu depodan doğrulanamayan, sunucuda bakılması gerekenler:
 
@@ -364,3 +442,8 @@ Bu depodan doğrulanamayan, sunucuda bakılması gerekenler:
 - [ ] `server.forward-headers-strategy=framework` ve vekilde http→https
       yönlendirme var mı — §10.
 - [ ] Güvenlik başlıkları (HSTS/CSP/Referrer-Policy) eklendi mi — §9.
+- [ ] `LOG_LEVEL` üretimde `INFO` mu (DEBUG sağlık verisini günlüğe düşürür)
+      — §14.
+- [ ] Swagger/OpenAPI üretimde kapalı mı (`SPRINGDOC_API_DOCS_ENABLED=false`);
+      şu an yalnızca ADMIN rolüne kısıtlı ama kapatmak daha ucuz.
+- [ ] Bilgi bankası içeriği web'de temizlenerek mi basılıyor — §16.

@@ -35,13 +35,45 @@ class ApiException implements Exception {
         final fallback = code == 429
             ? t.errors.tooManyRequests
             : t.errors.generic(code: code?.toString() ?? '?');
-        return ApiException(serverMsg ?? fallback, statusCode: code);
+        return ApiException(
+          safeServerMessage(serverMsg, statusCode: code) ?? fallback,
+          statusCode: code,
+        );
       case DioExceptionType.cancel:
         return ApiException(t.errors.cancelled);
       default:
-        return ApiException(e.message ?? t.errors.unexpected);
+        // `e.message` istek adresini ve host'u içerebiliyor; kullanıcıya
+        // gösterilecek metin sunucu altyapısını anlatmamalı.
+        return ApiException(t.errors.unexpected);
     }
   }
+
+  /// Sunucudan gelen metni kullanıcıya göstermeden önce süzer.
+  ///
+  /// Backend'in kendi yazdığı kısa Türkçe mesajlar (ör. "Bu e-posta adresi
+  /// zaten kullanılıyor") olduğu gibi geçer. 5xx yanıtlarında ve yığın izi /
+  /// SQL / sınıf adı gibi iç ayrıntı taşıyan metinlerde `null` döner; çağıran
+  /// genel mesaja düşer. Amaç, bir gün ham istisna metni dönen bir uç noktanın
+  /// altyapıyı kullanıcı ekranında ifşa etmemesi.
+  static String? safeServerMessage(String? raw, {int? statusCode}) {
+    final message = raw?.trim();
+    if (message == null || message.isEmpty) return null;
+    // Sunucu hatasında metin ne olursa olsun gösterilmez.
+    if (statusCode != null && statusCode >= 500) return null;
+    // Kullanıcıya gösterilecek bir uyarı kısa olur; uzun metin genelde
+    // yığın izi ya da HTML hata sayfasıdır.
+    if (message.length > 300) return null;
+    if (_internalDetail.hasMatch(message)) return null;
+    return message;
+  }
+
+  /// İç ayrıntı işaretleri: istisna/paket adları, yığın izi, SQL, HTML.
+  static final RegExp _internalDetail = RegExp(
+    r'(Exception|Throwable|Caused by|\bat [a-z]+\.[a-z]+\.|java\.|jakarta\.|'
+    r'org\.springframework|com\.autismsupport|SQLSTATE|\bSELECT\b.*\bFROM\b|'
+    r'<html|<!DOCTYPE)',
+    caseSensitive: false,
+  );
 
   static String? _extractMessage(dynamic data) {
     if (data is Map) {
