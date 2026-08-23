@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/util/input_rules.dart';
 import '../../../core/util/password_rules.dart';
 import '../../../core/widgets/password_strength_meter.dart';
 import '../../../i18n/strings.g.dart';
@@ -296,7 +297,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
       return _showError(t.register.errorFullNameRequired);
     }
     if (email.isEmpty) return _showError(t.register.errorEmailRequired);
-    if (!email.contains('@') || !email.contains('.')) {
+    if (!isValidEmail(email)) {
       return _showError(t.register.errorEmailInvalid);
     }
     if (validatePassword(_password.text) case final issue?) {

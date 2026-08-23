@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -5,14 +7,17 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/util/input_rules.dart';
 import '../../../i18n/strings.g.dart';
 import '../domain/app_user.dart';
+import '../domain/login_throttle.dart';
 import 'auth_controller.dart';
 
 /// Giriş ekranı — Stitch "Giriş Yap" tasarımı.
 ///
-/// Faz 2'de gerçek Firebase Auth (e-posta/şifre + Google) bağlanacak.
-/// Şu an butonlar akışı doğrulamak için geçici [AuthController.devSignIn] çağırır.
+/// Kimlik backend'in JWT'siyle kurulur. Art arda başarısız denemede cihazda
+/// bekleme uygulanır (bkz. [LoginThrottle]); sunucu tarafındaki asıl sınır
+/// `/api/auth/login` üzerindeki 429 kuralıdır.
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
 
@@ -26,11 +31,31 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   bool _obscure = true;
   bool _rememberMe = false;
 
+  /// Art arda başarısız giriş sayısı ve kalan bekleme (saniye).
+  int _failedAttempts = 0;
+  int _cooldownLeft = 0;
+  Timer? _cooldownTimer;
+
   @override
   void dispose() {
+    _cooldownTimer?.cancel();
     _email.dispose();
     _password.dispose();
     super.dispose();
+  }
+
+  /// Geri sayımı başlatır; süre dolunca düğme yeniden açılır.
+  void _startCooldown(Duration wait) {
+    _cooldownTimer?.cancel();
+    setState(() => _cooldownLeft = wait.inSeconds);
+    _cooldownTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (!mounted) {
+        timer.cancel();
+        return;
+      }
+      setState(() => _cooldownLeft--);
+      if (_cooldownLeft <= 0) timer.cancel();
+    });
   }
 
   @override
@@ -105,7 +130,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               autofillHints: const [AutofillHints.password],
                               // Klavyedeki "bitti" doğrudan giriş yapsın.
                               textInputAction: TextInputAction.done,
-                              onSubmitted: isBusy ? null : _onLogin,
+                              onSubmitted:
+                                  isBusy || _cooldownLeft > 0 ? null : _onLogin,
                               trailing: IconButton(
                                 tooltip: _obscure
                                     ? t.common.a11y.showPassword
@@ -157,7 +183,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       ),
                       const SizedBox(height: 8),
                       FilledButton(
-                        onPressed: isBusy ? null : _onLogin,
+                        // Bekleme sırasında düğme kapalı ve kalan süreyi yazar.
+                        onPressed: isBusy || _cooldownLeft > 0
+                            ? null
+                            : _onLogin,
                         child: isBusy
                             ? const SizedBox(
                                 height: 22,
@@ -166,7 +195,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                   strokeWidth: 2,
                                 ),
                               )
-                            : Text(t.auth.loginButton),
+                            : Text(
+                                _cooldownLeft > 0
+                                    ? t.errors.retryInSeconds(
+                                        count: _cooldownLeft,
+                                      )
+                                    : t.auth.loginButton,
+                              ),
                       ),
                       const SizedBox(height: 20),
                       Row(
@@ -210,21 +245,41 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   }
 
   Future<void> _onLogin() async {
+    final t = context.t;
+    if (_cooldownLeft > 0) {
+      _showError(t.errors.retryInSeconds(count: _cooldownLeft));
+      return;
+    }
     final email = _email.text.trim();
     final password = _password.text;
     if (email.isEmpty || password.isEmpty) {
-      _showError(context.t.auth.errorEmptyFields);
+      _showError(t.auth.errorEmptyFields);
       return;
     }
-    final error = await ref
+    if (!isValidEmail(email)) {
+      _showError(t.errors.invalidEmail);
+      return;
+    }
+    final failure = await ref
         .read(authControllerProvider.notifier)
         .signIn(email, password);
-    if (error == null) {
+    if (failure == null) {
+      _failedAttempts = 0;
       // Şifre yöneticisine "kaydedeyim mi?" istemini tetikler.
       TextInput.finishAutofillContext();
       return; // router otomatik ana sayfaya yönlendirir
     }
     if (!mounted) return;
+
+    // Art arda başarısız denemede cihaz tarafında bekleme uygula; sunucu
+    // 429 döndüyse doğrudan sunucu penceresi kadar bekle.
+    _failedAttempts++;
+    final wait = failure.isRateLimited
+        ? LoginThrottle.rateLimited
+        : LoginThrottle.cooldownAfter(_failedAttempts);
+    if (wait > Duration.zero) _startCooldown(wait);
+
+    final error = failure.message;
     // Backend doğrulanmamış e-postada girişi engelliyor ("Giriş yapmadan önce
     // e-posta adresinizi doğrulayın"); kullanıcıyı çıkmaz sokakta bırakmamak
     // için doğrulama ekranına kısayol sun.

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/util/input_rules.dart';
 import '../../../core/network/api_exception.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
@@ -23,7 +24,6 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
   bool _sent = false;
   String? _error;
 
-  static final _emailRe = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
 
   @override
   void dispose() {
@@ -38,7 +38,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
       setState(() => _error = t.forgotPassword.errorEmailRequired);
       return;
     }
-    if (!_emailRe.hasMatch(email)) {
+    if (!isValidEmail(email)) {
       setState(() => _error = t.forgotPassword.errorEmailInvalid);
       return;
     }

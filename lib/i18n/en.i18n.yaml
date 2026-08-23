@@ -1983,6 +1983,13 @@ errors:
   unexpectedResponse: Unexpected server response.
   operationFailed: Operation failed.
   noUserInResponse: No user information in the server response.
+  tooManyRequests: Too many attempts. Please wait a moment and try again.
+  retryInSeconds: You can try again in $count seconds.
+  uploadTooLarge: The file is too large (max $limit MB).
+  uploadTypeNotSupported: This file type is not supported. You can upload JPG,
+    PNG, WEBP, GIF, PDF and TXT files.
+  uploadEmptyFile: The file is empty or could not be read.
+  invalidEmail: Enter a valid email address.
 
 guide:
   title: User Guide

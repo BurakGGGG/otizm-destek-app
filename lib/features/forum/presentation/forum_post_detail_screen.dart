@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/util/input_rules.dart';
 import '../../../core/haptics.dart';
 import '../../../core/network/api_exception.dart';
 import '../../../core/theme/app_colors.dart';
@@ -447,6 +448,7 @@ class _ForumPostDetailScreenState
                                 Expanded(
                                   child: TextField(
                                     controller: _comment,
+                                    inputFormatters: lengthLimit(kMaxCommentLength),
                                     enabled: !_sending,
                                     minLines: 1,
                                     maxLines: 3,

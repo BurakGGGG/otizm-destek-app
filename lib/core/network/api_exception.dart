@@ -12,6 +12,9 @@ class ApiException implements Exception {
 
   bool get isUnauthorized => statusCode == 401;
 
+  /// Sunucu hız sınırı (HTTP 429) — arayüz bekleme süresi gösterebilir.
+  bool get isRateLimited => statusCode == 429;
+
   @override
   String toString() => 'ApiException($statusCode): $message';
 
@@ -27,11 +30,12 @@ class ApiException implements Exception {
       case DioExceptionType.badResponse:
         final code = e.response?.statusCode;
         final serverMsg = _extractMessage(e.response?.data);
-        // Backend kullanıcı dostu mesaj döndürdüyse onu göster.
-        return ApiException(
-          serverMsg ?? t.errors.generic(code: code?.toString() ?? '?'),
-          statusCode: code,
-        );
+        // Backend kullanıcı dostu mesaj döndürdüyse onu göster; 429'da
+        // gövde boş gelirse genel "hata (429)" yerine anlaşılır metin.
+        final fallback = code == 429
+            ? t.errors.tooManyRequests
+            : t.errors.generic(code: code?.toString() ?? '?');
+        return ApiException(serverMsg ?? fallback, statusCode: code);
       case DioExceptionType.cancel:
         return ApiException(t.errors.cancelled);
       default:

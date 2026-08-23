@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/util/input_rules.dart';
 import '../../../../core/network/api_exception.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../i18n/strings.g.dart';
@@ -91,6 +92,7 @@ class _GroupFormSheetState extends ConsumerState<GroupFormSheet> {
             const SizedBox(height: 16),
             TextField(
               controller: _name,
+              inputFormatters: lengthLimit(kMaxTitleLength),
               textCapitalization: TextCapitalization.words,
               decoration: InputDecoration(
                 labelText: t.groups.nameLabel,
@@ -100,6 +102,7 @@ class _GroupFormSheetState extends ConsumerState<GroupFormSheet> {
             const SizedBox(height: 12),
             TextField(
               controller: _description,
+              inputFormatters: lengthLimit(kMaxShortTextLength),
               minLines: 2,
               maxLines: 4,
               textCapitalization: TextCapitalization.sentences,

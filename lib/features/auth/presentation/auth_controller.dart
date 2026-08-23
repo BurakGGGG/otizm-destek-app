@@ -45,6 +45,15 @@ class AuthState {
 }
 
 /// Backend JWT auth ile oturum kontrolcüsü.
+/// Başarısız giriş sonucu — mesaj ve sunucunun hız sınırına takılıp
+/// takılmadığı (arayüz buna göre bekleme uyguluyor).
+class AuthFailure {
+  const AuthFailure(this.message, {this.isRateLimited = false});
+
+  final String message;
+  final bool isRateLimited;
+}
+
 class AuthController extends Notifier<AuthState> {
   AuthRepository get _repo => ref.read(authRepositoryProvider);
   SecureStorage get _storage => ref.read(secureStorageProvider);
@@ -74,7 +83,7 @@ class AuthController extends Notifier<AuthState> {
   }
 
   /// Giriş. Başarılıysa `null`, hatadaysa kullanıcıya gösterilecek mesaj döner.
-  Future<String?> signIn(String email, String password) async {
+  Future<AuthFailure?> signIn(String email, String password) async {
     state = state.copyWith(isBusy: true);
     try {
       final result = await _repo.login(email.trim(), password);
@@ -82,9 +91,11 @@ class AuthController extends Notifier<AuthState> {
         // Token'sız yanıt: iki adımlı doğrulama (mobilde henüz yok) ya da
         // beklenmedik bir durum. Boş token'la "giriş yapıldı" sanılmamalı.
         state = const AuthState(status: AuthStatus.unauthenticated);
-        return result.mfaRequired
-            ? t.auth.errorMfaRequired
-            : t.errors.unexpectedResponse;
+        return AuthFailure(
+          result.mfaRequired
+              ? t.auth.errorMfaRequired
+              : t.errors.unexpectedResponse,
+        );
       }
       await _storage.saveTokens(
         accessToken: result.accessToken,
@@ -94,7 +105,7 @@ class AuthController extends Notifier<AuthState> {
       return null;
     } on ApiException catch (e) {
       state = const AuthState(status: AuthStatus.unauthenticated);
-      return e.message;
+      return AuthFailure(e.message, isRateLimited: e.isRateLimited);
     }
   }
 

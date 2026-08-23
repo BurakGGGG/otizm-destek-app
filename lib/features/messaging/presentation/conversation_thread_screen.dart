@@ -9,6 +9,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:stomp_dart_client/stomp_dart_client.dart';
 
+import '../../../core/util/input_rules.dart';
 import '../../../core/haptics.dart';
 import '../../../core/network/api_exception.dart';
 import '../../../core/network/media.dart';
@@ -849,6 +850,7 @@ class _InputBar extends StatelessWidget {
             Expanded(
               child: TextField(
                 controller: controller,
+                inputFormatters: lengthLimit(kMaxTextLength),
                 minLines: 1,
                 maxLines: 4,
                 textInputAction: TextInputAction.send,

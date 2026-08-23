@@ -2344,6 +2344,12 @@ class _Translations$errors$en extends Translations$errors$tr {
 	@override String get unexpectedResponse => 'Unexpected server response.';
 	@override String get operationFailed => 'Operation failed.';
 	@override String get noUserInResponse => 'No user information in the server response.';
+	@override String get tooManyRequests => 'Too many attempts. Please wait a moment and try again.';
+	@override String retryInSeconds({required Object count}) => 'You can try again in ${count} seconds.';
+	@override String uploadTooLarge({required Object limit}) => 'The file is too large (max ${limit} MB).';
+	@override String get uploadTypeNotSupported => 'This file type is not supported. You can upload JPG, PNG, WEBP, GIF, PDF and TXT files.';
+	@override String get uploadEmptyFile => 'The file is empty or could not be read.';
+	@override String get invalidEmail => 'Enter a valid email address.';
 }
 
 // Path: guide
@@ -4584,6 +4590,12 @@ extension on TranslationsEn {
 			'errors.unexpectedResponse' => 'Unexpected server response.',
 			'errors.operationFailed' => 'Operation failed.',
 			'errors.noUserInResponse' => 'No user information in the server response.',
+			'errors.tooManyRequests' => 'Too many attempts. Please wait a moment and try again.',
+			'errors.retryInSeconds' => ({required Object count}) => 'You can try again in ${count} seconds.',
+			'errors.uploadTooLarge' => ({required Object limit}) => 'The file is too large (max ${limit} MB).',
+			'errors.uploadTypeNotSupported' => 'This file type is not supported. You can upload JPG, PNG, WEBP, GIF, PDF and TXT files.',
+			'errors.uploadEmptyFile' => 'The file is empty or could not be read.',
+			'errors.invalidEmail' => 'Enter a valid email address.',
 			'guide.title' => 'User Guide',
 			'guide.subtitle' => 'See your first steps, what each section does and the support channels — all in one place.',
 			'guide.searchHint' => 'Search for a section, topic or action…',

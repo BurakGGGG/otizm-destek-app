@@ -62,3 +62,7 @@ config/*.local.json
 .env
 .env.*
 !.env.example
+
+# slang analyze çıktıları (geçici rapor)
+lib/i18n/_missing_translations.yaml
+lib/i18n/_unused_translations.yaml

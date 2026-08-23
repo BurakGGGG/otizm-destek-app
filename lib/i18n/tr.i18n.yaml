@@ -1989,6 +1989,14 @@ errors:
   unexpectedResponse: Beklenmeyen sunucu yanıtı.
   operationFailed: İşlem başarısız.
   noUserInResponse: Sunucu yanıtında kullanıcı bilgisi yok.
+  tooManyRequests: Çok fazla deneme yaptınız. Lütfen biraz bekleyip tekrar
+    deneyin.
+  retryInSeconds: $count saniye sonra tekrar deneyebilirsiniz.
+  uploadTooLarge: Dosya çok büyük (en fazla $limit MB).
+  uploadTypeNotSupported: Bu dosya türü desteklenmiyor. JPG, PNG, WEBP, GIF,
+    PDF ve TXT yükleyebilirsiniz.
+  uploadEmptyFile: Dosya okunamadı ya da boş.
+  invalidEmail: Geçerli bir e-posta adresi girin.
 
 guide:
   title: Kullanıcı Rehberi

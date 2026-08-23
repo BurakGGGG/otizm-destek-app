@@ -147,3 +147,116 @@ için `VIEW` + `http(s)` paket görünürlük sorguları var — izin değil, An
 11+ paket görünürlüğü. Kamera/galeri erişimi `image_picker`'ın sistem
 seçicisiyle yapılır, ayrı izin istenmez. Yeni izin eklemeden önce özelliğin
 onsuz çalışıp çalışmadığını kontrol edin.
+
+## 5. Girişe sınır
+
+**Sunucu (asıl koruma).** `@RateLimit` ek açıklaması ilgili uçlarda pencere
+başına istek sayısını sınırlıyor; aşılınca HTTP 429 + JSON mesaj dönüyor:
+
+| Uç nokta | Sınır |
+| --- | --- |
+| `POST /api/auth/login` | 10 / 60 sn |
+| `POST /api/auth/register` | 20 / 60 sn |
+| `GET /api/auth/check-email` | 30 / 60 sn |
+| `POST /api/auth/forgot-password` | 5 / 60 sn |
+| `POST /api/auth/refresh` | 60 / 60 sn |
+| e-posta doğrulama tekrar gönder | 3 / saat |
+| `POST /api/upload` | 30 / 60 sn |
+| Sohbet botu | 20 ve 10 / 60 sn |
+
+Anahtar: oturum açıksa kullanıcı kimliği, değilse IP. Sayaç Redis'te
+(`RATE_LIMIT_REDIS_ENABLED`, varsayılan açık), Redis erişilemezse süreç
+belleğine düşüyor.
+
+⚠️ **Yapılandırma uyarısı:** `app.rate-limit.trust-proxy-headers` varsayılanı
+`false`. Uygulama bir ters vekilin (Render, nginx) arkasındaysa bütün istekler
+vekilin IP'siyle görünür; o zaman IP başına sınır çalışmaz — herkes tek bir
+kovayı paylaşır ve tek bir saldırgan bütün kullanıcıların girişini 429'a
+sokabilir. Ters vekil arkasında `TRUST_PROXY_HEADERS=true` verilmeli (vekilin
+`X-Forwarded-For` başlığını kendisi yazdığından emin olarak).
+
+**Not:** başarısız denemeye bağlı hesap kilidi yok; koruma yalnızca hız
+sınırı. Farklı IP'lerden dağıtılmış kimlik denemesi bu kuralla engellenmez.
+
+**Mobil (tamamlayıcı).** `LoginThrottle`: ilk 4 başarısız deneme beklemesiz,
+sonrası 15 sn'den başlayıp ikiye katlanarak 5 dakikaya kadar çıkıyor; sunucu
+429 döndüyse doğrudan 60 sn bekleniyor. Bekleme sırasında giriş düğmesi kapalı
+ve kalan süreyi yazıyor. `ApiException.isRateLimited` (429) arayüze bu bilgiyi
+taşıyor; backend `Retry-After` göndermediği için süre istemcide belirleniyor.
+Kurallar saf ve `test/input_and_limits_test.dart` ile korunuyor.
+
+## 6. Girdi doğrulama
+
+**Sunucu.** DTO'larda 70 `@NotBlank`, 18 `@Size`, 5 `@Email`, `@Min`/`@Pattern`
+kısıtları var ve controller'lar `@Valid` ile çağırıyor. Kayıt akışında rol,
+KVKK onayı ve uzman lisansı ayrıca kontrol ediliyor.
+
+**Mobil.** `core/util/input_rules.dart` sunucudaki `@Size` sınırlarını
+yansıtır (başlık 200, kısa metin 500, yorum 1000, metin 2000, uzun metin
+4000). Metin alanlarına `lengthLimit(...)` biçimlendiricisi takılıyor —
+`maxLength` yerine bu kullanılıyor, çünkü sayaç bütün formların düzenini
+değiştirirdi. E-posta biçimi tek yerden (`isValidEmail`) kontrol ediliyor;
+giriş, kayıt ve şifre sıfırlama ekranları aynı kuralı kullanıyor (kayıt ekranı
+eskiden yalnızca "@ ve . var mı" bakıyordu, şifremi unuttum ekranının kendi
+kopyası vardı). `sanitizeSingleLine` tek satırlık alanlara yapıştırılan
+satır sonu/kontrol karakterlerini temizler.
+
+**Yeni alan eklerken:** sunucudaki `@Size` karşılığını bul, `input_rules.dart`
+sabitlerinden uygun olanı `inputFormatters: lengthLimit(...)` ile ver.
+
+## 7. Yükleme sınırları
+
+**Sunucu.** `FileStorageService` sırasıyla: boş dosya reddi → içerik türü
+allowlist'i (`image/jpeg|png|webp|gif`, `application/pdf`, `text/plain`) →
+uzantının içerik türüyle eşleşmesi → **dosya imzası (magic bytes)** kontrolü →
+UUID'li yeni dosya adı → yol geçişi (path traversal) kontrolü. Multipart
+sınırı 10 MB, uç nokta 30/60 sn hız sınırlı, indirme (`GET /api/upload/**`)
+kimlik doğrulaması istiyor ve kapsam (`scopeType`/`scopeId`) yükleyene göre
+doğrulanıyor.
+
+**Mobil.** Fotoğraflar zaten `image_picker` ile küçültülüyor (maxWidth
+1024/1600, kalite %85). Buna ek olarak `UploadRepository` istek göndermeden
+önce `upload_rules.dart` ile boyut (≤10 MB) ve uzantı kontrolü yapıp
+anlaşılır bir hata veriyor, ayrıca parça başlığına içerik türünü **açıkça**
+yazıyor (Dio dosya adından çıkaramadığında `application/octet-stream`
+yazıyor; sunucunun listesinde olmadığı için yükleme reddedilirdi).
+
+## 8. CORS
+
+CORS yalnızca tarayıcıyı ilgilendirir; mobil uygulama etkilenmez ama aynı
+backend'i web PWA ile paylaştığı için yapılandırma buraya da not edildi.
+
+`SecurityConfig.corsConfigurationSource()`:
+
+- **Origin allowlist**, joker yok: `app.cors.allowed-origins` (env
+  `CORS_ORIGINS`) virgülle ayrılmış listeden okunuyor.
+- Yöntemler açıkça sayılı (GET/POST/PUT/DELETE/PATCH/OPTIONS).
+- `allowCredentials(true)` — httpOnly refresh çerezi için gerekli. Bu bayrak
+  açıkken Spring `*` origin'i zaten reddeder, yani yanlışlıkla herkese
+  açılamaz.
+- `allowedHeaders("*")` — kimlik doğrulama origin ve çerezle yapıldığı için
+  risk düşük; istenirse `Authorization, Content-Type, X-Requested-With` ile
+  daraltılabilir.
+
+⚠️ **Üretimde doğrulanacak:** `CORS_ORIGINS` varsayılanı
+`http://localhost:5173`. Sunucuda gerçek origin'ler tam ve şemasıyla
+verilmeli, sonunda eğik çizgi olmadan:
+
+```bash
+CORS_ORIGINS=https://otizmdestek.com,https://www.otizmdestek.com
+```
+
+Vercel önizleme adresleri kalıcı listeye girmemeli (her dağıtımda değişir ve
+tahmin edilebilir alt alan adları allowlist'i genişletir).
+
+## 9. Üretim kontrol listesi
+
+Bu depodan doğrulanamayan, sunucuda bakılması gerekenler:
+
+- [ ] `JWT_SECRET`, `ENCRYPTION_KEY`, `APP_BOOTSTRAP_ADMIN_PASSWORD`,
+      `DB_PASSWORD` tanımlı mı (§1'deki varsayılanlara düşmüyor mu)?
+- [ ] `TRUST_PROXY_HEADERS=true` (ters vekil arkasındaysa) — §5.
+- [ ] `CORS_ORIGINS` gerçek alan adlarıyla dolu mu — §8.
+- [ ] `app.auth.cookie-same-site` değeri (§1'deki CSRF notu).
+- [ ] Firebase kuralları yayınlandı mı: `firebase deploy --only storage` — §3.
+- [ ] Google Cloud Console'da Android API anahtarı kısıtlandı mı — §2.

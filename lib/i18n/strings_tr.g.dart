@@ -5784,6 +5784,24 @@ class Translations$errors$tr {
 
 	/// tr: 'Sunucu yanıtında kullanıcı bilgisi yok.'
 	String get noUserInResponse => 'Sunucu yanıtında kullanıcı bilgisi yok.';
+
+	/// tr: 'Çok fazla deneme yaptınız. Lütfen biraz bekleyip tekrar deneyin.'
+	String get tooManyRequests => 'Çok fazla deneme yaptınız. Lütfen biraz bekleyip tekrar deneyin.';
+
+	/// tr: '$count saniye sonra tekrar deneyebilirsiniz.'
+	String retryInSeconds({required Object count}) => '${count} saniye sonra tekrar deneyebilirsiniz.';
+
+	/// tr: 'Dosya çok büyük (en fazla $limit MB).'
+	String uploadTooLarge({required Object limit}) => 'Dosya çok büyük (en fazla ${limit} MB).';
+
+	/// tr: 'Bu dosya türü desteklenmiyor. JPG, PNG, WEBP, GIF, PDF ve TXT yükleyebilirsiniz.'
+	String get uploadTypeNotSupported => 'Bu dosya türü desteklenmiyor. JPG, PNG, WEBP, GIF, PDF ve TXT yükleyebilirsiniz.';
+
+	/// tr: 'Dosya okunamadı ya da boş.'
+	String get uploadEmptyFile => 'Dosya okunamadı ya da boş.';
+
+	/// tr: 'Geçerli bir e-posta adresi girin.'
+	String get invalidEmail => 'Geçerli bir e-posta adresi girin.';
 }
 
 // Path: guide
@@ -8556,6 +8574,12 @@ extension on Translations {
 			'errors.unexpectedResponse' => 'Beklenmeyen sunucu yanıtı.',
 			'errors.operationFailed' => 'İşlem başarısız.',
 			'errors.noUserInResponse' => 'Sunucu yanıtında kullanıcı bilgisi yok.',
+			'errors.tooManyRequests' => 'Çok fazla deneme yaptınız. Lütfen biraz bekleyip tekrar deneyin.',
+			'errors.retryInSeconds' => ({required Object count}) => '${count} saniye sonra tekrar deneyebilirsiniz.',
+			'errors.uploadTooLarge' => ({required Object limit}) => 'Dosya çok büyük (en fazla ${limit} MB).',
+			'errors.uploadTypeNotSupported' => 'Bu dosya türü desteklenmiyor. JPG, PNG, WEBP, GIF, PDF ve TXT yükleyebilirsiniz.',
+			'errors.uploadEmptyFile' => 'Dosya okunamadı ya da boş.',
+			'errors.invalidEmail' => 'Geçerli bir e-posta adresi girin.',
 			'guide.title' => 'Kullanıcı Rehberi',
 			'guide.subtitle' => 'Rolünüze göre ilk adımları, sayfaların ne işe yaradığını ve destek kanallarını tek yerde görün.',
 			'guide.searchHint' => 'Sayfa, konu veya işlem ara…',

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/util/input_rules.dart';
 import '../../../core/haptics.dart';
 import '../../../core/network/api_exception.dart';
 import '../../../core/theme/app_colors.dart';
@@ -154,6 +155,7 @@ class _NoteFormScreenState extends ConsumerState<NoteFormScreen> {
           children: [
             TextField(
               controller: _title,
+              inputFormatters: lengthLimit(kMaxTitleLength),
               textCapitalization: TextCapitalization.sentences,
               decoration: InputDecoration(
                 labelText: t.noteForm.nameLabel,
@@ -164,6 +166,7 @@ class _NoteFormScreenState extends ConsumerState<NoteFormScreen> {
             const SizedBox(height: 16),
             TextField(
               controller: _content,
+              inputFormatters: lengthLimit(kMaxLongTextLength),
               minLines: 3,
               maxLines: 6,
               decoration: InputDecoration(
