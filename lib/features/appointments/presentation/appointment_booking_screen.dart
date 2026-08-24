@@ -27,8 +27,14 @@ class _AppointmentBookingScreenState
   static const _duration = 50;
 
   final _notes = TextEditingController();
+
+  /// Tekrarlayan seans: 0 = tekil (web'deki seçeneklerle birebir).
+  int _recurrenceWeeks = 0;
   String? _childId;
-  String _type = 'FACE_TO_FACE';
+  /// Uzmanın sunduğu biçime göre başlar: yalnızca online çalışan bir uzmanda
+  /// yüz yüze seçilemez (web bu bayrakları randevu formunda kullanmıyor).
+  late String _type =
+      widget.expert.offersFaceToFace ? 'FACE_TO_FACE' : 'ONLINE';
   DateTime? _date;
   String? _time;
 
@@ -122,11 +128,16 @@ class _AppointmentBookingScreenState
             type: _type,
             duration: _duration,
             notes: _notes.text,
+            recurrenceWeeks: _recurrenceWeeks,
           );
       ref.invalidate(appointmentsProvider);
       if (!mounted) return;
       Haptics.success();
-      Navigator.of(context).pop(t.booking.created);
+      Navigator.of(context).pop(
+        _recurrenceWeeks > 1
+            ? t.appointments.recurrenceCreated(count: _recurrenceWeeks)
+            : t.booking.created,
+      );
     } on ApiException catch (e) {
       if (mounted) {
         setState(() => _submitting = false);
@@ -184,16 +195,22 @@ class _AppointmentBookingScreenState
             _Label(t.booking.typeLabel),
             SegmentedButton<String>(
               segments: [
-                ButtonSegment(
-                  value: 'FACE_TO_FACE',
-                  label: Text(t.appointments.typeFaceToFace),
-                  icon: const Icon(Icons.place_outlined),
-                ),
-                ButtonSegment(
-                  value: 'ONLINE',
-                  label: Text(t.appointments.typeOnline),
-                  icon: const Icon(Icons.videocam_outlined),
-                ),
+                // Uzman hangi biçimi sunuyorsa yalnızca o gösterilir; ikisi de
+                // kapalıysa (beklenmeyen veri) seçim açık bırakılır.
+                if (widget.expert.offersFaceToFace ||
+                    !widget.expert.offersOnline)
+                  ButtonSegment(
+                    value: 'FACE_TO_FACE',
+                    label: Text(t.appointments.typeFaceToFace),
+                    icon: const Icon(Icons.place_outlined),
+                  ),
+                if (widget.expert.offersOnline ||
+                    !widget.expert.offersFaceToFace)
+                  ButtonSegment(
+                    value: 'ONLINE',
+                    label: Text(t.appointments.typeOnline),
+                    icon: const Icon(Icons.videocam_outlined),
+                  ),
               ],
               selected: {_type},
               showSelectedIcon: false,
@@ -221,6 +238,34 @@ class _AppointmentBookingScreenState
             // Saat (slot)
             _Label(t.booking.timeLabel),
             _slotArea(t),
+            const SizedBox(height: 20),
+
+            // Tekrarlayan seans (web: Tekil / 4 / 8 / 12 / 24 hafta)
+            _Label(t.appointments.recurrenceTitle),
+            Text(
+              t.appointments.recurrenceHint,
+              style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    color: context.colors.textTertiary,
+                  ),
+            ),
+            const SizedBox(height: 8),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                for (final weeks in const [0, 4, 8, 12, 24])
+                  ChoiceChip(
+                    label: Text(
+                      weeks == 0
+                          ? t.appointments.recurrenceSingle
+                          : t.appointments.recurrenceWeeks(count: weeks),
+                    ),
+                    selected: _recurrenceWeeks == weeks,
+                    onSelected: (_) =>
+                        setState(() => _recurrenceWeeks = weeks),
+                  ),
+              ],
+            ),
             const SizedBox(height: 20),
 
             // Not

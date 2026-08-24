@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Ağ güvenliği yapılandırması — açık metin (HTTP) trafiği kapalı.
+
+  Uygulama yalnızca HTTPS konuşur (API, WebSocket ve kullanıcıların açtığı
+  bağlantılar). Android 9+ zaten varsayılan olarak açık metni engelliyor ama
+  bunu açıkça yazmak iki işe yarar: daha eski API seviyelerinde de geçerli
+  olur, ve bir bağımlılık manifestine `usesCleartextTraffic="true"` eklerse
+  birleşme sırasında bu kural kazanır.
+
+  Sertifika sabitleme (pinning) bilerek yapılmadı: sunucu sertifikası Render/
+  Let's Encrypt tarafından yenileniyor, sabitlenmiş bir pin yenilemede
+  uygulamayı tamamen offline'a düşürür.
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

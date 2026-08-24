@@ -1,4 +1,5 @@
 import '../../../core/util/html_text.dart';
+import '../../tags/domain/symptom_tag.dart';
 
 /// İçeriğe gömülü medya türü (`[MEDIA:video|podcast:url]` ön ekinden).
 enum ArticleMedia { none, video, podcast }
@@ -28,6 +29,8 @@ class Article {
     this.authorName,
     this.viewCount,
     this.createdAt,
+    this.bookmarked = false,
+    this.tags = const [],
   });
 
   final String id;
@@ -40,6 +43,27 @@ class Article {
   final String? authorName;
   final int? viewCount;
   final DateTime? createdAt;
+
+  /// Oturum sahibinin yer imlerinde mi (DTO `bookmarked`).
+  final bool bookmarked;
+
+  /// Semptom etiketleri (DTO `tags`) — adlar paylaşılan veri, çevrilmez.
+  final List<SymptomTag> tags;
+
+  Article copyWith({bool? bookmarked}) => Article(
+        id: id,
+        title: title,
+        category: category,
+        summary: summary,
+        format: format,
+        mediaUrl: mediaUrl,
+        content: content,
+        authorName: authorName,
+        viewCount: viewCount,
+        createdAt: createdAt,
+        bookmarked: bookmarked ?? this.bookmarked,
+        tags: tags,
+      );
 
   static final _mediaPrefix = RegExp(
     r'^\[MEDIA:(video|podcast):([^\]]+)\]\s*([\s\S]*)$',
@@ -87,6 +111,12 @@ class Article {
           : null,
       viewCount: (json['viewCount'] as num?)?.toInt(),
       createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? ''),
+      bookmarked: json['bookmarked'] == true,
+      tags: (json['tags'] as List?)
+              ?.whereType<Map<String, dynamic>>()
+              .map(SymptomTag.fromJson)
+              .toList() ??
+          const [],
     );
   }
 }

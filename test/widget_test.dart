@@ -10,6 +10,7 @@ import 'package:otizm_destek_app/i18n/strings.g.dart';
 class _FakeSecureStorage extends SecureStorage {
   String? access;
   String? refresh;
+  bool? persisted;
 
   @override
   Future<String?> readAccessToken() async => access;
@@ -18,9 +19,14 @@ class _FakeSecureStorage extends SecureStorage {
   Future<String?> readRefreshToken() async => refresh;
 
   @override
-  Future<void> saveTokens({required String accessToken, String? refreshToken}) async {
+  Future<void> saveTokens({
+    required String accessToken,
+    String? refreshToken,
+    bool? persist,
+  }) async {
     access = accessToken;
     refresh = refreshToken;
+    persisted = persist ?? persisted;
   }
 
   @override

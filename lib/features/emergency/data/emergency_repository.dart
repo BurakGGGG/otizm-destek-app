@@ -37,6 +37,40 @@ class EmergencyRepository {
     }
   }
 
+  /// Paylaşım durumu — `GET /emergency-card/{childId}/share`.
+  Future<EmergencyShareStatus> shareStatus(String childId) async {
+    try {
+      final res = await _dio.get('/emergency-card/$childId/share');
+      return EmergencyShareStatus.fromJson(
+        ApiEnvelope.fromJson(res.data).requireMap(),
+      );
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Süreli paylaşım bağlantısı açar — `POST /emergency-card/{childId}/share`.
+  /// [hours] backend sınırları içinde olmalı (1–720; geçersizse 24 uygulanır).
+  Future<void> enableShare(String childId, int hours) async {
+    try {
+      await _dio.post(
+        '/emergency-card/$childId/share',
+        queryParameters: {'hours': hours},
+      );
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Paylaşımı kapatır — mevcut bağlantı da geçersiz olur.
+  Future<void> disableShare(String childId) async {
+    try {
+      await _dio.delete('/emergency-card/$childId/share');
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
   /// `data` string ya da Map olabilir; ikisini de Map'e çevirir.
   Map<String, dynamic>? _decode(dynamic raw) {
     if (raw == null) return null;
@@ -58,4 +92,10 @@ final emergencyRepositoryProvider = Provider<EmergencyRepository>((ref) {
 final emergencyCardProvider =
     FutureProvider.family<EmergencyCard?, String>((ref, childId) {
   return ref.watch(emergencyRepositoryProvider).getCard(childId);
+});
+
+/// Seçili çocuğun paylaşım bağlantısı durumu.
+final emergencyShareProvider =
+    FutureProvider.family<EmergencyShareStatus, String>((ref, childId) {
+  return ref.watch(emergencyRepositoryProvider).shareStatus(childId);
 });

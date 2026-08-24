@@ -72,7 +72,9 @@ class ChildRepository {
     }
   }
 
-  /// Profil fotoğrafını günceller (önce [uploadImage] ile URL alınır).
+  /// Profil fotoğrafını günceller (önce [UploadRepository.upload] ile URL alınır;
+  /// çocuk fotoğrafı `CHILD_PROFILE` kapsamıyla yüklenir, aksi halde klinik
+  /// veriyi paylaşan uzman dosyayı göremez).
   Future<Child> updatePhoto(Child child, String imageUrl) async {
     try {
       final res = await _dio.put('/children/${child.id}', data: {
@@ -85,21 +87,6 @@ class ChildRepository {
     }
   }
 
-  /// Dosya yükler — `POST /upload` multipart, `{data:{url}}` döner.
-  Future<String> uploadImage(String filePath, String fileName) async {
-    try {
-      final form = FormData.fromMap({
-        'file': await MultipartFile.fromFile(filePath, filename: fileName),
-      });
-      final res = await _dio.post('/upload', data: form);
-      final data = ApiEnvelope.fromJson(res.data).requireMap();
-      final url = data['url']?.toString() ?? '';
-      if (url.isEmpty) throw const ApiException('Yükleme yanıtı geçersiz');
-      return url;
-    } on DioException catch (e) {
-      throw ApiException.fromDio(e);
-    }
-  }
 }
 
 final childRepositoryProvider = Provider<ChildRepository>((ref) {

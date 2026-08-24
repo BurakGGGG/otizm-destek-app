@@ -11,24 +11,34 @@ import '../../features/appointments/presentation/appointments_screen.dart';
 import '../../features/auth/presentation/register_screen.dart';
 import '../../features/analytics/presentation/analytics_screen.dart';
 import '../../features/auth/presentation/reset_password_screen.dart';
+import '../../features/auth/presentation/verify_email_screen.dart';
 import '../../features/behavior/presentation/behavior_screen.dart';
 import '../../features/calendar/presentation/calendar_screen.dart';
 import '../../features/chatbot/presentation/chat_screen.dart';
 import '../../features/community/presentation/meetups_screen.dart';
 import '../../features/community/presentation/weekly_question_screen.dart';
 import '../../features/children/presentation/children_screen.dart';
+import '../../features/children/presentation/expert_access_screen.dart';
+import '../../features/community/presentation/community_screen.dart';
 import '../../features/crisis/presentation/crisis_screen.dart';
 import '../../features/emergency/presentation/emergency_screen.dart';
 import '../../features/groups/presentation/groups_screen.dart';
+import '../../features/guide/presentation/guide_screen.dart';
 import '../../features/home/presentation/home_shell.dart';
 import '../../features/knowledge/presentation/knowledge_screen.dart';
+import '../../features/legal/presentation/legal_screen.dart';
 import '../../features/messaging/presentation/conversation_thread_screen.dart';
 import '../../features/messaging/presentation/conversations_screen.dart';
 import '../../features/mood/presentation/daily_tracker_screen.dart';
 import '../../features/notifications/presentation/notifications_screen.dart';
+import '../../features/onboarding/presentation/onboarding_screen.dart';
 import '../../features/profile/presentation/account_screen.dart';
 import '../../features/profile/presentation/help_screen.dart';
 import '../../features/routines/presentation/routines_screen.dart';
+import '../../features/settings/presentation/kvkk_screen.dart';
+import '../../features/search/presentation/search_screen.dart';
+import '../../features/settings/presentation/blocked_users_screen.dart';
+import '../../features/settings/presentation/settings_screen.dart';
 import '../../features/similar_families/presentation/similar_families_screen.dart';
 import '../../features/splash/splash_screen.dart';
 import '../../features/forum/presentation/forum_screen.dart';
@@ -37,15 +47,23 @@ import '../../features/notes/presentation/notes_screen.dart';
 import '../../features/tasks/presentation/tasks_screen.dart';
 import '../../features/treatment/presentation/treatment_screen.dart';
 import '../providers.dart';
+import '../storage/visited_routes.dart';
 
 /// Uygulama rotaları. Oturum durumuna göre yönlendirir (role duyarlı kabuk
 /// Faz 3'te genişletilecek).
 final goRouterProvider = Provider<GoRouter>((ref) {
   // Oturum durumu değişince router'ı tazelemek için köprü.
   final refresh = ValueNotifier<int>(0);
-  ref.listen(authControllerProvider.select((s) => s.status), (_, _) {
-    refresh.value++;
-  });
+  // Oturum durumu VE onboarding bayrağı yönlendirmeyi etkilediği için ikisi de
+  // dinlenir (sihirbaz bitince kullanıcı ana sayfaya geçebilmeli).
+  ref.listen(
+    authControllerProvider.select(
+      (s) => (s.status, s.user?.onboardingCompleted ?? true),
+    ),
+    (_, _) {
+      refresh.value++;
+    },
+  );
   ref.onDispose(refresh.dispose);
 
   // Firebase hazırsa ekran geçişlerini Analytics'e bildiren observer ekle.
@@ -54,26 +72,40 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       FirebaseAnalyticsObserver(analytics: ref.watch(analyticsProvider)),
   ];
 
-  return GoRouter(
+  final router = GoRouter(
     initialLocation: '/splash',
     refreshListenable: refresh,
     observers: observers,
     redirect: (context, state) {
-      final status = ref.read(authControllerProvider).status;
+      final auth = ref.read(authControllerProvider);
+      final status = auth.status;
       final loc = state.matchedLocation;
 
       if (status == AuthStatus.unknown) {
         return loc == '/splash' ? null : '/splash';
       }
+      // Yasal metinler oturum gerektirmez: kayıt ekranındaki KVKK onayından
+      // önce okunabilmeli (web'de de genel sayfalardır).
+      final isPublicPage = loc.startsWith('/legal');
       final onAuthScreen = loc == '/login' ||
           loc == '/register' ||
           loc == '/forgot-password' ||
-          loc == '/reset-password';
+          loc == '/reset-password' ||
+          loc == '/verify-email' ||
+          isPublicPage;
       if (status == AuthStatus.unauthenticated) {
         return onAuthScreen ? null : '/login';
       }
       // authenticated
-      if (onAuthScreen || loc == '/splash') return '/home';
+      // İlk giriş sihirbazı tamamlanmadıysa (backend `onboardingCompleted`)
+      // kullanıcı önce oraya alınır — web `/baslangic` ile aynı davranış.
+      final needsOnboarding = !(auth.user?.onboardingCompleted ?? true);
+      if (needsOnboarding && !isPublicPage) {
+        return loc == '/onboarding' ? null : '/onboarding';
+      }
+      if (loc == '/onboarding' && !needsOnboarding) return '/home';
+      // Yasal metinler oturum açıkken de doğrudan açılabilir.
+      if ((onAuthScreen && !isPublicPage) || loc == '/splash') return '/home';
       return null;
     },
     routes: [
@@ -97,11 +129,52 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         builder: (_, state) =>
             ResetPasswordScreen(token: state.uri.queryParameters['token']),
       ),
-      GoRoute(path: '/home', builder: (_, _) => const HomeShell()),
+      GoRoute(
+        path: '/verify-email',
+        builder: (_, state) {
+          final q = state.uri.queryParameters;
+          return VerifyEmailScreen(
+            email: q['email'],
+            token: q['token'],
+            pendingApproval: q['approval'] == '1',
+          );
+        },
+      ),
+      GoRoute(path: '/onboarding', builder: (_, _) => const OnboardingScreen()),
+      GoRoute(
+        path: '/home',
+        builder: (_, state) => HomeShell(
+          initialTab:
+              int.tryParse(state.uri.queryParameters['tab'] ?? '') ?? 0,
+        ),
+      ),
       GoRoute(path: '/chat', builder: (_, _) => const ChatScreen()),
+      GoRoute(path: '/search', builder: (_, _) => const SearchScreen()),
       GoRoute(path: '/children', builder: (_, _) => const ChildrenScreen()),
+      GoRoute(
+        path: '/expert-access',
+        builder: (_, _) => const ExpertAccessScreen(),
+      ),
       GoRoute(path: '/account', builder: (_, _) => const AccountScreen()),
+      GoRoute(path: '/settings', builder: (_, _) => const SettingsScreen()),
+      GoRoute(path: '/kvkk', builder: (_, _) => const KvkkScreen()),
+      GoRoute(
+        path: '/blocked',
+        builder: (_, _) => const BlockedUsersScreen(),
+      ),
+      GoRoute(path: '/legal', builder: (_, _) => const LegalIndexScreen()),
+      GoRoute(
+        path: '/legal/:kind',
+        builder: (_, state) => LegalDocumentScreen(
+          kind: legalKindFromName(state.pathParameters['kind']),
+        ),
+      ),
       GoRoute(path: '/help', builder: (_, _) => const HelpScreen()),
+      GoRoute(path: '/guide', builder: (_, _) => const GuideScreen()),
+      GoRoute(
+        path: '/community',
+        builder: (_, _) => const CommunityScreen(),
+      ),
       GoRoute(
         path: '/notifications',
         builder: (_, _) => const NotificationsScreen(),
@@ -150,9 +223,28 @@ final goRouterProvider = Provider<GoRouter>((ref) {
           return ConversationThreadScreen(
             conversationId: extra?['id'] as String? ?? '',
             title: extra?['title'] as String? ?? '',
+            otherUserId: extra?['otherUserId'] as String?,
+            isGroup: extra?['isGroup'] == true,
           );
         },
       ),
     ],
   );
+
+  // Açılan ekranları cihazda işaretle: ana sayfadaki başlangıç kontrol
+  // listesi ve "topluluğu keşfet" adımı bu kayda bakar. Gezinme sırasında
+  // sağlayıcı güncellemek yapı (build) aşamasına denk gelebildiği için
+  // işaretleme bir sonraki mikro göreve bırakılır.
+  void recordVisit() {
+    final path = router.routeInformationProvider.value.uri.path;
+    Future.microtask(
+      () => ref.read(visitedRoutesProvider.notifier).mark(path),
+    );
+  }
+
+  router.routeInformationProvider.addListener(recordVisit);
+  ref.onDispose(
+    () => router.routeInformationProvider.removeListener(recordVisit),
+  );
+  return router;
 });

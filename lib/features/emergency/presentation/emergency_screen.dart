@@ -8,6 +8,7 @@ import '../../../core/haptics.dart';
 import '../../../core/network/api_exception.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/tts/speech_service.dart';
 import '../../../core/widgets/empty_state.dart';
 import '../../../core/widgets/skeleton.dart';
 import '../../../i18n/strings.g.dart';
@@ -15,6 +16,7 @@ import '../../children/data/child_repository.dart';
 import '../../children/domain/child.dart';
 import '../data/emergency_repository.dart';
 import '../domain/emergency_card.dart';
+import 'emergency_share_card.dart';
 
 /// Acil Durum Kartı — çocuğun kritik bilgileri (`/api/emergency-card/{childId}`).
 class EmergencyScreen extends ConsumerStatefulWidget {
@@ -195,9 +197,11 @@ class _EmergencyFormState extends ConsumerState<_EmergencyForm> {
   late bool _wandering = widget.initial.wandering;
   late bool _nonVerbal = widget.initial.nonVerbal;
   bool _saving = false;
+  bool _speaking = false;
 
   @override
   void dispose() {
+    if (_speaking) ref.read(speechServiceProvider).stop();
     for (final c in _c.values) {
       c.dispose();
     }
@@ -205,6 +209,41 @@ class _EmergencyFormState extends ConsumerState<_EmergencyForm> {
   }
 
   String _text(String key) => _c[key]!.text.trim();
+
+  /// Kartın kritik satırlarını sesli okur (web "Sesli oku" birebir: ad, tanı,
+  /// ilk acil kişi ve sakinleştirme yöntemleri). Bakım verici ekranı
+  /// okuyamadığında işe yarar.
+  Future<void> _toggleSpeech() async {
+    final t = context.t;
+    final speech = ref.read(speechServiceProvider);
+    if (_speaking) {
+      await speech.stop();
+      if (mounted) setState(() => _speaking = false);
+      return;
+    }
+    final unknown = t.emergency.listenUnknown;
+    String value(String key) => _text(key).isEmpty ? unknown : _text(key);
+    final text = '${t.emergency.title}. '
+        '${t.emergency.childName}: ${value('childName')}. '
+        '${t.emergency.diagnosis}: ${value('diagnosisInfo')}. '
+        '${t.emergency.contact1}: ${value('contactName1')}, '
+        '${t.emergency.phone}: ${value('contactPhone1')}. '
+        '${t.emergency.calming}: ${value('calmingStrategies')}.';
+    speech.onDone = () {
+      if (mounted) setState(() => _speaking = false);
+    };
+    setState(() => _speaking = true);
+    final started = await speech.speak(
+      text,
+      languageCode: LocaleSettings.currentLocale.languageCode,
+    );
+    if (!mounted) return;
+    if (!started) {
+      setState(() => _speaking = false);
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(t.emergency.listenFailed)));
+    }
+  }
 
   Future<void> _save() async {
     final t = context.t;
@@ -271,7 +310,30 @@ class _EmergencyFormState extends ConsumerState<_EmergencyForm> {
         ),
         const SizedBox(height: 8),
         _StatusLine(existed: widget.existed, updatedAt: widget.initial.updatedAt),
+        if (widget.existed) ...[
+          const SizedBox(height: 8),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: OutlinedButton.icon(
+              style: AppButtonStyles.inlineOutlined,
+              onPressed: _toggleSpeech,
+              icon: Icon(
+                _speaking ? Icons.stop_rounded : Icons.volume_up_outlined,
+                size: 18,
+              ),
+              label: Text(
+                _speaking ? t.emergency.listenStop : t.emergency.listen,
+              ),
+            ),
+          ),
+        ],
         const SizedBox(height: 16),
+
+        // Süreli paylaşım (QR + bağlantı) — kart kaydedildikten sonra anlamlı.
+        if (widget.existed) ...[
+          EmergencyShareCard(childId: widget.initial.childId),
+          const SizedBox(height: 16),
+        ],
 
         // Çocuk Bilgileri
         _Section(

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/util/input_rules.dart';
 import '../../../core/haptics.dart';
 import '../../../core/network/api_exception.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/widgets/unsaved_changes_guard.dart';
 import '../../../i18n/strings.g.dart';
 import '../domain/development_note.dart';
 import '../domain/note_categories.dart';
@@ -32,6 +34,7 @@ class _NoteFormScreenState extends ConsumerState<NoteFormScreen> {
   late DateTime _date;
   bool _saving = false;
   String? _titleError;
+  late final String _initial;
 
   bool get _isEdit => widget.existing != null;
 
@@ -44,6 +47,7 @@ class _NoteFormScreenState extends ConsumerState<NoteFormScreen> {
     _category = existing?.category;
     _mood = existing?.mood;
     _date = existing?.noteDate ?? DateTime.now();
+    _initial = _snapshot();
   }
 
   @override
@@ -113,8 +117,27 @@ class _NoteFormScreenState extends ConsumerState<NoteFormScreen> {
     }
   }
 
+  /// Form açıldığındaki hâlden farklı mı?
+  /// (Onaysız çıkışta veri kaybını engellemek için.)
+  bool get _isDirty => _snapshot() != _initial;
+
+  String _snapshot() => [
+        _title.text,
+        _content.text,
+        _category ?? '',
+        _mood ?? '',
+        _iso(_date),
+      ].join('\u0000');
+
   @override
   Widget build(BuildContext context) {
+    return UnsavedChangesGuard(
+      hasChanges: () => _isDirty,
+      child: _form(context),
+    );
+  }
+
+  Widget _form(BuildContext context) {
     final t = context.t;
     final moods = <({String value, String emoji, String label})>[
       (value: 'happy', emoji: '😄', label: t.noteForm.moodHappy),
@@ -132,6 +155,7 @@ class _NoteFormScreenState extends ConsumerState<NoteFormScreen> {
           children: [
             TextField(
               controller: _title,
+              inputFormatters: lengthLimit(kMaxTitleLength),
               textCapitalization: TextCapitalization.sentences,
               decoration: InputDecoration(
                 labelText: t.noteForm.nameLabel,
@@ -142,6 +166,7 @@ class _NoteFormScreenState extends ConsumerState<NoteFormScreen> {
             const SizedBox(height: 16),
             TextField(
               controller: _content,
+              inputFormatters: lengthLimit(kMaxLongTextLength),
               minLines: 3,
               maxLines: 6,
               decoration: InputDecoration(

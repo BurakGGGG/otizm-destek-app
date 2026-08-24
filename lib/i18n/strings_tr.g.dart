@@ -46,19 +46,27 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$theme$tr theme = Translations$theme$tr.internal(_root);
 	late final Translations$roles$tr roles = Translations$roles$tr.internal(_root);
 	late final Translations$auth$tr auth = Translations$auth$tr.internal(_root);
+	late final Translations$verifyEmail$tr verifyEmail = Translations$verifyEmail$tr.internal(_root);
 	late final Translations$forgotPassword$tr forgotPassword = Translations$forgotPassword$tr.internal(_root);
 	late final Translations$resetPassword$tr resetPassword = Translations$resetPassword$tr.internal(_root);
+	late final Translations$password$tr password = Translations$password$tr.internal(_root);
 	late final Translations$register$tr register = Translations$register$tr.internal(_root);
+	late final Translations$settings$tr settings = Translations$settings$tr.internal(_root);
+	late final Translations$legal$tr legal = Translations$legal$tr.internal(_root);
+	late final Translations$kvkk$tr kvkk = Translations$kvkk$tr.internal(_root);
+	late final Translations$onboarding$tr onboarding = Translations$onboarding$tr.internal(_root);
 	late final Translations$nav$tr nav = Translations$nav$tr.internal(_root);
 	late final Translations$chat$tr chat = Translations$chat$tr.internal(_root);
 	late final Translations$messages$tr messages = Translations$messages$tr.internal(_root);
 	late final Translations$home$tr home = Translations$home$tr.internal(_root);
+	late final Translations$dailyPlan$tr dailyPlan = Translations$dailyPlan$tr.internal(_root);
 	late final Translations$specialists$tr specialists = Translations$specialists$tr.internal(_root);
 	late final Translations$progress$tr progress = Translations$progress$tr.internal(_root);
 	late final Translations$goalForm$tr goalForm = Translations$goalForm$tr.internal(_root);
 	late final Translations$noteForm$tr noteForm = Translations$noteForm$tr.internal(_root);
 	late final Translations$notesPage$tr notesPage = Translations$notesPage$tr.internal(_root);
 	late final Translations$notifications$tr notifications = Translations$notifications$tr.internal(_root);
+	late final Translations$search$tr search = Translations$search$tr.internal(_root);
 	late final Translations$knowledge$tr knowledge = Translations$knowledge$tr.internal(_root);
 	late final Translations$appointments$tr appointments = Translations$appointments$tr.internal(_root);
 	late final Translations$expertDetail$tr expertDetail = Translations$expertDetail$tr.internal(_root);
@@ -87,6 +95,10 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$help$tr help = Translations$help$tr.internal(_root);
 	late final Translations$profile$tr profile = Translations$profile$tr.internal(_root);
 	late final Translations$errors$tr errors = Translations$errors$tr.internal(_root);
+	late final Translations$guide$tr guide = Translations$guide$tr.internal(_root);
+	late final Translations$community$tr community = Translations$community$tr.internal(_root);
+	late final Translations$reviews$tr reviews = Translations$reviews$tr.internal(_root);
+	late final Translations$expertAccess$tr expertAccess = Translations$expertAccess$tr.internal(_root);
 }
 
 // Path: app
@@ -109,6 +121,9 @@ class Translations$common$tr {
 
 	// Translations
 
+	/// tr: 'Vazgeç'
+	String get cancel => 'Vazgeç';
+
 	/// tr: 'Yükleniyor'
 	String get loading => 'Yükleniyor';
 
@@ -127,6 +142,8 @@ class Translations$common$tr {
 	/// tr: 'Veriler yüklenemedi.'
 	String get loadError => 'Veriler yüklenemedi.';
 
+	late final Translations$common$unsaved$tr unsaved = Translations$common$unsaved$tr.internal(_root);
+	late final Translations$common$a11y$tr a11y = Translations$common$a11y$tr.internal(_root);
 	List<String> get monthsShort => [
 		'Oca',
 		'Şub',
@@ -246,6 +263,75 @@ class Translations$auth$tr {
 
 	/// tr: '$role kayıt ekranı yakında eklenecek.'
 	String registerComingSoon({required Object role}) => '${role} kayıt ekranı yakında eklenecek.';
+
+	/// tr: 'Bu hesapta iki adımlı doğrulama açık; şimdilik web üzerinden giriş yapın.'
+	String get errorMfaRequired => 'Bu hesapta iki adımlı doğrulama açık; şimdilik web üzerinden giriş yapın.';
+
+	/// tr: 'Doğrulama e-postasını yeniden gönder'
+	String get resendVerification => 'Doğrulama e-postasını yeniden gönder';
+}
+
+// Path: verifyEmail
+class Translations$verifyEmail$tr {
+	Translations$verifyEmail$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'E-posta Doğrulama'
+	String get title => 'E-posta Doğrulama';
+
+	/// tr: 'Gelen kutunuzu kontrol edin'
+	String get waitingTitle => 'Gelen kutunuzu kontrol edin';
+
+	/// tr: 'Doğrulama bağlantısını gönderdik. Bağlantıya dokunduktan sonra bu ekrana dönüp giriş yapabilirsiniz.'
+	String get waitingBody => 'Doğrulama bağlantısını gönderdik. Bağlantıya dokunduktan sonra bu ekrana dönüp giriş yapabilirsiniz.';
+
+	/// tr: '$email adresine doğrulama bağlantısı gönderdik. Bağlantıya dokunduktan sonra bu ekrana dönüp giriş yapabilirsiniz.'
+	String waitingBodyWithEmail({required Object email}) => '${email} adresine doğrulama bağlantısı gönderdik. Bağlantıya dokunduktan sonra bu ekrana dönüp giriş yapabilirsiniz.';
+
+	/// tr: 'E-posta birkaç dakika içinde gelmezse spam/gereksiz klasörünü kontrol edin.'
+	String get spamHint => 'E-posta birkaç dakika içinde gelmezse spam/gereksiz klasörünü kontrol edin.';
+
+	/// tr: 'Uzman hesabınız onay bekliyor'
+	String get approvalTitle => 'Uzman hesabınız onay bekliyor';
+
+	/// tr: 'Başvurunuz alındı. Lisans bilgileriniz yönetici tarafından doğrulandıktan sonra giriş yapabilirsiniz.'
+	String get approvalBody => 'Başvurunuz alındı. Lisans bilgileriniz yönetici tarafından doğrulandıktan sonra giriş yapabilirsiniz.';
+
+	/// tr: 'Doğrulama Kodu'
+	String get tokenLabel => 'Doğrulama Kodu';
+
+	/// tr: 'E-postadaki bağlantıda yer alan kod'
+	String get tokenHint => 'E-postadaki bağlantıda yer alan kod';
+
+	/// tr: 'Bağlantıyı açamıyorsanız içindeki kodu buraya yapıştırın.'
+	String get tokenHelp => 'Bağlantıyı açamıyorsanız içindeki kodu buraya yapıştırın.';
+
+	/// tr: 'Doğrula'
+	String get verifyButton => 'Doğrula';
+
+	/// tr: 'E-posta adresiniz doğrulanıyor…'
+	String get verifying => 'E-posta adresiniz doğrulanıyor…';
+
+	/// tr: 'E-postayı yeniden gönder'
+	String get resendButton => 'E-postayı yeniden gönder';
+
+	/// tr: 'Yeni doğrulama bağlantısı gönderildi. Gelen kutunuzu ve spam klasörünü kontrol edin.'
+	String get resent => 'Yeni doğrulama bağlantısı gönderildi. Gelen kutunuzu ve spam klasörünü kontrol edin.';
+
+	/// tr: 'E-posta adresiniz doğrulandı. Artık giriş yapabilirsiniz.'
+	String get success => 'E-posta adresiniz doğrulandı. Artık giriş yapabilirsiniz.';
+
+	/// tr: 'Lütfen doğrulama kodunu girin.'
+	String get errorTokenRequired => 'Lütfen doğrulama kodunu girin.';
+
+	/// tr: 'Yeniden göndermek için e-posta adresi gerekli.'
+	String get errorEmailRequired => 'Yeniden göndermek için e-posta adresi gerekli.';
+
+	/// tr: 'Giriş sayfasına dön'
+	String get backToLogin => 'Giriş sayfasına dön';
 }
 
 // Path: forgotPassword
@@ -324,6 +410,63 @@ class Translations$resetPassword$tr {
 
 	/// tr: 'Şifreler eşleşmiyor.'
 	String get errorMismatch => 'Şifreler eşleşmiyor.';
+}
+
+// Path: password
+class Translations$password$tr {
+	Translations$password$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Şifre gücü'
+	String get strengthTitle => 'Şifre gücü';
+
+	/// tr: 'Çok zayıf'
+	String get strengthVeryWeak => 'Çok zayıf';
+
+	/// tr: 'Zayıf'
+	String get strengthWeak => 'Zayıf';
+
+	/// tr: 'Orta'
+	String get strengthMedium => 'Orta';
+
+	/// tr: 'Güçlü'
+	String get strengthStrong => 'Güçlü';
+
+	/// tr: 'Çok güçlü'
+	String get strengthVeryStrong => 'Çok güçlü';
+
+	/// tr: 'En az 8 karakter'
+	String get ruleMinLength => 'En az 8 karakter';
+
+	/// tr: 'Bir büyük harf'
+	String get ruleUppercase => 'Bir büyük harf';
+
+	/// tr: 'Bir rakam'
+	String get ruleDigit => 'Bir rakam';
+
+	/// tr: 'Bir özel karakter'
+	String get ruleSpecial => 'Bir özel karakter';
+
+	/// tr: 'Şifre en az 8 karakter olmalıdır.'
+	String get errorTooShort => 'Şifre en az 8 karakter olmalıdır.';
+
+	/// tr: 'Şifre en fazla 64 karakter olabilir.'
+	String get errorTooLong => 'Şifre en fazla 64 karakter olabilir.';
+
+	/// tr: 'Şifre en az bir büyük harf içermelidir.'
+	String get errorNoUppercase => 'Şifre en az bir büyük harf içermelidir.';
+
+	/// tr: 'Şifre en az bir rakam içermelidir.'
+	String get errorNoDigit => 'Şifre en az bir rakam içermelidir.';
+
+	/// tr: 'Şifre en az bir özel karakter (örn. ! ? * . -) içermelidir.'
+	String get errorNoSpecial => 'Şifre en az bir özel karakter (örn. ! ? * . -) içermelidir.';
+
+	/// tr: 'Bu şifre çok yaygın ve kolay tahmin edilebilir; lütfen farklı bir şifre seçin.'
+	String get errorCommon => 'Bu şifre çok yaygın ve kolay tahmin edilebilir; lütfen farklı bir şifre seçin.';
 }
 
 // Path: register
@@ -415,8 +558,551 @@ class Translations$register$tr {
 	/// tr: 'Lütfen uzmanlık ünvanını girin.'
 	String get errorExpertTitleRequired => 'Lütfen uzmanlık ünvanını girin.';
 
+	/// tr: 'Uzman kaydı için lisans / diploma numarası zorunludur.'
+	String get errorLicenseRequired => 'Uzman kaydı için lisans / diploma numarası zorunludur.';
+
 	/// tr: 'Devam etmek için KVKK onayı gereklidir.'
 	String get errorKvkkRequired => 'Devam etmek için KVKK onayı gereklidir.';
+
+	/// tr: 'Bu e-posta adresi zaten kayıtlı. Giriş yapmayı deneyin.'
+	String get emailTaken => 'Bu e-posta adresi zaten kayıtlı. Giriş yapmayı deneyin.';
+
+	/// tr: 'Bu e-posta adresi kullanılabilir.'
+	String get emailAvailable => 'Bu e-posta adresi kullanılabilir.';
+}
+
+// Path: settings
+class Translations$settings$tr {
+	Translations$settings$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Cihaz bildirimleri açık'
+	String get pushGranted => 'Cihaz bildirimleri açık';
+
+	/// tr: 'Uygulama kapalıyken de bildirim alırsınız.'
+	String get pushGrantedHint => 'Uygulama kapalıyken de bildirim alırsınız.';
+
+	/// tr: 'Cihaz bildirimleri kapalı'
+	String get pushDenied => 'Cihaz bildirimleri kapalı';
+
+	/// tr: 'İzin verilmediği için aşağıdaki tercihler yalnızca uygulama içinde geçerli. Sistem ayarlarından da açabilirsiniz.'
+	String get pushDeniedHint => 'İzin verilmediği için aşağıdaki tercihler yalnızca uygulama içinde geçerli. Sistem ayarlarından da açabilirsiniz.';
+
+	/// tr: 'İzin ver'
+	String get pushRequest => 'İzin ver';
+
+	/// tr: 'Engellenen kullanıcılar'
+	String get blockedTitle => 'Engellenen kullanıcılar';
+
+	/// tr: 'Engellediğiniz kullanıcı yok.'
+	String get blockedEmpty => 'Engellediğiniz kullanıcı yok.';
+
+	/// tr: 'Engeli kaldır'
+	String get blockedRemove => 'Engeli kaldır';
+
+	/// tr: 'Engel kaldırıldı.'
+	String get blockedRemoved => 'Engel kaldırıldı.';
+
+	/// tr: 'Diğer aileler bana mesaj gönderebilsin'
+	String get privacyFamilyMessages => 'Diğer aileler bana mesaj gönderebilsin';
+
+	/// tr: 'Toplulukta ne arıyorsunuz?'
+	String get matchingTitle => 'Toplulukta ne arıyorsunuz?';
+
+	/// tr: 'Eşleşme önerilerinde ve profilinde görünür.'
+	String get matchingHint => 'Eşleşme önerilerinde ve profilinde görünür.';
+
+	/// tr: 'İletişim tercihiniz'
+	String get communicationTitle => 'İletişim tercihiniz';
+
+	/// tr: 'Deneyim paylaşımı'
+	String get intentExperience => 'Deneyim paylaşımı';
+
+	/// tr: 'Düzenli konuşma'
+	String get intentRegular => 'Düzenli konuşma';
+
+	/// tr: 'Yakında buluşma'
+	String get intentLocalMeet => 'Yakında buluşma';
+
+	/// tr: 'Mentor arıyorum'
+	String get intentSeekMentor => 'Mentor arıyorum';
+
+	/// tr: 'Mentorluk yapabilirim'
+	String get intentBeMentor => 'Mentorluk yapabilirim';
+
+	/// tr: 'Önce yazışma'
+	String get commWriting => 'Önce yazışma';
+
+	/// tr: 'Görüntülü görüşme'
+	String get commVideo => 'Görüntülü görüşme';
+
+	/// tr: 'Akşam yanıtlarım'
+	String get commEvening => 'Akşam yanıtlarım';
+
+	/// tr: 'Ayarlar'
+	String get title => 'Ayarlar';
+
+	/// tr: 'Bildirimler'
+	String get notificationsTitle => 'Bildirimler';
+
+	/// tr: 'Hangi konularda bildirim almak istediğinizi seçin.'
+	String get notificationsSubtitle => 'Hangi konularda bildirim almak istediğinizi seçin.';
+
+	/// tr: 'Yeni mesajlar'
+	String get notifMessages => 'Yeni mesajlar';
+
+	/// tr: 'Randevu onay ve değişiklikleri'
+	String get notifAppointment => 'Randevu onay ve değişiklikleri';
+
+	/// tr: 'Randevudan 24 saat önce hatırlat'
+	String get notifApptReminder => 'Randevudan 24 saat önce hatırlat';
+
+	/// tr: 'Uzman notları ve geri bildirimleri'
+	String get notifExpertNote => 'Uzman notları ve geri bildirimleri';
+
+	/// tr: 'Yeni ödev atandığında'
+	String get notifTaskAssigned => 'Yeni ödev atandığında';
+
+	/// tr: 'Forum ve dertleşme duvarı yanıtları'
+	String get notifForum => 'Forum ve dertleşme duvarı yanıtları';
+
+	/// tr: 'Benzer aile eşleşmeleri'
+	String get notifMatching => 'Benzer aile eşleşmeleri';
+
+	/// tr: 'Takvim hatırlatmaları'
+	String get notifCalendar => 'Takvim hatırlatmaları';
+
+	/// tr: 'Gizlilik'
+	String get privacyTitle => 'Gizlilik';
+
+	/// tr: 'Diğer kullanıcıların sizi nasıl göreceğini belirleyin.'
+	String get privacySubtitle => 'Diğer kullanıcıların sizi nasıl göreceğini belirleyin.';
+
+	/// tr: 'Profilim diğer ailelere görünsün'
+	String get privacyShowProfile => 'Profilim diğer ailelere görünsün';
+
+	/// tr: 'Bana mesaj gönderilebilsin'
+	String get privacyAllowMessages => 'Bana mesaj gönderilebilsin';
+
+	/// tr: 'Gelişim özetini bağlı uzmanla paylaş'
+	String get privacyShareProgress => 'Gelişim özetini bağlı uzmanla paylaş';
+
+	/// tr: 'Yaklaşık konumum (şehir) paylaşılsın'
+	String get privacyApproximateLocation => 'Yaklaşık konumum (şehir) paylaşılsın';
+
+	/// tr: 'Çevrimiçi olduğumu gizle'
+	String get privacyHidePresence => 'Çevrimiçi olduğumu gizle';
+
+	/// tr: 'Görünüm ve dil'
+	String get appearanceTitle => 'Görünüm ve dil';
+
+	/// tr: 'Erişilebilirlik'
+	String get accessibilityTitle => 'Erişilebilirlik';
+
+	/// tr: 'Görünümü ve etkileşimi size uygun hale getirin.'
+	String get accessibilitySubtitle => 'Görünümü ve etkileşimi size uygun hale getirin.';
+
+	/// tr: 'Büyük yazı modu'
+	String get a11yLargeText => 'Büyük yazı modu';
+
+	/// tr: 'Metinleri daha büyük gösterir.'
+	String get a11yLargeTextBody => 'Metinleri daha büyük gösterir.';
+
+	/// tr: 'Sakin görünüm'
+	String get a11yCalmMode => 'Sakin görünüm';
+
+	/// tr: 'Göz yormayan yumuşak tonlar kullanır.'
+	String get a11yCalmModeBody => 'Göz yormayan yumuşak tonlar kullanır.';
+
+	/// tr: 'Yüksek kontrast'
+	String get a11yHighContrast => 'Yüksek kontrast';
+
+	/// tr: 'Yazıları en belirgin renkte tutar.'
+	String get a11yHighContrastBody => 'Yazıları en belirgin renkte tutar.';
+
+	/// tr: 'Hareketi azalt'
+	String get a11yReduceMotion => 'Hareketi azalt';
+
+	/// tr: 'Sayfa geçişlerini ve animasyonları kapatır.'
+	String get a11yReduceMotionBody => 'Sayfa geçişlerini ve animasyonları kapatır.';
+
+	/// tr: 'Basit mod'
+	String get a11ySimpleMode => 'Basit mod';
+
+	/// tr: 'Profil menüsünü temel bölümlere indirger.'
+	String get a11ySimpleModeBody => 'Profil menüsünü temel bölümlere indirger.';
+
+	/// tr: 'Güvenlik'
+	String get securityTitle => 'Güvenlik';
+
+	/// tr: 'Hesabınıza erişimi koruyun.'
+	String get securitySubtitle => 'Hesabınıza erişimi koruyun.';
+
+	/// tr: 'Şifre değiştir'
+	String get changePassword => 'Şifre değiştir';
+
+	/// tr: 'Şifreyi güncelle'
+	String get changePasswordSubmit => 'Şifreyi güncelle';
+
+	/// tr: 'Mevcut şifre'
+	String get currentPasswordLabel => 'Mevcut şifre';
+
+	/// tr: 'Yeni şifre'
+	String get newPasswordLabel => 'Yeni şifre';
+
+	/// tr: 'Şifreniz güncellendi.'
+	String get passwordChanged => 'Şifreniz güncellendi.';
+
+	/// tr: 'Lütfen mevcut şifrenizi girin.'
+	String get errorCurrentPasswordRequired => 'Lütfen mevcut şifrenizi girin.';
+
+	/// tr: 'Verileriniz ve KVKK'
+	String get dataTitle => 'Verileriniz ve KVKK';
+
+	/// tr: 'Verileriniz üzerindeki haklarınızı buradan kullanabilirsiniz.'
+	String get dataSubtitle => 'Verileriniz üzerindeki haklarınızı buradan kullanabilirsiniz.';
+
+	/// tr: 'KVKK hakları ve rızalar'
+	String get kvkkPanel => 'KVKK hakları ve rızalar';
+
+	/// tr: 'Rıza tercihleri, başvurular ve aydınlatma metni.'
+	String get kvkkPanelBody => 'Rıza tercihleri, başvurular ve aydınlatma metni.';
+
+	/// tr: 'Verilerimi indir'
+	String get downloadData => 'Verilerimi indir';
+
+	/// tr: 'Hesabınızdaki tüm veriyi JSON dosyası olarak alın.'
+	String get downloadDataBody => 'Hesabınızdaki tüm veriyi JSON dosyası olarak alın.';
+
+	/// tr: 'Otizm Destek — hesap verilerim'
+	String get downloadDataSubject => 'Otizm Destek — hesap verilerim';
+
+	/// tr: 'Hesabımı sil'
+	String get deleteAccount => 'Hesabımı sil';
+
+	/// tr: 'Hesabınız ve tüm kayıtlarınız kalıcı olarak silinir.'
+	String get deleteAccountBody => 'Hesabınız ve tüm kayıtlarınız kalıcı olarak silinir.';
+
+	/// tr: 'Bu işlem geri alınamaz. Çocuk profilleri, notlar, randevular ve mesajlar dâhil tüm verileriniz kalıcı olarak silinir.'
+	String get deleteAccountWarning => 'Bu işlem geri alınamaz. Çocuk profilleri, notlar, randevular ve mesajlar dâhil tüm verileriniz kalıcı olarak silinir.';
+
+	/// tr: 'Hesabımı kalıcı olarak sil'
+	String get deleteAccountSubmit => 'Hesabımı kalıcı olarak sil';
+
+	/// tr: 'SİL'
+	String get deleteKeyword => 'SİL';
+
+	/// tr: 'Onaylamak için "$keyword" yazın'
+	String deleteConfirmLabel({required Object keyword}) => 'Onaylamak için "${keyword}" yazın';
+
+	/// tr: 'Onay metni eşleşmiyor.'
+	String get errorDeleteConfirm => 'Onay metni eşleşmiyor.';
+}
+
+// Path: legal
+class Translations$legal$tr {
+	Translations$legal$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Yasal metinler'
+	String get title => 'Yasal metinler';
+
+	/// tr: 'Aydınlatma metni, gizlilik politikası, kullanım şartları ve tıbbi uyarılar. Metinler bağlayıcı sürüm olduğu için Türkçe gösterilir.'
+	String get subtitle => 'Aydınlatma metni, gizlilik politikası, kullanım şartları ve tıbbi uyarılar. Metinler bağlayıcı sürüm olduğu için Türkçe gösterilir.';
+
+	/// tr: 'Metin sürümü $version · Son güncelleme $date'
+	String versionLine({required Object version, required Object date}) => 'Metin sürümü ${version} · Son güncelleme ${date}';
+
+	/// tr: 'KVKK aydınlatma metnini oku'
+	String get readNotice => 'KVKK aydınlatma metnini oku';
+}
+
+// Path: kvkk
+class Translations$kvkk$tr {
+	Translations$kvkk$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'KVKK ve rızalar'
+	String get title => 'KVKK ve rızalar';
+
+	/// tr: 'KVKK md. 11 haklarınız'
+	String get rightsTitle => 'KVKK md. 11 haklarınız';
+
+	/// tr: 'Verilerinizin işlenip işlenmediğini öğrenme, düzeltilmesini veya silinmesini isteme, aktarıldığı üçüncü kişileri bilme ve otomatik analiz sonuçlarına itiraz etme hakkınız var. Başvurularınız en geç 30 gün içinde yanıtlanır.'
+	String get rightsBody => 'Verilerinizin işlenip işlenmediğini öğrenme, düzeltilmesini veya silinmesini isteme, aktarıldığı üçüncü kişileri bilme ve otomatik analiz sonuçlarına itiraz etme hakkınız var. Başvurularınız en geç 30 gün içinde yanıtlanır.';
+
+	/// tr: 'Rıza tercihleriniz'
+	String get consentsTitle => 'Rıza tercihleriniz';
+
+	/// tr: 'Açık rıza amaca özel olmalıdır; her başlığı ayrı ayrı açıp kapatabilirsiniz.'
+	String get consentsSubtitle => 'Açık rıza amaca özel olmalıdır; her başlığı ayrı ayrı açıp kapatabilirsiniz.';
+
+	/// tr: 'Aydınlatma metni onayı'
+	String get consentNotice => 'Aydınlatma metni onayı';
+
+	/// tr: 'Yapay zekâ analizi'
+	String get consentAi => 'Yapay zekâ analizi';
+
+	/// tr: 'Gelişim verisinin yapay zekâ sağlayıcısına (yurt dışına) aktarılmasına izin verir.'
+	String get consentAiBody => 'Gelişim verisinin yapay zekâ sağlayıcısına (yurt dışına) aktarılmasına izin verir.';
+
+	/// tr: 'Acil durum kartı paylaşımı'
+	String get consentEmergency => 'Acil durum kartı paylaşımı';
+
+	/// tr: 'Acil durum kartınızın bağlantı/QR ile üçüncü kişilere gösterilmesine izin verir.'
+	String get consentEmergencyBody => 'Acil durum kartınızın bağlantı/QR ile üçüncü kişilere gösterilmesine izin verir.';
+
+	/// tr: 'Benzer aile eşleştirmesi'
+	String get consentMatching => 'Benzer aile eşleştirmesi';
+
+	/// tr: 'Profilinizin eşleştirme motorunda diğer ailelere gösterilmesine izin verir.'
+	String get consentMatchingBody => 'Profilinizin eşleştirme motorunda diğer ailelere gösterilmesine izin verir.';
+
+	/// tr: 'Bilgilendirme e-postaları'
+	String get consentMarketing => 'Bilgilendirme e-postaları';
+
+	/// tr: 'Zorunlu olmayan duyuru ve bilgilendirme e-postalarını almanızı sağlar.'
+	String get consentMarketingBody => 'Zorunlu olmayan duyuru ve bilgilendirme e-postalarını almanızı sağlar.';
+
+	/// tr: 'Aydınlatma metni güncellendi'
+	String get reconsentTitle => 'Aydınlatma metni güncellendi';
+
+	/// tr: 'Aydınlatma metni güncellendi (sürüm $version)'
+	String reconsentTitleVersion({required Object version}) => 'Aydınlatma metni güncellendi (sürüm ${version})';
+
+	/// tr: 'Verilerinizin nasıl işlendiğini gözden geçirip güncel metni onaylayın.'
+	String get reconsentBody => 'Verilerinizin nasıl işlendiğini gözden geçirip güncel metni onaylayın.';
+
+	/// tr: 'Okudum, onaylıyorum'
+	String get reconsentAccept => 'Okudum, onaylıyorum';
+
+	/// tr: 'Güncel aydınlatma metni onayınız kaydedildi.'
+	String get reconsentSaved => 'Güncel aydınlatma metni onayınız kaydedildi.';
+
+	/// tr: 'Rıza geçmişim'
+	String get historyTitle => 'Rıza geçmişim';
+
+	/// tr: 'Başvurularım'
+	String get requestsTitle => 'Başvurularım';
+
+	/// tr: 'Verileriniz hakkındaki taleplerinizi buradan iletebilirsiniz.'
+	String get requestsSubtitle => 'Verileriniz hakkındaki taleplerinizi buradan iletebilirsiniz.';
+
+	/// tr: 'KVKK başvurusu yap'
+	String get newRequest => 'KVKK başvurusu yap';
+
+	/// tr: 'Henüz bir başvurunuz yok.'
+	String get requestsEmpty => 'Henüz bir başvurunuz yok.';
+
+	/// tr: 'Başvurular yüklenemedi.'
+	String get requestsError => 'Başvurular yüklenemedi.';
+
+	/// tr: 'Başvurunuz alındı. En geç 30 gün içinde yanıtlanacaktır.'
+	String get requestCreated => 'Başvurunuz alındı. En geç 30 gün içinde yanıtlanacaktır.';
+
+	/// tr: 'Verilerimin işlenip işlenmediğini öğrenmek istiyorum'
+	String get requestInfo => 'Verilerimin işlenip işlenmediğini öğrenmek istiyorum';
+
+	/// tr: 'Eksik veya yanlış işlenen verimin düzeltilmesini istiyorum'
+	String get requestCorrection => 'Eksik veya yanlış işlenen verimin düzeltilmesini istiyorum';
+
+	/// tr: 'Verilerimin silinmesini / yok edilmesini istiyorum'
+	String get requestDeletion => 'Verilerimin silinmesini / yok edilmesini istiyorum';
+
+	/// tr: 'Verilerimin aktarıldığı üçüncü kişileri öğrenmek istiyorum'
+	String get requestTransfer => 'Verilerimin aktarıldığı üçüncü kişileri öğrenmek istiyorum';
+
+	/// tr: 'Otomatik analiz sonucu aleyhime çıkan sonuca itiraz ediyorum'
+	String get requestObjection => 'Otomatik analiz sonucu aleyhime çıkan sonuca itiraz ediyorum';
+
+	/// tr: 'Uğradığım zararın giderilmesini talep ediyorum'
+	String get requestDamages => 'Uğradığım zararın giderilmesini talep ediyorum';
+
+	/// tr: 'Talebiniz'
+	String get descriptionLabel => 'Talebiniz';
+
+	/// tr: 'Talebinizi kısaca açıklayın.'
+	String get descriptionHint => 'Talebinizi kısaca açıklayın.';
+
+	/// tr: 'Başvurular en geç 30 gün içinde yanıtlanır.'
+	String get responseTime => 'Başvurular en geç 30 gün içinde yanıtlanır.';
+
+	/// tr: 'Başvuruyu gönder'
+	String get submitRequest => 'Başvuruyu gönder';
+
+	/// tr: 'Lütfen talebinizi açıklayın.'
+	String get errorDescriptionRequired => 'Lütfen talebinizi açıklayın.';
+
+	/// tr: 'Alındı'
+	String get statusOpen => 'Alındı';
+
+	/// tr: 'İnceleniyor'
+	String get statusReviewing => 'İnceleniyor';
+
+	/// tr: 'Tamamlandı'
+	String get statusDone => 'Tamamlandı';
+
+	/// tr: 'Reddedildi'
+	String get statusRejected => 'Reddedildi';
+
+	/// tr: '$date tarihinde alındı'
+	String receivedOn({required Object date}) => '${date} tarihinde alındı';
+
+	/// tr: 'yanıt son tarihi $date'
+	String dueOn({required Object date}) => 'yanıt son tarihi ${date}';
+}
+
+// Path: onboarding
+class Translations$onboarding$tr {
+	Translations$onboarding$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Başlangıç'
+	String get title => 'Başlangıç';
+
+	/// tr: 'Atla'
+	String get skip => 'Atla';
+
+	/// tr: 'Başlayalım'
+	String get start => 'Başlayalım';
+
+	/// tr: 'Geri'
+	String get back => 'Geri';
+
+	/// tr: 'Devam et'
+	String get continueButton => 'Devam et';
+
+	/// tr: 'Şimdilik atla'
+	String get skipForNow => 'Şimdilik atla';
+
+	/// tr: 'Ana sayfaya geç'
+	String get finish => 'Ana sayfaya geç';
+
+	/// tr: 'Çocuk Profili'
+	String get stepChild => 'Çocuk Profili';
+
+	/// tr: 'Destek Alanları'
+	String get stepTags => 'Destek Alanları';
+
+	/// tr: 'Başlangıç Planı'
+	String get stepPlan => 'Başlangıç Planı';
+
+	/// tr: 'Hoş geldiniz'
+	String get welcomeTitle => 'Hoş geldiniz';
+
+	/// tr: 'Birkaç kısa adımda uygulamayı çocuğunuza göre hazırlayalım. Tüm bilgileri sonradan değiştirebilirsiniz.'
+	String get welcomeBody => 'Birkaç kısa adımda uygulamayı çocuğunuza göre hazırlayalım. Tüm bilgileri sonradan değiştirebilirsiniz.';
+
+	/// tr: 'Temel bilgiler'
+	String get introChildTitle => 'Temel bilgiler';
+
+	/// tr: 'Ad ve isteğe bağlı kısa bilgiler'
+	String get introChildBody => 'Ad ve isteğe bağlı kısa bilgiler';
+
+	/// tr: 'Destek alanları'
+	String get introTagsTitle => 'Destek alanları';
+
+	/// tr: 'Gözlemlediğiniz alanları seçin'
+	String get introTagsBody => 'Gözlemlediğiniz alanları seçin';
+
+	/// tr: 'Başlangıç önerisi'
+	String get introPlanTitle => 'Başlangıç önerisi';
+
+	/// tr: 'İlk yapabileceklerinizi görün'
+	String get introPlanBody => 'İlk yapabileceklerinizi görün';
+
+	/// tr: 'Çocuğunuzu tanıyalım'
+	String get childTitle => 'Çocuğunuzu tanıyalım';
+
+	/// tr: 'Yalnızca ad zorunlu; diğer alanları daha sonra da doldurabilirsiniz.'
+	String get childSubtitle => 'Yalnızca ad zorunlu; diğer alanları daha sonra da doldurabilirsiniz.';
+
+	/// tr: 'Çocuğun adı'
+	String get childNameLabel => 'Çocuğun adı';
+
+	/// tr: 'Örn. Elif'
+	String get childNameHint => 'Örn. Elif';
+
+	/// tr: 'Doğum tarihi (isteğe bağlı)'
+	String get childBirthDateLabel => 'Doğum tarihi (isteğe bağlı)';
+
+	/// tr: 'Seçmek için dokunun'
+	String get childBirthDateHint => 'Seçmek için dokunun';
+
+	/// tr: 'Tanı bilgisi (isteğe bağlı)'
+	String get childDiagnosisLabel => 'Tanı bilgisi (isteğe bağlı)';
+
+	/// tr: 'Varsa tanı ve kısa notlar'
+	String get childDiagnosisHint => 'Varsa tanı ve kısa notlar';
+
+	/// tr: 'Başlangıç odağı'
+	String get focusTitle => 'Başlangıç odağı';
+
+	/// tr: 'İletişim şekli'
+	String get communicationTitle => 'İletişim şekli';
+
+	/// tr: 'Yararlı olabilecek destek'
+	String get supportTitle => 'Yararlı olabilecek destek';
+
+	/// tr: 'Hangi alanlarda destek arıyorsunuz?'
+	String get tagsTitle => 'Hangi alanlarda destek arıyorsunuz?';
+
+	/// tr: 'Gözlemlediğiniz alanları seçin; benzer aileler ve içerik önerileri buna göre şekillenir.'
+	String get tagsSubtitle => 'Gözlemlediğiniz alanları seçin; benzer aileler ve içerik önerileri buna göre şekillenir.';
+
+	/// tr: 'Başlangıç planınız hazır'
+	String get planTitle => 'Başlangıç planınız hazır';
+
+	/// tr: '$name için başlangıç planınız hazır'
+	String planTitleNamed({required Object name}) => '${name} için başlangıç planınız hazır';
+
+	/// tr: 'İlk adım olarak şunlardan birini deneyebilirsiniz.'
+	String get planSubtitle => 'İlk adım olarak şunlardan birini deneyebilirsiniz.';
+
+	/// tr: 'Bu seçimler yalnızca başlangıç yönlendirmesidir; tüm bölümlere menüden ulaşabilirsiniz.'
+	String get planNote => 'Bu seçimler yalnızca başlangıç yönlendirmesidir; tüm bölümlere menüden ulaşabilirsiniz.';
+
+	/// tr: 'Günlük kayıt ekle'
+	String get planTrackerTitle => 'Günlük kayıt ekle';
+
+	/// tr: 'Uyku, duygu durumu veya kısa bir gözlem girin.'
+	String get planTrackerBody => 'Uyku, duygu durumu veya kısa bir gözlem girin.';
+
+	/// tr: 'Uzmanları incele'
+	String get planExpertsTitle => 'Uzmanları incele';
+
+	/// tr: 'Uzmanlara göz atın veya randevu talebi oluşturun.'
+	String get planExpertsBody => 'Uzmanlara göz atın veya randevu talebi oluşturun.';
+
+	/// tr: 'Bilgi ve kaynakları keşfet'
+	String get planKnowledgeTitle => 'Bilgi ve kaynakları keşfet';
+
+	/// tr: 'Bilgi bankasındaki güvenilir içeriklere göz atın.'
+	String get planKnowledgeBody => 'Bilgi bankasındaki güvenilir içeriklere göz atın.';
+
+	/// tr: 'Hoş geldiniz $name'
+	String expertTitle({required Object name}) => 'Hoş geldiniz ${name}';
+
+	/// tr: 'Danışan takibi, randevular ve mesajlaşma ana sayfada sizi bekliyor.'
+	String get expertBody => 'Danışan takibi, randevular ve mesajlaşma ana sayfada sizi bekliyor.';
+
+	/// tr: 'Çocuğun adı zorunludur.'
+	String get errorNameRequired => 'Çocuğun adı zorunludur.';
+
+	/// tr: 'Doğum tarihi gelecekte olamaz.'
+	String get errorBirthDateFuture => 'Doğum tarihi gelecekte olamaz.';
 }
 
 // Path: nav
@@ -469,6 +1155,69 @@ class Translations$messages$tr {
 
 	// Translations
 
+	/// tr: 'Mesajı şikayet et'
+	String get reportMessage => 'Mesajı şikayet et';
+
+	/// tr: 'Bu mesajı neden şikayet ediyorsunuz?'
+	String get reportHint => 'Bu mesajı neden şikayet ediyorsunuz?';
+
+	/// tr: 'Gönder'
+	String get reportSend => 'Gönder';
+
+	/// tr: 'Mesaj incelemeye alındı.'
+	String get reported => 'Mesaj incelemeye alındı.';
+
+	/// tr: 'Yeni grup sohbeti'
+	String get newGroup => 'Yeni grup sohbeti';
+
+	/// tr: 'Birebir'
+	String get chatDirect => 'Birebir';
+
+	/// tr: 'Grup'
+	String get chatGroup => 'Grup';
+
+	/// tr: 'Grup adı'
+	String get groupNameLabel => 'Grup adı';
+
+	/// tr: 'Grubu oluştur'
+	String get groupCreate => 'Grubu oluştur';
+
+	/// tr: 'Grup adı gerekli.'
+	String get groupNameRequired => 'Grup adı gerekli.';
+
+	/// tr: 'En az bir katılımcı seçin.'
+	String get groupMembersRequired => 'En az bir katılımcı seçin.';
+
+	/// tr: 'Grup ayarları'
+	String get groupSettings => 'Grup ayarları';
+
+	/// tr: 'Adı kaydet'
+	String get groupRename => 'Adı kaydet';
+
+	/// tr: 'Grup adı güncellendi.'
+	String get groupRenamed => 'Grup adı güncellendi.';
+
+	/// tr: 'Üye ekle'
+	String get groupAddMember => 'Üye ekle';
+
+	/// tr: 'Üyeler'
+	String get groupMembers => 'Üyeler';
+
+	/// tr: 'Üye çıkarıldı.'
+	String get groupMemberRemoved => 'Üye çıkarıldı.';
+
+	/// tr: 'Üye eklendi.'
+	String get groupMemberAdded => 'Üye eklendi.';
+
+	/// tr: 'Kullanıcıyı engelle'
+	String get blockUser => 'Kullanıcıyı engelle';
+
+	/// tr: '$name artık size mesaj gönderemeyecek. Engellensin mi?'
+	String blockConfirm({required Object name}) => '${name} artık size mesaj gönderemeyecek. Engellensin mi?';
+
+	/// tr: 'Kullanıcı engellendi.'
+	String get blocked => 'Kullanıcı engellendi.';
+
 	/// tr: 'Mesajlar'
 	String get title => 'Mesajlar';
 
@@ -483,6 +1232,84 @@ class Translations$messages$tr {
 
 	/// tr: 'Bağlanıyor...'
 	String get connecting => 'Bağlanıyor...';
+
+	/// tr: 'PECS görsel iletişim kartları'
+	String get pecsTitle => 'PECS görsel iletişim kartları';
+
+	/// tr: 'Tümü'
+	String get filterAll => 'Tümü';
+
+	/// tr: 'Okunmamış'
+	String get filterUnread => 'Okunmamış';
+
+	/// tr: 'Uzmanlar'
+	String get filterExperts => 'Uzmanlar';
+
+	/// tr: 'Gruplar'
+	String get filterGroups => 'Gruplar';
+
+	/// tr: 'Arşiv'
+	String get filterArchived => 'Arşiv';
+
+	/// tr: 'Okunmamış mesaj yok.'
+	String get emptyUnread => 'Okunmamış mesaj yok.';
+
+	/// tr: 'Uzmanlarla mesajınız yok.'
+	String get emptyExperts => 'Uzmanlarla mesajınız yok.';
+
+	/// tr: 'Henüz bir gruba dahil değilsiniz.'
+	String get emptyGroups => 'Henüz bir gruba dahil değilsiniz.';
+
+	/// tr: 'Arşiv boş. Arşivlenen konuşmalar burada görünür.'
+	String get emptyArchived => 'Arşiv boş. Arşivlenen konuşmalar burada görünür.';
+
+	/// tr: 'Arşivle'
+	String get archive => 'Arşivle';
+
+	/// tr: 'Arşivden çıkar'
+	String get unarchive => 'Arşivden çıkar';
+
+	/// tr: 'Sessize al'
+	String get mute => 'Sessize al';
+
+	/// tr: 'Sesi aç'
+	String get unmute => 'Sesi aç';
+
+	/// tr: 'Yanıtla'
+	String get reply => 'Yanıtla';
+
+	/// tr: '$name yanıtlanıyor'
+	String replyingTo({required Object name}) => '${name} yanıtlanıyor';
+
+	/// tr: 'Mesaj'
+	String get someone => 'Mesaj';
+
+	/// tr: 'Fotoğraf ekle'
+	String get attachPhoto => 'Fotoğraf ekle';
+
+	/// tr: 'Fotoğraf gönderildi.'
+	String get photoSent => 'Fotoğraf gönderildi.';
+
+	/// tr: 'Yeni sohbet'
+	String get newChat => 'Yeni sohbet';
+
+	/// tr: 'İsimle arayın…'
+	String get searchUserHint => 'İsimle arayın…';
+
+	/// tr: 'Sohbet başlatmak için en az iki harf yazın.'
+	String get searchUserHelp => 'Sohbet başlatmak için en az iki harf yazın.';
+
+	/// tr: 'Eşleşen kullanıcı bulunamadı.'
+	String get searchUserEmpty => 'Eşleşen kullanıcı bulunamadı.';
+
+	/// tr: 'Sohbette ara'
+	String get searchInChat => 'Sohbette ara';
+
+	/// tr: 'Bu aramaya uyan mesaj yok.'
+	String get searchNoResults => 'Bu aramaya uyan mesaj yok.';
+
+	/// tr: 'Mesajı sil'
+	String get deleteMessage => 'Mesajı sil';
 }
 
 // Path: home
@@ -492,6 +1319,27 @@ class Translations$home$tr {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
+
+	/// tr: 'Haftanın sorusu'
+	String get weeklyTopicBadge => 'Haftanın sorusu';
+
+	/// tr: '$count aile yanıtladı'
+	String weeklyTopicReplies({required Object count}) => '${count} aile yanıtladı';
+
+	/// tr: 'Size özel video rehberi'
+	String get learningPathBadge => 'Size özel video rehberi';
+
+	/// tr: 'Nereden başlayacağınızı bilmiyor musunuz?'
+	String get learningPathTitle => 'Nereden başlayacağınızı bilmiyor musunuz?';
+
+	/// tr: 'Kısa videolarla uygulamayı adım adım tanıyın; ilk video günlük takibi ve planı anlatıyor.'
+	String get learningPathBody => 'Kısa videolarla uygulamayı adım adım tanıyın; ilk video günlük takibi ve planı anlatıyor.';
+
+	/// tr: 'Kısa videolarla uzman araçlarını adım adım tanıyın.'
+	String get learningPathBodyExpert => 'Kısa videolarla uzman araçlarını adım adım tanıyın.';
+
+	/// tr: 'Öğrenme yoluna başla'
+	String get learningPathCta => 'Öğrenme yoluna başla';
 
 	/// tr: 'Bildirimler'
 	String get notifications => 'Bildirimler';
@@ -552,6 +1400,237 @@ class Translations$home$tr {
 
 	/// tr: 'Gösterilecek makale yok.'
 	String get noArticles => 'Gösterilecek makale yok.';
+
+	/// tr: 'Bugünün kaydı'
+	String get quickTracker => 'Bugünün kaydı';
+
+	/// tr: 'Duygu, uyku, ilaç'
+	String get quickTrackerDetail => 'Duygu, uyku, ilaç';
+
+	/// tr: 'Davranış notu'
+	String get quickBehavior => 'Davranış notu';
+
+	/// tr: 'Öncesi-davranış-sonrası kaydı'
+	String get quickBehaviorDetail => 'Öncesi-davranış-sonrası kaydı';
+
+	/// tr: 'Gözlem notu'
+	String get quickNote => 'Gözlem notu';
+
+	/// tr: 'Kısa not ekle'
+	String get quickNoteDetail => 'Kısa not ekle';
+
+	/// tr: 'Plan ekle'
+	String get quickPlan => 'Plan ekle';
+
+	/// tr: 'Randevu, okul, etkinlik'
+	String get quickPlanDetail => 'Randevu, okul, etkinlik';
+}
+
+// Path: dailyPlan
+class Translations$dailyPlan$tr {
+	Translations$dailyPlan$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Bugün ne yapalım?'
+	String get title => 'Bugün ne yapalım?';
+
+	/// tr: 'Kalan $count iş · yaklaşık $minutes dk'
+	String subtitle({required Object count, required Object minutes}) => 'Kalan ${count} iş · yaklaşık ${minutes} dk';
+
+	/// tr: 'Bugünün işleri tamam'
+	String get subtitleDone => 'Bugünün işleri tamam';
+
+	/// tr: 'Günlük koç önerisi'
+	String get coachLabel => 'Günlük koç önerisi';
+
+	/// tr: '$count dk'
+	String durationMinutes({required Object count}) => '${count} dk';
+
+	/// tr: 'Şimdi bunu yap'
+	String get badgeNow => 'Şimdi bunu yap';
+
+	/// tr: 'Sonra'
+	String get badgeNext => 'Sonra';
+
+	/// tr: 'Güvenlik'
+	String get badgeSafety => 'Güvenlik';
+
+	/// tr: 'İsteğe bağlı'
+	String get badgeOptional => 'İsteğe bağlı';
+
+	/// tr: 'Tamam'
+	String get badgeDone => 'Tamam';
+
+	/// tr: 'Bugünün işleri tamamlandı'
+	String get allDoneTitle => 'Bugünün işleri tamamlandı';
+
+	/// tr: 'Temel kayıtlar hazır. Kalan zamanda gelişim planına, topluluğa ya da bilgi bankasına göz atabilirsiniz.'
+	String get allDoneDetail => 'Temel kayıtlar hazır. Kalan zamanda gelişim planına, topluluğa ya da bilgi bankasına göz atabilirsiniz.';
+
+	/// tr: 'sabah'
+	String get partMorning => 'sabah';
+
+	/// tr: 'öğleden sonra'
+	String get partAfternoon => 'öğleden sonra';
+
+	/// tr: 'akşam'
+	String get partEvening => 'akşam';
+
+	/// tr: 'Bugün yalnızca çocuk profilini oluşturmanız yeterli. Diğer bölümler profil sonrası anlam kazanır.'
+	String get coachNoChild => 'Bugün yalnızca çocuk profilini oluşturmanız yeterli. Diğer bölümler profil sonrası anlam kazanır.';
+
+	/// tr: '$name için bugünkü tüm işler tamam! İsterseniz gelişim planına ya da bilgi bankasına geçebilirsiniz.'
+	String coachAllDone({required Object name}) => '${name} için bugünkü tüm işler tamam! İsterseniz gelişim planına ya da bilgi bankasına geçebilirsiniz.';
+
+	/// tr: '$name için $part önce ilaç kontrolünü bitirmek iyi olur; kalan $count iş daha kısa sürer.'
+	String coachMedication({required Object name, required Object part, required Object count}) => '${name} için ${part} önce ilaç kontrolünü bitirmek iyi olur; kalan ${count} iş daha kısa sürer.';
+
+	/// tr: '$name için önce kısa günlük kaydı girin — $part rutini tamamlanmış hissettiriyor.'
+	String coachNoMood({required Object name, required Object part}) => '${name} için önce kısa günlük kaydı girin — ${part} rutini tamamlanmış hissettiriyor.';
+
+	/// tr: '$name için bugün planlı bir etkinlik var; kalan $count iş kısa tutulabilir.'
+	String coachEvent({required Object name, required Object count}) => '${name} için bugün planlı bir etkinlik var; kalan ${count} iş kısa tutulabilir.';
+
+	/// tr: '$name için $done iş tamam, $count iş kaldı. İyi gidiyorsunuz!'
+	String coachProgress({required Object name, required Object done, required Object count}) => '${name} için ${done} iş tamam, ${count} iş kaldı. İyi gidiyorsunuz!';
+
+	/// tr: '$name için $part planı: kısa kayıt, takvim kontrolü ve bir not. Hepsi yaklaşık $minutes dk.'
+	String coachPlan({required Object name, required Object part, required Object minutes}) => '${name} için ${part} planı: kısa kayıt, takvim kontrolü ve bir not. Hepsi yaklaşık ${minutes} dk.';
+
+	/// tr: 'Bugünün kısa kaydını gir'
+	String get taskDailyLog => 'Bugünün kısa kaydını gir';
+
+	/// tr: 'Bugünün kaydını güncelle'
+	String get taskDailyLogDone => 'Bugünün kaydını güncelle';
+
+	/// tr: 'Ruh hali, uyku ve ilaç bilgisini bir dakikada işaretleyin.'
+	String get taskDailyLogDetail => 'Ruh hali, uyku ve ilaç bilgisini bir dakikada işaretleyin.';
+
+	/// tr: 'Ruh hali girildi; uyku, ilaç veya kısa not ekleyebilirsiniz.'
+	String get taskDailyLogDoneDetail => 'Ruh hali girildi; uyku, ilaç veya kısa not ekleyebilirsiniz.';
+
+	/// tr: 'İlaç kontrolünü tamamla'
+	String get taskMedication => 'İlaç kontrolünü tamamla';
+
+	/// tr: '$count doz henüz işaretlenmedi.'
+	String taskMedicationDetail({required Object count}) => '${count} doz henüz işaretlenmedi.';
+
+	/// tr: 'Mesajları yanıtla'
+	String get taskMessages => 'Mesajları yanıtla';
+
+	/// tr: '$count okunmamış mesajınız var.'
+	String taskMessagesDetail({required Object count}) => '${count} okunmamış mesajınız var.';
+
+	/// tr: 'Uzman erişim isteğini yanıtla'
+	String get taskExpertRequest => 'Uzman erişim isteğini yanıtla';
+
+	/// tr: '$count uzman çocuk verinize erişmek için onay bekliyor.'
+	String taskExpertRequestDetail({required Object count}) => '${count} uzman çocuk verinize erişmek için onay bekliyor.';
+
+	/// tr: 'Bugün saat $time'
+	String taskEventDetail({required Object time}) => 'Bugün saat ${time}';
+
+	/// tr: 'Yarın saat $time'
+	String taskEventTomorrowDetail({required Object time}) => 'Yarın saat ${time}';
+
+	/// tr: 'Takvimi planla'
+	String get taskCalendar => 'Takvimi planla';
+
+	/// tr: 'Randevu, okul veya etkinlik varsa ekleyin.'
+	String get taskCalendarDetail => 'Randevu, okul veya etkinlik varsa ekleyin.';
+
+	/// tr: 'Yaklaşan etkinliği gör'
+	String get taskCalendarUpcoming => 'Yaklaşan etkinliği gör';
+
+	/// tr: 'Kısa gözlem notu ekle'
+	String get taskNotes => 'Kısa gözlem notu ekle';
+
+	/// tr: 'Bugün fark ettiğiniz bir şeyi not edin.'
+	String get taskNotesDetail => 'Bugün fark ettiğiniz bir şeyi not edin.';
+
+	/// tr: 'Gözlem notlarını gözden geçir'
+	String get taskNotesDone => 'Gözlem notlarını gözden geçir';
+
+	/// tr: '$count not mevcut — yenisini ekleyebilirsiniz.'
+	String taskNotesDoneDetail({required Object count}) => '${count} not mevcut — yenisini ekleyebilirsiniz.';
+
+	/// tr: 'Topluluğu keşfet'
+	String get taskCommunity => 'Topluluğu keşfet';
+
+	/// tr: 'Benzer süreçlerden geçen ailelerin paylaşımlarına bakın.'
+	String get taskCommunityDetail => 'Benzer süreçlerden geçen ailelerin paylaşımlarına bakın.';
+
+	/// tr: 'Topluluk alanlarını takip et'
+	String get taskCommunityDone => 'Topluluk alanlarını takip et';
+
+	/// tr: 'Haftanın sorusu, forum ve buluşmalarda yeni paylaşımlar olabilir.'
+	String get taskCommunityDoneDetail => 'Haftanın sorusu, forum ve buluşmalarda yeni paylaşımlar olabilir.';
+
+	/// tr: 'Acil Durum Kartı oluştur'
+	String get taskEmergency => 'Acil Durum Kartı oluştur';
+
+	/// tr: 'Kritik tıbbi bilgileri ve acil kişileri tek kartta hazır tutun.'
+	String get taskEmergencyDetail => 'Kritik tıbbi bilgileri ve acil kişileri tek kartta hazır tutun.';
+
+	/// tr: 'İlk çocuk profilini oluştur'
+	String get taskFirstChild => 'İlk çocuk profilini oluştur';
+
+	/// tr: 'Profil eklenince plan ve öneriler çocuğunuza göre kişileşir.'
+	String get taskFirstChildDetail => 'Profil eklenince plan ve öneriler çocuğunuza göre kişileşir.';
+
+	/// tr: 'Uygulamanın kısa yolunu görün'
+	String get taskGuide => 'Uygulamanın kısa yolunu görün';
+
+	/// tr: 'Hangi bölümün ne işe yaradığını hızlıca öğrenin.'
+	String get taskGuideDetail => 'Hangi bölümün ne işe yaradığını hızlıca öğrenin.';
+
+	/// tr: 'Uzman desteğini keşfet'
+	String get taskExperts => 'Uzman desteğini keşfet';
+
+	/// tr: 'Randevu almadan önce uzman profillerini inceleyebilirsiniz.'
+	String get taskExpertsDetail => 'Randevu almadan önce uzman profillerini inceleyebilirsiniz.';
+
+	/// tr: 'Hızlı başlangıç'
+	String get startTitle => 'Hızlı başlangıç';
+
+	/// tr: 'İlk gün her şeyi tamamlamanız gerekmiyor. Önce profil, kısa kayıt ve zor an rehberi yeterli.'
+	String get startIntro => 'İlk gün her şeyi tamamlamanız gerekmiyor. Önce profil, kısa kayıt ve zor an rehberi yeterli.';
+
+	/// tr: '$done/$total adım'
+	String startProgress({required Object done, required Object total}) => '${done}/${total} adım';
+
+	/// tr: '%$percent hazır'
+	String startReady({required Object percent}) => '%${percent} hazır';
+
+	/// tr: 'Rehberi kapat'
+	String get startDismiss => 'Rehberi kapat';
+
+	/// tr: 'Yapılacak'
+	String get checkTodo => 'Yapılacak';
+
+	/// tr: 'Tamamlandı'
+	String get checkDone => 'Tamamlandı';
+
+	/// tr: '1. Çocuk profili'
+	String get checkChildProfile => '1. Çocuk profili';
+
+	/// tr: 'Plan, takip ve uzman paylaşımı profil bilgisine göre kişileşir.'
+	String get checkChildProfileDetail => 'Plan, takip ve uzman paylaşımı profil bilgisine göre kişileşir.';
+
+	/// tr: '2. İlk kısa kayıt'
+	String get checkDailyLog => '2. İlk kısa kayıt';
+
+	/// tr: 'Önce veri girilir; günlük plan bu kayıttan sonra anlam kazanır.'
+	String get checkDailyLogDetail => 'Önce veri girilir; günlük plan bu kayıttan sonra anlam kazanır.';
+
+	/// tr: '3. Kriz rehberi'
+	String get checkCrisis => '3. Kriz rehberi';
+
+	/// tr: 'Zor anlarda sakinleştirme ve müdahale adımlarını önceden okuyun.'
+	String get checkCrisisDetail => 'Zor anlarda sakinleştirme ve müdahale adımlarını önceden okuyun.';
 }
 
 // Path: specialists
@@ -588,6 +1667,48 @@ class Translations$specialists$tr {
 
 	/// tr: '$count değerlendirme'
 	String reviews({required Object count}) => '${count} değerlendirme';
+
+	/// tr: 'Filtreler'
+	String get filters => 'Filtreler';
+
+	/// tr: 'Şehir'
+	String get cityLabel => 'Şehir';
+
+	/// tr: 'Sıralama'
+	String get sortLabel => 'Sıralama';
+
+	/// tr: 'Varsayılan'
+	String get sortDefault => 'Varsayılan';
+
+	/// tr: 'Puana göre'
+	String get sortRating => 'Puana göre';
+
+	/// tr: 'İsme göre'
+	String get sortName => 'İsme göre';
+
+	/// tr: 'Yalnızca randevu kabul edenler'
+	String get onlyAccepting => 'Yalnızca randevu kabul edenler';
+
+	/// tr: 'Yalnızca doğrulanmış uzmanlar'
+	String get onlyVerified => 'Yalnızca doğrulanmış uzmanlar';
+
+	/// tr: 'Yalnızca online görüşme yapanlar'
+	String get onlyOnline => 'Yalnızca online görüşme yapanlar';
+
+	/// tr: 'Yalnızca favorilerim'
+	String get onlyFavorites => 'Yalnızca favorilerim';
+
+	/// tr: 'Favorilere ekle'
+	String get addFavorite => 'Favorilere ekle';
+
+	/// tr: 'Favorilerden çıkar'
+	String get removeFavorite => 'Favorilerden çıkar';
+
+	/// tr: 'Temizle'
+	String get clearFilters => 'Temizle';
+
+	/// tr: 'Uygula'
+	String get applyFilters => 'Uygula';
 }
 
 // Path: progress
@@ -813,6 +1934,87 @@ class Translations$notifications$tr {
 
 	/// tr: '$day $month · $time'
 	String dateLine({required Object day, required Object month, required Object time}) => '${day} ${month} · ${time}';
+
+	/// tr: 'Bu filtreye uygun bildirim yok.'
+	String get noneInFilter => 'Bu filtreye uygun bildirim yok.';
+
+	/// tr: 'Yalnızca okunmamış'
+	String get unreadOnly => 'Yalnızca okunmamış';
+
+	/// tr: '$count seçildi'
+	String selectedCount({required Object count}) => '${count} seçildi';
+
+	/// tr: 'Seçilenleri sil'
+	String get deleteSelected => 'Seçilenleri sil';
+
+	/// tr: 'Bugün'
+	String get groupToday => 'Bugün';
+
+	/// tr: 'Dün'
+	String get groupYesterday => 'Dün';
+
+	/// tr: 'Bu Hafta'
+	String get groupThisWeek => 'Bu Hafta';
+
+	/// tr: 'Daha Eski'
+	String get groupOlder => 'Daha Eski';
+
+	/// tr: 'Tümü'
+	String get catAll => 'Tümü';
+
+	/// tr: 'Randevular'
+	String get catAppointments => 'Randevular';
+
+	/// tr: 'Mesajlar'
+	String get catMessages => 'Mesajlar';
+
+	/// tr: 'Forum'
+	String get catForum => 'Forum';
+
+	/// tr: 'Görevler'
+	String get catTasks => 'Görevler';
+
+	/// tr: 'Sosyal'
+	String get catSocial => 'Sosyal';
+
+	/// tr: 'Sistem'
+	String get catSystem => 'Sistem';
+}
+
+// Path: search
+class Translations$search$tr {
+	Translations$search$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Arama'
+	String get title => 'Arama';
+
+	/// tr: 'Makale, gönderi, grup ya da uzman arayın…'
+	String get hint => 'Makale, gönderi, grup ya da uzman arayın…';
+
+	/// tr: 'Aramak istediğiniz kelimeyi yazın.'
+	String get help => 'Aramak istediğiniz kelimeyi yazın.';
+
+	/// tr: 'Bu aramaya uygun sonuç bulunamadı.'
+	String get noResults => 'Bu aramaya uygun sonuç bulunamadı.';
+
+	/// tr: 'Tümü'
+	String get typeAll => 'Tümü';
+
+	/// tr: 'Makale'
+	String get typeArticle => 'Makale';
+
+	/// tr: 'Gönderi'
+	String get typePost => 'Gönderi';
+
+	/// tr: 'Grup'
+	String get typeGroup => 'Grup';
+
+	/// tr: 'Uzman'
+	String get typeExpert => 'Uzman';
 }
 
 // Path: knowledge
@@ -855,6 +2057,54 @@ class Translations$knowledge$tr {
 
 	/// tr: 'Podcast bağlantısı'
 	String get podcastLink => 'Podcast bağlantısı';
+
+	/// tr: 'Makale, konu veya anahtar kelime ara…'
+	String get searchHint => 'Makale, konu veya anahtar kelime ara…';
+
+	/// tr: 'Yer imlerim'
+	String get bookmarks => 'Yer imlerim';
+
+	/// tr: 'Yer imi'
+	String get bookmark => 'Yer imi';
+
+	/// tr: 'Henüz yer imine eklediğiniz içerik yok.'
+	String get noBookmarks => 'Henüz yer imine eklediğiniz içerik yok.';
+
+	/// tr: 'İlgili içerikler'
+	String get relatedTitle => 'İlgili içerikler';
+
+	/// tr: 'Yorumlar ($count)'
+	String commentsTitle({required Object count}) => 'Yorumlar (${count})';
+
+	/// tr: 'İlk yorumu siz yazın.'
+	String get noComments => 'İlk yorumu siz yazın.';
+
+	/// tr: 'Deneyiminizi veya sorunuzu yazın…'
+	String get commentHint => 'Deneyiminizi veya sorunuzu yazın…';
+
+	/// tr: 'Yorumu gönder'
+	String get commentSend => 'Yorumu gönder';
+
+	/// tr: 'Bir aile'
+	String get someone => 'Bir aile';
+
+	/// tr: 'Uzman'
+	String get expertBadge => 'Uzman';
+
+	/// tr: 'Deneme süresi: $duration'
+	String triedFor({required Object duration}) => 'Deneme süresi: ${duration}';
+
+	/// tr: 'Etkililik: $rating/5'
+	String effectiveness({required Object rating}) => 'Etkililik: ${rating}/5';
+
+	/// tr: 'Etiketlere göre daralt'
+	String get tagFilterTitle => 'Etiketlere göre daralt';
+
+	/// tr: 'Etiketleri temizle'
+	String get tagFilterClear => 'Etiketleri temizle';
+
+	/// tr: '$count etiket seçili'
+	String tagFilterCount({required Object count}) => '${count} etiket seçili';
 }
 
 // Path: appointments
@@ -864,6 +2114,60 @@ class Translations$appointments$tr {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
+
+	/// tr: 'Değerlendir'
+	String get rate => 'Değerlendir';
+
+	/// tr: 'Randevuyu değerlendir'
+	String get rateTitle => 'Randevuyu değerlendir';
+
+	/// tr: 'Yorumunuz (isteğe bağlı)'
+	String get rateComment => 'Yorumunuz (isteğe bağlı)';
+
+	/// tr: 'Gönder'
+	String get rateSave => 'Gönder';
+
+	/// tr: 'Değerlendirmeniz kaydedildi.'
+	String get rated => 'Değerlendirmeniz kaydedildi.';
+
+	/// tr: '$count yıldız'
+	String rateStars({required Object count}) => '${count} yıldız';
+
+	/// tr: 'Değerlendirmeniz'
+	String get ratingShown => 'Değerlendirmeniz';
+
+	/// tr: 'Seriyi iptal et'
+	String get cancelSeries => 'Seriyi iptal et';
+
+	/// tr: 'Tüm seri iptal edilsin mi?'
+	String get cancelSeriesTitle => 'Tüm seri iptal edilsin mi?';
+
+	/// tr: 'Bu tekrarlayan seansın gelecekteki tüm randevuları iptal edilecek.'
+	String get cancelSeriesConfirm => 'Bu tekrarlayan seansın gelecekteki tüm randevuları iptal edilecek.';
+
+	/// tr: 'Seri iptal edildi.'
+	String get seriesCancelled => 'Seri iptal edildi.';
+
+	/// tr: '$index. seans'
+	String seriesIndex({required Object index}) => '${index}. seans';
+
+	/// tr: 'Seri'
+	String get seriesBadge => 'Seri';
+
+	/// tr: 'Tekrarlayan seans'
+	String get recurrenceTitle => 'Tekrarlayan seans';
+
+	/// tr: 'Aynı gün ve saatte her hafta otomatik oluşturulur.'
+	String get recurrenceHint => 'Aynı gün ve saatte her hafta otomatik oluşturulur.';
+
+	/// tr: 'Tekil'
+	String get recurrenceSingle => 'Tekil';
+
+	/// tr: '$count hafta'
+	String recurrenceWeeks({required Object count}) => '${count} hafta';
+
+	/// tr: '$count haftalık seri oluşturuldu.'
+	String recurrenceCreated({required Object count}) => '${count} haftalık seri oluşturuldu.';
 
 	/// tr: 'Randevular'
 	String get title => 'Randevular';
@@ -948,6 +2252,117 @@ class Translations$appointments$tr {
 
 	/// tr: 'Randevu yeniden planlandı.'
 	String get rescheduled => 'Randevu yeniden planlandı.';
+
+	/// tr: 'Sıradaki randevu'
+	String get nextTitle => 'Sıradaki randevu';
+
+	/// tr: '$days gün $hours sa $minutes dk kaldı'
+	String countdownDays({required Object days, required Object hours, required Object minutes}) => '${days} gün ${hours} sa ${minutes} dk kaldı';
+
+	/// tr: '$hours sa $minutes dk $seconds sn kaldı'
+	String countdownToday({required Object hours, required Object minutes, required Object seconds}) => '${hours} sa ${minutes} dk ${seconds} sn kaldı';
+
+	/// tr: 'Görüşme zamanı'
+	String get countdownNow => 'Görüşme zamanı';
+
+	/// tr: 'Bugün'
+	String get statToday => 'Bugün';
+
+	/// tr: 'Bu hafta'
+	String get statWeek => 'Bu hafta';
+
+	/// tr: 'Bu ay'
+	String get statMonth => 'Bu ay';
+
+	/// tr: 'Bekleyen'
+	String get statPending => 'Bekleyen';
+
+	/// tr: 'Tamamlanan'
+	String get statCompleted => 'Tamamlanan';
+
+	/// tr: 'İptal'
+	String get statCancelled => 'İptal';
+
+	/// tr: 'Uzman bul'
+	String get findExpert => 'Uzman bul';
+
+	/// tr: 'Bugün'
+	String get today => 'Bugün';
+
+	/// tr: 'Yarın'
+	String get tomorrow => 'Yarın';
+
+	/// tr: 'Randevu detayı'
+	String get detailTitle => 'Randevu detayı';
+
+	/// tr: 'Süre'
+	String get detailDuration => 'Süre';
+
+	/// tr: '$count dk'
+	String detailDurationValue({required Object count}) => '${count} dk';
+
+	/// tr: 'Uzman'
+	String get detailExpert => 'Uzman';
+
+	/// tr: 'Veli'
+	String get detailParent => 'Veli';
+
+	/// tr: 'Çocuk'
+	String get detailChild => 'Çocuk';
+
+	/// tr: 'Durum'
+	String get detailStatus => 'Durum';
+
+	/// tr: 'Tür'
+	String get detailType => 'Tür';
+
+	/// tr: 'Randevu notu'
+	String get detailNote => 'Randevu notu';
+
+	/// tr: 'Görüşme konusu'
+	String get detailTopic => 'Görüşme konusu';
+
+	/// tr: 'Görüşme öncesi paylaşılan not'
+	String get detailPreSession => 'Görüşme öncesi paylaşılan not';
+
+	/// tr: 'Seans notu'
+	String get detailSessionNote => 'Seans notu';
+
+	/// tr: 'Görüşme özeti'
+	String get detailSessionSummary => 'Görüşme özeti';
+
+	/// tr: 'Uzman önerileri'
+	String get detailFollowUp => 'Uzman önerileri';
+
+	/// tr: 'Takip görevi'
+	String get detailFollowUpTask => 'Takip görevi';
+
+	/// tr: 'Değerlendirme'
+	String get detailRating => 'Değerlendirme';
+
+	/// tr: '$rating / 5'
+	String detailRatingValue({required Object rating}) => '${rating} / 5';
+
+	/// tr: 'İptal eden: $who'
+	String detailCancelledBy({required Object who}) => 'İptal eden: ${who}';
+
+	/// tr: 'Geç iptal'
+	String get detailLateCancellation => 'Geç iptal';
+
+	/// tr: 'Durum geçmişi'
+	String get historyTitle => 'Durum geçmişi';
+
+	/// tr: 'Henüz durum değişikliği kaydı yok.'
+	String get historyEmpty => 'Henüz durum değişikliği kaydı yok.';
+
+	/// tr: '$from → $to'
+	String historyChange({required Object from, required Object to}) => '${from} → ${to}';
+
+	/// tr: '$name · $date'
+	String historyMeta({required Object name, required Object date}) => '${name} · ${date}';
+
+	/// tr: 'Detay'
+	String get detailOpen => 'Detay';
 }
 
 // Path: expertDetail
@@ -972,6 +2387,93 @@ class Translations$expertDetail$tr {
 
 	/// tr: 'Bu uzman şu an randevu kabul etmiyor.'
 	String get notAcceptingPatients => 'Bu uzman şu an randevu kabul etmiyor.';
+
+	/// tr: 'Hakkında'
+	String get aboutTitle => 'Hakkında';
+
+	/// tr: 'Profil bilgileri'
+	String get professionalTitle => 'Profil bilgileri';
+
+	/// tr: 'İlk uygun randevu'
+	String get factNextSlot => 'İlk uygun randevu';
+
+	/// tr: 'Takvimden görüntüleyin'
+	String get factNextSlotEmpty => 'Takvimden görüntüleyin';
+
+	/// tr: 'Görüşme süresi'
+	String get factSession => 'Görüşme süresi';
+
+	/// tr: '$count dakika'
+	String factSessionValue({required Object count}) => '${count} dakika';
+
+	/// tr: 'Çalıştığı yaş grubu'
+	String get factAgeGroups => 'Çalıştığı yaş grubu';
+
+	/// tr: 'Uzmanla görüşün'
+	String get factAgeGroupsEmpty => 'Uzmanla görüşün';
+
+	/// tr: 'Konuştuğu diller'
+	String get factLanguages => 'Konuştuğu diller';
+
+	/// tr: 'Destek verdiği konular'
+	String get factSupportTopics => 'Destek verdiği konular';
+
+	/// tr: 'Profilde belirtilmemiş'
+	String get factSupportTopicsEmpty => 'Profilde belirtilmemiş';
+
+	/// tr: 'İptal koşulu'
+	String get factCancellation => 'İptal koşulu';
+
+	/// tr: 'Randevudan önce uzmanla teyit edin'
+	String get factCancellationEmpty => 'Randevudan önce uzmanla teyit edin';
+
+	/// tr: 'Erteleme koşulu'
+	String get factReschedule => 'Erteleme koşulu';
+
+	/// tr: 'Hizmet biçimi'
+	String get factService => 'Hizmet biçimi';
+
+	/// tr: 'Belirtilmemiş'
+	String get factServiceEmpty => 'Belirtilmemiş';
+
+	/// tr: 'Online'
+	String get serviceOnline => 'Online';
+
+	/// tr: 'Yüz yüze'
+	String get serviceFaceToFace => 'Yüz yüze';
+
+	/// tr: 'Seans ücreti'
+	String get factFee => 'Seans ücreti';
+
+	/// tr: 'Uzmanla görüşün'
+	String get factFeeEmpty => 'Uzmanla görüşün';
+
+	/// tr: 'Onaylı uzman'
+	String get badgeVerified => 'Onaylı uzman';
+
+	/// tr: 'Onay bekliyor'
+	String get badgePending => 'Onay bekliyor';
+
+	/// tr: 'Lisans doğrulandı'
+	String get badgeLicenseVerified => 'Lisans doğrulandı';
+
+	/// tr: 'Profili şikayet et'
+	String get report => 'Profili şikayet et';
+
+	/// tr: 'Şikayet nedeni'
+	String get reportReasonLabel => 'Şikayet nedeni';
+
+	/// tr: 'Ek açıklama (isteğe bağlı)'
+	String get reportNoteLabel => 'Ek açıklama (isteğe bağlı)';
+
+	/// tr: 'Durumu birkaç cümleyle anlatın'
+	String get reportNoteHint => 'Durumu birkaç cümleyle anlatın';
+
+	/// tr: 'Şikayeti gönder'
+	String get reportSend => 'Şikayeti gönder';
+
+	/// tr: 'Şikayetiniz iletildi. Moderasyon ekibi inceleyecek.'
+	String get reportSent => 'Şikayetiniz iletildi. Moderasyon ekibi inceleyecek.';
 }
 
 // Path: booking
@@ -1038,6 +2540,18 @@ class Translations$routines$tr {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
+
+	/// tr: '$count yıldız'
+	String starWallet({required Object count}) => '${count} yıldız';
+
+	/// tr: 'Adım tamamlandı, +1 yıldız!'
+	String get stepDone => 'Adım tamamlandı, +1 yıldız!';
+
+	/// tr: '%$percent tamamlandı'
+	String progressDone({required Object percent}) => '%${percent} tamamlandı';
+
+	/// tr: '$count adım'
+	String stepCount({required Object count}) => '${count} adım';
 
 	/// tr: 'Rutinler'
 	String get title => 'Rutinler';
@@ -1137,6 +2651,27 @@ class Translations$dailyTracker$tr {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
+
+	/// tr: 'Ort. uyku'
+	String get insightSleep => 'Ort. uyku';
+
+	/// tr: 'Sık ruh hali'
+	String get insightMood => 'Sık ruh hali';
+
+	/// tr: 'Sık tetikleyici'
+	String get insightTrigger => 'Sık tetikleyici';
+
+	/// tr: 'Eksiksiz'
+	String get insightComplete => 'Eksiksiz';
+
+	/// tr: 'Kayıt yok'
+	String get insightNone => 'Kayıt yok';
+
+	/// tr: '${hours}sa ${minutes}dk'
+	String insightHours({required Object hours, required Object minutes}) => '${hours}sa ${minutes}dk';
+
+	/// tr: '$count gün'
+	String insightDays({required Object count}) => '${count} gün';
 
 	/// tr: 'Günlük Takip'
 	String get title => 'Günlük Takip';
@@ -1387,6 +2922,15 @@ class Translations$wall$tr {
 
 	// Translations
 
+	/// tr: 'Mesajı düzenle'
+	String get commentEdit => 'Mesajı düzenle';
+
+	/// tr: 'Kaydet'
+	String get commentSave => 'Kaydet';
+
+	/// tr: 'Mesaj güncellendi.'
+	String get commentUpdated => 'Mesaj güncellendi.';
+
 	/// tr: 'Dertleşme Duvarı'
 	String get title => 'Dertleşme Duvarı';
 
@@ -1509,6 +3053,30 @@ class Translations$weekly$tr {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
+
+	/// tr: 'Tümü'
+	String get filterAll => 'Tümü';
+
+	/// tr: 'Uzman'
+	String get filterExpert => 'Uzman';
+
+	/// tr: 'Popüler'
+	String get filterPopular => 'Popüler';
+
+	/// tr: 'Şehrim'
+	String get filterLocal => 'Şehrim';
+
+	/// tr: 'Cevaplarda ara'
+	String get searchHint => 'Cevaplarda ara';
+
+	/// tr: 'Yalnızca $city şehrindeki ailelerin cevapları listeleniyor.'
+	String localHint({required Object city}) => 'Yalnızca ${city} şehrindeki ailelerin cevapları listeleniyor.';
+
+	/// tr: 'Profilinizde şehir yok; tüm cevaplar listeleniyor.'
+	String get localHintNoCity => 'Profilinizde şehir yok; tüm cevaplar listeleniyor.';
+
+	/// tr: 'Bu süzgeçle cevap yok.'
+	String get noMatch => 'Bu süzgeçle cevap yok.';
 
 	/// tr: 'Haftanın Sorusu'
 	String get title => 'Haftanın Sorusu';
@@ -1681,6 +3249,9 @@ class Translations$similar$tr {
 
 	// Translations
 
+	/// tr: 'Eşleştirme; çocuğunuzun etiketleri, yaş aralığı, terapi/eğitim notları ve varsa şehir bilgisini kullanır. Kesin konumunuz karşı tarafa gösterilmez.'
+	String get privacyNote => 'Eşleştirme; çocuğunuzun etiketleri, yaş aralığı, terapi/eğitim notları ve varsa şehir bilgisini kullanır. Kesin konumunuz karşı tarafa gösterilmez.';
+
 	/// tr: 'Benzer Aileler'
 	String get title => 'Benzer Aileler';
 
@@ -1755,6 +3326,138 @@ class Translations$similar$tr {
 
 	/// tr: 'İptal'
 	String get cancel => 'İptal';
+
+	/// tr: 'Buluşma'
+	String get meetup => 'Buluşma';
+
+	/// tr: 'Buluşma isteği gönder'
+	String get meetupTitle => 'Buluşma isteği gönder';
+
+	/// tr: 'Online'
+	String get meetupOnline => 'Online';
+
+	/// tr: 'Yüz yüze'
+	String get meetupInPerson => 'Yüz yüze';
+
+	/// tr: 'Tarih seç'
+	String get meetupPickDate => 'Tarih seç';
+
+	/// tr: 'Saat seç'
+	String get meetupPickTime => 'Saat seç';
+
+	/// tr: 'Buluşma yeri'
+	String get meetupLocation => 'Buluşma yeri';
+
+	/// tr: 'Mesaj (isteğe bağlı)'
+	String get meetupMessage => 'Mesaj (isteğe bağlı)';
+
+	/// tr: 'Neden buluşmak istediğinizi kısaca yazın'
+	String get meetupMessageHint => 'Neden buluşmak istediğinizi kısaca yazın';
+
+	/// tr: 'Buluşma isteği gönderildi.'
+	String get meetupSent => 'Buluşma isteği gönderildi.';
+
+	/// tr: 'Buluşma istekleri'
+	String get meetupRequestsTitle => 'Buluşma istekleri';
+
+	/// tr: 'Kabul et'
+	String get meetupAccept => 'Kabul et';
+
+	/// tr: 'Reddet'
+	String get meetupDecline => 'Reddet';
+
+	/// tr: 'İsteği geri çek'
+	String get meetupCancel => 'İsteği geri çek';
+
+	/// tr: 'Aile'
+	String get unknownFamily => 'Aile';
+
+	/// tr: 'Eşleşmeler'
+	String get tabMatches => 'Eşleşmeler';
+
+	/// tr: 'Çemberim'
+	String get tabCircle => 'Çemberim';
+
+	/// tr: 'Gelen bağlantı istekleri'
+	String get circlePendingTitle => 'Gelen bağlantı istekleri';
+
+	/// tr: 'Arkadaşlarım ve mentorlarım'
+	String get circleAcceptedTitle => 'Arkadaşlarım ve mentorlarım';
+
+	/// tr: 'Çemberiniz henüz boş. Eşleşmeler sekmesinden bir aileye istek göndererek başlayın.'
+	String get circleEmpty => 'Çemberiniz henüz boş. Eşleşmeler sekmesinden bir aileye istek göndererek başlayın.';
+
+	/// tr: 'Bekleyen istek yok.'
+	String get circleNoPending => 'Bekleyen istek yok.';
+
+	/// tr: 'Arkadaş isteği'
+	String get circleBuddyRequest => 'Arkadaş isteği';
+
+	/// tr: 'Mentor isteği'
+	String get circleMentorRequest => 'Mentor isteği';
+
+	/// tr: 'Kabul et'
+	String get accept => 'Kabul et';
+
+	/// tr: 'Reddet'
+	String get reject => 'Reddet';
+
+	/// tr: 'Bağlantı kuruldu.'
+	String get accepted => 'Bağlantı kuruldu.';
+
+	/// tr: 'İstek reddedildi.'
+	String get rejected => 'İstek reddedildi.';
+
+	/// tr: 'Bağlantıyı kaldır'
+	String get removeBuddy => 'Bağlantıyı kaldır';
+
+	/// tr: '$name ile bağlantınız kaldırılsın mı?'
+	String removeBuddyConfirm({required Object name}) => '${name} ile bağlantınız kaldırılsın mı?';
+
+	/// tr: 'Bağlantı kaldırıldı.'
+	String get removed => 'Bağlantı kaldırıldı.';
+
+	/// tr: 'İstek notu'
+	String get requestNote => 'İstek notu';
+
+	/// tr: 'İsteği geri çek'
+	String get withdraw => 'İsteği geri çek';
+
+	/// tr: 'İstek geri çekildi.'
+	String get withdrawn => 'İstek geri çekildi.';
+
+	/// tr: '$km km yakınında'
+	String distance({required Object km}) => '${km} km yakınında';
+
+	/// tr: 'Şehir belirtilmemiş'
+	String get noCity => 'Şehir belirtilmemiş';
+
+	/// tr: 'Önce yazışmayı tercih eder'
+	String get commPrefWriting => 'Önce yazışmayı tercih eder';
+
+	/// tr: 'Görüntülü görüşmeye açık'
+	String get commPrefVideo => 'Görüntülü görüşmeye açık';
+
+	/// tr: 'Genellikle akşam yanıt verir'
+	String get commPrefEvening => 'Genellikle akşam yanıt verir';
+
+	/// tr: 'Uyum ayrıntısı'
+	String get scoresTitle => 'Uyum ayrıntısı';
+
+	/// tr: 'Etiket'
+	String get scoreTag => 'Etiket';
+
+	/// tr: 'Yaş'
+	String get scoreAge => 'Yaş';
+
+	/// tr: 'Duyusal'
+	String get scoreSensory => 'Duyusal';
+
+	/// tr: 'Terapi'
+	String get scoreTherapy => 'Terapi';
+
+	/// tr: 'Eğitim'
+	String get scoreEducation => 'Eğitim';
 }
 
 // Path: groups
@@ -1764,6 +3467,87 @@ class Translations$groups$tr {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
+
+	/// tr: 'Grubu düzenle'
+	String get editTitle => 'Grubu düzenle';
+
+	/// tr: 'Grup güncellendi.'
+	String get updated => 'Grup güncellendi.';
+
+	/// tr: 'Grubu sil'
+	String get deleteTitle => 'Grubu sil';
+
+	/// tr: '"$name" grubu ve sohbeti kalıcı olarak silinecek.'
+	String deleteConfirm({required Object name}) => '"${name}" grubu ve sohbeti kalıcı olarak silinecek.';
+
+	/// tr: 'Grup silindi.'
+	String get deleted => 'Grup silindi.';
+
+	/// tr: 'Sohbet ($count)'
+	String chatUnread({required Object count}) => 'Sohbet (${count})';
+
+	/// tr: 'Grup Detayı'
+	String get detailTitle => 'Grup Detayı';
+
+	/// tr: 'Üye listesi ve buluşmalar yalnızca grup üyelerine görünür.'
+	String get detailHint => 'Üye listesi ve buluşmalar yalnızca grup üyelerine görünür.';
+
+	/// tr: 'Üyeler'
+	String get membersTitle => 'Üyeler';
+
+	/// tr: 'Üye listesi görüntülenemiyor.'
+	String get membersEmpty => 'Üye listesi görüntülenemiyor.';
+
+	/// tr: 'Üye listesini ve buluşmaları görmek için gruba katılın.'
+	String get membersOnly => 'Üye listesini ve buluşmaları görmek için gruba katılın.';
+
+	/// tr: 'Buluşmalar'
+	String get meetingsTitle => 'Buluşmalar';
+
+	/// tr: 'Planlanmış buluşma yok.'
+	String get meetingsEmpty => 'Planlanmış buluşma yok.';
+
+	/// tr: 'Buluşma planla'
+	String get meetingAdd => 'Buluşma planla';
+
+	/// tr: 'Buluşma başlığı'
+	String get meetingTitleLabel => 'Buluşma başlığı';
+
+	/// tr: 'Tarih seç'
+	String get meetingPickDate => 'Tarih seç';
+
+	/// tr: 'Saat seç'
+	String get meetingPickTime => 'Saat seç';
+
+	/// tr: 'Görüşme bağlantısı (isteğe bağlı)'
+	String get meetingUrlLabel => 'Görüşme bağlantısı (isteğe bağlı)';
+
+	/// tr: 'Açıklama (isteğe bağlı)'
+	String get meetingNoteLabel => 'Açıklama (isteğe bağlı)';
+
+	/// tr: 'Kaydet'
+	String get meetingSave => 'Kaydet';
+
+	/// tr: 'Buluşma planlandı.'
+	String get meetingCreated => 'Buluşma planlandı.';
+
+	/// tr: 'Görüşmeye katıl'
+	String get meetingJoin => 'Görüşmeye katıl';
+
+	/// tr: 'Buluşmayı iptal et'
+	String get meetingDelete => 'Buluşmayı iptal et';
+
+	/// tr: '"$title" buluşması iptal edilsin mi?'
+	String meetingDeleteConfirm({required Object title}) => '"${title}" buluşması iptal edilsin mi?';
+
+	/// tr: 'Buluşma başlığı gerekli.'
+	String get meetingErrorTitle => 'Buluşma başlığı gerekli.';
+
+	/// tr: 'Tarih ve saat seçin.'
+	String get meetingErrorDate => 'Tarih ve saat seçin.';
+
+	/// tr: 'Bağlantı http:// ya da https:// ile başlamalı.'
+	String get meetingErrorUrl => 'Bağlantı http:// ya da https:// ile başlamalı.';
 
 	/// tr: 'Destek Grupları'
 	String get title => 'Destek Grupları';
@@ -1866,6 +3650,9 @@ class Translations$treatment$tr {
 
 	/// tr: 'Günlük Destek Planı'
 	String get subtitle => 'Günlük Destek Planı';
+
+	/// tr: 'Günlük destek planı aktif'
+	String get programActiveDefault => 'Günlük destek planı aktif';
 
 	/// tr: '$name planı aktif'
 	String programActive({required Object name}) => '${name} planı aktif';
@@ -2518,6 +4305,144 @@ class Translations$tasks$tr {
 
 	/// tr: 'Teslim Et ve Kapat'
 	String get submitConfirm => 'Teslim Et ve Kapat';
+
+	/// tr: 'Sihirbaz'
+	String get viewWizard => 'Sihirbaz';
+
+	/// tr: 'Liste'
+	String get viewList => 'Liste';
+
+	/// tr: 'Günlük Gelişim Akışı'
+	String get wizardBadge => 'Günlük Gelişim Akışı';
+
+	/// tr: 'Bugünün Egzersiz Rehberi'
+	String get wizardTitle => 'Bugünün Egzersiz Rehberi';
+
+	/// tr: 'Çocuğunuzla adımları takip ederek pratik yapın. Tamamlayınca aşağıdaki seçeneklerden birine dokunmanız yeterli.'
+	String get wizardIntro => 'Çocuğunuzla adımları takip ederek pratik yapın. Tamamlayınca aşağıdaki seçeneklerden birine dokunmanız yeterli.';
+
+	/// tr: '$label seviyesi'
+	String wizardStageLevel({required Object label}) => '${label} seviyesi';
+
+	/// tr: '$done / $total egzersiz tamamlandı'
+	String wizardStageCount({required Object done, required Object total}) => '${done} / ${total} egzersiz tamamlandı';
+
+	/// tr: 'Harika iş! Bugünün tüm egzersizleri tamam'
+	String get wizardAllDoneTitle => 'Harika iş! Bugünün tüm egzersizleri tamam';
+
+	/// tr: 'Çocuğunuzla geçirdiğiniz her nitelikli dakika onun gelişimine büyük katkı sağlıyor. Yeni görevler atandığında burada görünecek.'
+	String get wizardAllDoneBody => 'Çocuğunuzla geçirdiğiniz her nitelikli dakika onun gelişimine büyük katkı sağlıyor. Yeni görevler atandığında burada görünecek.';
+
+	/// tr: '$index / $total'
+	String wizardStepCounter({required Object index, required Object total}) => '${index} / ${total}';
+
+	/// tr: 'Gelişim Egzersizi'
+	String get wizardDefaultCategory => 'Gelişim Egzersizi';
+
+	/// tr: 'Nasıl uygulanır? (adım adım)'
+	String get wizardHowTo => 'Nasıl uygulanır? (adım adım)';
+
+	/// tr: 'Çocuğunuzla sakin bir ortamda bu çalışmayı 5-10 dakika deneyin.'
+	String get wizardDefaultDescription => 'Çocuğunuzla sakin bir ortamda bu çalışmayı 5-10 dakika deneyin.';
+
+	/// tr: 'Sıklık: $value'
+	String wizardFrequency({required Object value}) => 'Sıklık: ${value}';
+
+	/// tr: 'Bugün bu egzersiz nasıl geçti?'
+	String get wizardOutcomeQuestion => 'Bugün bu egzersiz nasıl geçti?';
+
+	/// tr: 'Kolayca yaptık'
+	String get outcomeEasyTitle => 'Kolayca yaptık';
+
+	/// tr: 'Çocuğum rahatça başardı'
+	String get outcomeEasyDesc => 'Çocuğum rahatça başardı';
+
+	/// tr: 'Destekle yaptık'
+	String get outcomeSupportedTitle => 'Destekle yaptık';
+
+	/// tr: 'Biraz ipucuyla tamamladık'
+	String get outcomeSupportedDesc => 'Biraz ipucuyla tamamladık';
+
+	/// tr: 'Bugün zorlandık'
+	String get outcomeHardTitle => 'Bugün zorlandık';
+
+	/// tr: 'Henüz tam hazır değildik'
+	String get outcomeHardDesc => 'Henüz tam hazır değildik';
+
+	/// tr: 'AutiBot ipucu'
+	String get wizardTipTitle => 'AutiBot ipucu';
+
+	/// tr: 'Hiç sorun değil! Otizm spektrumundaki çocukların bazı günlerde motivasyonu değişebilir. Egzersizi küçük parçalara bölüp yarın 2 dakikalık daha kısa bir süreyle tekrar deneyebilirsiniz. Uzmanınıza not bırakabilirsiniz.'
+	String get wizardTipBody => 'Hiç sorun değil! Otizm spektrumundaki çocukların bazı günlerde motivasyonu değişebilir. Egzersizi küçük parçalara bölüp yarın 2 dakikalık daha kısa bir süreyle tekrar deneyebilirsiniz. Uzmanınıza not bırakabilirsiniz.';
+
+	/// tr: 'Uzmanınıza bırakmak istediğiniz not (opsiyonel)'
+	String get wizardNoteLabel => 'Uzmanınıza bırakmak istediğiniz not (opsiyonel)';
+
+	/// tr: 'Örn: Çalışırken çok keyif aldı veya dikkati çabuk dağıldı…'
+	String get wizardNoteHint => 'Örn: Çalışırken çok keyif aldı veya dikkati çabuk dağıldı…';
+
+	/// tr: 'Fotoğraf / çalışma anı ekle'
+	String get wizardAddPhoto => 'Fotoğraf / çalışma anı ekle';
+
+	/// tr: 'Fotoğrafı değiştir'
+	String get wizardChangePhoto => 'Fotoğrafı değiştir';
+
+	/// tr: 'Fotoğraf eklendi'
+	String get wizardPhotoAdded => 'Fotoğraf eklendi';
+
+	/// tr: 'Kaldır'
+	String get wizardRemovePhoto => 'Kaldır';
+
+	/// tr: 'Galeriden seç'
+	String get wizardSourceGallery => 'Galeriden seç';
+
+	/// tr: 'Fotoğraf çek'
+	String get wizardSourceCamera => 'Fotoğraf çek';
+
+	/// tr: 'Egzersizi kaydet ve tamamla'
+	String get wizardSubmit => 'Egzersizi kaydet ve tamamla';
+
+	/// tr: 'Tebrikler! Günlük egzersiz tamamlandı 🎉'
+	String get wizardSubmitted => 'Tebrikler! Günlük egzersiz tamamlandı 🎉';
+
+	/// tr: 'Bu egzersiz teslim edildi'
+	String get wizardDone => 'Bu egzersiz teslim edildi';
+
+	/// tr: 'Uzmanınıza iletildi; sonraki egzersize geçebilirsiniz.'
+	String get wizardDoneHint => 'Uzmanınıza iletildi; sonraki egzersize geçebilirsiniz.';
+
+	/// tr: 'Önceki egzersiz'
+	String get wizardPrev => 'Önceki egzersiz';
+
+	/// tr: 'Sonraki egzersiz'
+	String get wizardNext => 'Sonraki egzersiz';
+
+	/// tr: 'Çocuğunuzun ilerleme ağacı'
+	String get wizardTreeTitle => 'Çocuğunuzun ilerleme ağacı';
+
+	/// tr: 'Tohum'
+	String get stageSeed => 'Tohum';
+
+	/// tr: 'Yeni bir yolculuk başlıyor'
+	String get stageSeedDesc => 'Yeni bir yolculuk başlıyor';
+
+	/// tr: 'Filiz'
+	String get stageSprout => 'Filiz';
+
+	/// tr: 'Farkındalık ve alışma evresi'
+	String get stageSproutDesc => 'Farkındalık ve alışma evresi';
+
+	/// tr: 'Çiçek'
+	String get stageFlower => 'Çiçek';
+
+	/// tr: 'Birlikte düzenli pratik yapılıyor'
+	String get stageFlowerDesc => 'Birlikte düzenli pratik yapılıyor';
+
+	/// tr: 'Ağaç'
+	String get stageTree => 'Ağaç';
+
+	/// tr: 'Harika! Beceri tam bağımsızlaştı'
+	String get stageTreeDesc => 'Harika! Beceri tam bağımsızlaştı';
 }
 
 // Path: forum
@@ -2747,6 +4672,18 @@ class Translations$childDetail$tr {
 
 	// Translations
 
+	/// tr: 'İlaç uyumu ve davranış'
+	String get correlationTitle => 'İlaç uyumu ve davranış';
+
+	/// tr: 'Doz uyumu ile davranış kayıtlarının aynı gündeki ilişkisi.'
+	String get correlationHint => 'Doz uyumu ile davranış kayıtlarının aynı gündeki ilişkisi.';
+
+	/// tr: 'Kayıt yok'
+	String get correlationNoDose => 'Kayıt yok';
+
+	/// tr: 'Kırmızı çubuk davranış kaydı sayısı, sağdaki yüzde doz uyumu.'
+	String get correlationLegend => 'Kırmızı çubuk davranış kaydı sayısı, sağdaki yüzde doz uyumu.';
+
 	/// tr: 'Çocuk Profili'
 	String get title => 'Çocuk Profili';
 
@@ -2942,6 +4879,43 @@ class Translations$crisis$tr {
 	/// tr: 'Kadın, Çocuk ve Sosyal Hizmetler'
 	String get contact183Desc => 'Kadın, Çocuk ve Sosyal Hizmetler';
 
+	/// tr: 'Sesli dinle'
+	String get listen => 'Sesli dinle';
+
+	/// tr: 'Durdur'
+	String get listenStop => 'Durdur';
+
+	/// tr: 'Neler yapılmalı'
+	String get listenIntro => 'Neler yapılmalı';
+
+	/// tr: 'Sesli okuma bu cihazda kullanılamıyor.'
+	String get listenUnavailable => 'Sesli okuma bu cihazda kullanılamıyor.';
+
+	/// tr: 'Önemli tıbbi uyarı'
+	String get medicalTitle => 'Önemli tıbbi uyarı';
+
+	/// tr: 'Bu rehber profesyonel tıbbi veya psikiyatrik müdahalenin yerine geçmez. Bilinç kaybı, şiddetli nöbet, solunum güçlüğü veya ciddi zarar verme durumlarında vakit kaybetmeden 112 Acil Yardım Hattı'nı arayın.'
+	String get medicalBody => 'Bu rehber profesyonel tıbbi veya psikiyatrik müdahalenin yerine geçmez. Bilinç kaybı, şiddetli nöbet, solunum güçlüğü veya ciddi zarar verme durumlarında vakit kaybetmeden 112 Acil Yardım Hattı\'nı arayın.';
+
+	/// tr: 'Detaylı bilgi'
+	String get medicalMore => 'Detaylı bilgi';
+
+	/// tr: 'İlk kural'
+	String get quickTipTitle => 'İlk kural';
+
+	/// tr: 'Siz sakin olun. Çocuk sizin duygusal durumunuzu ayna gibi yansıtır. Derin nefes alın, yavaş hareket edin.'
+	String get quickTipBody => 'Siz sakin olun. Çocuk sizin duygusal durumunuzu ayna gibi yansıtır. Derin nefes alın, yavaş hareket edin.';
+
+	/// tr: 'Kriz sonrası — iyileşme zamanı'
+	String get afterTitle => 'Kriz sonrası — iyileşme zamanı';
+
+	List<String> get afterItems => [
+		'Çocuğa sakin ortamda sessizce eşlik edin, konuşmaya zorlamayın.',
+		'Sevildiğini ve güvende olduğunu hissettirin.',
+		'Kriz tetikleyicilerini not edin (tarih, saat, ortam, önceki olay).',
+		'Uzman ekibinizi kriz hakkında bilgilendirin.',
+		'Kendinize de zaman ayırın — bakım verici de yorulur.',
+	];
 	late final Translations$crisis$cards$tr cards = Translations$crisis$cards$tr.internal(_root);
 }
 
@@ -3088,6 +5062,18 @@ class Translations$emergency$tr {
 
 	// Translations
 
+	/// tr: 'Sesli oku'
+	String get listen => 'Sesli oku';
+
+	/// tr: 'Okumayı durdur'
+	String get listenStop => 'Okumayı durdur';
+
+	/// tr: 'belirtilmedi'
+	String get listenUnknown => 'belirtilmedi';
+
+	/// tr: 'Cihazda sesli okuma başlatılamadı.'
+	String get listenFailed => 'Cihazda sesli okuma başlatılamadı.';
+
 	/// tr: 'Acil Durum Kartı'
 	String get title => 'Acil Durum Kartı';
 
@@ -3108,6 +5094,54 @@ class Translations$emergency$tr {
 
 	/// tr: 'Acil durum kartı kaydedildi.'
 	String get saved => 'Acil durum kartı kaydedildi.';
+
+	/// tr: 'QR kod ile paylaş'
+	String get shareTitle => 'QR kod ile paylaş';
+
+	/// tr: 'Süreli bir bağlantı oluşturun; öğretmen veya sağlık görevlisi kartı bu bağlantıdan görüntüleyebilir. Bağlantıyı istediğiniz an kapatabilirsiniz.'
+	String get shareBody => 'Süreli bir bağlantı oluşturun; öğretmen veya sağlık görevlisi kartı bu bağlantıdan görüntüleyebilir. Bağlantıyı istediğiniz an kapatabilirsiniz.';
+
+	/// tr: 'Paylaşım için "Acil durum kartı paylaşımı" rızasını vermeniz gerekiyor.'
+	String get shareConsentRequired => 'Paylaşım için "Acil durum kartı paylaşımı" rızasını vermeniz gerekiyor.';
+
+	/// tr: 'Rıza ayarlarını aç'
+	String get shareOpenConsents => 'Rıza ayarlarını aç';
+
+	/// tr: 'Geçerlilik süresi'
+	String get shareDuration => 'Geçerlilik süresi';
+
+	/// tr: '24 saat geçerli'
+	String get share24h => '24 saat geçerli';
+
+	/// tr: '3 gün geçerli'
+	String get share3d => '3 gün geçerli';
+
+	/// tr: '1 hafta geçerli'
+	String get share1w => '1 hafta geçerli';
+
+	/// tr: '30 gün geçerli'
+	String get share30d => '30 gün geçerli';
+
+	/// tr: 'Paylaşım bağlantısı oluştur'
+	String get shareEnable => 'Paylaşım bağlantısı oluştur';
+
+	/// tr: 'Paylaşımı kapat'
+	String get shareDisable => 'Paylaşımı kapat';
+
+	/// tr: 'Bağlantı $date tarihine kadar geçerli.'
+	String shareValidUntil({required Object date}) => 'Bağlantı ${date} tarihine kadar geçerli.';
+
+	/// tr: 'Bağlantıyı kopyala'
+	String get shareCopy => 'Bağlantıyı kopyala';
+
+	/// tr: 'Bağlantı kopyalandı.'
+	String get shareCopied => 'Bağlantı kopyalandı.';
+
+	/// tr: 'Paylaş'
+	String get shareSend => 'Paylaş';
+
+	/// tr: 'Çocuğumun acil durum kartını buradan görüntüleyebilirsiniz:'
+	String get shareMessage => 'Çocuğumun acil durum kartını buradan görüntüleyebilirsiniz:';
 
 	/// tr: 'Ara'
 	String get call => 'Ara';
@@ -3369,6 +5403,141 @@ class Translations$analytics$tr {
 
 	/// tr: 'Gelişim paneli için önce bir çocuk ekleyin.'
 	String get noChild => 'Gelişim paneli için önce bir çocuk ekleyin.';
+
+	/// tr: 'Yapay zekâ analizi'
+	String get aiTitle => 'Yapay zekâ analizi';
+
+	/// tr: 'Çocuğunuzun kayıtlarındaki örüntüleri özetler; tanı koymaz.'
+	String get aiSubtitle => 'Çocuğunuzun kayıtlarındaki örüntüleri özetler; tanı koymaz.';
+
+	/// tr: 'Genel'
+	String get aiTypeGeneral => 'Genel';
+
+	/// tr: 'Davranış'
+	String get aiTypeBehavioral => 'Davranış';
+
+	/// tr: 'İlerleme'
+	String get aiTypeProgress => 'İlerleme';
+
+	/// tr: 'Haftalık'
+	String get aiTypeWeekly => 'Haftalık';
+
+	/// tr: '$type analizini başlat'
+	String aiStart({required Object type}) => '${type} analizini başlat';
+
+	/// tr: 'Analiz hazırlanıyor…'
+	String get aiRunning => 'Analiz hazırlanıyor…';
+
+	/// tr: 'Analiz alınamadı. Lütfen tekrar deneyin.'
+	String get aiError => 'Analiz alınamadı. Lütfen tekrar deneyin.';
+
+	/// tr: 'Bu özet bilgilendirme amaçlıdır; tıbbi tanı ya da tedavi önerisi değildir.'
+	String get aiDisclaimer => 'Bu özet bilgilendirme amaçlıdır; tıbbi tanı ya da tedavi önerisi değildir.';
+
+	/// tr: 'Yapay zekâ analizi için rızanız gerekiyor'
+	String get aiConsentTitle => 'Yapay zekâ analizi için rızanız gerekiyor';
+
+	/// tr: 'Çocuğunuzun kayıtlarının analiz edilmesi açık rızaya bağlıdır. Rızayı KVKK ve rızalar sayfasından verebilirsiniz.'
+	String get aiConsentBody => 'Çocuğunuzun kayıtlarının analiz edilmesi açık rızaya bağlıdır. Rızayı KVKK ve rızalar sayfasından verebilirsiniz.';
+
+	/// tr: 'Rızaları yönet'
+	String get aiConsentAction => 'Rızaları yönet';
+
+	/// tr: 'Son $count gün'
+	String rangeDays({required Object count}) => 'Son ${count} gün';
+
+	/// tr: 'Takip skoru'
+	String get scoreTitle => 'Takip skoru';
+
+	/// tr: '$count / $total veri türünde kayıt var'
+	String scoreCoverage({required Object count, required Object total}) => '${count} / ${total} veri türünde kayıt var';
+
+	/// tr: 'Güçlü takip'
+	String get scoreStrong => 'Güçlü takip';
+
+	/// tr: 'Takip gelişiyor'
+	String get scoreGrowing => 'Takip gelişiyor';
+
+	/// tr: 'Veri bekleniyor'
+	String get scoreWaiting => 'Veri bekleniyor';
+
+	/// tr: 'Eksik veriler'
+	String get actionsTitle => 'Eksik veriler';
+
+	/// tr: 'Ruh hali kaydı ekle'
+	String get actionMood => 'Ruh hali kaydı ekle';
+
+	/// tr: 'Uyku kaydı ekle'
+	String get actionSleep => 'Uyku kaydı ekle';
+
+	/// tr: 'Gelişim notu yaz'
+	String get actionNote => 'Gelişim notu yaz';
+
+	/// tr: 'Kilometre taşı ekle'
+	String get actionMilestone => 'Kilometre taşı ekle';
+
+	/// tr: 'Son $days günde ortalama ruh hali $value/5 ile oldukça yüksek.'
+	String insightMoodHigh({required Object days, required Object value}) => 'Son ${days} günde ortalama ruh hali ${value}/5 ile oldukça yüksek.';
+
+	/// tr: 'Son $days günde ortalama ruh hali $value/5 — bazı güçlükler olabilir.'
+	String insightMoodLow({required Object days, required Object value}) => 'Son ${days} günde ortalama ruh hali ${value}/5 — bazı güçlükler olabilir.';
+
+	/// tr: 'Ortalama uyku süresi $value — yeterli dinlenme için 8-10 saat önerilir.'
+	String insightSleepShort({required Object value}) => 'Ortalama uyku süresi ${value} — yeterli dinlenme için 8-10 saat önerilir.';
+
+	/// tr: 'Uyku düzeni iyi: ortalama $value.'
+	String insightSleepGood({required Object value}) => 'Uyku düzeni iyi: ortalama ${value}.';
+
+	/// tr: 'En fazla kilometre taşı "$category" alanında ($count adet).'
+	String insightMilestones({required Object category, required Object count}) => 'En fazla kilometre taşı "${category}" alanında (${count} adet).';
+
+	/// tr: '$count randevu tamamlandı.'
+	String insightAppointments({required Object count}) => '${count} randevu tamamlandı.';
+
+	/// tr: '$count randevu tamamlandı, $pending aktif randevu devam ediyor.'
+	String insightAppointmentsWithPending({required Object count, required Object pending}) => '${count} randevu tamamlandı, ${pending} aktif randevu devam ediyor.';
+
+	/// tr: 'Ruh hali trendi'
+	String get dailyMood => 'Ruh hali trendi';
+
+	/// tr: 'günlük kayıt (1-5)'
+	String get dailyMoodUnit => 'günlük kayıt (1-5)';
+
+	/// tr: 'Uyku düzeni'
+	String get dailySleep => 'Uyku düzeni';
+
+	/// tr: 'gecelik süre (saat)'
+	String get dailySleepUnit => 'gecelik süre (saat)';
+
+	/// tr: 'kalite (1-5)'
+	String get dailySleepQuality => 'kalite (1-5)';
+
+	/// tr: 'Davranış kategorileri'
+	String get behaviorCategories => 'Davranış kategorileri';
+
+	/// tr: 'kayıt sayısı ve ortalama şiddet'
+	String get behaviorCategoriesUnit => 'kayıt sayısı ve ortalama şiddet';
+
+	/// tr: 'Kilometre taşları'
+	String get milestoneCategories => 'Kilometre taşları';
+
+	/// tr: 'kategoriye göre kazanım'
+	String get milestoneCategoriesUnit => 'kategoriye göre kazanım';
+
+	/// tr: 'Not aktivitesi'
+	String get notesActivity => 'Not aktivitesi';
+
+	/// tr: 'aylık not sayısı'
+	String get notesActivityUnit => 'aylık not sayısı';
+
+	/// tr: '$count · ort. $intensity'
+	String countWithIntensity({required Object count, required Object intensity}) => '${count} · ort. ${intensity}';
+
+	/// tr: 'CSV olarak paylaş'
+	String get exportCsv => 'CSV olarak paylaş';
+
+	/// tr: 'Paylaşılacak kayıt yok.'
+	String get exportEmpty => 'Paylaşılacak kayıt yok.';
 }
 
 // Path: children
@@ -3472,6 +5641,9 @@ class Translations$account$tr {
 
 	// Translations
 
+	/// tr: 'Profil fotoğrafı güncellendi.'
+	String get photoUpdated => 'Profil fotoğrafı güncellendi.';
+
 	/// tr: 'Hesap Bilgileri'
 	String get title => 'Hesap Bilgileri';
 
@@ -3571,8 +5743,8 @@ class Translations$profile$tr {
 	/// tr: 'Çocuklarım'
 	String get myChildren => 'Çocuklarım';
 
-	/// tr: 'Bildirim Ayarları'
-	String get notificationSettings => 'Bildirim Ayarları';
+	/// tr: 'Tüm bölümleri göster'
+	String get showAllSections => 'Tüm bölümleri göster';
 
 	/// tr: 'Yardım'
 	String get help => 'Yardım';
@@ -3612,6 +5784,840 @@ class Translations$errors$tr {
 
 	/// tr: 'Sunucu yanıtında kullanıcı bilgisi yok.'
 	String get noUserInResponse => 'Sunucu yanıtında kullanıcı bilgisi yok.';
+
+	/// tr: 'Çok fazla deneme yaptınız. Lütfen biraz bekleyip tekrar deneyin.'
+	String get tooManyRequests => 'Çok fazla deneme yaptınız. Lütfen biraz bekleyip tekrar deneyin.';
+
+	/// tr: '$count saniye sonra tekrar deneyebilirsiniz.'
+	String retryInSeconds({required Object count}) => '${count} saniye sonra tekrar deneyebilirsiniz.';
+
+	/// tr: 'Dosya çok büyük (en fazla $limit MB).'
+	String uploadTooLarge({required Object limit}) => 'Dosya çok büyük (en fazla ${limit} MB).';
+
+	/// tr: 'Bu dosya türü desteklenmiyor. JPG, PNG, WEBP, GIF, PDF ve TXT yükleyebilirsiniz.'
+	String get uploadTypeNotSupported => 'Bu dosya türü desteklenmiyor. JPG, PNG, WEBP, GIF, PDF ve TXT yükleyebilirsiniz.';
+
+	/// tr: 'Dosya okunamadı ya da boş.'
+	String get uploadEmptyFile => 'Dosya okunamadı ya da boş.';
+
+	/// tr: 'Geçerli bir e-posta adresi girin.'
+	String get invalidEmail => 'Geçerli bir e-posta adresi girin.';
+}
+
+// Path: guide
+class Translations$guide$tr {
+	Translations$guide$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Kullanıcı Rehberi'
+	String get title => 'Kullanıcı Rehberi';
+
+	/// tr: 'Rolünüze göre ilk adımları, sayfaların ne işe yaradığını ve destek kanallarını tek yerde görün.'
+	String get subtitle => 'Rolünüze göre ilk adımları, sayfaların ne işe yaradığını ve destek kanallarını tek yerde görün.';
+
+	/// tr: 'Sayfa, konu veya işlem ara…'
+	String get searchHint => 'Sayfa, konu veya işlem ara…';
+
+	/// tr: '$visible / $total sayfa'
+	String countLabel({required Object visible, required Object total}) => '${visible} / ${total} sayfa';
+
+	/// tr: 'Aramanıza uyan bölüm bulunamadı.'
+	String get searchEmpty => 'Aramanıza uyan bölüm bulunamadı.';
+
+	/// tr: 'Nereden başlamalı?'
+	String get startTitle => 'Nereden başlamalı?';
+
+	/// tr: 'Sırayla ilerleyin; her adım ilgili bölümü açar.'
+	String get startSubtitle => 'Sırayla ilerleyin; her adım ilgili bölümü açar.';
+
+	/// tr: 'Bölümler ne işe yarar?'
+	String get sectionsTitle => 'Bölümler ne işe yarar?';
+
+	/// tr: 'Bir kategori seçin, o bölümün sayfalarını görün.'
+	String get sectionsSubtitle => 'Bir kategori seçin, o bölümün sayfalarını görün.';
+
+	/// tr: 'Ne işe yarar?'
+	String get purposeLabel => 'Ne işe yarar?';
+
+	/// tr: 'Ne zaman kullanılır?'
+	String get whenLabel => 'Ne zaman kullanılır?';
+
+	/// tr: 'Aç'
+	String get openPage => 'Aç';
+
+	/// tr: 'Eğitim videoları'
+	String get videosTitle => 'Eğitim videoları';
+
+	/// tr: 'Kısa anlatımlar. Videolar web sürümünde oynatılır; dokununca tarayıcıda açılır.'
+	String get videosSubtitle => 'Kısa anlatımlar. Videolar web sürümünde oynatılır; dokununca tarayıcıda açılır.';
+
+	/// tr: 'İzle'
+	String get videoWatch => 'İzle';
+
+	/// tr: 'İzlendi'
+	String get videoWatched => 'İzlendi';
+
+	/// tr: 'İzlendi olarak işaretle'
+	String get videoMarkWatched => 'İzlendi olarak işaretle';
+
+	/// tr: '$done / $total video izlendi'
+	String videoProgress({required Object done, required Object total}) => '${done} / ${total} video izlendi';
+
+	/// tr: 'Video bağlantısı açılamadı.'
+	String get videoOpenError => 'Video bağlantısı açılamadı.';
+
+	/// tr: 'Başlangıç'
+	String get videoCategoryStart => 'Başlangıç';
+
+	/// tr: 'Çocuk ve Gelişim'
+	String get videoCategoryChild => 'Çocuk ve Gelişim';
+
+	/// tr: 'Günlük Takip'
+	String get videoCategoryTracking => 'Günlük Takip';
+
+	/// tr: 'Plan ve Randevu'
+	String get videoCategoryPlan => 'Plan ve Randevu';
+
+	/// tr: 'İletişim ve Topluluk'
+	String get videoCategoryCommunity => 'İletişim ve Topluluk';
+
+	/// tr: 'Güven ve Destek'
+	String get videoCategorySupport => 'Güven ve Destek';
+
+	/// tr: 'Her gün'
+	String get badgeDaily => 'Her gün';
+
+	/// tr: 'Kısa kayıt'
+	String get badgeQuickLog => 'Kısa kayıt';
+
+	/// tr: 'Hızlı destek'
+	String get badgeQuickHelp => 'Hızlı destek';
+
+	/// tr: 'İlk adım'
+	String get badgeFirstStep => 'İlk adım';
+
+	/// tr: 'İlk kurulum'
+	String get badgeSetup => 'İlk kurulum';
+
+	/// tr: 'Günlük rutin'
+	String get badgeRoutine => 'Günlük rutin';
+
+	/// tr: 'Klinik destek'
+	String get badgeClinical => 'Klinik destek';
+
+	/// tr: 'Gizlilik'
+	String get badgePrivacy => 'Gizlilik';
+
+	/// tr: 'Takvim'
+	String get badgeCalendar => 'Takvim';
+
+	/// tr: 'İletişim'
+	String get badgeCommunication => 'İletişim';
+
+	/// tr: 'Profil'
+	String get badgeProfile => 'Profil';
+
+	/// tr: 'Günlük'
+	String get groupDaily => 'Günlük';
+
+	/// tr: 'Her gün kullanacağınız ana sayfa, takip ve hızlı destek bölümleri.'
+	String get groupDailyDesc => 'Her gün kullanacağınız ana sayfa, takip ve hızlı destek bölümleri.';
+
+	/// tr: 'Çocuğum'
+	String get groupChild => 'Çocuğum';
+
+	/// tr: 'Çocuğunuzun gelişimi, profil bilgileri, egzersizleri ve özel durum kayıtları.'
+	String get groupChildDesc => 'Çocuğunuzun gelişimi, profil bilgileri, egzersizleri ve özel durum kayıtları.';
+
+	/// tr: 'Topluluk'
+	String get groupCommunity => 'Topluluk';
+
+	/// tr: 'Deneyim paylaşımı, forum, yerel buluşmalar ve diğer ailelerle iletişim.'
+	String get groupCommunityDesc => 'Deneyim paylaşımı, forum, yerel buluşmalar ve diğer ailelerle iletişim.';
+
+	/// tr: 'Çalışma alanı'
+	String get groupExpertWork => 'Çalışma alanı';
+
+	/// tr: 'Randevu, iletişim ve mesleki kaynak bölümleri.'
+	String get groupExpertWorkDesc => 'Randevu, iletişim ve mesleki kaynak bölümleri.';
+
+	/// tr: 'Çocuk profilini oluştur'
+	String get startChild => 'Çocuk profilini oluştur';
+
+	/// tr: 'Temel bilgiler, tanı notları ve ihtiyaçları girerek takip edilecek çocuğu hazırlayın.'
+	String get startChildDesc => 'Temel bilgiler, tanı notları ve ihtiyaçları girerek takip edilecek çocuğu hazırlayın.';
+
+	/// tr: 'İlk günlük kaydı ekle'
+	String get startTracker => 'İlk günlük kaydı ekle';
+
+	/// tr: 'Uyku, ruh hali, ilaç ve gözlemleri kısa kayıtlarla düzenli hale getirin.'
+	String get startTrackerDesc => 'Uyku, ruh hali, ilaç ve gözlemleri kısa kayıtlarla düzenli hale getirin.';
+
+	/// tr: 'Uzmanla randevu planla'
+	String get startAppointment => 'Uzmanla randevu planla';
+
+	/// tr: 'Uygun uzmanı seçin, randevu talebi oluşturun ve görüşme akışını takip edin.'
+	String get startAppointmentDesc => 'Uygun uzmanı seçin, randevu talebi oluşturun ve görüşme akışını takip edin.';
+
+	/// tr: 'Paylaşım izinlerini kontrol et'
+	String get startPrivacy => 'Paylaşım izinlerini kontrol et';
+
+	/// tr: 'Hangi verinin hangi amaçla işleneceğini KVKK rızalarından yönetin.'
+	String get startPrivacyDesc => 'Hangi verinin hangi amaçla işleneceğini KVKK rızalarından yönetin.';
+
+	/// tr: 'Randevuları yönet'
+	String get startExpertCalendar => 'Randevuları yönet';
+
+	/// tr: 'Randevu taleplerini onaylayın, seansları tamamlayın ve aileleri bilgilendirin.'
+	String get startExpertCalendarDesc => 'Randevu taleplerini onaylayın, seansları tamamlayın ve aileleri bilgilendirin.';
+
+	/// tr: 'Ailelerle iletişime geç'
+	String get startExpertMessages => 'Ailelerle iletişime geç';
+
+	/// tr: 'Güvenli mesajlaşmayla soruları yanıtlayın ve takibi sürdürün.'
+	String get startExpertMessagesDesc => 'Güvenli mesajlaşmayla soruları yanıtlayın ve takibi sürdürün.';
+
+	/// tr: 'Uzman profilini tamamla'
+	String get startExpertProfile => 'Uzman profilini tamamla';
+
+	/// tr: 'Unvan, uzmanlık alanları ve iletişim bilgilerinizi güncel tutun.'
+	String get startExpertProfileDesc => 'Unvan, uzmanlık alanları ve iletişim bilgilerinizi güncel tutun.';
+
+	/// tr: 'Ana Sayfa'
+	String get pageHome => 'Ana Sayfa';
+
+	/// tr: 'Bugün yapılacakları, hatırlatmaları ve kısa günlük planı tek yerde gösterir.'
+	String get pageHomePurpose => 'Bugün yapılacakları, hatırlatmaları ve kısa günlük planı tek yerde gösterir.';
+
+	/// tr: 'Uygulamaya her girişte "bugün ne yapacağım?" diye bakmak istediğinizde.'
+	String get pageHomeWhen => 'Uygulamaya her girişte "bugün ne yapacağım?" diye bakmak istediğinizde.';
+
+	/// tr: 'ana sayfa, başlangıç, görev, bugün, panel'
+	String get pageHomeKeywords => 'ana sayfa, başlangıç, görev, bugün, panel';
+
+	/// tr: 'Günlük Takip'
+	String get pageTracker => 'Günlük Takip';
+
+	/// tr: 'Ruh hali, uyku, ilaç ve kısa günlük gözlemleri kaydetmek için kullanılır.'
+	String get pageTrackerPurpose => 'Ruh hali, uyku, ilaç ve kısa günlük gözlemleri kaydetmek için kullanılır.';
+
+	/// tr: 'Günün sonunda veya önemli bir değişiklik olduğunda kısa kayıt girmek istediğinizde.'
+	String get pageTrackerWhen => 'Günün sonunda veya önemli bir değişiklik olduğunda kısa kayıt girmek istediğinizde.';
+
+	/// tr: 'günlük, ruh hali, uyku, ilaç, kayıt, duygu'
+	String get pageTrackerKeywords => 'günlük, ruh hali, uyku, ilaç, kayıt, duygu';
+
+	/// tr: 'Mesajlar'
+	String get pageMessages => 'Mesajlar';
+
+	/// tr: 'Uzmanlar ve platformdaki kişilerle güvenli yazışma alanıdır.'
+	String get pageMessagesPurpose => 'Uzmanlar ve platformdaki kişilerle güvenli yazışma alanıdır.';
+
+	/// tr: 'Randevu, soru veya takip için mesajlaşmak istediğinizde.'
+	String get pageMessagesWhen => 'Randevu, soru veya takip için mesajlaşmak istediğinizde.';
+
+	/// tr: 'mesaj, sohbet, iletişim, uzman'
+	String get pageMessagesKeywords => 'mesaj, sohbet, iletişim, uzman';
+
+	/// tr: 'Randevular'
+	String get pageAppointments => 'Randevular';
+
+	/// tr: 'Randevu talepleri, seans zamanı ve görüşme akışını yönetir.'
+	String get pageAppointmentsPurpose => 'Randevu talepleri, seans zamanı ve görüşme akışını yönetir.';
+
+	/// tr: 'Uzmanla görüşme planlamak veya yaklaşan randevuları görmek istediğinizde.'
+	String get pageAppointmentsWhen => 'Uzmanla görüşme planlamak veya yaklaşan randevuları görmek istediğinizde.';
+
+	/// tr: 'randevu, takvim, seans, görüşme, doktor, terapi'
+	String get pageAppointmentsKeywords => 'randevu, takvim, seans, görüşme, doktor, terapi';
+
+	/// tr: 'Zor Anlarda Ne Yapmalı?'
+	String get pageCrisis => 'Zor Anlarda Ne Yapmalı?';
+
+	/// tr: 'Zorlayıcı anlarda sakinleşme ve müdahale adımlarını hızlı gösterir.'
+	String get pageCrisisPurpose => 'Zorlayıcı anlarda sakinleşme ve müdahale adımlarını hızlı gösterir.';
+
+	/// tr: 'Kriz, yoğun stres veya hızlı yönlendirme gereken bir durum olduğunda.'
+	String get pageCrisisWhen => 'Kriz, yoğun stres veya hızlı yönlendirme gereken bir durum olduğunda.';
+
+	/// tr: 'kriz, zor an, sakinleşme, acil, destek, nefes'
+	String get pageCrisisKeywords => 'kriz, zor an, sakinleşme, acil, destek, nefes';
+
+	/// tr: 'AI Asistan'
+	String get pageAssistant => 'AI Asistan';
+
+	/// tr: 'Sorularınıza anında yanıt veren sohbet asistanıdır; tıbbi tavsiye vermez, yönlendirir.'
+	String get pageAssistantPurpose => 'Sorularınıza anında yanıt veren sohbet asistanıdır; tıbbi tavsiye vermez, yönlendirir.';
+
+	/// tr: 'Aklınıza takılan bir konuyu hızlıca sormak istediğinizde.'
+	String get pageAssistantWhen => 'Aklınıza takılan bir konuyu hızlıca sormak istediğinizde.';
+
+	/// tr: 'asistan, sohbet, yapay zeka, soru, bot'
+	String get pageAssistantKeywords => 'asistan, sohbet, yapay zeka, soru, bot';
+
+	/// tr: 'Ayarlar'
+	String get pageSettings => 'Ayarlar';
+
+	/// tr: 'Bildirim, gizlilik ve erişilebilirlik tercihlerinizi, tema ve dili, şifrenizi ve hesabınızı yönetir.'
+	String get pageSettingsPurpose => 'Bildirim, gizlilik ve erişilebilirlik tercihlerinizi, tema ve dili, şifrenizi ve hesabınızı yönetir.';
+
+	/// tr: 'Uygulamayı kendinize göre ayarlamak veya verilerinizi yönetmek istediğinizde.'
+	String get pageSettingsWhen => 'Uygulamayı kendinize göre ayarlamak veya verilerinizi yönetmek istediğinizde.';
+
+	/// tr: 'ayarlar, bildirim, gizlilik, şifre, tema, dil, erişilebilirlik'
+	String get pageSettingsKeywords => 'ayarlar, bildirim, gizlilik, şifre, tema, dil, erişilebilirlik';
+
+	/// tr: 'Yardım'
+	String get pageHelp => 'Yardım';
+
+	/// tr: 'Uygulama hakkında kısa bilgi, kullanım ipuçları ve iletişim kanallarını içerir.'
+	String get pageHelpPurpose => 'Uygulama hakkında kısa bilgi, kullanım ipuçları ve iletişim kanallarını içerir.';
+
+	/// tr: 'Bir özelliğin nasıl çalıştığını bulamadığınızda.'
+	String get pageHelpWhen => 'Bir özelliğin nasıl çalıştığını bulamadığınızda.';
+
+	/// tr: 'yardım, destek, sss, iletişim'
+	String get pageHelpKeywords => 'yardım, destek, sss, iletişim';
+
+	/// tr: 'Çocuklarım'
+	String get pageChildren => 'Çocuklarım';
+
+	/// tr: 'Çocuğun temel bilgilerini, tanı notlarını, terapi ve ihtiyaç bilgilerini tutar.'
+	String get pageChildrenPurpose => 'Çocuğun temel bilgilerini, tanı notlarını, terapi ve ihtiyaç bilgilerini tutar.';
+
+	/// tr: 'İlk kurulumda veya çocukla ilgili bilgileri güncellemek istediğinizde.'
+	String get pageChildrenWhen => 'İlk kurulumda veya çocukla ilgili bilgileri güncellemek istediğinizde.';
+
+	/// tr: 'çocuk, profil, tanı, terapi, bilgi, kilometre taşı'
+	String get pageChildrenKeywords => 'çocuk, profil, tanı, terapi, bilgi, kilometre taşı';
+
+	/// tr: 'Gelişim Paneli'
+	String get pageAnalytics => 'Gelişim Paneli';
+
+	/// tr: 'Günlük kayıtları grafiklere ve aylık eğilimlere dönüştürür.'
+	String get pageAnalyticsPurpose => 'Günlük kayıtları grafiklere ve aylık eğilimlere dönüştürür.';
+
+	/// tr: 'Tek tek kayıtlardan daha büyük resmi görmek istediğinizde.'
+	String get pageAnalyticsWhen => 'Tek tek kayıtlardan daha büyük resmi görmek istediğinizde.';
+
+	/// tr: 'ilerleme, grafik, analiz, trend, gelişim'
+	String get pageAnalyticsKeywords => 'ilerleme, grafik, analiz, trend, gelişim';
+
+	/// tr: 'Tedavi Paneli'
+	String get pageTreatment => 'Tedavi Paneli';
+
+	/// tr: 'Küçük hedefler, ev çalışmaları, oyunlar ve günlük destek akışını toplar.'
+	String get pageTreatmentPurpose => 'Küçük hedefler, ev çalışmaları, oyunlar ve günlük destek akışını toplar.';
+
+	/// tr: 'Bugün evde uygulanabilecek kısa etkinlik veya hedef aradığınızda.'
+	String get pageTreatmentWhen => 'Bugün evde uygulanabilecek kısa etkinlik veya hedef aradığınızda.';
+
+	/// tr: 'tedavi, plan, hedef, aktivite, oyun, ev çalışması'
+	String get pageTreatmentKeywords => 'tedavi, plan, hedef, aktivite, oyun, ev çalışması';
+
+	/// tr: 'Ödevlerim'
+	String get pageTasks => 'Ödevlerim';
+
+	/// tr: 'Uzmanın verdiği görevleri, günlük egzersiz sihirbazını ve teslim durumunu gösterir.'
+	String get pageTasksPurpose => 'Uzmanın verdiği görevleri, günlük egzersiz sihirbazını ve teslim durumunu gösterir.';
+
+	/// tr: 'Seans sonrası verilen çalışmaları takip etmek istediğinizde.'
+	String get pageTasksWhen => 'Seans sonrası verilen çalışmaları takip etmek istediğinizde.';
+
+	/// tr: 'görev, ödev, egzersiz, uzman, teslim'
+	String get pageTasksKeywords => 'görev, ödev, egzersiz, uzman, teslim';
+
+	/// tr: 'Notlarım'
+	String get pageNotes => 'Notlarım';
+
+	/// tr: 'Davranış, gelişim, görüşme veya dikkat çeken olayları serbest not olarak saklar.'
+	String get pageNotesPurpose => 'Davranış, gelişim, görüşme veya dikkat çeken olayları serbest not olarak saklar.';
+
+	/// tr: 'Uzmanla paylaşmak veya sonra hatırlamak istediğiniz kısa gözlemler olduğunda.'
+	String get pageNotesWhen => 'Uzmanla paylaşmak veya sonra hatırlamak istediğiniz kısa gözlemler olduğunda.';
+
+	/// tr: 'not, gözlem, gelişim, davranış, hatırlatma'
+	String get pageNotesKeywords => 'not, gözlem, gelişim, davranış, hatırlatma';
+
+	/// tr: 'Davranış Günlüğü'
+	String get pageBehavior => 'Davranış Günlüğü';
+
+	/// tr: 'Davranışın öncesini, kendisini ve sonrasını (ABC) kayıt altına alarak örüntüleri görünür kılar.'
+	String get pageBehaviorPurpose => 'Davranışın öncesini, kendisini ve sonrasını (ABC) kayıt altına alarak örüntüleri görünür kılar.';
+
+	/// tr: 'Tekrarlayan bir davranışın nedenini anlamak istediğinizde.'
+	String get pageBehaviorWhen => 'Tekrarlayan bir davranışın nedenini anlamak istediğinizde.';
+
+	/// tr: 'davranış, abc, öncesi, sonrası, örüntü, tetikleyici'
+	String get pageBehaviorKeywords => 'davranış, abc, öncesi, sonrası, örüntü, tetikleyici';
+
+	/// tr: 'Acil Durum Kartı'
+	String get pageEmergency => 'Acil Durum Kartı';
+
+	/// tr: 'Acil durumda paylaşılacak temel çocuk bilgilerini hazır tutar; süreli bağlantı ve QR ile paylaşılır.'
+	String get pageEmergencyPurpose => 'Acil durumda paylaşılacak temel çocuk bilgilerini hazır tutar; süreli bağlantı ve QR ile paylaşılır.';
+
+	/// tr: 'Dışarıda, okulda veya acil durumda hızlı bilgi paylaşımı gerekebileceğinde.'
+	String get pageEmergencyWhen => 'Dışarıda, okulda veya acil durumda hızlı bilgi paylaşımı gerekebileceğinde.';
+
+	/// tr: 'acil, kart, güvenlik, qr, paylaşım'
+	String get pageEmergencyKeywords => 'acil, kart, güvenlik, qr, paylaşım';
+
+	/// tr: 'Takvim'
+	String get pageCalendar => 'Takvim';
+
+	/// tr: 'Randevu, okul, etkinlik ve hatırlatmaları tarihli şekilde tutar.'
+	String get pageCalendarPurpose => 'Randevu, okul, etkinlik ve hatırlatmaları tarihli şekilde tutar.';
+
+	/// tr: 'Yaklaşan planları unutmak istemediğinizde.'
+	String get pageCalendarWhen => 'Yaklaşan planları unutmak istemediğinizde.';
+
+	/// tr: 'takvim, etkinlik, hatırlatma, plan'
+	String get pageCalendarKeywords => 'takvim, etkinlik, hatırlatma, plan';
+
+	/// tr: 'Rutinler'
+	String get pageRoutines => 'Rutinler';
+
+	/// tr: 'Günlük rutinleri adım adım, görsel olarak takip etmeye yardımcı olur.'
+	String get pageRoutinesPurpose => 'Günlük rutinleri adım adım, görsel olarak takip etmeye yardımcı olur.';
+
+	/// tr: 'Sabah, okul, uyku veya geçiş rutinini görselleştirmek istediğinizde.'
+	String get pageRoutinesWhen => 'Sabah, okul, uyku veya geçiş rutinini görselleştirmek istediğinizde.';
+
+	/// tr: 'rutin, program, adım, görsel, geçiş'
+	String get pageRoutinesKeywords => 'rutin, program, adım, görsel, geçiş';
+
+	/// tr: 'Topluluk Forumu'
+	String get pageForum => 'Topluluk Forumu';
+
+	/// tr: 'Ebeveynlerin ve uzmanların soru sorup deneyimlerini paylaştığı ortak tartışma alanıdır.'
+	String get pageForumPurpose => 'Ebeveynlerin ve uzmanların soru sorup deneyimlerini paylaştığı ortak tartışma alanıdır.';
+
+	/// tr: 'Kafanıza takılan bir soruyu topluluğa danışmak istediğinizde.'
+	String get pageForumWhen => 'Kafanıza takılan bir soruyu topluluğa danışmak istediğinizde.';
+
+	/// tr: 'forum, soru, cevap, topluluk, deneyim'
+	String get pageForumKeywords => 'forum, soru, cevap, topluluk, deneyim';
+
+	/// tr: 'Dertleşme Duvarı'
+	String get pageWall => 'Dertleşme Duvarı';
+
+	/// tr: 'Duygu ve deneyim paylaşımı için daha serbest bir destek alanıdır; istersen anonim kalırsın.'
+	String get pageWallPurpose => 'Duygu ve deneyim paylaşımı için daha serbest bir destek alanıdır; istersen anonim kalırsın.';
+
+	/// tr: 'Soru sormaktan çok içinizi dökmek veya destek görmek istediğinizde.'
+	String get pageWallWhen => 'Soru sormaktan çok içinizi dökmek veya destek görmek istediğinizde.';
+
+	/// tr: 'dertleşme, duygu, paylaşım, destek, anonim'
+	String get pageWallKeywords => 'dertleşme, duygu, paylaşım, destek, anonim';
+
+	/// tr: 'Yerel Buluşmalar'
+	String get pageMeetups => 'Yerel Buluşmalar';
+
+	/// tr: 'Aynı şehirdeki ailelerle gerçek hayatta tanışıp bir araya gelmenizi sağlar.'
+	String get pageMeetupsPurpose => 'Aynı şehirdeki ailelerle gerçek hayatta tanışıp bir araya gelmenizi sağlar.';
+
+	/// tr: 'Çevrenizdeki ailelerle yüz yüze etkinlik planlamak istediğinizde.'
+	String get pageMeetupsWhen => 'Çevrenizdeki ailelerle yüz yüze etkinlik planlamak istediğinizde.';
+
+	/// tr: 'buluşma, etkinlik, şehir, tanışma, yerel'
+	String get pageMeetupsKeywords => 'buluşma, etkinlik, şehir, tanışma, yerel';
+
+	/// tr: 'Haftanın Sorusu'
+	String get pageWeekly => 'Haftanın Sorusu';
+
+	/// tr: 'Her hafta belirlenen ortak bir konu hakkında ailelerin yanıtlarını listeler.'
+	String get pageWeeklyPurpose => 'Her hafta belirlenen ortak bir konu hakkında ailelerin yanıtlarını listeler.';
+
+	/// tr: 'Diğer ailelerin ne düşündüğünü görmek veya deneyiminizi yazmak istediğinizde.'
+	String get pageWeeklyWhen => 'Diğer ailelerin ne düşündüğünü görmek veya deneyiminizi yazmak istediğinizde.';
+
+	/// tr: 'haftanın sorusu, topluluk, deneyim, paylaşım'
+	String get pageWeeklyKeywords => 'haftanın sorusu, topluluk, deneyim, paylaşım';
+
+	/// tr: 'Benzer Aileler'
+	String get pageSimilar => 'Benzer Aileler';
+
+	/// tr: 'Çocuğunuzun yaşı ve ihtiyaçları açısından benzer süreçler yaşayan ailelerle tanıştırır.'
+	String get pageSimilarPurpose => 'Çocuğunuzun yaşı ve ihtiyaçları açısından benzer süreçler yaşayan ailelerle tanıştırır.';
+
+	/// tr: 'Sizinle en çok ortak noktası olan aileleri bulmak istediğinizde.'
+	String get pageSimilarWhen => 'Sizinle en çok ortak noktası olan aileleri bulmak istediğinizde.';
+
+	/// tr: 'benzer aileler, eşleşme, akran, tanışma'
+	String get pageSimilarKeywords => 'benzer aileler, eşleşme, akran, tanışma';
+
+	/// tr: 'Destek Grupları'
+	String get pageGroups => 'Destek Grupları';
+
+	/// tr: 'Kategori bazlı aile ve uzman topluluklarına katılmanızı, grup sohbetine girmenizi sağlar.'
+	String get pageGroupsPurpose => 'Kategori bazlı aile ve uzman topluluklarına katılmanızı, grup sohbetine girmenizi sağlar.';
+
+	/// tr: 'Benzer ihtiyaç ve yaş gruplarına odaklanan bir topluluk aradığınızda.'
+	String get pageGroupsWhen => 'Benzer ihtiyaç ve yaş gruplarına odaklanan bir topluluk aradığınızda.';
+
+	/// tr: 'grup, topluluk, sohbet, katıl'
+	String get pageGroupsKeywords => 'grup, topluluk, sohbet, katıl';
+
+	/// tr: 'Bilgi Bankası'
+	String get pageKnowledge => 'Bilgi Bankası';
+
+	/// tr: 'Güvenilir yazıları ve kaynak içerikleri toplar.'
+	String get pageKnowledgePurpose => 'Güvenilir yazıları ve kaynak içerikleri toplar.';
+
+	/// tr: 'Bir konuyu sakin sakin okumak veya öğrenmek istediğinizde.'
+	String get pageKnowledgeWhen => 'Bir konuyu sakin sakin okumak veya öğrenmek istediğinizde.';
+
+	/// tr: 'bilgi, makale, rehber, kaynak, öğrenme'
+	String get pageKnowledgeKeywords => 'bilgi, makale, rehber, kaynak, öğrenme';
+
+	/// tr: 'Randevularım'
+	String get pageExpertAppointments => 'Randevularım';
+
+	/// tr: 'Gelen randevu taleplerini onaylar, seansları tamamlar ve erteleme taleplerini yönetir.'
+	String get pageExpertAppointmentsPurpose => 'Gelen randevu taleplerini onaylar, seansları tamamlar ve erteleme taleplerini yönetir.';
+
+	/// tr: 'Gününüzü planlarken ve seans sonrası kayıt kapatırken.'
+	String get pageExpertAppointmentsWhen => 'Gününüzü planlarken ve seans sonrası kayıt kapatırken.';
+
+	/// tr: 'Ailelerle güvenli yazışma alanıdır; görev geri bildirimleri de buradan iletilir.'
+	String get pageExpertMessagesPurpose => 'Ailelerle güvenli yazışma alanıdır; görev geri bildirimleri de buradan iletilir.';
+
+	/// tr: 'Aileye dönüş yapmak veya takip sorusu sormak istediğinizde.'
+	String get pageExpertMessagesWhen => 'Aileye dönüş yapmak veya takip sorusu sormak istediğinizde.';
+
+	/// tr: 'Uzman olarak soruları yanıtlayabilir, doğrulanmış bilgi paylaşabilirsiniz.'
+	String get pageExpertForumPurpose => 'Uzman olarak soruları yanıtlayabilir, doğrulanmış bilgi paylaşabilirsiniz.';
+
+	/// tr: 'Topluluğa mesleki katkı sunmak istediğinizde.'
+	String get pageExpertForumWhen => 'Topluluğa mesleki katkı sunmak istediğinizde.';
+
+	/// tr: 'Platforma Genel Bakış'
+	String get video01 => 'Platforma Genel Bakış';
+
+	/// tr: 'Ana bölümleri, rolünüze göre değişen menüyü ve güvenli kullanım araçlarını kısa bir turla tanıyın.'
+	String get video01Desc => 'Ana bölümleri, rolünüze göre değişen menüyü ve güvenli kullanım araçlarını kısa bir turla tanıyın.';
+
+	/// tr: 'Ebeveyn Hızlı Başlangıç'
+	String get video02 => 'Ebeveyn Hızlı Başlangıç';
+
+	/// tr: 'Aile hesabına girişten çocuk profiline ve ilk günlük kayda uzanan temel başlangıç akışını izleyin.'
+	String get video02Desc => 'Aile hesabına girişten çocuk profiline ve ilk günlük kayda uzanan temel başlangıç akışını izleyin.';
+
+	/// tr: 'Kullanıcı Rehberini Kullanma'
+	String get video03 => 'Kullanıcı Rehberini Kullanma';
+
+	/// tr: 'Arama, kategori ve rol odaklı yönlendirmelerle ihtiyacınız olan özelliği nasıl bulacağınızı öğrenin.'
+	String get video03Desc => 'Arama, kategori ve rol odaklı yönlendirmelerle ihtiyacınız olan özelliği nasıl bulacağınızı öğrenin.';
+
+	/// tr: 'Ana Sayfa ve Navigasyon'
+	String get video04 => 'Ana Sayfa ve Navigasyon';
+
+	/// tr: 'Günlük özetleri okuyun; menü ve hızlı erişimlerle istediğiniz bölüme ulaşın.'
+	String get video04Desc => 'Günlük özetleri okuyun; menü ve hızlı erişimlerle istediğiniz bölüme ulaşın.';
+
+	/// tr: 'Çocuk Profili'
+	String get video05 => 'Çocuk Profili';
+
+	/// tr: 'Çocuk profili oluşturun; temel bilgileri, tanı notlarını, ihtiyaçları ve erişim ayrıntılarını güncelleyin.'
+	String get video05Desc => 'Çocuk profili oluşturun; temel bilgileri, tanı notlarını, ihtiyaçları ve erişim ayrıntılarını güncelleyin.';
+
+	/// tr: 'Günlük Duygu ve Uyku Takibi'
+	String get video06 => 'Günlük Duygu ve Uyku Takibi';
+
+	/// tr: 'Ruh hali, uyku ve davranış kayıtlarını birkaç adımda ekleyip geçmişi inceleyin.'
+	String get video06Desc => 'Ruh hali, uyku ve davranış kayıtlarını birkaç adımda ekleyip geçmişi inceleyin.';
+
+	/// tr: 'İlaç Takibi'
+	String get video07 => 'İlaç Takibi';
+
+	/// tr: 'İlaç planını kaydedin, doz ve saat bilgilerini takip edin, geçmiş kayıtları güvenle kontrol edin.'
+	String get video07Desc => 'İlaç planını kaydedin, doz ve saat bilgilerini takip edin, geçmiş kayıtları güvenle kontrol edin.';
+
+	/// tr: 'Gelişim Paneli'
+	String get video08 => 'Gelişim Paneli';
+
+	/// tr: 'Günlük kayıtların grafiklere nasıl dönüştüğünü görün; eğilimleri ve gelişim özetlerini yorumlayın.'
+	String get video08Desc => 'Günlük kayıtların grafiklere nasıl dönüştüğünü görün; eğilimleri ve gelişim özetlerini yorumlayın.';
+
+	/// tr: 'Hedefler ve Egzersizler'
+	String get video09 => 'Hedefler ve Egzersizler';
+
+	/// tr: 'Çocuğunuza uygun hedefleri görüntüleyin, ev egzersizlerini uygulayın ve tamamlanma durumunu takip edin.'
+	String get video09Desc => 'Çocuğunuza uygun hedefleri görüntüleyin, ev egzersizlerini uygulayın ve tamamlanma durumunu takip edin.';
+
+	/// tr: 'Ödevler ve Rutinler'
+	String get video10 => 'Ödevler ve Rutinler';
+
+	/// tr: 'Uzmanın verdiği ödevleri takip edin ve sabah, okul ya da uyku rutinlerini adım adım planlayın.'
+	String get video10Desc => 'Uzmanın verdiği ödevleri takip edin ve sabah, okul ya da uyku rutinlerini adım adım planlayın.';
+
+	/// tr: 'Notlar, Takvim ve Acil Kart'
+	String get video11 => 'Notlar, Takvim ve Acil Kart';
+
+	/// tr: 'Gözlemlerinizi not alın, önemli tarihleri planlayın ve acil durumda paylaşılacak kartı hazır tutun.'
+	String get video11Desc => 'Gözlemlerinizi not alın, önemli tarihleri planlayın ve acil durumda paylaşılacak kartı hazır tutun.';
+
+	/// tr: 'Uzman Bulma ve Randevu'
+	String get video12 => 'Uzman Bulma ve Randevu';
+
+	/// tr: 'Uzmanları filtreleyip profillerini karşılaştırın, uygun kişiyi seçin ve randevu akışını yönetin.'
+	String get video12Desc => 'Uzmanları filtreleyip profillerini karşılaştırın, uygun kişiyi seçin ve randevu akışını yönetin.';
+
+	/// tr: 'Mesajlar, Gizlilik ve Ayarlar'
+	String get video13 => 'Mesajlar, Gizlilik ve Ayarlar';
+
+	/// tr: 'Güvenli mesajlaşmayı kullanın; profil, bildirim, şifre ve veri paylaşımı tercihlerini yönetin.'
+	String get video13Desc => 'Güvenli mesajlaşmayı kullanın; profil, bildirim, şifre ve veri paylaşımı tercihlerini yönetin.';
+
+	/// tr: 'Topluluk, Forum ve Buluşmalar'
+	String get video14 => 'Topluluk, Forum ve Buluşmalar';
+
+	/// tr: 'Forumda soru sorun, aile deneyimlerini inceleyin ve güvenli topluluk buluşmalarını keşfedin.'
+	String get video14Desc => 'Forumda soru sorun, aile deneyimlerini inceleyin ve güvenli topluluk buluşmalarını keşfedin.';
+
+	/// tr: 'Bilgi Bankası, Kriz ve Yardım'
+	String get video15 => 'Bilgi Bankası, Kriz ve Yardım';
+
+	/// tr: 'Güvenilir içerikleri bulun, zor anlar için kriz adımlarına ulaşın ve yardım kanallarını kullanın.'
+	String get video15Desc => 'Güvenilir içerikleri bulun, zor anlar için kriz adımlarına ulaşın ve yardım kanallarını kullanın.';
+}
+
+// Path: community
+class Translations$community$tr {
+	Translations$community$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Topluluk'
+	String get title => 'Topluluk';
+
+	/// tr: 'Kontrollü ve güvenli iletişim'
+	String get badge => 'Kontrollü ve güvenli iletişim';
+
+	/// tr: 'Aynı süreci yaşayan aileleri bulun, önce mesajlaşın, hazır olduğunuzda grup ve buluşmalara katılın.'
+	String get intro => 'Aynı süreci yaşayan aileleri bulun, önce mesajlaşın, hazır olduğunuzda grup ve buluşmalara katılın.';
+
+	/// tr: 'Ne yapmak istersiniz?'
+	String get areasTitle => 'Ne yapmak istersiniz?';
+
+	/// tr: 'Bütün topluluk alanları bu merkezde.'
+	String get areasSubtitle => 'Bütün topluluk alanları bu merkezde.';
+
+	/// tr: 'Güvenli tanışma önerisi'
+	String get safetyTitle => 'Güvenli tanışma önerisi';
+
+	/// tr: 'İlk görüşmede uygulama içinde yazışın. Telefon, açık adres ve çocuğun özel bilgilerini paylaşmak zorunda değilsiniz. Rahatsız olduğunuz kişiyi engelleyebilir veya bildirebilirsiniz.'
+	String get safetyBody => 'İlk görüşmede uygulama içinde yazışın. Telefon, açık adres ve çocuğun özel bilgilerini paylaşmak zorunda değilsiniz. Rahatsız olduğunuz kişiyi engelleyebilir veya bildirebilirsiniz.';
+
+	/// tr: 'Ortak deneyimleri ve eşleşme nedenlerini görün, güvenli bir tanışma başlatın.'
+	String get similarText => 'Ortak deneyimleri ve eşleşme nedenlerini görün, güvenli bir tanışma başlatın.';
+
+	/// tr: 'Aileler ve uzmanlarla yaptığınız görüşmelere tek yerden devam edin.'
+	String get messagesText => 'Aileler ve uzmanlarla yaptığınız görüşmelere tek yerden devam edin.';
+
+	/// tr: 'Benzer ihtiyaç ve yaş gruplarına odaklanan topluluklara katılın.'
+	String get groupsText => 'Benzer ihtiyaç ve yaş gruplarına odaklanan topluluklara katılın.';
+
+	/// tr: 'Şehrinizdeki güvenli buluşmaları keşfedin.'
+	String get meetupsText => 'Şehrinizdeki güvenli buluşmaları keşfedin.';
+
+	/// tr: 'Topluluğa soru sorun, ailelerin ve uzmanların yanıtlarını okuyun.'
+	String get forumText => 'Topluluğa soru sorun, ailelerin ve uzmanların yanıtlarını okuyun.';
+
+	/// tr: 'Yargılanmadan duygunuzu paylaşın; isterseniz anonim kalın.'
+	String get wallText => 'Yargılanmadan duygunuzu paylaşın; isterseniz anonim kalın.';
+
+	/// tr: 'Tek bir konu etrafında kısa deneyim paylaşımlarına katılın.'
+	String get weeklyText => 'Tek bir konu etrafında kısa deneyim paylaşımlarına katılın.';
+}
+
+// Path: reviews
+class Translations$reviews$tr {
+	Translations$reviews$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Değerlendirmeler ($count)'
+	String title({required Object count}) => 'Değerlendirmeler (${count})';
+
+	/// tr: 'Bu uzman için henüz değerlendirme yok.'
+	String get empty => 'Bu uzman için henüz değerlendirme yok.';
+
+	/// tr: 'Değerlendirme yaz'
+	String get write => 'Değerlendirme yaz';
+
+	/// tr: 'Değerlendirmemi düzenle'
+	String get edit => 'Değerlendirmemi düzenle';
+
+	/// tr: 'Puanınız'
+	String get ratingLabel => 'Puanınız';
+
+	/// tr: 'Deneyiminizi kısaca anlatın (isteğe bağlı)…'
+	String get commentHint => 'Deneyiminizi kısaca anlatın (isteğe bağlı)…';
+
+	/// tr: 'Kaydet'
+	String get save => 'Kaydet';
+
+	/// tr: 'Sil'
+	String get delete => 'Sil';
+
+	/// tr: 'Değerlendirmeyi sil'
+	String get deleteTitle => 'Değerlendirmeyi sil';
+
+	/// tr: 'Bu değerlendirmeyi silmek istediğinize emin misiniz?'
+	String get deleteConfirm => 'Bu değerlendirmeyi silmek istediğinize emin misiniz?';
+
+	/// tr: 'Bir veli'
+	String get someone => 'Bir veli';
+}
+
+// Path: expertAccess
+class Translations$expertAccess$tr {
+	Translations$expertAccess$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Uzman Erişimi'
+	String get title => 'Uzman Erişimi';
+
+	/// tr: 'Uzmanlar çocuğunuzun gelişim verilerine ancak siz onayladığınızda erişebilir. Verdiğiniz erişimi istediğiniz zaman geri alabilirsiniz.'
+	String get intro => 'Uzmanlar çocuğunuzun gelişim verilerine ancak siz onayladığınızda erişebilir. Verdiğiniz erişimi istediğiniz zaman geri alabilirsiniz.';
+
+	/// tr: 'Bekleyen istekler'
+	String get pendingTitle => 'Bekleyen istekler';
+
+	/// tr: 'Şu an bekleyen uzman erişim isteği yok.'
+	String get noPending => 'Şu an bekleyen uzman erişim isteği yok.';
+
+	/// tr: 'Erişimi olan uzmanlar'
+	String get activeTitle => 'Erişimi olan uzmanlar';
+
+	/// tr: 'Henüz hiçbir uzmana erişim vermediniz.'
+	String get noActive => 'Henüz hiçbir uzmana erişim vermediniz.';
+
+	/// tr: '$child adlı çocuğunuzun profiline erişim istiyor.'
+	String requestLine({required Object child}) => '${child} adlı çocuğunuzun profiline erişim istiyor.';
+
+	/// tr: '$child adlı çocuğunuzun profiline erişebiliyor.'
+	String activeLine({required Object child}) => '${child} adlı çocuğunuzun profiline erişebiliyor.';
+
+	/// tr: 'İstek tarihi: $date'
+	String requestedAt({required Object date}) => 'İstek tarihi: ${date}';
+
+	/// tr: 'Uzman'
+	String get unknownExpert => 'Uzman';
+
+	/// tr: 'Onayla'
+	String get approve => 'Onayla';
+
+	/// tr: 'Reddet'
+	String get reject => 'Reddet';
+
+	/// tr: 'Erişimi kaldır'
+	String get revoke => 'Erişimi kaldır';
+
+	/// tr: 'Uzman erişim isteği onaylandı.'
+	String get approved => 'Uzman erişim isteği onaylandı.';
+
+	/// tr: 'Uzman erişim isteği reddedildi.'
+	String get rejected => 'Uzman erişim isteği reddedildi.';
+
+	/// tr: 'Uzmanın erişimi kaldırıldı.'
+	String get revoked => 'Uzmanın erişimi kaldırıldı.';
+
+	/// tr: 'Erişimi kaldır'
+	String get revokeTitle => 'Erişimi kaldır';
+
+	/// tr: 'Bu uzmanın çocuğunuzun verilerine erişimini kaldırmak istediğinize emin misiniz?'
+	String get revokeConfirm => 'Bu uzmanın çocuğunuzun verilerine erişimini kaldırmak istediğinize emin misiniz?';
+
+	/// tr: '$count uzman erişim isteğiniz onay bekliyor'
+	String pendingBanner({required Object count}) => '${count} uzman erişim isteğiniz onay bekliyor';
+}
+
+// Path: common.unsaved
+class Translations$common$unsaved$tr {
+	Translations$common$unsaved$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Kaydedilmemiş değişiklikler'
+	String get title => 'Kaydedilmemiş değişiklikler';
+
+	/// tr: 'Girdikleriniz henüz kaydedilmedi. Çıkarsanız kaybolacak.'
+	String get body => 'Girdikleriniz henüz kaydedilmedi. Çıkarsanız kaybolacak.';
+
+	/// tr: 'Formda kal'
+	String get stay => 'Formda kal';
+
+	/// tr: 'Çık'
+	String get leave => 'Çık';
+}
+
+// Path: common.a11y
+class Translations$common$a11y$tr {
+	Translations$common$a11y$tr.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// tr: 'Düzenle'
+	String get edit => 'Düzenle';
+
+	/// tr: 'Sil'
+	String get delete => 'Sil';
+
+	/// tr: 'Kapat'
+	String get close => 'Kapat';
+
+	/// tr: 'Gönder'
+	String get send => 'Gönder';
+
+	/// tr: 'Seçenekler'
+	String get options => 'Seçenekler';
+
+	/// tr: 'Şikayet et'
+	String get report => 'Şikayet et';
+
+	/// tr: 'Aramayı temizle'
+	String get clearSearch => 'Aramayı temizle';
+
+	/// tr: 'Tarihi temizle'
+	String get clearDate => 'Tarihi temizle';
+
+	/// tr: 'Seçimi temizle'
+	String get clearSelection => 'Seçimi temizle';
+
+	/// tr: 'Yanıtı iptal et'
+	String get cancelReply => 'Yanıtı iptal et';
+
+	/// tr: 'Şifreyi göster'
+	String get showPassword => 'Şifreyi göster';
+
+	/// tr: 'Şifreyi gizle'
+	String get hidePassword => 'Şifreyi gizle';
+
+	/// tr: 'Azalt'
+	String get decrease => 'Azalt';
+
+	/// tr: 'Artır'
+	String get increase => 'Artır';
+
+	/// tr: '$count yıldız'
+	String rating({required Object count}) => '${count} yıldız';
 }
 
 // Path: crisis.cards
@@ -3757,12 +6763,32 @@ extension on Translations {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
 			'app.name' => 'Otizm Destek',
+			'common.cancel' => 'Vazgeç',
 			'common.loading' => 'Yükleniyor',
 			'common.comingSoon' => 'Bu bölüm yakında eklenecek.',
 			'common.seeAll' => 'Tümünü Gör',
 			'common.more' => 'Daha Fazla',
 			'common.retry' => 'Tekrar Dene',
 			'common.loadError' => 'Veriler yüklenemedi.',
+			'common.unsaved.title' => 'Kaydedilmemiş değişiklikler',
+			'common.unsaved.body' => 'Girdikleriniz henüz kaydedilmedi. Çıkarsanız kaybolacak.',
+			'common.unsaved.stay' => 'Formda kal',
+			'common.unsaved.leave' => 'Çık',
+			'common.a11y.edit' => 'Düzenle',
+			'common.a11y.delete' => 'Sil',
+			'common.a11y.close' => 'Kapat',
+			'common.a11y.send' => 'Gönder',
+			'common.a11y.options' => 'Seçenekler',
+			'common.a11y.report' => 'Şikayet et',
+			'common.a11y.clearSearch' => 'Aramayı temizle',
+			'common.a11y.clearDate' => 'Tarihi temizle',
+			'common.a11y.clearSelection' => 'Seçimi temizle',
+			'common.a11y.cancelReply' => 'Yanıtı iptal et',
+			'common.a11y.showPassword' => 'Şifreyi göster',
+			'common.a11y.hidePassword' => 'Şifreyi gizle',
+			'common.a11y.decrease' => 'Azalt',
+			'common.a11y.increase' => 'Artır',
+			'common.a11y.rating' => ({required Object count}) => '${count} yıldız',
 			'common.monthsShort.0' => 'Oca',
 			'common.monthsShort.1' => 'Şub',
 			'common.monthsShort.2' => 'Mar',
@@ -3798,6 +6824,26 @@ extension on Translations {
 			'auth.registerExpert' => 'Uzman hesabı ile kaydol',
 			'auth.errorEmptyFields' => 'Lütfen e-posta ve şifrenizi girin.',
 			'auth.registerComingSoon' => ({required Object role}) => '${role} kayıt ekranı yakında eklenecek.',
+			'auth.errorMfaRequired' => 'Bu hesapta iki adımlı doğrulama açık; şimdilik web üzerinden giriş yapın.',
+			'auth.resendVerification' => 'Doğrulama e-postasını yeniden gönder',
+			'verifyEmail.title' => 'E-posta Doğrulama',
+			'verifyEmail.waitingTitle' => 'Gelen kutunuzu kontrol edin',
+			'verifyEmail.waitingBody' => 'Doğrulama bağlantısını gönderdik. Bağlantıya dokunduktan sonra bu ekrana dönüp giriş yapabilirsiniz.',
+			'verifyEmail.waitingBodyWithEmail' => ({required Object email}) => '${email} adresine doğrulama bağlantısı gönderdik. Bağlantıya dokunduktan sonra bu ekrana dönüp giriş yapabilirsiniz.',
+			'verifyEmail.spamHint' => 'E-posta birkaç dakika içinde gelmezse spam/gereksiz klasörünü kontrol edin.',
+			'verifyEmail.approvalTitle' => 'Uzman hesabınız onay bekliyor',
+			'verifyEmail.approvalBody' => 'Başvurunuz alındı. Lisans bilgileriniz yönetici tarafından doğrulandıktan sonra giriş yapabilirsiniz.',
+			'verifyEmail.tokenLabel' => 'Doğrulama Kodu',
+			'verifyEmail.tokenHint' => 'E-postadaki bağlantıda yer alan kod',
+			'verifyEmail.tokenHelp' => 'Bağlantıyı açamıyorsanız içindeki kodu buraya yapıştırın.',
+			'verifyEmail.verifyButton' => 'Doğrula',
+			'verifyEmail.verifying' => 'E-posta adresiniz doğrulanıyor…',
+			'verifyEmail.resendButton' => 'E-postayı yeniden gönder',
+			'verifyEmail.resent' => 'Yeni doğrulama bağlantısı gönderildi. Gelen kutunuzu ve spam klasörünü kontrol edin.',
+			'verifyEmail.success' => 'E-posta adresiniz doğrulandı. Artık giriş yapabilirsiniz.',
+			'verifyEmail.errorTokenRequired' => 'Lütfen doğrulama kodunu girin.',
+			'verifyEmail.errorEmailRequired' => 'Yeniden göndermek için e-posta adresi gerekli.',
+			'verifyEmail.backToLogin' => 'Giriş sayfasına dön',
 			'forgotPassword.title' => 'Şifremi Unuttum',
 			'forgotPassword.subtitle' => 'E-posta adresinizi girin; size bir şifre sıfırlama bağlantısı gönderelim.',
 			'forgotPassword.submit' => 'Sıfırlama Bağlantısı Gönder',
@@ -3818,6 +6864,22 @@ extension on Translations {
 			'resetPassword.errorTokenRequired' => 'Lütfen sıfırlama kodunu girin.',
 			'resetPassword.errorPasswordShort' => 'Şifre en az 8 karakter olmalıdır.',
 			'resetPassword.errorMismatch' => 'Şifreler eşleşmiyor.',
+			'password.strengthTitle' => 'Şifre gücü',
+			'password.strengthVeryWeak' => 'Çok zayıf',
+			'password.strengthWeak' => 'Zayıf',
+			'password.strengthMedium' => 'Orta',
+			'password.strengthStrong' => 'Güçlü',
+			'password.strengthVeryStrong' => 'Çok güçlü',
+			'password.ruleMinLength' => 'En az 8 karakter',
+			'password.ruleUppercase' => 'Bir büyük harf',
+			'password.ruleDigit' => 'Bir rakam',
+			'password.ruleSpecial' => 'Bir özel karakter',
+			'password.errorTooShort' => 'Şifre en az 8 karakter olmalıdır.',
+			'password.errorTooLong' => 'Şifre en fazla 64 karakter olabilir.',
+			'password.errorNoUppercase' => 'Şifre en az bir büyük harf içermelidir.',
+			'password.errorNoDigit' => 'Şifre en az bir rakam içermelidir.',
+			'password.errorNoSpecial' => 'Şifre en az bir özel karakter (örn. ! ? * . -) içermelidir.',
+			'password.errorCommon' => 'Bu şifre çok yaygın ve kolay tahmin edilebilir; lütfen farklı bir şifre seçin.',
 			'register.titleParent' => 'Veli Hesabı Oluştur',
 			'register.titleExpert' => 'Uzman Hesabı Oluştur',
 			'register.roleQuestion' => 'Nasıl kaydolmak istersiniz?',
@@ -3845,7 +6907,176 @@ extension on Translations {
 			'register.errorEmailInvalid' => 'Geçerli bir e-posta girin.',
 			'register.errorPasswordShort' => 'Şifre en az 8 karakter olmalıdır.',
 			'register.errorExpertTitleRequired' => 'Lütfen uzmanlık ünvanını girin.',
+			'register.errorLicenseRequired' => 'Uzman kaydı için lisans / diploma numarası zorunludur.',
 			'register.errorKvkkRequired' => 'Devam etmek için KVKK onayı gereklidir.',
+			'register.emailTaken' => 'Bu e-posta adresi zaten kayıtlı. Giriş yapmayı deneyin.',
+			'register.emailAvailable' => 'Bu e-posta adresi kullanılabilir.',
+			'settings.pushGranted' => 'Cihaz bildirimleri açık',
+			'settings.pushGrantedHint' => 'Uygulama kapalıyken de bildirim alırsınız.',
+			'settings.pushDenied' => 'Cihaz bildirimleri kapalı',
+			'settings.pushDeniedHint' => 'İzin verilmediği için aşağıdaki tercihler yalnızca uygulama içinde geçerli. Sistem ayarlarından da açabilirsiniz.',
+			'settings.pushRequest' => 'İzin ver',
+			'settings.blockedTitle' => 'Engellenen kullanıcılar',
+			'settings.blockedEmpty' => 'Engellediğiniz kullanıcı yok.',
+			'settings.blockedRemove' => 'Engeli kaldır',
+			'settings.blockedRemoved' => 'Engel kaldırıldı.',
+			'settings.privacyFamilyMessages' => 'Diğer aileler bana mesaj gönderebilsin',
+			'settings.matchingTitle' => 'Toplulukta ne arıyorsunuz?',
+			'settings.matchingHint' => 'Eşleşme önerilerinde ve profilinde görünür.',
+			'settings.communicationTitle' => 'İletişim tercihiniz',
+			'settings.intentExperience' => 'Deneyim paylaşımı',
+			'settings.intentRegular' => 'Düzenli konuşma',
+			'settings.intentLocalMeet' => 'Yakında buluşma',
+			'settings.intentSeekMentor' => 'Mentor arıyorum',
+			'settings.intentBeMentor' => 'Mentorluk yapabilirim',
+			'settings.commWriting' => 'Önce yazışma',
+			'settings.commVideo' => 'Görüntülü görüşme',
+			'settings.commEvening' => 'Akşam yanıtlarım',
+			'settings.title' => 'Ayarlar',
+			'settings.notificationsTitle' => 'Bildirimler',
+			'settings.notificationsSubtitle' => 'Hangi konularda bildirim almak istediğinizi seçin.',
+			'settings.notifMessages' => 'Yeni mesajlar',
+			'settings.notifAppointment' => 'Randevu onay ve değişiklikleri',
+			'settings.notifApptReminder' => 'Randevudan 24 saat önce hatırlat',
+			'settings.notifExpertNote' => 'Uzman notları ve geri bildirimleri',
+			'settings.notifTaskAssigned' => 'Yeni ödev atandığında',
+			'settings.notifForum' => 'Forum ve dertleşme duvarı yanıtları',
+			'settings.notifMatching' => 'Benzer aile eşleşmeleri',
+			'settings.notifCalendar' => 'Takvim hatırlatmaları',
+			'settings.privacyTitle' => 'Gizlilik',
+			'settings.privacySubtitle' => 'Diğer kullanıcıların sizi nasıl göreceğini belirleyin.',
+			'settings.privacyShowProfile' => 'Profilim diğer ailelere görünsün',
+			'settings.privacyAllowMessages' => 'Bana mesaj gönderilebilsin',
+			'settings.privacyShareProgress' => 'Gelişim özetini bağlı uzmanla paylaş',
+			'settings.privacyApproximateLocation' => 'Yaklaşık konumum (şehir) paylaşılsın',
+			'settings.privacyHidePresence' => 'Çevrimiçi olduğumu gizle',
+			'settings.appearanceTitle' => 'Görünüm ve dil',
+			'settings.accessibilityTitle' => 'Erişilebilirlik',
+			'settings.accessibilitySubtitle' => 'Görünümü ve etkileşimi size uygun hale getirin.',
+			'settings.a11yLargeText' => 'Büyük yazı modu',
+			'settings.a11yLargeTextBody' => 'Metinleri daha büyük gösterir.',
+			'settings.a11yCalmMode' => 'Sakin görünüm',
+			'settings.a11yCalmModeBody' => 'Göz yormayan yumuşak tonlar kullanır.',
+			'settings.a11yHighContrast' => 'Yüksek kontrast',
+			'settings.a11yHighContrastBody' => 'Yazıları en belirgin renkte tutar.',
+			'settings.a11yReduceMotion' => 'Hareketi azalt',
+			'settings.a11yReduceMotionBody' => 'Sayfa geçişlerini ve animasyonları kapatır.',
+			'settings.a11ySimpleMode' => 'Basit mod',
+			'settings.a11ySimpleModeBody' => 'Profil menüsünü temel bölümlere indirger.',
+			'settings.securityTitle' => 'Güvenlik',
+			'settings.securitySubtitle' => 'Hesabınıza erişimi koruyun.',
+			'settings.changePassword' => 'Şifre değiştir',
+			'settings.changePasswordSubmit' => 'Şifreyi güncelle',
+			'settings.currentPasswordLabel' => 'Mevcut şifre',
+			'settings.newPasswordLabel' => 'Yeni şifre',
+			'settings.passwordChanged' => 'Şifreniz güncellendi.',
+			'settings.errorCurrentPasswordRequired' => 'Lütfen mevcut şifrenizi girin.',
+			'settings.dataTitle' => 'Verileriniz ve KVKK',
+			'settings.dataSubtitle' => 'Verileriniz üzerindeki haklarınızı buradan kullanabilirsiniz.',
+			'settings.kvkkPanel' => 'KVKK hakları ve rızalar',
+			'settings.kvkkPanelBody' => 'Rıza tercihleri, başvurular ve aydınlatma metni.',
+			'settings.downloadData' => 'Verilerimi indir',
+			'settings.downloadDataBody' => 'Hesabınızdaki tüm veriyi JSON dosyası olarak alın.',
+			'settings.downloadDataSubject' => 'Otizm Destek — hesap verilerim',
+			'settings.deleteAccount' => 'Hesabımı sil',
+			'settings.deleteAccountBody' => 'Hesabınız ve tüm kayıtlarınız kalıcı olarak silinir.',
+			'settings.deleteAccountWarning' => 'Bu işlem geri alınamaz. Çocuk profilleri, notlar, randevular ve mesajlar dâhil tüm verileriniz kalıcı olarak silinir.',
+			'settings.deleteAccountSubmit' => 'Hesabımı kalıcı olarak sil',
+			'settings.deleteKeyword' => 'SİL',
+			'settings.deleteConfirmLabel' => ({required Object keyword}) => 'Onaylamak için "${keyword}" yazın',
+			'settings.errorDeleteConfirm' => 'Onay metni eşleşmiyor.',
+			'legal.title' => 'Yasal metinler',
+			'legal.subtitle' => 'Aydınlatma metni, gizlilik politikası, kullanım şartları ve tıbbi uyarılar. Metinler bağlayıcı sürüm olduğu için Türkçe gösterilir.',
+			'legal.versionLine' => ({required Object version, required Object date}) => 'Metin sürümü ${version} · Son güncelleme ${date}',
+			'legal.readNotice' => 'KVKK aydınlatma metnini oku',
+			'kvkk.title' => 'KVKK ve rızalar',
+			'kvkk.rightsTitle' => 'KVKK md. 11 haklarınız',
+			'kvkk.rightsBody' => 'Verilerinizin işlenip işlenmediğini öğrenme, düzeltilmesini veya silinmesini isteme, aktarıldığı üçüncü kişileri bilme ve otomatik analiz sonuçlarına itiraz etme hakkınız var. Başvurularınız en geç 30 gün içinde yanıtlanır.',
+			'kvkk.consentsTitle' => 'Rıza tercihleriniz',
+			'kvkk.consentsSubtitle' => 'Açık rıza amaca özel olmalıdır; her başlığı ayrı ayrı açıp kapatabilirsiniz.',
+			'kvkk.consentNotice' => 'Aydınlatma metni onayı',
+			'kvkk.consentAi' => 'Yapay zekâ analizi',
+			'kvkk.consentAiBody' => 'Gelişim verisinin yapay zekâ sağlayıcısına (yurt dışına) aktarılmasına izin verir.',
+			'kvkk.consentEmergency' => 'Acil durum kartı paylaşımı',
+			'kvkk.consentEmergencyBody' => 'Acil durum kartınızın bağlantı/QR ile üçüncü kişilere gösterilmesine izin verir.',
+			'kvkk.consentMatching' => 'Benzer aile eşleştirmesi',
+			'kvkk.consentMatchingBody' => 'Profilinizin eşleştirme motorunda diğer ailelere gösterilmesine izin verir.',
+			'kvkk.consentMarketing' => 'Bilgilendirme e-postaları',
+			'kvkk.consentMarketingBody' => 'Zorunlu olmayan duyuru ve bilgilendirme e-postalarını almanızı sağlar.',
+			'kvkk.reconsentTitle' => 'Aydınlatma metni güncellendi',
+			'kvkk.reconsentTitleVersion' => ({required Object version}) => 'Aydınlatma metni güncellendi (sürüm ${version})',
+			'kvkk.reconsentBody' => 'Verilerinizin nasıl işlendiğini gözden geçirip güncel metni onaylayın.',
+			'kvkk.reconsentAccept' => 'Okudum, onaylıyorum',
+			'kvkk.reconsentSaved' => 'Güncel aydınlatma metni onayınız kaydedildi.',
+			'kvkk.historyTitle' => 'Rıza geçmişim',
+			'kvkk.requestsTitle' => 'Başvurularım',
+			'kvkk.requestsSubtitle' => 'Verileriniz hakkındaki taleplerinizi buradan iletebilirsiniz.',
+			'kvkk.newRequest' => 'KVKK başvurusu yap',
+			'kvkk.requestsEmpty' => 'Henüz bir başvurunuz yok.',
+			'kvkk.requestsError' => 'Başvurular yüklenemedi.',
+			'kvkk.requestCreated' => 'Başvurunuz alındı. En geç 30 gün içinde yanıtlanacaktır.',
+			'kvkk.requestInfo' => 'Verilerimin işlenip işlenmediğini öğrenmek istiyorum',
+			'kvkk.requestCorrection' => 'Eksik veya yanlış işlenen verimin düzeltilmesini istiyorum',
+			'kvkk.requestDeletion' => 'Verilerimin silinmesini / yok edilmesini istiyorum',
+			'kvkk.requestTransfer' => 'Verilerimin aktarıldığı üçüncü kişileri öğrenmek istiyorum',
+			'kvkk.requestObjection' => 'Otomatik analiz sonucu aleyhime çıkan sonuca itiraz ediyorum',
+			'kvkk.requestDamages' => 'Uğradığım zararın giderilmesini talep ediyorum',
+			'kvkk.descriptionLabel' => 'Talebiniz',
+			'kvkk.descriptionHint' => 'Talebinizi kısaca açıklayın.',
+			'kvkk.responseTime' => 'Başvurular en geç 30 gün içinde yanıtlanır.',
+			'kvkk.submitRequest' => 'Başvuruyu gönder',
+			'kvkk.errorDescriptionRequired' => 'Lütfen talebinizi açıklayın.',
+			'kvkk.statusOpen' => 'Alındı',
+			'kvkk.statusReviewing' => 'İnceleniyor',
+			'kvkk.statusDone' => 'Tamamlandı',
+			'kvkk.statusRejected' => 'Reddedildi',
+			'kvkk.receivedOn' => ({required Object date}) => '${date} tarihinde alındı',
+			'kvkk.dueOn' => ({required Object date}) => 'yanıt son tarihi ${date}',
+			'onboarding.title' => 'Başlangıç',
+			'onboarding.skip' => 'Atla',
+			'onboarding.start' => 'Başlayalım',
+			'onboarding.back' => 'Geri',
+			'onboarding.continueButton' => 'Devam et',
+			'onboarding.skipForNow' => 'Şimdilik atla',
+			'onboarding.finish' => 'Ana sayfaya geç',
+			'onboarding.stepChild' => 'Çocuk Profili',
+			'onboarding.stepTags' => 'Destek Alanları',
+			'onboarding.stepPlan' => 'Başlangıç Planı',
+			'onboarding.welcomeTitle' => 'Hoş geldiniz',
+			'onboarding.welcomeBody' => 'Birkaç kısa adımda uygulamayı çocuğunuza göre hazırlayalım. Tüm bilgileri sonradan değiştirebilirsiniz.',
+			'onboarding.introChildTitle' => 'Temel bilgiler',
+			'onboarding.introChildBody' => 'Ad ve isteğe bağlı kısa bilgiler',
+			'onboarding.introTagsTitle' => 'Destek alanları',
+			'onboarding.introTagsBody' => 'Gözlemlediğiniz alanları seçin',
+			'onboarding.introPlanTitle' => 'Başlangıç önerisi',
+			'onboarding.introPlanBody' => 'İlk yapabileceklerinizi görün',
+			'onboarding.childTitle' => 'Çocuğunuzu tanıyalım',
+			'onboarding.childSubtitle' => 'Yalnızca ad zorunlu; diğer alanları daha sonra da doldurabilirsiniz.',
+			'onboarding.childNameLabel' => 'Çocuğun adı',
+			'onboarding.childNameHint' => 'Örn. Elif',
+			'onboarding.childBirthDateLabel' => 'Doğum tarihi (isteğe bağlı)',
+			'onboarding.childBirthDateHint' => 'Seçmek için dokunun',
+			'onboarding.childDiagnosisLabel' => 'Tanı bilgisi (isteğe bağlı)',
+			'onboarding.childDiagnosisHint' => 'Varsa tanı ve kısa notlar',
+			'onboarding.focusTitle' => 'Başlangıç odağı',
+			'onboarding.communicationTitle' => 'İletişim şekli',
+			'onboarding.supportTitle' => 'Yararlı olabilecek destek',
+			'onboarding.tagsTitle' => 'Hangi alanlarda destek arıyorsunuz?',
+			'onboarding.tagsSubtitle' => 'Gözlemlediğiniz alanları seçin; benzer aileler ve içerik önerileri buna göre şekillenir.',
+			'onboarding.planTitle' => 'Başlangıç planınız hazır',
+			'onboarding.planTitleNamed' => ({required Object name}) => '${name} için başlangıç planınız hazır',
+			'onboarding.planSubtitle' => 'İlk adım olarak şunlardan birini deneyebilirsiniz.',
+			'onboarding.planNote' => 'Bu seçimler yalnızca başlangıç yönlendirmesidir; tüm bölümlere menüden ulaşabilirsiniz.',
+			'onboarding.planTrackerTitle' => 'Günlük kayıt ekle',
+			'onboarding.planTrackerBody' => 'Uyku, duygu durumu veya kısa bir gözlem girin.',
+			'onboarding.planExpertsTitle' => 'Uzmanları incele',
+			'onboarding.planExpertsBody' => 'Uzmanlara göz atın veya randevu talebi oluşturun.',
+			'onboarding.planKnowledgeTitle' => 'Bilgi ve kaynakları keşfet',
+			'onboarding.planKnowledgeBody' => 'Bilgi bankasındaki güvenilir içeriklere göz atın.',
+			'onboarding.expertTitle' => ({required Object name}) => 'Hoş geldiniz ${name}',
+			'onboarding.expertBody' => 'Danışan takibi, randevular ve mesajlaşma ana sayfada sizi bekliyor.',
+			'onboarding.errorNameRequired' => 'Çocuğun adı zorunludur.',
+			'onboarding.errorBirthDateFuture' => 'Doğum tarihi gelecekte olamaz.',
 			'nav.home' => 'Ana Sayfa',
 			'nav.specialists' => 'Uzmanlar',
 			'nav.progress' => 'Gelişim',
@@ -3854,11 +7085,65 @@ extension on Translations {
 			'chat.greeting' => 'Merhaba! Otizm ve çocuk gelişimi hakkındaki sorularınızı yanıtlamaya çalışayım.',
 			'chat.inputHint' => 'Bir soru sorun...',
 			'chat.errorGeneric' => 'Yanıt alınamadı, lütfen tekrar deneyin.',
+			'messages.reportMessage' => 'Mesajı şikayet et',
+			'messages.reportHint' => 'Bu mesajı neden şikayet ediyorsunuz?',
+			'messages.reportSend' => 'Gönder',
+			'messages.reported' => 'Mesaj incelemeye alındı.',
+			'messages.newGroup' => 'Yeni grup sohbeti',
+			'messages.chatDirect' => 'Birebir',
+			'messages.chatGroup' => 'Grup',
+			'messages.groupNameLabel' => 'Grup adı',
+			'messages.groupCreate' => 'Grubu oluştur',
+			'messages.groupNameRequired' => 'Grup adı gerekli.',
+			'messages.groupMembersRequired' => 'En az bir katılımcı seçin.',
+			'messages.groupSettings' => 'Grup ayarları',
+			'messages.groupRename' => 'Adı kaydet',
+			'messages.groupRenamed' => 'Grup adı güncellendi.',
+			'messages.groupAddMember' => 'Üye ekle',
+			'messages.groupMembers' => 'Üyeler',
+			'messages.groupMemberRemoved' => 'Üye çıkarıldı.',
+			'messages.groupMemberAdded' => 'Üye eklendi.',
+			'messages.blockUser' => 'Kullanıcıyı engelle',
+			'messages.blockConfirm' => ({required Object name}) => '${name} artık size mesaj gönderemeyecek. Engellensin mi?',
+			'messages.blocked' => 'Kullanıcı engellendi.',
 			'messages.title' => 'Mesajlar',
 			'messages.noConversations' => 'Henüz bir konuşmanız yok.',
 			'messages.noMessages' => 'Henüz mesaj yok. İlk mesajı gönderin.',
 			'messages.inputHint' => 'Mesaj yazın...',
 			'messages.connecting' => 'Bağlanıyor...',
+			'messages.pecsTitle' => 'PECS görsel iletişim kartları',
+			'messages.filterAll' => 'Tümü',
+			'messages.filterUnread' => 'Okunmamış',
+			'messages.filterExperts' => 'Uzmanlar',
+			'messages.filterGroups' => 'Gruplar',
+			'messages.filterArchived' => 'Arşiv',
+			'messages.emptyUnread' => 'Okunmamış mesaj yok.',
+			'messages.emptyExperts' => 'Uzmanlarla mesajınız yok.',
+			'messages.emptyGroups' => 'Henüz bir gruba dahil değilsiniz.',
+			'messages.emptyArchived' => 'Arşiv boş. Arşivlenen konuşmalar burada görünür.',
+			'messages.archive' => 'Arşivle',
+			'messages.unarchive' => 'Arşivden çıkar',
+			'messages.mute' => 'Sessize al',
+			'messages.unmute' => 'Sesi aç',
+			'messages.reply' => 'Yanıtla',
+			'messages.replyingTo' => ({required Object name}) => '${name} yanıtlanıyor',
+			'messages.someone' => 'Mesaj',
+			'messages.attachPhoto' => 'Fotoğraf ekle',
+			'messages.photoSent' => 'Fotoğraf gönderildi.',
+			'messages.newChat' => 'Yeni sohbet',
+			'messages.searchUserHint' => 'İsimle arayın…',
+			'messages.searchUserHelp' => 'Sohbet başlatmak için en az iki harf yazın.',
+			'messages.searchUserEmpty' => 'Eşleşen kullanıcı bulunamadı.',
+			'messages.searchInChat' => 'Sohbette ara',
+			'messages.searchNoResults' => 'Bu aramaya uyan mesaj yok.',
+			'messages.deleteMessage' => 'Mesajı sil',
+			'home.weeklyTopicBadge' => 'Haftanın sorusu',
+			'home.weeklyTopicReplies' => ({required Object count}) => '${count} aile yanıtladı',
+			'home.learningPathBadge' => 'Size özel video rehberi',
+			'home.learningPathTitle' => 'Nereden başlayacağınızı bilmiyor musunuz?',
+			'home.learningPathBody' => 'Kısa videolarla uygulamayı adım adım tanıyın; ilk video günlük takibi ve planı anlatıyor.',
+			'home.learningPathBodyExpert' => 'Kısa videolarla uzman araçlarını adım adım tanıyın.',
+			'home.learningPathCta' => 'Öğrenme yoluna başla',
 			'home.notifications' => 'Bildirimler',
 			'home.assistant' => 'AI Asistan',
 			'home.messages' => 'Mesajlar',
@@ -3879,6 +7164,80 @@ extension on Translations {
 			'home.ageYears' => ({required Object years}) => '${years} yaş',
 			'home.noAppointments' => 'Yaklaşan randevunuz yok.',
 			'home.noArticles' => 'Gösterilecek makale yok.',
+			'home.quickTracker' => 'Bugünün kaydı',
+			'home.quickTrackerDetail' => 'Duygu, uyku, ilaç',
+			'home.quickBehavior' => 'Davranış notu',
+			'home.quickBehaviorDetail' => 'Öncesi-davranış-sonrası kaydı',
+			'home.quickNote' => 'Gözlem notu',
+			'home.quickNoteDetail' => 'Kısa not ekle',
+			'home.quickPlan' => 'Plan ekle',
+			'home.quickPlanDetail' => 'Randevu, okul, etkinlik',
+			'dailyPlan.title' => 'Bugün ne yapalım?',
+			'dailyPlan.subtitle' => ({required Object count, required Object minutes}) => 'Kalan ${count} iş · yaklaşık ${minutes} dk',
+			'dailyPlan.subtitleDone' => 'Bugünün işleri tamam',
+			'dailyPlan.coachLabel' => 'Günlük koç önerisi',
+			'dailyPlan.durationMinutes' => ({required Object count}) => '${count} dk',
+			'dailyPlan.badgeNow' => 'Şimdi bunu yap',
+			'dailyPlan.badgeNext' => 'Sonra',
+			'dailyPlan.badgeSafety' => 'Güvenlik',
+			'dailyPlan.badgeOptional' => 'İsteğe bağlı',
+			'dailyPlan.badgeDone' => 'Tamam',
+			'dailyPlan.allDoneTitle' => 'Bugünün işleri tamamlandı',
+			'dailyPlan.allDoneDetail' => 'Temel kayıtlar hazır. Kalan zamanda gelişim planına, topluluğa ya da bilgi bankasına göz atabilirsiniz.',
+			'dailyPlan.partMorning' => 'sabah',
+			'dailyPlan.partAfternoon' => 'öğleden sonra',
+			'dailyPlan.partEvening' => 'akşam',
+			'dailyPlan.coachNoChild' => 'Bugün yalnızca çocuk profilini oluşturmanız yeterli. Diğer bölümler profil sonrası anlam kazanır.',
+			'dailyPlan.coachAllDone' => ({required Object name}) => '${name} için bugünkü tüm işler tamam! İsterseniz gelişim planına ya da bilgi bankasına geçebilirsiniz.',
+			'dailyPlan.coachMedication' => ({required Object name, required Object part, required Object count}) => '${name} için ${part} önce ilaç kontrolünü bitirmek iyi olur; kalan ${count} iş daha kısa sürer.',
+			'dailyPlan.coachNoMood' => ({required Object name, required Object part}) => '${name} için önce kısa günlük kaydı girin — ${part} rutini tamamlanmış hissettiriyor.',
+			'dailyPlan.coachEvent' => ({required Object name, required Object count}) => '${name} için bugün planlı bir etkinlik var; kalan ${count} iş kısa tutulabilir.',
+			'dailyPlan.coachProgress' => ({required Object name, required Object done, required Object count}) => '${name} için ${done} iş tamam, ${count} iş kaldı. İyi gidiyorsunuz!',
+			'dailyPlan.coachPlan' => ({required Object name, required Object part, required Object minutes}) => '${name} için ${part} planı: kısa kayıt, takvim kontrolü ve bir not. Hepsi yaklaşık ${minutes} dk.',
+			'dailyPlan.taskDailyLog' => 'Bugünün kısa kaydını gir',
+			'dailyPlan.taskDailyLogDone' => 'Bugünün kaydını güncelle',
+			'dailyPlan.taskDailyLogDetail' => 'Ruh hali, uyku ve ilaç bilgisini bir dakikada işaretleyin.',
+			'dailyPlan.taskDailyLogDoneDetail' => 'Ruh hali girildi; uyku, ilaç veya kısa not ekleyebilirsiniz.',
+			'dailyPlan.taskMedication' => 'İlaç kontrolünü tamamla',
+			'dailyPlan.taskMedicationDetail' => ({required Object count}) => '${count} doz henüz işaretlenmedi.',
+			'dailyPlan.taskMessages' => 'Mesajları yanıtla',
+			'dailyPlan.taskMessagesDetail' => ({required Object count}) => '${count} okunmamış mesajınız var.',
+			'dailyPlan.taskExpertRequest' => 'Uzman erişim isteğini yanıtla',
+			'dailyPlan.taskExpertRequestDetail' => ({required Object count}) => '${count} uzman çocuk verinize erişmek için onay bekliyor.',
+			'dailyPlan.taskEventDetail' => ({required Object time}) => 'Bugün saat ${time}',
+			'dailyPlan.taskEventTomorrowDetail' => ({required Object time}) => 'Yarın saat ${time}',
+			'dailyPlan.taskCalendar' => 'Takvimi planla',
+			'dailyPlan.taskCalendarDetail' => 'Randevu, okul veya etkinlik varsa ekleyin.',
+			'dailyPlan.taskCalendarUpcoming' => 'Yaklaşan etkinliği gör',
+			'dailyPlan.taskNotes' => 'Kısa gözlem notu ekle',
+			'dailyPlan.taskNotesDetail' => 'Bugün fark ettiğiniz bir şeyi not edin.',
+			'dailyPlan.taskNotesDone' => 'Gözlem notlarını gözden geçir',
+			'dailyPlan.taskNotesDoneDetail' => ({required Object count}) => '${count} not mevcut — yenisini ekleyebilirsiniz.',
+			'dailyPlan.taskCommunity' => 'Topluluğu keşfet',
+			'dailyPlan.taskCommunityDetail' => 'Benzer süreçlerden geçen ailelerin paylaşımlarına bakın.',
+			'dailyPlan.taskCommunityDone' => 'Topluluk alanlarını takip et',
+			'dailyPlan.taskCommunityDoneDetail' => 'Haftanın sorusu, forum ve buluşmalarda yeni paylaşımlar olabilir.',
+			'dailyPlan.taskEmergency' => 'Acil Durum Kartı oluştur',
+			'dailyPlan.taskEmergencyDetail' => 'Kritik tıbbi bilgileri ve acil kişileri tek kartta hazır tutun.',
+			'dailyPlan.taskFirstChild' => 'İlk çocuk profilini oluştur',
+			'dailyPlan.taskFirstChildDetail' => 'Profil eklenince plan ve öneriler çocuğunuza göre kişileşir.',
+			'dailyPlan.taskGuide' => 'Uygulamanın kısa yolunu görün',
+			'dailyPlan.taskGuideDetail' => 'Hangi bölümün ne işe yaradığını hızlıca öğrenin.',
+			'dailyPlan.taskExperts' => 'Uzman desteğini keşfet',
+			'dailyPlan.taskExpertsDetail' => 'Randevu almadan önce uzman profillerini inceleyebilirsiniz.',
+			'dailyPlan.startTitle' => 'Hızlı başlangıç',
+			'dailyPlan.startIntro' => 'İlk gün her şeyi tamamlamanız gerekmiyor. Önce profil, kısa kayıt ve zor an rehberi yeterli.',
+			'dailyPlan.startProgress' => ({required Object done, required Object total}) => '${done}/${total} adım',
+			'dailyPlan.startReady' => ({required Object percent}) => '%${percent} hazır',
+			'dailyPlan.startDismiss' => 'Rehberi kapat',
+			'dailyPlan.checkTodo' => 'Yapılacak',
+			'dailyPlan.checkDone' => 'Tamamlandı',
+			'dailyPlan.checkChildProfile' => '1. Çocuk profili',
+			'dailyPlan.checkChildProfileDetail' => 'Plan, takip ve uzman paylaşımı profil bilgisine göre kişileşir.',
+			'dailyPlan.checkDailyLog' => '2. İlk kısa kayıt',
+			'dailyPlan.checkDailyLogDetail' => 'Önce veri girilir; günlük plan bu kayıttan sonra anlam kazanır.',
+			'dailyPlan.checkCrisis' => '3. Kriz rehberi',
+			'dailyPlan.checkCrisisDetail' => 'Zor anlarda sakinleştirme ve müdahale adımlarını önceden okuyun.',
 			'specialists.title' => 'Uzman Bulun',
 			'specialists.searchHint' => 'İsim veya uzmanlık arayın...',
 			'specialists.filterAll' => 'Tümü',
@@ -3888,6 +7247,20 @@ extension on Translations {
 			'specialists.noResults' => 'Aramanıza uygun uzman bulunamadı.',
 			'specialists.ratingNew' => 'Yeni',
 			'specialists.reviews' => ({required Object count}) => '${count} değerlendirme',
+			'specialists.filters' => 'Filtreler',
+			'specialists.cityLabel' => 'Şehir',
+			'specialists.sortLabel' => 'Sıralama',
+			'specialists.sortDefault' => 'Varsayılan',
+			'specialists.sortRating' => 'Puana göre',
+			'specialists.sortName' => 'İsme göre',
+			'specialists.onlyAccepting' => 'Yalnızca randevu kabul edenler',
+			'specialists.onlyVerified' => 'Yalnızca doğrulanmış uzmanlar',
+			'specialists.onlyOnline' => 'Yalnızca online görüşme yapanlar',
+			'specialists.onlyFavorites' => 'Yalnızca favorilerim',
+			'specialists.addFavorite' => 'Favorilere ekle',
+			'specialists.removeFavorite' => 'Favorilerden çıkar',
+			'specialists.clearFilters' => 'Temizle',
+			'specialists.applyFilters' => 'Uygula',
 			'progress.title' => 'Gelişim Takibi',
 			'progress.subtitle' => 'Hedefler ve gelişim notları.',
 			'progress.addRecord' => 'Yeni Kayıt Ekle',
@@ -3901,6 +7274,8 @@ extension on Translations {
 			'progress.addNote' => 'Not Ekle',
 			'progress.addToken' => 'Jeton Ekle',
 			'progress.tokenAdded' => 'Jeton eklendi 🎉',
+			_ => null,
+		} ?? switch (path) {
 			'progress.tokenRemoved' => 'Jeton geri alındı.',
 			'progress.goalCompleted' => 'Hedef tamamlandı! 🎉',
 			'progress.rewardLine' => ({required Object title}) => 'Ödül: ${title}',
@@ -3948,6 +7323,30 @@ extension on Translations {
 			'notifications.empty' => 'Henüz bildiriminiz yok.',
 			'notifications.markAllRead' => 'Tümünü okundu işaretle',
 			'notifications.dateLine' => ({required Object day, required Object month, required Object time}) => '${day} ${month} · ${time}',
+			'notifications.noneInFilter' => 'Bu filtreye uygun bildirim yok.',
+			'notifications.unreadOnly' => 'Yalnızca okunmamış',
+			'notifications.selectedCount' => ({required Object count}) => '${count} seçildi',
+			'notifications.deleteSelected' => 'Seçilenleri sil',
+			'notifications.groupToday' => 'Bugün',
+			'notifications.groupYesterday' => 'Dün',
+			'notifications.groupThisWeek' => 'Bu Hafta',
+			'notifications.groupOlder' => 'Daha Eski',
+			'notifications.catAll' => 'Tümü',
+			'notifications.catAppointments' => 'Randevular',
+			'notifications.catMessages' => 'Mesajlar',
+			'notifications.catForum' => 'Forum',
+			'notifications.catTasks' => 'Görevler',
+			'notifications.catSocial' => 'Sosyal',
+			'notifications.catSystem' => 'Sistem',
+			'search.title' => 'Arama',
+			'search.hint' => 'Makale, gönderi, grup ya da uzman arayın…',
+			'search.help' => 'Aramak istediğiniz kelimeyi yazın.',
+			'search.noResults' => 'Bu aramaya uygun sonuç bulunamadı.',
+			'search.typeAll' => 'Tümü',
+			'search.typeArticle' => 'Makale',
+			'search.typePost' => 'Gönderi',
+			'search.typeGroup' => 'Grup',
+			'search.typeExpert' => 'Uzman',
 			'knowledge.title' => 'Bilgi Bankası',
 			'knowledge.empty' => 'Henüz makale eklenmemiş.',
 			'knowledge.noResults' => 'Bu filtreye uygun içerik yok.',
@@ -3959,6 +7358,40 @@ extension on Translations {
 			'knowledge.dateLine' => ({required Object day, required Object month, required Object year}) => '${day} ${month} ${year}',
 			'knowledge.videoLink' => 'Video bağlantısı',
 			'knowledge.podcastLink' => 'Podcast bağlantısı',
+			'knowledge.searchHint' => 'Makale, konu veya anahtar kelime ara…',
+			'knowledge.bookmarks' => 'Yer imlerim',
+			'knowledge.bookmark' => 'Yer imi',
+			'knowledge.noBookmarks' => 'Henüz yer imine eklediğiniz içerik yok.',
+			'knowledge.relatedTitle' => 'İlgili içerikler',
+			'knowledge.commentsTitle' => ({required Object count}) => 'Yorumlar (${count})',
+			'knowledge.noComments' => 'İlk yorumu siz yazın.',
+			'knowledge.commentHint' => 'Deneyiminizi veya sorunuzu yazın…',
+			'knowledge.commentSend' => 'Yorumu gönder',
+			'knowledge.someone' => 'Bir aile',
+			'knowledge.expertBadge' => 'Uzman',
+			'knowledge.triedFor' => ({required Object duration}) => 'Deneme süresi: ${duration}',
+			'knowledge.effectiveness' => ({required Object rating}) => 'Etkililik: ${rating}/5',
+			'knowledge.tagFilterTitle' => 'Etiketlere göre daralt',
+			'knowledge.tagFilterClear' => 'Etiketleri temizle',
+			'knowledge.tagFilterCount' => ({required Object count}) => '${count} etiket seçili',
+			'appointments.rate' => 'Değerlendir',
+			'appointments.rateTitle' => 'Randevuyu değerlendir',
+			'appointments.rateComment' => 'Yorumunuz (isteğe bağlı)',
+			'appointments.rateSave' => 'Gönder',
+			'appointments.rated' => 'Değerlendirmeniz kaydedildi.',
+			'appointments.rateStars' => ({required Object count}) => '${count} yıldız',
+			'appointments.ratingShown' => 'Değerlendirmeniz',
+			'appointments.cancelSeries' => 'Seriyi iptal et',
+			'appointments.cancelSeriesTitle' => 'Tüm seri iptal edilsin mi?',
+			'appointments.cancelSeriesConfirm' => 'Bu tekrarlayan seansın gelecekteki tüm randevuları iptal edilecek.',
+			'appointments.seriesCancelled' => 'Seri iptal edildi.',
+			'appointments.seriesIndex' => ({required Object index}) => '${index}. seans',
+			'appointments.seriesBadge' => 'Seri',
+			'appointments.recurrenceTitle' => 'Tekrarlayan seans',
+			'appointments.recurrenceHint' => 'Aynı gün ve saatte her hafta otomatik oluşturulur.',
+			'appointments.recurrenceSingle' => 'Tekil',
+			'appointments.recurrenceWeeks' => ({required Object count}) => '${count} hafta',
+			'appointments.recurrenceCreated' => ({required Object count}) => '${count} haftalık seri oluşturuldu.',
 			'appointments.title' => 'Randevular',
 			'appointments.empty' => 'Henüz randevunuz yok.',
 			'appointments.upcoming' => 'Yaklaşan',
@@ -3987,11 +7420,77 @@ extension on Translations {
 			'appointments.rescheduleTitle' => 'Randevuyu Ertele',
 			'appointments.rescheduleConfirm' => 'Yeni Zamanı Onayla',
 			'appointments.rescheduled' => 'Randevu yeniden planlandı.',
+			'appointments.nextTitle' => 'Sıradaki randevu',
+			'appointments.countdownDays' => ({required Object days, required Object hours, required Object minutes}) => '${days} gün ${hours} sa ${minutes} dk kaldı',
+			'appointments.countdownToday' => ({required Object hours, required Object minutes, required Object seconds}) => '${hours} sa ${minutes} dk ${seconds} sn kaldı',
+			'appointments.countdownNow' => 'Görüşme zamanı',
+			'appointments.statToday' => 'Bugün',
+			'appointments.statWeek' => 'Bu hafta',
+			'appointments.statMonth' => 'Bu ay',
+			'appointments.statPending' => 'Bekleyen',
+			'appointments.statCompleted' => 'Tamamlanan',
+			'appointments.statCancelled' => 'İptal',
+			'appointments.findExpert' => 'Uzman bul',
+			'appointments.today' => 'Bugün',
+			'appointments.tomorrow' => 'Yarın',
+			'appointments.detailTitle' => 'Randevu detayı',
+			'appointments.detailDuration' => 'Süre',
+			'appointments.detailDurationValue' => ({required Object count}) => '${count} dk',
+			'appointments.detailExpert' => 'Uzman',
+			'appointments.detailParent' => 'Veli',
+			'appointments.detailChild' => 'Çocuk',
+			'appointments.detailStatus' => 'Durum',
+			'appointments.detailType' => 'Tür',
+			'appointments.detailNote' => 'Randevu notu',
+			'appointments.detailTopic' => 'Görüşme konusu',
+			'appointments.detailPreSession' => 'Görüşme öncesi paylaşılan not',
+			'appointments.detailSessionNote' => 'Seans notu',
+			'appointments.detailSessionSummary' => 'Görüşme özeti',
+			'appointments.detailFollowUp' => 'Uzman önerileri',
+			'appointments.detailFollowUpTask' => 'Takip görevi',
+			'appointments.detailRating' => 'Değerlendirme',
+			'appointments.detailRatingValue' => ({required Object rating}) => '${rating} / 5',
+			'appointments.detailCancelledBy' => ({required Object who}) => 'İptal eden: ${who}',
+			'appointments.detailLateCancellation' => 'Geç iptal',
+			'appointments.historyTitle' => 'Durum geçmişi',
+			'appointments.historyEmpty' => 'Henüz durum değişikliği kaydı yok.',
+			'appointments.historyChange' => ({required Object from, required Object to}) => '${from} → ${to}',
+			'appointments.historyMeta' => ({required Object name, required Object date}) => '${name} · ${date}',
+			'appointments.detailOpen' => 'Detay',
 			'expertDetail.bookAppointment' => 'Randevu Al',
 			'expertDetail.sendMessage' => 'Mesaj Gönder',
 			'expertDetail.specializationsTitle' => 'Uzmanlık Alanları',
 			'expertDetail.articleCount' => ({required Object count}) => '${count} makale',
 			'expertDetail.notAcceptingPatients' => 'Bu uzman şu an randevu kabul etmiyor.',
+			'expertDetail.aboutTitle' => 'Hakkında',
+			'expertDetail.professionalTitle' => 'Profil bilgileri',
+			'expertDetail.factNextSlot' => 'İlk uygun randevu',
+			'expertDetail.factNextSlotEmpty' => 'Takvimden görüntüleyin',
+			'expertDetail.factSession' => 'Görüşme süresi',
+			'expertDetail.factSessionValue' => ({required Object count}) => '${count} dakika',
+			'expertDetail.factAgeGroups' => 'Çalıştığı yaş grubu',
+			'expertDetail.factAgeGroupsEmpty' => 'Uzmanla görüşün',
+			'expertDetail.factLanguages' => 'Konuştuğu diller',
+			'expertDetail.factSupportTopics' => 'Destek verdiği konular',
+			'expertDetail.factSupportTopicsEmpty' => 'Profilde belirtilmemiş',
+			'expertDetail.factCancellation' => 'İptal koşulu',
+			'expertDetail.factCancellationEmpty' => 'Randevudan önce uzmanla teyit edin',
+			'expertDetail.factReschedule' => 'Erteleme koşulu',
+			'expertDetail.factService' => 'Hizmet biçimi',
+			'expertDetail.factServiceEmpty' => 'Belirtilmemiş',
+			'expertDetail.serviceOnline' => 'Online',
+			'expertDetail.serviceFaceToFace' => 'Yüz yüze',
+			'expertDetail.factFee' => 'Seans ücreti',
+			'expertDetail.factFeeEmpty' => 'Uzmanla görüşün',
+			'expertDetail.badgeVerified' => 'Onaylı uzman',
+			'expertDetail.badgePending' => 'Onay bekliyor',
+			'expertDetail.badgeLicenseVerified' => 'Lisans doğrulandı',
+			'expertDetail.report' => 'Profili şikayet et',
+			'expertDetail.reportReasonLabel' => 'Şikayet nedeni',
+			'expertDetail.reportNoteLabel' => 'Ek açıklama (isteğe bağlı)',
+			'expertDetail.reportNoteHint' => 'Durumu birkaç cümleyle anlatın',
+			'expertDetail.reportSend' => 'Şikayeti gönder',
+			'expertDetail.reportSent' => 'Şikayetiniz iletildi. Moderasyon ekibi inceleyecek.',
 			'booking.title' => 'Randevu Al',
 			'booking.childLabel' => 'Çocuk',
 			'booking.noChild' => 'Randevu almak için önce bir çocuk ekleyin.',
@@ -4008,6 +7507,10 @@ extension on Translations {
 			'booking.created' => 'Randevu oluşturuldu.',
 			'booking.errorSelectChild' => 'Lütfen bir çocuk seçin.',
 			'booking.errorSelectTime' => 'Lütfen bir saat seçin.',
+			'routines.starWallet' => ({required Object count}) => '${count} yıldız',
+			'routines.stepDone' => 'Adım tamamlandı, +1 yıldız!',
+			'routines.progressDone' => ({required Object percent}) => '%${percent} tamamlandı',
+			'routines.stepCount' => ({required Object count}) => '${count} adım',
 			'routines.title' => 'Rutinler',
 			'routines.empty' => 'Bu çocuk için henüz rutin yok.',
 			'routines.noChild' => 'Rutin oluşturmak için önce bir çocuk ekleyin.',
@@ -4035,6 +7538,13 @@ extension on Translations {
 			'routineForm.descriptionHint' => 'Bu rutin ne için?',
 			'routineForm.save' => 'Kaydet',
 			'routineForm.errorName' => 'Lütfen bir rutin adı girin.',
+			'dailyTracker.insightSleep' => 'Ort. uyku',
+			'dailyTracker.insightMood' => 'Sık ruh hali',
+			'dailyTracker.insightTrigger' => 'Sık tetikleyici',
+			'dailyTracker.insightComplete' => 'Eksiksiz',
+			'dailyTracker.insightNone' => 'Kayıt yok',
+			'dailyTracker.insightHours' => ({required Object hours, required Object minutes}) => '${hours}sa ${minutes}dk',
+			'dailyTracker.insightDays' => ({required Object count}) => '${count} gün',
 			'dailyTracker.title' => 'Günlük Takip',
 			'dailyTracker.tabMood' => 'Duygu',
 			'dailyTracker.tabSleep' => 'Uyku',
@@ -4109,6 +7619,9 @@ extension on Translations {
 			'meds.logNotesLabel' => 'Gözlem notları (isteğe bağlı)',
 			'meds.logNotesHint' => 'Doktorunuza iletmek istediğiniz bir gözlem var mı?',
 			'meds.logSaved' => 'Doz günlüğü kaydedildi.',
+			'wall.commentEdit' => 'Mesajı düzenle',
+			'wall.commentSave' => 'Kaydet',
+			'wall.commentUpdated' => 'Mesaj güncellendi.',
 			'wall.title' => 'Dertleşme Duvarı',
 			'wall.subtitle' => 'Duygularınızı paylaşın, birbirinize destek olun. Paylaşımlar anonim olabilir.',
 			'wall.empty' => 'Henüz paylaşım yok. İlk paylaşımı sen yap.',
@@ -4147,6 +7660,14 @@ extension on Translations {
 			'wall.minsAgo' => ({required Object count}) => '${count} dk önce',
 			'wall.hoursAgo' => ({required Object count}) => '${count} sa önce',
 			'wall.daysAgo' => ({required Object count}) => '${count} gün önce',
+			'weekly.filterAll' => 'Tümü',
+			'weekly.filterExpert' => 'Uzman',
+			'weekly.filterPopular' => 'Popüler',
+			'weekly.filterLocal' => 'Şehrim',
+			'weekly.searchHint' => 'Cevaplarda ara',
+			'weekly.localHint' => ({required Object city}) => 'Yalnızca ${city} şehrindeki ailelerin cevapları listeleniyor.',
+			'weekly.localHintNoCity' => 'Profilinizde şehir yok; tüm cevaplar listeleniyor.',
+			'weekly.noMatch' => 'Bu süzgeçle cevap yok.',
 			'weekly.title' => 'Haftanın Sorusu',
 			'weekly.subtitle' => 'Bu hafta ailelere sorduğumuz soru. Deneyimini paylaş, birbirinize destek olun.',
 			'weekly.empty' => 'Henüz haftalık soru yok. Yeni soru yayınlandığında burada olacak.',
@@ -4198,6 +7719,7 @@ extension on Translations {
 			'meetup.inDays' => ({required Object count}) => '${count} gün sonra',
 			'meetup.past' => 'Geçmiş',
 			'meetup.organizerBy' => ({required Object name}) => 'Düzenleyen ${name}',
+			'similar.privacyNote' => 'Eşleştirme; çocuğunuzun etiketleri, yaş aralığı, terapi/eğitim notları ve varsa şehir bilgisini kullanır. Kesin konumunuz karşı tarafa gösterilmez.',
 			'similar.title' => 'Benzer Aileler',
 			'similar.subtitle' => 'Çocuğunuza yakın gelişim sürecindeki ailelerle tanışın, deneyim paylaşın.',
 			'similar.noChild' => 'Önce bir çocuk ekleyin, sonra benzer aileleri keşfedin.',
@@ -4223,6 +7745,79 @@ extension on Translations {
 			'similar.send' => 'İsteği Gönder',
 			'similar.sent' => 'Bağlantı isteği gönderildi.',
 			'similar.cancel' => 'İptal',
+			'similar.meetup' => 'Buluşma',
+			'similar.meetupTitle' => 'Buluşma isteği gönder',
+			'similar.meetupOnline' => 'Online',
+			'similar.meetupInPerson' => 'Yüz yüze',
+			'similar.meetupPickDate' => 'Tarih seç',
+			'similar.meetupPickTime' => 'Saat seç',
+			'similar.meetupLocation' => 'Buluşma yeri',
+			'similar.meetupMessage' => 'Mesaj (isteğe bağlı)',
+			'similar.meetupMessageHint' => 'Neden buluşmak istediğinizi kısaca yazın',
+			'similar.meetupSent' => 'Buluşma isteği gönderildi.',
+			'similar.meetupRequestsTitle' => 'Buluşma istekleri',
+			'similar.meetupAccept' => 'Kabul et',
+			'similar.meetupDecline' => 'Reddet',
+			'similar.meetupCancel' => 'İsteği geri çek',
+			'similar.unknownFamily' => 'Aile',
+			'similar.tabMatches' => 'Eşleşmeler',
+			'similar.tabCircle' => 'Çemberim',
+			'similar.circlePendingTitle' => 'Gelen bağlantı istekleri',
+			'similar.circleAcceptedTitle' => 'Arkadaşlarım ve mentorlarım',
+			'similar.circleEmpty' => 'Çemberiniz henüz boş. Eşleşmeler sekmesinden bir aileye istek göndererek başlayın.',
+			'similar.circleNoPending' => 'Bekleyen istek yok.',
+			'similar.circleBuddyRequest' => 'Arkadaş isteği',
+			'similar.circleMentorRequest' => 'Mentor isteği',
+			'similar.accept' => 'Kabul et',
+			'similar.reject' => 'Reddet',
+			'similar.accepted' => 'Bağlantı kuruldu.',
+			'similar.rejected' => 'İstek reddedildi.',
+			'similar.removeBuddy' => 'Bağlantıyı kaldır',
+			'similar.removeBuddyConfirm' => ({required Object name}) => '${name} ile bağlantınız kaldırılsın mı?',
+			'similar.removed' => 'Bağlantı kaldırıldı.',
+			'similar.requestNote' => 'İstek notu',
+			'similar.withdraw' => 'İsteği geri çek',
+			'similar.withdrawn' => 'İstek geri çekildi.',
+			'similar.distance' => ({required Object km}) => '${km} km yakınında',
+			'similar.noCity' => 'Şehir belirtilmemiş',
+			'similar.commPrefWriting' => 'Önce yazışmayı tercih eder',
+			'similar.commPrefVideo' => 'Görüntülü görüşmeye açık',
+			'similar.commPrefEvening' => 'Genellikle akşam yanıt verir',
+			'similar.scoresTitle' => 'Uyum ayrıntısı',
+			'similar.scoreTag' => 'Etiket',
+			'similar.scoreAge' => 'Yaş',
+			'similar.scoreSensory' => 'Duyusal',
+			'similar.scoreTherapy' => 'Terapi',
+			_ => null,
+		} ?? switch (path) {
+			'similar.scoreEducation' => 'Eğitim',
+			'groups.editTitle' => 'Grubu düzenle',
+			'groups.updated' => 'Grup güncellendi.',
+			'groups.deleteTitle' => 'Grubu sil',
+			'groups.deleteConfirm' => ({required Object name}) => '"${name}" grubu ve sohbeti kalıcı olarak silinecek.',
+			'groups.deleted' => 'Grup silindi.',
+			'groups.chatUnread' => ({required Object count}) => 'Sohbet (${count})',
+			'groups.detailTitle' => 'Grup Detayı',
+			'groups.detailHint' => 'Üye listesi ve buluşmalar yalnızca grup üyelerine görünür.',
+			'groups.membersTitle' => 'Üyeler',
+			'groups.membersEmpty' => 'Üye listesi görüntülenemiyor.',
+			'groups.membersOnly' => 'Üye listesini ve buluşmaları görmek için gruba katılın.',
+			'groups.meetingsTitle' => 'Buluşmalar',
+			'groups.meetingsEmpty' => 'Planlanmış buluşma yok.',
+			'groups.meetingAdd' => 'Buluşma planla',
+			'groups.meetingTitleLabel' => 'Buluşma başlığı',
+			'groups.meetingPickDate' => 'Tarih seç',
+			'groups.meetingPickTime' => 'Saat seç',
+			'groups.meetingUrlLabel' => 'Görüşme bağlantısı (isteğe bağlı)',
+			'groups.meetingNoteLabel' => 'Açıklama (isteğe bağlı)',
+			'groups.meetingSave' => 'Kaydet',
+			'groups.meetingCreated' => 'Buluşma planlandı.',
+			'groups.meetingJoin' => 'Görüşmeye katıl',
+			'groups.meetingDelete' => 'Buluşmayı iptal et',
+			'groups.meetingDeleteConfirm' => ({required Object title}) => '"${title}" buluşması iptal edilsin mi?',
+			'groups.meetingErrorTitle' => 'Buluşma başlığı gerekli.',
+			'groups.meetingErrorDate' => 'Tarih ve saat seçin.',
+			'groups.meetingErrorUrl' => 'Bağlantı http:// ya da https:// ile başlamalı.',
 			'groups.title' => 'Destek Grupları',
 			'groups.subtitle' => 'Benzer konularda ailelerle bir araya gel, grup sohbetine katıl.',
 			'groups.tabMy' => 'Gruplarım',
@@ -4254,6 +7849,7 @@ extension on Translations {
 			'groups.errorName' => 'Lütfen bir grup adı girin.',
 			'treatment.title' => 'Tedavi Paneli',
 			'treatment.subtitle' => 'Günlük Destek Planı',
+			'treatment.programActiveDefault' => 'Günlük destek planı aktif',
 			'treatment.programActive' => ({required Object name}) => '${name} planı aktif',
 			'treatment.selectChild' => 'Profil seç',
 			'treatment.noChildrenTitle' => 'Henüz çocuk profili yok',
@@ -4268,8 +7864,6 @@ extension on Translations {
 			'treatment.daysShort.1' => 'Pzt',
 			'treatment.daysShort.2' => 'Sal',
 			'treatment.daysShort.3' => 'Çar',
-			_ => null,
-		} ?? switch (path) {
 			'treatment.daysShort.4' => 'Per',
 			'treatment.daysShort.5' => 'Cum',
 			'treatment.daysShort.6' => 'Cmt',
@@ -4474,6 +8068,52 @@ extension on Translations {
 			'tasks.evidenceLabel' => 'Kanıt / Eklenti Bağlantısı (İsteğe Bağlı)',
 			'tasks.evidenceHint' => 'Uzmanınızın görebilmesi için ilgili çalışma anının videosunu veya fotoğrafını bulut bağlantısı olarak ekleyebilirsiniz.',
 			'tasks.submitConfirm' => 'Teslim Et ve Kapat',
+			'tasks.viewWizard' => 'Sihirbaz',
+			'tasks.viewList' => 'Liste',
+			'tasks.wizardBadge' => 'Günlük Gelişim Akışı',
+			'tasks.wizardTitle' => 'Bugünün Egzersiz Rehberi',
+			'tasks.wizardIntro' => 'Çocuğunuzla adımları takip ederek pratik yapın. Tamamlayınca aşağıdaki seçeneklerden birine dokunmanız yeterli.',
+			'tasks.wizardStageLevel' => ({required Object label}) => '${label} seviyesi',
+			'tasks.wizardStageCount' => ({required Object done, required Object total}) => '${done} / ${total} egzersiz tamamlandı',
+			'tasks.wizardAllDoneTitle' => 'Harika iş! Bugünün tüm egzersizleri tamam',
+			'tasks.wizardAllDoneBody' => 'Çocuğunuzla geçirdiğiniz her nitelikli dakika onun gelişimine büyük katkı sağlıyor. Yeni görevler atandığında burada görünecek.',
+			'tasks.wizardStepCounter' => ({required Object index, required Object total}) => '${index} / ${total}',
+			'tasks.wizardDefaultCategory' => 'Gelişim Egzersizi',
+			'tasks.wizardHowTo' => 'Nasıl uygulanır? (adım adım)',
+			'tasks.wizardDefaultDescription' => 'Çocuğunuzla sakin bir ortamda bu çalışmayı 5-10 dakika deneyin.',
+			'tasks.wizardFrequency' => ({required Object value}) => 'Sıklık: ${value}',
+			'tasks.wizardOutcomeQuestion' => 'Bugün bu egzersiz nasıl geçti?',
+			'tasks.outcomeEasyTitle' => 'Kolayca yaptık',
+			'tasks.outcomeEasyDesc' => 'Çocuğum rahatça başardı',
+			'tasks.outcomeSupportedTitle' => 'Destekle yaptık',
+			'tasks.outcomeSupportedDesc' => 'Biraz ipucuyla tamamladık',
+			'tasks.outcomeHardTitle' => 'Bugün zorlandık',
+			'tasks.outcomeHardDesc' => 'Henüz tam hazır değildik',
+			'tasks.wizardTipTitle' => 'AutiBot ipucu',
+			'tasks.wizardTipBody' => 'Hiç sorun değil! Otizm spektrumundaki çocukların bazı günlerde motivasyonu değişebilir. Egzersizi küçük parçalara bölüp yarın 2 dakikalık daha kısa bir süreyle tekrar deneyebilirsiniz. Uzmanınıza not bırakabilirsiniz.',
+			'tasks.wizardNoteLabel' => 'Uzmanınıza bırakmak istediğiniz not (opsiyonel)',
+			'tasks.wizardNoteHint' => 'Örn: Çalışırken çok keyif aldı veya dikkati çabuk dağıldı…',
+			'tasks.wizardAddPhoto' => 'Fotoğraf / çalışma anı ekle',
+			'tasks.wizardChangePhoto' => 'Fotoğrafı değiştir',
+			'tasks.wizardPhotoAdded' => 'Fotoğraf eklendi',
+			'tasks.wizardRemovePhoto' => 'Kaldır',
+			'tasks.wizardSourceGallery' => 'Galeriden seç',
+			'tasks.wizardSourceCamera' => 'Fotoğraf çek',
+			'tasks.wizardSubmit' => 'Egzersizi kaydet ve tamamla',
+			'tasks.wizardSubmitted' => 'Tebrikler! Günlük egzersiz tamamlandı 🎉',
+			'tasks.wizardDone' => 'Bu egzersiz teslim edildi',
+			'tasks.wizardDoneHint' => 'Uzmanınıza iletildi; sonraki egzersize geçebilirsiniz.',
+			'tasks.wizardPrev' => 'Önceki egzersiz',
+			'tasks.wizardNext' => 'Sonraki egzersiz',
+			'tasks.wizardTreeTitle' => 'Çocuğunuzun ilerleme ağacı',
+			'tasks.stageSeed' => 'Tohum',
+			'tasks.stageSeedDesc' => 'Yeni bir yolculuk başlıyor',
+			'tasks.stageSprout' => 'Filiz',
+			'tasks.stageSproutDesc' => 'Farkındalık ve alışma evresi',
+			'tasks.stageFlower' => 'Çiçek',
+			'tasks.stageFlowerDesc' => 'Birlikte düzenli pratik yapılıyor',
+			'tasks.stageTree' => 'Ağaç',
+			'tasks.stageTreeDesc' => 'Harika! Beceri tam bağımsızlaştı',
 			'forum.title' => 'Topluluk Forumu',
 			'forum.typeExperience' => 'Deneyimler',
 			'forum.typeQuestion' => 'Soru-Cevap',
@@ -4544,6 +8184,10 @@ extension on Translations {
 			'forum.privacyDiagnosis' => 'Tanı detaylarını göster',
 			'forum.privacyMatching' => 'Eşleştirme algoritmasında kullanılsın',
 			'forum.share' => 'Paylaş',
+			'childDetail.correlationTitle' => 'İlaç uyumu ve davranış',
+			'childDetail.correlationHint' => 'Doz uyumu ile davranış kayıtlarının aynı gündeki ilişkisi.',
+			'childDetail.correlationNoDose' => 'Kayıt yok',
+			'childDetail.correlationLegend' => 'Kırmızı çubuk davranış kaydı sayısı, sağdaki yüzde doz uyumu.',
 			'childDetail.title' => 'Çocuk Profili',
 			'childDetail.editProfile' => 'Profili Düzenle',
 			'childDetail.ageYears' => ({required Object age}) => '${age} yaş',
@@ -4606,6 +8250,21 @@ extension on Translations {
 			'crisis.contact112Desc' => 'Ambulans, Polis, İtfaiye',
 			'crisis.contact183Label' => 'Sosyal Destek Hattı',
 			'crisis.contact183Desc' => 'Kadın, Çocuk ve Sosyal Hizmetler',
+			'crisis.listen' => 'Sesli dinle',
+			'crisis.listenStop' => 'Durdur',
+			'crisis.listenIntro' => 'Neler yapılmalı',
+			'crisis.listenUnavailable' => 'Sesli okuma bu cihazda kullanılamıyor.',
+			'crisis.medicalTitle' => 'Önemli tıbbi uyarı',
+			'crisis.medicalBody' => 'Bu rehber profesyonel tıbbi veya psikiyatrik müdahalenin yerine geçmez. Bilinç kaybı, şiddetli nöbet, solunum güçlüğü veya ciddi zarar verme durumlarında vakit kaybetmeden 112 Acil Yardım Hattı\'nı arayın.',
+			'crisis.medicalMore' => 'Detaylı bilgi',
+			'crisis.quickTipTitle' => 'İlk kural',
+			'crisis.quickTipBody' => 'Siz sakin olun. Çocuk sizin duygusal durumunuzu ayna gibi yansıtır. Derin nefes alın, yavaş hareket edin.',
+			'crisis.afterTitle' => 'Kriz sonrası — iyileşme zamanı',
+			'crisis.afterItems.0' => 'Çocuğa sakin ortamda sessizce eşlik edin, konuşmaya zorlamayın.',
+			'crisis.afterItems.1' => 'Sevildiğini ve güvende olduğunu hissettirin.',
+			'crisis.afterItems.2' => 'Kriz tetikleyicilerini not edin (tarih, saat, ortam, önceki olay).',
+			'crisis.afterItems.3' => 'Uzman ekibinizi kriz hakkında bilgilendirin.',
+			'crisis.afterItems.4' => 'Kendinize de zaman ayırın — bakım verici de yorulur.',
 			'crisis.cards.meltdown.title' => 'Kriz / Meltdown',
 			'crisis.cards.meltdown.subtitle' => 'Kontrol kaybı, ağlama, bağırma, kendine zarar verme girişimi',
 			'crisis.cards.meltdown.steps.0' => 'Sakin kalın — sesiniz ve beden diliniz çocuğa geçer.',
@@ -4643,6 +8302,8 @@ extension on Translations {
 			'crisis.cards.aggression.emergency' => '112 — Acil Çağrı Merkezi',
 			'crisis.cards.anxiety.title' => 'Yoğun Kaygı / Panik',
 			'crisis.cards.anxiety.subtitle' => 'Titreme, nefes darlığı, ağlama, ortalıktan çekilme',
+			_ => null,
+		} ?? switch (path) {
 			'crisis.cards.anxiety.steps.0' => 'Sakin bir ses tonuyla "Yanındayım, güvendesin" deyin.',
 			'crisis.cards.anxiety.steps.1' => 'Derin nefes egzersizi yapın: 4 saniye içeri, 6 saniye dışarı.',
 			'crisis.cards.anxiety.steps.2' => '"Şu an 5 şey gör, 4 şey dokun" duyusal zemin egzersizi uygulayın.',
@@ -4693,6 +8354,10 @@ extension on Translations {
 			'calendar.errorTitle' => 'Lütfen bir başlık girin.',
 			'calendar.cancel' => 'İptal',
 			'calendar.delete' => 'Sil',
+			'emergency.listen' => 'Sesli oku',
+			'emergency.listenStop' => 'Okumayı durdur',
+			'emergency.listenUnknown' => 'belirtilmedi',
+			'emergency.listenFailed' => 'Cihazda sesli okuma başlatılamadı.',
 			'emergency.title' => 'Acil Durum Kartı',
 			'emergency.subtitle' => 'Acil bir durumda çocuğunuzla karşılaşan kişilere gösterilecek bilgiler.',
 			'emergency.noChild' => 'Acil durum kartı için önce bir çocuk ekleyin.',
@@ -4700,6 +8365,22 @@ extension on Translations {
 			'emergency.notSaved' => 'Bu kart henüz kaydedilmedi.',
 			'emergency.save' => 'Kaydet',
 			'emergency.saved' => 'Acil durum kartı kaydedildi.',
+			'emergency.shareTitle' => 'QR kod ile paylaş',
+			'emergency.shareBody' => 'Süreli bir bağlantı oluşturun; öğretmen veya sağlık görevlisi kartı bu bağlantıdan görüntüleyebilir. Bağlantıyı istediğiniz an kapatabilirsiniz.',
+			'emergency.shareConsentRequired' => 'Paylaşım için "Acil durum kartı paylaşımı" rızasını vermeniz gerekiyor.',
+			'emergency.shareOpenConsents' => 'Rıza ayarlarını aç',
+			'emergency.shareDuration' => 'Geçerlilik süresi',
+			'emergency.share24h' => '24 saat geçerli',
+			'emergency.share3d' => '3 gün geçerli',
+			'emergency.share1w' => '1 hafta geçerli',
+			'emergency.share30d' => '30 gün geçerli',
+			'emergency.shareEnable' => 'Paylaşım bağlantısı oluştur',
+			'emergency.shareDisable' => 'Paylaşımı kapat',
+			'emergency.shareValidUntil' => ({required Object date}) => 'Bağlantı ${date} tarihine kadar geçerli.',
+			'emergency.shareCopy' => 'Bağlantıyı kopyala',
+			'emergency.shareCopied' => 'Bağlantı kopyalandı.',
+			'emergency.shareSend' => 'Paylaş',
+			'emergency.shareMessage' => 'Çocuğumun acil durum kartını buradan görüntüleyebilirsiniz:',
 			'emergency.call' => 'Ara',
 			'emergency.sectionChild' => 'Çocuk Bilgileri',
 			'emergency.sectionContacts' => 'Acil İletişim',
@@ -4781,9 +8462,52 @@ extension on Translations {
 			'analytics.behaviorUnit' => 'aylık kayıt sayısı',
 			'analytics.noData' => 'Bu aralıkta henüz veri yok.',
 			'analytics.noChild' => 'Gelişim paneli için önce bir çocuk ekleyin.',
+			'analytics.aiTitle' => 'Yapay zekâ analizi',
+			'analytics.aiSubtitle' => 'Çocuğunuzun kayıtlarındaki örüntüleri özetler; tanı koymaz.',
+			'analytics.aiTypeGeneral' => 'Genel',
+			'analytics.aiTypeBehavioral' => 'Davranış',
+			'analytics.aiTypeProgress' => 'İlerleme',
+			'analytics.aiTypeWeekly' => 'Haftalık',
+			'analytics.aiStart' => ({required Object type}) => '${type} analizini başlat',
+			'analytics.aiRunning' => 'Analiz hazırlanıyor…',
+			'analytics.aiError' => 'Analiz alınamadı. Lütfen tekrar deneyin.',
+			'analytics.aiDisclaimer' => 'Bu özet bilgilendirme amaçlıdır; tıbbi tanı ya da tedavi önerisi değildir.',
+			'analytics.aiConsentTitle' => 'Yapay zekâ analizi için rızanız gerekiyor',
+			'analytics.aiConsentBody' => 'Çocuğunuzun kayıtlarının analiz edilmesi açık rızaya bağlıdır. Rızayı KVKK ve rızalar sayfasından verebilirsiniz.',
+			'analytics.aiConsentAction' => 'Rızaları yönet',
+			'analytics.rangeDays' => ({required Object count}) => 'Son ${count} gün',
+			'analytics.scoreTitle' => 'Takip skoru',
+			'analytics.scoreCoverage' => ({required Object count, required Object total}) => '${count} / ${total} veri türünde kayıt var',
+			'analytics.scoreStrong' => 'Güçlü takip',
+			'analytics.scoreGrowing' => 'Takip gelişiyor',
+			'analytics.scoreWaiting' => 'Veri bekleniyor',
+			'analytics.actionsTitle' => 'Eksik veriler',
+			'analytics.actionMood' => 'Ruh hali kaydı ekle',
+			'analytics.actionSleep' => 'Uyku kaydı ekle',
+			'analytics.actionNote' => 'Gelişim notu yaz',
+			'analytics.actionMilestone' => 'Kilometre taşı ekle',
+			'analytics.insightMoodHigh' => ({required Object days, required Object value}) => 'Son ${days} günde ortalama ruh hali ${value}/5 ile oldukça yüksek.',
+			'analytics.insightMoodLow' => ({required Object days, required Object value}) => 'Son ${days} günde ortalama ruh hali ${value}/5 — bazı güçlükler olabilir.',
+			'analytics.insightSleepShort' => ({required Object value}) => 'Ortalama uyku süresi ${value} — yeterli dinlenme için 8-10 saat önerilir.',
+			'analytics.insightSleepGood' => ({required Object value}) => 'Uyku düzeni iyi: ortalama ${value}.',
+			'analytics.insightMilestones' => ({required Object category, required Object count}) => 'En fazla kilometre taşı "${category}" alanında (${count} adet).',
+			'analytics.insightAppointments' => ({required Object count}) => '${count} randevu tamamlandı.',
+			'analytics.insightAppointmentsWithPending' => ({required Object count, required Object pending}) => '${count} randevu tamamlandı, ${pending} aktif randevu devam ediyor.',
+			'analytics.dailyMood' => 'Ruh hali trendi',
+			'analytics.dailyMoodUnit' => 'günlük kayıt (1-5)',
+			'analytics.dailySleep' => 'Uyku düzeni',
+			'analytics.dailySleepUnit' => 'gecelik süre (saat)',
+			'analytics.dailySleepQuality' => 'kalite (1-5)',
+			'analytics.behaviorCategories' => 'Davranış kategorileri',
+			'analytics.behaviorCategoriesUnit' => 'kayıt sayısı ve ortalama şiddet',
+			'analytics.milestoneCategories' => 'Kilometre taşları',
+			'analytics.milestoneCategoriesUnit' => 'kategoriye göre kazanım',
+			'analytics.notesActivity' => 'Not aktivitesi',
+			'analytics.notesActivityUnit' => 'aylık not sayısı',
+			'analytics.countWithIntensity' => ({required Object count, required Object intensity}) => '${count} · ort. ${intensity}',
+			'analytics.exportCsv' => 'CSV olarak paylaş',
+			'analytics.exportEmpty' => 'Paylaşılacak kayıt yok.',
 			'children.title' => 'Çocuklarım',
-			_ => null,
-		} ?? switch (path) {
 			'children.addTitle' => 'Çocuk Ekle',
 			'children.editTitle' => 'Çocuğu Düzenle',
 			'children.empty' => 'Henüz çocuk eklemediniz.',
@@ -4811,6 +8535,7 @@ extension on Translations {
 			'children.created' => 'Çocuk profili oluşturuldu.',
 			'children.updated' => 'Çocuk profili güncellendi.',
 			'children.deleted' => 'Çocuk profili silindi.',
+			'account.photoUpdated' => 'Profil fotoğrafı güncellendi.',
 			'account.title' => 'Hesap Bilgileri',
 			'account.emailLabel' => 'E-posta',
 			'account.fullNameLabel' => 'Ad Soyad',
@@ -4838,7 +8563,7 @@ extension on Translations {
 			'profile.defaultUser' => 'Kullanıcı',
 			'profile.accountInfo' => 'Hesap Bilgileri',
 			'profile.myChildren' => 'Çocuklarım',
-			'profile.notificationSettings' => 'Bildirim Ayarları',
+			'profile.showAllSections' => 'Tüm bölümleri göster',
 			'profile.help' => 'Yardım',
 			'profile.signOut' => 'Çıkış Yap',
 			'errors.timeout' => 'Sunucuya ulaşılamadı, lütfen tekrar deneyin.',
@@ -4849,6 +8574,247 @@ extension on Translations {
 			'errors.unexpectedResponse' => 'Beklenmeyen sunucu yanıtı.',
 			'errors.operationFailed' => 'İşlem başarısız.',
 			'errors.noUserInResponse' => 'Sunucu yanıtında kullanıcı bilgisi yok.',
+			'errors.tooManyRequests' => 'Çok fazla deneme yaptınız. Lütfen biraz bekleyip tekrar deneyin.',
+			'errors.retryInSeconds' => ({required Object count}) => '${count} saniye sonra tekrar deneyebilirsiniz.',
+			'errors.uploadTooLarge' => ({required Object limit}) => 'Dosya çok büyük (en fazla ${limit} MB).',
+			'errors.uploadTypeNotSupported' => 'Bu dosya türü desteklenmiyor. JPG, PNG, WEBP, GIF, PDF ve TXT yükleyebilirsiniz.',
+			'errors.uploadEmptyFile' => 'Dosya okunamadı ya da boş.',
+			'errors.invalidEmail' => 'Geçerli bir e-posta adresi girin.',
+			'guide.title' => 'Kullanıcı Rehberi',
+			'guide.subtitle' => 'Rolünüze göre ilk adımları, sayfaların ne işe yaradığını ve destek kanallarını tek yerde görün.',
+			'guide.searchHint' => 'Sayfa, konu veya işlem ara…',
+			'guide.countLabel' => ({required Object visible, required Object total}) => '${visible} / ${total} sayfa',
+			'guide.searchEmpty' => 'Aramanıza uyan bölüm bulunamadı.',
+			'guide.startTitle' => 'Nereden başlamalı?',
+			'guide.startSubtitle' => 'Sırayla ilerleyin; her adım ilgili bölümü açar.',
+			'guide.sectionsTitle' => 'Bölümler ne işe yarar?',
+			'guide.sectionsSubtitle' => 'Bir kategori seçin, o bölümün sayfalarını görün.',
+			'guide.purposeLabel' => 'Ne işe yarar?',
+			'guide.whenLabel' => 'Ne zaman kullanılır?',
+			'guide.openPage' => 'Aç',
+			'guide.videosTitle' => 'Eğitim videoları',
+			'guide.videosSubtitle' => 'Kısa anlatımlar. Videolar web sürümünde oynatılır; dokununca tarayıcıda açılır.',
+			'guide.videoWatch' => 'İzle',
+			'guide.videoWatched' => 'İzlendi',
+			'guide.videoMarkWatched' => 'İzlendi olarak işaretle',
+			'guide.videoProgress' => ({required Object done, required Object total}) => '${done} / ${total} video izlendi',
+			'guide.videoOpenError' => 'Video bağlantısı açılamadı.',
+			'guide.videoCategoryStart' => 'Başlangıç',
+			'guide.videoCategoryChild' => 'Çocuk ve Gelişim',
+			'guide.videoCategoryTracking' => 'Günlük Takip',
+			'guide.videoCategoryPlan' => 'Plan ve Randevu',
+			'guide.videoCategoryCommunity' => 'İletişim ve Topluluk',
+			'guide.videoCategorySupport' => 'Güven ve Destek',
+			'guide.badgeDaily' => 'Her gün',
+			'guide.badgeQuickLog' => 'Kısa kayıt',
+			'guide.badgeQuickHelp' => 'Hızlı destek',
+			'guide.badgeFirstStep' => 'İlk adım',
+			'guide.badgeSetup' => 'İlk kurulum',
+			'guide.badgeRoutine' => 'Günlük rutin',
+			'guide.badgeClinical' => 'Klinik destek',
+			'guide.badgePrivacy' => 'Gizlilik',
+			'guide.badgeCalendar' => 'Takvim',
+			'guide.badgeCommunication' => 'İletişim',
+			'guide.badgeProfile' => 'Profil',
+			'guide.groupDaily' => 'Günlük',
+			'guide.groupDailyDesc' => 'Her gün kullanacağınız ana sayfa, takip ve hızlı destek bölümleri.',
+			'guide.groupChild' => 'Çocuğum',
+			'guide.groupChildDesc' => 'Çocuğunuzun gelişimi, profil bilgileri, egzersizleri ve özel durum kayıtları.',
+			'guide.groupCommunity' => 'Topluluk',
+			'guide.groupCommunityDesc' => 'Deneyim paylaşımı, forum, yerel buluşmalar ve diğer ailelerle iletişim.',
+			'guide.groupExpertWork' => 'Çalışma alanı',
+			'guide.groupExpertWorkDesc' => 'Randevu, iletişim ve mesleki kaynak bölümleri.',
+			'guide.startChild' => 'Çocuk profilini oluştur',
+			'guide.startChildDesc' => 'Temel bilgiler, tanı notları ve ihtiyaçları girerek takip edilecek çocuğu hazırlayın.',
+			'guide.startTracker' => 'İlk günlük kaydı ekle',
+			'guide.startTrackerDesc' => 'Uyku, ruh hali, ilaç ve gözlemleri kısa kayıtlarla düzenli hale getirin.',
+			'guide.startAppointment' => 'Uzmanla randevu planla',
+			'guide.startAppointmentDesc' => 'Uygun uzmanı seçin, randevu talebi oluşturun ve görüşme akışını takip edin.',
+			'guide.startPrivacy' => 'Paylaşım izinlerini kontrol et',
+			'guide.startPrivacyDesc' => 'Hangi verinin hangi amaçla işleneceğini KVKK rızalarından yönetin.',
+			'guide.startExpertCalendar' => 'Randevuları yönet',
+			'guide.startExpertCalendarDesc' => 'Randevu taleplerini onaylayın, seansları tamamlayın ve aileleri bilgilendirin.',
+			'guide.startExpertMessages' => 'Ailelerle iletişime geç',
+			'guide.startExpertMessagesDesc' => 'Güvenli mesajlaşmayla soruları yanıtlayın ve takibi sürdürün.',
+			'guide.startExpertProfile' => 'Uzman profilini tamamla',
+			'guide.startExpertProfileDesc' => 'Unvan, uzmanlık alanları ve iletişim bilgilerinizi güncel tutun.',
+			'guide.pageHome' => 'Ana Sayfa',
+			'guide.pageHomePurpose' => 'Bugün yapılacakları, hatırlatmaları ve kısa günlük planı tek yerde gösterir.',
+			'guide.pageHomeWhen' => 'Uygulamaya her girişte "bugün ne yapacağım?" diye bakmak istediğinizde.',
+			'guide.pageHomeKeywords' => 'ana sayfa, başlangıç, görev, bugün, panel',
+			'guide.pageTracker' => 'Günlük Takip',
+			'guide.pageTrackerPurpose' => 'Ruh hali, uyku, ilaç ve kısa günlük gözlemleri kaydetmek için kullanılır.',
+			'guide.pageTrackerWhen' => 'Günün sonunda veya önemli bir değişiklik olduğunda kısa kayıt girmek istediğinizde.',
+			'guide.pageTrackerKeywords' => 'günlük, ruh hali, uyku, ilaç, kayıt, duygu',
+			'guide.pageMessages' => 'Mesajlar',
+			'guide.pageMessagesPurpose' => 'Uzmanlar ve platformdaki kişilerle güvenli yazışma alanıdır.',
+			'guide.pageMessagesWhen' => 'Randevu, soru veya takip için mesajlaşmak istediğinizde.',
+			'guide.pageMessagesKeywords' => 'mesaj, sohbet, iletişim, uzman',
+			'guide.pageAppointments' => 'Randevular',
+			'guide.pageAppointmentsPurpose' => 'Randevu talepleri, seans zamanı ve görüşme akışını yönetir.',
+			'guide.pageAppointmentsWhen' => 'Uzmanla görüşme planlamak veya yaklaşan randevuları görmek istediğinizde.',
+			'guide.pageAppointmentsKeywords' => 'randevu, takvim, seans, görüşme, doktor, terapi',
+			'guide.pageCrisis' => 'Zor Anlarda Ne Yapmalı?',
+			'guide.pageCrisisPurpose' => 'Zorlayıcı anlarda sakinleşme ve müdahale adımlarını hızlı gösterir.',
+			'guide.pageCrisisWhen' => 'Kriz, yoğun stres veya hızlı yönlendirme gereken bir durum olduğunda.',
+			'guide.pageCrisisKeywords' => 'kriz, zor an, sakinleşme, acil, destek, nefes',
+			'guide.pageAssistant' => 'AI Asistan',
+			'guide.pageAssistantPurpose' => 'Sorularınıza anında yanıt veren sohbet asistanıdır; tıbbi tavsiye vermez, yönlendirir.',
+			'guide.pageAssistantWhen' => 'Aklınıza takılan bir konuyu hızlıca sormak istediğinizde.',
+			'guide.pageAssistantKeywords' => 'asistan, sohbet, yapay zeka, soru, bot',
+			'guide.pageSettings' => 'Ayarlar',
+			'guide.pageSettingsPurpose' => 'Bildirim, gizlilik ve erişilebilirlik tercihlerinizi, tema ve dili, şifrenizi ve hesabınızı yönetir.',
+			'guide.pageSettingsWhen' => 'Uygulamayı kendinize göre ayarlamak veya verilerinizi yönetmek istediğinizde.',
+			'guide.pageSettingsKeywords' => 'ayarlar, bildirim, gizlilik, şifre, tema, dil, erişilebilirlik',
+			'guide.pageHelp' => 'Yardım',
+			'guide.pageHelpPurpose' => 'Uygulama hakkında kısa bilgi, kullanım ipuçları ve iletişim kanallarını içerir.',
+			'guide.pageHelpWhen' => 'Bir özelliğin nasıl çalıştığını bulamadığınızda.',
+			'guide.pageHelpKeywords' => 'yardım, destek, sss, iletişim',
+			'guide.pageChildren' => 'Çocuklarım',
+			'guide.pageChildrenPurpose' => 'Çocuğun temel bilgilerini, tanı notlarını, terapi ve ihtiyaç bilgilerini tutar.',
+			'guide.pageChildrenWhen' => 'İlk kurulumda veya çocukla ilgili bilgileri güncellemek istediğinizde.',
+			'guide.pageChildrenKeywords' => 'çocuk, profil, tanı, terapi, bilgi, kilometre taşı',
+			'guide.pageAnalytics' => 'Gelişim Paneli',
+			'guide.pageAnalyticsPurpose' => 'Günlük kayıtları grafiklere ve aylık eğilimlere dönüştürür.',
+			'guide.pageAnalyticsWhen' => 'Tek tek kayıtlardan daha büyük resmi görmek istediğinizde.',
+			'guide.pageAnalyticsKeywords' => 'ilerleme, grafik, analiz, trend, gelişim',
+			'guide.pageTreatment' => 'Tedavi Paneli',
+			'guide.pageTreatmentPurpose' => 'Küçük hedefler, ev çalışmaları, oyunlar ve günlük destek akışını toplar.',
+			'guide.pageTreatmentWhen' => 'Bugün evde uygulanabilecek kısa etkinlik veya hedef aradığınızda.',
+			'guide.pageTreatmentKeywords' => 'tedavi, plan, hedef, aktivite, oyun, ev çalışması',
+			'guide.pageTasks' => 'Ödevlerim',
+			'guide.pageTasksPurpose' => 'Uzmanın verdiği görevleri, günlük egzersiz sihirbazını ve teslim durumunu gösterir.',
+			'guide.pageTasksWhen' => 'Seans sonrası verilen çalışmaları takip etmek istediğinizde.',
+			'guide.pageTasksKeywords' => 'görev, ödev, egzersiz, uzman, teslim',
+			'guide.pageNotes' => 'Notlarım',
+			'guide.pageNotesPurpose' => 'Davranış, gelişim, görüşme veya dikkat çeken olayları serbest not olarak saklar.',
+			'guide.pageNotesWhen' => 'Uzmanla paylaşmak veya sonra hatırlamak istediğiniz kısa gözlemler olduğunda.',
+			'guide.pageNotesKeywords' => 'not, gözlem, gelişim, davranış, hatırlatma',
+			'guide.pageBehavior' => 'Davranış Günlüğü',
+			'guide.pageBehaviorPurpose' => 'Davranışın öncesini, kendisini ve sonrasını (ABC) kayıt altına alarak örüntüleri görünür kılar.',
+			'guide.pageBehaviorWhen' => 'Tekrarlayan bir davranışın nedenini anlamak istediğinizde.',
+			'guide.pageBehaviorKeywords' => 'davranış, abc, öncesi, sonrası, örüntü, tetikleyici',
+			'guide.pageEmergency' => 'Acil Durum Kartı',
+			'guide.pageEmergencyPurpose' => 'Acil durumda paylaşılacak temel çocuk bilgilerini hazır tutar; süreli bağlantı ve QR ile paylaşılır.',
+			'guide.pageEmergencyWhen' => 'Dışarıda, okulda veya acil durumda hızlı bilgi paylaşımı gerekebileceğinde.',
+			'guide.pageEmergencyKeywords' => 'acil, kart, güvenlik, qr, paylaşım',
+			'guide.pageCalendar' => 'Takvim',
+			'guide.pageCalendarPurpose' => 'Randevu, okul, etkinlik ve hatırlatmaları tarihli şekilde tutar.',
+			'guide.pageCalendarWhen' => 'Yaklaşan planları unutmak istemediğinizde.',
+			'guide.pageCalendarKeywords' => 'takvim, etkinlik, hatırlatma, plan',
+			'guide.pageRoutines' => 'Rutinler',
+			'guide.pageRoutinesPurpose' => 'Günlük rutinleri adım adım, görsel olarak takip etmeye yardımcı olur.',
+			'guide.pageRoutinesWhen' => 'Sabah, okul, uyku veya geçiş rutinini görselleştirmek istediğinizde.',
+			'guide.pageRoutinesKeywords' => 'rutin, program, adım, görsel, geçiş',
+			'guide.pageForum' => 'Topluluk Forumu',
+			'guide.pageForumPurpose' => 'Ebeveynlerin ve uzmanların soru sorup deneyimlerini paylaştığı ortak tartışma alanıdır.',
+			'guide.pageForumWhen' => 'Kafanıza takılan bir soruyu topluluğa danışmak istediğinizde.',
+			'guide.pageForumKeywords' => 'forum, soru, cevap, topluluk, deneyim',
+			'guide.pageWall' => 'Dertleşme Duvarı',
+			'guide.pageWallPurpose' => 'Duygu ve deneyim paylaşımı için daha serbest bir destek alanıdır; istersen anonim kalırsın.',
+			'guide.pageWallWhen' => 'Soru sormaktan çok içinizi dökmek veya destek görmek istediğinizde.',
+			'guide.pageWallKeywords' => 'dertleşme, duygu, paylaşım, destek, anonim',
+			'guide.pageMeetups' => 'Yerel Buluşmalar',
+			'guide.pageMeetupsPurpose' => 'Aynı şehirdeki ailelerle gerçek hayatta tanışıp bir araya gelmenizi sağlar.',
+			'guide.pageMeetupsWhen' => 'Çevrenizdeki ailelerle yüz yüze etkinlik planlamak istediğinizde.',
+			'guide.pageMeetupsKeywords' => 'buluşma, etkinlik, şehir, tanışma, yerel',
+			'guide.pageWeekly' => 'Haftanın Sorusu',
+			'guide.pageWeeklyPurpose' => 'Her hafta belirlenen ortak bir konu hakkında ailelerin yanıtlarını listeler.',
+			'guide.pageWeeklyWhen' => 'Diğer ailelerin ne düşündüğünü görmek veya deneyiminizi yazmak istediğinizde.',
+			'guide.pageWeeklyKeywords' => 'haftanın sorusu, topluluk, deneyim, paylaşım',
+			'guide.pageSimilar' => 'Benzer Aileler',
+			'guide.pageSimilarPurpose' => 'Çocuğunuzun yaşı ve ihtiyaçları açısından benzer süreçler yaşayan ailelerle tanıştırır.',
+			'guide.pageSimilarWhen' => 'Sizinle en çok ortak noktası olan aileleri bulmak istediğinizde.',
+			'guide.pageSimilarKeywords' => 'benzer aileler, eşleşme, akran, tanışma',
+			'guide.pageGroups' => 'Destek Grupları',
+			'guide.pageGroupsPurpose' => 'Kategori bazlı aile ve uzman topluluklarına katılmanızı, grup sohbetine girmenizi sağlar.',
+			'guide.pageGroupsWhen' => 'Benzer ihtiyaç ve yaş gruplarına odaklanan bir topluluk aradığınızda.',
+			'guide.pageGroupsKeywords' => 'grup, topluluk, sohbet, katıl',
+			'guide.pageKnowledge' => 'Bilgi Bankası',
+			'guide.pageKnowledgePurpose' => 'Güvenilir yazıları ve kaynak içerikleri toplar.',
+			'guide.pageKnowledgeWhen' => 'Bir konuyu sakin sakin okumak veya öğrenmek istediğinizde.',
+			'guide.pageKnowledgeKeywords' => 'bilgi, makale, rehber, kaynak, öğrenme',
+			'guide.pageExpertAppointments' => 'Randevularım',
+			'guide.pageExpertAppointmentsPurpose' => 'Gelen randevu taleplerini onaylar, seansları tamamlar ve erteleme taleplerini yönetir.',
+			'guide.pageExpertAppointmentsWhen' => 'Gününüzü planlarken ve seans sonrası kayıt kapatırken.',
+			'guide.pageExpertMessagesPurpose' => 'Ailelerle güvenli yazışma alanıdır; görev geri bildirimleri de buradan iletilir.',
+			'guide.pageExpertMessagesWhen' => 'Aileye dönüş yapmak veya takip sorusu sormak istediğinizde.',
+			'guide.pageExpertForumPurpose' => 'Uzman olarak soruları yanıtlayabilir, doğrulanmış bilgi paylaşabilirsiniz.',
+			'guide.pageExpertForumWhen' => 'Topluluğa mesleki katkı sunmak istediğinizde.',
+			'guide.video01' => 'Platforma Genel Bakış',
+			'guide.video01Desc' => 'Ana bölümleri, rolünüze göre değişen menüyü ve güvenli kullanım araçlarını kısa bir turla tanıyın.',
+			'guide.video02' => 'Ebeveyn Hızlı Başlangıç',
+			'guide.video02Desc' => 'Aile hesabına girişten çocuk profiline ve ilk günlük kayda uzanan temel başlangıç akışını izleyin.',
+			'guide.video03' => 'Kullanıcı Rehberini Kullanma',
+			'guide.video03Desc' => 'Arama, kategori ve rol odaklı yönlendirmelerle ihtiyacınız olan özelliği nasıl bulacağınızı öğrenin.',
+			'guide.video04' => 'Ana Sayfa ve Navigasyon',
+			'guide.video04Desc' => 'Günlük özetleri okuyun; menü ve hızlı erişimlerle istediğiniz bölüme ulaşın.',
+			'guide.video05' => 'Çocuk Profili',
+			'guide.video05Desc' => 'Çocuk profili oluşturun; temel bilgileri, tanı notlarını, ihtiyaçları ve erişim ayrıntılarını güncelleyin.',
+			'guide.video06' => 'Günlük Duygu ve Uyku Takibi',
+			'guide.video06Desc' => 'Ruh hali, uyku ve davranış kayıtlarını birkaç adımda ekleyip geçmişi inceleyin.',
+			'guide.video07' => 'İlaç Takibi',
+			'guide.video07Desc' => 'İlaç planını kaydedin, doz ve saat bilgilerini takip edin, geçmiş kayıtları güvenle kontrol edin.',
+			'guide.video08' => 'Gelişim Paneli',
+			'guide.video08Desc' => 'Günlük kayıtların grafiklere nasıl dönüştüğünü görün; eğilimleri ve gelişim özetlerini yorumlayın.',
+			'guide.video09' => 'Hedefler ve Egzersizler',
+			'guide.video09Desc' => 'Çocuğunuza uygun hedefleri görüntüleyin, ev egzersizlerini uygulayın ve tamamlanma durumunu takip edin.',
+			'guide.video10' => 'Ödevler ve Rutinler',
+			'guide.video10Desc' => 'Uzmanın verdiği ödevleri takip edin ve sabah, okul ya da uyku rutinlerini adım adım planlayın.',
+			'guide.video11' => 'Notlar, Takvim ve Acil Kart',
+			'guide.video11Desc' => 'Gözlemlerinizi not alın, önemli tarihleri planlayın ve acil durumda paylaşılacak kartı hazır tutun.',
+			'guide.video12' => 'Uzman Bulma ve Randevu',
+			'guide.video12Desc' => 'Uzmanları filtreleyip profillerini karşılaştırın, uygun kişiyi seçin ve randevu akışını yönetin.',
+			'guide.video13' => 'Mesajlar, Gizlilik ve Ayarlar',
+			'guide.video13Desc' => 'Güvenli mesajlaşmayı kullanın; profil, bildirim, şifre ve veri paylaşımı tercihlerini yönetin.',
+			'guide.video14' => 'Topluluk, Forum ve Buluşmalar',
+			'guide.video14Desc' => 'Forumda soru sorun, aile deneyimlerini inceleyin ve güvenli topluluk buluşmalarını keşfedin.',
+			'guide.video15' => 'Bilgi Bankası, Kriz ve Yardım',
+			'guide.video15Desc' => 'Güvenilir içerikleri bulun, zor anlar için kriz adımlarına ulaşın ve yardım kanallarını kullanın.',
+			'community.title' => 'Topluluk',
+			'community.badge' => 'Kontrollü ve güvenli iletişim',
+			'community.intro' => 'Aynı süreci yaşayan aileleri bulun, önce mesajlaşın, hazır olduğunuzda grup ve buluşmalara katılın.',
+			'community.areasTitle' => 'Ne yapmak istersiniz?',
+			'community.areasSubtitle' => 'Bütün topluluk alanları bu merkezde.',
+			'community.safetyTitle' => 'Güvenli tanışma önerisi',
+			'community.safetyBody' => 'İlk görüşmede uygulama içinde yazışın. Telefon, açık adres ve çocuğun özel bilgilerini paylaşmak zorunda değilsiniz. Rahatsız olduğunuz kişiyi engelleyebilir veya bildirebilirsiniz.',
+			'community.similarText' => 'Ortak deneyimleri ve eşleşme nedenlerini görün, güvenli bir tanışma başlatın.',
+			'community.messagesText' => 'Aileler ve uzmanlarla yaptığınız görüşmelere tek yerden devam edin.',
+			'community.groupsText' => 'Benzer ihtiyaç ve yaş gruplarına odaklanan topluluklara katılın.',
+			'community.meetupsText' => 'Şehrinizdeki güvenli buluşmaları keşfedin.',
+			'community.forumText' => 'Topluluğa soru sorun, ailelerin ve uzmanların yanıtlarını okuyun.',
+			'community.wallText' => 'Yargılanmadan duygunuzu paylaşın; isterseniz anonim kalın.',
+			'community.weeklyText' => 'Tek bir konu etrafında kısa deneyim paylaşımlarına katılın.',
+			'reviews.title' => ({required Object count}) => 'Değerlendirmeler (${count})',
+			'reviews.empty' => 'Bu uzman için henüz değerlendirme yok.',
+			'reviews.write' => 'Değerlendirme yaz',
+			'reviews.edit' => 'Değerlendirmemi düzenle',
+			'reviews.ratingLabel' => 'Puanınız',
+			'reviews.commentHint' => 'Deneyiminizi kısaca anlatın (isteğe bağlı)…',
+			'reviews.save' => 'Kaydet',
+			'reviews.delete' => 'Sil',
+			'reviews.deleteTitle' => 'Değerlendirmeyi sil',
+			'reviews.deleteConfirm' => 'Bu değerlendirmeyi silmek istediğinize emin misiniz?',
+			'reviews.someone' => 'Bir veli',
+			'expertAccess.title' => 'Uzman Erişimi',
+			'expertAccess.intro' => 'Uzmanlar çocuğunuzun gelişim verilerine ancak siz onayladığınızda erişebilir. Verdiğiniz erişimi istediğiniz zaman geri alabilirsiniz.',
+			'expertAccess.pendingTitle' => 'Bekleyen istekler',
+			'expertAccess.noPending' => 'Şu an bekleyen uzman erişim isteği yok.',
+			'expertAccess.activeTitle' => 'Erişimi olan uzmanlar',
+			'expertAccess.noActive' => 'Henüz hiçbir uzmana erişim vermediniz.',
+			'expertAccess.requestLine' => ({required Object child}) => '${child} adlı çocuğunuzun profiline erişim istiyor.',
+			'expertAccess.activeLine' => ({required Object child}) => '${child} adlı çocuğunuzun profiline erişebiliyor.',
+			'expertAccess.requestedAt' => ({required Object date}) => 'İstek tarihi: ${date}',
+			'expertAccess.unknownExpert' => 'Uzman',
+			'expertAccess.approve' => 'Onayla',
+			'expertAccess.reject' => 'Reddet',
+			'expertAccess.revoke' => 'Erişimi kaldır',
+			'expertAccess.approved' => 'Uzman erişim isteği onaylandı.',
+			'expertAccess.rejected' => 'Uzman erişim isteği reddedildi.',
+			'expertAccess.revoked' => 'Uzmanın erişimi kaldırıldı.',
+			'expertAccess.revokeTitle' => 'Erişimi kaldır',
+			'expertAccess.revokeConfirm' => 'Bu uzmanın çocuğunuzun verilerine erişimini kaldırmak istediğinize emin misiniz?',
+			'expertAccess.pendingBanner' => ({required Object count}) => '${count} uzman erişim isteğiniz onay bekliyor',
 			_ => null,
 		};
 	}

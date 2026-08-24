@@ -239,6 +239,7 @@ class _InputBar extends StatelessWidget {
             ),
             const SizedBox(width: 8),
             IconButton.filled(
+              tooltip: context.t.common.a11y.send,
               onPressed: enabled ? onSend : null,
               icon: const Icon(Icons.send),
               style: IconButton.styleFrom(

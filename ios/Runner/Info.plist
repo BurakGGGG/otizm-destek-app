@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Otizm Destek App</string>
+	<string>Otizm Destek</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -47,6 +47,18 @@
 			</array>
 		</dict>
 	</dict>
+	<!-- image_picker: profil fotoğrafı ve ödev kanıtı -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Çocuğunuzun profil fotoğrafını ve ödev kanıtı görselini seçebilmek için galeriye erişim gerekir.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Ödev kanıtı fotoğrafını çekebilmek için kameraya erişim gerekir.</string>
+	<!-- url_launcher: telefon araması ve web bağlantıları -->
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>tel</string>
+		<string>https</string>
+		<string>http</string>
+	</array>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

@@ -34,6 +34,8 @@ class Conversation {
     this.lastMessage,
     this.unreadCount = 0,
     this.lastMessageAt,
+    this.muted = false,
+    this.archived = false,
   });
 
   final String id;
@@ -43,6 +45,14 @@ class Conversation {
   final Message? lastMessage;
   final int unreadCount;
   final DateTime? lastMessageAt;
+  final bool muted;
+  final bool archived;
+
+  bool get isGroup => type == 'GROUP';
+
+  /// Karşı taraf uzman mı (konuşma listesindeki "Uzmanlar" süzgeci).
+  bool hasExpert(String? currentUserId) => participants
+      .any((p) => p.id != currentUserId && p.role == 'EXPERT');
 
   /// Görünen başlık: grup/başlık varsa onu, yoksa karşı katılımcının adını verir.
   String displayTitle(String? currentUserId) {
@@ -50,6 +60,13 @@ class Conversation {
     final others = participants.where((p) => p.id != currentUserId).toList();
     if (others.isNotEmpty) return others.first.fullName;
     return participants.isNotEmpty ? participants.first.fullName : '';
+  }
+
+  /// Birebir sohbette karşı tarafın kimliği (grupta null).
+  String? otherParticipantId(String? currentUserId) {
+    if (isGroup) return null;
+    final others = participants.where((p) => p.id != currentUserId).toList();
+    return others.isNotEmpty ? others.first.id : null;
   }
 
   String? avatarUrl(String? currentUserId) {
@@ -72,6 +89,8 @@ class Conversation {
       lastMessage: last is Map<String, dynamic> ? Message.fromJson(last) : null,
       unreadCount: (json['unreadCount'] as num?)?.toInt() ?? 0,
       lastMessageAt: DateTime.tryParse(json['lastMessageAt']?.toString() ?? ''),
+      muted: json['muted'] == true,
+      archived: json['archived'] == true,
     );
   }
 }

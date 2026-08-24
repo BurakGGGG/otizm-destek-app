@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import '../../../core/haptics.dart';
 import '../../../core/network/api_exception.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/util/password_rules.dart';
+import '../../../core/widgets/password_strength_meter.dart';
 import '../../../i18n/strings.g.dart';
 import '../data/auth_repository.dart';
 
@@ -48,8 +50,8 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
       setState(() => _error = t.resetPassword.errorTokenRequired);
       return;
     }
-    if (_password.text.length < 8) {
-      setState(() => _error = t.resetPassword.errorPasswordShort);
+    if (validatePassword(_password.text) case final issue?) {
+      setState(() => _error = passwordIssueMessage(context, issue));
       return;
     }
     if (_password.text != _confirm.text) {
@@ -111,10 +113,15 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
                       TextField(
                         controller: _password,
                         obscureText: _obscure,
+                        autofillHints: const [AutofillHints.newPassword],
+                        onChanged: (_) => setState(() {}),
                         decoration: InputDecoration(
                           labelText: t.resetPassword.newPasswordLabel,
                           prefixIcon: const Icon(Icons.lock_outline),
                           suffixIcon: IconButton(
+                            tooltip: _obscure
+                                ? t.common.a11y.showPassword
+                                : t.common.a11y.hidePassword,
                             onPressed: () =>
                                 setState(() => _obscure = !_obscure),
                             icon: Icon(_obscure
@@ -123,6 +130,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
                           ),
                         ),
                       ),
+                      PasswordStrengthMeter(password: _password.text),
                       const SizedBox(height: 16),
                       TextField(
                         controller: _confirm,

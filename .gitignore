@@ -43,3 +43,26 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Android sürüm imzası — anahtar deposu depoya girmez
+# (android/key.properties zaten android/.gitignore ile hariç)
+*.jks
+*.keystore
+
+# Firebase istemci yapılandırması — anahtarlar depoda tutulmaz.
+# Şablonlar: android/app/google-services.json.example,
+# lib/firebase_options.example.dart. Yeniden üretmek için:
+#   flutterfire configure --project=otizm-destek-app --platforms=android,ios
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
+lib/firebase_options.dart
+
+# Ortam profilleri: gerçek değerler yerel dosyada kalsın
+config/*.local.json
+.env
+.env.*
+!.env.example
+
+# slang analyze çıktıları (geçici rapor)
+lib/i18n/_missing_translations.yaml
+lib/i18n/_unused_translations.yaml

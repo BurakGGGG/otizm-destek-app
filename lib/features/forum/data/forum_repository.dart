@@ -220,52 +220,10 @@ class ForumRepository {
     }
   }
 
-  /// İçerik şikayeti — `POST /reports {targetType, targetId, reason}`.
-  Future<void> report({
-    required String targetType,
-    required String targetId,
-    required String reason,
-  }) async {
-    try {
-      await _dio.post('/reports', data: {
-        'targetType': targetType,
-        'targetId': targetId,
-        'reason': reason.trim(),
-      });
-    } on DioException catch (e) {
-      throw ApiException.fromDio(e);
-    }
-  }
-
-  /// Kategoriye göre gruplu semptom etiketleri — `GET /tags/grouped`.
-  Future<Map<String, List<ForumTag>>> getTagsGrouped() async {
-    try {
-      final res = await _dio.get('/tags/grouped');
-      final data = ApiEnvelope.fromJson(res.data).data;
-      if (data is! Map<String, dynamic>) return const {};
-      return data.map((category, tags) => MapEntry(
-            category,
-            tags is List
-                ? tags
-                    .whereType<Map<String, dynamic>>()
-                    .map(ForumTag.fromJson)
-                    .toList()
-                : const <ForumTag>[],
-          ));
-    } on DioException catch (e) {
-      throw ApiException.fromDio(e);
-    }
-  }
 }
 
 final forumRepositoryProvider = Provider<ForumRepository>((ref) {
   return ForumRepository(ref.watch(dioProvider));
-});
-
-/// Kategoriye göre gruplu etiketler (oluşturma formu + filtre için).
-final forumTagsProvider =
-    FutureProvider<Map<String, List<ForumTag>>>((ref) {
-  return ref.watch(forumRepositoryProvider).getTagsGrouped();
 });
 
 /// Bir gönderinin yorumları.

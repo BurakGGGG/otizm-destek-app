@@ -3,12 +3,35 @@ app:
   name: Otizm Destek
 
 common:
+  cancel: Vazgeç
   loading: Yükleniyor
   comingSoon: Bu bölüm yakında eklenecek.
   seeAll: Tümünü Gör
   more: Daha Fazla
   retry: Tekrar Dene
   loadError: Veriler yüklenemedi.
+  unsaved:
+    title: Kaydedilmemiş değişiklikler
+    body: Girdikleriniz henüz kaydedilmedi. Çıkarsanız kaybolacak.
+    stay: Formda kal
+    leave: Çık
+  # Simge düğmelerinin erişilebilirlik etiketleri (ekran okuyucu + ipucu)
+  a11y:
+    edit: Düzenle
+    delete: Sil
+    close: Kapat
+    send: Gönder
+    options: Seçenekler
+    report: Şikayet et
+    clearSearch: Aramayı temizle
+    clearDate: Tarihi temizle
+    clearSelection: Seçimi temizle
+    cancelReply: Yanıtı iptal et
+    showPassword: Şifreyi göster
+    hidePassword: Şifreyi gizle
+    decrease: Azalt
+    increase: Artır
+    rating: $count yıldız
   monthsShort:
     - Oca
     - Şub
@@ -53,6 +76,28 @@ auth:
   registerExpert: Uzman hesabı ile kaydol
   errorEmptyFields: Lütfen e-posta ve şifrenizi girin.
   registerComingSoon: $role kayıt ekranı yakında eklenecek.
+  errorMfaRequired: Bu hesapta iki adımlı doğrulama açık; şimdilik web üzerinden giriş yapın.
+  resendVerification: Doğrulama e-postasını yeniden gönder
+
+verifyEmail:
+  title: E-posta Doğrulama
+  waitingTitle: Gelen kutunuzu kontrol edin
+  waitingBody: Doğrulama bağlantısını gönderdik. Bağlantıya dokunduktan sonra bu ekrana dönüp giriş yapabilirsiniz.
+  waitingBodyWithEmail: $email adresine doğrulama bağlantısı gönderdik. Bağlantıya dokunduktan sonra bu ekrana dönüp giriş yapabilirsiniz.
+  spamHint: E-posta birkaç dakika içinde gelmezse spam/gereksiz klasörünü kontrol edin.
+  approvalTitle: Uzman hesabınız onay bekliyor
+  approvalBody: Başvurunuz alındı. Lisans bilgileriniz yönetici tarafından doğrulandıktan sonra giriş yapabilirsiniz.
+  tokenLabel: Doğrulama Kodu
+  tokenHint: E-postadaki bağlantıda yer alan kod
+  tokenHelp: Bağlantıyı açamıyorsanız içindeki kodu buraya yapıştırın.
+  verifyButton: Doğrula
+  verifying: E-posta adresiniz doğrulanıyor…
+  resendButton: E-postayı yeniden gönder
+  resent: Yeni doğrulama bağlantısı gönderildi. Gelen kutunuzu ve spam klasörünü kontrol edin.
+  success: E-posta adresiniz doğrulandı. Artık giriş yapabilirsiniz.
+  errorTokenRequired: Lütfen doğrulama kodunu girin.
+  errorEmailRequired: Yeniden göndermek için e-posta adresi gerekli.
+  backToLogin: Giriş sayfasına dön
 
 forgotPassword:
   title: Şifremi Unuttum
@@ -77,6 +122,25 @@ resetPassword:
   errorTokenRequired: Lütfen sıfırlama kodunu girin.
   errorPasswordShort: Şifre en az 8 karakter olmalıdır.
   errorMismatch: Şifreler eşleşmiyor.
+
+# Şifre kuralları — backend StrongPasswordValidator ile birebir.
+password:
+  strengthTitle: Şifre gücü
+  strengthVeryWeak: Çok zayıf
+  strengthWeak: Zayıf
+  strengthMedium: Orta
+  strengthStrong: Güçlü
+  strengthVeryStrong: Çok güçlü
+  ruleMinLength: En az 8 karakter
+  ruleUppercase: Bir büyük harf
+  ruleDigit: Bir rakam
+  ruleSpecial: Bir özel karakter
+  errorTooShort: Şifre en az 8 karakter olmalıdır.
+  errorTooLong: Şifre en fazla 64 karakter olabilir.
+  errorNoUppercase: Şifre en az bir büyük harf içermelidir.
+  errorNoDigit: Şifre en az bir rakam içermelidir.
+  errorNoSpecial: 'Şifre en az bir özel karakter (örn. ! ? * . -) içermelidir.'
+  errorCommon: Bu şifre çok yaygın ve kolay tahmin edilebilir; lütfen farklı bir şifre seçin.
 
 register:
   titleParent: Veli Hesabı Oluştur
@@ -106,7 +170,185 @@ register:
   errorEmailInvalid: Geçerli bir e-posta girin.
   errorPasswordShort: Şifre en az 8 karakter olmalıdır.
   errorExpertTitleRequired: Lütfen uzmanlık ünvanını girin.
+  errorLicenseRequired: Uzman kaydı için lisans / diploma numarası zorunludur.
   errorKvkkRequired: Devam etmek için KVKK onayı gereklidir.
+  emailTaken: Bu e-posta adresi zaten kayıtlı. Giriş yapmayı deneyin.
+  emailAvailable: Bu e-posta adresi kullanılabilir.
+
+settings:
+  pushGranted: Cihaz bildirimleri açık
+  pushGrantedHint: Uygulama kapalıyken de bildirim alırsınız.
+  pushDenied: Cihaz bildirimleri kapalı
+  pushDeniedHint: İzin verilmediği için aşağıdaki tercihler yalnızca uygulama
+    içinde geçerli. Sistem ayarlarından da açabilirsiniz.
+  pushRequest: İzin ver
+  blockedTitle: Engellenen kullanıcılar
+  blockedEmpty: Engellediğiniz kullanıcı yok.
+  blockedRemove: Engeli kaldır
+  blockedRemoved: Engel kaldırıldı.
+  privacyFamilyMessages: Diğer aileler bana mesaj gönderebilsin
+  matchingTitle: Toplulukta ne arıyorsunuz?
+  matchingHint: Eşleşme önerilerinde ve profilinde görünür.
+  communicationTitle: İletişim tercihiniz
+  intentExperience: Deneyim paylaşımı
+  intentRegular: Düzenli konuşma
+  intentLocalMeet: Yakında buluşma
+  intentSeekMentor: Mentor arıyorum
+  intentBeMentor: Mentorluk yapabilirim
+  commWriting: Önce yazışma
+  commVideo: Görüntülü görüşme
+  commEvening: Akşam yanıtlarım
+  title: Ayarlar
+  notificationsTitle: Bildirimler
+  notificationsSubtitle: Hangi konularda bildirim almak istediğinizi seçin.
+  notifMessages: Yeni mesajlar
+  notifAppointment: Randevu onay ve değişiklikleri
+  notifApptReminder: Randevudan 24 saat önce hatırlat
+  notifExpertNote: Uzman notları ve geri bildirimleri
+  notifTaskAssigned: Yeni ödev atandığında
+  notifForum: Forum ve dertleşme duvarı yanıtları
+  notifMatching: Benzer aile eşleşmeleri
+  notifCalendar: Takvim hatırlatmaları
+  privacyTitle: Gizlilik
+  privacySubtitle: Diğer kullanıcıların sizi nasıl göreceğini belirleyin.
+  privacyShowProfile: Profilim diğer ailelere görünsün
+  privacyAllowMessages: Bana mesaj gönderilebilsin
+  privacyShareProgress: Gelişim özetini bağlı uzmanla paylaş
+  privacyApproximateLocation: Yaklaşık konumum (şehir) paylaşılsın
+  privacyHidePresence: Çevrimiçi olduğumu gizle
+  appearanceTitle: Görünüm ve dil
+  accessibilityTitle: Erişilebilirlik
+  accessibilitySubtitle: Görünümü ve etkileşimi size uygun hale getirin.
+  a11yLargeText: Büyük yazı modu
+  a11yLargeTextBody: Metinleri daha büyük gösterir.
+  a11yCalmMode: Sakin görünüm
+  a11yCalmModeBody: Göz yormayan yumuşak tonlar kullanır.
+  a11yHighContrast: Yüksek kontrast
+  a11yHighContrastBody: Yazıları en belirgin renkte tutar.
+  a11yReduceMotion: Hareketi azalt
+  a11yReduceMotionBody: Sayfa geçişlerini ve animasyonları kapatır.
+  a11ySimpleMode: Basit mod
+  a11ySimpleModeBody: Profil menüsünü temel bölümlere indirger.
+  securityTitle: Güvenlik
+  securitySubtitle: Hesabınıza erişimi koruyun.
+  changePassword: Şifre değiştir
+  changePasswordSubmit: Şifreyi güncelle
+  currentPasswordLabel: Mevcut şifre
+  newPasswordLabel: Yeni şifre
+  passwordChanged: Şifreniz güncellendi.
+  errorCurrentPasswordRequired: Lütfen mevcut şifrenizi girin.
+  dataTitle: Verileriniz ve KVKK
+  dataSubtitle: Verileriniz üzerindeki haklarınızı buradan kullanabilirsiniz.
+  kvkkPanel: KVKK hakları ve rızalar
+  kvkkPanelBody: Rıza tercihleri, başvurular ve aydınlatma metni.
+  downloadData: Verilerimi indir
+  downloadDataBody: Hesabınızdaki tüm veriyi JSON dosyası olarak alın.
+  downloadDataSubject: Otizm Destek — hesap verilerim
+  deleteAccount: Hesabımı sil
+  deleteAccountBody: Hesabınız ve tüm kayıtlarınız kalıcı olarak silinir.
+  deleteAccountWarning: Bu işlem geri alınamaz. Çocuk profilleri, notlar, randevular ve mesajlar dâhil tüm verileriniz kalıcı olarak silinir.
+  deleteAccountSubmit: Hesabımı kalıcı olarak sil
+  deleteKeyword: SİL
+  deleteConfirmLabel: Onaylamak için "$keyword" yazın
+  errorDeleteConfirm: Onay metni eşleşmiyor.
+
+legal:
+  title: Yasal metinler
+  subtitle: Aydınlatma metni, gizlilik politikası, kullanım şartları ve tıbbi uyarılar. Metinler bağlayıcı sürüm olduğu için Türkçe gösterilir.
+  versionLine: Metin sürümü $version · Son güncelleme $date
+  readNotice: KVKK aydınlatma metnini oku
+
+kvkk:
+  title: KVKK ve rızalar
+  rightsTitle: KVKK md. 11 haklarınız
+  rightsBody: Verilerinizin işlenip işlenmediğini öğrenme, düzeltilmesini veya silinmesini isteme, aktarıldığı üçüncü kişileri bilme ve otomatik analiz sonuçlarına itiraz etme hakkınız var. Başvurularınız en geç 30 gün içinde yanıtlanır.
+  consentsTitle: Rıza tercihleriniz
+  consentsSubtitle: Açık rıza amaca özel olmalıdır; her başlığı ayrı ayrı açıp kapatabilirsiniz.
+  consentNotice: Aydınlatma metni onayı
+  consentAi: Yapay zekâ analizi
+  consentAiBody: Gelişim verisinin yapay zekâ sağlayıcısına (yurt dışına) aktarılmasına izin verir.
+  consentEmergency: Acil durum kartı paylaşımı
+  consentEmergencyBody: Acil durum kartınızın bağlantı/QR ile üçüncü kişilere gösterilmesine izin verir.
+  consentMatching: Benzer aile eşleştirmesi
+  consentMatchingBody: Profilinizin eşleştirme motorunda diğer ailelere gösterilmesine izin verir.
+  consentMarketing: Bilgilendirme e-postaları
+  consentMarketingBody: Zorunlu olmayan duyuru ve bilgilendirme e-postalarını almanızı sağlar.
+  reconsentTitle: Aydınlatma metni güncellendi
+  reconsentTitleVersion: Aydınlatma metni güncellendi (sürüm $version)
+  reconsentBody: Verilerinizin nasıl işlendiğini gözden geçirip güncel metni onaylayın.
+  reconsentAccept: Okudum, onaylıyorum
+  reconsentSaved: Güncel aydınlatma metni onayınız kaydedildi.
+  historyTitle: Rıza geçmişim
+  requestsTitle: Başvurularım
+  requestsSubtitle: Verileriniz hakkındaki taleplerinizi buradan iletebilirsiniz.
+  newRequest: KVKK başvurusu yap
+  requestsEmpty: Henüz bir başvurunuz yok.
+  requestsError: Başvurular yüklenemedi.
+  requestCreated: Başvurunuz alındı. En geç 30 gün içinde yanıtlanacaktır.
+  requestInfo: Verilerimin işlenip işlenmediğini öğrenmek istiyorum
+  requestCorrection: Eksik veya yanlış işlenen verimin düzeltilmesini istiyorum
+  requestDeletion: Verilerimin silinmesini / yok edilmesini istiyorum
+  requestTransfer: Verilerimin aktarıldığı üçüncü kişileri öğrenmek istiyorum
+  requestObjection: Otomatik analiz sonucu aleyhime çıkan sonuca itiraz ediyorum
+  requestDamages: Uğradığım zararın giderilmesini talep ediyorum
+  descriptionLabel: Talebiniz
+  descriptionHint: Talebinizi kısaca açıklayın.
+  responseTime: Başvurular en geç 30 gün içinde yanıtlanır.
+  submitRequest: Başvuruyu gönder
+  errorDescriptionRequired: Lütfen talebinizi açıklayın.
+  statusOpen: Alındı
+  statusReviewing: İnceleniyor
+  statusDone: Tamamlandı
+  statusRejected: Reddedildi
+  receivedOn: $date tarihinde alındı
+  dueOn: yanıt son tarihi $date
+
+onboarding:
+  title: Başlangıç
+  skip: Atla
+  start: Başlayalım
+  back: Geri
+  continueButton: Devam et
+  skipForNow: Şimdilik atla
+  finish: Ana sayfaya geç
+  stepChild: Çocuk Profili
+  stepTags: Destek Alanları
+  stepPlan: Başlangıç Planı
+  welcomeTitle: Hoş geldiniz
+  welcomeBody: Birkaç kısa adımda uygulamayı çocuğunuza göre hazırlayalım. Tüm bilgileri sonradan değiştirebilirsiniz.
+  introChildTitle: Temel bilgiler
+  introChildBody: Ad ve isteğe bağlı kısa bilgiler
+  introTagsTitle: Destek alanları
+  introTagsBody: Gözlemlediğiniz alanları seçin
+  introPlanTitle: Başlangıç önerisi
+  introPlanBody: İlk yapabileceklerinizi görün
+  childTitle: Çocuğunuzu tanıyalım
+  childSubtitle: Yalnızca ad zorunlu; diğer alanları daha sonra da doldurabilirsiniz.
+  childNameLabel: Çocuğun adı
+  childNameHint: Örn. Elif
+  childBirthDateLabel: Doğum tarihi (isteğe bağlı)
+  childBirthDateHint: Seçmek için dokunun
+  childDiagnosisLabel: Tanı bilgisi (isteğe bağlı)
+  childDiagnosisHint: Varsa tanı ve kısa notlar
+  focusTitle: Başlangıç odağı
+  communicationTitle: İletişim şekli
+  supportTitle: Yararlı olabilecek destek
+  tagsTitle: Hangi alanlarda destek arıyorsunuz?
+  tagsSubtitle: Gözlemlediğiniz alanları seçin; benzer aileler ve içerik önerileri buna göre şekillenir.
+  planTitle: Başlangıç planınız hazır
+  planTitleNamed: $name için başlangıç planınız hazır
+  planSubtitle: İlk adım olarak şunlardan birini deneyebilirsiniz.
+  planNote: Bu seçimler yalnızca başlangıç yönlendirmesidir; tüm bölümlere menüden ulaşabilirsiniz.
+  planTrackerTitle: Günlük kayıt ekle
+  planTrackerBody: Uyku, duygu durumu veya kısa bir gözlem girin.
+  planExpertsTitle: Uzmanları incele
+  planExpertsBody: Uzmanlara göz atın veya randevu talebi oluşturun.
+  planKnowledgeTitle: Bilgi ve kaynakları keşfet
+  planKnowledgeBody: Bilgi bankasındaki güvenilir içeriklere göz atın.
+  expertTitle: Hoş geldiniz $name
+  expertBody: Danışan takibi, randevular ve mesajlaşma ana sayfada sizi bekliyor.
+  errorNameRequired: Çocuğun adı zorunludur.
+  errorBirthDateFuture: Doğum tarihi gelecekte olamaz.
 
 nav:
   home: Ana Sayfa
@@ -121,13 +363,68 @@ chat:
   errorGeneric: Yanıt alınamadı, lütfen tekrar deneyin.
 
 messages:
+  reportMessage: Mesajı şikayet et
+  reportHint: Bu mesajı neden şikayet ediyorsunuz?
+  reportSend: Gönder
+  reported: Mesaj incelemeye alındı.
+  newGroup: Yeni grup sohbeti
+  chatDirect: Birebir
+  chatGroup: Grup
+  groupNameLabel: Grup adı
+  groupCreate: Grubu oluştur
+  groupNameRequired: Grup adı gerekli.
+  groupMembersRequired: En az bir katılımcı seçin.
+  groupSettings: Grup ayarları
+  groupRename: Adı kaydet
+  groupRenamed: Grup adı güncellendi.
+  groupAddMember: Üye ekle
+  groupMembers: Üyeler
+  groupMemberRemoved: Üye çıkarıldı.
+  groupMemberAdded: Üye eklendi.
+  blockUser: Kullanıcıyı engelle
+  blockConfirm: $name artık size mesaj gönderemeyecek. Engellensin mi?
+  blocked: Kullanıcı engellendi.
   title: Mesajlar
   noConversations: Henüz bir konuşmanız yok.
   noMessages: Henüz mesaj yok. İlk mesajı gönderin.
   inputHint: Mesaj yazın...
   connecting: Bağlanıyor...
+  pecsTitle: PECS görsel iletişim kartları
+  filterAll: Tümü
+  filterUnread: Okunmamış
+  filterExperts: Uzmanlar
+  filterGroups: Gruplar
+  filterArchived: Arşiv
+  emptyUnread: Okunmamış mesaj yok.
+  emptyExperts: Uzmanlarla mesajınız yok.
+  emptyGroups: Henüz bir gruba dahil değilsiniz.
+  emptyArchived: Arşiv boş. Arşivlenen konuşmalar burada görünür.
+  archive: Arşivle
+  unarchive: Arşivden çıkar
+  mute: Sessize al
+  unmute: Sesi aç
+  reply: Yanıtla
+  replyingTo: $name yanıtlanıyor
+  someone: Mesaj
+  attachPhoto: Fotoğraf ekle
+  photoSent: Fotoğraf gönderildi.
+  newChat: Yeni sohbet
+  searchUserHint: İsimle arayın…
+  searchUserHelp: Sohbet başlatmak için en az iki harf yazın.
+  searchUserEmpty: Eşleşen kullanıcı bulunamadı.
+  searchInChat: Sohbette ara
+  searchNoResults: Bu aramaya uyan mesaj yok.
+  deleteMessage: Mesajı sil
 
 home:
+  weeklyTopicBadge: Haftanın sorusu
+  weeklyTopicReplies: $count aile yanıtladı
+  learningPathBadge: Size özel video rehberi
+  learningPathTitle: Nereden başlayacağınızı bilmiyor musunuz?
+  learningPathBody: Kısa videolarla uygulamayı adım adım tanıyın; ilk video
+    günlük takibi ve planı anlatıyor.
+  learningPathBodyExpert: Kısa videolarla uzman araçlarını adım adım tanıyın.
+  learningPathCta: Öğrenme yoluna başla
   notifications: Bildirimler
   assistant: AI Asistan
   messages: Mesajlar
@@ -148,6 +445,82 @@ home:
   ageYears: $years yaş
   noAppointments: Yaklaşan randevunuz yok.
   noArticles: Gösterilecek makale yok.
+  quickTracker: Bugünün kaydı
+  quickTrackerDetail: Duygu, uyku, ilaç
+  quickBehavior: Davranış notu
+  quickBehaviorDetail: Öncesi-davranış-sonrası kaydı
+  quickNote: Gözlem notu
+  quickNoteDetail: Kısa not ekle
+  quickPlan: Plan ekle
+  quickPlanDetail: Randevu, okul, etkinlik
+
+dailyPlan:
+  title: Bugün ne yapalım?
+  subtitle: Kalan $count iş · yaklaşık $minutes dk
+  subtitleDone: Bugünün işleri tamam
+  coachLabel: Günlük koç önerisi
+  durationMinutes: $count dk
+  badgeNow: Şimdi bunu yap
+  badgeNext: Sonra
+  badgeSafety: Güvenlik
+  badgeOptional: İsteğe bağlı
+  badgeDone: Tamam
+  allDoneTitle: Bugünün işleri tamamlandı
+  allDoneDetail: Temel kayıtlar hazır. Kalan zamanda gelişim planına, topluluğa ya da bilgi bankasına göz atabilirsiniz.
+  partMorning: sabah
+  partAfternoon: öğleden sonra
+  partEvening: akşam
+  coachNoChild: Bugün yalnızca çocuk profilini oluşturmanız yeterli. Diğer bölümler profil sonrası anlam kazanır.
+  coachAllDone: $name için bugünkü tüm işler tamam! İsterseniz gelişim planına ya da bilgi bankasına geçebilirsiniz.
+  coachMedication: $name için $part önce ilaç kontrolünü bitirmek iyi olur; kalan $count iş daha kısa sürer.
+  coachNoMood: $name için önce kısa günlük kaydı girin — $part rutini tamamlanmış hissettiriyor.
+  coachEvent: $name için bugün planlı bir etkinlik var; kalan $count iş kısa tutulabilir.
+  coachProgress: $name için $done iş tamam, $count iş kaldı. İyi gidiyorsunuz!
+  coachPlan: '$name için $part planı: kısa kayıt, takvim kontrolü ve bir not. Hepsi yaklaşık $minutes dk.'
+  taskDailyLog: Bugünün kısa kaydını gir
+  taskDailyLogDone: Bugünün kaydını güncelle
+  taskDailyLogDetail: Ruh hali, uyku ve ilaç bilgisini bir dakikada işaretleyin.
+  taskDailyLogDoneDetail: Ruh hali girildi; uyku, ilaç veya kısa not ekleyebilirsiniz.
+  taskMedication: İlaç kontrolünü tamamla
+  taskMedicationDetail: $count doz henüz işaretlenmedi.
+  taskMessages: Mesajları yanıtla
+  taskMessagesDetail: $count okunmamış mesajınız var.
+  taskExpertRequest: Uzman erişim isteğini yanıtla
+  taskExpertRequestDetail: $count uzman çocuk verinize erişmek için onay bekliyor.
+  taskEventDetail: Bugün saat $time
+  taskEventTomorrowDetail: Yarın saat $time
+  taskCalendar: Takvimi planla
+  taskCalendarDetail: Randevu, okul veya etkinlik varsa ekleyin.
+  taskCalendarUpcoming: Yaklaşan etkinliği gör
+  taskNotes: Kısa gözlem notu ekle
+  taskNotesDetail: Bugün fark ettiğiniz bir şeyi not edin.
+  taskNotesDone: Gözlem notlarını gözden geçir
+  taskNotesDoneDetail: $count not mevcut — yenisini ekleyebilirsiniz.
+  taskCommunity: Topluluğu keşfet
+  taskCommunityDetail: Benzer süreçlerden geçen ailelerin paylaşımlarına bakın.
+  taskCommunityDone: Topluluk alanlarını takip et
+  taskCommunityDoneDetail: Haftanın sorusu, forum ve buluşmalarda yeni paylaşımlar olabilir.
+  taskEmergency: Acil Durum Kartı oluştur
+  taskEmergencyDetail: Kritik tıbbi bilgileri ve acil kişileri tek kartta hazır tutun.
+  taskFirstChild: İlk çocuk profilini oluştur
+  taskFirstChildDetail: Profil eklenince plan ve öneriler çocuğunuza göre kişileşir.
+  taskGuide: Uygulamanın kısa yolunu görün
+  taskGuideDetail: Hangi bölümün ne işe yaradığını hızlıca öğrenin.
+  taskExperts: Uzman desteğini keşfet
+  taskExpertsDetail: Randevu almadan önce uzman profillerini inceleyebilirsiniz.
+  startTitle: Hızlı başlangıç
+  startIntro: İlk gün her şeyi tamamlamanız gerekmiyor. Önce profil, kısa kayıt ve zor an rehberi yeterli.
+  startProgress: $done/$total adım
+  startReady: '%$percent hazır'
+  startDismiss: Rehberi kapat
+  checkTodo: Yapılacak
+  checkDone: Tamamlandı
+  checkChildProfile: 1. Çocuk profili
+  checkChildProfileDetail: Plan, takip ve uzman paylaşımı profil bilgisine göre kişileşir.
+  checkDailyLog: 2. İlk kısa kayıt
+  checkDailyLogDetail: Önce veri girilir; günlük plan bu kayıttan sonra anlam kazanır.
+  checkCrisis: 3. Kriz rehberi
+  checkCrisisDetail: Zor anlarda sakinleştirme ve müdahale adımlarını önceden okuyun.
 
 specialists:
   title: Uzman Bulun
@@ -159,6 +532,20 @@ specialists:
   noResults: Aramanıza uygun uzman bulunamadı.
   ratingNew: Yeni
   reviews: $count değerlendirme
+  filters: Filtreler
+  cityLabel: Şehir
+  sortLabel: Sıralama
+  sortDefault: Varsayılan
+  sortRating: Puana göre
+  sortName: İsme göre
+  onlyAccepting: Yalnızca randevu kabul edenler
+  onlyVerified: Yalnızca doğrulanmış uzmanlar
+  onlyOnline: Yalnızca online görüşme yapanlar
+  onlyFavorites: Yalnızca favorilerim
+  addFavorite: Favorilere ekle
+  removeFavorite: Favorilerden çıkar
+  clearFilters: Temizle
+  applyFilters: Uygula
 
 progress:
   title: Gelişim Takibi
@@ -229,6 +616,32 @@ notifications:
   empty: Henüz bildiriminiz yok.
   markAllRead: Tümünü okundu işaretle
   dateLine: $day $month · $time
+  noneInFilter: Bu filtreye uygun bildirim yok.
+  unreadOnly: Yalnızca okunmamış
+  selectedCount: $count seçildi
+  deleteSelected: Seçilenleri sil
+  groupToday: Bugün
+  groupYesterday: Dün
+  groupThisWeek: Bu Hafta
+  groupOlder: Daha Eski
+  catAll: Tümü
+  catAppointments: Randevular
+  catMessages: Mesajlar
+  catForum: Forum
+  catTasks: Görevler
+  catSocial: Sosyal
+  catSystem: Sistem
+
+search:
+  title: Arama
+  hint: Makale, gönderi, grup ya da uzman arayın…
+  help: Aramak istediğiniz kelimeyi yazın.
+  noResults: Bu aramaya uygun sonuç bulunamadı.
+  typeAll: Tümü
+  typeArticle: Makale
+  typePost: Gönderi
+  typeGroup: Grup
+  typeExpert: Uzman
 
 knowledge:
   title: Bilgi Bankası
@@ -242,8 +655,43 @@ knowledge:
   dateLine: $day $month $year
   videoLink: Video bağlantısı
   podcastLink: Podcast bağlantısı
+  searchHint: Makale, konu veya anahtar kelime ara…
+  bookmarks: Yer imlerim
+  bookmark: Yer imi
+  noBookmarks: Henüz yer imine eklediğiniz içerik yok.
+  relatedTitle: İlgili içerikler
+  commentsTitle: Yorumlar ($count)
+  noComments: İlk yorumu siz yazın.
+  commentHint: Deneyiminizi veya sorunuzu yazın…
+  commentSend: Yorumu gönder
+  someone: Bir aile
+  expertBadge: Uzman
+  triedFor: 'Deneme süresi: $duration'
+  effectiveness: 'Etkililik: $rating/5'
+  tagFilterTitle: Etiketlere göre daralt
+  tagFilterClear: Etiketleri temizle
+  tagFilterCount: $count etiket seçili
 
 appointments:
+  rate: Değerlendir
+  rateTitle: Randevuyu değerlendir
+  rateComment: Yorumunuz (isteğe bağlı)
+  rateSave: Gönder
+  rated: Değerlendirmeniz kaydedildi.
+  rateStars: $count yıldız
+  ratingShown: Değerlendirmeniz
+  cancelSeries: Seriyi iptal et
+  cancelSeriesTitle: Tüm seri iptal edilsin mi?
+  cancelSeriesConfirm: Bu tekrarlayan seansın gelecekteki tüm randevuları
+    iptal edilecek.
+  seriesCancelled: Seri iptal edildi.
+  seriesIndex: $index. seans
+  seriesBadge: Seri
+  recurrenceTitle: Tekrarlayan seans
+  recurrenceHint: Aynı gün ve saatte her hafta otomatik oluşturulur.
+  recurrenceSingle: Tekil
+  recurrenceWeeks: $count hafta
+  recurrenceCreated: $count haftalık seri oluşturuldu.
   title: Randevular
   empty: Henüz randevunuz yok.
   upcoming: Yaklaşan
@@ -272,6 +720,43 @@ appointments:
   rescheduleTitle: Randevuyu Ertele
   rescheduleConfirm: Yeni Zamanı Onayla
   rescheduled: Randevu yeniden planlandı.
+  nextTitle: Sıradaki randevu
+  countdownDays: $days gün $hours sa $minutes dk kaldı
+  countdownToday: $hours sa $minutes dk $seconds sn kaldı
+  countdownNow: Görüşme zamanı
+  statToday: Bugün
+  statWeek: Bu hafta
+  statMonth: Bu ay
+  statPending: Bekleyen
+  statCompleted: Tamamlanan
+  statCancelled: İptal
+  findExpert: Uzman bul
+  today: Bugün
+  tomorrow: Yarın
+  detailTitle: Randevu detayı
+  detailDuration: Süre
+  detailDurationValue: $count dk
+  detailExpert: Uzman
+  detailParent: Veli
+  detailChild: Çocuk
+  detailStatus: Durum
+  detailType: Tür
+  detailNote: Randevu notu
+  detailTopic: Görüşme konusu
+  detailPreSession: Görüşme öncesi paylaşılan not
+  detailSessionNote: Seans notu
+  detailSessionSummary: Görüşme özeti
+  detailFollowUp: Uzman önerileri
+  detailFollowUpTask: Takip görevi
+  detailRating: Değerlendirme
+  detailRatingValue: $rating / 5
+  detailCancelledBy: 'İptal eden: $who'
+  detailLateCancellation: Geç iptal
+  historyTitle: Durum geçmişi
+  historyEmpty: Henüz durum değişikliği kaydı yok.
+  historyChange: $from → $to
+  historyMeta: $name · $date
+  detailOpen: Detay
 
 expertDetail:
   bookAppointment: Randevu Al
@@ -279,6 +764,35 @@ expertDetail:
   specializationsTitle: Uzmanlık Alanları
   articleCount: $count makale
   notAcceptingPatients: Bu uzman şu an randevu kabul etmiyor.
+  aboutTitle: Hakkında
+  professionalTitle: Profil bilgileri
+  factNextSlot: İlk uygun randevu
+  factNextSlotEmpty: Takvimden görüntüleyin
+  factSession: Görüşme süresi
+  factSessionValue: $count dakika
+  factAgeGroups: Çalıştığı yaş grubu
+  factAgeGroupsEmpty: Uzmanla görüşün
+  factLanguages: Konuştuğu diller
+  factSupportTopics: Destek verdiği konular
+  factSupportTopicsEmpty: Profilde belirtilmemiş
+  factCancellation: İptal koşulu
+  factCancellationEmpty: Randevudan önce uzmanla teyit edin
+  factReschedule: Erteleme koşulu
+  factService: Hizmet biçimi
+  factServiceEmpty: Belirtilmemiş
+  serviceOnline: Online
+  serviceFaceToFace: Yüz yüze
+  factFee: Seans ücreti
+  factFeeEmpty: Uzmanla görüşün
+  badgeVerified: Onaylı uzman
+  badgePending: Onay bekliyor
+  badgeLicenseVerified: Lisans doğrulandı
+  report: Profili şikayet et
+  reportReasonLabel: Şikayet nedeni
+  reportNoteLabel: Ek açıklama (isteğe bağlı)
+  reportNoteHint: Durumu birkaç cümleyle anlatın
+  reportSend: Şikayeti gönder
+  reportSent: Şikayetiniz iletildi. Moderasyon ekibi inceleyecek.
 
 booking:
   title: Randevu Al
@@ -299,6 +813,10 @@ booking:
   errorSelectTime: Lütfen bir saat seçin.
 
 routines:
+  starWallet: $count yıldız
+  stepDone: Adım tamamlandı, +1 yıldız!
+  progressDone: '%$percent tamamlandı'
+  stepCount: $count adım
   title: Rutinler
   empty: Bu çocuk için henüz rutin yok.
   noChild: Rutin oluşturmak için önce bir çocuk ekleyin.
@@ -330,6 +848,13 @@ routineForm:
   errorName: Lütfen bir rutin adı girin.
 
 dailyTracker:
+  insightSleep: Ort. uyku
+  insightMood: Sık ruh hali
+  insightTrigger: Sık tetikleyici
+  insightComplete: Eksiksiz
+  insightNone: Kayıt yok
+  insightHours: ${hours}sa ${minutes}dk
+  insightDays: $count gün
   title: Günlük Takip
   tabMood: Duygu
   tabSleep: Uyku
@@ -411,6 +936,9 @@ meds:
   logSaved: Doz günlüğü kaydedildi.
 
 wall:
+  commentEdit: Mesajı düzenle
+  commentSave: Kaydet
+  commentUpdated: Mesaj güncellendi.
   title: Dertleşme Duvarı
   subtitle: Duygularınızı paylaşın, birbirinize destek olun. Paylaşımlar anonim
     olabilir.
@@ -452,6 +980,14 @@ wall:
   daysAgo: $count gün önce
 
 weekly:
+  filterAll: Tümü
+  filterExpert: Uzman
+  filterPopular: Popüler
+  filterLocal: Şehrim
+  searchHint: Cevaplarda ara
+  localHint: Yalnızca $city şehrindeki ailelerin cevapları listeleniyor.
+  localHintNoCity: Profilinizde şehir yok; tüm cevaplar listeleniyor.
+  noMatch: Bu süzgeçle cevap yok.
   title: Haftanın Sorusu
   subtitle: Bu hafta ailelere sorduğumuz soru. Deneyimini paylaş, birbirinize
     destek olun.
@@ -508,6 +1044,9 @@ meetup:
   organizerBy: Düzenleyen $name
 
 similar:
+  privacyNote: Eşleştirme; çocuğunuzun etiketleri, yaş aralığı, terapi/eğitim
+    notları ve varsa şehir bilgisini kullanır. Kesin konumunuz karşı tarafa
+    gösterilmez.
   title: Benzer Aileler
   subtitle: Çocuğunuza yakın gelişim sürecindeki ailelerle tanışın, deneyim
     paylaşın.
@@ -536,8 +1075,80 @@ similar:
   send: İsteği Gönder
   sent: Bağlantı isteği gönderildi.
   cancel: İptal
+  meetup: Buluşma
+  meetupTitle: Buluşma isteği gönder
+  meetupOnline: Online
+  meetupInPerson: Yüz yüze
+  meetupPickDate: Tarih seç
+  meetupPickTime: Saat seç
+  meetupLocation: Buluşma yeri
+  meetupMessage: Mesaj (isteğe bağlı)
+  meetupMessageHint: Neden buluşmak istediğinizi kısaca yazın
+  meetupSent: Buluşma isteği gönderildi.
+  meetupRequestsTitle: Buluşma istekleri
+  meetupAccept: Kabul et
+  meetupDecline: Reddet
+  meetupCancel: İsteği geri çek
+  unknownFamily: Aile
+  tabMatches: Eşleşmeler
+  tabCircle: Çemberim
+  circlePendingTitle: Gelen bağlantı istekleri
+  circleAcceptedTitle: Arkadaşlarım ve mentorlarım
+  circleEmpty: Çemberiniz henüz boş. Eşleşmeler sekmesinden bir aileye istek
+    göndererek başlayın.
+  circleNoPending: Bekleyen istek yok.
+  circleBuddyRequest: Arkadaş isteği
+  circleMentorRequest: Mentor isteği
+  accept: Kabul et
+  reject: Reddet
+  accepted: Bağlantı kuruldu.
+  rejected: İstek reddedildi.
+  removeBuddy: Bağlantıyı kaldır
+  removeBuddyConfirm: $name ile bağlantınız kaldırılsın mı?
+  removed: Bağlantı kaldırıldı.
+  requestNote: İstek notu
+  withdraw: İsteği geri çek
+  withdrawn: İstek geri çekildi.
+  distance: $km km yakınında
+  noCity: Şehir belirtilmemiş
+  commPrefWriting: Önce yazışmayı tercih eder
+  commPrefVideo: Görüntülü görüşmeye açık
+  commPrefEvening: Genellikle akşam yanıt verir
+  scoresTitle: Uyum ayrıntısı
+  scoreTag: Etiket
+  scoreAge: Yaş
+  scoreSensory: Duyusal
+  scoreTherapy: Terapi
+  scoreEducation: Eğitim
 
 groups:
+  editTitle: Grubu düzenle
+  updated: Grup güncellendi.
+  deleteTitle: Grubu sil
+  deleteConfirm: '"$name" grubu ve sohbeti kalıcı olarak silinecek.'
+  deleted: Grup silindi.
+  chatUnread: Sohbet ($count)
+  detailTitle: Grup Detayı
+  detailHint: Üye listesi ve buluşmalar yalnızca grup üyelerine görünür.
+  membersTitle: Üyeler
+  membersEmpty: Üye listesi görüntülenemiyor.
+  membersOnly: Üye listesini ve buluşmaları görmek için gruba katılın.
+  meetingsTitle: Buluşmalar
+  meetingsEmpty: Planlanmış buluşma yok.
+  meetingAdd: Buluşma planla
+  meetingTitleLabel: Buluşma başlığı
+  meetingPickDate: Tarih seç
+  meetingPickTime: Saat seç
+  meetingUrlLabel: Görüşme bağlantısı (isteğe bağlı)
+  meetingNoteLabel: Açıklama (isteğe bağlı)
+  meetingSave: Kaydet
+  meetingCreated: Buluşma planlandı.
+  meetingJoin: Görüşmeye katıl
+  meetingDelete: Buluşmayı iptal et
+  meetingDeleteConfirm: '"$title" buluşması iptal edilsin mi?'
+  meetingErrorTitle: Buluşma başlığı gerekli.
+  meetingErrorDate: Tarih ve saat seçin.
+  meetingErrorUrl: Bağlantı http:// ya da https:// ile başlamalı.
   title: Destek Grupları
   subtitle: Benzer konularda ailelerle bir araya gel, grup sohbetine katıl.
   tabMy: Gruplarım
@@ -571,6 +1182,7 @@ groups:
 treatment:
   title: Tedavi Paneli
   subtitle: Günlük Destek Planı
+  programActiveDefault: Günlük destek planı aktif
   programActive: $name planı aktif
   selectChild: Profil seç
   noChildrenTitle: Henüz çocuk profili yok
@@ -817,6 +1429,59 @@ tasks:
   evidenceHint: Uzmanınızın görebilmesi için ilgili çalışma anının videosunu
     veya fotoğrafını bulut bağlantısı olarak ekleyebilirsiniz.
   submitConfirm: Teslim Et ve Kapat
+  viewWizard: Sihirbaz
+  viewList: Liste
+  wizardBadge: Günlük Gelişim Akışı
+  wizardTitle: Bugünün Egzersiz Rehberi
+  wizardIntro: Çocuğunuzla adımları takip ederek pratik yapın. Tamamlayınca
+    aşağıdaki seçeneklerden birine dokunmanız yeterli.
+  wizardStageLevel: $label seviyesi
+  wizardStageCount: $done / $total egzersiz tamamlandı
+  wizardAllDoneTitle: 'Harika iş! Bugünün tüm egzersizleri tamam'
+  wizardAllDoneBody: Çocuğunuzla geçirdiğiniz her nitelikli dakika onun
+    gelişimine büyük katkı sağlıyor. Yeni görevler atandığında burada
+    görünecek.
+  wizardStepCounter: $index / $total
+  wizardDefaultCategory: Gelişim Egzersizi
+  wizardHowTo: Nasıl uygulanır? (adım adım)
+  wizardDefaultDescription: Çocuğunuzla sakin bir ortamda bu çalışmayı 5-10
+    dakika deneyin.
+  wizardFrequency: 'Sıklık: $value'
+  wizardOutcomeQuestion: Bugün bu egzersiz nasıl geçti?
+  outcomeEasyTitle: Kolayca yaptık
+  outcomeEasyDesc: Çocuğum rahatça başardı
+  outcomeSupportedTitle: Destekle yaptık
+  outcomeSupportedDesc: Biraz ipucuyla tamamladık
+  outcomeHardTitle: Bugün zorlandık
+  outcomeHardDesc: Henüz tam hazır değildik
+  wizardTipTitle: AutiBot ipucu
+  wizardTipBody: 'Hiç sorun değil! Otizm spektrumundaki çocukların bazı
+    günlerde motivasyonu değişebilir. Egzersizi küçük parçalara bölüp yarın 2
+    dakikalık daha kısa bir süreyle tekrar deneyebilirsiniz. Uzmanınıza not
+    bırakabilirsiniz.'
+  wizardNoteLabel: Uzmanınıza bırakmak istediğiniz not (opsiyonel)
+  wizardNoteHint: 'Örn: Çalışırken çok keyif aldı veya dikkati çabuk dağıldı…'
+  wizardAddPhoto: Fotoğraf / çalışma anı ekle
+  wizardChangePhoto: Fotoğrafı değiştir
+  wizardPhotoAdded: Fotoğraf eklendi
+  wizardRemovePhoto: Kaldır
+  wizardSourceGallery: Galeriden seç
+  wizardSourceCamera: Fotoğraf çek
+  wizardSubmit: Egzersizi kaydet ve tamamla
+  wizardSubmitted: 'Tebrikler! Günlük egzersiz tamamlandı 🎉'
+  wizardDone: Bu egzersiz teslim edildi
+  wizardDoneHint: Uzmanınıza iletildi; sonraki egzersize geçebilirsiniz.
+  wizardPrev: Önceki egzersiz
+  wizardNext: Sonraki egzersiz
+  wizardTreeTitle: Çocuğunuzun ilerleme ağacı
+  stageSeed: Tohum
+  stageSeedDesc: Yeni bir yolculuk başlıyor
+  stageSprout: Filiz
+  stageSproutDesc: Farkındalık ve alışma evresi
+  stageFlower: Çiçek
+  stageFlowerDesc: Birlikte düzenli pratik yapılıyor
+  stageTree: Ağaç
+  stageTreeDesc: 'Harika! Beceri tam bağımsızlaştı'
 
 forum:
   title: Topluluk Forumu
@@ -892,6 +1557,11 @@ forum:
   share: Paylaş
 
 childDetail:
+  correlationTitle: İlaç uyumu ve davranış
+  correlationHint: Doz uyumu ile davranış kayıtlarının aynı gündeki ilişkisi.
+  correlationNoDose: Kayıt yok
+  correlationLegend: Kırmızı çubuk davranış kaydı sayısı, sağdaki yüzde doz
+    uyumu.
   title: Çocuk Profili
   editProfile: Profili Düzenle
   ageYears: $age yaş
@@ -962,6 +1632,25 @@ crisis:
   contact112Desc: Ambulans, Polis, İtfaiye
   contact183Label: Sosyal Destek Hattı
   contact183Desc: Kadın, Çocuk ve Sosyal Hizmetler
+  listen: Sesli dinle
+  listenStop: Durdur
+  listenIntro: 'Neler yapılmalı'
+  listenUnavailable: Sesli okuma bu cihazda kullanılamıyor.
+  medicalTitle: Önemli tıbbi uyarı
+  medicalBody: Bu rehber profesyonel tıbbi veya psikiyatrik müdahalenin yerine
+    geçmez. Bilinç kaybı, şiddetli nöbet, solunum güçlüğü veya ciddi zarar
+    verme durumlarında vakit kaybetmeden 112 Acil Yardım Hattı'nı arayın.
+  medicalMore: Detaylı bilgi
+  quickTipTitle: 'İlk kural'
+  quickTipBody: Siz sakin olun. Çocuk sizin duygusal durumunuzu ayna gibi
+    yansıtır. Derin nefes alın, yavaş hareket edin.
+  afterTitle: Kriz sonrası — iyileşme zamanı
+  afterItems:
+    - Çocuğa sakin ortamda sessizce eşlik edin, konuşmaya zorlamayın.
+    - Sevildiğini ve güvende olduğunu hissettirin.
+    - Kriz tetikleyicilerini not edin (tarih, saat, ortam, önceki olay).
+    - Uzman ekibinizi kriz hakkında bilgilendirin.
+    - Kendinize de zaman ayırın — bakım verici de yorulur.
   cards:
     meltdown:
       title: Kriz / Meltdown
@@ -1066,6 +1755,10 @@ calendar:
   delete: Sil
 
 emergency:
+  listen: Sesli oku
+  listenStop: Okumayı durdur
+  listenUnknown: belirtilmedi
+  listenFailed: Cihazda sesli okuma başlatılamadı.
   title: Acil Durum Kartı
   subtitle: Acil bir durumda çocuğunuzla karşılaşan kişilere gösterilecek bilgiler.
   noChild: Acil durum kartı için önce bir çocuk ekleyin.
@@ -1073,6 +1766,22 @@ emergency:
   notSaved: Bu kart henüz kaydedilmedi.
   save: Kaydet
   saved: Acil durum kartı kaydedildi.
+  shareTitle: QR kod ile paylaş
+  shareBody: Süreli bir bağlantı oluşturun; öğretmen veya sağlık görevlisi kartı bu bağlantıdan görüntüleyebilir. Bağlantıyı istediğiniz an kapatabilirsiniz.
+  shareConsentRequired: Paylaşım için "Acil durum kartı paylaşımı" rızasını vermeniz gerekiyor.
+  shareOpenConsents: Rıza ayarlarını aç
+  shareDuration: Geçerlilik süresi
+  share24h: 24 saat geçerli
+  share3d: 3 gün geçerli
+  share1w: 1 hafta geçerli
+  share30d: 30 gün geçerli
+  shareEnable: Paylaşım bağlantısı oluştur
+  shareDisable: Paylaşımı kapat
+  shareValidUntil: Bağlantı $date tarihine kadar geçerli.
+  shareCopy: Bağlantıyı kopyala
+  shareCopied: Bağlantı kopyalandı.
+  shareSend: Paylaş
+  shareMessage: 'Çocuğumun acil durum kartını buradan görüntüleyebilirsiniz:'
   call: Ara
   sectionChild: Çocuk Bilgileri
   sectionContacts: Acil İletişim
@@ -1158,6 +1867,51 @@ analytics:
   behaviorUnit: aylık kayıt sayısı
   noData: Bu aralıkta henüz veri yok.
   noChild: Gelişim paneli için önce bir çocuk ekleyin.
+  aiTitle: Yapay zekâ analizi
+  aiSubtitle: Çocuğunuzun kayıtlarındaki örüntüleri özetler; tanı koymaz.
+  aiTypeGeneral: Genel
+  aiTypeBehavioral: Davranış
+  aiTypeProgress: İlerleme
+  aiTypeWeekly: Haftalık
+  aiStart: $type analizini başlat
+  aiRunning: Analiz hazırlanıyor…
+  aiError: Analiz alınamadı. Lütfen tekrar deneyin.
+  aiDisclaimer: Bu özet bilgilendirme amaçlıdır; tıbbi tanı ya da tedavi önerisi değildir.
+  aiConsentTitle: Yapay zekâ analizi için rızanız gerekiyor
+  aiConsentBody: Çocuğunuzun kayıtlarının analiz edilmesi açık rızaya bağlıdır. Rızayı KVKK ve rızalar sayfasından verebilirsiniz.
+  aiConsentAction: Rızaları yönet
+  rangeDays: Son $count gün
+  scoreTitle: Takip skoru
+  scoreCoverage: $count / $total veri türünde kayıt var
+  scoreStrong: Güçlü takip
+  scoreGrowing: Takip gelişiyor
+  scoreWaiting: Veri bekleniyor
+  actionsTitle: Eksik veriler
+  actionMood: Ruh hali kaydı ekle
+  actionSleep: Uyku kaydı ekle
+  actionNote: Gelişim notu yaz
+  actionMilestone: Kilometre taşı ekle
+  insightMoodHigh: Son $days günde ortalama ruh hali $value/5 ile oldukça yüksek.
+  insightMoodLow: Son $days günde ortalama ruh hali $value/5 — bazı güçlükler olabilir.
+  insightSleepShort: Ortalama uyku süresi $value — yeterli dinlenme için 8-10 saat önerilir.
+  insightSleepGood: 'Uyku düzeni iyi: ortalama $value.'
+  insightMilestones: En fazla kilometre taşı "$category" alanında ($count adet).
+  insightAppointments: $count randevu tamamlandı.
+  insightAppointmentsWithPending: $count randevu tamamlandı, $pending aktif randevu devam ediyor.
+  dailyMood: Ruh hali trendi
+  dailyMoodUnit: günlük kayıt (1-5)
+  dailySleep: Uyku düzeni
+  dailySleepUnit: gecelik süre (saat)
+  dailySleepQuality: kalite (1-5)
+  behaviorCategories: Davranış kategorileri
+  behaviorCategoriesUnit: kayıt sayısı ve ortalama şiddet
+  milestoneCategories: Kilometre taşları
+  milestoneCategoriesUnit: kategoriye göre kazanım
+  notesActivity: Not aktivitesi
+  notesActivityUnit: aylık not sayısı
+  countWithIntensity: $count · ort. $intensity
+  exportCsv: CSV olarak paylaş
+  exportEmpty: Paylaşılacak kayıt yok.
 
 children:
   title: Çocuklarım
@@ -1190,6 +1944,7 @@ children:
   deleted: Çocuk profili silindi.
 
 account:
+  photoUpdated: Profil fotoğrafı güncellendi.
   title: Hesap Bilgileri
   emailLabel: E-posta
   fullNameLabel: Ad Soyad
@@ -1221,7 +1976,7 @@ profile:
   defaultUser: Kullanıcı
   accountInfo: Hesap Bilgileri
   myChildren: Çocuklarım
-  notificationSettings: Bildirim Ayarları
+  showAllSections: Tüm bölümleri göster
   help: Yardım
   signOut: Çıkış Yap
 
@@ -1234,3 +1989,332 @@ errors:
   unexpectedResponse: Beklenmeyen sunucu yanıtı.
   operationFailed: İşlem başarısız.
   noUserInResponse: Sunucu yanıtında kullanıcı bilgisi yok.
+  tooManyRequests: Çok fazla deneme yaptınız. Lütfen biraz bekleyip tekrar
+    deneyin.
+  retryInSeconds: $count saniye sonra tekrar deneyebilirsiniz.
+  uploadTooLarge: Dosya çok büyük (en fazla $limit MB).
+  uploadTypeNotSupported: Bu dosya türü desteklenmiyor. JPG, PNG, WEBP, GIF,
+    PDF ve TXT yükleyebilirsiniz.
+  uploadEmptyFile: Dosya okunamadı ya da boş.
+  invalidEmail: Geçerli bir e-posta adresi girin.
+
+guide:
+  title: Kullanıcı Rehberi
+  subtitle: Rolünüze göre ilk adımları, sayfaların ne işe yaradığını ve destek
+    kanallarını tek yerde görün.
+  searchHint: Sayfa, konu veya işlem ara…
+  countLabel: $visible / $total sayfa
+  searchEmpty: Aramanıza uyan bölüm bulunamadı.
+  startTitle: Nereden başlamalı?
+  startSubtitle: Sırayla ilerleyin; her adım ilgili bölümü açar.
+  sectionsTitle: Bölümler ne işe yarar?
+  sectionsSubtitle: Bir kategori seçin, o bölümün sayfalarını görün.
+  purposeLabel: Ne işe yarar?
+  whenLabel: Ne zaman kullanılır?
+  openPage: Aç
+  videosTitle: Eğitim videoları
+  videosSubtitle: Kısa anlatımlar. Videolar web sürümünde oynatılır; dokununca
+    tarayıcıda açılır.
+  videoWatch: İzle
+  videoWatched: İzlendi
+  videoMarkWatched: İzlendi olarak işaretle
+  videoProgress: $done / $total video izlendi
+  videoOpenError: Video bağlantısı açılamadı.
+  videoCategoryStart: Başlangıç
+  videoCategoryChild: Çocuk ve Gelişim
+  videoCategoryTracking: Günlük Takip
+  videoCategoryPlan: Plan ve Randevu
+  videoCategoryCommunity: İletişim ve Topluluk
+  videoCategorySupport: Güven ve Destek
+  badgeDaily: Her gün
+  badgeQuickLog: Kısa kayıt
+  badgeQuickHelp: Hızlı destek
+  badgeFirstStep: İlk adım
+  badgeSetup: İlk kurulum
+  badgeRoutine: Günlük rutin
+  badgeClinical: Klinik destek
+  badgePrivacy: Gizlilik
+  badgeCalendar: Takvim
+  badgeCommunication: İletişim
+  badgeProfile: Profil
+  groupDaily: Günlük
+  groupDailyDesc: Her gün kullanacağınız ana sayfa, takip ve hızlı destek
+    bölümleri.
+  groupChild: Çocuğum
+  groupChildDesc: Çocuğunuzun gelişimi, profil bilgileri, egzersizleri ve özel
+    durum kayıtları.
+  groupCommunity: Topluluk
+  groupCommunityDesc: Deneyim paylaşımı, forum, yerel buluşmalar ve diğer
+    ailelerle iletişim.
+  groupExpertWork: Çalışma alanı
+  groupExpertWorkDesc: Randevu, iletişim ve mesleki kaynak bölümleri.
+  startChild: Çocuk profilini oluştur
+  startChildDesc: Temel bilgiler, tanı notları ve ihtiyaçları girerek takip
+    edilecek çocuğu hazırlayın.
+  startTracker: İlk günlük kaydı ekle
+  startTrackerDesc: Uyku, ruh hali, ilaç ve gözlemleri kısa kayıtlarla düzenli
+    hale getirin.
+  startAppointment: Uzmanla randevu planla
+  startAppointmentDesc: Uygun uzmanı seçin, randevu talebi oluşturun ve görüşme
+    akışını takip edin.
+  startPrivacy: Paylaşım izinlerini kontrol et
+  startPrivacyDesc: Hangi verinin hangi amaçla işleneceğini KVKK rızalarından
+    yönetin.
+  startExpertCalendar: Randevuları yönet
+  startExpertCalendarDesc: Randevu taleplerini onaylayın, seansları tamamlayın
+    ve aileleri bilgilendirin.
+  startExpertMessages: Ailelerle iletişime geç
+  startExpertMessagesDesc: Güvenli mesajlaşmayla soruları yanıtlayın ve takibi
+    sürdürün.
+  startExpertProfile: Uzman profilini tamamla
+  startExpertProfileDesc: Unvan, uzmanlık alanları ve iletişim bilgilerinizi
+    güncel tutun.
+  pageHome: Ana Sayfa
+  pageHomePurpose: Bugün yapılacakları, hatırlatmaları ve kısa günlük planı tek
+    yerde gösterir.
+  pageHomeWhen: Uygulamaya her girişte "bugün ne yapacağım?" diye bakmak
+    istediğinizde.
+  pageHomeKeywords: ana sayfa, başlangıç, görev, bugün, panel
+  pageTracker: Günlük Takip
+  pageTrackerPurpose: Ruh hali, uyku, ilaç ve kısa günlük gözlemleri kaydetmek
+    için kullanılır.
+  pageTrackerWhen: Günün sonunda veya önemli bir değişiklik olduğunda kısa
+    kayıt girmek istediğinizde.
+  pageTrackerKeywords: günlük, ruh hali, uyku, ilaç, kayıt, duygu
+  pageMessages: Mesajlar
+  pageMessagesPurpose: Uzmanlar ve platformdaki kişilerle güvenli yazışma
+    alanıdır.
+  pageMessagesWhen: Randevu, soru veya takip için mesajlaşmak istediğinizde.
+  pageMessagesKeywords: mesaj, sohbet, iletişim, uzman
+  pageAppointments: Randevular
+  pageAppointmentsPurpose: Randevu talepleri, seans zamanı ve görüşme akışını
+    yönetir.
+  pageAppointmentsWhen: Uzmanla görüşme planlamak veya yaklaşan randevuları
+    görmek istediğinizde.
+  pageAppointmentsKeywords: randevu, takvim, seans, görüşme, doktor, terapi
+  pageCrisis: Zor Anlarda Ne Yapmalı?
+  pageCrisisPurpose: Zorlayıcı anlarda sakinleşme ve müdahale adımlarını hızlı
+    gösterir.
+  pageCrisisWhen: Kriz, yoğun stres veya hızlı yönlendirme gereken bir durum
+    olduğunda.
+  pageCrisisKeywords: kriz, zor an, sakinleşme, acil, destek, nefes
+  pageAssistant: AI Asistan
+  pageAssistantPurpose: Sorularınıza anında yanıt veren sohbet asistanıdır;
+    tıbbi tavsiye vermez, yönlendirir.
+  pageAssistantWhen: Aklınıza takılan bir konuyu hızlıca sormak istediğinizde.
+  pageAssistantKeywords: asistan, sohbet, yapay zeka, soru, bot
+  pageSettings: Ayarlar
+  pageSettingsPurpose: Bildirim, gizlilik ve erişilebilirlik tercihlerinizi,
+    tema ve dili, şifrenizi ve hesabınızı yönetir.
+  pageSettingsWhen: Uygulamayı kendinize göre ayarlamak veya verilerinizi
+    yönetmek istediğinizde.
+  pageSettingsKeywords: ayarlar, bildirim, gizlilik, şifre, tema, dil,
+    erişilebilirlik
+  pageHelp: Yardım
+  pageHelpPurpose: Uygulama hakkında kısa bilgi, kullanım ipuçları ve iletişim
+    kanallarını içerir.
+  pageHelpWhen: Bir özelliğin nasıl çalıştığını bulamadığınızda.
+  pageHelpKeywords: yardım, destek, sss, iletişim
+  pageChildren: Çocuklarım
+  pageChildrenPurpose: Çocuğun temel bilgilerini, tanı notlarını, terapi ve
+    ihtiyaç bilgilerini tutar.
+  pageChildrenWhen: İlk kurulumda veya çocukla ilgili bilgileri güncellemek
+    istediğinizde.
+  pageChildrenKeywords: çocuk, profil, tanı, terapi, bilgi, kilometre taşı
+  pageAnalytics: Gelişim Paneli
+  pageAnalyticsPurpose: Günlük kayıtları grafiklere ve aylık eğilimlere
+    dönüştürür.
+  pageAnalyticsWhen: Tek tek kayıtlardan daha büyük resmi görmek istediğinizde.
+  pageAnalyticsKeywords: ilerleme, grafik, analiz, trend, gelişim
+  pageTreatment: Tedavi Paneli
+  pageTreatmentPurpose: Küçük hedefler, ev çalışmaları, oyunlar ve günlük
+    destek akışını toplar.
+  pageTreatmentWhen: Bugün evde uygulanabilecek kısa etkinlik veya hedef
+    aradığınızda.
+  pageTreatmentKeywords: tedavi, plan, hedef, aktivite, oyun, ev çalışması
+  pageTasks: Ödevlerim
+  pageTasksPurpose: Uzmanın verdiği görevleri, günlük egzersiz sihirbazını ve
+    teslim durumunu gösterir.
+  pageTasksWhen: Seans sonrası verilen çalışmaları takip etmek istediğinizde.
+  pageTasksKeywords: görev, ödev, egzersiz, uzman, teslim
+  pageNotes: Notlarım
+  pageNotesPurpose: Davranış, gelişim, görüşme veya dikkat çeken olayları
+    serbest not olarak saklar.
+  pageNotesWhen: Uzmanla paylaşmak veya sonra hatırlamak istediğiniz kısa
+    gözlemler olduğunda.
+  pageNotesKeywords: not, gözlem, gelişim, davranış, hatırlatma
+  pageBehavior: Davranış Günlüğü
+  pageBehaviorPurpose: Davranışın öncesini, kendisini ve sonrasını (ABC) kayıt
+    altına alarak örüntüleri görünür kılar.
+  pageBehaviorWhen: Tekrarlayan bir davranışın nedenini anlamak istediğinizde.
+  pageBehaviorKeywords: davranış, abc, öncesi, sonrası, örüntü, tetikleyici
+  pageEmergency: Acil Durum Kartı
+  pageEmergencyPurpose: Acil durumda paylaşılacak temel çocuk bilgilerini hazır
+    tutar; süreli bağlantı ve QR ile paylaşılır.
+  pageEmergencyWhen: Dışarıda, okulda veya acil durumda hızlı bilgi paylaşımı
+    gerekebileceğinde.
+  pageEmergencyKeywords: acil, kart, güvenlik, qr, paylaşım
+  pageCalendar: Takvim
+  pageCalendarPurpose: Randevu, okul, etkinlik ve hatırlatmaları tarihli
+    şekilde tutar.
+  pageCalendarWhen: Yaklaşan planları unutmak istemediğinizde.
+  pageCalendarKeywords: takvim, etkinlik, hatırlatma, plan
+  pageRoutines: Rutinler
+  pageRoutinesPurpose: Günlük rutinleri adım adım, görsel olarak takip etmeye
+    yardımcı olur.
+  pageRoutinesWhen: Sabah, okul, uyku veya geçiş rutinini görselleştirmek
+    istediğinizde.
+  pageRoutinesKeywords: rutin, program, adım, görsel, geçiş
+  pageForum: Topluluk Forumu
+  pageForumPurpose: Ebeveynlerin ve uzmanların soru sorup deneyimlerini
+    paylaştığı ortak tartışma alanıdır.
+  pageForumWhen: Kafanıza takılan bir soruyu topluluğa danışmak istediğinizde.
+  pageForumKeywords: forum, soru, cevap, topluluk, deneyim
+  pageWall: Dertleşme Duvarı
+  pageWallPurpose: Duygu ve deneyim paylaşımı için daha serbest bir destek
+    alanıdır; istersen anonim kalırsın.
+  pageWallWhen: Soru sormaktan çok içinizi dökmek veya destek görmek
+    istediğinizde.
+  pageWallKeywords: dertleşme, duygu, paylaşım, destek, anonim
+  pageMeetups: Yerel Buluşmalar
+  pageMeetupsPurpose: Aynı şehirdeki ailelerle gerçek hayatta tanışıp bir araya
+    gelmenizi sağlar.
+  pageMeetupsWhen: Çevrenizdeki ailelerle yüz yüze etkinlik planlamak
+    istediğinizde.
+  pageMeetupsKeywords: buluşma, etkinlik, şehir, tanışma, yerel
+  pageWeekly: Haftanın Sorusu
+  pageWeeklyPurpose: Her hafta belirlenen ortak bir konu hakkında ailelerin
+    yanıtlarını listeler.
+  pageWeeklyWhen: Diğer ailelerin ne düşündüğünü görmek veya deneyiminizi
+    yazmak istediğinizde.
+  pageWeeklyKeywords: haftanın sorusu, topluluk, deneyim, paylaşım
+  pageSimilar: Benzer Aileler
+  pageSimilarPurpose: Çocuğunuzun yaşı ve ihtiyaçları açısından benzer süreçler
+    yaşayan ailelerle tanıştırır.
+  pageSimilarWhen: Sizinle en çok ortak noktası olan aileleri bulmak
+    istediğinizde.
+  pageSimilarKeywords: benzer aileler, eşleşme, akran, tanışma
+  pageGroups: Destek Grupları
+  pageGroupsPurpose: Kategori bazlı aile ve uzman topluluklarına katılmanızı,
+    grup sohbetine girmenizi sağlar.
+  pageGroupsWhen: Benzer ihtiyaç ve yaş gruplarına odaklanan bir topluluk
+    aradığınızda.
+  pageGroupsKeywords: grup, topluluk, sohbet, katıl
+  pageKnowledge: Bilgi Bankası
+  pageKnowledgePurpose: Güvenilir yazıları ve kaynak içerikleri toplar.
+  pageKnowledgeWhen: Bir konuyu sakin sakin okumak veya öğrenmek istediğinizde.
+  pageKnowledgeKeywords: bilgi, makale, rehber, kaynak, öğrenme
+  pageExpertAppointments: Randevularım
+  pageExpertAppointmentsPurpose: Gelen randevu taleplerini onaylar, seansları
+    tamamlar ve erteleme taleplerini yönetir.
+  pageExpertAppointmentsWhen: Gününüzü planlarken ve seans sonrası kayıt
+    kapatırken.
+  pageExpertMessagesPurpose: Ailelerle güvenli yazışma alanıdır; görev geri
+    bildirimleri de buradan iletilir.
+  pageExpertMessagesWhen: Aileye dönüş yapmak veya takip sorusu sormak
+    istediğinizde.
+  pageExpertForumPurpose: Uzman olarak soruları yanıtlayabilir, doğrulanmış
+    bilgi paylaşabilirsiniz.
+  pageExpertForumWhen: Topluluğa mesleki katkı sunmak istediğinizde.
+  video01: Platforma Genel Bakış
+  video01Desc: Ana bölümleri, rolünüze göre değişen menüyü ve güvenli kullanım
+    araçlarını kısa bir turla tanıyın.
+  video02: Ebeveyn Hızlı Başlangıç
+  video02Desc: Aile hesabına girişten çocuk profiline ve ilk günlük kayda
+    uzanan temel başlangıç akışını izleyin.
+  video03: Kullanıcı Rehberini Kullanma
+  video03Desc: Arama, kategori ve rol odaklı yönlendirmelerle ihtiyacınız olan
+    özelliği nasıl bulacağınızı öğrenin.
+  video04: Ana Sayfa ve Navigasyon
+  video04Desc: Günlük özetleri okuyun; menü ve hızlı erişimlerle istediğiniz
+    bölüme ulaşın.
+  video05: Çocuk Profili
+  video05Desc: Çocuk profili oluşturun; temel bilgileri, tanı notlarını,
+    ihtiyaçları ve erişim ayrıntılarını güncelleyin.
+  video06: Günlük Duygu ve Uyku Takibi
+  video06Desc: Ruh hali, uyku ve davranış kayıtlarını birkaç adımda ekleyip
+    geçmişi inceleyin.
+  video07: İlaç Takibi
+  video07Desc: İlaç planını kaydedin, doz ve saat bilgilerini takip edin,
+    geçmiş kayıtları güvenle kontrol edin.
+  video08: Gelişim Paneli
+  video08Desc: Günlük kayıtların grafiklere nasıl dönüştüğünü görün;
+    eğilimleri ve gelişim özetlerini yorumlayın.
+  video09: Hedefler ve Egzersizler
+  video09Desc: Çocuğunuza uygun hedefleri görüntüleyin, ev egzersizlerini
+    uygulayın ve tamamlanma durumunu takip edin.
+  video10: Ödevler ve Rutinler
+  video10Desc: Uzmanın verdiği ödevleri takip edin ve sabah, okul ya da uyku
+    rutinlerini adım adım planlayın.
+  video11: Notlar, Takvim ve Acil Kart
+  video11Desc: Gözlemlerinizi not alın, önemli tarihleri planlayın ve acil
+    durumda paylaşılacak kartı hazır tutun.
+  video12: Uzman Bulma ve Randevu
+  video12Desc: Uzmanları filtreleyip profillerini karşılaştırın, uygun kişiyi
+    seçin ve randevu akışını yönetin.
+  video13: Mesajlar, Gizlilik ve Ayarlar
+  video13Desc: Güvenli mesajlaşmayı kullanın; profil, bildirim, şifre ve veri
+    paylaşımı tercihlerini yönetin.
+  video14: Topluluk, Forum ve Buluşmalar
+  video14Desc: Forumda soru sorun, aile deneyimlerini inceleyin ve güvenli
+    topluluk buluşmalarını keşfedin.
+  video15: Bilgi Bankası, Kriz ve Yardım
+  video15Desc: Güvenilir içerikleri bulun, zor anlar için kriz adımlarına
+    ulaşın ve yardım kanallarını kullanın.
+
+community:
+  title: Topluluk
+  badge: Kontrollü ve güvenli iletişim
+  intro: Aynı süreci yaşayan aileleri bulun, önce mesajlaşın, hazır olduğunuzda
+    grup ve buluşmalara katılın.
+  areasTitle: Ne yapmak istersiniz?
+  areasSubtitle: Bütün topluluk alanları bu merkezde.
+  safetyTitle: Güvenli tanışma önerisi
+  safetyBody: İlk görüşmede uygulama içinde yazışın. Telefon, açık adres ve
+    çocuğun özel bilgilerini paylaşmak zorunda değilsiniz. Rahatsız olduğunuz
+    kişiyi engelleyebilir veya bildirebilirsiniz.
+  similarText: Ortak deneyimleri ve eşleşme nedenlerini görün, güvenli bir
+    tanışma başlatın.
+  messagesText: Aileler ve uzmanlarla yaptığınız görüşmelere tek yerden devam
+    edin.
+  groupsText: Benzer ihtiyaç ve yaş gruplarına odaklanan topluluklara katılın.
+  meetupsText: Şehrinizdeki güvenli buluşmaları keşfedin.
+  forumText: Topluluğa soru sorun, ailelerin ve uzmanların yanıtlarını okuyun.
+  wallText: Yargılanmadan duygunuzu paylaşın; isterseniz anonim kalın.
+  weeklyText: Tek bir konu etrafında kısa deneyim paylaşımlarına katılın.
+
+reviews:
+  title: Değerlendirmeler ($count)
+  empty: Bu uzman için henüz değerlendirme yok.
+  write: Değerlendirme yaz
+  edit: Değerlendirmemi düzenle
+  ratingLabel: Puanınız
+  commentHint: Deneyiminizi kısaca anlatın (isteğe bağlı)…
+  save: Kaydet
+  delete: Sil
+  deleteTitle: Değerlendirmeyi sil
+  deleteConfirm: Bu değerlendirmeyi silmek istediğinize emin misiniz?
+  someone: Bir veli
+
+expertAccess:
+  title: Uzman Erişimi
+  intro: Uzmanlar çocuğunuzun gelişim verilerine ancak siz onayladığınızda
+    erişebilir. Verdiğiniz erişimi istediğiniz zaman geri alabilirsiniz.
+  pendingTitle: Bekleyen istekler
+  noPending: Şu an bekleyen uzman erişim isteği yok.
+  activeTitle: Erişimi olan uzmanlar
+  noActive: Henüz hiçbir uzmana erişim vermediniz.
+  requestLine: $child adlı çocuğunuzun profiline erişim istiyor.
+  activeLine: $child adlı çocuğunuzun profiline erişebiliyor.
+  requestedAt: 'İstek tarihi: $date'
+  unknownExpert: Uzman
+  approve: Onayla
+  reject: Reddet
+  revoke: Erişimi kaldır
+  approved: Uzman erişim isteği onaylandı.
+  rejected: Uzman erişim isteği reddedildi.
+  revoked: Uzmanın erişimi kaldırıldı.
+  revokeTitle: Erişimi kaldır
+  revokeConfirm: Bu uzmanın çocuğunuzun verilerine erişimini kaldırmak
+    istediğinize emin misiniz?
+  pendingBanner: $count uzman erişim isteğiniz onay bekliyor

@@ -167,3 +167,47 @@ const kWeeklyAnswerTags = <String>[
   'Eğitim',
   'Kriz Yönetimi',
 ];
+
+/// Cevap listesi süzgeci (web `WeeklyQuestionPage` sekmeleri).
+enum WeeklyAnswerFilter { all, expert, popular, local }
+
+/// Cevapları süzer ve gerekiyorsa sıralar — web'deki `filteredAnswers`
+/// hesabıyla birebir: arama metni cevaba, (anonim değilse) yazara ve
+/// şehre, ayrıca uzman unvanına bakar; "popüler" beğeniye göre sıralar.
+///
+/// Web'den ayrım: web'in cevap yazma kutusundaki "şehrimi gizle" onayı
+/// listedeki **herkesin** şehrini gizliyor (kaydedilen veriyi etkilemiyor);
+/// mobilde bu oturumluk görsel kural yok.
+List<WeeklyAnswer> filterWeeklyAnswers(
+  List<WeeklyAnswer> answers, {
+  WeeklyAnswerFilter filter = WeeklyAnswerFilter.all,
+  String query = '',
+  String? userCity,
+}) {
+  final q = query.trim().toLowerCase();
+  final city = userCity?.trim().toLowerCase();
+
+  final result = answers.where((answer) {
+    if (q.isNotEmpty) {
+      final inText = answer.displayText.toLowerCase().contains(q);
+      final inAuthor = !answer.isAnonymous &&
+          (answer.displayAuthor ?? '').toLowerCase().contains(q);
+      final inCity = !answer.isAnonymous &&
+          (answer.city ?? '').toLowerCase().contains(q);
+      final inTitle = (answer.expertTitle ?? '').toLowerCase().contains(q);
+      if (!inText && !inAuthor && !inCity && !inTitle) return false;
+    }
+    return switch (filter) {
+      WeeklyAnswerFilter.expert => answer.isExpert,
+      WeeklyAnswerFilter.local => !answer.isAnonymous &&
+          (city == null || city.isEmpty ||
+              (answer.city ?? '').toLowerCase() == city),
+      _ => true,
+    };
+  }).toList();
+
+  if (filter == WeeklyAnswerFilter.popular) {
+    result.sort((a, b) => b.likes.compareTo(a.likes));
+  }
+  return result;
+}

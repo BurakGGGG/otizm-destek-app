@@ -378,6 +378,7 @@ class _HistoryCard extends ConsumerWidget {
                   child: Text(_dateLine(context), style: text.titleSmall),
                 ),
                 IconButton(
+                  tooltip: context.t.common.a11y.delete,
                   visualDensity: VisualDensity.compact,
                   icon: Icon(Icons.delete_outline,
                       size: 20, color: context.colors.textTertiary),

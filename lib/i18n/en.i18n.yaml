@@ -3,12 +3,35 @@ app:
   name: Autism Support
 
 common:
+  cancel: Cancel
   loading: Loading
   comingSoon: This section is coming soon.
   seeAll: See All
   more: More
   retry: Retry
   loadError: Could not load data.
+  unsaved:
+    title: Unsaved changes
+    body: Your entries have not been saved yet. They will be lost if you leave.
+    stay: Stay
+    leave: Leave
+  # Accessibility labels for icon-only buttons (screen reader + tooltip)
+  a11y:
+    edit: Edit
+    delete: Delete
+    close: Close
+    send: Send
+    options: Options
+    report: Report
+    clearSearch: Clear search
+    clearDate: Clear date
+    clearSelection: Clear selection
+    cancelReply: Cancel reply
+    showPassword: Show password
+    hidePassword: Hide password
+    decrease: Decrease
+    increase: Increase
+    rating: $count stars
   monthsShort:
     - Jan
     - Feb
@@ -53,6 +76,28 @@ auth:
   registerExpert: Sign up as a specialist
   errorEmptyFields: Please enter your email and password.
   registerComingSoon: $role sign-up screen is coming soon.
+  errorMfaRequired: This account uses two-step verification; please sign in on the web for now.
+  resendVerification: Resend verification email
+
+verifyEmail:
+  title: Email Verification
+  waitingTitle: Check your inbox
+  waitingBody: We sent you a verification link. Once you open it, come back here and sign in.
+  waitingBodyWithEmail: We sent a verification link to $email. Once you open it, come back here and sign in.
+  spamHint: If the email does not arrive within a few minutes, check your spam folder.
+  approvalTitle: Your professional account is awaiting approval
+  approvalBody: We received your application. You can sign in once an administrator verifies your license details.
+  tokenLabel: Verification Code
+  tokenHint: The code inside the email link
+  tokenHelp: If you cannot open the link, paste the code from it here.
+  verifyButton: Verify
+  verifying: Verifying your email address…
+  resendButton: Resend email
+  resent: A new verification link was sent. Check your inbox and spam folder.
+  success: Your email address is verified. You can sign in now.
+  errorTokenRequired: Please enter the verification code.
+  errorEmailRequired: An email address is required to resend.
+  backToLogin: Back to sign in
 
 forgotPassword:
   title: Forgot Password
@@ -77,6 +122,24 @@ resetPassword:
   errorTokenRequired: Please enter the reset code.
   errorPasswordShort: Password must be at least 8 characters.
   errorMismatch: Passwords do not match.
+
+password:
+  strengthTitle: Password strength
+  strengthVeryWeak: Very weak
+  strengthWeak: Weak
+  strengthMedium: Medium
+  strengthStrong: Strong
+  strengthVeryStrong: Very strong
+  ruleMinLength: At least 8 characters
+  ruleUppercase: One uppercase letter
+  ruleDigit: One digit
+  ruleSpecial: One special character
+  errorTooShort: Password must be at least 8 characters.
+  errorTooLong: Password can be at most 64 characters.
+  errorNoUppercase: Password must contain at least one uppercase letter.
+  errorNoDigit: Password must contain at least one digit.
+  errorNoSpecial: 'Password must contain at least one special character (e.g. ! ? * . -).'
+  errorCommon: This password is too common and easy to guess; please choose a different one.
 
 register:
   titleParent: Create Parent Account
@@ -106,7 +169,185 @@ register:
   errorEmailInvalid: Please enter a valid email.
   errorPasswordShort: Password must be at least 8 characters.
   errorExpertTitleRequired: Please enter your professional title.
+  errorLicenseRequired: A license / diploma number is required for professional sign-up.
+  emailTaken: This email address is already registered. Try signing in.
+  emailAvailable: This email address is available.
   errorKvkkRequired: KVKK consent is required to continue.
+
+settings:
+  pushGranted: Device notifications are on
+  pushGrantedHint: You will get notifications even when the app is closed.
+  pushDenied: Device notifications are off
+  pushDeniedHint: Without permission the preferences below only apply inside
+    the app. You can also enable it from system settings.
+  pushRequest: Allow
+  blockedTitle: Blocked users
+  blockedEmpty: You have not blocked anyone.
+  blockedRemove: Unblock
+  blockedRemoved: User unblocked.
+  privacyFamilyMessages: Let other families message me
+  matchingTitle: What are you looking for in the community?
+  matchingHint: Shown in match suggestions and on your profile.
+  communicationTitle: Your communication preference
+  intentExperience: Sharing experience
+  intentRegular: Regular conversation
+  intentLocalMeet: Meeting nearby
+  intentSeekMentor: Looking for a mentor
+  intentBeMentor: Can be a mentor
+  commWriting: Messaging first
+  commVideo: Video calls
+  commEvening: I reply in the evening
+  title: Settings
+  notificationsTitle: Notifications
+  notificationsSubtitle: Choose what you want to be notified about.
+  notifMessages: New messages
+  notifAppointment: Appointment confirmations and changes
+  notifApptReminder: Remind me 24 hours before an appointment
+  notifExpertNote: Specialist notes and feedback
+  notifTaskAssigned: When a new assignment arrives
+  notifForum: Forum and support wall replies
+  notifMatching: Similar family matches
+  notifCalendar: Calendar reminders
+  privacyTitle: Privacy
+  privacySubtitle: Decide how other people see you.
+  privacyShowProfile: Show my profile to other families
+  privacyAllowMessages: Allow people to message me
+  privacyShareProgress: Share the progress summary with my specialist
+  privacyApproximateLocation: Share my approximate location (city)
+  privacyHidePresence: Hide my online status
+  appearanceTitle: Appearance and language
+  accessibilityTitle: Accessibility
+  accessibilitySubtitle: Adapt the look and interaction to your needs.
+  a11yLargeText: Large text mode
+  a11yLargeTextBody: Shows text at a larger size.
+  a11yCalmMode: Calm appearance
+  a11yCalmModeBody: Uses softer tones that are easier on the eyes.
+  a11yHighContrast: High contrast
+  a11yHighContrastBody: Keeps text in the most legible colours.
+  a11yReduceMotion: Reduce motion
+  a11yReduceMotionBody: Turns off page transitions and animations.
+  a11ySimpleMode: Simple mode
+  a11ySimpleModeBody: Reduces the profile menu to the essential sections.
+  securityTitle: Security
+  securitySubtitle: Protect access to your account.
+  changePassword: Change password
+  changePasswordSubmit: Update password
+  currentPasswordLabel: Current password
+  newPasswordLabel: New password
+  passwordChanged: Your password has been updated.
+  errorCurrentPasswordRequired: Please enter your current password.
+  dataTitle: Your data and KVKK
+  dataSubtitle: Exercise your rights over your personal data here.
+  kvkkPanel: KVKK rights and consents
+  kvkkPanelBody: Consent preferences, requests and the privacy notice.
+  downloadData: Download my data
+  downloadDataBody: Get everything in your account as a JSON file.
+  downloadDataSubject: Otizm Destek — my account data
+  deleteAccount: Delete my account
+  deleteAccountBody: Your account and all records are permanently deleted.
+  deleteAccountWarning: This cannot be undone. All your data — child profiles, notes, appointments and messages — is permanently deleted.
+  deleteAccountSubmit: Permanently delete my account
+  deleteKeyword: DELETE
+  deleteConfirmLabel: Type "$keyword" to confirm
+  errorDeleteConfirm: The confirmation text does not match.
+
+legal:
+  title: Legal documents
+  subtitle: Privacy notice, privacy policy, terms of use and medical safety warnings. The binding version is Turkish, so the texts are shown in Turkish.
+  versionLine: Text version $version · Last updated $date
+  readNotice: Read the KVKK privacy notice
+
+kvkk:
+  title: Data rights and consents
+  rightsTitle: Your rights under KVKK art. 11
+  rightsBody: You may learn whether your data is processed, request correction or deletion, learn which third parties it was shared with, and object to automated analysis results. Requests are answered within 30 days at the latest.
+  consentsTitle: Your consent preferences
+  consentsSubtitle: Explicit consent must be purpose-specific; each item can be turned on or off separately.
+  consentNotice: Privacy notice acceptance
+  consentAi: AI analysis
+  consentAiBody: Allows development data to be transferred to the AI provider (abroad).
+  consentEmergency: Emergency card sharing
+  consentEmergencyBody: Allows your emergency card to be shown to third parties via link/QR.
+  consentMatching: Similar family matching
+  consentMatchingBody: Allows your profile to be shown to other families in the matching engine.
+  consentMarketing: Informational emails
+  consentMarketingBody: Lets us send you optional announcements and informational emails.
+  reconsentTitle: The privacy notice has been updated
+  reconsentTitleVersion: The privacy notice has been updated (version $version)
+  reconsentBody: Review how your data is processed and accept the current notice.
+  reconsentAccept: I have read and accept
+  reconsentSaved: Your acceptance of the current notice has been recorded.
+  historyTitle: My consent history
+  requestsTitle: My requests
+  requestsSubtitle: Submit requests about your personal data here.
+  newRequest: Submit a KVKK request
+  requestsEmpty: You have no requests yet.
+  requestsError: Requests could not be loaded.
+  requestCreated: Your request was received. It will be answered within 30 days at the latest.
+  requestInfo: I want to learn whether my data is being processed
+  requestCorrection: I want incomplete or incorrect data to be corrected
+  requestDeletion: I want my data to be deleted / destroyed
+  requestTransfer: I want to learn the third parties my data was shared with
+  requestObjection: I object to a result produced against me by automated analysis
+  requestDamages: I request compensation for the damage I suffered
+  descriptionLabel: Your request
+  descriptionHint: Briefly describe your request.
+  responseTime: Requests are answered within 30 days at the latest.
+  submitRequest: Send request
+  errorDescriptionRequired: Please describe your request.
+  statusOpen: Received
+  statusReviewing: Under review
+  statusDone: Completed
+  statusRejected: Rejected
+  receivedOn: received on $date
+  dueOn: response due $date
+
+onboarding:
+  title: Getting started
+  skip: Skip
+  start: Let's begin
+  back: Back
+  continueButton: Continue
+  skipForNow: Skip for now
+  finish: Go to home
+  stepChild: Child Profile
+  stepTags: Support Areas
+  stepPlan: Starter Plan
+  welcomeTitle: Welcome
+  welcomeBody: Let's set the app up for your child in a few short steps. You can change everything later.
+  introChildTitle: Basic details
+  introChildBody: Name and a few optional notes
+  introTagsTitle: Support areas
+  introTagsBody: Pick the areas you observe
+  introPlanTitle: Starter suggestions
+  introPlanBody: See what you can do first
+  childTitle: Tell us about your child
+  childSubtitle: Only the name is required; you can fill in the rest later.
+  childNameLabel: Child's name
+  childNameHint: e.g. Elif
+  childBirthDateLabel: Date of birth (optional)
+  childBirthDateHint: Tap to choose
+  childDiagnosisLabel: Diagnosis details (optional)
+  childDiagnosisHint: Diagnosis and short notes, if any
+  focusTitle: Starting focus
+  communicationTitle: Communication style
+  supportTitle: Support that may help
+  tagsTitle: Which areas do you need support with?
+  tagsSubtitle: Pick what you observe; similar families and content suggestions follow these.
+  planTitle: Your starter plan is ready
+  planTitleNamed: Your starter plan for $name is ready
+  planSubtitle: You can try one of these as a first step.
+  planNote: These are only starting suggestions; every section stays reachable from the menu.
+  planTrackerTitle: Add a daily entry
+  planTrackerBody: Log sleep, mood or a short observation.
+  planExpertsTitle: Browse specialists
+  planExpertsBody: Look through specialists or request an appointment.
+  planKnowledgeTitle: Explore the knowledge base
+  planKnowledgeBody: Browse trusted content in the knowledge base.
+  expertTitle: Welcome $name
+  expertBody: Client tracking, appointments and messages are waiting on the home screen.
+  errorNameRequired: The child's name is required.
+  errorBirthDateFuture: The date of birth cannot be in the future.
 
 nav:
   home: Home
@@ -121,13 +362,69 @@ chat:
   errorGeneric: Couldn't get a response, please try again.
 
 messages:
+  reportMessage: Report message
+  reportHint: Why are you reporting this message?
+  reportSend: Send
+  reported: The message has been reported for review.
+  newGroup: New group chat
+  chatDirect: Direct
+  chatGroup: Group
+  groupNameLabel: Group name
+  groupCreate: Create group
+  groupNameRequired: Group name is required.
+  groupMembersRequired: Select at least one participant.
+  groupSettings: Group settings
+  groupRename: Save name
+  groupRenamed: Group name updated.
+  groupAddMember: Add member
+  groupMembers: Members
+  groupMemberRemoved: Member removed.
+  groupMemberAdded: Member added.
+  blockUser: Block user
+  blockConfirm: $name will no longer be able to message you. Block?
+  blocked: User blocked.
   title: Messages
   noConversations: You have no conversations yet.
   noMessages: No messages yet. Send the first one.
   inputHint: Type a message...
   connecting: Connecting...
+  pecsTitle: PECS picture cards
+  filterAll: All
+  filterUnread: Unread
+  filterExperts: Experts
+  filterGroups: Groups
+  filterArchived: Archive
+  emptyUnread: No unread messages.
+  emptyExperts: No messages with experts yet.
+  emptyGroups: You are not in a group yet.
+  emptyArchived: The archive is empty. Archived chats appear here.
+  archive: Archive
+  unarchive: Unarchive
+  mute: Mute
+  unmute: Unmute
+  reply: Reply
+  replyingTo: Replying to $name
+  someone: Message
+  attachPhoto: Attach a photo
+  photoSent: Photo sent.
+  newChat: New chat
+  searchUserHint: Search by name…
+  searchUserHelp: Type at least two letters to start a chat.
+  searchUserEmpty: No matching users found.
+  searchInChat: Search in chat
+  searchNoResults: No messages match this search.
+  deleteMessage: Delete message
 
 home:
+  weeklyTopicBadge: Question of the week
+  weeklyTopicReplies: $count families replied
+  learningPathBadge: A video guide for you
+  learningPathTitle: Not sure where to start?
+  learningPathBody: Get to know the app step by step with short videos; the
+    first one covers daily tracking and the plan.
+  learningPathBodyExpert: Get to know the expert tools step by step with short
+    videos.
+  learningPathCta: Start the learning path
   notifications: Notifications
   assistant: AI Assistant
   messages: Messages
@@ -148,6 +445,82 @@ home:
   ageYears: $years yrs
   noAppointments: You have no upcoming appointments.
   noArticles: No articles to show.
+  quickTracker: Today's log
+  quickTrackerDetail: Mood, sleep, medication
+  quickBehavior: Behaviour note
+  quickBehaviorDetail: Antecedent-behaviour-consequence
+  quickNote: Observation note
+  quickNoteDetail: Add a short note
+  quickPlan: Add a plan
+  quickPlanDetail: Appointment, school, event
+
+dailyPlan:
+  title: What to do today?
+  subtitle: $count left · about $minutes min
+  subtitleDone: Today's tasks are done
+  coachLabel: Daily coach tip
+  durationMinutes: $count min
+  badgeNow: Do this now
+  badgeNext: Next
+  badgeSafety: Safety
+  badgeOptional: Optional
+  badgeDone: Done
+  allDoneTitle: Today's tasks are complete
+  allDoneDetail: The core records are in. With the time left you can look at the plan, the community or the knowledge base.
+  partMorning: this morning
+  partAfternoon: this afternoon
+  partEvening: this evening
+  coachNoChild: Today it is enough to create the child profile. The other sections make sense once the profile exists.
+  coachAllDone: Everything for $name is done today! You can move on to the plan or the knowledge base.
+  coachMedication: For $name it is best to finish the medication check $part; the remaining $count tasks are quicker.
+  coachNoMood: Start with a short daily log for $name — it makes $part feel complete.
+  coachEvent: There is a planned event for $name today; the remaining $count tasks can stay short.
+  coachProgress: $done done for $name, $count left. You are doing well!
+  coachPlan: Plan for $name $part - a short log, a calendar check and one note. About $minutes min in total.
+  taskDailyLog: Add today's short log
+  taskDailyLogDone: Update today's log
+  taskDailyLogDetail: Mark mood, sleep and medication in about a minute.
+  taskDailyLogDoneDetail: Mood is in; you can still add sleep, medication or a short note.
+  taskMedication: Finish the medication check
+  taskMedicationDetail: $count doses are not marked yet.
+  taskMessages: Reply to messages
+  taskMessagesDetail: You have $count unread messages.
+  taskExpertRequest: Answer the expert access request
+  taskExpertRequestDetail: $count experts are waiting for access to your child's data.
+  taskEventDetail: Today at $time
+  taskEventTomorrowDetail: Tomorrow at $time
+  taskCalendar: Plan the calendar
+  taskCalendarDetail: Add appointments, school or activities if you have any.
+  taskCalendarUpcoming: See the upcoming event
+  taskNotes: Add a short observation note
+  taskNotesDetail: Note something you noticed today.
+  taskNotesDone: Review your observation notes
+  taskNotesDoneDetail: $count notes so far — you can add a new one.
+  taskCommunity: Discover the community
+  taskCommunityDetail: See what families going through similar things are sharing.
+  taskCommunityDone: Follow the community areas
+  taskCommunityDoneDetail: There may be new posts in the weekly question, forum and meetups.
+  taskEmergency: Create the emergency card
+  taskEmergencyDetail: Keep critical medical details and emergency contacts on one card.
+  taskFirstChild: Create the first child profile
+  taskFirstChildDetail: Once the profile exists, the plan and tips adapt to your child.
+  taskGuide: See how the app is laid out
+  taskGuideDetail: Learn quickly what each section is for.
+  taskExperts: Discover expert support
+  taskExpertsDetail: You can browse expert profiles before booking anything.
+  startTitle: Quick start
+  startIntro: You do not have to finish everything on day one. The profile, a short log and the crisis guide are enough.
+  startProgress: $done/$total steps
+  startReady: $percent% ready
+  startDismiss: Dismiss the guide
+  checkTodo: To do
+  checkDone: Completed
+  checkChildProfile: 1. Child profile
+  checkChildProfileDetail: The plan, tracking and expert sharing adapt to the profile.
+  checkDailyLog: 2. First short log
+  checkDailyLogDetail: Data comes first; the daily plan makes sense after that log.
+  checkCrisis: 3. Crisis guide
+  checkCrisisDetail: Read the calming and intervention steps before a hard moment.
 
 specialists:
   title: Find a Specialist
@@ -159,6 +532,20 @@ specialists:
   noResults: No specialists match your search.
   ratingNew: New
   reviews: $count reviews
+  filters: Filters
+  cityLabel: City
+  sortLabel: Sort
+  sortDefault: Default
+  sortRating: By rating
+  sortName: By name
+  onlyAccepting: Only experts accepting new clients
+  onlyVerified: Only verified experts
+  onlyOnline: Online sessions only
+  onlyFavorites: My favourites only
+  addFavorite: Add to favourites
+  removeFavorite: Remove from favourites
+  clearFilters: Clear
+  applyFilters: Apply
 
 progress:
   title: Progress Tracking
@@ -229,6 +616,32 @@ notifications:
   empty: You have no notifications yet.
   markAllRead: Mark all as read
   dateLine: $day $month · $time
+  noneInFilter: No notifications match this filter.
+  unreadOnly: Unread only
+  selectedCount: $count selected
+  deleteSelected: Delete selected
+  groupToday: Today
+  groupYesterday: Yesterday
+  groupThisWeek: This Week
+  groupOlder: Older
+  catAll: All
+  catAppointments: Appointments
+  catMessages: Messages
+  catForum: Forum
+  catTasks: Tasks
+  catSocial: Social
+  catSystem: System
+
+search:
+  title: Search
+  hint: Search articles, posts, groups or experts…
+  help: Type what you are looking for.
+  noResults: No results match this search.
+  typeAll: All
+  typeArticle: Article
+  typePost: Post
+  typeGroup: Group
+  typeExpert: Expert
 
 knowledge:
   title: Knowledge Base
@@ -242,8 +655,43 @@ knowledge:
   dateLine: $day $month $year
   videoLink: Video link
   podcastLink: Podcast link
+  searchHint: Search articles, topics or keywords…
+  bookmarks: My bookmarks
+  bookmark: Bookmark
+  noBookmarks: You have not bookmarked anything yet.
+  relatedTitle: Related content
+  commentsTitle: Comments ($count)
+  noComments: Be the first to comment.
+  commentHint: Share your experience or ask a question…
+  commentSend: Post comment
+  someone: A family
+  expertBadge: Expert
+  triedFor: 'Tried for: $duration'
+  effectiveness: 'Effectiveness: $rating/5'
+  tagFilterTitle: Narrow down by tag
+  tagFilterClear: Clear tags
+  tagFilterCount: $count tags selected
 
 appointments:
+  rate: Rate
+  rateTitle: Rate this appointment
+  rateComment: Your comment (optional)
+  rateSave: Send
+  rated: Your rating has been saved.
+  rateStars: $count stars
+  ratingShown: Your rating
+  cancelSeries: Cancel series
+  cancelSeriesTitle: Cancel the whole series?
+  cancelSeriesConfirm: All upcoming appointments in this recurring series will
+    be cancelled.
+  seriesCancelled: Series cancelled.
+  seriesIndex: Session $index
+  seriesBadge: Series
+  recurrenceTitle: Recurring sessions
+  recurrenceHint: Created automatically every week at the same day and time.
+  recurrenceSingle: Single
+  recurrenceWeeks: $count weeks
+  recurrenceCreated: A $count-week series has been created.
   title: Appointments
   empty: You don't have any appointments yet.
   upcoming: Upcoming
@@ -272,6 +720,43 @@ appointments:
   rescheduleTitle: Reschedule Appointment
   rescheduleConfirm: Confirm New Time
   rescheduled: Appointment rescheduled.
+  nextTitle: Next appointment
+  countdownDays: $days d $hours h $minutes m left
+  countdownToday: $hours h $minutes m $seconds s left
+  countdownNow: Session time
+  statToday: Today
+  statWeek: This week
+  statMonth: This month
+  statPending: Pending
+  statCompleted: Completed
+  statCancelled: Cancelled
+  findExpert: Find an expert
+  today: Today
+  tomorrow: Tomorrow
+  detailTitle: Appointment details
+  detailDuration: Duration
+  detailDurationValue: $count min
+  detailExpert: Expert
+  detailParent: Parent
+  detailChild: Child
+  detailStatus: Status
+  detailType: Format
+  detailNote: Appointment note
+  detailTopic: Session topic
+  detailPreSession: Note shared before the session
+  detailSessionNote: Session note
+  detailSessionSummary: Session summary
+  detailFollowUp: Expert recommendations
+  detailFollowUpTask: Follow-up task
+  detailRating: Rating
+  detailRatingValue: $rating / 5
+  detailCancelledBy: 'Cancelled by: $who'
+  detailLateCancellation: Late cancellation
+  historyTitle: Status history
+  historyEmpty: No status changes recorded yet.
+  historyChange: $from → $to
+  historyMeta: $name · $date
+  detailOpen: Details
 
 expertDetail:
   bookAppointment: Book Appointment
@@ -279,6 +764,35 @@ expertDetail:
   specializationsTitle: Specializations
   articleCount: $count articles
   notAcceptingPatients: This expert is not accepting appointments right now.
+  aboutTitle: About
+  professionalTitle: Profile details
+  factNextSlot: First available slot
+  factNextSlotEmpty: Check the calendar
+  factSession: Session length
+  factSessionValue: $count minutes
+  factAgeGroups: Age groups
+  factAgeGroupsEmpty: Ask the expert
+  factLanguages: Languages
+  factSupportTopics: Support topics
+  factSupportTopicsEmpty: Not stated on the profile
+  factCancellation: Cancellation policy
+  factCancellationEmpty: Confirm with the expert before the appointment
+  factReschedule: Reschedule policy
+  factService: Session format
+  factServiceEmpty: Not stated
+  serviceOnline: Online
+  serviceFaceToFace: In person
+  factFee: Session fee
+  factFeeEmpty: Ask the expert
+  badgeVerified: Verified expert
+  badgePending: Awaiting approval
+  badgeLicenseVerified: License verified
+  report: Report this profile
+  reportReasonLabel: Reason
+  reportNoteLabel: Extra details (optional)
+  reportNoteHint: Describe the situation in a few sentences
+  reportSend: Send report
+  reportSent: Your report has been sent. The moderation team will review it.
 
 booking:
   title: Book Appointment
@@ -299,6 +813,10 @@ booking:
   errorSelectTime: Please select a time.
 
 routines:
+  starWallet: $count stars
+  stepDone: Step completed, +1 star!
+  progressDone: '$percent% completed'
+  stepCount: $count steps
   title: Routines
   empty: No routines for this child yet.
   noChild: Add a child first to create routines.
@@ -330,6 +848,13 @@ routineForm:
   errorName: Please enter a routine name.
 
 dailyTracker:
+  insightSleep: Avg. sleep
+  insightMood: Top mood
+  insightTrigger: Top trigger
+  insightComplete: Complete
+  insightNone: No data
+  insightHours: ${hours}h ${minutes}m
+  insightDays: $count days
   title: Daily Tracker
   tabMood: Mood
   tabSleep: Sleep
@@ -411,6 +936,9 @@ meds:
   logSaved: Dose log saved.
 
 wall:
+  commentEdit: Edit message
+  commentSave: Save
+  commentUpdated: Message updated.
   title: Support Wall
   subtitle: Share your feelings and support each other. Posts can be anonymous.
   empty: No posts yet. Be the first to share.
@@ -451,6 +979,14 @@ wall:
   daysAgo: $count d ago
 
 weekly:
+  filterAll: All
+  filterExpert: Experts
+  filterPopular: Popular
+  filterLocal: My city
+  searchHint: Search answers
+  localHint: Showing answers from families in $city only.
+  localHintNoCity: No city on your profile; showing all answers.
+  noMatch: No answers match this filter.
   title: Question of the Week
   subtitle: This week's question for families. Share your experience and support
     each other.
@@ -507,6 +1043,9 @@ meetup:
   organizerBy: Organized by $name
 
 similar:
+  privacyNote: Matching uses your child's tags, age range, therapy/education
+    notes and your city if provided. Your exact location is never shown to
+    others.
   title: Similar Families
   subtitle: Meet families at a similar stage to your child and share experiences.
   noChild: Add a child first, then discover similar families.
@@ -535,8 +1074,80 @@ similar:
   send: Send Request
   sent: Connection request sent.
   cancel: Cancel
+  meetup: Meet up
+  meetupTitle: Send a meet-up request
+  meetupOnline: Online
+  meetupInPerson: In person
+  meetupPickDate: Pick a date
+  meetupPickTime: Pick a time
+  meetupLocation: Meeting place
+  meetupMessage: Message (optional)
+  meetupMessageHint: Briefly say why you would like to meet
+  meetupSent: Meet-up request sent.
+  meetupRequestsTitle: Meet-up requests
+  meetupAccept: Accept
+  meetupDecline: Decline
+  meetupCancel: Withdraw request
+  unknownFamily: Family
+  tabMatches: Matches
+  tabCircle: My circle
+  circlePendingTitle: Incoming connection requests
+  circleAcceptedTitle: My friends and mentors
+  circleEmpty: Your circle is empty. Start by sending a request from the
+    Matches tab.
+  circleNoPending: No pending requests.
+  circleBuddyRequest: Friend request
+  circleMentorRequest: Mentor request
+  accept: Accept
+  reject: Decline
+  accepted: You are now connected.
+  rejected: Request declined.
+  removeBuddy: Remove connection
+  removeBuddyConfirm: Remove your connection with $name?
+  removed: Connection removed.
+  requestNote: Request note
+  withdraw: Withdraw request
+  withdrawn: Request withdrawn.
+  distance: $km km away
+  noCity: City not specified
+  commPrefWriting: Prefers messaging first
+  commPrefVideo: Open to video calls
+  commPrefEvening: Usually replies in the evening
+  scoresTitle: Match details
+  scoreTag: Tags
+  scoreAge: Age
+  scoreSensory: Sensory
+  scoreTherapy: Therapy
+  scoreEducation: Education
 
 groups:
+  editTitle: Edit group
+  updated: Group updated.
+  deleteTitle: Delete group
+  deleteConfirm: 'The group "$name" and its chat will be permanently deleted.'
+  deleted: Group deleted.
+  chatUnread: Chat ($count)
+  detailTitle: Group details
+  detailHint: Members and meetings are visible to group members only.
+  membersTitle: Members
+  membersEmpty: Member list is not available.
+  membersOnly: Join the group to see members and meetings.
+  meetingsTitle: Meetings
+  meetingsEmpty: No meetings scheduled.
+  meetingAdd: Schedule meeting
+  meetingTitleLabel: Meeting title
+  meetingPickDate: Pick date
+  meetingPickTime: Pick time
+  meetingUrlLabel: Meeting link (optional)
+  meetingNoteLabel: Description (optional)
+  meetingSave: Save
+  meetingCreated: Meeting scheduled.
+  meetingJoin: Join meeting
+  meetingDelete: Cancel meeting
+  meetingDeleteConfirm: 'Cancel the meeting "$title"?'
+  meetingErrorTitle: Meeting title is required.
+  meetingErrorDate: Pick a date and time.
+  meetingErrorUrl: The link must start with http:// or https://.
   title: Support Groups
   subtitle: Meet families on similar topics and join the group chat.
   tabMy: My Groups
@@ -570,6 +1181,7 @@ groups:
 treatment:
   title: Treatment Panel
   subtitle: Daily Support Plan
+  programActiveDefault: The daily support plan is active
   programActive: $name plan is active
   selectChild: Select profile
   noChildrenTitle: No child profile yet
@@ -812,6 +1424,58 @@ tasks:
   evidenceHint: You can add a cloud link to a video or photo of the practice
     moment so your expert can see it.
   submitConfirm: Submit and Close
+  viewWizard: Wizard
+  viewList: List
+  wizardBadge: Daily Progress Flow
+  wizardTitle: Today's Exercise Guide
+  wizardIntro: Practise with your child by following the steps. When you are
+    done, just tap one of the options below.
+  wizardStageLevel: $label level
+  wizardStageCount: $done / $total exercises completed
+  wizardAllDoneTitle: 'Great work! Today''s exercises are all done'
+  wizardAllDoneBody: Every quality minute you spend with your child makes a
+    big difference. New tasks will appear here when they are assigned.
+  wizardStepCounter: $index / $total
+  wizardDefaultCategory: Development Exercise
+  wizardHowTo: How to do it (step by step)
+  wizardDefaultDescription: Try this activity with your child for 5-10 minutes
+    in a calm setting.
+  wizardFrequency: 'Frequency: $value'
+  wizardOutcomeQuestion: How did this exercise go today?
+  outcomeEasyTitle: We did it easily
+  outcomeEasyDesc: My child managed it comfortably
+  outcomeSupportedTitle: We did it with support
+  outcomeSupportedDesc: We finished it with a few prompts
+  outcomeHardTitle: Today was hard
+  outcomeHardDesc: We were not quite ready yet
+  wizardTipTitle: AutiBot tip
+  wizardTipBody: 'No problem at all. Motivation can change day to day for
+    children on the autism spectrum. Try breaking the exercise into smaller
+    parts and repeating it tomorrow in a shorter, 2-minute session. You can
+    also leave a note for your expert.'
+  wizardNoteLabel: A note for your expert (optional)
+  wizardNoteHint: 'e.g. Really enjoyed it, or got distracted quickly…'
+  wizardAddPhoto: Add a photo of the moment
+  wizardChangePhoto: Change photo
+  wizardPhotoAdded: Photo added
+  wizardRemovePhoto: Remove
+  wizardSourceGallery: Choose from gallery
+  wizardSourceCamera: Take a photo
+  wizardSubmit: Save and complete exercise
+  wizardSubmitted: 'Congratulations! Today''s exercise is complete 🎉'
+  wizardDone: This exercise has been submitted
+  wizardDoneHint: It reached your expert; you can move on to the next exercise.
+  wizardPrev: Previous exercise
+  wizardNext: Next exercise
+  wizardTreeTitle: Your child's progress tree
+  stageSeed: Seed
+  stageSeedDesc: A new journey is beginning
+  stageSprout: Sprout
+  stageSproutDesc: Awareness and settling-in phase
+  stageFlower: Flower
+  stageFlowerDesc: Regular practice together
+  stageTree: Tree
+  stageTreeDesc: 'Wonderful! The skill is fully independent'
 
 forum:
   title: Community Forum
@@ -888,6 +1552,11 @@ forum:
   share: Share
 
 childDetail:
+  correlationTitle: Medication adherence and behaviour
+  correlationHint: How dose adherence and behaviour logs line up day by day.
+  correlationNoDose: No record
+  correlationLegend: The red bar is the behaviour count; the percentage on the
+    right is dose adherence.
   title: Child Profile
   editProfile: Edit Profile
   ageYears: $age yrs
@@ -957,6 +1626,25 @@ crisis:
   contact112Desc: Ambulance, Police, Fire
   contact183Label: Social Support Line
   contact183Desc: Family, Children and Social Services
+  listen: Listen
+  listenStop: Stop
+  listenIntro: 'What to do'
+  listenUnavailable: Speech playback is not available on this device.
+  medicalTitle: Important medical warning
+  medicalBody: This guide does not replace professional medical or psychiatric
+    care. In case of loss of consciousness, a severe seizure, breathing
+    difficulty or serious harm, call your local emergency number immediately.
+  medicalMore: More details
+  quickTipTitle: 'First rule'
+  quickTipBody: Stay calm yourself. Your child mirrors your emotional state.
+    Take a deep breath and move slowly.
+  afterTitle: After the crisis — recovery time
+  afterItems:
+    - Stay quietly with your child in a calm setting; do not push them to talk.
+    - Let them feel loved and safe.
+    - Note the triggers (date, time, setting, what happened before).
+    - Tell your expert team about the crisis.
+    - Make time for yourself too — caregivers get tired as well.
   cards:
     meltdown:
       title: Crisis / Meltdown
@@ -1061,6 +1749,10 @@ calendar:
   delete: Delete
 
 emergency:
+  listen: Read aloud
+  listenStop: Stop reading
+  listenUnknown: not specified
+  listenFailed: Text-to-speech could not start on this device.
   title: Emergency Card
   subtitle: Information to show to anyone who meets your child in an emergency.
   noChild: Add a child first to create an emergency card.
@@ -1068,6 +1760,22 @@ emergency:
   notSaved: This card has not been saved yet.
   save: Save
   saved: Emergency card saved.
+  shareTitle: Share with a QR code
+  shareBody: Create a time-limited link; a teacher or paramedic can open the card from it. You can revoke the link at any time.
+  shareConsentRequired: Sharing requires the "Emergency card sharing" consent.
+  shareOpenConsents: Open consent settings
+  shareDuration: Validity period
+  share24h: Valid for 24 hours
+  share3d: Valid for 3 days
+  share1w: Valid for 1 week
+  share30d: Valid for 30 days
+  shareEnable: Create share link
+  shareDisable: Turn sharing off
+  shareValidUntil: The link is valid until $date.
+  shareCopy: Copy link
+  shareCopied: Link copied.
+  shareSend: Share
+  shareMessage: "You can view my child's emergency card here:"
   call: Call
   sectionChild: Child Information
   sectionContacts: Emergency Contacts
@@ -1153,6 +1861,51 @@ analytics:
   behaviorUnit: entries per month
   noData: No data in this range yet.
   noChild: Add a child first to see the development panel.
+  aiTitle: AI analysis
+  aiSubtitle: Summarises patterns in your child's records; it does not diagnose.
+  aiTypeGeneral: General
+  aiTypeBehavioral: Behaviour
+  aiTypeProgress: Progress
+  aiTypeWeekly: Weekly
+  aiStart: Start the $type analysis
+  aiRunning: Preparing the analysis…
+  aiError: The analysis could not be fetched. Please try again.
+  aiDisclaimer: This summary is informational; it is not a medical diagnosis or treatment advice.
+  aiConsentTitle: AI analysis needs your consent
+  aiConsentBody: Analysing your child's records requires explicit consent. You can grant it on the privacy and consents page.
+  aiConsentAction: Manage consents
+  rangeDays: Last $count days
+  scoreTitle: Tracking score
+  scoreCoverage: Records in $count of $total data types
+  scoreStrong: Strong tracking
+  scoreGrowing: Tracking is growing
+  scoreWaiting: Waiting for data
+  actionsTitle: Missing data
+  actionMood: Add a mood entry
+  actionSleep: Add a sleep entry
+  actionNote: Write a development note
+  actionMilestone: Add a milestone
+  insightMoodHigh: Average mood over the last $days days is $value/5 — quite high.
+  insightMoodLow: Average mood over the last $days days is $value/5 — there may be some difficulties.
+  insightSleepShort: Average sleep is $value — 8-10 hours is recommended for enough rest.
+  insightSleepGood: 'Sleep looks good: $value on average.'
+  insightMilestones: Most milestones are in "$category" ($count of them).
+  insightAppointments: $count appointments completed.
+  insightAppointmentsWithPending: $count appointments completed, $pending still active.
+  dailyMood: Mood trend
+  dailyMoodUnit: daily entry (1-5)
+  dailySleep: Sleep pattern
+  dailySleepUnit: nightly duration (hours)
+  dailySleepQuality: quality (1-5)
+  behaviorCategories: Behaviour categories
+  behaviorCategoriesUnit: entry count and average intensity
+  milestoneCategories: Milestones
+  milestoneCategoriesUnit: achievements by category
+  notesActivity: Note activity
+  notesActivityUnit: notes per month
+  countWithIntensity: $count · avg $intensity
+  exportCsv: Share as CSV
+  exportEmpty: Nothing to share yet.
 
 children:
   title: My Children
@@ -1185,6 +1938,7 @@ children:
   deleted: Child profile deleted.
 
 account:
+  photoUpdated: Profile photo updated.
   title: Account Information
   emailLabel: Email
   fullNameLabel: Full Name
@@ -1216,7 +1970,7 @@ profile:
   defaultUser: User
   accountInfo: Account Information
   myChildren: My Children
-  notificationSettings: Notification Settings
+  showAllSections: Show all sections
   help: Help
   signOut: Sign Out
 
@@ -1229,3 +1983,327 @@ errors:
   unexpectedResponse: Unexpected server response.
   operationFailed: Operation failed.
   noUserInResponse: No user information in the server response.
+  tooManyRequests: Too many attempts. Please wait a moment and try again.
+  retryInSeconds: You can try again in $count seconds.
+  uploadTooLarge: The file is too large (max $limit MB).
+  uploadTypeNotSupported: This file type is not supported. You can upload JPG,
+    PNG, WEBP, GIF, PDF and TXT files.
+  uploadEmptyFile: The file is empty or could not be read.
+  invalidEmail: Enter a valid email address.
+
+guide:
+  title: User Guide
+  subtitle: See your first steps, what each section does and the support
+    channels — all in one place.
+  searchHint: Search for a section, topic or action…
+  countLabel: $visible / $total sections
+  searchEmpty: No section matches your search.
+  startTitle: Where to start?
+  startSubtitle: Work through them in order; each step opens the related
+    section.
+  sectionsTitle: What is each section for?
+  sectionsSubtitle: Pick a category to see the sections it contains.
+  purposeLabel: What is it for?
+  whenLabel: When to use it
+  openPage: Open
+  videosTitle: Tutorial videos
+  videosSubtitle: Short walkthroughs. Videos play in the web version; tapping
+    one opens it in your browser.
+  videoWatch: Watch
+  videoWatched: Watched
+  videoMarkWatched: Mark as watched
+  videoProgress: $done / $total videos watched
+  videoOpenError: The video link could not be opened.
+  videoCategoryStart: Getting started
+  videoCategoryChild: Child and development
+  videoCategoryTracking: Daily tracking
+  videoCategoryPlan: Plans and appointments
+  videoCategoryCommunity: Communication and community
+  videoCategorySupport: Safety and support
+  badgeDaily: Every day
+  badgeQuickLog: Quick log
+  badgeQuickHelp: Quick help
+  badgeFirstStep: First step
+  badgeSetup: First setup
+  badgeRoutine: Daily routine
+  badgeClinical: Clinical support
+  badgePrivacy: Privacy
+  badgeCalendar: Calendar
+  badgeCommunication: Communication
+  badgeProfile: Profile
+  groupDaily: Daily
+  groupDailyDesc: The home, tracking and quick-support sections you will use
+    every day.
+  groupChild: My child
+  groupChildDesc: Your child's development, profile details, exercises and
+    special-situation records.
+  groupCommunity: Community
+  groupCommunityDesc: Sharing experiences, the forum, local meetups and
+    contact with other families.
+  groupExpertWork: Workspace
+  groupExpertWorkDesc: Appointment, communication and professional resource
+    sections.
+  startChild: Create your child's profile
+  startChildDesc: Enter the basics, diagnosis notes and needs so there is a
+    child to track.
+  startTracker: Add your first daily record
+  startTrackerDesc: Keep sleep, mood, medication and observations organised
+    with short entries.
+  startAppointment: Book an appointment with an expert
+  startAppointmentDesc: Pick a suitable expert, request an appointment and
+    follow the session flow.
+  startPrivacy: Review your sharing consents
+  startPrivacyDesc: Manage which data is processed for which purpose from the
+    consent screen.
+  startExpertCalendar: Manage appointments
+  startExpertCalendarDesc: Approve requests, complete sessions and keep
+    families informed.
+  startExpertMessages: Reach out to families
+  startExpertMessagesDesc: Answer questions through secure messaging and keep
+    the follow-up going.
+  startExpertProfile: Complete your expert profile
+  startExpertProfileDesc: Keep your title, specialisations and contact details
+    up to date.
+  pageHome: Home
+  pageHomePurpose: Shows today's to-dos, reminders and the short daily plan in
+    one place.
+  pageHomeWhen: Every time you open the app and want to know what today holds.
+  pageHomeKeywords: home, start, task, today, dashboard
+  pageTracker: Daily Tracking
+  pageTrackerPurpose: Used to record mood, sleep, medication and short daily
+    observations.
+  pageTrackerWhen: At the end of the day or when something notable changes.
+  pageTrackerKeywords: daily, mood, sleep, medication, record
+  pageMessages: Messages
+  pageMessagesPurpose: A secure space to write to experts and other people on
+    the platform.
+  pageMessagesWhen: When you want to message about an appointment, a question
+    or a follow-up.
+  pageMessagesKeywords: message, chat, contact, expert
+  pageAppointments: Appointments
+  pageAppointmentsPurpose: Manages appointment requests, session times and the
+    meeting flow.
+  pageAppointmentsWhen: When planning a session or checking upcoming
+    appointments.
+  pageAppointmentsKeywords: appointment, calendar, session, doctor, therapy
+  pageCrisis: What to do in hard moments
+  pageCrisisPurpose: Quickly shows calming and intervention steps for
+    difficult moments.
+  pageCrisisWhen: During a crisis, intense stress or when you need fast
+    guidance.
+  pageCrisisKeywords: crisis, hard moment, calming, emergency, breathing
+  pageAssistant: AI Assistant
+  pageAssistantPurpose: A chat assistant that answers instantly; it does not
+    give medical advice, it points you in the right direction.
+  pageAssistantWhen: When you want a quick answer to something on your mind.
+  pageAssistantKeywords: assistant, chat, ai, question, bot
+  pageSettings: Settings
+  pageSettingsPurpose: Manages notification, privacy and accessibility
+    preferences, theme and language, your password and your account.
+  pageSettingsWhen: When you want to tailor the app or manage your data.
+  pageSettingsKeywords: settings, notification, privacy, password, theme,
+    language, accessibility
+  pageHelp: Help
+  pageHelpPurpose: Short information about the app, usage tips and contact
+    channels.
+  pageHelpWhen: When you cannot work out how a feature behaves.
+  pageHelpKeywords: help, support, faq, contact
+  pageChildren: My Children
+  pageChildrenPurpose: Keeps your child's basics, diagnosis notes, therapy and
+    needs.
+  pageChildrenWhen: During first setup or when child details change.
+  pageChildrenKeywords: child, profile, diagnosis, therapy, milestone
+  pageAnalytics: Progress Dashboard
+  pageAnalyticsPurpose: Turns daily records into charts and monthly trends.
+  pageAnalyticsWhen: When you want the bigger picture rather than single
+    entries.
+  pageAnalyticsKeywords: progress, chart, analysis, trend, development
+  pageTreatment: Support Plan
+  pageTreatmentPurpose: Collects small goals, home practice, games and the
+    daily support flow.
+  pageTreatmentWhen: When looking for a short activity or goal to try at home
+    today.
+  pageTreatmentKeywords: treatment, plan, goal, activity, game, home practice
+  pageTasks: My Tasks
+  pageTasksPurpose: Shows the tasks your expert assigned, the daily exercise
+    wizard and submission status.
+  pageTasksWhen: When following up on work given after a session.
+  pageTasksKeywords: task, homework, exercise, expert, submission
+  pageNotes: My Notes
+  pageNotesPurpose: Stores behaviour, development, meeting or noteworthy
+    events as free-form notes.
+  pageNotesWhen: For short observations you want to share with your expert or
+    remember later.
+  pageNotesKeywords: note, observation, development, behaviour, reminder
+  pageBehavior: Behaviour Log
+  pageBehaviorPurpose: Records what happened before, during and after a
+    behaviour (ABC) so patterns become visible.
+  pageBehaviorWhen: When you want to understand why a behaviour repeats.
+  pageBehaviorKeywords: behaviour, abc, antecedent, consequence, pattern,
+    trigger
+  pageEmergency: Emergency Card
+  pageEmergencyPurpose: Keeps the essential child information ready to share,
+    via a time-limited link and QR code.
+  pageEmergencyWhen: When you may need to share key information quickly
+    outside, at school or in an emergency.
+  pageEmergencyKeywords: emergency, card, safety, qr, sharing
+  pageCalendar: Calendar
+  pageCalendarPurpose: Keeps appointments, school, events and reminders on a
+    dated agenda.
+  pageCalendarWhen: When you do not want to forget upcoming plans.
+  pageCalendarKeywords: calendar, event, reminder, plan
+  pageRoutines: Routines
+  pageRoutinesPurpose: Helps you follow daily routines step by step, visually.
+  pageRoutinesWhen: When you want to picture the morning, school, sleep or
+    transition routine.
+  pageRoutinesKeywords: routine, schedule, step, visual, transition
+  pageForum: Community Forum
+  pageForumPurpose: A shared discussion space where parents and experts ask
+    questions and share experience.
+  pageForumWhen: When you want to ask the community about something.
+  pageForumKeywords: forum, question, answer, community, experience
+  pageWall: Support Wall
+  pageWallPurpose: A freer support space for feelings and experiences — you
+    can stay anonymous.
+  pageWallWhen: When you would rather open up than ask a question.
+  pageWallKeywords: support wall, feeling, sharing, support, anonymous
+  pageMeetups: Local Meetups
+  pageMeetupsPurpose: Lets you meet families in your city in real life.
+  pageMeetupsWhen: When you want to plan a face-to-face event nearby.
+  pageMeetupsKeywords: meetup, event, city, meeting, local
+  pageWeekly: Question of the Week
+  pageWeeklyPurpose: Lists families' answers to one shared topic each week.
+  pageWeeklyWhen: When you want to see what other families think or share your
+    own experience.
+  pageWeeklyKeywords: weekly question, community, experience, sharing
+  pageSimilar: Similar Families
+  pageSimilarPurpose: Introduces you to families going through a similar
+    process in terms of age and needs.
+  pageSimilarWhen: When you want to find the families you have most in common
+    with.
+  pageSimilarKeywords: similar families, matching, peer, meeting
+  pageGroups: Support Groups
+  pageGroupsPurpose: Lets you join category-based family and expert
+    communities and their group chats.
+  pageGroupsWhen: When you are looking for a community focused on similar
+    needs or age groups.
+  pageGroupsKeywords: group, community, chat, join
+  pageKnowledge: Knowledge Base
+  pageKnowledgePurpose: Collects trustworthy articles and resources.
+  pageKnowledgeWhen: When you want to read or learn about a topic calmly.
+  pageKnowledgeKeywords: knowledge, article, guide, resource, learning
+  pageExpertAppointments: My Appointments
+  pageExpertAppointmentsPurpose: Approve incoming requests, complete sessions
+    and handle reschedule requests.
+  pageExpertAppointmentsWhen: While planning your day and closing records
+    after a session.
+  pageExpertMessagesPurpose: A secure space to write to families; task
+    feedback also goes through here.
+  pageExpertMessagesWhen: When you want to get back to a family or ask a
+    follow-up question.
+  pageExpertForumPurpose: As an expert you can answer questions and share
+    verified information.
+  pageExpertForumWhen: When you want to contribute professionally to the
+    community.
+  video01: Platform Overview
+  video01Desc: A short tour of the main sections, the role-based menu and the
+    safe-use tools.
+  video02: Parent Quick Start
+  video02Desc: Follow the basic flow from signing in to creating a child
+    profile and the first daily record.
+  video03: Using the User Guide
+  video03Desc: Learn how to find the feature you need through search,
+    categories and role-based guidance.
+  video04: Home and Navigation
+  video04Desc: Read the daily summaries and reach any section through the menu
+    and quick links.
+  video05: Child Profile
+  video05Desc: Create a child profile and keep the basics, diagnosis notes,
+    needs and access details up to date.
+  video06: Daily Mood and Sleep Tracking
+  video06Desc: Add mood, sleep and behaviour records in a few steps and review
+    the history.
+  video07: Medication Tracking
+  video07Desc: Save the medication plan, follow doses and times, and check
+    past records safely.
+  video08: Progress Dashboard
+  video08Desc: See how daily records turn into charts and interpret trends and
+    development summaries.
+  video09: Goals and Exercises
+  video09Desc: View goals suited to your child, run the home exercises and
+    track completion.
+  video10: Tasks and Routines
+  video10Desc: Follow the tasks your expert assigned and plan morning, school
+    or sleep routines step by step.
+  video11: Notes, Calendar and Emergency Card
+  video11Desc: Write down observations, plan important dates and keep the
+    emergency card ready to share.
+  video12: Finding an Expert and Booking
+  video12Desc: Filter experts, compare profiles, choose the right person and
+    manage the appointment flow.
+  video13: Messages, Privacy and Settings
+  video13Desc: Use secure messaging and manage profile, notification, password
+    and data-sharing preferences.
+  video14: Community, Forum and Meetups
+  video14Desc: Ask questions on the forum, read family experiences and
+    discover safe community meetups.
+  video15: Knowledge Base, Crisis and Help
+  video15Desc: Find trustworthy content, reach the crisis steps for hard
+    moments and use the help channels.
+
+community:
+  title: Community
+  badge: Moderated, safe contact
+  intro: Find families going through the same process, message them first and
+    join groups and meetups when you are ready.
+  areasTitle: What would you like to do?
+  areasSubtitle: Every community space lives in this hub.
+  safetyTitle: Meeting safely
+  safetyBody: Keep the first conversation inside the app. You do not have to
+    share your phone number, home address or your child's private details. You
+    can block or report anyone who makes you uncomfortable.
+  similarText: See shared experiences and match reasons, then start a safe
+    introduction.
+  messagesText: Continue your conversations with families and experts in one
+    place.
+  groupsText: Join communities focused on similar needs and age groups.
+  meetupsText: Discover safe meetups in your city.
+  forumText: Ask the community and read answers from families and experts.
+  wallText: Share how you feel without judgement; stay anonymous if you like.
+  weeklyText: Join short experience threads around a single topic.
+
+reviews:
+  title: Reviews ($count)
+  empty: No reviews for this expert yet.
+  write: Write a review
+  edit: Edit my review
+  ratingLabel: Your rating
+  commentHint: Briefly describe your experience (optional)…
+  save: Save
+  delete: Delete
+  deleteTitle: Delete review
+  deleteConfirm: Are you sure you want to delete this review?
+  someone: A parent
+
+expertAccess:
+  title: Expert Access
+  intro: Experts can only see your child's development data once you approve
+    them. You can withdraw access at any time.
+  pendingTitle: Pending requests
+  noPending: There are no pending expert access requests.
+  activeTitle: Experts with access
+  noActive: You have not granted access to any expert yet.
+  requestLine: Requests access to your child $child's profile.
+  activeLine: Can access your child $child's profile.
+  requestedAt: 'Requested on: $date'
+  unknownExpert: Expert
+  approve: Approve
+  reject: Reject
+  revoke: Remove access
+  approved: Expert access request approved.
+  rejected: Expert access request rejected.
+  revoked: The expert's access has been removed.
+  revokeTitle: Remove access
+  revokeConfirm: Are you sure you want to remove this expert's access to your
+    child's data?
+  pendingBanner: $count expert access request(s) waiting for your approval

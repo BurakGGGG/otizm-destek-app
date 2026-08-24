@@ -1,17 +1,23 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/util/input_rules.dart';
 import '../../../i18n/strings.g.dart';
 import '../domain/app_user.dart';
+import '../domain/login_throttle.dart';
 import 'auth_controller.dart';
 
 /// Giriş ekranı — Stitch "Giriş Yap" tasarımı.
 ///
-/// Faz 2'de gerçek Firebase Auth (e-posta/şifre + Google) bağlanacak.
-/// Şu an butonlar akışı doğrulamak için geçici [AuthController.devSignIn] çağırır.
+/// Kimlik backend'in JWT'siyle kurulur. Art arda başarısız denemede cihazda
+/// bekleme uygulanır (bkz. [LoginThrottle]); sunucu tarafındaki asıl sınır
+/// `/api/auth/login` üzerindeki 429 kuralıdır.
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
 
@@ -23,13 +29,34 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   final _email = TextEditingController();
   final _password = TextEditingController();
   bool _obscure = true;
-  bool _rememberMe = false;
+  /// Varsayılan açık: bugüne kadarki davranış oturumu saklıyordu.
+  bool _rememberMe = true;
+
+  /// Art arda başarısız giriş sayısı ve kalan bekleme (saniye).
+  int _failedAttempts = 0;
+  int _cooldownLeft = 0;
+  Timer? _cooldownTimer;
 
   @override
   void dispose() {
+    _cooldownTimer?.cancel();
     _email.dispose();
     _password.dispose();
     super.dispose();
+  }
+
+  /// Geri sayımı başlatır; süre dolunca düğme yeniden açılır.
+  void _startCooldown(Duration wait) {
+    _cooldownTimer?.cancel();
+    setState(() => _cooldownLeft = wait.inSeconds);
+    _cooldownTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (!mounted) {
+        timer.cancel();
+        return;
+      }
+      setState(() => _cooldownLeft--);
+      if (_cooldownLeft <= 0) timer.cancel();
+    });
   }
 
   @override
@@ -79,28 +106,48 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         style: text.bodySmall,
                       ),
                       const SizedBox(height: 24),
-                      _Field(
-                        label: t.auth.emailLabel,
-                        controller: _email,
-                        hint: t.auth.emailHint,
-                        icon: Icons.mail_outline,
-                        keyboardType: TextInputType.emailAddress,
-                      ),
-                      const SizedBox(height: 16),
-                      _Field(
-                        label: t.auth.passwordLabel,
-                        controller: _password,
-                        hint: t.auth.passwordHint,
-                        icon: Icons.lock_outline,
-                        obscure: _obscure,
-                        trailing: IconButton(
-                          onPressed: () => setState(() => _obscure = !_obscure),
-                          icon: Icon(
-                            _obscure
-                                ? Icons.visibility_outlined
-                                : Icons.visibility_off_outlined,
-                            color: context.colors.textTertiary,
-                          ),
+                      // İki alan aynı autofill grubunda: şifre yöneticisi
+                      // ikisini birlikte doldurup kaydedebilsin.
+                      AutofillGroup(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            _Field(
+                              label: t.auth.emailLabel,
+                              controller: _email,
+                              hint: t.auth.emailHint,
+                              icon: Icons.mail_outline,
+                              keyboardType: TextInputType.emailAddress,
+                              autofillHints: const [AutofillHints.username],
+                              textInputAction: TextInputAction.next,
+                            ),
+                            const SizedBox(height: 16),
+                            _Field(
+                              label: t.auth.passwordLabel,
+                              controller: _password,
+                              hint: t.auth.passwordHint,
+                              icon: Icons.lock_outline,
+                              obscure: _obscure,
+                              autofillHints: const [AutofillHints.password],
+                              // Klavyedeki "bitti" doğrudan giriş yapsın.
+                              textInputAction: TextInputAction.done,
+                              onSubmitted:
+                                  isBusy || _cooldownLeft > 0 ? null : _onLogin,
+                              trailing: IconButton(
+                                tooltip: _obscure
+                                    ? t.common.a11y.showPassword
+                                    : t.common.a11y.hidePassword,
+                                onPressed: () =>
+                                    setState(() => _obscure = !_obscure),
+                                icon: Icon(
+                                  _obscure
+                                      ? Icons.visibility_outlined
+                                      : Icons.visibility_off_outlined,
+                                  color: context.colors.textTertiary,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       const SizedBox(height: 8),
@@ -137,7 +184,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       ),
                       const SizedBox(height: 8),
                       FilledButton(
-                        onPressed: isBusy ? null : _onLogin,
+                        // Bekleme sırasında düğme kapalı ve kalan süreyi yazar.
+                        onPressed: isBusy || _cooldownLeft > 0
+                            ? null
+                            : _onLogin,
                         child: isBusy
                             ? const SizedBox(
                                 height: 22,
@@ -146,7 +196,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                   strokeWidth: 2,
                                 ),
                               )
-                            : Text(t.auth.loginButton),
+                            : Text(
+                                _cooldownLeft > 0
+                                    ? t.errors.retryInSeconds(
+                                        count: _cooldownLeft,
+                                      )
+                                    : t.auth.loginButton,
+                              ),
                       ),
                       const SizedBox(height: 20),
                       Row(
@@ -190,17 +246,66 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   }
 
   Future<void> _onLogin() async {
+    final t = context.t;
+    if (_cooldownLeft > 0) {
+      _showError(t.errors.retryInSeconds(count: _cooldownLeft));
+      return;
+    }
     final email = _email.text.trim();
     final password = _password.text;
     if (email.isEmpty || password.isEmpty) {
-      _showError(context.t.auth.errorEmptyFields);
+      _showError(t.auth.errorEmptyFields);
       return;
     }
-    final error = await ref
+    if (!isValidEmail(email)) {
+      _showError(t.errors.invalidEmail);
+      return;
+    }
+    final failure = await ref
         .read(authControllerProvider.notifier)
-        .signIn(email, password);
-    if (error != null) _showError(error);
-    // Başarılıysa router otomatik ana sayfaya yönlendirir.
+        .signIn(email, password, rememberMe: _rememberMe);
+    if (failure == null) {
+      _failedAttempts = 0;
+      // Şifre yöneticisine "kaydedeyim mi?" istemini tetikler.
+      TextInput.finishAutofillContext();
+      return; // router otomatik ana sayfaya yönlendirir
+    }
+    if (!mounted) return;
+
+    // Art arda başarısız denemede cihaz tarafında bekleme uygula; sunucu
+    // 429 döndüyse doğrudan sunucu penceresi kadar bekle.
+    _failedAttempts++;
+    final wait = failure.isRateLimited
+        ? LoginThrottle.rateLimited
+        : LoginThrottle.cooldownAfter(_failedAttempts);
+    if (wait > Duration.zero) _startCooldown(wait);
+
+    final error = failure.message;
+    // Backend doğrulanmamış e-postada girişi engelliyor ("Giriş yapmadan önce
+    // e-posta adresinizi doğrulayın"); kullanıcıyı çıkmaz sokakta bırakmamak
+    // için doğrulama ekranına kısayol sun.
+    if (_isEmailVerificationError(error)) {
+      _showError(
+        error,
+        action: SnackBarAction(
+          label: context.t.auth.resendVerification,
+          onPressed: () => context.go(
+            Uri(
+              path: '/verify-email',
+              queryParameters: {'email': email},
+            ).toString(),
+          ),
+        ),
+      );
+      return;
+    }
+    _showError(error);
+  }
+
+  /// Backend mesajları her zaman Türkçe döner (uygulama diline bakmaz).
+  bool _isEmailVerificationError(String message) {
+    final lower = message.toLowerCase();
+    return lower.contains('doğrula') && lower.contains('e-posta');
   }
 
   void _onRegister(UserRole role) {
@@ -208,11 +313,17 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     context.go('/register$query');
   }
 
-  void _showError(String message) {
+  void _showError(String message, {SnackBarAction? action}) {
     if (!mounted) return;
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text(message)));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        action: action,
+        duration: action == null
+            ? const Duration(seconds: 4)
+            : const Duration(seconds: 8),
+      ),
+    );
   }
 }
 
@@ -225,6 +336,9 @@ class _Field extends StatelessWidget {
     this.hint,
     this.obscure = false,
     this.keyboardType,
+    this.autofillHints,
+    this.textInputAction,
+    this.onSubmitted,
     this.trailing,
   });
 
@@ -234,6 +348,9 @@ class _Field extends StatelessWidget {
   final String? hint;
   final bool obscure;
   final TextInputType? keyboardType;
+  final List<String>? autofillHints;
+  final TextInputAction? textInputAction;
+  final VoidCallback? onSubmitted;
   final Widget? trailing;
 
   @override
@@ -247,6 +364,9 @@ class _Field extends StatelessWidget {
           controller: controller,
           obscureText: obscure,
           keyboardType: keyboardType,
+          autofillHints: autofillHints,
+          textInputAction: textInputAction,
+          onSubmitted: onSubmitted == null ? null : (_) => onSubmitted!(),
           decoration: InputDecoration(
             hintText: hint,
             prefixIcon: Icon(icon, color: context.colors.textTertiary),

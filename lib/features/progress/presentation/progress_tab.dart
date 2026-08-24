@@ -155,24 +155,30 @@ class _QuickLinks extends StatelessWidget {
     final t = context.t;
     return Column(
       children: [
-        Row(
-          children: [
-            Expanded(
-              child: _QuickLinkCard(
-                icon: Icons.mood_outlined,
-                label: t.dailyTracker.title,
-                onTap: () => context.push('/daily-tracker'),
+        // İki kart aynı yükseklikte dursun: etiketi iki satıra sığan kart
+        // (ör. "Gelişim Paneli") diğerini de büyütür. Satırın yüksekliği
+        // yukarıdan sınırlı olmadığı için stretch tek başına yetmiyor.
+        IntrinsicHeight(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Expanded(
+                child: _QuickLinkCard(
+                  icon: Icons.mood_outlined,
+                  label: t.dailyTracker.title,
+                  onTap: () => context.push('/daily-tracker'),
+                ),
               ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: _QuickLinkCard(
-                icon: Icons.insights_outlined,
-                label: t.analytics.title,
-                onTap: () => context.push('/analytics'),
+              const SizedBox(width: 12),
+              Expanded(
+                child: _QuickLinkCard(
+                  icon: Icons.insights_outlined,
+                  label: t.analytics.title,
+                  onTap: () => context.push('/analytics'),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
         const SizedBox(height: 12),
         _QuickLinkCard(
@@ -207,17 +213,19 @@ class _QuickLinkCard extends StatelessWidget {
           padding:
               const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Icon(icon, size: 22, color: context.colors.primary),
               const SizedBox(width: 10),
               Expanded(
                 child: Text(
                   label,
-                  maxLines: 1,
+                  maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
               ),
+              const SizedBox(width: 4),
               Icon(Icons.chevron_right,
                   size: 18, color: context.colors.textTertiary),
             ],
@@ -418,6 +426,7 @@ class _GoalCardState extends ConsumerState<_GoalCard> {
                   )
                 else
                   FilledButton.tonalIcon(
+                    style: AppButtonStyles.inlineTonal(context),
                     onPressed: _busy
                         ? null
                         : () => _mutate((repo) => repo.addToken(goal)),
@@ -518,6 +527,7 @@ class _NoteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mood = noteMoodDisplay(context.t, note.mood);
     final t = context.t;
     final text = Theme.of(context).textTheme;
     final date = note.noteDate;
@@ -547,8 +557,7 @@ class _NoteCard extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ],
-            if ((note.category?.isNotEmpty ?? false) ||
-                (note.mood?.isNotEmpty ?? false)) ...[
+            if ((note.category?.isNotEmpty ?? false) || mood != null) ...[
               const SizedBox(height: 8),
               Row(
                 children: [
@@ -562,8 +571,13 @@ class _NoteCard extends StatelessWidget {
                       ),
                     ),
                   const Spacer(),
-                  if (note.mood?.isNotEmpty ?? false)
-                    Text(note.mood!, style: text.bodySmall),
+                  // Ruh hâli kodu (happy/neutral/sad) veridir; ekranda
+                  // emoji + yerelleştirilmiş etiketle gösterilir.
+                  if (mood != null)
+                    Text(
+                      '${mood.emoji} ${mood.label}',
+                      style: text.bodySmall,
+                    ),
                 ],
               ),
             ],

@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../core/haptics.dart';
+import '../../../core/network/api_exception.dart';
+import '../../../core/network/upload_repository.dart';
+import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/widgets/user_avatar.dart';
 import '../../../i18n/strings.g.dart';
 import '../../auth/domain/app_user.dart';
 import '../../auth/presentation/auth_controller.dart';
@@ -25,6 +30,7 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
   late final TextEditingController _bio;
 
   bool _saving = false;
+  bool _uploadingPhoto = false;
   String? _fullNameError;
 
   @override
@@ -50,6 +56,41 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
     _licenseNumber.dispose();
     _bio.dispose();
     super.dispose();
+  }
+
+  /// Profil fotoğrafını galeriden seçip yükler (web Ayarlar'daki akış).
+  Future<void> _changePhoto() async {
+    final t = context.t;
+    final picked = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+      maxWidth: 1024,
+      imageQuality: 85,
+    );
+    if (picked == null || !mounted) return;
+    setState(() => _uploadingPhoto = true);
+    final messenger = ScaffoldMessenger.of(context);
+    try {
+      final url = await ref.read(uploadRepositoryProvider).upload(
+            picked.path,
+            picked.name,
+            visibility: 'AUTHENTICATED',
+          );
+      final error = await ref
+          .read(authControllerProvider.notifier)
+          .updateProfile(profileImageUrl: url);
+      if (!mounted) return;
+      setState(() => _uploadingPhoto = false);
+      if (error != null) {
+        messenger.showSnackBar(SnackBar(content: Text(error)));
+        return;
+      }
+      Haptics.success();
+      messenger.showSnackBar(SnackBar(content: Text(t.account.photoUpdated)));
+    } on ApiException catch (e) {
+      if (!mounted) return;
+      setState(() => _uploadingPhoto = false);
+      messenger.showSnackBar(SnackBar(content: Text(e.message)));
+    }
   }
 
   Future<void> _save() async {
@@ -101,6 +142,44 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
         child: ListView(
           padding: const EdgeInsets.all(AppSpacing.margin),
           children: [
+            Center(
+              child: Stack(
+                alignment: Alignment.bottomRight,
+                children: [
+                  UserAvatar(
+                    name: user?.fullName ?? '',
+                    imageUrl: user?.profileImageUrl,
+                    radius: 40,
+                  ),
+                  Material(
+                    color: context.colors.primary,
+                    shape: const CircleBorder(),
+                    child: InkWell(
+                      customBorder: const CircleBorder(),
+                      onTap: _uploadingPhoto ? null : _changePhoto,
+                      child: Padding(
+                        padding: const EdgeInsets.all(6),
+                        child: _uploadingPhoto
+                            ? const SizedBox(
+                                width: 16,
+                                height: 16,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  color: Colors.white,
+                                ),
+                              )
+                            : const Icon(
+                                Icons.photo_camera_outlined,
+                                size: 16,
+                                color: Colors.white,
+                              ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
             // E-posta (salt okunur) — TextFormField kendi controller'ını yönetir.
             TextFormField(
               initialValue: user?.email ?? '',

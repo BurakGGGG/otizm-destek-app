@@ -1,8 +1,9 @@
-/// Backend `ForumPostDto` / `ForumCommentDto` / `TagDto` karşılıkları —
-/// tam forum (web ForumPage). `postType` ve etiket kategori kodları backend
-/// enum'larıdır (etiketleri i18n'den gelir); etiket adları (`Tag.name`)
-/// paylaşılan VERİdir, çevrilmez.
+/// Backend `ForumPostDto` / `ForumCommentDto` karşılıkları — tam forum
+/// (web ForumPage). `postType` backend enum'ıdır (etiketi i18n'den gelir);
+/// etiket adları (`SymptomTag.name`) paylaşılan VERİdir, çevrilmez.
 library;
+
+import '../../tags/domain/symptom_tag.dart';
 
 /// Gönderi tipi kodları — web TABS birebir.
 const List<String> kForumPostTypes = [
@@ -12,36 +13,8 @@ const List<String> kForumPostTypes = [
   'BASARI_HIKAYESI',
 ];
 
-/// Etiket kategori kodları — web CATEGORY_LABELS anahtarları birebir.
-const List<String> kForumTagCategories = [
-  'ILETISIM',
-  'SOSYAL',
-  'DUYUSAL',
-  'DAVRANIS',
-  'MOTOR',
-  'EGITIM',
-];
-
 /// Sıralama kodları — backend `order` parametresi (web sortMode birebir).
 const List<String> kForumSortModes = ['new', 'hot', 'unanswered', 'expert'];
-
-class ForumTag {
-  const ForumTag({required this.id, required this.name, this.category});
-
-  final String id;
-
-  /// Semptom etiketi adı — paylaşılan veri, çevrilmez.
-  final String name;
-  final String? category;
-
-  factory ForumTag.fromJson(Map<String, dynamic> json) {
-    return ForumTag(
-      id: json['id']?.toString() ?? '',
-      name: json['name'] as String? ?? '',
-      category: json['category'] as String?,
-    );
-  }
-}
 
 class ForumPost {
   const ForumPost({
@@ -83,7 +56,7 @@ class ForumPost {
   final bool ownedByMe;
   final String? authorName;
   final String? authorRole;
-  final List<ForumTag> tags;
+  final List<SymptomTag> tags;
   final DateTime? createdAt;
 
   bool get isQuestion => postType == 'QUESTION';
@@ -140,7 +113,7 @@ class ForumPost {
       tags: tags is List
           ? tags
               .whereType<Map<String, dynamic>>()
-              .map(ForumTag.fromJson)
+              .map(SymptomTag.fromJson)
               .toList()
           : const [],
       createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? ''),

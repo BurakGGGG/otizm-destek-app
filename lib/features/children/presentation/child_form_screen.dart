@@ -5,6 +5,7 @@ import '../../../core/haptics.dart';
 import '../../../core/network/api_exception.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/widgets/unsaved_changes_guard.dart';
 import '../../../i18n/strings.g.dart';
 import '../data/child_repository.dart';
 import '../domain/child.dart';
@@ -31,6 +32,7 @@ class _ChildFormScreenState extends ConsumerState<ChildFormScreen> {
   String? _gender; // ERKEK | KIZ | null
   bool _saving = false;
   String? _nameError;
+  late final String _initial;
 
   @override
   void initState() {
@@ -42,6 +44,7 @@ class _ChildFormScreenState extends ConsumerState<ChildFormScreen> {
     _therapies = TextEditingController(text: c?.therapies ?? '');
     _birthDate = c?.birthDate;
     _gender = c?.gender;
+    _initial = _snapshot();
   }
 
   @override
@@ -108,8 +111,28 @@ class _ChildFormScreenState extends ConsumerState<ChildFormScreen> {
     }
   }
 
+  /// Form açıldığındaki hâlden farklı mı?
+  /// (Onaysız çıkışta veri kaybını engellemek için.)
+  bool get _isDirty => _snapshot() != _initial;
+
+  String _snapshot() => [
+        _name.text,
+        _diagnosis.text,
+        _education.text,
+        _therapies.text,
+        _birthDate?.toIso8601String() ?? '',
+        _gender ?? '',
+      ].join('\u0000');
+
   @override
   Widget build(BuildContext context) {
+    return UnsavedChangesGuard(
+      hasChanges: () => _isDirty,
+      child: _form(context),
+    );
+  }
+
+  Widget _form(BuildContext context) {
     final t = context.t;
     return Scaffold(
       appBar: AppBar(
@@ -239,7 +262,11 @@ class _DateField extends StatelessWidget {
         decoration: InputDecoration(
           labelText: label,
           suffixIcon: onClear != null
-              ? IconButton(icon: const Icon(Icons.clear), onPressed: onClear)
+              ? IconButton(
+                  tooltip: context.t.common.a11y.clearDate,
+                  icon: const Icon(Icons.clear),
+                  onPressed: onClear,
+                )
               : const Icon(Icons.calendar_today_outlined),
         ),
         child: Text(

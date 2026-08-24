@@ -3,31 +3,55 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/network/api_exception.dart';
 import '../../../core/network/api_response.dart';
+import '../../../core/network/auth_cookies.dart';
 import '../../../core/providers.dart';
 import '../../../i18n/strings.g.dart';
 import '../domain/app_user.dart';
 
-/// Başarılı kimlik doğrulama sonucu: kullanıcı + token çifti.
+/// Kimlik doğrulama yanıtı: kullanıcı + token çifti ya da bekleme durumu.
+///
+/// Backend her zaman oturum açmaz: e-posta doğrulaması istendiğinde ya da
+/// uzman hesabı yönetici onayı beklediğinde token'sız yanıt döner
+/// (`pendingEmailVerification` / `pendingApproval`).
 class AuthResult {
   const AuthResult({
     required this.user,
     required this.accessToken,
     required this.refreshToken,
+    this.pendingEmailVerification = false,
+    this.pendingApproval = false,
+    this.mfaRequired = false,
   });
 
   final AppUser user;
   final String accessToken;
   final String refreshToken;
+  final bool pendingEmailVerification;
+  final bool pendingApproval;
+  final bool mfaRequired;
 
-  factory AuthResult.fromData(Map<String, dynamic> data) {
+  /// Oturum açılabildi mi? (Token yoksa kullanıcı henüz giriş yapamaz.)
+  bool get hasSession => accessToken.isNotEmpty;
+
+  /// Yanıtı çözer. Refresh token gövdede yoksa `Set-Cookie` başlığından
+  /// okunur (backend onu yalnızca httpOnly çerezle döndürüyor).
+  factory AuthResult.fromResponse(Response<dynamic> res) {
+    final data = ApiEnvelope.fromJson(res.data).requireMap();
     final userJson = data['user'];
     if (userJson is! Map<String, dynamic>) {
       throw ApiException(t.errors.noUserInResponse);
     }
+    final bodyRefresh = data['refreshToken'] as String?;
     return AuthResult(
       user: AppUser.fromJson(userJson),
       accessToken: data['accessToken'] as String? ?? '',
-      refreshToken: data['refreshToken'] as String? ?? '',
+      refreshToken: (bodyRefresh != null && bodyRefresh.isNotEmpty)
+          ? bodyRefresh
+          : refreshTokenFromHeaders(res.headers) ?? '',
+      pendingEmailVerification:
+          data['pendingEmailVerification'] as bool? ?? false,
+      pendingApproval: data['pendingApproval'] as bool? ?? false,
+      mfaRequired: data['mfaRequired'] as bool? ?? false,
     );
   }
 }
@@ -47,7 +71,7 @@ class AuthRepository {
         data: {'email': email, 'password': password},
         options: _noAuth,
       );
-      return AuthResult.fromData(ApiEnvelope.fromJson(res.data).requireMap());
+      return AuthResult.fromResponse(res);
     } on DioException catch (e) {
       throw ApiException.fromDio(e);
     }
@@ -86,7 +110,7 @@ class AuthRepository {
         },
         options: _noAuth,
       );
-      return AuthResult.fromData(ApiEnvelope.fromJson(res.data).requireMap());
+      return AuthResult.fromResponse(res);
     } on DioException catch (e) {
       throw ApiException.fromDio(e);
     }
@@ -112,6 +136,13 @@ class AuthRepository {
     String? institution,
     String? licenseNumber,
     String? bio,
+    String? profileImageUrl,
+    bool? allowDirectMessages,
+    bool? allowFamilyMessages,
+    bool? hideOnlineStatus,
+    bool? approximateLocationOnly,
+    List<String>? communicationPreferences,
+    List<String>? supportIntents,
   }) async {
     try {
       final res = await _dio.put(
@@ -124,6 +155,13 @@ class AuthRepository {
           'institution': ?institution,
           'licenseNumber': ?licenseNumber,
           'bio': ?bio,
+          'profileImageUrl': ?profileImageUrl,
+          'allowDirectMessages': ?allowDirectMessages,
+          'allowFamilyMessages': ?allowFamilyMessages,
+          'hideOnlineStatus': ?hideOnlineStatus,
+          'approximateLocationOnly': ?approximateLocationOnly,
+          'communicationPreferences': ?communicationPreferences,
+          'supportIntents': ?supportIntents,
         },
       );
       return AppUser.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
@@ -158,6 +196,59 @@ class AuthRepository {
       );
     } on DioException catch (e) {
       throw ApiException.fromDio(e);
+    }
+  }
+
+  /// İlk giriş sihirbazını tamamlandı olarak işaretler
+  /// (`POST /users/me/onboarding-complete`) ve güncel kullanıcıyı döner.
+  Future<AppUser> completeOnboarding() async {
+    try {
+      final res = await _dio.post('/users/me/onboarding-complete');
+      return AppUser.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// E-postadaki doğrulama kodunu onaylar (`POST /auth/verify-email`).
+  Future<void> verifyEmail(String token) async {
+    try {
+      await _dio.post(
+        '/auth/verify-email',
+        data: {'token': token},
+        options: _noAuth,
+      );
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Doğrulama e-postasını yeniden gönderir (`POST /auth/resend-verification`).
+  /// Backend saatte 3 istekle sınırlar ve hesap yoksa da başarı döner.
+  Future<void> resendVerification(String email) async {
+    try {
+      await _dio.post(
+        '/auth/resend-verification',
+        data: {'email': email},
+        options: _noAuth,
+      );
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// E-posta adresi kayıt için uygun mu? (`GET /auth/check-email`)
+  /// Ağ hatasında kayıt akışını engellememek için `null` döner.
+  Future<bool?> isEmailAvailable(String email) async {
+    try {
+      final res = await _dio.get(
+        '/auth/check-email',
+        queryParameters: {'email': email},
+        options: _noAuth,
+      );
+      return ApiEnvelope.fromJson(res.data).requireMap()['available'] as bool?;
+    } on DioException catch (_) {
+      return null;
     }
   }
 

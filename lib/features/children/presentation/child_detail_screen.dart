@@ -5,18 +5,24 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../core/haptics.dart';
 import '../../../core/network/api_exception.dart';
+import '../../../core/network/media.dart';
+import '../../../core/network/upload_repository.dart';
+import '../../../core/providers.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/widgets/skeleton.dart';
 import '../../../i18n/strings.g.dart';
-import '../../forum/data/forum_repository.dart';
 import '../data/child_repository.dart';
 import '../data/milestone_repository.dart';
 import '../data/screening_repository.dart';
+import '../../behavior/data/abc_repository.dart';
+import '../../medications/data/medication_repository.dart';
 import '../domain/child.dart';
+import '../domain/medication_correlation.dart';
 import '../domain/milestone.dart';
 import 'child_form_screen.dart';
 import 'widgets/milestone_sheet.dart';
+import '../../tags/data/tag_repository.dart';
 
 /// Tarama risk kodunun i18n etiketi + rengi.
 ({String label, Color color}) screeningRisk(
@@ -57,9 +63,12 @@ class _ChildDetailScreenState extends ConsumerState<ChildDetailScreen> {
     if (picked == null || !mounted) return;
     setState(() => _uploadingPhoto = true);
     try {
-      final repo = ref.read(childRepositoryProvider);
-      final url = await repo.uploadImage(picked.path, picked.name);
-      await repo.updatePhoto(child, url);
+      final url = await ref.read(uploadRepositoryProvider).upload(
+            picked.path,
+            picked.name,
+            scope: UploadScope(type: 'CHILD_PROFILE', id: child.id),
+          );
+      await ref.read(childRepositoryProvider).updatePhoto(child, url);
       if (!mounted) return;
       setState(() => _uploadingPhoto = false);
       ref.invalidate(childProvider(widget.childId));
@@ -204,6 +213,8 @@ class _ChildDetailScreenState extends ConsumerState<ChildDetailScreen> {
                 const SizedBox(height: AppSpacing.md),
                 _ScreeningCard(childId: widget.childId),
                 const SizedBox(height: AppSpacing.md),
+                _CorrelationCard(childId: widget.childId),
+                const SizedBox(height: AppSpacing.md),
                 _ShortcutsCard(childName: child.name),
               ],
             ),
@@ -214,7 +225,7 @@ class _ChildDetailScreenState extends ConsumerState<ChildDetailScreen> {
   }
 }
 
-class _Header extends StatelessWidget {
+class _Header extends ConsumerWidget {
   const _Header({
     required this.child,
     required this.uploading,
@@ -226,11 +237,14 @@ class _Header extends StatelessWidget {
   final VoidCallback onChangePhoto;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t;
     final colors = context.colors;
     final text = Theme.of(context).textTheme;
-    final imageUrl = child.profileImageUrl;
+    final photo = mediaImageProvider(
+      child.profileImageUrl,
+      ref.watch(dioProvider),
+    );
     final age = child.ageYears;
 
     return Row(
@@ -240,10 +254,8 @@ class _Header extends StatelessWidget {
             CircleAvatar(
               radius: 36,
               backgroundColor: colors.primary.withValues(alpha: .12),
-              backgroundImage: imageUrl != null && imageUrl.isNotEmpty
-                  ? NetworkImage(imageUrl)
-                  : null,
-              child: imageUrl == null || imageUrl.isEmpty
+              backgroundImage: photo,
+              child: photo == null
                   ? Text(
                       child.name.isNotEmpty
                           ? child.name.characters.first.toUpperCase()
@@ -497,11 +509,13 @@ class _MilestonesCard extends ConsumerWidget {
                         ),
                       ),
                       IconButton(
+                        tooltip: context.t.common.a11y.edit,
                         icon: const Icon(Icons.edit_outlined, size: 15),
                         visualDensity: VisualDensity.compact,
                         onPressed: () => onEdit(milestone),
                       ),
                       IconButton(
+                        tooltip: context.t.common.a11y.delete,
                         icon: const Icon(Icons.delete_outline, size: 15),
                         visualDensity: VisualDensity.compact,
                         onPressed: () => onDelete(milestone),
@@ -582,6 +596,155 @@ class _ScreeningCard extends ConsumerWidget {
             ],
           );
         },
+      ),
+    );
+  }
+}
+
+/// İlaç uyumu ↔ davranış kaydı ilişkisi (web'deki korelasyon grafiği).
+///
+/// Telefonda alan grafiği yerine gün satırları: davranış sayısı, doz uyum
+/// çubuğu ve o günün yan etkileri. Veri yoksa bölüm hiç çizilmez.
+class _CorrelationCard extends ConsumerWidget {
+  const _CorrelationCard({required this.childId});
+
+  final String childId;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.t;
+    final text = Theme.of(context).textTheme;
+    final colors = context.colors;
+    final behaviors = ref.watch(abcEntriesProvider(childId)).asData?.value;
+    final logs = ref.watch(medicationLogsProvider(childId)).asData?.value;
+    if (behaviors == null || logs == null) return const SizedBox.shrink();
+
+    final days = buildMedicationCorrelation(
+      behaviors: behaviors,
+      logs: logs,
+    );
+    if (days.isEmpty) return const SizedBox.shrink();
+
+    // Telefonda son 14 gün yeter; en yeni üstte.
+    final visible = days.reversed.take(14).toList();
+    final maxBehavior = visible.fold<int>(
+      1,
+      (max, day) => day.behaviorCount > max ? day.behaviorCount : max,
+    );
+
+    return _SectionCard(
+      icon: Icons.monitor_heart_outlined,
+      title: t.childDetail.correlationTitle,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            t.childDetail.correlationHint,
+            style: text.labelSmall?.copyWith(color: colors.textTertiary),
+          ),
+          const SizedBox(height: 10),
+          for (final day in visible)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 54,
+                        child: Text(
+                          day.date.substring(5).replaceAll('-', '.'),
+                          style: text.labelSmall
+                              ?.copyWith(color: colors.textSecondary),
+                        ),
+                      ),
+                      Expanded(
+                        child: Row(
+                          children: [
+                            Icon(Icons.warning_amber_rounded,
+                                size: 13, color: colors.error),
+                            const SizedBox(width: 4),
+                            Expanded(
+                              child: ClipRRect(
+                                borderRadius:
+                                    BorderRadius.circular(AppRadius.full),
+                                child: LinearProgressIndicator(
+                                  value: day.behaviorCount / maxBehavior,
+                                  minHeight: 6,
+                                  backgroundColor: colors.surfaceVariant,
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    colors.error,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 22,
+                              child: Text(
+                                '${day.behaviorCount}',
+                                textAlign: TextAlign.end,
+                                style: text.labelSmall
+                                    ?.copyWith(color: colors.textTertiary),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      SizedBox(
+                        width: 54,
+                        child: Text(
+                          day.adherence == null
+                              ? t.childDetail.correlationNoDose
+                              : '%${day.adherence}',
+                          textAlign: TextAlign.end,
+                          style: text.labelSmall?.copyWith(
+                            color: day.adherence == null
+                                ? colors.textTertiary
+                                : colors.success,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  if (day.sideEffects.isNotEmpty)
+                    Padding(
+                      padding: const EdgeInsets.only(left: 54, top: 4),
+                      child: Wrap(
+                        spacing: 4,
+                        runSpacing: 4,
+                        children: [
+                          for (final effect in day.sideEffects)
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 6,
+                                vertical: 2,
+                              ),
+                              decoration: BoxDecoration(
+                                color: colors.warning.withValues(alpha: 0.14),
+                                borderRadius:
+                                    BorderRadius.circular(AppRadius.sm),
+                              ),
+                              child: Text(
+                                effect,
+                                style: text.labelSmall
+                                    ?.copyWith(color: colors.textSecondary),
+                              ),
+                            ),
+                        ],
+                      ),
+                    ),
+                ],
+              ),
+            ),
+          const SizedBox(height: 4),
+          Text(
+            t.childDetail.correlationLegend,
+            style: text.labelSmall?.copyWith(color: colors.textTertiary),
+          ),
+        ],
       ),
     );
   }
@@ -679,7 +842,7 @@ class _TagEditSheetState extends ConsumerState<_TagEditSheet> {
     final t = context.t;
     final colors = context.colors;
     final text = Theme.of(context).textTheme;
-    final tagsAsync = ref.watch(forumTagsProvider);
+    final tagsAsync = ref.watch(symptomTagsGroupedProvider);
 
     return Padding(
       padding: EdgeInsets.only(

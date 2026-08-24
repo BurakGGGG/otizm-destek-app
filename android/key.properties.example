@@ -1,0 +1,8 @@
+# Sürüm imzası için şablon. Kopyala: android/key.properties (depoya girmez).
+# Anahtar üretimi:
+#   keytool -genkey -v -keystore ~/otizm-destek-release.jks \
+#     -keyalg RSA -keysize 2048 -validity 10000 -alias otizmdestek
+storeFile=/home/kullanici/otizm-destek-release.jks
+storePassword=
+keyAlias=otizmdestek
+keyPassword=

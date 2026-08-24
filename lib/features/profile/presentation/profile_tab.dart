@@ -2,22 +2,111 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/settings/app_preferences.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
-import '../../../core/theme/theme_mode_provider.dart';
 import '../../../core/widgets/user_avatar.dart';
 import '../../../i18n/strings.g.dart';
 import '../../auth/presentation/auth_controller.dart';
 
-/// Profil sekmesi — temel kullanıcı bilgisi, dil seçimi ve çıkış.
-class ProfileTab extends ConsumerWidget {
+/// Profil sekmesindeki menü satırı.
+typedef _MenuEntry = ({IconData icon, String label, String route});
+
+/// Profil sekmesi — kullanıcı bilgisi, bölüm kısayolları ve çıkış.
+/// Görünüm/dil tercihleri Ayarlar ekranına taşındı.
+///
+/// Basit mod (erişilebilirlik) açıkken yalnızca temel bölümler görünür,
+/// geri kalanlar "tüm bölümler" başlığı altında toplanır — web'de sol menünün
+/// sadeleşmesiyle aynı amaç.
+class ProfileTab extends ConsumerStatefulWidget {
   const ProfileTab({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ProfileTab> createState() => _ProfileTabState();
+}
+
+class _ProfileTabState extends ConsumerState<ProfileTab> {
+  bool _showAll = false;
+
+  @override
+  Widget build(BuildContext context) {
     final user = ref.watch(authControllerProvider).user;
+    final simpleMode = ref.watch(accessibilityProvider).simpleMode;
     final t = context.t;
     final text = Theme.of(context).textTheme;
+
+    // Temel bölümler: basit modda yalnızca bunlar gösterilir.
+    final primary = <_MenuEntry>[
+      (
+        icon: Icons.person_outline,
+        label: t.profile.accountInfo,
+        route: '/account',
+      ),
+      (
+        icon: Icons.child_care_outlined,
+        label: t.profile.myChildren,
+        route: '/children',
+      ),
+      (
+        icon: Icons.volunteer_activism_outlined,
+        label: t.treatment.title,
+        route: '/treatment',
+      ),
+      (
+        icon: Icons.health_and_safety_outlined,
+        label: t.crisis.title,
+        route: '/crisis',
+      ),
+      (
+        icon: Icons.settings_outlined,
+        label: t.settings.title,
+        route: '/settings',
+      ),
+      (
+        icon: Icons.menu_book_outlined,
+        label: t.guide.title,
+        route: '/guide',
+      ),
+      (icon: Icons.help_outline, label: t.profile.help, route: '/help'),
+    ];
+
+    final secondary = <_MenuEntry>[
+      (
+        icon: Icons.assignment_turned_in_outlined,
+        label: t.tasks.title,
+        route: '/tasks',
+      ),
+      (
+        icon: Icons.sticky_note_2_outlined,
+        label: t.notesPage.title,
+        route: '/notes',
+      ),
+      (
+        icon: Icons.checklist_outlined,
+        label: t.routines.title,
+        route: '/routines',
+      ),
+      (
+        icon: Icons.calendar_month_outlined,
+        label: t.calendar.title,
+        route: '/calendar',
+      ),
+      (
+        icon: Icons.emergency_outlined,
+        label: t.emergency.title,
+        route: '/emergency',
+      ),
+      // Topluluk bölümleri tek merkezde toplandı (web `/topluluk` gibi):
+      // forum, dertleşme duvarı, buluşmalar, haftanın sorusu, benzer aileler
+      // ve gruplar oradan açılır.
+      (
+        icon: Icons.groups_2_outlined,
+        label: t.community.title,
+        route: '/community',
+      ),
+    ];
+
+    final showSecondary = !simpleMode || _showAll;
 
     return SafeArea(
       child: ListView(
@@ -43,97 +132,25 @@ class ProfileTab extends ConsumerWidget {
             style: text.bodySmall,
           ),
           const SizedBox(height: 24),
-          _ProfileItem(
-            icon: Icons.person_outline,
-            label: t.profile.accountInfo,
-            onTap: () => context.push('/account'),
-          ),
-          _ProfileItem(
-            icon: Icons.child_care_outlined,
-            label: t.profile.myChildren,
-            onTap: () => context.push('/children'),
-          ),
-          _ProfileItem(
-            icon: Icons.volunteer_activism_outlined,
-            label: t.treatment.title,
-            onTap: () => context.push('/treatment'),
-          ),
-          _ProfileItem(
-            icon: Icons.assignment_turned_in_outlined,
-            label: t.tasks.title,
-            onTap: () => context.push('/tasks'),
-          ),
-          _ProfileItem(
-            icon: Icons.sticky_note_2_outlined,
-            label: t.notesPage.title,
-            onTap: () => context.push('/notes'),
-          ),
-          _ProfileItem(
-            icon: Icons.checklist_outlined,
-            label: t.routines.title,
-            onTap: () => context.push('/routines'),
-          ),
-          _ProfileItem(
-            icon: Icons.calendar_month_outlined,
-            label: t.calendar.title,
-            onTap: () => context.push('/calendar'),
-          ),
-          _ProfileItem(
-            icon: Icons.emergency_outlined,
-            label: t.emergency.title,
-            onTap: () => context.push('/emergency'),
-          ),
-          _ProfileItem(
-            icon: Icons.health_and_safety_outlined,
-            label: t.crisis.title,
-            onTap: () => context.push('/crisis'),
-          ),
-          _ProfileItem(
-            icon: Icons.forum_outlined,
-            label: t.wall.title,
-            onTap: () => context.push('/support-wall'),
-          ),
-          _ProfileItem(
-            icon: Icons.groups_2_outlined,
-            label: t.forum.title,
-            onTap: () => context.push('/forum'),
-          ),
-          _ProfileItem(
-            icon: Icons.local_fire_department_outlined,
-            label: t.weekly.title,
-            onTap: () => context.push('/weekly-question'),
-          ),
-          _ProfileItem(
-            icon: Icons.groups_outlined,
-            label: t.meetup.title,
-            onTap: () => context.push('/meetups'),
-          ),
-          _ProfileItem(
-            icon: Icons.diversity_3_outlined,
-            label: t.similar.title,
-            onTap: () => context.push('/similar-families'),
-          ),
-          _ProfileItem(
-            icon: Icons.groups_2_outlined,
-            label: t.groups.title,
-            onTap: () => context.push('/groups'),
-          ),
-          _ProfileItem(
-            icon: Icons.notifications_none,
-            label: t.profile.notificationSettings,
-            onTap: () => ScaffoldMessenger.of(
-              context,
-            ).showSnackBar(SnackBar(content: Text(t.common.comingSoon))),
-          ),
-          _ProfileItem(
-            icon: Icons.help_outline,
-            label: t.profile.help,
-            onTap: () => context.push('/help'),
-          ),
-          const SizedBox(height: 16),
-          const _LanguageSelector(),
-          const SizedBox(height: 12),
-          const _ThemeSelector(),
+          for (final entry in primary)
+            _ProfileItem(
+              icon: entry.icon,
+              label: entry.label,
+              onTap: () => context.push(entry.route),
+            ),
+          if (showSecondary)
+            for (final entry in secondary)
+              _ProfileItem(
+                icon: entry.icon,
+                label: entry.label,
+                onTap: () => context.push(entry.route),
+              ),
+          if (simpleMode && !_showAll)
+            TextButton.icon(
+              onPressed: () => setState(() => _showAll = true),
+              icon: const Icon(Icons.expand_more),
+              label: Text(t.profile.showAllSections),
+            ),
           const SizedBox(height: 24),
           OutlinedButton.icon(
             onPressed: () =>
@@ -145,106 +162,6 @@ class ProfileTab extends ConsumerWidget {
             label: Text(t.profile.signOut),
           ),
         ],
-      ),
-    );
-  }
-}
-
-/// Dil seçici — TR/EN arası anlık geçiş (tüm uygulamayı yeniden çizer).
-class _LanguageSelector extends StatelessWidget {
-  const _LanguageSelector();
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.t;
-    final current = TranslationProvider.of(context).locale;
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(AppSpacing.md),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Icon(Icons.language, color: context.colors.primary),
-                const SizedBox(width: 12),
-                Text(
-                  t.language.title,
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-              ],
-            ),
-            const SizedBox(height: 12),
-            SegmentedButton<AppLocale>(
-              segments: [
-                ButtonSegment(
-                  value: AppLocale.tr,
-                  label: Text(t.language.turkish),
-                ),
-                ButtonSegment(
-                  value: AppLocale.en,
-                  label: Text(t.language.english),
-                ),
-              ],
-              selected: {current},
-              showSelectedIcon: false,
-              onSelectionChanged: (selection) =>
-                  LocaleSettings.setLocale(selection.first),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-/// Tema seçici — Sistem/Açık/Koyu (kalıcı).
-class _ThemeSelector extends ConsumerWidget {
-  const _ThemeSelector();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final t = context.t;
-    final mode = ref.watch(themeModeProvider);
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(AppSpacing.md),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Icon(
-                  Icons.brightness_6_outlined,
-                  color: context.colors.primary,
-                ),
-                const SizedBox(width: 12),
-                Text(
-                  t.theme.title,
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-              ],
-            ),
-            const SizedBox(height: 12),
-            SegmentedButton<ThemeMode>(
-              segments: [
-                ButtonSegment(
-                  value: ThemeMode.system,
-                  label: Text(t.theme.system),
-                ),
-                ButtonSegment(
-                  value: ThemeMode.light,
-                  label: Text(t.theme.light),
-                ),
-                ButtonSegment(value: ThemeMode.dark, label: Text(t.theme.dark)),
-              ],
-              selected: {mode},
-              showSelectedIcon: false,
-              onSelectionChanged: (s) =>
-                  ref.read(themeModeProvider.notifier).setMode(s.first),
-            ),
-          ],
-        ),
       ),
     );
   }

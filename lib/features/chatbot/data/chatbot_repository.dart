@@ -8,10 +8,26 @@ import '../../../core/providers.dart';
 import '../../../i18n/strings.g.dart';
 import '../domain/chat_message.dart';
 
+/// Sunucuya taşınan en fazla konuşma turu (kullanıcı + asistan mesajı = 2 tur).
+///
+/// Her mesajda geçmişin tamamı yeniden gönderiliyor ve modele giren jeton
+/// sayısı konuşma uzadıkça kartopu gibi büyüyor: 30 mesajlık bir sohbette
+/// 30. istek önceki 29 mesajı da taşır. Ne mobilde ne sunucuda bir tavan
+/// vardı; 20 tur (10 karşılıklı) sıradan bir destek sohbetinin tamamını
+/// kapsar, uzun oturumlarda maliyeti sabitler. Sunucu tarafına da tavan
+/// konmalı (bkz. docs/security.md §22).
+const int kMaxChatHistoryTurns = 20;
+
 /// `/api/chatbot/stream` SSE uç noktasını saran depo.
 class ChatbotRepository {
   ChatbotRepository(this._dio);
   final Dio _dio;
+
+  /// Geçmişin sunucuya gidecek son [kMaxChatHistoryTurns] turu.
+  static List<ChatMessage> trimHistory(List<ChatMessage> history) =>
+      history.length <= kMaxChatHistoryTurns
+          ? history
+          : history.sublist(history.length - kMaxChatHistoryTurns);
 
   /// Asistan yanıtını parça parça (SSE `chunk`) yayınlar.
   /// `done` olayında biter, `error` olayında [ApiException] fırlatır.
@@ -25,7 +41,8 @@ class ChatbotRepository {
         '/chatbot/stream',
         data: {
           'message': message,
-          'history': history.map((m) => m.toHistoryJson()).toList(),
+          'history':
+              trimHistory(history).map((m) => m.toHistoryJson()).toList(),
         },
         options: Options(
           responseType: ResponseType.stream,

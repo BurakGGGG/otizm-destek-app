@@ -3,19 +3,27 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_colors.dart';
+import '../../../core/util/person_name.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/user_avatar.dart';
 import '../../../i18n/strings.g.dart';
 import '../../appointments/data/appointment_repository.dart';
 import '../../appointments/domain/appointment.dart';
+import '../../auth/domain/app_user.dart';
 import '../../auth/presentation/auth_controller.dart';
 import '../../children/data/child_repository.dart';
+import '../../children/data/connection_repository.dart';
 import '../../children/domain/child.dart';
 import '../../knowledge/data/knowledge_repository.dart';
 import '../../knowledge/domain/article.dart';
 import '../../knowledge/presentation/article_detail_screen.dart';
+import '../data/daily_plan_provider.dart';
+import 'widgets/daily_plan_card.dart';
 import 'widgets/section_header.dart';
+import 'widgets/learning_path_card.dart';
+import 'widgets/weekly_topic_card.dart';
+import 'widgets/start_checklist.dart';
 
 /// Ana Sayfa sekmesi — backend'den gerçek veri (çocuklar, randevular, makaleler).
 class HomeTab extends ConsumerWidget {
@@ -26,7 +34,12 @@ class HomeTab extends ConsumerWidget {
     final user = ref.watch(authControllerProvider).user;
     final t = context.t;
     final text = Theme.of(context).textTheme;
-    final name = user?.displayName ?? t.home.greetingFallback;
+    // Selamlamada web gibi unvansız ilk ad kullanılır.
+    final name = user == null
+        ? t.home.greetingFallback
+        : personFirstName(user.displayName);
+    // Günlük plan ve başlangıç listesi veli akışıdır (web'de de rol bazlı).
+    final isParent = user?.role == UserRole.parent;
 
     return SafeArea(
       child: RefreshIndicator(
@@ -34,6 +47,8 @@ class HomeTab extends ConsumerWidget {
           ref.invalidate(childrenProvider);
           ref.invalidate(appointmentsProvider);
           ref.invalidate(recommendedArticlesProvider);
+          ref.invalidate(connectionRequestsProvider);
+          ref.invalidate(dailyPlanInputProvider);
         },
         child: ListView(
           padding: const EdgeInsets.fromLTRB(
@@ -46,6 +61,15 @@ class HomeTab extends ConsumerWidget {
             Text(t.home.greeting(name: name), style: text.headlineLarge),
             const SizedBox(height: 4),
             Text(t.home.subtitle, style: text.bodySmall),
+            const SizedBox(height: AppSpacing.md),
+            const _ExpertAccessBanner(),
+            if (isParent) ...[
+              const LearningPathCard(),
+              const WeeklyTopicCard(),
+              const StartChecklist(),
+              const DailyPlanCard(),
+            ],
+            const _QuickActions(),
             const SizedBox(height: AppSpacing.lg),
 
             SectionHeader(
@@ -72,6 +96,180 @@ class HomeTab extends ConsumerWidget {
             const SizedBox(height: 12),
             const _ArticlesSection(),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Hızlı eylemler — web gösterge panelindeki dört kayıt kısayolu.
+class _QuickActions extends StatelessWidget {
+  const _QuickActions();
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    final actions = <({IconData icon, String label, String detail, String route})>[
+      (
+        icon: Icons.favorite_outline,
+        label: t.home.quickTracker,
+        detail: t.home.quickTrackerDetail,
+        route: '/daily-tracker',
+      ),
+      (
+        icon: Icons.psychology_outlined,
+        label: t.home.quickBehavior,
+        detail: t.home.quickBehaviorDetail,
+        route: '/behavior',
+      ),
+      (
+        icon: Icons.sticky_note_2_outlined,
+        label: t.home.quickNote,
+        detail: t.home.quickNoteDetail,
+        route: '/notes',
+      ),
+      (
+        icon: Icons.event_outlined,
+        label: t.home.quickPlan,
+        detail: t.home.quickPlanDetail,
+        route: '/calendar',
+      ),
+    ];
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final width = (constraints.maxWidth - 12) / 2;
+        return Wrap(
+          spacing: 12,
+          runSpacing: 12,
+          children: [
+            for (final action in actions)
+              SizedBox(
+                width: width,
+                child: _QuickActionCard(
+                  icon: action.icon,
+                  label: action.label,
+                  detail: action.detail,
+                  onTap: () => context.push(action.route),
+                ),
+              ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _QuickActionCard extends StatelessWidget {
+  const _QuickActionCard({
+    required this.icon,
+    required this.label,
+    required this.detail,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final String label;
+  final String detail;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    final text = Theme.of(context).textTheme;
+    return InkWell(
+      borderRadius: BorderRadius.circular(AppRadius.lg),
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: colors.surface,
+          borderRadius: BorderRadius.circular(AppRadius.lg),
+          border: Border.all(color: colors.border),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: 36,
+              height: 36,
+              decoration: BoxDecoration(
+                color: colors.primary.withValues(alpha: .08),
+                borderRadius: BorderRadius.circular(AppRadius.md),
+              ),
+              child: Icon(icon, size: 18, color: colors.primary),
+            ),
+            const SizedBox(height: 10),
+            Text(label, style: text.labelLarge),
+            const SizedBox(height: 2),
+            Text(
+              detail,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: text.labelSmall?.copyWith(color: colors.textSecondary),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Bekleyen uzman erişim isteği varsa gösterilen uyarı şeridi (web gösterge
+/// panelindeki "uzman erişim isteği" kartı). İstek yoksa yer kaplamaz.
+class _ExpertAccessBanner extends ConsumerWidget {
+  const _ExpertAccessBanner();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.t;
+    final colors = context.colors;
+    final text = Theme.of(context).textTheme;
+    final requests =
+        ref.watch(connectionRequestsProvider).asData?.value ?? const [];
+    if (requests.isEmpty) return const SizedBox(height: AppSpacing.sm);
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: AppSpacing.md),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(AppRadius.lg),
+        onTap: () => context.push('/expert-access'),
+        child: Container(
+          padding: const EdgeInsets.all(AppSpacing.md),
+          decoration: BoxDecoration(
+            color: colors.warning.withValues(alpha: .10),
+            borderRadius: BorderRadius.circular(AppRadius.lg),
+            border: Border.all(color: colors.warning.withValues(alpha: .35)),
+          ),
+          child: Row(
+            children: [
+              Icon(Icons.notifications_active_outlined,
+                  size: 20, color: colors.warning),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      t.expertAccess.pendingBanner(count: requests.length),
+                      style: text.labelLarge,
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      requests
+                          .map((r) => r.expertName ?? t.expertAccess.unknownExpert)
+                          .join(', '),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: text.labelSmall
+                          ?.copyWith(color: colors.textSecondary),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(Icons.chevron_right, size: 20, color: colors.textTertiary),
+            ],
+          ),
         ),
       ),
     );
@@ -464,6 +662,7 @@ class _EmptyCard extends StatelessWidget {
             Expanded(child: Text(message)),
             if (actionLabel != null && onAction != null)
               FilledButton.tonal(
+                style: AppButtonStyles.inlineTonal(context),
                 onPressed: onAction,
                 child: Text(actionLabel!),
               ),

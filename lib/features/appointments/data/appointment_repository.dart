@@ -100,7 +100,71 @@ class AppointmentRepository {
     }
   }
 
+  /// Randevunun durum geçmişi — `GET /appointments/{id}/history`.
+  /// Kayıt yoksa boş liste döner (web de hatayı sessiz geçiyor).
+  Future<List<AppointmentHistoryEntry>> getHistory(String id) async {
+    try {
+      final res = await _dio.get('/appointments/$id/history');
+      return ApiEnvelope.fromJson(res.data)
+          .requireList()
+          .whereType<Map<String, dynamic>>()
+          .map(AppointmentHistoryEntry.fromJson)
+          .toList();
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Uzmanın ilk uygun randevu saati — `GET
+  /// /appointments/experts/{id}/next-available`. Backend 60 güne kadar
+  /// bakar; müsaitlik yoksa boş harita döner (burada null).
+  Future<({String date, String time})?> getNextAvailable(
+    String expertId, {
+    int? duration,
+  }) async {
+    try {
+      final res = await _dio.get(
+        '/appointments/experts/$expertId/next-available',
+        queryParameters: {'duration': ?duration},
+      );
+      final data = ApiEnvelope.fromJson(res.data).data;
+      if (data is! Map) return null;
+      final date = data['date']?.toString();
+      final time = data['time']?.toString();
+      if (date == null || time == null) return null;
+      return (date: date, time: time);
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
   /// Yeni randevu oluştur (PARENT).
+  /// Tamamlanmış randevuyu puanlar (veliye kısıtlı).
+  Future<Appointment> rate(String id, int rating, {String? comment}) async {
+    try {
+      final res = await _dio.patch(
+        '/appointments/$id/rate',
+        queryParameters: {
+          'rating': rating,
+          if (comment != null && comment.trim().isNotEmpty)
+            'comment': comment.trim(),
+        },
+      );
+      return Appointment.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Tekrarlayan seans serisinin tamamını iptal eder.
+  Future<void> cancelSeries(String groupId) async {
+    try {
+      await _dio.delete('/appointments/group/$groupId');
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
   Future<Appointment> create({
     required String expertId,
     required String childId,
@@ -109,6 +173,7 @@ class AppointmentRepository {
     required String type, // ONLINE | FACE_TO_FACE
     int duration = 50,
     String? notes,
+    int? recurrenceWeeks,
   }) async {
     try {
       final res = await _dio.post(
@@ -121,6 +186,9 @@ class AppointmentRepository {
           'type': type,
           'duration': duration,
           if (notes != null && notes.trim().isNotEmpty) 'notes': notes.trim(),
+          // Web tekil randevuda alanı hiç göndermiyor.
+          if (recurrenceWeeks != null && recurrenceWeeks > 1)
+            'recurrenceWeeks': recurrenceWeeks,
         },
       );
       return Appointment.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
@@ -150,4 +218,21 @@ final upcomingAppointmentsProvider = FutureProvider<List<Appointment>>((
       return byDate != 0 ? byDate : a.time.compareTo(b.time);
     });
   return upcoming;
+});
+
+/// Uzman profilinde gösterilen ilk uygun randevu. Web listedeki her uzman
+/// için çağırıyor; mobil yalnızca uzman detayında sorar.
+final nextAvailableSlotProvider = FutureProvider.family<
+    ({String date, String time})?, ({String expertId, int? duration})>(
+  (ref, key) {
+    return ref
+        .watch(appointmentRepositoryProvider)
+        .getNextAvailable(key.expertId, duration: key.duration);
+  },
+);
+
+/// Bir randevunun durum geçmişi (detay sayfasında zaman çizelgesi).
+final appointmentHistoryProvider =
+    FutureProvider.family<List<AppointmentHistoryEntry>, String>((ref, id) {
+  return ref.watch(appointmentRepositoryProvider).getHistory(id);
 });

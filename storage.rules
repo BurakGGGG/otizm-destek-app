@@ -1,0 +1,22 @@
+rules_version = '2';
+
+// Firebase Storage — istemciye kapalı.
+//
+// Bu üründe kimlik Spring backend'in JWT'si ile yürüyor; Firebase Auth
+// kullanılmıyor (bkz. CLAUDE.md "Auth (KARAR: backend JWT)"). Dosya yükleme ve
+// okuma tamamen backend'in `/api/upload` uç noktasından geçiyor, mobil
+// uygulama Firebase Storage SDK'sını hiç çağırmıyor.
+//
+// Bu yüzden varsayılan "kimliği doğrulanmış kullanıcıya izin ver" kuralı bu
+// mimaride yanlış: istemcide Firebase kimliği hiç oluşmadığı için kural ya
+// kimseye çalışır ya da projede herhangi bir Auth sağlayıcısı açıksa
+// dışarıdan hesap açan birine kovanın tamamını açar. Doğru kural: kapalı.
+//
+// Yayınlamak için:  firebase deploy --only storage
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

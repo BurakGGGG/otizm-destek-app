@@ -465,6 +465,7 @@ class _EventCard extends ConsumerWidget {
                 ),
               ),
               IconButton(
+                tooltip: context.t.common.a11y.options,
                 visualDensity: VisualDensity.compact,
                 icon: Icon(Icons.more_vert, size: 20, color: colors.textTertiary),
                 onPressed: () => _openMenu(context, ref),

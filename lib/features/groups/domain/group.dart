@@ -15,6 +15,7 @@ class Group {
     this.isMember = false,
     this.conversationId,
     this.createdByUserId,
+    this.unreadCount = 0,
   });
 
   final String id;
@@ -29,6 +30,9 @@ class Group {
   final String? conversationId;
   final String? createdByUserId;
 
+  /// Grup sohbetindeki okunmamış mesaj sayısı.
+  final int unreadCount;
+
   Group copyWith({bool? isMember, int? memberCount}) {
     return Group(
       id: id,
@@ -42,6 +46,7 @@ class Group {
       isMember: isMember ?? this.isMember,
       conversationId: conversationId,
       createdByUserId: createdByUserId,
+      unreadCount: unreadCount,
     );
   }
 
@@ -58,6 +63,7 @@ class Group {
       isMember: json['isMember'] == true,
       conversationId: json['conversationId']?.toString(),
       createdByUserId: json['createdByUserId']?.toString(),
+      unreadCount: (json['unreadCount'] as num?)?.toInt() ?? 0,
     );
   }
 }
@@ -73,3 +79,71 @@ const kGroupCategories = <String>[
   'Ergen Dönemi',
   'Genel',
 ];
+
+/// Grup buluşması (`GroupMeetingDto`) — üyeler görür, grubu kuran
+/// planlar.
+///
+/// `startTime`/`endTime` saat dilimsiz `LocalDateTime`
+/// (`yyyy-MM-ddTHH:mm:ss`), takvim etkinliklerindeki gibi.
+class GroupMeeting {
+  const GroupMeeting({
+    required this.id,
+    required this.title,
+    required this.startTime,
+    this.description,
+    this.meetingUrl,
+    this.endTime,
+  });
+
+  final String id;
+  final String title;
+  final DateTime startTime;
+  final String? description;
+  final String? meetingUrl;
+  final DateTime? endTime;
+
+  factory GroupMeeting.fromJson(Map<String, dynamic> json) {
+    return GroupMeeting(
+      id: json['id']?.toString() ?? '',
+      title: json['title'] as String? ?? '',
+      startTime:
+          DateTime.tryParse(json['startTime']?.toString() ?? '') ??
+              DateTime.now(),
+      description: (json['description'] as String?)?.trim(),
+      meetingUrl: (json['meetingUrl'] as String?)?.trim(),
+      endTime: DateTime.tryParse(json['endTime']?.toString() ?? ''),
+    );
+  }
+}
+
+/// Grup üyesi (`UserDto`'nun mobilde kullanılan alanları).
+class GroupMember {
+  const GroupMember({
+    required this.id,
+    required this.fullName,
+    this.role,
+    this.expertTitle,
+    this.city,
+    this.profileImageUrl,
+  });
+
+  final String id;
+  final String fullName;
+  final String? role;
+  final String? expertTitle;
+  final String? city;
+  final String? profileImageUrl;
+
+  bool get isExpert => role == 'EXPERT';
+
+  factory GroupMember.fromJson(Map<String, dynamic> json) {
+    return GroupMember(
+      id: json['id']?.toString() ?? '',
+      fullName: (json['fullName'] as String?)?.trim() ?? '',
+      role: json['role'] as String?,
+      expertTitle: (json['expertTitle'] as String?)?.trim(),
+      city: (json['city'] as String?)?.trim(),
+      profileImageUrl: json['profileImageUrl'] as String?,
+    );
+  }
+}

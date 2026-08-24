@@ -272,6 +272,7 @@ class _TodayCardState extends ConsumerState<_TodayCard> {
                         style: Theme.of(context).textTheme.labelLarge),
                   ),
                   IconButton(
+                    tooltip: context.t.common.a11y.decrease,
                     icon: const Icon(Icons.remove_circle_outline),
                     color: context.colors.textSecondary,
                     onPressed: _nightWakings > 0
@@ -294,6 +295,7 @@ class _TodayCardState extends ConsumerState<_TodayCard> {
                     ),
                   ),
                   IconButton(
+                    tooltip: context.t.common.a11y.increase,
                     icon: const Icon(Icons.add_circle_outline),
                     color: context.colors.textSecondary,
                     onPressed: () {
@@ -567,6 +569,7 @@ class _HistoryCard extends ConsumerWidget {
                       ?.copyWith(color: colors.textTertiary),
                 ),
                 IconButton(
+                  tooltip: context.t.common.a11y.delete,
                   visualDensity: VisualDensity.compact,
                   icon: Icon(Icons.delete_outline,
                       size: 20, color: colors.textTertiary),

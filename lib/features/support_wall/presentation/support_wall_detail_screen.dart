@@ -80,6 +80,66 @@ class _SupportWallDetailScreenState
     }
   }
 
+  /// Kendi destek mesajını düzenler (web `handleSaveEditComment`).
+  Future<void> _editComment(WallComment comment) async {
+    final t = context.t;
+    final controller = TextEditingController(text: comment.content);
+    final saved = await showModalBottomSheet<bool>(
+      context: context,
+      isScrollControlled: true,
+      builder: (ctx) => Padding(
+        padding: EdgeInsets.only(
+          left: AppSpacing.margin,
+          right: AppSpacing.margin,
+          top: AppSpacing.md,
+          bottom: MediaQuery.viewInsetsOf(ctx).bottom + AppSpacing.md,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              t.wall.commentEdit,
+              style: Theme.of(ctx).textTheme.titleMedium,
+            ),
+            const SizedBox(height: 12),
+            TextField(
+              controller: controller,
+              minLines: 2,
+              maxLines: 5,
+              autofocus: true,
+              textCapitalization: TextCapitalization.sentences,
+            ),
+            const SizedBox(height: 16),
+            FilledButton.icon(
+              onPressed: () => Navigator.of(ctx).pop(true),
+              icon: const Icon(Icons.check, size: 18),
+              label: Text(t.wall.commentSave),
+            ),
+            const SizedBox(height: 8),
+          ],
+        ),
+      ),
+    );
+    final content = controller.text.trim();
+    controller.dispose();
+    if (saved != true || content.isEmpty || content == comment.content) return;
+    try {
+      await ref
+          .read(wallRepositoryProvider)
+          .updateComment(widget.postId, comment.id, content);
+      if (!mounted) return;
+      ref.invalidate(wallCommentsProvider(widget.postId));
+      Haptics.success();
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(t.wall.commentUpdated)));
+    } on ApiException catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.message)));
+    }
+  }
+
   Future<void> _deleteComment(WallComment comment) async {
     final t = context.t;
     final ok = await showDialog<bool>(
@@ -164,6 +224,7 @@ class _SupportWallDetailScreenState
                         const SizedBox(height: 12),
                         _CommentsList(
                           async: commentsAsync,
+                          onEdit: _editComment,
                           onDelete: _deleteComment,
                           onRetry: () => ref.invalidate(
                             wallCommentsProvider(widget.postId),
@@ -286,11 +347,13 @@ class _PostHeader extends StatelessWidget {
 class _CommentsList extends StatelessWidget {
   const _CommentsList({
     required this.async,
+    required this.onEdit,
     required this.onDelete,
     required this.onRetry,
   });
 
   final AsyncValue<List<WallComment>> async;
+  final ValueChanged<WallComment> onEdit;
   final ValueChanged<WallComment> onDelete;
   final VoidCallback onRetry;
 
@@ -316,7 +379,11 @@ class _CommentsList extends StatelessWidget {
         return Column(
           children: [
             for (final c in comments) ...[
-              _CommentTile(comment: c, onDelete: () => onDelete(c)),
+              _CommentTile(
+                comment: c,
+                onEdit: () => onEdit(c),
+                onDelete: () => onDelete(c),
+              ),
               const SizedBox(height: 10),
             ],
           ],
@@ -327,9 +394,14 @@ class _CommentsList extends StatelessWidget {
 }
 
 class _CommentTile extends StatelessWidget {
-  const _CommentTile({required this.comment, required this.onDelete});
+  const _CommentTile({
+    required this.comment,
+    required this.onEdit,
+    required this.onDelete,
+  });
 
   final WallComment comment;
+  final VoidCallback onEdit;
   final VoidCallback onDelete;
 
   @override
@@ -370,6 +442,19 @@ class _CommentTile extends StatelessWidget {
                   color: context.colors.textTertiary,
                 ),
               ),
+              if (comment.ownedByMe)
+                InkWell(
+                  onTap: onEdit,
+                  borderRadius: BorderRadius.circular(AppRadius.full),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: Icon(
+                      Icons.edit_outlined,
+                      size: 18,
+                      color: context.colors.textTertiary,
+                    ),
+                  ),
+                ),
               if (comment.ownedByMe)
                 InkWell(
                   onTap: onDelete,

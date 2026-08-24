@@ -10,7 +10,11 @@ import '../../../i18n/strings.g.dart';
 import '../../children/data/child_repository.dart';
 import '../../children/domain/child.dart';
 import '../../medications/presentation/medication_tab.dart';
+import '../../sleep/data/sleep_repository.dart';
 import '../../sleep/presentation/sleep_tab.dart';
+import '../data/mood_repository.dart';
+import '../domain/mood_entry.dart';
+import '../domain/tracker_insights.dart';
 import 'mood_tab.dart';
 
 /// Günlük Takip — Duygu / Uyku / İlaç sekmeleri (web DailyTrackerPage karşılığı).
@@ -67,6 +71,7 @@ class _DailyTrackerScreenState extends ConsumerState<DailyTrackerScreen> {
                       selectedId: childId,
                       onSelect: (id) => setState(() => _selectedChildId = id),
                     ),
+                  _InsightsBar(childId: childId),
                   Expanded(
                     child: TabBarView(
                       children: [
@@ -80,6 +85,112 @@ class _DailyTrackerScreenState extends ConsumerState<DailyTrackerScreen> {
               );
             },
           ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Haftalık özet şeridi — ortalama uyku, en sık ruh hali, en sık tetikleyici
+/// ve eksiksiz gün sayısı (web `DailyTrackerPage` başlığındaki dört kutu).
+class _InsightsBar extends ConsumerWidget {
+  const _InsightsBar({required this.childId});
+
+  final String childId;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.t;
+    final moods = ref.watch(moodEntriesProvider(childId)).asData?.value;
+    final sleeps = ref.watch(sleepEntriesProvider(childId)).asData?.value;
+    if (moods == null || sleeps == null) return const SizedBox.shrink();
+    if (moods.isEmpty && sleeps.isEmpty) return const SizedBox.shrink();
+
+    final insights = buildTrackerInsights(moods: moods, sleeps: sleeps);
+    final minutes = insights.averageSleepMinutes;
+    final mood = insights.topMoodLevel;
+
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(AppSpacing.margin, 8, AppSpacing.margin, 0),
+      child: Row(
+        children: [
+          _InsightTile(
+            icon: Icons.bedtime_outlined,
+            label: t.dailyTracker.insightSleep,
+            value: minutes == null
+                ? t.dailyTracker.insightNone
+                : t.dailyTracker.insightHours(
+                    hours: '${minutes ~/ 60}',
+                    minutes: '${minutes % 60}',
+                  ),
+          ),
+          const SizedBox(width: 8),
+          _InsightTile(
+            icon: Icons.mood_outlined,
+            label: t.dailyTracker.insightMood,
+            value: mood == null
+                ? t.dailyTracker.insightNone
+                : kMoodEmojis[(mood - 1).clamp(0, kMoodEmojis.length - 1)],
+          ),
+          const SizedBox(width: 8),
+          _InsightTile(
+            icon: Icons.bolt_outlined,
+            label: t.dailyTracker.insightTrigger,
+            value: insights.topTrigger ?? t.dailyTracker.insightNone,
+          ),
+          const SizedBox(width: 8),
+          _InsightTile(
+            icon: Icons.event_available_outlined,
+            label: t.dailyTracker.insightComplete,
+            value: t.dailyTracker.insightDays(count: insights.completeDays),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _InsightTile extends StatelessWidget {
+  const _InsightTile({
+    required this.icon,
+    required this.label,
+    required this.value,
+  });
+
+  final IconData icon;
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    final text = Theme.of(context).textTheme;
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        decoration: BoxDecoration(
+          color: colors.surface,
+          borderRadius: BorderRadius.circular(AppRadius.md),
+          border: Border.all(color: colors.border),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(icon, size: 14, color: colors.primary),
+            const SizedBox(height: 4),
+            Text(
+              label,
+              style: text.labelSmall?.copyWith(color: colors.textTertiary),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            Text(
+              value,
+              style: text.labelMedium?.copyWith(fontWeight: FontWeight.w700),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
         ),
       ),
     );

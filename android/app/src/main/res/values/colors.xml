@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Uyarlanabilir simge zemini (AppColors.primary) -->
+    <color name="ic_launcher_background">#2563EB</color>
+    <!-- Açılış penceresi: AppPalette.light.background -->
+    <color name="splash_background">#F8FAFC</color>
+</resources>

@@ -682,7 +682,9 @@ class _PlanHeader extends StatelessWidget {
           Text(child.name, style: text.titleLarge),
           const SizedBox(height: 2),
           Text(
-            t.treatment.programActive(name: plan.activeProgramLabel),
+            plan.activeProgramLabel == kDefaultProgramLabel
+                ? t.treatment.programActiveDefault
+                : t.treatment.programActive(name: plan.activeProgramLabel),
             style: text.bodySmall?.copyWith(
               color: context.colors.textSecondary,
             ),
@@ -747,6 +749,7 @@ class _OnboardingCard extends StatelessWidget {
                 ),
               ),
               IconButton(
+                tooltip: context.t.common.a11y.close,
                 visualDensity: VisualDensity.compact,
                 onPressed: onDismiss,
                 icon: Icon(Icons.close,

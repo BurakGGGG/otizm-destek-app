@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/network/api_exception.dart';
+import '../../../core/network/media.dart';
 import '../../../core/network/api_response.dart';
 import '../../../core/providers.dart';
 import '../domain/conversation.dart';
@@ -45,6 +46,64 @@ class MessagingRepository {
     }
   }
 
+  /// Yeni grup sohbeti oluşturur (ad + katılımcılar).
+  Future<Conversation> createGroup(
+    String title,
+    List<String> participantIds,
+  ) async {
+    try {
+      final res = await _dio.post(
+        '/messages/conversations/group',
+        data: {'title': title.trim(), 'participantIds': participantIds},
+      );
+      return Conversation.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Konuşmayı listeden bulur (grup ayarlarında katılımcılar için).
+  ///
+  /// `GET /conversations/{id}` mesaj sayfası döner, konuşmanın kendisini
+  /// değil; web de paneli listedeki nesneyle dolduruyor.
+  Future<Conversation?> findConversation(String id) async {
+    final conversations = await getConversations();
+    for (final conversation in conversations) {
+      if (conversation.id == id) return conversation;
+    }
+    return null;
+  }
+
+  /// Grup sohbetinin adını değiştirir.
+  Future<Conversation> updateGroupTitle(String id, String title) async {
+    try {
+      final res = await _dio.patch(
+        '/messages/conversations/$id/title',
+        data: {'title': title.trim()},
+      );
+      return Conversation.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Gruba üye ekler.
+  Future<Conversation> addMember(String id, String userId) =>
+      _memberChange('/messages/conversations/$id/members/$userId', add: true);
+
+  /// Gruptan üye çıkarır.
+  Future<Conversation> removeMember(String id, String userId) =>
+      _memberChange('/messages/conversations/$id/members/$userId', add: false);
+
+  Future<Conversation> _memberChange(String path, {required bool add}) async {
+    try {
+      final res = add ? await _dio.post(path) : await _dio.delete(path);
+      return Conversation.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
   /// Bir konuşmanın mesajları (en yeni sayfa), eskiden yeniye sıralı.
   Future<List<Message>> getMessages(
     String conversationId, {
@@ -74,11 +133,149 @@ class MessagingRepository {
     }
   }
 
-  Future<Message> sendMessage(String conversationId, String content) async {
+  /// Konuşma içinde mesaj arar — `GET /conversations/{id}/search?q=`.
+  Future<List<Message>> searchMessages(
+    String conversationId,
+    String query, {
+    int page = 0,
+    int size = 50,
+  }) async {
+    try {
+      final res = await _dio.get(
+        '/messages/conversations/$conversationId/search',
+        queryParameters: {'q': query.trim(), 'page': page, 'size': size},
+      );
+      final data = ApiEnvelope.fromJson(res.data).requireMap();
+      final content = data['content'];
+      if (content is! List) return const [];
+      return content
+          .whereType<Map<String, dynamic>>()
+          .map(Message.fromJson)
+          .toList();
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Sohbet başlatmak için kullanıcı arar — `GET /users/search?q=`.
+  /// Backend iki karakterden kısa sorgularda boş liste döner.
+  Future<List<Participant>> searchUsers(String query) async {
+    final q = query.trim();
+    if (q.length < 2) return const [];
+    try {
+      final res = await _dio.get('/users/search', queryParameters: {'q': q});
+      return ApiEnvelope.fromJson(res.data)
+          .requireList()
+          .whereType<Map<String, dynamic>>()
+          .map(Participant.fromJson)
+          .toList();
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Konuşmayı okundu işaretle — `POST /conversations/{id}/read`.
+  /// Okunmamış sayacı yalnızca bu çağrıyla sıfırlanır (web de thread açılınca
+  /// çağırıyor).
+  Future<void> markAsRead(String conversationId) async {
+    try {
+      await _dio.post('/messages/conversations/$conversationId/read');
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Bildirimleri sessize al / aç — `POST /conversations/{id}/mute`.
+  Future<void> setMuted(String conversationId, bool muted) async {
+    try {
+      await _dio.post(
+        '/messages/conversations/$conversationId/mute',
+        data: {'muted': muted},
+      );
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Arşivle / arşivden çıkar — `POST /conversations/{id}/archive`.
+  Future<void> setArchived(String conversationId, bool archived) async {
+    try {
+      await _dio.post(
+        '/messages/conversations/$conversationId/archive',
+        data: {'archived': archived},
+      );
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Mesaj gönderir. Web ile aynı gövde: içerik + isteğe bağlı dosya,
+  /// yanıtlanan mesaj ve tür (TEXT/IMAGE/FILE/PECS).
+  Future<Message> sendMessage(
+    String conversationId,
+    String content, {
+    String messageType = kMessageTypeText,
+    String? replyToId,
+    String? fileUrl,
+    String? fileName,
+    String? fileType,
+  }) async {
     try {
       final res = await _dio.post(
         '/messages/conversations/$conversationId',
-        data: {'content': content, 'messageType': 'TEXT'},
+        data: {
+          'content': content,
+          'messageType': messageType,
+          'replyToId': ?replyToId,
+          'fileUrl': ?fileUrl,
+          'fileName': ?fileName,
+          'fileType': ?fileType,
+        },
+      );
+      return Message.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Kendi mesajını siler — `DELETE /messages/{id}`.
+  Future<void> deleteMessage(String messageId) async {
+    try {
+      await _dio.delete('/messages/$messageId');
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Ekli dosyayı indirir (uç nokta kimlik doğrulaması istediği için
+  /// tarayıcıda açılamıyor; Dio ile Bearer'lı indirilip paylaşılır).
+  Future<List<int>> downloadAttachment(String url) async {
+    // Ek adresi mesaj gövdesinden gelir (sunucu kontrollü, ama kötü niyetli
+    // bir mesaj yabancı bir host gösterebilir). Yalnızca kendi backend'imizden
+    // indiriyoruz: aksi halde uygulama, dokunulan mesajla saldırganın
+    // adresine istek atıp cihaz IP'sini sızdırır ve rastgele içeriği paylaşım
+    // sayfasına verir.
+    if (!isBackendMediaUrl(url)) {
+      throw const ApiException('Geçersiz dosya adresi');
+    }
+    try {
+      final res = await _dio.get<List<int>>(
+        url,
+        options: Options(responseType: ResponseType.bytes),
+      );
+      return res.data ?? const [];
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  /// Emoji tepkisini açar/kapatır — `POST /messages/{id}/react`. Sunucu
+  /// mesajın güncel hâlini döner.
+  Future<Message> toggleReaction(String messageId, String emoji) async {
+    try {
+      final res = await _dio.post(
+        '/messages/$messageId/react',
+        data: {'emoji': emoji},
       );
       return Message.fromJson(ApiEnvelope.fromJson(res.data).requireMap());
     } on DioException catch (e) {

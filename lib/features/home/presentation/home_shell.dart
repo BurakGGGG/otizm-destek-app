@@ -14,14 +14,30 @@ import 'home_tab.dart';
 /// Yetişkin (veli/uzman/eğitimci) için alt navigasyonlu uygulama kabuğu.
 /// Sekmeler: Ana Sayfa, Uzmanlar, Gelişim, Profil.
 class HomeShell extends ConsumerStatefulWidget {
-  const HomeShell({super.key});
+  const HomeShell({super.key, this.initialTab = 0});
+
+  /// Açılacak sekme (0 ana sayfa, 1 uzmanlar, 2 gelişim, 3 profil) —
+  /// `/home?tab=1` gibi bağlantılar doğrudan ilgili sekmeyi açsın diye.
+  final int initialTab;
 
   @override
   ConsumerState<HomeShell> createState() => _HomeShellState();
 }
 
 class _HomeShellState extends ConsumerState<HomeShell> {
-  int _index = 0;
+  late int _index = widget.initialTab.clamp(0, _tabs.length - 1);
+
+  @override
+  void didUpdateWidget(covariant HomeShell oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // `/home?tab=1` kabuk zaten açıkken de gelebilir (ör. ana sayfadaki
+    // plan kartından uzmanlara geçiş) — sekme o zaman da değişmeli.
+    if (widget.initialTab != oldWidget.initialTab) {
+      setState(() {
+        _index = widget.initialTab.clamp(0, _tabs.length - 1);
+      });
+    }
+  }
 
   static const _tabs = [
     HomeTab(),
@@ -57,6 +73,11 @@ class _HomeShellState extends ConsumerState<HomeShell> {
         ),
         actions: [
           IconButton(
+            tooltip: t.search.title,
+            onPressed: () => context.push('/search'),
+            icon: const Icon(Icons.search),
+          ),
+          IconButton(
             tooltip: t.home.messages,
             onPressed: () => context.push('/messages'),
             icon: const Icon(Icons.chat_bubble_outline),
@@ -84,13 +105,11 @@ class _HomeShellState extends ConsumerState<HomeShell> {
         ],
       ),
       body: IndexedStack(index: _index, children: _tabs),
-      bottomNavigationBar: NavigationBarTheme(
-        data: NavigationBarThemeData(
-          backgroundColor: context.colors.surface,
-          indicatorColor: context.colors.primary.withValues(alpha: 0.12),
-          labelTextStyle: WidgetStateProperty.all(
-            const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
-          ),
+      // Alt navigasyonun biçimi temada (navigationBarTheme); burada yalnızca
+      // sayfa zemininden ayıran ince üst çizgi veriliyor.
+      bottomNavigationBar: DecoratedBox(
+        decoration: BoxDecoration(
+          border: Border(top: BorderSide(color: context.colors.border)),
         ),
         child: NavigationBar(
           selectedIndex: _index,

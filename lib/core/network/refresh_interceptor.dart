@@ -3,6 +3,22 @@ import 'package:dio/dio.dart';
 import '../config/env.dart';
 import '../storage/secure_storage.dart';
 import 'api_response.dart';
+import 'auth_cookies.dart';
+
+/// Yenilenmesi anlamsız olan (token'sız çalışan) auth uç noktaları.
+/// `/auth/me` bilinçli olarak listede değil: uygulama açılışında süresi dolmuş
+/// access token'la çağrıldığında oturum yenilenip geri yüklenebilmeli.
+const _noRetryAuthPaths = {
+  '/auth/login',
+  '/auth/register',
+  '/auth/refresh',
+  '/auth/logout',
+  '/auth/forgot-password',
+  '/auth/reset-password',
+  '/auth/verify-email',
+  '/auth/resend-verification',
+  '/auth/check-email',
+};
 
 /// 401 alındığında refresh token ile yeni access token alıp isteği tekrar dener.
 ///
@@ -30,10 +46,10 @@ class RefreshInterceptor extends QueuedInterceptor {
     ErrorInterceptorHandler handler,
   ) async {
     final options = err.requestOptions;
-    final isAuthCall = options.path.contains('/auth/');
+    final isNoRetryCall = _noRetryAuthPaths.any(options.path.startsWith);
     final alreadyRetried = options.extra['retried'] == true;
 
-    if (err.response?.statusCode != 401 || isAuthCall || alreadyRetried) {
+    if (err.response?.statusCode != 401 || isNoRetryCall || alreadyRetried) {
       return handler.next(err);
     }
 
@@ -50,12 +66,20 @@ class RefreshInterceptor extends QueuedInterceptor {
       );
       final data = ApiEnvelope.fromJson(res.data).requireMap();
       final newAccess = data['accessToken'] as String?;
-      final newRefresh = data['refreshToken'] as String?;
+      final bodyRefresh = data['refreshToken'] as String?;
 
       if (newAccess == null || newAccess.isEmpty) {
         await _expire();
         return handler.next(err);
       }
+
+      // Refresh token'lar tek kullanımlıktır ve her yenilemede rotasyona
+      // girer; yenisi gövdede değil `Set-Cookie` başlığında döner. Yeni token
+      // okunamazsa eskisini saklamak yerine temizleriz: kullanılmış token'ın
+      // tekrar gönderilmesi sunucuda kullanıcının TÜM oturumlarını iptal eder.
+      final newRefresh = (bodyRefresh != null && bodyRefresh.isNotEmpty)
+          ? bodyRefresh
+          : refreshTokenFromHeaders(res.headers) ?? '';
 
       await storage.saveTokens(
         accessToken: newAccess,

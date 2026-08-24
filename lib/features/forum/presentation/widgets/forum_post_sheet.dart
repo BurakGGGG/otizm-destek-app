@@ -8,6 +8,7 @@ import '../../../../i18n/strings.g.dart';
 import '../../data/forum_repository.dart';
 import '../../domain/forum_post.dart';
 import '../forum_screen.dart';
+import '../../../tags/data/tag_repository.dart';
 
 /// Forum gönderisi oluşturma/düzenleme sayfası (web create modalı birebir):
 /// tip seçici, başlık, içerik, semptom etiketleri (yalnızca oluşturma),
@@ -100,7 +101,7 @@ class _ForumPostSheetState extends ConsumerState<ForumPostSheet> {
     final t = context.t;
     final colors = context.colors;
     final text = Theme.of(context).textTheme;
-    final tagsAsync = ref.watch(forumTagsProvider);
+    final tagsAsync = ref.watch(symptomTagsGroupedProvider);
 
     return Padding(
       padding: EdgeInsets.only(

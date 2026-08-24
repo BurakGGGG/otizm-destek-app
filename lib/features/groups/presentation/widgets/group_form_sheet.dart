@@ -1,24 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/util/input_rules.dart';
 import '../../../../core/network/api_exception.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../i18n/strings.g.dart';
 import '../../data/group_repository.dart';
 import '../../domain/group.dart';
 
-/// Yeni grup oluşturma alt sayfası. `name` zorunlu; kategori seçilebilir.
+/// Grup oluşturma / düzenleme alt sayfası. `name` zorunlu; kategori
+/// seçilebilir. [existing] verilirse düzenleme modudur (yalnızca grubu kuran
+/// çağırır; yetkiyi backend de doğrular).
 class GroupFormSheet extends ConsumerStatefulWidget {
-  const GroupFormSheet({super.key});
+  const GroupFormSheet({super.key, this.existing});
+
+  final Group? existing;
 
   @override
   ConsumerState<GroupFormSheet> createState() => _GroupFormSheetState();
 }
 
 class _GroupFormSheetState extends ConsumerState<GroupFormSheet> {
-  final _name = TextEditingController();
-  final _description = TextEditingController();
-  String? _category;
+  late final _name = TextEditingController(text: widget.existing?.name ?? '');
+  late final _description =
+      TextEditingController(text: widget.existing?.description ?? '');
+  late String? _category = widget.existing?.category;
   bool _saving = false;
 
   @override
@@ -37,11 +43,22 @@ class _GroupFormSheetState extends ConsumerState<GroupFormSheet> {
     }
     setState(() => _saving = true);
     try {
-      await ref.read(groupRepositoryProvider).create(
-            name: _name.text,
-            description: _description.text,
-            category: _category,
-          );
+      final repository = ref.read(groupRepositoryProvider);
+      final existing = widget.existing;
+      if (existing == null) {
+        await repository.create(
+          name: _name.text,
+          description: _description.text,
+          category: _category,
+        );
+      } else {
+        await repository.update(
+          existing.id,
+          name: _name.text,
+          description: _description.text,
+          category: _category,
+        );
+      }
       if (mounted) Navigator.of(context).pop(true);
     } on ApiException catch (e) {
       if (!mounted) return;
@@ -66,11 +83,16 @@ class _GroupFormSheetState extends ConsumerState<GroupFormSheet> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(t.groups.addTitle,
-                style: Theme.of(context).textTheme.titleMedium),
+            Text(
+              widget.existing == null
+                  ? t.groups.addTitle
+                  : t.groups.editTitle,
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
             const SizedBox(height: 16),
             TextField(
               controller: _name,
+              inputFormatters: lengthLimit(kMaxTitleLength),
               textCapitalization: TextCapitalization.words,
               decoration: InputDecoration(
                 labelText: t.groups.nameLabel,
@@ -80,6 +102,7 @@ class _GroupFormSheetState extends ConsumerState<GroupFormSheet> {
             const SizedBox(height: 12),
             TextField(
               controller: _description,
+              inputFormatters: lengthLimit(kMaxShortTextLength),
               minLines: 2,
               maxLines: 4,
               textCapitalization: TextCapitalization.sentences,

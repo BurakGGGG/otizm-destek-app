@@ -12,9 +12,11 @@ Otizm destek ürünü için Flutter + Firebase mobil uygulama. Mevcut web platfo
   - Gerçek zamanlı: STOMP over SockJS, `/ws`.
   - AI sohbet botu: SSE streaming, `/api/chatbot/stream`.
   - REST ön eki: `/api`.
-- **Firebase (proje: `otizm-destek-app`):** mobilde FCM push, Crashlytics, Analytics,
-  Remote Config, Storage. **Kimlik (Auth) DEĞİL**, **Firestore DEĞİL** — kaynak doğruluk
-  Spring backend + Postgres.
+- **Firebase (proje: `otizm-destek-app`):** mobilde yalnızca FCM push, Crashlytics
+  ve Analytics. **Kimlik (Auth) DEĞİL**, **Firestore DEĞİL**, **Storage DEĞİL** —
+  kaynak doğruluk Spring backend + Postgres; dosyalar `/api/upload` üzerinden
+  gider. Kullanılmayan SDK'lar (auth/storage/remote_config) bağımlılıklardan
+  çıkarıldı, izin kuralları istemciye kapalı (`docs/security.md`).
 - **Auth (KARAR: backend JWT — Seçenek B):** Mobil doğrudan backend'in kendi JWT auth'unu
   kullanır (`/api/auth/login`, `/register`, `/refresh`, `/logout`, `/me`). Access+refresh
   token `flutter_secure_storage`'da; Dio `AuthInterceptor` Bearer ekler, `RefreshInterceptor`
@@ -42,10 +44,16 @@ flutter analyze
 flutter test
 flutter run                 # Android emülatör/cihaz
 flutter build apk --debug
+flutter build appbundle --release   # mağaza paketi (key.properties gerekir)
 ```
 
 `flutterfire` CLI: `~/.pub-cache/bin` PATH'te olmalı. Yeniden yapılandırma:
 `flutterfire configure --project=otizm-destek-app --platforms=android,ios`.
+
+**Ortam profilleri** (`config/`, bkz. `config/README.md`):
+`flutter run --dart-define-from-file=config/render.json` (varsayılanla aynı:
+API Render, paylaşılan bağlantılar Vercel — web PWA de aynı backend'i kullanıyor)
+ya da `config/otizmdestek.json` (özel alan adı; DNS yayına girince).
 
 ## Durum / sonraki adımlar
 
@@ -76,19 +84,63 @@ flutter build apk --debug
     destekler. `/notes`, Profil menüsü + Gelişim sekmesi kısayolu.
   - **Çocuklarım:** `/api/children` CRUD (ekle/düzenle/sil).
   - **Randevular:** `/api/appointments` liste + iptal (veli) / onayla·tamamla (uzman);
-    **randevu alma akışı** (müsaitlik slotları + `POST /appointments`);
-    **erteleme** (`PATCH /{id}/reschedule`, veli+uzman, müsaitlik slotlu).
+    **değerlendirme** (`PATCH /{id}/rate?rating=&comment=`, veli; tamamlanmış ve
+    puanlanmamış randevuda) ve **tekrarlayan seans** (randevu alırken
+    Tekil/4/8/12/24 hafta → `recurrenceWeeks`, yalnızca >1 gönderilir; kartta
+    "N. seans" rozeti, seriyi topluca iptal `DELETE /appointments/group/{id}`);
+    **randevu alma akışı** (müsaitlik slotları + `POST /appointments`;
+    randevu tipi uzmanın sunduğu biçimle sınırlı — web bu bayrakları formda
+    kullanmıyor);
+    **erteleme** (`PATCH /{id}/reschedule`, veli+uzman, müsaitlik slotlu);
+    **detay sayfası** (web "Randevu Detayı" penceresi birebir: süre, taraflar,
+    görüşme konusu/öncesi not/seans notu/özet/öneriler/takip görevi,
+    değerlendirme, görüşmeye katıl) + **durum geçmişi** zaman çizelgesi
+    (`GET /appointments/{id}/history`; kayıt yoksa ya da uç nokta hata verirse
+    web gibi sessizce boş gösterilir).
   - **Bilgi Bankası:** `/api/knowledge` liste + makale detayı (HTML→düz metin).
   - **Mesajlaşma:** REST geçmiş + **STOMP /ws** canlı; konuşma başlatma
-    (`/messages/conversations/direct/{userId}`).
+    (`/messages/conversations/direct/{userId}`); thread açılınca **okundu**
+    işaretleme (`POST /conversations/{id}/read` — okunmamış rozeti yalnızca
+    bununla sıfırlanıyordu, mobilde eksikti), **arşiv/sessize alma**
+    (`/archive`, `/mute`) ve liste süzgeçleri (Tümü/Okunmamış/Uzmanlar/
+    Gruplar/Arşiv — web `ConvFilter` birebir). **PECS görsel iletişim
+    kartları**: 12 kart, 3 kategori; kart gönderilince web'deki gibi
+    **etiket metni** mesaj olarak gider (paylaşılan veri, çevrilmez) ve
+    içerik eşleşen mesajlar emojisiyle çizilir (`messageType: PECS`).
+    **Yanıtlama** (`replyToId` + balonda alıntı), **emoji tepkileri**
+    (`POST /messages/{id}/react`, hızlı emoji seti web `QUICK_EMOJIS`
+    birebir; `/topic/conversation/{id}/reactions` STOMP aboneliğiyle canlı),
+    **fotoğraf eki** (image_picker → `POST /upload` `CONVERSATION` kapsamı →
+    `IMAGE` mesajı). Ek dosyalar `GET /api/upload/**` kimlik doğrulaması
+    istediği için tarayıcıda açılamıyor: dosya Bearer'lı indirilip paylaşım
+    sayfasına veriliyor (web same-origin çerezle doğrudan açıyor).
+    **Yeni sohbet** (`GET /users/search?q=`, en az iki harf; Birebir/Grup
+    seçimiyle **grup sohbeti oluşturma** — `POST /conversations/group`
+    `{title, participantIds}`), **grup ayarları** (ad değiştirme
+    `PATCH /{id}/title`, üye ekle/çıkar `POST|DELETE /{id}/members/{userId}`;
+    yalnızca grup sohbetlerinde) ve **sohbet içi arama**
+    (`GET /conversations/{id}/search`). Birebir sohbetin başlığından
+    **kullanıcı engelleme** (`POST /users/{id}/block`) ve mesaj balonundan
+    **şikayet** (`POST /reports` targetType `MESSAGE`, yalnızca başkasının
+    mesajında); engellenenler listesi
+    ve engeli kaldırma Ayarlar > Gizlilik altında (web engellemeyi yalnızca
+    benzer aileler çekmecesinde sunuyor, kaldırma arayüzü yok). Arama sonucuna dokunmak
+    mesaja atlamıyor (geçmiş sayfalı geldiği için konum garanti edilemiyor).
   - **AI Asistan:** `/api/chatbot/stream` (SSE) streaming.
-  - **Hesap:** `PUT /api/users/me` ile profil düzenleme.
+  - **Hesap:** `PUT /api/users/me` ile profil düzenleme + **profil fotoğrafı**
+    (galeri → `POST /upload` AUTHENTICATED → `profileImageUrl`).
   - **Bildirimler:** `/api/notifications` liste + okundu işaretleme; Ana Sayfa'da
     okunmamış rozeti.
   - **Şifremi unuttum / sıfırla:** `/api/auth/forgot-password|reset-password`.
   - **Rutinler:** `/api/routines` — çocuk bazlı görsel program; rutin/adım
-    ekleme-silme (saat + ikon). Profil menüsünden `/routines`.
-  - **Günlük Takip:** 3 sekme — `/daily-tracker`. **Duygu** `/api/mood` (5'li emoji
+    ekleme-silme (saat + ikon) ve **günlük adım işaretleme + yıldız cüzdanı**
+    (cihazda; web `routine_completed_<tarih>` anahtarlarını biriktiriyor,
+    mobil tek anahtarda gün bilgisiyle tutuyor). Adım ikonu adları paylaşılan
+    VERİ: `kRoutineIcons` web `ICON_OPTIONS` ile birebir
+    (`test/routine_progress_test.dart` korur). Profil menüsünden `/routines`.
+  - **Günlük Takip:** 3 sekme + haftalık özet şeridi (ortalama uyku, en sık ruh
+    hali, en sık tetikleyici, eksiksiz gün — saf `buildTrackerInsights`) —
+    `/daily-tracker`. **Duygu** `/api/mood` (5'li emoji
     + tetikleyiciler + not, gün başına upsert); **Uyku** `/api/sleep` (yatış/uyanış,
     kalite 1-5, gece uyanma, duyusal faktörler — faktörler web ile aynı
     `Weighted:..|Sensory:..|Melatonin:..|Disturbance:..|Notes:..` formatında notes
@@ -97,10 +149,30 @@ flutter build apk --debug
     metinleri web ile birebir aynı düz metin (çevrilmez!).
   - **Gelişim Paneli:** `/api/analytics/child/{id}/trends` — 4 aylık trend
     çubuk grafiği (kilometre taşı, ruh hali, uyku, davranış). `/analytics`.
+    **Yapay zekâ analizi** (`/api/ai-insights/{childId}`): dört tür
+    (GENERAL/BEHAVIORAL/PROGRESS/WEEKLY — web `ANALYSIS_TYPES` birebir),
+    SSE akışı (`/stream`) sohbet botundaki ayrıştırıcıyla, akış kurulamazsa
+    web gibi tek seferlik uç noktaya düşülür. Backend veli `AI_ANALIZ` açık
+    rızası istediği için kart rıza yoksa KVKK sayfasına yönlendirir; çıktı
+    hafif markdown (başlık/madde/kalın) olarak çizilir ve tıbbi uyarı
+    şeridiyle birlikte gösterilir. **Ham veri paneli** (web'in üç grafik
+    sekmesinin karşılığı, mobilde tek akış): gün aralığı seçici (7/14/30/90 —
+    web `RANGE_OPTIONS`), **takip skoru** (ruh hali %30 + uyku %30 + aktivite
+    %20 + veri kapsamı %20, web `wellbeingScore` birebir) ve kural tabanlı
+    öngörüler, eksik veri önerileri (en fazla üç), günlük ruh hali ve uyku
+    (süre + kalite) serileri, davranış/kilometre taşı kategori kırılımları,
+    aylık not aktivitesi ve **CSV paylaşımı** (web'de indirme; sütunlar
+    `exportCsv` ile aynı). Hesaplar saf (`domain/analytics_summary.dart`,
+    `test/analytics_summary_test.dart`), kaynaklar tek sağlayıcıda paralel
+    toplanır ve tek tek yakalanır. Web'den ayrım: tarama başlatma önerisi yok
+    (tarama anketi web'de de bulunmuyor).
   - **Davranış Günlüğü:** `/api/abc-entries` — ABC (Öncesi-Davranış-Sonuç)
-    kayıtları; kategori/yer/tetikleyici/sonuç sabitleri web ile birebir düz
-    metin (çevrilmez!), şiddet 1-5. category+location DB'de NOT NULL. `/behavior`,
-    Gelişim sekmesi kısayolu.
+    kayıtları; kategori/yer/tetikleyici/sonuç sabitleri düz metin veri
+    (çevrilmez!), şiddet 1-5. **Düzeltme:** web'de ABC *girişi* yok (yalnızca
+    çocuk detayında ve panellerde okunuyor), yani bu sözlüğü tek yazan mobil —
+    "web ile birebir" değil, ama DB'ye yazılan veri olduğu için sabit kalır.
+    `category`/`location` DB'de ve entity'de **nullable** (eski not yanlıştı);
+    mobil yine de ikisini de gönderiyor. `/behavior`, Gelişim sekmesi kısayolu.
   - **Kriz Rehberi:** statik içerik (API yok) — 4 kriz kartı (meltdown, duyusal
     aşırı yüklenme, saldırganlık, kaygı) adım-adım müdahale + kaçınılacaklar +
     acil hat; nefes egzersizi (4sn al / 6sn ver animasyonlu halka); acil
@@ -112,7 +184,8 @@ flutter build apk --debug
     DB'de sabit (etiketler çevrilebilir); `startTime`/`endTime` saat dilimsiz
     LocalDateTime (`yyyy-MM-ddTHH:mm:ss`). Güne göre gruplu liste. `/calendar`,
     Profil menüsü kısayolu.
-  - **Acil Durum Kartı:** `/api/emergency-card/{childId}` — çocuğun kritik
+  - **Acil Durum Kartı** (sesli okunabilir): `/api/emergency-card/{childId}` —
+    çocuğun kritik
     bilgileri (tanı, kan grubu, iletişim seviyesi, acil kişiler, doktor,
     ilaç/alerji, tetikleyici/sakinleştirme/yapılmayacaklar). Backend serbest
     JSON blob'u; `data` string olarak gelir (jsonDecode). Alan anahtarları web
@@ -123,7 +196,8 @@ flutter build apk --debug
     `PageResponseDto.content`); paylaşım oluştur (`POST /forum/posts`
     `{category:'SUPPORT_WALL', postType:'DENEYIM', anonymous}`, başlık boşsa web
     gibi varsayılan başlık), düzenle/sil (sahibi); destek mesajları
-    (`/forum/posts/{id}/comments`, yorum daima `anonymous:true`); beğeni/destek
+    (`/forum/posts/{id}/comments`, yorum daima `anonymous:true`; kendi
+    mesajını düzenleme `PUT .../comments/{commentId}` ve silme); beğeni/destek
     aç-kapa (`POST /votes` `{targetType:'POST', targetId, voteValue:1}`, iyimser
     UI). Liste + detay (tam metin + yorumlar + yazma çubuğu). `/support-wall`,
     Profil menüsü kısayolu.
@@ -134,7 +208,11 @@ flutter build apk --debug
     iyimser UI). Cevap metnine web ile **birebir aynı** meta gömülür:
     `[ANONYMOUS_META:true]` + `[TAGS:a,b]` önekleri (`WeeklyAnswer.encode`/parse);
     etiket kodları (`kWeeklyAnswerTags`) çevrilmez. Uzman rozeti: rol EXPERT ya
-    da ad "Uzm."/"Dr." içerir. `/weekly-question`, Profil menüsü kısayolu.
+    da ad "Uzm."/"Dr." içerir. Cevap listesinde web'deki dört süzgeç
+    (Tümü/Uzman/Popüler/Şehrim) + arama; kurallar saf `filterWeeklyAnswers`
+    (anonim cevapta yazar/şehir aramaya girmez). Web'den ayrım: web'in cevap
+    kutusundaki "şehrimi gizle" onayı listedeki herkesin şehrini gizliyor,
+    mobilde bu oturumluk kural yok. `/weekly-question`, Profil menüsü kısayolu.
   - **Yerel Buluşmalar:** `/api/community/meetups` — şehir bazlı aile
     buluşmaları. Şehir filtresi (`kMeetupFilterCities`, `Tümü` sunucuya
     gönderilmez), liste + oluşturma (`POST /meetups`, title/city/date zorunlu;
@@ -151,9 +229,21 @@ flutter build apk --debug
     thread), **Arkadaş** ve **Mentor** (`POST /buddies/request`
     `{receiverId, isMentorRequest, message}`, iyimser → PENDING).
     `relationshipStatus` PENDING/ACCEPTED ise buddy/mentor kilitli, rozet
-    gösterilir. `/similar-families`, Profil menüsü kısayolu. (Not: web'deki
-    per-aile "Buluşma" isteği akışı kapsam dışı — topluluk buluşmaları ayrı
-    `/meetups` özelliğinde.)
+    gösterilir. **Buluşma isteği** (`/api/meetup-requests`, PARENT'a kısıtlı):
+    tür (ONLINE/YUZEYUZE — veri), tarih (`yyyy-MM-dd`), saat (`HH:mm`), yer ve
+    not; gelen isteklerde kabul/ret, giden isteklerde geri çekme şeridi.
+    (Topluluk buluşmaları ayrı `/meetups` özelliğidir.)
+    İki sekme: **Eşleşmeler** ve **Çemberim** — gelen bağlantı istekleri
+    (`GET /buddies/pending`, kabul `POST /buddies/accept/{id}`, ret
+    `/reject/{id}`), kurulmuş bağlantılar (`GET /buddies/my-list`, mesaj ve
+    kaldır `DELETE /buddies/remove/{id}`) ve gelen buluşma istekleri; sekmede
+    bekleyen sayısı rozeti. Eşleşme kartında gönderilen isteği geri çekme
+    (`DELETE /buddies/request/{id}`, yalnızca `requestedByMe` + PENDING),
+    iletişim tercihi çipleri ve beş boyutlu uyum kırılımı.
+    Web'in üçüncü sekmesi (**Yakındaki veliler radarı**, `/buddies/nearby`)
+    mobilde YOK: konum gerektiriyor, mobilde konum yazan bir akış yok
+    (web tarayıcı geolocation'ıyla profile lat/lng yazıyor).
+    `/similar-families`, Topluluk merkezi kısayolu.
   - **Destek Grupları:** `/api/groups` — kategori bazlı aile/uzman toplulukları
     + grup sohbeti. İki sekme: **Gruplarım** (`/groups/my`) ve **Keşfet** (arama
     `/groups/search?query=` + kategori `/groups/category/{cat}`). Katıl
@@ -162,8 +252,14 @@ flutter build apk --debug
     veri, çevrilmez). Üyeyse **Grup Sohbeti** →
     `POST /messages/conversations/group/{groupId}` (messaging repo'ya
     `getOrCreateGroup` eklendi) → mevcut `ConversationThreadScreen`.
-    Mutasyon sonrası her iki liste invalidate edilir. `/groups`, Profil menüsü
-    kısayolu.
+    Mutasyon sonrası her iki liste invalidate edilir. Karta dokunmak **grup
+    detayını** açar (web `GroupDetailsModal`): bilgi, **buluşmalar**
+    (`GET /groups/{id}/meetings`; grubu kuran `POST` ile planlar, `DELETE` ile
+    iptal eder) ve **üye listesi** (`GET /groups/{id}/members`, uzman rozetli).
+    İkisi de backend'de üyelere kısıtlı; üye değilken istek atılmaz. Grubu
+    kuran başlıktan grubu **düzenler/siler** (`PUT|DELETE /groups/{id}`). Grup
+    kartındaki sohbet düğmesi okunmamış sayısını gösterir (`unreadCount`).
+    `/groups`, Profil menüsü kısayolu.
   - **Tedavi Paneli:** `/api/treatment-state/{childId}` — günlük destek planı
     (web `/tedavi` birebir). **DİKKAT: bu uç nokta zarfsız** — GET/PUT ham
     `TreatmentStateDto` döner/alır (`{success,data}` yok, tek istisna). Backend
@@ -220,7 +316,11 @@ flutter build apk --debug
     not bölümlerinin kendi ekranları zaten var; kısayol çipleri verildi).
     Bölümler: **profil fotoğrafı** (image_picker galeri → `POST /upload`
     multipart `{data:{url}}` → child PUT `profileImageUrl`), bilgiler (tanı/
-    eğitim/terapi + mevcut form ekranına düzenleme), **semptom etiketleri**
+    eğitim/terapi + mevcut form ekranına düzenleme),
+    **ilaç uyumu ↔ davranış** (gün bazında davranış sayısı + doz uyum yüzdesi
+    + yan etkiler; `GET /medications/child/{id}/logs` + `/abc-entries`,
+    hesap saf `buildMedicationCorrelation`, web'in korelasyon grafiğiyle aynı
+    kurallar — mobilde son 14 gün satır satır), **semptom etiketleri**
     (`/tags/grouped` çoklu seçim; kayıt tam gövde + `tagIds` PUT — web
     birebir; Child modeline `tags` eklendi), **kilometre taşları**
     (`/api/milestones` tam CRUD; kategori değerleri Türkçe sabit veri
@@ -239,13 +339,137 @@ flutter build apk --debug
   Profil'de Sistem/Açık/Koyu seçici, kalıcı).
 - ✅ Hedef ilerletme (+jeton geri alma) — `PUT /api/goals/{id}` (entries JSON dizisi;
   title+category zorunlu). Gelişim sekmesindeki hedef kartlarında.
-- ⏳ Sonraki adaylar: backend FCM deploy sonrası uçtan uca push testi (mobil
-  kod hazır). **Veli tarafı web pariteye ulaştı** — kalan web rotaları kapsam
-  dışı: BEP oluşturucu + danışanlar EXPERT_ONLY; tarama anketi web'de YOK
-  (yalnızca sonuç gösterimi, `/tarama` → `/cocuklarim` redirect); admin
-  paneli mobil hedefi değil. Not: sosyal hikayeler (`/api/social-stories`)
-  ve wellbeing backend'de var ama web'de tam bir CRUD arayüzü yok (mirror
-  edilecek UX yok) — düşük öncelik.
+- ✅ **Backend kayması düzeltmeleri (2026-08-16, web'in temmuz sürümü sonrası):**
+  - **Oturum:** `AuthResponse.refreshToken` artık `@JsonIgnore`; token yalnızca
+    httpOnly `refresh_token` çerezinde (Path=/api/auth) dönüyor ve her
+    yenilemede rotasyona giriyor. Mobil token'ı `Set-Cookie` başlığından okuyor
+    (`core/network/auth_cookies.dart`); yeni token okunamazsa eskisi saklanmaz
+    (kullanılmış token tüm oturumları iptal ettiriyor). `RefreshInterceptor`
+    artık `/auth/me` 401'ini de yeniliyor (açılışta oturum düşüyordu).
+  - **Medya:** `GET /api/upload/**` authenticated oldu ve göreli URL dönüyor;
+    `core/network/media.dart` (mutlaklaştırma + Dio üzerinden Bearer'lı
+    `AuthedNetworkImage`). Yükleme `visibility` + `scopeType/scopeId` gönderir.
+  - **Şifre:** `StrongPasswordValidator` (8-64, büyük harf, rakam, özel
+    karakter, yaygın şifre yasağı) `core/util/password_rules.dart` ile birebir.
+- ✅ **E-posta doğrulama:** kayıt yanıtı `pendingEmailVerification` /
+  `pendingApproval` dönebiliyor (token'sız). `/verify-email` ekranı: kod ile
+  doğrulama, yeniden gönderme, uzman onay bekleme; girişte doğrulama hatasında
+  kısayol. Kayıtta e-posta müsaitlik kontrolü + uzman kaydında lisans zorunlu.
+- ✅ **Onboarding** (`/onboarding`, web `/baslangic`): çocuk profili → destek
+  etiketleri → başlangıç planı; `POST /users/me/onboarding-complete`, router
+  `onboardingCompleted` bayrağına göre yönlendiriyor.
+- ✅ **Ayarlar** (`/settings`): bildirim/gizlilik/erişilebilirlik tercihleri
+  (cihazda, web localStorage anahtarlarıyla aynı adlar), tema+dil (Profil'den
+  taşındı), şifre değiştirme, verilerimi indir (JSON paylaşımı), hesap silme.
+  **Gizlilikte dört anahtar sunucuya da yazılır** (`PUT /users/me`:
+  allowDirectMessages, allowFamilyMessages, hideOnlineStatus,
+  approximateLocationOnly) — web de bunları saklıyor, mobilde eskiden yalnızca
+  cihazda kalıyordu. Ayrıca **eşleşme tercihleri** (supportIntents /
+  communicationPreferences; kodlar veri, etiketler çevrili) ve **engellenen
+  kullanıcılar** (`/blocked`) buradan yönetilir.
+- ✅ **KVKK** (`/kvkk`): amaç bazlı rızalar, yeniden rıza kartı, rıza geçmişi,
+  veri sahibi başvuruları (`/kvkk/requests`).
+- ✅ **Yasal metinler** (`/legal`, `/legal/:kind`): KVKK aydınlatma, gizlilik,
+  kullanım şartları, tıbbi uyarı, güven merkezi — web `PublicInfoPage` birebir
+  (bağlayıcı metin, çevrilmez); oturumsuz da açılır (kayıt ekranından).
+- ✅ **Erişilebilirlik:** büyük yazı (%112,5), sakin görünüm ve yüksek kontrast
+  paletleri, hareket azaltma (geçişsiz sayfa animasyonu), basit mod (profil
+  menüsü sadeleşir) — hepsi Ayarlar > Erişilebilirlik altında, kalıcı.
+- ✅ **Acil kart paylaşımı:** süreli jeton + QR (`.../share` uç noktaları),
+  kopyala/paylaş/kapat; `ACIL_DURUM_KARTI` rızası yoksa kapı kapalı.
+  Bağlantı web köküne gider (`Env.webBaseUrl`).
+- ✅ **Bildirimler ekranı:** kategori sekmeleri (web `notificationUtils`
+  eşlemesi), tarih gruplama, kaydırarak/seçerek silme, sayfalama.
+- ✅ **Günlük Egzersiz Sihirbazı** (Ödevlerim > Sihirbaz sekmesi, web
+  `DailyExerciseWizard`): görevler tek tek gezilir, sonuç seçimi velinin
+  notunun başına **paylaşılan işaret** olarak eklenir (`[🎉 Kolayca Yaptık]`,
+  `[🙂 Destekle Yaptık]`, `[💬 Bugün Zorlandık]` — çevrilmez), zorlanmada
+  AutiBot ipucu, kanıt fotoğrafı `AUTHENTICATED` görünürlükle yüklenir
+  (`core/network/upload_repository.dart` ortak sarmalayıcı), ilerleme ağacı
+  (Tohum/Filiz/Çiçek/Ağaç, %25/50/75 eşikleri). Web'den ayrım: tamamlanmış
+  görev tekrar teslim edilemez (web ikinci kayıt + ikinci bildirim üretiyor).
+- ✅ **Kullanıcı Rehberi** (`/guide`, web `/kullanici-rehberi`): role göre
+  başlangıç adımları, kategori bazlı bölüm kataloğu ("ne işe yarar / ne zaman
+  kullanılır" + bölüme git), Türkçe uyumlu arama (`core/util/search_text.dart`),
+  eğitim videoları listesi. Videolar web sunucusunda (webm, iOS oynatmıyor)
+  kaldığı için kart `Env.webBaseUrl/kullanici-rehberi?video=NN` adresini
+  tarayıcıda açar; izlendi işareti cihazda saklanır.
+- ✅ **Topluluk merkezi** (`/community`, web `/topluluk`): yedi topluluk alanı
+  tek girişte; Profil menüsündeki altı ayrı satırın yerine geçti.
+- ✅ **Randevu başlığı:** canlı geri sayımlı "sıradaki randevu" kartı + altı
+  sayaç; boş durumda Uzmanlar sekmesine götüren CTA (`/home?tab=` ile sekme
+  açılabiliyor). "Bu hafta" sayacı web'den farklı olarak yalnızca bu haftayı
+  sayar.
+- ✅ **Kriz rehberi:** kriz kartını sesli dinleme (`flutter_tts`,
+  `core/tts/speech_service.dart` — web `speechSynthesis` karşılığı), tıbbi
+  uyarı şeridi (+ `/legal/medical`), "ilk kural" hatırlatması, kriz sonrası
+  kontrol listesi.
+- ✅ **Bilgi bankası:** `/knowledge/search` ile arama + kategori
+  (`kKnowledgeCategories`, veri) + içerik türü + **semptom etiketi** filtresi
+  (çoklu seçim; `tagIds` web gibi virgülle birleşik tek parametre gider),
+  sayfalama, yer imleri (`/bookmarks`, `POST /{id}/bookmark`), ilgili
+  içerikler, yorumlar (okuma + yazma), makaleyi sesli dinleme. Makale
+  kartlarında etiket rozetleri. Yorumun "deneyim" alanları gönderilmiyor:
+  backend DTO'sunda `isExperience` Jackson'a `experience` adıyla açıldığı için
+  web'in gönderdiği bayrak sunucuda karşılık bulmuyor (gelen kayıtta iki
+  anahtar da okunur).
+- ✅ **Uzmanlar:** değerlendirmeler (`/api/experts/{id}/reviews` — ortalama,
+  liste, kendi değerlendirmeni yaz/güncelle/sil) ve filtre sayfası (şehir,
+  yalnızca randevu kabul edenler, yalnızca doğrulanmış, **yalnızca online**,
+  **yalnızca favorilerim**, sıralama). Favoriler cihazda saklanır (web
+  `expert_favorites_v1`), kartta kalp düğmesi. **Uzman profili** web `ProfilePage`/`ExpertsPage` bilgileriyle
+  dolduruldu: hakkında (bio), doğrulama rozetleri, profil bilgileri tablosu
+  (ilk uygun randevu `GET /appointments/experts/{id}/next-available`, görüşme
+  süresi, yaş grubu, diller, destek konuları, hizmet biçimi, seans ücreti,
+  iptal/erteleme koşulu — değerler veri, yalnızca etiketler çevrilir) ve
+  **profil şikayeti** (`POST /reports {targetType:'EXPERT'}`, nedenler web
+  `REPORT_REASONS` birebir; açıklama yeni satırla eklenir). Şikayet uç noktası
+  `features/reports/` altında ortaklaştı (forum da onu kullanıyor). Web'den
+  ayrım: "ilk uygun randevu" yalnızca uzman detayında sorulur (web listedeki
+  her uzman için ayrı istek atıyor); lisans numarası rozeti yok — `/experts`
+  yanıtı bu alanı taşımıyor (web'de de hep boş).
+- ✅ **Uzman erişimi** (`/expert-access`, `/api/patients/connections/**`):
+  veli, uzmanın çocuk verisine erişimini onaylar/reddeder, verdiği erişimi
+  geri alır. Ana sayfada bekleyen istek şeridi, Çocuklarım başlığında ve
+  Ayarlar > Gizlilik altında kısayol. Uç noktalar PARENT'a kısıtlı.
+- ✅ **Ana sayfa:** dört hızlı eylem kısayolu (günlük kayıt, davranış notu,
+  gözlem notu, plan ekle).
+- ✅ **Genel arama** (`/search`, `GET /api/search`): makale, forum gönderisi,
+  grup ve uzman tek sorguda; tür süzgeci ve kabuk başlığındaki arama düğmesi
+  (web bunu kenar çubuğu komut paletinde sunuyor). Web'den ayrım: sonuca
+  dokunmak bölüm listesine değil doğrudan içeriğe gider (uzman profili için
+  `GET /experts/{id}` ile profil çekilir).
+- ✅ **Günlük plan + koç notu** (ana sayfa, web `todayTasks`/`dailyCoachNote`):
+  kural tabanlı "bugün ne yapalım" listesi — bekleyen doz ve bugün/yarın
+  etkinliği en acil, tamamlananlar sona; ilerleme yüzdesi, sıra rozetleri
+  (Şimdi bunu yap/Sonra/Güvenlik) ve yedi varyantlı koç notu. Girdiler
+  `data/daily_plan_provider.dart` içinde paralel toplanır (ruh hali,
+  ilaç dozları, takvim, notlar, okunmamış mesaj, uzman isteği, acil kart);
+  alt istekler tek tek yakalanır, biri düşerse plan yine çıkar. Kurallar saf
+  (`domain/daily_plan.dart`) ve `test/daily_plan_test.dart` ile korunur.
+  **Yeni kullanıcı kontrol listesi**: profil → ilk kısa kayıt → kriz rehberi;
+  kapatma cihazda saklanır (web `dashboard-onboarding-dismissed`). "Görüldü"
+  bilgisi için gerçek ziyaretler işaretlenir
+  (`core/storage/visited_routes.dart`, router dinleyicisi) — web yalnızca
+  rehberden tıklananları sayıyor. Web'den ayrım: bekleyen süre toplamı
+  gerçek dakikaları toplar (web "30 sn"yi 30 dakika sayıyor), duyusal profil
+  adımı yok (mobilde Tedavi Paneli > Araçlar altında).
+- ⏳ Sonraki adaylar: backend FCM deploy sonrası uçtan uca push testi.
+  Kapsam dışı (2026-08-21 tam parite taramasında yeniden doğrulandı — web
+  deposunun son sürümü 2026-07-27, yani referans değişmedi):
+  BEP oluşturucu + danışanlar EXPERT_ONLY; tarama anketi web'de YOK
+  (`/tarama` → `/cocuklarim` redirect); admin paneli mobil hedefi değil;
+  uzman "harita" görünümü (web'de gerçek harita değil, CSS ızgarasına
+  yerleştirilmiş sahte konum kartları); uzman içerik yazarlığı (makale
+  oluştur/AI taslak/analitik). **Web'de tanımlı ama kullanılmayan** (bu yüzden
+  mobilde de yok): sosyal hikaye ve wellbeing servisleri, kurum listesi
+  (`/institutions`), ilaç aç-kapa (`/medications/{id}/toggle`), rutin "Yıldız
+  Tablosu" sekmesi (düğme var, içerik yok), randevu tercihleri
+  (`appt_prefer_*` — yazılıyor, okunmuyor), engellenenleri listeleme
+  (mobil bunu ekledi). **Bilinçli farklar:** yakındaki veliler radarı (konum
+  gerekiyor), panodaki "sonraki araçlar" görevleri (dördünün ikisi web'de
+  yönlendirme sonrası boş sayfaya çıkıyor), sohbete özel duyusal ayarlar
+  (mobilde küresel erişilebilirlik tercihleri var).
 - Modül kapsamı ve fazlar: bkz. plan `~/.claude/plans/bir-otizm-destek-mobil-compressed-fog.md`.
 
 ## Notlar
@@ -253,5 +477,118 @@ flutter build apk --debug
 - **Renkler:** widget'lar `context.colors.X` (AppPalette) kullanır; sabit palet
   `lib/core/theme/app_colors.dart` (`AppPalette.light`/`dark`). Tema kurarken `AppColors`
   (sabit, açık) kullanılır. Yeni ekranlarda `AppColors.*` yerine `context.colors.*`.
+  Açık temada `textTertiary` **#64748B**'dir (eski #94A3B8 sayfa zemininde
+  2,4:1 kontrast veriyordu); daha soluk bir ton gerekiyorsa yeni bir anlamsal
+  renk tanımlayın, bu tonu açmayın.
+- **Bileşen temaları:** çip, FAB, SnackBar (yüzen), alt sayfa (tutamaçlı),
+  diyalog, sekme çubuğu, liste satırı, açılır menü, ipucu ve ilerleme çubuğu
+  biçimleri temada tanımlıdır (`core/theme/app_theme.dart`) — ekran içinde
+  yeniden biçimlendirmeyin. Tema metin biçimleri `_fontFallback` (emoji
+  ailesi) taşır; bileşen temasına yeni bir `TextStyle` eklerken font ailesini
+  ve yedeğini vermeyi unutmayın, yoksa emoji taşıyan metinlerde boş kutu
+  çıkar. Çip etiketinin rengi **duruma göre çözülür** (`WidgetStateColor`):
+  `FilterChip` seçiliyken `ChoiceChip` gibi `secondaryLabelStyle`a geçmediği
+  için sabit renk verilirse seçili çipin yazısı zemine karışır.
+- **Uygulama simgesi:** varsayılan Flutter simgesi yerine uygulama içindeki
+  logo (birincil mavi zemin + beyaz `volunteer_activism` ikonu). Android
+  mipmap'leri (eski + API 26 uyarlanabilir ön plan/tek renk katmanları,
+  `mipmap-anydpi-v26/ic_launcher.xml`) ve iOS AppIcon seti
+  `python3 tool/generate_icons.py` ile üretilir (kaynak: Flutter SDK'daki
+  Material ikon fontu; ek varlık yok). Uyarlanabilir katman olmadan API 26+
+  simgeyi beyaz dairenin içine küçültüyordu. Açılış penceresi rengi
+  `values/colors.xml` + `values-night` ile uygulamanın sayfa zemininde
+  (`splash_background`).
+- **Android sürüm imzası:** `android/key.properties` varsa gerçek anahtarla,
+  yoksa debug anahtarıyla imzalanır (`android/app/build.gradle.kts`). Şablon
+  `android/key.properties.example`; anahtar/parola depoya girmez.
+- **Android manifest:** uygulama adı "Otizm Destek" (paket adı değil),
+  `allowBackup=false` (sağlık verisi otomatik yedeklemeye girmesin) ve
+  `url_launcher` için `VIEW` + `http(s)` paket görünürlük sorguları — Android
+  11+ bu sorgu olmadan tarayıcıyı açamıyor (rehber videoları, görüşme linki,
+  ödev materyali bu yüzden sessizce açılmıyordu).
+- **iOS Info.plist:** görünen ad "Otizm Destek", `image_picker` için galeri ve
+  kamera kullanım açıklamaları, `url_launcher` için `LSApplicationQueriesSchemes`
+  (`tel`, `http`, `https`) hazır — Mac'te derlenince izin uyarısı ya da sessiz
+  başarısızlık olmasın (GoogleService-Info.plist hâlâ eklenecek).
+- **Dış bağlantılar:** uzmanın/velinin girdiği adresler (görüşme linki, ödev
+  materyali, kanıt dosyası, makale medyası) `core/util/external_link.dart`
+  üzerinden açılır; yalnızca `http`/`https` kabul edilir (`intent://`,
+  `file://`, `market://` gibi şemalar cihazda başka uygulama tetikleyebilir).
+  Uygulamanın kendi ürettiği `tel:` bağlantıları doğrudan açılmaya devam eder.
+- **Aktarım ve oturum:** uygulama yalnızca HTTPS konuşur — Android'de açık
+  metin `network_security_config.xml` ile kapalı (debug'da yalnızca localhost/
+  10.0.2.2 istisnası), `test/env_https_test.dart` hem adresleri hem manifest
+  kuralını denetler. Oturum token'ları güvenli depoda; **"Beni hatırla"
+  kapalıyken token diske yazılmaz**, yalnızca bellekte tutulur
+  (`test/session_persistence_test.dart`). iOS anahtarlık öğeleri
+  `first_unlock_this_device` (yedekle başka cihaza taşınmasın).
+- **Sırlar ve yetki:** Firebase istemci yapılandırması (`google-services.json`,
+  `lib/firebase_options.dart`), imza anahtarı ve `.env` **depoya girmez**;
+  şablonlar `*.example` olarak durur, yeniden üretim `flutterfire configure`.
+  Kural `test/secrets_scan_test.dart` ile korunur (izlenen dosyalarda yasak ad
+  ya da `AIza…`/PEM deseni aranır). Firebase izin kuralları (`storage.rules`,
+  `firestore.rules`, `database.rules.json`) istemciye **kapalı** — yükleme
+  backend'in `/api/upload`'ından geçer. Yetki kontrolü tamamen backend'de;
+  istemcideki rol kontrolleri yalnızca arayüz içindir. Ayrıntı ve denetim
+  kaydı: `docs/security.md`.
+- **Ağ günlüğü:** `Env.enableNetworkLogs` varsayılanı **debug**'dır ve
+  günlükçü yalnızca yöntem + yol + durum kodu yazar. İstek gövdeleri (çocuk
+  sağlık kaydı, acil durum kartı, şifre) ve `Authorization` başlığı hiçbir
+  derlemede günlüğe düşmez (`test/network_logging_test.dart`).
+- **Simge düğmeleri:** yalnızca ikon taşıyan her `IconButton` `tooltip` almak
+  zorunda — ekran okuyucu adı buradan gelir. Ortak etiketler
+  `t.common.a11y.*`; kural `test/icon_button_tooltip_test.dart` kaynak
+  taramasıyla korunuyor.
+- **Kaydedilmemiş form:** form ekranları `UnsavedChangesGuard`
+  (`core/widgets/unsaved_changes_guard.dart`) ile sarılır; `hasChanges` pop
+  anında değerlendirilir (formun her tuş vuruşunda çizilmesi gerekmez).
+  Kaydettikten sonra `Navigator.pop` doğrudan çağrıldığı için onay çıkmaz.
+- **Autofill:** giriş/kayıt/şifre alanları `AutofillGroup` içinde ve
+  `autofillHints` taşır; başarılı giriş/kayıt sonrası
+  `TextInput.finishAutofillContext()` şifre yöneticisinin kaydetme istemini
+  tetikler.
 - Backend mutasyonları (POST/PUT/DELETE) canlı paylaşılan DB'yi kirletmemek için sözleşme
   bazında kaynaktan doğrulandı; canlı deneme kullanıcıya bırakıldı.
+- **Web/backend kaynağı:** parite çalışmasında `github.com/EnesKotay/otizm-destek-platformu`
+  deposu (frontend/ + backend/) referans alınır; sözleşmeler tahmin edilmez,
+  ilgili controller/servis okunur.
+- **Semptom etiketleri** (`/api/tags`) forum, çocuk profili, ilk kurulum ve
+  bilgi bankasında ortaktır: model `features/tags/domain/symptom_tag.dart`,
+  sağlayıcılar `symptomTagsGroupedProvider` / `symptomTagsProvider` (düz liste
+  gruplu yanıttan türetilir — web'in ayrıca yaptığı `GET /tags` çağrısı
+  mobilde yok).
+- **Paylaşılan veri vs. arayüz metni:** backend'e yazılan ya da web'in okuduğu
+  metinler (etiket adları, kategori değerleri, onboarding seçenekleri, yasal
+  metinler) çevrilmez — i18n yalnızca arayüz metinleri içindir.
+- **Dolgulu butonlar tam genişlik tasarlandı:** temada `FilledButton` ve
+  `OutlinedButton` için `minimumSize: Size.fromHeight(...)` verilir, yani
+  asgari genişlik **sonsuzdur**. Bu butonları `Row` içine koyarken ya
+  `Expanded`/`Flexible` ile sınırlayın ya da satır içi biçimi verin
+  (`AppButtonStyles.inlineFilled` / `inlineOutlined`,
+  `core/theme/app_theme.dart`); aksi halde "BoxConstraints forces an infinite
+  width" hatasıyla ekran çöker. `FilledButton.tonal*` de aynı temayı kullanır —
+  bu yüzden **ikincil eylemlerde `AppButtonStyles.tonal(context)` /
+  `inlineTonal(context)` verilir**, aksi halde tonal buton birincil maviyle
+  çizilir ve ana eylemden ayırt edilemez. `TextButton`'da bu kısıt yok. Kural `test/button_layout_rule_test.dart` ile
+  korunur: hem davranışı doğrular hem de `lib/` kaynağını tarayıp sarmalanmamış
+  satır butonu kalmadığını denetler (bu tarama randevu kartı dahil 14 gerçek
+  çökme noktası buldu). Kaynak taraması **dolaylı** durumları görmez (buton
+  başka bir widget sınıfının içindeyse); onları ekran görüntüsü üreteci
+  yakalar — Benzer Aileler ekranındaki `_ConnectButton` böyle bulundu.
+- **Ekran duman testleri:** `test/screen_smoke_test.dart` belirli ekranların
+  davranışını doğrular (rozet, düğme durumu vb.); uzun listeler için test
+  yüzeyi büyütülür (`tester.view.physicalSize`).
+- **Ekran çökme taraması:** `test/screens_build_test.dart` **62 ekranı**
+  sahte backend'le (`test/support/fake_backend.dart` → `screenCatalog`) kurar
+  ve hiçbir çizim/düzen hatası atmadığını doğrular; karanlık tema ve büyük
+  yazı + yüksek kontrast varyantları da listede. Yeni ekran eklerken katalog
+  listesine bir satır eklemek yeterli. **Fontlar `loadTestFonts()` ile
+  yüklenmeli**: test motorunun varsayılan fontu her karakteri sabit genişlikte
+  çizdiği için gerçekte olmayan taşma hataları üretiyor.
+- **Ekran görüntüsü üreteci:** `flutter test tool/screenshots_test.dart
+  --update-goldens` aynı katalogdan `build/screens/*.png` üretir
+  (emülatör/oturum gerektirmez; `tool/` normal takıma girmez). Aile
+  belirtmeyen `TextStyle`lar başsız render'da kutu çizer (cihazda sistem
+  fontuna düşerler) — görüntülerdeki bu kusur beklenendir.
+- `dart format` bu depoda **kullanılmıyor** (mevcut dosyaların çoğu farklı
+  sarmalanmış); elle 80 sütun hedeflenir.
