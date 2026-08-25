@@ -7,18 +7,25 @@ import '../storage/secure_storage.dart';
 
 /// Tek bir STOMP/SockJS bağlantısını yönetir (backend `/ws`).
 ///
-/// Bağlantı ilk abonelikte kurulur; kopması durumunda otomatik yeniden bağlanır
-/// ve mevcut abonelikler yenilenir. CONNECT, backend'in beklediği gibi
-/// `Authorization: Bearer <token>` native header'ı ile kimlik doğrular.
+/// Bağlantı ilk abonelikte kurulur; kopması durumunda taze token ile yeniden
+/// bağlanır ve mevcut abonelikler yenilenir. CONNECT, backend'in beklediği
+/// gibi `Authorization: Bearer <token>` native header'ı ile kimlik doğrular.
+///
+/// Yeniden bağlanma kütüphaneye değil bu sınıfa bırakılmıştır: kütüphanenin
+/// kendi `reconnectDelay`'i aynı yapılandırmayı (eski token'ı) tekrar
+/// kullanır; token yenilenmişse sonsuz başarısız döngüye girer. Bu yüzden
+/// `reconnectDelay: Duration.zero` ile kapatılır, `onWebSocketDone`'da eski
+/// istemci atılıp depodan taze token okunarak yeni istemci kurulur.
 class StompService {
   StompService(this._storage);
 
   final SecureStorage _storage;
   StompClient? _client;
   final List<_Subscription> _subs = [];
+  bool _disposed = false;
 
   Future<void> _ensureClient() async {
-    if (_client != null) return;
+    if (_client != null || _disposed) return;
     final token = await _storage.readAccessToken() ?? '';
     final headers = {'Authorization': 'Bearer $token'};
     _client = StompClient(
@@ -27,7 +34,9 @@ class StompService {
         stompConnectHeaders: headers,
         webSocketConnectHeaders: headers,
         onConnect: _onConnect,
-        reconnectDelay: const Duration(seconds: 5),
+        onWebSocketDone: _scheduleReconnect,
+        // Kütüphanenin yeniden bağlanmasını kapatıyoruz (bkz. sınıf yorumu).
+        reconnectDelay: Duration.zero,
       ),
     );
     _client!.activate();
@@ -38,6 +47,17 @@ class StompService {
     for (final s in _subs) {
       _bind(s);
     }
+  }
+
+  /// WebSocket kapandığında eski istemciyi atıp taze token ile yeniden kur.
+  void _scheduleReconnect() {
+    _client = null;
+    if (_disposed || _subs.isEmpty) return;
+    Future<void>.delayed(const Duration(seconds: 5), () {
+      if (!_disposed && _subs.isNotEmpty && _client == null) {
+        _ensureClient();
+      }
+    });
   }
 
   void _bind(_Subscription s) {
@@ -63,6 +83,7 @@ class StompService {
   }
 
   void dispose() {
+    _disposed = true;
     _client?.deactivate();
     _client = null;
     _subs.clear();
